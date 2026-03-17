@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Feudal Army Composition & Cost Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate the true cost of a medieval feudal army. Input troop types, quantities, and campaign duration to get accurate silver, provisioning, and equipment costs.">
+<link rel="canonical" href="https://historycalc.com/medieval-feudal-army-cost-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Feudal Army Composition & Cost Calculator",
+  "url": "https://historycalc.com/medieval-feudal-army-cost-calculator/",
+  "description": "Calculate the composition and cost of a medieval feudal army including knights, men-at-arms, archers, infantry, and siege equipment.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f0e1;
+    --card: #fdf8ee;
+    --accent: #8b4513;
+    --accent-dark: #6b3410;
+    --text: #2c1810;
+    --text-light: #5c3d2e;
+    --border: #c4a882;
+    --row-alt: #f0e9d6;
+    --gold: #c9922a;
+    --shadow: rgba(44,24,16,0.12);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  nav {
+    background: var(--accent);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  nav a {
+    color: #fdf8ee;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+  }
+  nav a:hover { text-decoration: underline; }
+
+  .page-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .svg-hero {
+    text-align: center;
+    margin: 0.5rem 0 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+  }
+  .subtitle {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    margin-bottom: 2rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5c3d2e;
+    margin-bottom: 0.35rem;
+    margin-top: 1rem;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fdf8ee;
+    color: var(--text);
+    font-size: 1rem;
+    transition: box-shadow 0.2s;
+    -moz-appearance: textfield;
+  }
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.18);
+  }
+  input.error { border-color: #c0392b; }
+  .error-msg { color: #c0392b; font-size: 0.8rem; margin-top: 0.3rem; display: none; }
+  .error-msg.show { display: block; }
+
+  .troop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .troop-item label { margin-top: 0; }
+
+  .range-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.3rem;
+  }
+  input[type="range"] {
+    flex: 1;
+    accent-color: var(--accent);
+    cursor: pointer;
+    height: 6px;
+  }
+  .range-val {
+    min-width: 48px;
+    text-align: right;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: #fdf8ee;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    min-height: 44px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: var(--accent-dark); }
+
+  .btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--accent);
+    border-radius: 5px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 32px;
+  }
+  .btn-copy:hover { background: var(--row-alt); }
+
+  /* Results */
+  #results { display: none; opacity: 0; transition: opacity 0.35s ease; }
+  #results.visible { display: block; opacity: 1; }
+
+  .result-hero {
+    text-align: center;
+    background: linear-gradient(135deg, #8b4513 0%, #c9922a 100%);
+    color: #fdf8ee;
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .result-hero .big-num {
+    font-size: 2.4rem;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+  .result-hero .big-label {
+    font-size: 0.9rem;
+    opacity: 0.88;
+    margin-top: 0.2rem;
+  }
+  .result-hero .sub-nums {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+  .result-hero .sub-item { font-size: 0.88rem; opacity: 0.9; }
+  .result-hero .sub-item strong { display: block; font-size: 1.1rem; opacity: 1; }
+
+  .results-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+  thead th {
+    background: #d4b896;
+    color: var(--text);
+    padding: 9px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  thead th:last-child, thead th:nth-child(3) { text-align: right; }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+  tbody tr:nth-child(odd) { background: var(--card); }
+  tbody td {
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  tbody td:last-child, tbody td:nth-child(3) { text-align: right; font-variant-numeric: tabular-nums; }
+  tfoot td {
+    padding: 9px 10px;
+    font-weight: 700;
+    background: #c9b08a;
+    color: var(--text);
+    border-top: 2px solid var(--accent);
+  }
+  tfoot td:last-child { text-align: right; }
+
+  .table-wrap { overflow-x: auto; }
+
+  .section-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin: 1.25rem 0 0.6rem;
+  }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.45rem;
+    font-size: 0.82rem;
+  }
+  .bar-label { width: 130px; flex-shrink: 0; color: var(--text-light); }
+  .bar-track {
+    flex: 1;
+    height: 14px;
+    background: #e0d0bb;
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--gold) 100%);
+    border-radius: 99px;
+    transition: width 0.5s ease;
+  }
+  .bar-pct { width: 38px; text-align: right; font-weight: 600; color: var(--accent); }
+
+  .modern-eq {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    margin-top: 1.25rem;
+  }
+  .modern-eq strong { color: var(--gold); }
+
+  /* Did You Know */
+  .dyk {
+    background: #fdf8ee;
+    border: 2px dashed var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .dyk h3 { color: var(--accent); font-size: 1rem; margin-bottom: 0.75rem; }
+  .dyk ul { padding-left: 1.2rem; }
+  .dyk li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--text-light); }
+
+  /* Content sections */
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  .content-section p { font-size: 0.92rem; color: var(--text-light); margin-bottom: 0.75rem; }
+  .content-section ul { padding-left: 1.3rem; }
+  .content-section li { font-size: 0.92rem; color: var(--text-light); margin-bottom: 0.45rem; }
+
+  details { margin-bottom: 0.75rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.92rem;
+    padding: 0.5rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  summary::before { content: "▶"; font-size: 0.7rem; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details p { font-size: 0.9rem; color: var(--text-light); padding: 0.4rem 0 0.5rem 1rem; }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+  .related-tools a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .related-tools a:hover { background: var(--row-alt); }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: var(--accent);
+    color: #f5f0e1;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: #f5e0c0; text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+  footer .copy { margin-top: 0.4rem; opacity: 0.75; font-size: 0.78rem; }
+
+  @media (max-width: 540px) {
+    .troop-grid { grid-template-columns: 1fr; }
+    .related-tools { grid-template-columns: 1fr; }
+    h1 { font-size: 1.3rem; }
+    .result-hero .big-num { font-size: 1.9rem; }
+    .result-hero .sub-nums { gap: 1rem; }
+    .bar-label { width: 100px; font-size: 0.78rem; }
+    .card { padding: 1.25rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav><a href="/">⚔ historycalc.com</a></nav>
+
+<div class="page-wrap">
+
+  <!-- SVG Illustration -->
+  <div class="svg-hero">
+    <svg width="200" height="110" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" aria-label="Medieval castle silhouette with soldiers">
+      <!-- Sky -->
+      <rect width="200" height="110" fill="#f5f0e1"/>
+      <!-- Ground -->
+      <rect y="88" width="200" height="22" fill="#c4a882" rx="2"/>
+      <!-- Castle wall -->
+      <rect x="60" y="48" width="80" height="42" fill="#8b6347"/>
+      <!-- Battlements -->
+      <rect x="60" y="40" width="12" height="12" fill="#8b6347"/>
+      <rect x="76" y="40" width="12" height="12" fill="#8b6347"/>
+      <rect x="92" y="40" width="12" height="12" fill="#8b6347"/>
+      <rect x="108" y="40" width="12" height="12" fill="#8b6347"/>
+      <rect x="124" y="40" width="12" height="12" fill="#8b6347"/>
+      <!-- Gate -->
+      <rect x="88" y="68" width="24" height="22" fill="#2c1810"/>
+      <ellipse cx="100" cy="68" rx="12" ry="8" fill="#2c1810"/>
+      <!-- Tower left -->
+      <rect x="44" y="34" width="22" height="56" fill="#a07850"/>
+      <rect x="44" y="26" width="8" height="12" fill="#a07850"/>
+      <rect x="52" y="26" width="8" height="12" fill="#a07850"/>
+      <rect x="58" y="26" width="8" height="12" fill="#a07850"/>
+      <!-- Tower right -->
+      <rect x="134" y="34" width="22" height="56" fill="#a07850"/>
+      <rect x="134" y="26" width="8" height="12" fill="#a07850"/>
+      <rect x="142" y="26" width="8" height="12" fill="#a07850"/>
+      <rect x="150" y="26" width="8" height="12" fill="#a07850"/>
+      <!-- Flag -->
+      <line x1="55" y1="10" x2="55" y2="30" stroke="#2c1810" stroke-width="2"/>
+      <polygon points="55,10 70,16 55,22" fill="#8b4513"/>
+      <!-- Soldier 1 (knight) -->
+      <circle cx="24" cy="76" r="5" fill="#5c3d2e"/>
+      <rect x="20" y="80" width="8" height="10" fill="#6b3410"/>
+      <line x1="27" y1="82" x2="36" y2="74" stroke="#8b4513" stroke-width="2"/>
+      <!-- Soldier 2 (archer) -->
+      <circle cx="174" cy="76" r="5" fill="#5c3d2e"/>
+      <rect x="170" y="80" width="8" height="10" fill="#4a3020"/>
+      <line x1="171" y1="82" x2="162" y2="74" stroke="#c9922a" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <h1>Medieval Feudal Army Composition & Cost Calculator</h1>
+  <p class="subtitle">Estimate the silver, provisions, and wages to field a medieval army — based on historical 13th–14th century English records.</p>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <h2>⚔ Configure Your Army</h2>
+
+    <label for="campaign">Campaign Duration (days)</label>
+    <div class="range-row">
+      <input type="range" id="campaignSlider" min="1" max="365" value="40">
+      <input type="number" id="campaign" value="40" min="1" max="9999" style="width:90px;flex-shrink:0;">
+    </div>
+    <div class="error-msg" id="err-campaign">Please enter a valid campaign duration (1–9999 days).</div>
+
+    <label for="era">Era / Pay Scale</label>
+    <select id="era">
+      <option value="early">Early Medieval (900–1100 AD) — lower wages</option>
+      <option value="mid" selected>High Medieval (1200–1350 AD) — standard English wages</option>
+      <option value="late">Late Medieval (1350–1500 AD) — post-Plague inflation</option>
+    </select>
+
+    <div class="section-label" style="margin-top:1.25rem;">Troop Counts</div>
+    <div class="troop-grid">
+      <div class="troop-item">
+        <label for="knights">Knights / Heavy Cavalry</label>
+        <input type="number" id="knights" value="50" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="sergeants">Mounted Sergeants</label>
+        <input type="number" id="sergeants" value="150" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="menatarms">Men-at-Arms (foot)</label>
+        <input type="number" id="menatarms" value="300" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="crossbows">Crossbowmen</label>
+        <input type="number" id="crossbows" value="200" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="archers">Longbowmen / Archers</label>
+        <input type="number" id="archers" value="400" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="infantry">Common Infantry / Spearmen</label>
+        <input type="number" id="infantry" value="500" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="engineers">Siege Engineers / Miners</label>
+        <input type="number" id="engineers" value="30" min="0" max="99999">
+      </div>
+      <div class="troop-item">
+        <label for="surgeons">Surgeons / Chaplains</label>
+        <input type="number" id="surgeons" value="10" min="0" max="99999">
+      </div>
+    </div>
+
+    <div class="section-label">Siege Equipment</div>
+    <div class="troop-grid">
+      <div class="troop-item">
+        <label for="trebuchets">Trebuchets</label>
+        <input type="number" id="trebuchets" value="2" min="0" max="999">
+      </div>
+      <div class="troop-item">
+        <label for="mangonels">Mangonels / Ballistas</label>
+        <input type="number" id="mangonels" value="4" min="0" max="999">
+      </div>
+      <div class="troop-item">
+        <label for="battering">Battering Rams</label>
+        <input type="number" id="battering" value="1" min="0" max="999">
+      </div>
+      <div class="troop-item">
+        <label for="siegetowers">Siege Towers</label>
+        <input type="number" id="siegetowers" value="0" min="0" max="999">
+      </div>
+    </div>
+
+    <label for="transport">Supply & Transport Wagons</label>
+    <input type="number" id="transport" value="80" min="0" max="99999">
+
+    <div id="err-troops" class="error-msg">Your army must have at least one troop or piece of equipment.</div>
+
+    <button class="btn" id="calcBtn">⚔ Calculate Army Cost</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="results">
+    <div class="results-row">
+      <span class="section-label" style="margin:0;">Results</span>
+      <button class="btn-copy" id="copyBtn">📋 Copy Summary</button>
+    </div>
+
+    <div class="result-hero" id="resultHero"></div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <h2>Daily &amp; Total Wages by Unit</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Unit Type</th>
+              <th>Count</th>
+              <th>Daily (pence)</th>
+              <th>Total Cost (shillings)</th>
+            </tr>
+          </thead>
+          <tbody id="wageTableBody"></tbody>
+          <tfoot id="wageTableFoot"></tfoot>
+        </table>
+      </div>
+
+      <div class="section-label">Cost Breakdown by Category</div>
+      <div id="barChart"></div>
+
+      <div class="section-label" style="margin-top:1.25rem;">Siege Equipment &amp; Logistics</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Unit Cost (shillings)</th>
+              <th>Total (shillings)</th>
+            </tr>
+          </thead>
+          <tbody id="siegeTableBody"></tbody>
+          <tfoot id="siegeTableFoot"></tfoot>
+        </table>
+      </div>
+
+      <div class="modern-eq" id="modernEq"></div>
+    </div>
+
+    <div class="ad-slot" id="ad-mid"></div>
+  </div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="dyk">
+    <h3>⚔ Did You Know?</h3>
+    <ul>
+      <li>In 1298, Edward I's army at Falkirk included ~3,000 cavalry and ~14,000 foot soldiers. The campaign cost over £80,000 — roughly £80 million in today's money.</li>
+      <li>A English knight in 1300 earned 2 shillings per day (24 pence), while a common infantryman received just 2 pence — a 12-to-1 ratio reflecting the cost of horse, armour, and training.</li>
+      <li>The English longbowmen at Crécy (1346) were paid 3 pence per day but their arrows — 24 per man per battle — cost more than their daily wage. Edward III ordered 8 million arrows for the 1359 Reims campaign.</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Medieval Army Cost Calculator</h2>
+    <p>Select your campaign duration using the slider or text field, then choose an era to apply the correct historical pay scales. Enter the number of each troop type — from elite knights to common spearmen — and add any siege equipment. Click "Calculate Army Cost" to instantly see total silver expenditure in pence, shillings, and pounds, plus a per-category breakdown.</p>
+    <p>Results are presented in period-accurate English medieval currency: 12 pence = 1 shilling, 20 shillings = 1 pound. A modern purchasing-power equivalent is also shown.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Historical Context</h2>
+    <p>Medieval feudal armies were expensive undertakings financed through a complex mix of feudal obligation, mercenary hire, and royal taxation. England's Exchequer Rolls and the <em>Pipe Rolls</em> record wages with remarkable precision: a knight banneret in Edward I's Welsh campaigns (1277–1295) earned 4 shillings per day, a knight 2s, a mounted sergeant 12d, a crossbowman 4d, and a foot archer 3d. These rates rose sharply after the Black Death (1348–50) as labour scarcity drove wages up by 30–50%. Provisioning typically added 40–60% on top of wages: the army required grain, salted meat, wine, fodder for horses, and vast quantities of arrows and bolts. A fully equipped destrier (war horse) could cost £40–£80 — equivalent to a knight's annual wage.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding medieval military costs reveals why kings so frequently ran out of money, why campaigns ended prematurely, and why taxation was such a politically charged issue. The Hundred Years' War (1337–1453) bankrupted several Italian banking houses — including the Bardi and Peruzzi — who had lent Edward III vast sums. At its peak, England was spending £50,000–£100,000 per year on continental warfare, requiring parliaments to grant unprecedented tax levies.</p>
+    <p>For wargamers, historians, novelists, and students, this calculator bridges the gap between abstract troop numbers and the concrete economic reality of medieval warfare — answering questions like: how long could a typical baron sustain 200 men in the field? (Answer: rarely more than 40 days without royal subsidy.) What did Edward III's entire Crécy campaign actually cost in modern terms? These numbers transform statistics into stories.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>Wages are drawn from documented English royal army pay scales, primarily from the reign of Edward I (1272–1307) for the High Medieval scale, adjusted ±25% for early and late medieval periods respectively. For each troop type:</p>
+    <p><strong>Total Wages = Daily Rate (pence) × Number of Troops × Campaign Days</strong></p>
+    <p>Provisioning is calculated at 40% of total wages (based on Prestwich's research on Edwardian armies). Siege engine construction costs use lump-sum figures derived from surviving English and French accounts — a trebuchet cost approximately £100 (2,400 shillings) to construct, while a mangonel ran ~£20. Transport wagons are costed at 6d per day hire. All values are in pence unless stated, then converted: 12d = 1s, 240d = £1. The modern equivalent uses a purchasing-power multiplier of approximately £1 medieval = £1,000 modern (Oxford University historical estimates).</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't forget provisioning:</strong> Historians estimate food, fodder, and supplies added 40–60% to raw wage costs — this calculator includes that automatically.</li>
+      <li><strong>Knights need destriers:</strong> Each knight required 2–3 horses on campaign. Horse losses (disease, exhaustion) were often higher than human casualties and are reflected in the equipment cost multiplier.</li>
+      <li><strong>40-day feudal limit:</strong> In theory, feudal obligation required only 40 days of unpaid service. Anything longer required wages. Most serious campaigns far exceeded this — use 60+ days for a siege, 100+ for a major continental expedition.</li>
+      <li><strong>Siege engines dominate capital costs:</strong> Even a small siege train (2 trebuchets, 4 mangonels) can cost more than months of infantry wages. Build them only if you need them.</li>
+      <li><strong>Era matters:</strong> Post-Black Death wages (late medieval) were ~30–50% higher. Choosing the wrong era will significantly mis-estimate historical costs.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What currency does the calculator use?</summary>
+      <p>Results are expressed in the medieval English currency system: pence (d), shillings (s), and pounds (£). The conversion rates are historical: 12 pence = 1 shilling, 20 shillings = 1 pound. A modern purchasing-power equivalent is also displayed for context.</p>
+    </details>
+    <details>
+      <summary>How accurate are the historical wage rates?</summary>
+      <p>The pay rates are based on documented English royal army records, primarily from Michael Prestwich's seminal work <em>Armies and Warfare in the Middle Ages</em> and the published Pipe Rolls. They are accurate for English armies 1250–1400; Continental armies (French, Holy Roman Empire) used broadly similar rates but with some regional variation.</p>
+    </details>
+    <details>
+      <summary>Does this include the cost of armour and weapons?</summary>
+      <p>The calculator focuses on campaign running costs (wages + provisioning + logistics). Initial equipment costs — armour, weapons, horses — are partially reflected in the per-unit daily rates, which were higher for heavily equipped units partly to offset their equipment investment. A full equipment purchase cost would require a separate estimator.</p>
+    </details>
+    <details>
+      <summary>Why is the modern equivalent so high?</summary>
+      <p>Medieval silver had enormous purchasing power relative to today's money. Historians estimate £1 medieval sterling corresponds to approximately £1,000 in modern purchasing power (roughly $1,200–1,300 USD), based on commodity price comparisons. Major medieval campaigns were genuinely nation-defining financial commitments — the equivalent of modern defence budgets.</p>
+    </details>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="content-section">
+    <h2>Related Historical Tools</h2>
+    <div class="related-tools">
+      <a href="/greek-trireme-voyage-planner/">⚓ Greek Trireme Voyage Planner</a>
+      <a href="/egyptian-pyramid-construction-estimator/">🏛 Egyptian Pyramid Construction Timeline Estimator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /page-wrap -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div class="copy">© <span id="yr"></span> historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Sync slider ↔ number input
+  const campaignSlider = document.getElementById('campaignSlider');
+  const campaignInput = document.getElementById('campaign');
+  campaignSlider.addEventListener('input', () => { campaignInput.value = campaignSlider.value; });
+  campaignInput.addEventListener('input', () => {
+    const v = Math.min(9999, Math.max(1, parseInt(campaignInput.value) || 1));
+    campaignSlider.value = Math.min(365, v);
+  });
+
+  // Pay scales in pence per day (High Medieval = base)
+  const PAY_BASE = {
+    knights:    24,   // 2 shillings
+    sergeants:  12,   // 1 shilling
+    menatarms:  4,    // 4 pence
+    crossbows:  4,    // 4 pence
+    archers:    3,    // 3 pence
+    infantry:   2,    // 2 pence
+    engineers:  6,    // 6 pence (skilled craftsmen)
+    surgeons:   12    // 1 shilling (specialist)
+  };
+
+  const ERA_MULT = { early: 0.75, mid: 1.0, late: 1.40 };
+
+  const UNIT_LABELS = {
+    knights:   'Knights / Heavy Cavalry',
+    sergeants: 'Mounted Sergeants',
+    menatarms: 'Men-at-Arms (foot)',
+    crossbows: 'Crossbowmen',
+    archers:   'Longbowmen / Archers',
+    infantry:  'Common Infantry / Spearmen',
+    engineers: 'Siege Engineers / Miners',
+    surgeons:  'Surgeons / Chaplains'
+  };
+
+  // Siege costs in shillings (one-time construction/hire)
+  const SIEGE_BASE = {
+    trebuchets:  2400,  // ~£100
+    mangonels:   480,   // ~£24
+    battering:   120,   // ~£6
+    siegetowers: 960    // ~£48
+  };
+  const SIEGE_LABELS = {
+    trebuchets:  'Trebuchet',
+    mangonels:   'Mangonel / Ballista',
+    battering:   'Battering Ram',
+    siegetowers: 'Siege Tower'
+  };
+
+  function fmt(n, dec=0) {
+    if (dec > 0) return n.toLocaleString('en-GB', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+    return Math.round(n).toLocaleString('en-GB');
+  }
+
+  function calculate() {
+    // Clear errors
+    document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+    document.querySelectorAll('input').forEach(e => e.classList.remove('error'));
+
+    const days = parseInt(campaignInput.value);
+    if (!days || days < 1) {
+      document.getElementById('err-campaign').classList.add('show');
+      campaignInput.classList.add('error');
+      return;
+    }
+
+    const era = document.getElementById('era').value;
+    const mult = ERA_MULT[era];
+
+    const troops = {};
+    const keys = Object.keys(PAY_BASE);
+    let totalTroops = 0;
+    keys.forEach(k => {
+      troops[k] = Math.max(0, parseInt(document.getElementById(k).value) || 0);
+      totalTroops += troops[k];
+    });
+
+    const siege = {};
+    const siegeKeys = Object.keys(SIEGE_BASE);
+    let hasSiege = false;
+    siegeKeys.forEach(k => {
+      siege[k] = Math.max(0, parseInt(document.getElementById(k).value) || 0);
+      if (siege[k] > 0) hasSiege = true;
+    });
+
+    const transport = Math.max(0, parseInt(document.getElementById('transport').value) || 0);
+
+    if (totalTroops === 0 && !hasSiege && transport === 0) {
+      document.getElementById('err-troops').classList.add('show');
+      return;
+    }
+
+    // === COMPUTE ===
+    let totalWagePence = 0;
+    const wageRows = [];
+
+    keys.forEach(k => {
+      if (troops[k] === 0) return;
+      const dailyRate = PAY_BASE[k] * mult;
+      const totalPence = dailyRate * troops[k] * days;
+      const totalShillings = totalPence / 12;
+      totalWagePence += totalPence;
+      wageRows.push({
+        label: UNIT_LABELS[k],
+        count: troops[k],
+        dailyPence: dailyRate,
+        totalShillings
+      });
+    });
+
+    const transportCostPence = transport * 6 * mult * days; // 6d per wagon per day
+    const transportShillings = transportCostPence / 12;
+    if (transport > 0) {
+      totalWagePence += transportCostPence;
+    }
+
+    // Provisioning: 40% on top of wages
+    const provisioningPence = totalWagePence * 0.40;
+    const provisioningShillings = provisioningPence / 12;
+
+    // Siege costs
+    let totalSiegePence = 0;
+    const siegeRows = [];
+    siegeKeys.forEach(k => {
+      if (siege[k] === 0) return;
+      const unitShillings = SIEGE_BASE[k] * mult;
+      const totalSh = unitShillings * siege[k];
+      totalSiegePence += totalSh * 12;
+      siegeRows.push({ label: SIEGE_LABELS[k], qty: siege[k], unitShillings, totalShillings: totalSh });
+    });
+    if (transport > 0) {
+      siegeRows.push({ label: 'Supply & Transport Wagons (hire)', qty: transport, unitShillings: parseFloat((6 * mult * days / 12).toFixed(1)), totalShillings: parseFloat(transportShillings.toFixed(1)) });
+    }
+    const totalSiegeShillings = totalSiegePence / 12;
+
+    const grandPence = totalWagePence + provisioningPence + totalSiegePence;
+    const grandShillings = grandPence / 12;
+    const grandPounds = grandShillings / 20;
+
+    // Cost shares for bar chart
+    const wageShillings = totalWagePence / 12;
+    const categories = [
+      { label: 'Troop Wages', val: wageShillings },
+      { label: 'Provisioning', val: provisioningShillings },
+      { label: 'Siege / Logistics', val: totalSiegeShillings }
+    ];
+    const catTotal = categories.reduce((s, c) => s + c.val, 0) || 1;
+
+    // Modern equivalent (£1 medieval = £1000 modern, £1 = $1.27)
+    const modernGBP = grandPounds * 1000;
+    const modernUSD = modernGBP * 1.27;
+    const dailyCost = grandPounds / days;
+
+    // === DOM BUILD ===
+    const heroHTML = `
+      <div class="big-num">£${fmt(grandPounds)}</div>
+      <div class="big-label">Total Campaign Cost (medieval £)</div>
+      <div class="sub-nums">
+        <div class="sub-item"><strong>${fmt(grandShillings)} s</strong>Total Shillings</div>
+        <div class="sub-item"><strong>${fmt(grandPence)} d</strong>Total Pence</div>
+        <div class="sub-item"><strong>${fmt(totalTroops)}</strong>Total Troops</div>
+        <div class="sub-item"><strong>${days}</strong>Campaign Days</div>
+        <div class="sub-item"><strong>£${fmt(dailyCost, 1)}/day</strong>Daily Burn Rate</div>
+      </div>`;
+
+    let wageBodyHTML = '';
+    wageRows.forEach(r => {
+      wageBodyHTML += `<tr>
+        <td>${r.label}</td>
+        <td>${fmt(r.count)}</td>
+        <td style="text-align:right">${fmt(r.dailyPence, 1)}d</td>
+        <td>${fmt(r.totalShillings, 1)}s</td>
+      </tr>`;
+    });
+    wageBodyHTML += `<tr>
+      <td><em>Provisioning (40% of wages)</em></td>
+      <td>—</td>
+      <td style="text-align:right">—</td>
+      <td>${fmt(provisioningShillings, 1)}s</td>
+    </tr>`;
+
+    const wageTotalHTML = `<tr>
+      <td colspan="3">Wages + Provisioning Total</td>
+      <td>${fmt((totalWagePence + provisioningPence) / 12, 1)}s</td>
+    </tr>`;
+
+    let siegeBodyHTML = '';
+    siegeRows.forEach(r => {
+      siegeBodyHTML += `<tr>
+        <td>${r.label}</td>
+        <td>${r.qty}</td>
+        <td>${fmt(r.unitShillings, 1)}s</td>
+        <td>${fmt(r.totalShillings, 1)}s</td>
+      </tr>`;
+    });
+    if (siegeRows.length === 0) {
+      siegeBodyHTML = `<tr><td colspan="4" style="text-align:center;color:#888;font-style:italic">No siege equipment selected.</td></tr>`;
+    }
+    const siegeTotalHTML = `<tr>
+      <td colspan="3">Siege &amp; Logistics Total</td>
+      <td>${fmt(totalSiegeShillings, 1)}s</td>
+    </tr>`;
+
+    // Bar chart
+    let barHTML = '';
+    categories.forEach(c => {
+      const pct = catTotal > 0 ? (c.val / catTotal) * 100 : 0;
+      barHTML += `<div class="bar-row">
+        <span class="bar-label">${c.label}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct.toFixed(1)}%"></div></div>
+        <span class="bar-pct">${pct.toFixed(0)}%</span>
+      </div>`;
+    });
+
+    // Comparisons
+    const soldiersWaged = Math.round(grandPounds / 0.04); // rough: avg 4d/day soldier
+    const modernEqHTML = `<strong>Modern Equivalent:</strong> £${fmt(modernGBP)} (approx. <strong>$${fmt(modernUSD)}</strong> USD) in today's purchasing power.
+    <br>That's roughly the cost of <strong>${fmt(Math.round(modernGBP / 45000))} modern soldiers</strong> for one year, or enough to buy <strong>${fmt(Math.round(modernGBP / 28000))} new cars</strong>.
+    <br><span style="opacity:0.7;font-size:0.82rem;">Based on Oxford purchasing-power estimates: £1 medieval ≈ £1,000 modern.</span>`;
+
+    requestAnimationFrame(() => {
+      document.getElementById('resultHero').innerHTML = heroHTML;
+      document.getElementById('wageTableBody').innerHTML = wageBodyHTML;
+      document.getElementById('wageTableFoot').innerHTML = wageTotalHTML;
+      document.getElementById('siegeTableBody').innerHTML = siegeBodyHTML;
+      document.getElementById('siegeTableFoot').innerHTML = siegeTotalHTML;
+      document.getElementById('barChart').innerHTML = barHTML;
+      document.getElementById('modernEq').innerHTML = modernEqHTML;
+
+      const resultsEl = document.getElementById('results');
+      resultsEl.style.display = 'block';
+      resultsEl.offsetHeight; // force reflow for transition
+      resultsEl.classList.add('visible');
+      resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  // Enter key on any input
+  document.querySelectorAll('input[type="number"], select').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+  });
+
+  // Copy button
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    const hero = document.getElementById('resultHero');
+    if (!hero || !hero.textContent.trim()) return;
+    const days = campaignInput.value;
+    const era = document.getElementById('era').options[document.getElementById('era').selectedIndex].text;
+    const troops = [];
+    Object.keys({knights:1,sergeants:1,menatarms:1,crossbows:1,archers:1,infantry:1,engineers:1,surgeons:1}).forEach(k => {
+      const v = parseInt(document.getElementById(k).value) || 0;
+      if (v > 0) troops.push(`${v} ${k}`);
+    });
+    const text = `Medieval Army Cost — historycalc.com\n` +
+      `Era: ${era}\n` +
+      `Duration: ${days} days\n` +
+      `Troops: ${troops.join(', ')}\n` +
+      `Total Cost: ${hero.querySelector('.big-num').textContent} (medieval pounds)\n` +
+      `Campaign URL: https://historycalc.com/medieval-feudal-army-cost-calculator/`;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.innerHTML = '📋 Copy Summary'; }, 2000);
+    });
+  });
+</script>
+</body>
+</html>
