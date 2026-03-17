@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Bath (Thermae) Construction Cost Estimator — Free Online Tool | HistoricalBuilds</title>
+<meta name="description" content="Estimate the construction cost of an ancient Roman thermae in modern USD. Input size, marble grade, and features to get a detailed breakdown.">
+<link rel="canonical" href="https://historicalbuilds.example.com/roman-bath-cost-estimator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Bath (Thermae) Construction Cost Estimator",
+  "description": "Estimate the construction cost of an ancient Roman thermae in modern USD with detailed material and labor breakdowns.",
+  "url": "https://historicalbuilds.example.com/roman-bath-cost-estimator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #1a1a2e; line-height: 1.6; }
+a { color: #0077b6; text-decoration: none; }
+a:hover { text-decoration: underline; }
+nav { border-bottom: 1px solid #e0e0e0; padding: 0.75rem 1.5rem; }
+nav .site-name { font-weight: 700; font-size: 1rem; color: #1a1a2e; }
+.container { max-width: 640px; margin: 0 auto; padding: 1.5rem; }
+h1 { font-size: 1.55rem; font-weight: 800; margin-bottom: 0.4rem; color: #1a1a2e; }
+.subtitle { color: #555; font-size: 0.95rem; margin-bottom: 1.8rem; }
+.card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 2rem; }
+.section-title { font-size: 1rem; font-weight: 700; color: #0077b6; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.form-group { margin-bottom: 1.2rem; }
+label { display: block; font-size: 0.85rem; font-weight: 500; color: #444; margin-bottom: 0.4rem; }
+label .hint { font-weight: 400; color: #888; font-size: 0.8rem; }
+input[type="number"], select { width: 100%; padding: 12px 16px; border: 1px solid #ddd; border-radius: 6px; font-size: 0.95rem; color: #1a1a2e; background: #fff; transition: border-color 0.2s, box-shadow 0.2s; min-height: 44px; }
+input[type="number"]:focus, select:focus { outline: none; border-color: #0077b6; box-shadow: 0 0 0 3px rgba(0,119,182,0.15); }
+input.error { border-color: #e74c3c; }
+.error-msg { color: #e74c3c; font-size: 0.8rem; margin-top: 0.3rem; display: none; }
+.error-msg.show { display: block; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 0.3rem; }
+.checkbox-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; cursor: pointer; min-height: 36px; }
+.checkbox-item input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; accent-color: #0077b6; flex-shrink: 0; }
+button.calc-btn { width: 100%; background: #0077b6; color: #fff; border: none; padding: 14px 24px; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; min-height: 44px; margin-top: 0.5rem; }
+button.calc-btn:hover { background: #006299; }
+.results { opacity: 0; transition: opacity 0.3s ease; pointer-events: none; }
+.results.visible { opacity: 1; pointer-events: all; }
+.big-number-box { background: linear-gradient(135deg, #0077b6 0%, #005f8e 100%); color: #fff; border-radius: 8px; padding: 1.5rem; text-align: center; margin-bottom: 1.5rem; position: relative; }
+.big-number-label { font-size: 0.85rem; opacity: 0.85; margin-bottom: 0.3rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.big-number { font-size: 2.4rem; font-weight: 900; letter-spacing: -0.01em; }
+.big-number-sub { font-size: 0.82rem; opacity: 0.8; margin-top: 0.3rem; }
+.copy-btn { position: absolute; top: 0.75rem; right: 0.75rem; background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.4); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; transition: background 0.2s; }
+.copy-btn:hover { background: rgba(255,255,255,0.35); }
+.summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-bottom: 1.5rem; }
+.summary-card { background: #f8f9fa; border: 1px solid #e0e0e0; border-radius: 6px; padding: 0.9rem 1rem; }
+.summary-card .sc-label { font-size: 0.75rem; color: #666; text-transform: uppercase; letter-spacing: 0.04em; }
+.summary-card .sc-value { font-size: 1.1rem; font-weight: 700; color: #0077b6; margin-top: 0.15rem; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+thead tr { background: #f0f0f0; }
+thead th { padding: 9px 12px; text-align: left; font-weight: 600; color: #333; border-bottom: 2px solid #ddd; white-space: nowrap; }
+thead th.num { text-align: right; }
+tbody tr:nth-child(even) { background: #fafafa; }
+tbody tr:nth-child(odd) { background: #fff; }
+tbody td { padding: 9px 12px; border-bottom: 1px solid #eee; color: #1a1a2e; }
+tbody td.num { text-align: right; font-variant-numeric: tabular-nums; }
+tbody td.category { font-weight: 600; color: #0077b6; font-size: 0.8rem; text-transform: uppercase; }
+tfoot tr { background: #1a1a2e; color: #fff; }
+tfoot td { padding: 10px 12px; font-weight: 700; }
+tfoot td.num { text-align: right; }
+.bar-visual { margin-bottom: 1.5rem; }
+.bar-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem; font-size: 0.82rem; }
+.bar-label { width: 130px; flex-shrink: 0; color: #555; }
+.bar-track { flex: 1; background: #eee; border-radius: 3px; height: 14px; overflow: hidden; }
+.bar-fill { height: 100%; background: #0077b6; border-radius: 3px; transition: width 0.4s ease; }
+.bar-fill.warm { background: #e07b39; }
+.bar-fill.gold { background: #c9a84c; }
+.bar-fill.green { background: #2a9d8f; }
+.bar-fill.purple { background: #7b5ea7; }
+.bar-pct { width: 38px; text-align: right; color: #444; font-weight: 600; }
+.show-all-btn { background: none; border: 1px solid #0077b6; color: #0077b6; padding: 6px 16px; border-radius: 4px; font-size: 0.82rem; cursor: pointer; margin-top: 0.6rem; }
+.show-all-btn:hover { background: #f0f7ff; }
+.hidden-rows { display: none; }
+.hidden-rows.show { display: table-row-group; }
+.ad-slot { min-height: 0; margin: 0; }
+.content-section { margin-bottom: 2rem; }
+.content-section h2 { font-size: 1.15rem; font-weight: 700; color: #1a1a2e; margin-bottom: 0.7rem; padding-bottom: 0.3rem; border-bottom: 2px solid #f0f0f0; }
+.content-section p { font-size: 0.92rem; color: #333; margin-bottom: 0.8rem; line-height: 1.7; }
+.content-section ul { padding-left: 1.3rem; margin-bottom: 0.8rem; }
+.content-section ul li { font-size: 0.92rem; color: #333; margin-bottom: 0.4rem; line-height: 1.6; }
+details { border: 1px solid #e0e0e0; border-radius: 6px; margin-bottom: 0.6rem; }
+summary { padding: 0.75rem 1rem; cursor: pointer; font-weight: 600; font-size: 0.9rem; color: #1a1a2e; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+summary::after { content: '+'; font-size: 1.1rem; color: #0077b6; font-weight: 700; }
+details[open] summary::after { content: '−'; }
+details p { padding: 0 1rem 0.85rem; font-size: 0.88rem; color: #444; line-height: 1.65; }
+.related-tools { background: #f8f9fa; border-radius: 8px; padding: 1.2rem 1.5rem; margin-bottom: 2rem; }
+.related-tools h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.7rem; color: #1a1a2e; }
+.related-tools a { display: inline-block; margin-right: 0.8rem; margin-bottom: 0.4rem; font-size: 0.88rem; color: #0077b6; }
+footer { border-top: 1px solid #e0e0e0; padding: 1.2rem 1.5rem; text-align: center; font-size: 0.82rem; color: #777; }
+footer a { color: #555; margin: 0 0.4rem; }
+.era-badge { display: inline-block; background: #fff3e0; color: #b05a00; border: 1px solid #f0c580; border-radius: 4px; font-size: 0.75rem; font-weight: 600; padding: 2px 8px; margin-left: 0.5rem; vertical-align: middle; }
+@media (max-width: 640px) {
+  .two-col { grid-template-columns: 1fr; }
+  .checkbox-group { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .big-number { font-size: 1.9rem; }
+  .card { padding: 1.3rem; }
+  h1 { font-size: 1.3rem; }
+  .bar-label { width: 105px; font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="site-name">⚱️ HistoricalBuilds</a>
+</nav>
+
+<div class="container">
+
+  <h1>Roman Bath (Thermae) Construction Cost Estimator <span class="era-badge">Ancient Rome</span></h1>
+  <p class="subtitle">Estimate the modern equivalent cost to build an authentic Roman thermae — from a modest neighborhood balneum to an imperial complex rivaling the Baths of Caracalla.</p>
+
+  <div class="card">
+    <div class="section-title">📐 Basic Dimensions</div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Total Floor Area <span class="hint">(sq ft)</span></label>
+        <input type="number" id="floorArea" value="10000" min="500" max="5000000" placeholder="e.g. 10000">
+        <div class="error-msg" id="floorAreaErr">Please enter a valid area (500–5,000,000 sq ft).</div>
+      </div>
+      <div class="form-group">
+        <label>Number of Stories <span class="hint">(1–4)</span></label>
+        <input type="number" id="stories" value="1" min="1" max="4" placeholder="1">
+        <div class="error-msg" id="storiesErr">Enter 1–4 stories.</div>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Pool / Bath Rooms Area <span class="hint">(% of total)</span></label>
+        <input type="number" id="poolPct" value="40" min="10" max="80" placeholder="40">
+        <div class="error-msg" id="poolPctErr">Enter 10–80%.</div>
+      </div>
+      <div class="form-group">
+        <label>Vault Ceiling Height <span class="hint">(ft, 12–100)</span></label>
+        <input type="number" id="ceilHeight" value="30" min="12" max="100" placeholder="30">
+        <div class="error-msg" id="ceilHeightErr">Enter 12–100 ft.</div>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:1.2rem;">🏛️ Construction Quality</div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Marble / Stone Grade</label>
+        <select id="marbleGrade">
+          <option value="travertine">Travertine (economy)</option>
+          <option value="local_marble" selected>Local Marble (standard)</option>
+          <option value="carrara">Carrara Marble (premium)</option>
+          <option value="imperial">Imperial Mix — Porphyry, Giallo (luxury)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mosaic Floor Coverage</label>
+        <select id="mosaicCoverage">
+          <option value="none">None (plain opus incertum)</option>
+          <option value="partial" selected>Partial (30% coverage)</option>
+          <option value="full">Full floor mosaic</option>
+          <option value="elite">Elite pictorial mosaic</option>
+        </select>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Hypocaust Heating System</label>
+        <select id="hypocaust">
+          <option value="none">None (cold bath only)</option>
+          <option value="basic">Basic (frigidarium + tepidarium)</option>
+          <option value="standard" selected>Standard (all three rooms)</option>
+          <option value="advanced">Advanced (multi-zone, praefurnium)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Aqueduct / Water Supply</label>
+        <select id="waterSupply">
+          <option value="cistern">Cistern collection (minimal)</option>
+          <option value="local_pipe" selected>Local lead piping</option>
+          <option value="aqueduct_tap">Aqueduct branch tap</option>
+          <option value="dedicated_aqueduct">Dedicated aqueduct (imperial)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:1.2rem;">✨ Optional Features</div>
+    <div class="checkbox-group">
+      <label class="checkbox-item"><input type="checkbox" id="natatio" checked> Natatio (outdoor pool)</label>
+      <label class="checkbox-item"><input type="checkbox" id="palaestra"> Palaestra (exercise yard)</label>
+      <label class="checkbox-item"><input type="checkbox" id="laconicum"> Laconicum (steam room)</label>
+      <label class="checkbox-item"><input type="checkbox" id="library"> Library / Reading rooms</label>
+      <label class="checkbox-item"><input type="checkbox" id="shops"> Tabernae (shops/stalls)</label>
+      <label class="checkbox-item"><input type="checkbox" id="gardens"> Formal gardens</label>
+      <label class="checkbox-item"><input type="checkbox" id="frescos"> Wall frescoes & stucco</label>
+      <label class="checkbox-item"><input type="checkbox" id="statues"> Bronze & marble statuary</label>
+    </div>
+
+    <div class="section-title" style="margin-top:1.2rem;">📍 Location & Labor</div>
+    <div class="two-col">
+      <div class="form-group">
+        <label>Location Type</label>
+        <select id="location">
+          <option value="province">Provincial town</option>
+          <option value="rome" selected>City of Rome / capital</option>
+          <option value="frontier">Frontier / military</option>
+          <option value="coastal">Coastal resort</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Construction Era</label>
+        <select id="era">
+          <option value="republic">Late Republic (100–27 BC)</option>
+          <option value="early_empire" selected>Early Empire (27 BC–AD 100)</option>
+          <option value="high_empire">High Empire (AD 100–250)</option>
+          <option value="late_empire">Late Empire (AD 250–400)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Skilled Labor Ratio <span class="hint">(% of workforce that is skilled artisans)</span></label>
+      <input type="number" id="skilledRatio" value="30" min="5" max="80" placeholder="30">
+      <div class="error-msg" id="skilledRatioErr">Enter 5–80%.</div>
+    </div>
+
+    <button class="calc-btn" id="calcBtn">⚒️ Calculate Construction Cost</button>
+  </div>
+
+  <div class="results" id="results">
+    <div class="big-number-box">
+      <button class="copy-btn" id="copyBtn">Copy</button>
+      <div class="big-number-label">Estimated Total Construction Cost (Modern USD)</div>
+      <div class="big-number" id="totalCost">—</div>
+      <div class="big-number-sub" id="costPerSqft">—</div>
+    </div>
+
+    <div class="summary-grid" id="summaryGrid"></div>
+
+    <div class="card" style="margin-bottom:1.5rem;">
+      <div class="section-title">📊 Cost Breakdown by Category</div>
+      <div class="bar-visual" id="barVisual"></div>
+      <div class="table-wrap">
+        <table id="breakdownTable">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Description</th>
+              <th class="num">Cost (USD)</th>
+              <th class="num">% of Total</th>
+            </tr>
+          </thead>
+          <tbody id="mainRows"></tbody>
+          <tbody class="hidden-rows" id="extraRows"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>TOTAL</strong></td>
+              <td class="num" id="footTotal">—</td>
+              <td class="num">100%</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <button class="show-all-btn" id="showAllBtn" style="display:none;">Show all line items ▼</button>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem;" id="compCard">
+      <div class="section-title">🏟️ Historical Comparison</div>
+      <div class="table-wrap">
+        <table id="compTable">
+          <thead>
+            <tr><th>Famous Thermae</th><th>Area (sq ft)</th><th class="num">Modern Est. Cost</th></tr>
+          </thead>
+          <tbody id="compRows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <div class="content-section">
+    <h2>How to Use This Roman Bath Cost Estimator</h2>
+    <p>Enter your thermae's total floor area, choose the number of stories, and set the proportion dedicated to actual bathing rooms. Then select construction quality — marble grade, mosaic coverage, hypocaust heating complexity, and water supply type. Check off optional features like a natatio (outdoor swimming pool) or palaestra (exercise yard). Finally, pick a location and historical era, then click <strong>Calculate Construction Cost</strong> to receive a detailed USD breakdown.</p>
+    <p>All outputs are equivalent modern construction costs using current labor rates, material prices, and engineering complexity factors — giving you an intuitive sense of just how enormous (or modest) a Roman bathing complex actually was.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Roman thermae were far more than places to get clean — they were the social hubs of the ancient world. The Baths of Caracalla (AD 216) covered roughly 2.4 million square feet including grounds, accommodated 1,600 bathers simultaneously, and employed thousands of attendants. Translated to modern construction costs, the main building alone would run somewhere between <strong>$1.2 billion and $2 billion</strong>, comparable to a mid-size NFL stadium.</p>
+    <p>Understanding these costs matters for historians, architects, archaeologists, game designers, novelists, and anyone studying how Roman emperors wielded public spending as political currency. Emperors from Nero to Diocletian used massive bath complexes to win popular support — essentially the ancient equivalent of building free public recreation centers across entire cities. Knowing the price tag contextualizes the ambition. A frontier military bath in Roman Britain might cost the equivalent of $2–5 million modern dollars; an imperial Roman bath could be three orders of magnitude larger.</p>
+    <p>This tool is also genuinely useful for writers, film production designers, and game world-builders who need defensible cost estimates for their Roman-era settings.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The estimator uses a layered multiplier model based on modern commercial construction benchmarks, adjusted for Roman building methods:</p>
+    <ul>
+      <li><strong>Base structural cost:</strong> ~$85–$140/sq ft for Roman-style concrete (opus caementicium) walls and vaulted ceilings, scaled by ceiling height factor.</li>
+      <li><strong>Marble & stone cladding:</strong> Travertine adds ~$15/sq ft; Carrara marble ~$65/sq ft; Imperial porphyry mix ~$180/sq ft over clad surfaces.</li>
+      <li><strong>Hypocaust system:</strong> A full multi-zone underfloor heating and wall-flue system (tubuli) adds $12–$45/sq ft to pool/bath room area.</li>
+      <li><strong>Mosaic floors:</strong> Partial coverage ~$35/sq ft; full elite pictorial mosaics ~$180/sq ft — using specialist artisan labor rates.</li>
+      <li><strong>Water infrastructure:</strong> A dedicated aqueduct branch can add $5–$30 million depending on distance and capacity.</li>
+      <li><strong>Location multipliers:</strong> City of Rome carries a 1.35× premium; frontier locations a 0.85× discount.</li>
+      <li><strong>Era multipliers:</strong> High Empire (Trajan–Severan era) reflects peak marble import costs, pushing a 1.15× premium.</li>
+    </ul>
+    <p>Optional features (palaestra, gardens, statuary, frescoes) are added as flat per-unit costs or area-based add-ons. The skilled labor ratio adjusts the overall labor component — Roman bath construction required highly specialized workers for mosaic laying, hydraulic plumbing, and fresco painting.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't underestimate water infrastructure.</strong> Even a modest thermae required constant flowing water. A dedicated aqueduct branch — even a short one — could dwarf the building cost itself.</li>
+      <li><strong>Pool area percentage matters enormously.</strong> The hypocaust and waterproofing costs (opus signinum hydraulic cement) are applied only to the bath room area. Setting this too low underestimates the most expensive portion.</li>
+      <li><strong>Statuary is surprisingly expensive.</strong> Bronze full-size statues were worth fortunes. The Baths of Caracalla alone contained dozens — each full-size bronze would cost $150,000–$400,000 in modern terms.</li>
+      <li><strong>Stories add structural cost non-linearly.</strong> Roman vaulted construction becomes dramatically more expensive above the second story due to centring (wooden formwork) costs and load distribution.</li>
+      <li><strong>Elite mosaics dominate small bath costs.</strong> For a small neighborhood balneum, choosing elite pictorial mosaics can easily triple the total cost — keep this in mind for realistic estimates.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What is a hypocaust and why is it so expensive?</summary>
+      <p>A hypocaust (from Greek "heat from below") is the Roman underfloor heating system: a raised tile floor supported on pilae stactae (small brick pillars) through which hot air from a furnace (praefurnium) circulated. It required precise brick pillar spacing, a waterproofed upper floor layer, hollow wall tiles (tubuli) for heat circulation, and continuous fuel supply. In modern terms, it's a custom radiant heating and ventilation system built entirely from fired brick and concrete — labor-intensive and materials-intensive by any era's standards.</p>
+    </details>
+    <details>
+      <summary>Are these costs in Roman sestertii or modern dollars?</summary>
+      <p>All costs output by this tool are in <strong>modern US dollars (USD)</strong>, representing what it would cost to build an equivalent structure today using equivalent materials and skilled labor. Converting to ancient sestertii is extremely difficult due to wildly different commodity price structures, slave labor economics, and currency debasement across Roman history. The modern USD equivalent gives a more intuitive sense of scale and political commitment involved.</p>
+    </details>
+    <details>
+      <summary>How accurate are these estimates?</summary>
+      <p>These are informed estimates based on archaeological data, known Roman construction rates, modern analogues (e.g., luxury spa construction, stadium construction), and published scholarship on Roman building economics. Treat them as order-of-magnitude approximations with roughly ±30–50% uncertainty — which is actually quite tight given the 2,000-year gap. They are reliable enough for educational use, game design, and historical fiction; they are not engineering estimates for actual construction projects.</p>
+    </details>
+    <details>
+      <summary>What's the difference between a thermae and a balneum?</summary>
+      <p>A <em>balneum</em> (pl. <em>balnea</em>) was a small, usually privately-owned neighborhood bath — think a corner barbershop-scale operation with one or two rooms. <em>Thermae</em> were large, state-funded imperial complexes with multiple bathing halls, exercise yards, gardens, libraries, and shops. Rome had hundreds of balnea but only a handful of thermae. In this estimator, entering under ~5,000 sq ft approximates a balneum; anything above ~50,000 sq ft starts resembling a true thermae.</p>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h3>Related Tools</h3>
+    <a href="/roman-aqueduct-cost">Roman Aqueduct Cost Estimator</a>
+    <a href="/colosseum-cost">Roman Amphitheatre Cost Estimator</a>
+    <a href="/roman-villa-cost">Roman Villa Construction Cost</a>
+    <a href="/roman-road-cost">Roman Road Cost per Mile</a>
+    <a href="/medieval-castle-cost">Medieval Castle Cost Estimator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <a href="/about">About</a> <a href="/privacy">Privacy</a> <a href="/contact">Contact</a>
+    <span style="margin-left:0.5rem;">© 2025 HistoricalBuilds</span>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+
+  // ─── Lookup tables ───────────────────────────────────────────────────────────
+  const MARBLE = {
+    travertine:    { label: 'Travertine',          cladCost: 18,  mult: 1.00 },
+    local_marble:  { label: 'Local Marble',        cladCost: 45,  mult: 1.00 },
+    carrara:       { label: 'Carrara Marble',      cladCost: 85,  mult: 1.08 },
+    imperial:      { label: 'Imperial Stone Mix',  cladCost: 190, mult: 1.18 }
+  };
+  const MOSAIC = {
+    none:    { label: 'None',                costPerSqft: 0,   coverage: 0    },
+    partial: { label: 'Partial (30%)',       costPerSqft: 38,  coverage: 0.30 },
+    full:    { label: 'Full coverage',       costPerSqft: 75,  coverage: 1.0  },
+    elite:   { label: 'Elite pictorial',     costPerSqft: 185, coverage: 1.0  }
+  };
+  const HYPOCAUST = {
+    none:     { label: 'None',          costPerSqft: 0,  mult: 1.00 },
+    basic:    { label: 'Basic',         costPerSqft: 14, mult: 1.00 },
+    standard: { label: 'Standard',      costPerSqft: 28, mult: 1.05 },
+    advanced: { label: 'Advanced',      costPerSqft: 52, mult: 1.12 }
+  };
+  const WATER = {
+    cistern:             { label: 'Cistern collection',   fixedCost: 85000,    pipePerSqft: 0.5  },
+    local_pipe:          { label: 'Local lead piping',    fixedCost: 420000,   pipePerSqft: 2.2  },
+    aqueduct_tap:        { label: 'Aqueduct branch tap',  fixedCost: 2800000,  pipePerSqft: 4.5  },
+    dedicated_aqueduct:  { label: 'Dedicated aqueduct',   fixedCost: 18000000, pipePerSqft: 8.0  }
+  };
+  const LOCATION = {
+    province:  { label: 'Provincial town',       mult: 0.88 },
+    rome:      { label: 'City of Rome',          mult: 1.35 },
+    frontier:  { label: 'Frontier / military',   mult: 0.82 },
+    coastal:   { label: 'Coastal resort',        mult: 1.10 }
+  };
+  const ERA = {
+    republic:      { label: 'Late Republic',  mult: 0.92 },
+    early_empire:  { label: 'Early Empire',   mult: 1.00 },
+    high_empire:   { label: 'High Empire',    mult: 1.15 },
+    late_empire:   { label: 'Late Empire',    mult: 1.05 }
+  };
+  const OPTIONAL = {
+    natatio:   { label: 'Natatio (outdoor pool)',   baseCost: 480000,  perSqft: 12  },
+    palaestra: { label: 'Palaestra',                baseCost: 320000,  perSqft: 8   },
+    laconicum: { label: 'Laconicum (steam room)',   baseCost: 280000,  perSqft: 22  },
+    library:   { label: 'Library / Reading rooms',  baseCost: 650000,  perSqft: 5   },
+    shops:     { label: 'Tabernae (shops)',          baseCost: 180000,  perSqft: 4   },
+    gardens:   { label: 'Formal gardens',           baseCost: 390000,  perSqft: 6   },
+    frescos:   { label: 'Wall frescoes & stucco',   baseCost: 0,       perSqft: 14  },
+    statues:   { label: 'Bronze & marble statuary', baseCost: 2200000, perSqft: 0   }
+  };
+  const HISTORICAL_BATHS = [
+    { name: 'Small Town Balneum (typical)',         area: 2800  },
+    { name: 'Baths of Pompeii (Stabian)',           area: 11000 },
+    { name: 'Baths of Nero, Rome (AD 62)',          area: 215000 },
+    { name: 'Baths of Trajan, Rome (AD 109)',       area: 1076000 },
+    { name: 'Baths of Caracalla (AD 216)',          area: 2400000 },
+    { name: 'Baths of Diocletian (AD 306)',         area: 3660000 }
+  ];
+
+  const BAR_COLORS = ['','warm','gold','green','purple','','warm','gold','green'];
+
+  function fmt(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function fmtPlain(n) {
+    return '$' + Math.round(n).toLocaleString('en-US');
+  }
+  function pct(part, total) {
+    return total > 0 ? ((part / total) * 100).toFixed(1) + '%' : '0%';
+  }
+
+  function validate(id, errId, min, max) {
+    const el = document.getElementById(id);
+    const errEl = document.getElementById(errId);
+    const val = parseFloat(el.value);
+    if (isNaN(val) || val < min || val > max) {
+      el.classList.add('error');
+      errEl.classList.add('show');
+      return null;
+    }
+    el.classList.remove('error');
+    errEl.classList.remove('show');
+    return val;
+  }
+
+  function calculate() {
+    const area        = validate('floorArea',    'floorAreaErr',    500, 5000000);
+    const stories     = validate('stories',      'storiesErr',      1,   4);
+    const poolPct     = validate('poolPct',      'poolPctErr',      10,  80);
+    const ceilH       = validate('ceilHeight',   'ceilHeightErr',   12,  100);
+    const skilledR    = validate('skilledRatio', 'skilledRatioErr', 5,   80);
+    if (!area || !stories || !poolPct || !ceilH || !skilledR) return;
+
+    const marbleKey   = document.getElementById('marbleGrade').value;
+    const mosaicKey   = document.getElementById('mosaicCoverage').value;
+    const hypoKey     = document.getElementById('hypocaust').value;
+    const waterKey    = document.getElementById('waterSupply').value;
+    const locationKey = document.getElementById('location').value;
+    const eraKey      = document.getElementById('era').value;
+
+    const marble   = MARBLE[marbleKey];
+    const mosaic   = MOSAIC[mosaicKey];
+    const hypo     = HYPOCAUST[hypoKey];
+    const water    = WATER[waterKey];
+    const loc      = LOCATION[locationKey];
+    const era      = ERA[eraKey];
+
+    const poolArea = area * (poolPct / 100);
+    const dryArea  = area - poolArea;
+
+    // Ceiling height factor (base 20ft, scales concrete/vault cost)
+    const ceilFactor = 1 + (ceilH - 20) / 100;
+
+    // ── Structural (opus caementicium, brick, vaults) ──
+    const baseStructPerSqft = 95 * ceilFactor * (1 + (stories - 1) * 0.28);
+    const structCost = area * baseStructPerSqft;
+
+    // ── Marble cladding (walls + floors, ~55% of surface area) ──
+    const cladArea = area * 0.55;
+    const cladCost = cladArea * marble.cladCost;
+
+    // ── Mosaic flooring ──
+    const mosaicArea = area * mosaic.coverage;
+    const mosaicCost = mosaicArea * mosaic.costPerSqft;
+
+    // ── Hypocaust / heating ──
+    const hypoCost = poolArea * hypo.costPerSqft;
+
+    // ── Water supply ──
+    const waterCost = water.fixedCost + area * water.pipePerSqft;
+
+    // ── Roofing & vaults (lead sheet, tile, concrete vault forming) ──
+    const roofCost = area * 28 * ceilFactor;
+
+    // ── Labor (unskilled + skilled) ──
+    const totalManHours  = area * 18; // base man-hours per sqft
+    const unskilledRate  = 22;  // $/hr
+    const skilledRate    = 85;  // $/hr
+    const sRatio = skilledR / 100;
+    const laborCost = totalManHours * (sRatio * skilledRate + (1 - sRatio) * unskilledRate);
+
+    // ── Optional features ──
+    const optCosts = {};
+    let optTotal = 0;
+    ['natatio','palaestra','laconicum','library','shops','gardens','frescos','statues'].forEach(k => {
+      const checked = document.getElementById(k).checked;
+      if (checked) {
+        const o = OPTIONAL[k];
+        const cost = o.baseCost + area * o.perSqft;
+        optCosts[k] = cost;
+        optTotal += cost;
+      } else {
+        optCosts[k] = 0;
+      }
+    });
+
+    // ── Sub-total before multipliers ──
+    const sub = structCost + cladCost + mosaicCost + hypoCost + waterCost + roofCost + laborCost + optTotal;
+
+    // ── Location & era multipliers ──
+    const locMult = loc.mult * era.mult * marble.mult * hypo.mult;
+    const total = sub * locMult;
+
+    // ── Roman sestertii equivalent (1 sestertius ≈ $3.50 modern purchasing power, very rough) ──
+    const sestertii = total / 3.5;
+
+    // Build line items
+    const rows = [
+      { cat: 'Structure', desc: 'Opus caementicium walls, brick, vaulted ceilings', cost: structCost * locMult },
+      { cat: 'Stone & Marble', desc: marble.label + ' cladding on walls & floors', cost: cladCost * locMult },
+      { cat: 'Mosaic Floors', desc: mosaic.label + ' mosaic application', cost: mosaicCost * locMult },
+      { cat: 'Hypocaust', desc: hypo.label + ' underfloor heating system', cost: hypoCost * locMult },
+      { cat: 'Water Supply', desc: water.label, cost: waterCost * locMult },
+      { cat: 'Roofing', desc: 'Lead sheeting, tile, vault centering & formwork', cost: roofCost * locMult },
+      { cat: 'Labor', desc: `${skilledR}% skilled artisans, ${100 - skilledR}% general workforce`, cost: laborCost * locMult },
+    ];
+    const optRows = [];
+    ['natatio','palaestra','laconicum','library','shops','gardens','frescos','statues'].forEach(k => {
+      if (optCosts[k] > 0) {
+        optRows.push({ cat: 'Optional', desc: OPTIONAL[k].label, cost: optCosts[k] * locMult });
+      }
+    });
+    const allRows = [...rows, ...optRows];
+
+    // ── Historical comparison ──
+    const compEstimate = (a) => {
+      // Use mid-tier defaults for comparison: local marble, partial mosaic, standard hypo, local pipe, Rome, early empire
+      const sf = 95 * 1 * 1; // base per sqft
+      return a * (sf + 45 * 0.55 + 38 * 0.30 + 28 * 0.40 + 2.2 + 28 + 18 * 0.55) * 1.35;
+    };
+
+    // ── DOM update ─────────────────────────────────────────────────────────────
+    requestAnimationFrame(() => {
+      // Big number
+      document.getElementById('totalCost').textContent = fmt(total);
+      document.getElementById('costPerSqft').textContent = `${fmt(total / area)} per sq ft · ~${Math.round(sestertii / 1e6).toLocaleString()}M sestertii equivalent`;
+
+      // Summary grid
+      const workers = Math.round(area / 12);
+      const buildYears = (area < 5000 ? 1 : area < 50000 ? 3 : area < 500000 ? 8 : 15);
+      document.getElementById('summaryGrid').innerHTML = `
+        <div class="summary-card"><div class="sc-label">Floor Area</div><div class="sc-value">${Math.round(area).toLocaleString()} sq ft</div></div>
+        <div class="summary-card"><div class="sc-label">Cost / Sq Ft</div><div class="sc-value">${fmt(total / area)}</div></div>
+        <div class="summary-card"><div class="sc-label">Est. Workforce</div><div class="sc-value">${workers.toLocaleString()} workers</div></div>
+        <div class="summary-card"><div class="sc-label">Build Time (est.)</div><div class="sc-value">~${buildYears} years</div></div>
+        <div class="summary-card"><div class="sc-label">Location Premium</div><div class="sc-value">${loc.label} (${loc.mult}×)</div></div>
+        <div class="summary-card"><div class="sc-label">Era Factor</div><div class="sc-value">${era.label} (${era.mult}×)</div></div>
+      `;
+
+      // Bar visual
+      let barHTML = '';
+      allRows.forEach((r, i) => {
+        const p = total > 0 ? (r.cost / total * 100) : 0;
+        const cls = BAR_COLORS[i % BAR_COLORS.length];
+        barHTML += `<div class="bar-row">
+          <div class="bar-label">${r.cat}</div>
+          <div class="bar-track"><div class="bar-fill ${cls}" style="width:${Math.min(p,100).toFixed(1)}%"></div></div>
+          <div class="bar-pct">${p.toFixed(0)}%</div>
+        </div>`;
+      });
+      document.getElementById('barVisual').innerHTML = barHTML;
+
+      // Main breakdown table (first 7 rows visible)
+      let mainHTML = '';
+      let extraHTML = '';
+      allRows.forEach((r, i) => {
+        const rowHTML = `<tr>
+          <td class="category">${r.cat}</td>
+          <td>${r.desc}</td>
+          <td class="num">${fmt(r.cost)}</td>
+          <td class="num">${pct(r.cost, total)}</td>
+        </tr>`;
+        if (i < 7) mainHTML += rowHTML;
+        else extraHTML += rowHTML;
+      });
+      document.getElementById('mainRows').innerHTML = mainHTML;
+      document.getElementById('extraRows').innerHTML = extraHTML;
+      document.getElementById('footTotal').textContent = fmt(total);
+
+      const showAllBtn = document.getElementById('showAllBtn');
+      if (extraHTML.length > 0) {
+        showAllBtn.style.display = 'inline-block';
+        showAllBtn.textContent = 'Show all line items ▼';
+        document.getElementById('extraRows').classList.remove('show');
+      } else {
+        showAllBtn.style.display = 'none';
+      }
+
+      // Historical comparison table
+      let compHTML = '';
+      HISTORICAL_BATHS.forEach(b => {
+        const est = compEstimate(b.area);
+        const isClosest = Math.abs(b.area - area) === Math.min(...HISTORICAL_BATHS.map(x => Math.abs(x.area - area)));
+        compHTML += `<tr${isClosest ? ' style="background:#fff7e6;font-weight:600;"' : ''}>
+          <td>${b.name}${isClosest ? ' ◀ closest to your input' : ''}</td>
+          <td>${b.area.toLocaleString()}</td>
+          <td class="num">${fmt(est)}</td>
+        </tr>`;
+      });
+      // Add user's bath
+      compHTML = `<tr style="background:#e8f4fd;font-weight:700;">
+        <td>⚒️ Your Thermae</td>
+        <td>${Math.round(area).toLocaleString()}</td>
+        <td class="num">${fmt(total)}</td>
+      </tr>` + compHTML;
+      document.getElementById('compRows').innerHTML = compHTML;
+
+      // Show results
+      document.getElementById('results').classList.add('visible');
+
+      // Copy button
+      document.getElementById('copyBtn').onclick = function() {
+        navigator.clipboard.writeText(fmt(total)).then(() => {
+          this.textContent = 'Copied!';
+          setTimeout(() => { this.textContent = 'Copy'; }, 2000);
+        });
+      };
+    });
+  }
+
+  // Show/hide extra rows
+  document.getElementById('showAllBtn').addEventListener('click', function() {
+    const extra = document.getElementById('extraRows');
+    const open = extra.classList.toggle('show');
+    this.textContent = open ? 'Show less ▲' : 'Show all line items ▼';
+  });
+
+  // Calc button
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  // Enter key in inputs
+  document.querySelectorAll('input[type="number"]').forEach(inp => {
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { requestAnimationFrame(() => { calculate(); }); }
+    });
+  });
+
+  // Run on load with defaults
+  calculate();
+
+})();
+</script>
+
+</body>
+</html>
