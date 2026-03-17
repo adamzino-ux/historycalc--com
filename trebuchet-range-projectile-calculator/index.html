@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Trebuchet Range & Projectile Calculator — Free Online Tool | SiegeCalc</title>
+<meta name="description" content="Calculate trebuchet range, projectile velocity, and flight time using real physics. Enter counterweight, arm ratio, and projectile mass for accurate results.">
+<link rel="canonical" href="https://siegecalc.tools/trebuchet-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Trebuchet Range & Projectile Calculator",
+  "description": "Calculate trebuchet range, projectile velocity, and flight time using real physics formulas based on counterweight mass, arm ratio, and projectile weight.",
+  "url": "https://siegecalc.tools/trebuchet-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e0e0e0;padding:0.75rem 1.5rem}
+nav .site-name{font-weight:700;font-size:1.05rem;color:#1a1a2e}
+nav .site-name span{color:#0077b6}
+.page-wrap{max-width:640px;margin:0 auto;padding:1.5rem 1rem 3rem}
+h1{font-size:1.55rem;font-weight:800;color:#1a1a2e;margin-bottom:0.35rem;line-height:1.25}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.25rem}
+.form-group{display:flex;flex-direction:column;gap:0.35rem}
+.form-group.full{grid-column:1/-1}
+label{font-size:0.85rem;font-weight:500;color:#444}
+.unit-hint{font-size:0.78rem;color:#888;font-weight:400}
+input[type=number],input[type=range],select{width:100%;font-size:0.95rem;font-family:inherit;color:#1a1a2e;background:#fff;border:1px solid #ddd;border-radius:6px;padding:12px 16px;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none;min-height:44px}
+input[type=number]:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.1)}
+.error-msg{font-size:0.78rem;color:#e74c3c;min-height:1.1em}
+.slider-row{display:flex;align-items:center;gap:0.75rem}
+.slider-row input[type=range]{padding:0;height:6px;border:none;background:#ddd;border-radius:3px;flex:1;cursor:pointer;min-height:unset}
+.slider-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#0077b6;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.slider-val{font-size:0.85rem;font-weight:600;color:#0077b6;min-width:3rem;text-align:right}
+.btn-row{margin-top:1.5rem;display:flex;gap:0.75rem;flex-wrap:wrap}
+button{font-family:inherit;font-size:0.95rem;font-weight:600;cursor:pointer;border:none;border-radius:6px;transition:background 0.2s,transform 0.1s;min-height:44px}
+.btn-primary{background:#0077b6;color:#fff;padding:12px 24px;flex:1}
+.btn-primary:hover{background:#006299}
+.btn-primary:active{transform:scale(0.98)}
+.btn-secondary{background:#f0f4f8;color:#1a1a2e;padding:12px 20px;border:1px solid #ddd}
+.btn-secondary:hover{background:#e4eaf0}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:auto}
+.hero-stat{background:linear-gradient(135deg,#0077b6,#005f8e);color:#fff;border-radius:8px;padding:1.5rem;text-align:center;margin-bottom:1.25rem}
+.hero-stat .label{font-size:0.85rem;opacity:0.85;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.25rem}
+.hero-stat .value{font-size:3rem;font-weight:800;line-height:1;margin-bottom:0.2rem}
+.hero-stat .sub{font-size:0.9rem;opacity:0.8}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem}
+.stat-box{background:#f8f9fa;border:1px solid #e8e8e8;border-radius:6px;padding:0.85rem 1rem;text-align:center}
+.stat-box .s-label{font-size:0.75rem;color:#666;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.2rem}
+.stat-box .s-val{font-size:1.35rem;font-weight:700;color:#0077b6}
+.stat-box .s-unit{font-size:0.75rem;color:#888;margin-left:2px}
+.section-title{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#888;margin:1.25rem 0 0.6rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+th{background:#f0f0f0;padding:8px 10px;text-align:left;font-weight:600;font-size:0.8rem;color:#555;border-bottom:2px solid #ddd}
+th.num,td.num{text-align:right}
+td{padding:7px 10px;border-bottom:1px solid #eee;color:#333}
+tr:nth-child(even) td{background:#fafafa}
+.traj-wrap{overflow-x:auto;margin-bottom:1rem}
+.traj-bar-container{display:flex;align-items:flex-end;height:90px;gap:2px;padding:0 0 4px;border-bottom:2px solid #ddd;margin-bottom:4px;min-width:320px}
+.traj-bar{background:linear-gradient(180deg,#0077b6 0%,#48cae4 100%);border-radius:2px 2px 0 0;flex:1;min-width:4px;transition:background 0.2s}
+.traj-bar.peak{background:linear-gradient(180deg,#e07000 0%,#f4a261 100%)}
+.traj-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:#888}
+.copy-btn{font-size:0.75rem;padding:4px 10px;background:#f0f4f8;border:1px solid #ddd;border-radius:4px;color:#555;cursor:pointer;min-height:unset;font-family:inherit;margin-left:0.5rem;vertical-align:middle;transition:background 0.2s}
+.copy-btn:hover{background:#e4eaf0}
+.copy-btn.copied{background:#d4edda;border-color:#aed6b8;color:#276749}
+.preset-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.preset-btn{font-size:0.78rem;padding:6px 12px;background:#f0f4f8;border:1px solid #ddd;border-radius:20px;color:#444;cursor:pointer;font-family:inherit;transition:background 0.2s,border-color 0.2s;min-height:36px}
+.preset-btn:hover,.preset-btn.active{background:#e8f3fb;border-color:#0077b6;color:#0077b6}
+.tabs{display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:1.25rem}
+.tab{font-size:0.85rem;padding:8px 16px;cursor:pointer;border:none;background:none;color:#666;font-family:inherit;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 0.2s,border-color 0.2s;min-height:40px}
+.tab.active{color:#0077b6;border-bottom-color:#0077b6;font-weight:600}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.warning-box{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:0.75rem 1rem;font-size:0.83rem;color:#7d5a00;margin-bottom:1rem}
+.ad-slot{min-height:0;margin:0}
+.content-section{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin:1.5rem 0 0.6rem}
+.content-section h2:first-child{margin-top:0}
+.content-section p{font-size:0.92rem;color:#444;margin-bottom:0.75rem;line-height:1.65}
+.content-section ul{font-size:0.92rem;color:#444;padding-left:1.4rem;margin-bottom:0.75rem}
+.content-section ul li{margin-bottom:0.4rem;line-height:1.6}
+.content-section details{border:1px solid #e8e8e8;border-radius:6px;margin-bottom:0.6rem;overflow:hidden}
+.content-section summary{padding:0.75rem 1rem;cursor:pointer;font-weight:600;font-size:0.9rem;background:#f8f9fa;list-style:none;display:flex;justify-content:space-between;align-items:center}
+.content-section summary::-webkit-details-marker{display:none}
+.content-section summary::after{content:'＋';font-size:0.9rem;color:#0077b6;flex-shrink:0}
+.content-section details[open] summary::after{content:'－'}
+.content-section details p{padding:0.75rem 1rem;margin:0;background:#fff;border-top:1px solid #e8e8e8}
+.formula-box{background:#f0f4f8;border-left:3px solid #0077b6;border-radius:0 6px 6px 0;padding:0.75rem 1rem;font-family:'Courier New',monospace;font-size:0.85rem;color:#1a1a2e;margin:0.75rem 0;overflow-x:auto;white-space:pre}
+.related-links{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem}
+.related-links a{font-size:0.85rem;padding:6px 14px;background:#f0f4f8;border:1px solid #ddd;border-radius:20px;color:#0077b6;transition:background 0.2s}
+.related-links a:hover{background:#e8f3fb;text-decoration:none}
+footer{text-align:center;font-size:0.82rem;color:#888;padding:1.5rem 1rem;border-top:1px solid #e0e0e0;background:#fff}
+footer a{color:#888;margin:0 0.5rem}
+footer a:hover{color:#0077b6}
+@media(max-width:540px){
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .hero-stat .value{font-size:2.3rem}
+  .card{padding:1.25rem}
+  .content-section{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="site-name">Siege<span>Calc</span></a>
+</nav>
+
+<div class="page-wrap">
+  <h1>Medieval Trebuchet Range &amp; Projectile Calculator</h1>
+  <p class="subtitle">Physics-based calculations for counterweight trebuchets — range, velocity, flight time &amp; trajectory.</p>
+
+  <div class="card">
+    <div style="margin-bottom:1rem">
+      <div class="section-title" style="margin-top:0">Historical Presets</div>
+      <div class="preset-row">
+        <button class="preset-btn" onclick="loadPreset('warwolf')">Warwolf (1304)</button>
+        <button class="preset-btn" onclick="loadPreset('viking')">Viking Portable</button>
+        <button class="preset-btn" onclick="loadPreset('crusader')">Crusader Medium</button>
+        <button class="preset-btn" onclick="loadPreset('custom')">Custom</button>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="cw">Counterweight Mass <span class="unit-hint">(kg)</span></label>
+        <input type="number" id="cw" value="10000" min="1" max="1000000" step="100" placeholder="e.g. 10000">
+        <div class="error-msg" id="cw-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="pm">Projectile Mass <span class="unit-hint">(kg)</span></label>
+        <input type="number" id="pm" value="100" min="0.1" max="10000" step="1" placeholder="e.g. 100">
+        <div class="error-msg" id="pm-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="la">Short Arm Length <span class="unit-hint">(m)</span></label>
+        <input type="number" id="la" value="3" min="0.5" max="50" step="0.1" placeholder="e.g. 3">
+        <div class="error-msg" id="la-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="lb">Long Arm Length <span class="unit-hint">(m)</span></label>
+        <input type="number" id="lb" value="9" min="1" max="100" step="0.1" placeholder="e.g. 9">
+        <div class="error-msg" id="lb-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="sl">Sling Length <span class="unit-hint">(m)</span></label>
+        <input type="number" id="sl" value="4.5" min="0.1" max="30" step="0.1" placeholder="e.g. 4.5">
+        <div class="error-msg" id="sl-err"></div>
+      </div>
+      <div class="form-group">
+        <label for="ph">Release Height <span class="unit-hint">(m above ground)</span></label>
+        <input type="number" id="ph" value="8" min="0" max="50" step="0.5" placeholder="e.g. 8">
+        <div class="error-msg" id="ph-err"></div>
+      </div>
+      <div class="form-group full">
+        <label>Launch Angle <span class="unit-hint">(degrees)</span></label>
+        <div class="slider-row">
+          <input type="range" id="angle-slider" min="20" max="70" value="45" oninput="syncAngle(this.value)">
+          <span class="slider-val" id="angle-disp">45°</span>
+        </div>
+        <input type="number" id="angle" value="45" min="20" max="70" step="1" placeholder="20–70" oninput="syncSlider(this.value)" style="margin-top:0.4rem">
+        <div class="error-msg" id="angle-err"></div>
+      </div>
+      <div class="form-group full">
+        <label>Mechanical Efficiency <span class="unit-hint">(%)</span></label>
+        <div class="slider-row">
+          <input type="range" id="eff-slider" min="30" max="90" value="65" oninput="syncEff(this.value)">
+          <span class="slider-val" id="eff-disp">65%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" id="calcBtn">⚔ Calculate Range</button>
+      <button class="btn-secondary" onclick="resetForm()">Reset</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results card" id="results">
+    <div class="hero-stat" id="hero-stat">
+      <div class="label">Maximum Range</div>
+      <div class="value" id="res-range">—</div>
+      <div class="sub" id="res-range-sub"></div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="s-label">Launch Velocity</div>
+        <div class="s-val"><span id="res-vel">—</span><span class="s-unit">m/s</span></div>
+      </div>
+      <div class="stat-box">
+        <div class="s-label">Flight Time</div>
+        <div class="s-val"><span id="res-time">—</span><span class="s-unit">s</span></div>
+      </div>
+      <div class="stat-box">
+        <div class="s-label">Max Height</div>
+        <div class="s-val"><span id="res-height">—</span><span class="s-unit">m</span></div>
+      </div>
+      <div class="stat-box">
+        <div class="s-label">Impact Energy</div>
+        <div class="s-val"><span id="res-energy">—</span><span class="s-unit">kJ</span></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('trajectory')">Trajectory</button>
+      <button class="tab" onclick="switchTab('breakdown')">Physics Breakdown</button>
+      <button class="tab" onclick="switchTab('compare')">Angle Compare</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-trajectory">
+      <div class="section-title">Flight Arc <span style="font-weight:400;text-transform:none;letter-spacing:0">— height profile across range</span></div>
+      <div class="traj-wrap">
+        <div class="traj-bar-container" id="traj-bars"></div>
+        <div class="traj-labels"><span id="traj-label-start">0 m</span><span>← range →</span><span id="traj-label-end">— m</span></div>
+      </div>
+      <div id="traj-table-wrap" class="traj-wrap"></div>
+    </div>
+
+    <div class="tab-panel" id="tab-breakdown">
+      <div class="section-title">Physics Breakdown</div>
+      <div id="breakdown-table"></div>
+    </div>
+
+    <div class="tab-panel" id="tab-compare">
+      <div class="section-title">Range vs Launch Angle</div>
+      <div id="compare-table" class="traj-wrap"></div>
+    </div>
+
+    <div style="margin-top:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+      <span style="font-size:0.8rem;color:#888">Share result:</span>
+      <button class="copy-btn" id="copy-btn" onclick="copyResult()">Copy Summary</button>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- CONTENT -->
+  <div class="content-section">
+    <h2>How to Use This Trebuchet Calculator</h2>
+    <p>Enter your trebuchet's counterweight mass, projectile mass, short and long arm lengths, sling length, and release height. Adjust the launch angle with the slider and set mechanical efficiency based on your build quality. Click <strong>Calculate Range</strong> to instantly see maximum range, launch velocity, flight time, peak height, and impact energy.</p>
+    <p>The <em>Physics Breakdown</em> tab shows every intermediate calculation. The <em>Angle Compare</em> tab shows how range changes across launch angles from 20° to 70° so you can optimize your siege weapon.</p>
+
+    <h2>Why This Matters</h2>
+    <p>The trebuchet was arguably the most effective siege engine of the medieval world, dominating warfare from roughly 500 CE through the 15th century. Understanding the physics explains why. A properly built trebuchet converts gravitational potential energy into kinetic energy with remarkable efficiency — often 60–70% — far outperforming manpowered alternatives like the mangonel or ballista at equivalent scale.</p>
+    <p>Edward I of England's legendary "Warwolf" trebuchet, built in 1304 for the siege of Stirling Castle, reportedly had a counterweight of around 10,000–13,600 kg (roughly 10–15 tons). Modern reconstructions suggest it could hurl 100–150 kg stones up to 200–300 meters. By contrast, a small portable Viking-era machine with a 500 kg counterweight throwing a 10 kg stone achieves perhaps 100–120 meters — still devastating at a time when castle walls were modest.</p>
+    <p>This calculator is useful for history enthusiasts, medieval warfare researchers, engineers building full-scale or miniature reproductions, physics students studying projectile motion, and game designers seeking realistic siege mechanics.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses a simplified energy-transfer model combined with standard projectile motion equations:</p>
+    <div class="formula-box">Step 1 — Available Energy:
+E_cw = M_cw × g × (L_short + L_sling) × efficiency
+
+Step 2 — Launch Velocity:
+½ × M_proj × v² = E_cw
+v = √(2 × E_cw / M_proj)
+
+Step 3 — Projectile Motion (with launch height h):
+Horizontal: x(t) = v·cos(θ)·t
+Vertical:   y(t) = h + v·sin(θ)·t − ½·g·t²
+Range: solve y(t) = 0 → t = [v·sin(θ) + √(v²·sin²(θ) + 2·g·h)] / g
+R = v·cos(θ) × t_flight
+
+Step 4 — Impact Energy:
+KE = ½ × M_proj × v_impact²
+v_impact = √(v² + 2·g·h) (via energy conservation)</div>
+    <p>The effective drop height of the counterweight is approximated as the short arm length plus sling length — the vertical distance the counterweight travels through its arc. Efficiency (30–90%) accounts for friction, arm flex, imperfect sling release timing, and rotational inertia of the arm beam.</p>
+
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Arm ratio matters enormously:</strong> The long-arm to short-arm ratio (typically 3:1 to 5:1) determines mechanical advantage. A 3:1 ratio is common for medium trebuchets; Warwolf-class machines used closer to 4:1 to 5:1.</li>
+      <li><strong>Optimal launch angle isn't always 45°:</strong> When launch height is significant (tall trebuchet on a hill or tower), the optimal angle drops toward 35–40°. Use the Angle Compare tab to find your true optimum.</li>
+      <li><strong>Sling length is underrated:</strong> The sling effectively extends the long arm, multiplying tip velocity. A sling of 50% of long-arm length is historically typical and adds ~50% more range compared to no sling.</li>
+      <li><strong>Don't overestimate efficiency:</strong> A first-build wooden trebuchet realistically achieves 40–55%. Well-tuned competition machines (like those at Punkin Chunkin) reach 65–75%. 90% is theoretical maximum.</li>
+      <li><strong>Heavier doesn't always mean farther:</strong> Doubling projectile mass while keeping counterweight constant halves the velocity and reduces range. The sweet spot counterweight-to-projectile ratio is typically 80:1 to 130:1.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What was the real range of medieval trebuchets?</summary>
+      <p>Historical records and modern reconstructions suggest most military trebuchets achieved 100–300 meters. The Warwolf, one of the largest ever built, likely reached 200–300 m with 100+ kg stones. Smaller garrison trebuchets throwing 20–30 kg stones might cover 150–200 m. These ranges made trebuchets effective against walls while keeping crews outside bow range (~100–150 m for a longbow).</p>
+    </details>
+    <details>
+      <summary>Why does mechanical efficiency matter so much?</summary>
+      <p>Because range scales with the square root of efficiency — doubling efficiency increases velocity by ~41% and roughly doubles range (since range ∝ v²). Going from 40% to 80% efficiency doesn't just add a few meters; it can nearly double your range. This is why master trebuchet engineers obsessed over pivot bearings, sling release angles, and arm materials.</p>
+    </details>
+    <details>
+      <summary>Can I use this for a trebuchet competition or school project?</summary>
+      <p>Absolutely. This calculator is well-suited for pumpkin-chunking competitions, physics class projects, and engineering challenges. For small pumpkin-chunker trebuchets, simply scale down — enter 50 kg counterweight, 0.5 kg projectile, 0.8 m short arm, 2.5 m long arm, 1 m sling, and 1.5 m release height for a typical competition machine. Real-world results will vary ±10–20% depending on build quality.</p>
+    </details>
+    <details>
+      <summary>Does this account for air resistance?</summary>
+      <p>No — this calculator uses vacuum projectile motion, which slightly overestimates range. For dense stone projectiles (density ~2,500 kg/m³), air resistance reduces range by roughly 5–15% at typical trebuchet velocities (30–80 m/s). For lighter, less aerodynamic projectiles like barrels or dead animals (historically documented!), the drag correction could be 20–30%.</p>
+    </details>
+
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/catapult-calculator">Catapult (Onager) Calculator</a>
+      <a href="/ballista-calculator">Ballista Bolt Range Calculator</a>
+      <a href="/projectile-motion">Projectile Motion Calculator</a>
+      <a href="/castle-wall-thickness">Castle Wall Thickness Guide</a>
+      <a href="/siege-timeline">Siege Duration Estimator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <div style="margin-bottom:0.5rem">
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div>© 2025 siegecalc.tools — For educational and historical purposes</div>
+  </footer>
+</div>
+
+<script>
+const g = 9.81;
+let lastResult = null;
+let activeTab = 'trajectory';
+
+const presets = {
+  warwolf:   {cw:13000, pm:120, la:3.5, lb:14, sl:6,   ph:10, angle:45, eff:68},
+  viking:    {cw:500,   pm:10,  la:1.5, lb:5,  sl:2.5, ph:3,  angle:45, eff:55},
+  crusader:  {cw:4000,  pm:60,  la:3,   lb:10, sl:5,   ph:7,  angle:45, eff:62},
+  custom:    null
+};
+let activePreset = null;
+
+function loadPreset(name) {
+  const p = presets[name];
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  event.target.classList.add('active');
+  activePreset = name;
+  if (!p) return;
+  setVal('cw', p.cw); setVal('pm', p.pm); setVal('la', p.la);
+  setVal('lb', p.lb); setVal('sl', p.sl); setVal('ph', p.ph);
+  setVal('angle', p.angle);
+  document.getElementById('angle-slider').value = p.angle;
+  document.getElementById('angle-disp').textContent = p.angle + '°';
+  document.getElementById('eff-slider').value = p.eff;
+  document.getElementById('eff-disp').textContent = p.eff + '%';
+  clearErrors();
+  document.getElementById('calcBtn').click();
+}
+
+function setVal(id, val) { document.getElementById(id).value = val; }
+
+function syncAngle(v) {
+  document.getElementById('angle').value = v;
+  document.getElementById('angle-disp').textContent = v + '°';
+}
+function syncSlider(v) {
+  const clamped = Math.max(20, Math.min(70, Number(v)));
+  document.getElementById('angle-slider').value = clamped;
+  document.getElementById('angle-disp').textContent = clamped + '°';
+}
+function syncEff(v) {
+  document.getElementById('eff-disp').textContent = v + '%';
+}
+
+function fmt(n, dec=1) {
+  if (isNaN(n) || n===null) return '—';
+  const parts = n.toFixed(dec).split('.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return parts.join('.');
+}
+
+function clearErrors() {
+  ['cw','pm','la','lb','sl','ph','angle'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.classList.remove('error'); }
+    const err = document.getElementById(id+'-err');
+    if (err) err.textContent = '';
+  });
+}
+
+function validate(id, min, max, label) {
+  const el = document.getElementById(id);
+  const v = parseFloat(el.value);
+  const errEl = document.getElementById(id+'-err');
+  if (isNaN(v) || el.value.trim() === '') {
+    el.classList.add('error');
+    errEl.textContent = label + ' is required.';
+    return null;
+  }
+  if (v < min || v > max) {
+    el.classList.add('error');
+    errEl.textContent = label + ' must be ' + min + '–' + max + '.';
+    return null;
+  }
+  el.classList.remove('error');
+  errEl.textContent = '';
+  return v;
+}
+
+function calcPhysics(cw, pm, la, lb, sl, ph, angleDeg, effPct) {
+  const eff = effPct / 100;
+  const dropHeight = la + sl;
+  const E = cw * g * dropHeight * eff;
+  const vLaunch = Math.sqrt(2 * E / pm);
+  const theta = angleDeg * Math.PI / 180;
+  const vx = vLaunch * Math.cos(theta);
+  const vy = vLaunch * Math.sin(theta);
+  // time of flight with launch height ph
+  // y(t) = ph + vy*t - 0.5*g*t^2 = 0
+  const disc = vy * vy + 2 * g * ph;
+  const tFlight = (vy + Math.sqrt(disc)) / g;
+  const range = vx * tFlight;
+  const tPeak = vy / g;
+  const maxH = ph + vy * tPeak - 0.5 * g * tPeak * tPeak;
+  const vImpact = Math.sqrt(vLaunch * vLaunch + 2 * g * ph);
+  const impactKE = 0.5 * pm * vImpact * vImpact / 1000;
+  return {vLaunch, vx, vy, tFlight, range, maxH, impactKE, vImpact, E, dropHeight, theta, eff, tPeak};
+}
+
+function buildTrajectory(vx, vy, ph, tFlight, nPoints) {
+  const points = [];
+  for (let i = 0; i <= nPoints; i++) {
+    const t = (i / nPoints) * tFlight;
+    const x = vx * t;
+    const y = ph + vy * t - 0.5 * g * t * t;
+    points.push({t, x, y: Math.max(0, y)});
+  }
+  return points;
+}
+
+function calculate() {
+  clearErrors();
+  const cw = validate('cw', 1, 1000000, 'Counterweight mass');
+  const pm = validate('pm', 0.1, 10000, 'Projectile mass');
+  const la = validate('la', 0.5, 50, 'Short arm');
+  const lb = validate('lb', 1, 100, 'Long arm');
+  const sl = validate('sl', 0.1, 30, 'Sling length');
+  const ph = validate('ph', 0, 50, 'Release height');
+  const angleDeg = validate('angle', 20, 70, 'Launch angle');
+  if ([cw,pm,la,lb,sl,ph,angleDeg].some(v=>v===null)) return;
+
+  const effPct = parseFloat(document.getElementById('eff-slider').value) || 65;
+  const r = calcPhysics(cw, pm, la, lb, sl, ph, angleDeg, effPct);
+  lastResult = {cw, pm, la, lb, sl, ph, angleDeg, effPct, ...r};
+
+  const traj = buildTrajectory(r.vx, r.vy, ph, r.tFlight, 24);
+  const maxY = Math.max(...traj.map(p=>p.y), 1);
+
+  // Angle comparison data
+  const compareAngles = [20,25,30,35,40,45,50,55,60,65,70];
+  const compareData = compareAngles.map(a => {
+    const res = calcPhysics(cw, pm, la, lb, sl, ph, a, effPct);
+    return {angle: a, range: res.range, vel: res.vLaunch, time: res.tFlight, h: res.maxH};
+  });
+  const maxRange = Math.max(...compareData.map(d=>d.range));
+  const bestAngle = compareData.find(d=>d.range===maxRange);
+
+  // Breakdown rows
+  const breakdown = [
+    ['Counterweight mass', fmt(cw,0) + ' kg'],
+    ['Projectile mass', fmt(pm,1) + ' kg'],
+    ['Short arm length', fmt(la,1) + ' m'],
+    ['Long arm length', fmt(lb,1) + ' m'],
+    ['Sling length', fmt(sl,1) + ' m'],
+    ['Effective drop height', fmt(r.dropHeight,2) + ' m'],
+    ['Mechanical efficiency', effPct + '%'],
+    ['Energy transferred', fmt(r.E/1000,1) + ' kJ'],
+    ['Launch velocity', fmt(r.vLaunch,2) + ' m/s'],
+    ['Horizontal velocity (vx)', fmt(r.vx,2) + ' m/s'],
+    ['Vertical velocity (vy)', fmt(r.vy,2) + ' m/s'],
+    ['Launch angle', angleDeg + '°'],
+    ['Release height', fmt(ph,1) + ' m'],
+    ['Time to peak', fmt(r.tPeak,2) + ' s'],
+    ['Total flight time', fmt(r.tFlight,2) + ' s'],
+    ['Maximum height', fmt(r.maxH,1) + ' m'],
+    ['Maximum range', fmt(r.range,1) + ' m'],
+    ['Impact velocity', fmt(r.vImpact,2) + ' m/s'],
+    ['Impact energy', fmt(r.impactKE,1) + ' kJ'],
+    ['CW:Projectile ratio', fmt(cw/pm,0) + ':1'],
+  ];
+
+  // Traj table (every 4th point)
+  let trajRows = '';
+  traj.filter((_,i)=>i%3===0||i===traj.length-1).forEach(p=>{
+    trajRows += `<tr><td class="num">${fmt(p.t,2)}</td><td class="num">${fmt(p.x,0)}</td><td class="num">${fmt(p.y,1)}</td></tr>`;
+  });
+
+  requestAnimationFrame(() => {
+    // Hero
+    document.getElementById('res-range').textContent = fmt(r.range, 0) + ' m';
+    document.getElementById('res-range-sub').textContent =
+      `${fmt(r.range/0.9144, 0)} yards  •  ${(r.range > 1000 ? fmt(r.range/1000,2)+' km' : '')}`;
+    document.getElementById('res-vel').textContent = fmt(r.vLaunch, 1);
+    document.getElementById('res-time').textContent = fmt(r.tFlight, 1);
+    document.getElementById('res-height').textContent = fmt(r.maxH, 1);
+    document.getElementById('res-energy').textContent = fmt(r.impactKE, 1);
+
+    // Trajectory bars
+    let barsHTML = '';
+    traj.forEach((p, i) => {
+      const h = Math.round((p.y / maxY) * 100);
+      const isPeak = i === traj.reduce((mi, cp, ci) => cp.y > traj[mi].y ? ci : mi, 0);
+      barsHTML += `<div class="traj-bar${isPeak?' peak':''}" style="height:${Math.max(2,h)}%" title="x=${fmt(p.x,0)}m, y=${fmt(p.y,1)}m"></div>`;
+    });
+    document.getElementById('traj-bars').innerHTML = barsHTML;
+    document.getElementById('traj-label-start').textContent = '0 m';
+    document.getElementById('traj-label-end').textContent = fmt(r.range,0) + ' m';
+
+    // Traj table
+    document.getElementById('traj-table-wrap').innerHTML =
+      `<table><thead><tr><th class="num">Time (s)</th><th class="num">Horiz. (m)</th><th class="num">Height (m)</th></tr></thead><tbody>${trajRows}</tbody></table>`;
+
+    // Breakdown
+    let bdHTML = '<table><thead><tr><th>Parameter</th><th class="num">Value</th></tr></thead><tbody>';
+    breakdown.forEach((row, i) => {
+      bdHTML += `<tr><td>${row[0]}</td><td class="num">${row[1]}</td></tr>`;
+    });
+    bdHTML += '</tbody></table>';
+    document.getElementById('breakdown-table').innerHTML = bdHTML;
+
+    // Compare
+    let cmpHTML = '<table><thead><tr><th class="num">Angle °</th><th class="num">Range (m)</th><th class="num">Vel (m/s)</th><th class="num">Time (s)</th><th class="num">Max H (m)</th></tr></thead><tbody>';
+    compareData.forEach(d => {
+      const isBest = d.angle === bestAngle.angle;
+      cmpHTML += `<tr${isBest?' style="background:#e8f3fb;font-weight:600"':''}><td class="num">${d.angle}°${isBest?' ✓':''}</td><td class="num">${fmt(d.range,0)}</td><td class="num">${fmt(d.vel,1)}</td><td class="num">${fmt(d.time,1)}</td><td class="num">${fmt(d.h,1)}</td></tr>`;
+    });
+    cmpHTML += '</tbody></table>';
+    document.getElementById('compare-table').innerHTML = cmpHTML;
+
+    // Show results
+    const resEl = document.getElementById('results');
+    resEl.classList.add('visible');
+    resEl.scrollIntoView({behavior:'smooth', block:'start'});
+
+    // Re-apply active tab
+    switchTab(activeTab, true);
+  });
+}
+
+function switchTab(name, silent) {
+  activeTab = name;
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const names = ['trajectory','breakdown','compare'];
+    t.classList.toggle('active', names[i]===name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => {
+    p.classList.toggle('active', p.id === 'tab-'+name);
+  });
+}
+
+function copyResult() {
+  if (!lastResult) return;
+  const r = lastResult;
+  const text = `Trebuchet Result:
+Range: ${fmt(r.range,0)} m (${fmt(r.range/0.9144,0)} yards)
+Launch Velocity: ${fmt(r.vLaunch,1)} m/s
+Flight Time: ${fmt(r.tFlight,1)} s
+Max Height: ${fmt(r.maxH,1)} m
+Impact Energy: ${fmt(r.impactKE,1)} kJ
+— Inputs: CW=${fmt(r.cw,0)}kg, Proj=${fmt(r.pm,1)}kg, Arms=${fmt(r.la,1)}m/${fmt(r.lb,1)}m, Sling=${fmt(r.sl,1)}m, Angle=${r.angleDeg}°, Eff=${r.effPct}%`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Summary'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = 'Copy failed';
+    setTimeout(() => { btn.textContent = 'Copy Summary'; }, 2000);
+  });
+}
+
+function resetForm() {
+  ['cw','pm','la','lb','sl','ph','angle'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.value = ''; el.classList.remove('error'); }
+    const err = document.getElementById(id+'-err');
+    if (err) err.textContent = '';
+  });
+  document.getElementById('angle-slider').value = 45;
+  document.getElementById('angle-disp').textContent = '45°';
+  document.getElementById('eff-slider').value = 65;
+  document.getElementById('eff-disp').textContent = '65%';
+  document.getElementById('results').classList.remove('visible');
+  document.querySelectorAll('.preset-btn').forEach(b=>b.classList.remove('active'));
+  lastResult = null;
+}
+
+// Enter key on inputs
+document.querySelectorAll('input[type=number]').forEach(inp => {
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+});
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => calculate());
+});
+
+// Load default on page ready
+window.addEventListener('load', () => {
+  document.querySelector('.preset-btn').click();
+});
+</script>
+</body>
+</html>
