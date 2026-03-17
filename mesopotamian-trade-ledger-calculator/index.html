@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mesopotamian Cuneiform Trade Ledger Calculator — Free Online Tool | AncientCalc</title>
+<meta name="description" content="Calculate ancient Mesopotamian trade values using cuneiform units: shekel, mina, talent. Convert commodities, compute exchange rates, and build trade ledgers.">
+<link rel="canonical" href="https://ancientcalc.com/mesopotamian-cuneiform-trade-ledger">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mesopotamian Cuneiform Trade Ledger Calculator",
+  "description": "Calculate ancient Mesopotamian trade values using cuneiform weight/currency units: shekel, mina, talent. Convert commodities and compute exchange rates.",
+  "url": "https://ancientcalc.com/mesopotamian-cuneiform-trade-ledger",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:12px 16px;background:#fff}
+nav .site-name{font-weight:700;color:#1a1a2e;font-size:1rem}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1rem 2rem}
+h1{font-size:1.5rem;font-weight:800;color:#1a1a2e;margin-bottom:0.4rem;line-height:1.3}
+.subtitle{color:#555;font-size:0.9rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.tabs{display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:1.5rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{background:none;border:none;padding:10px 18px;font-size:0.9rem;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:color 0.2s,border-color 0.2s;min-height:44px}
+.tab-btn.active{color:#0077b6;border-bottom-color:#0077b6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:5px}
+input,select{width:100%;border:1px solid #ddd;border-radius:6px;padding:12px 16px;font-size:1rem;font-family:inherit;color:#1a1a2e;background:#fff;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px}
+input:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.field{margin-bottom:1rem}
+.btn{background:#0077b6;color:#fff;border:none;border-radius:6px;padding:12px 24px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;transition:background 0.2s;min-height:44px}
+.btn:hover{background:#006299}
+.btn-sm{background:#0077b6;color:#fff;border:none;border-radius:4px;padding:5px 12px;font-size:0.8rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:32px}
+.btn-sm:hover{background:#006299}
+.btn-outline{background:#fff;color:#0077b6;border:1px solid #0077b6;border-radius:6px;padding:10px 20px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:background 0.2s,color 0.2s;min-height:44px}
+.btn-outline:hover{background:#0077b6;color:#fff}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:auto}
+.result-hero{text-align:center;background:#f0f7ff;border:1px solid #cce0f5;border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}
+.result-hero .big-num{font-size:2.2rem;font-weight:800;color:#0077b6;line-height:1.2}
+.result-hero .big-label{font-size:0.9rem;color:#555;margin-top:4px}
+.result-hero .sub-num{font-size:1rem;color:#333;margin-top:8px;font-weight:500}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.875rem}
+th{background:#f0f0f0;padding:9px 12px;text-align:left;font-weight:600;color:#333;border-bottom:2px solid #ddd}
+th.num,td.num{text-align:right}
+td{padding:8px 12px;border-bottom:1px solid #eee;color:#1a1a2e}
+tr:nth-child(even) td{background:#fafafa}
+.copy-row{display:flex;justify-content:flex-end;margin-bottom:0.75rem}
+.info-box{background:#f8f9fa;border-left:3px solid #0077b6;border-radius:0 6px 6px 0;padding:1rem;font-size:0.875rem;color:#444;margin-bottom:1rem}
+.ledger-item{display:flex;gap:0.5rem;align-items:flex-end;margin-bottom:0.75rem;flex-wrap:wrap}
+.ledger-item input,.ledger-item select{min-height:44px}
+.ledger-item .remove-btn{background:#e74c3c;color:#fff;border:none;border-radius:6px;padding:0 14px;cursor:pointer;font-size:1.1rem;min-height:44px;min-width:44px;transition:background 0.2s;flex-shrink:0}
+.ledger-item .remove-btn:hover{background:#c0392b}
+.add-btn{background:#27ae60;color:#fff;border:none;border-radius:6px;padding:10px 18px;font-size:0.9rem;font-weight:600;cursor:pointer;margin-bottom:1rem;min-height:44px;transition:background 0.2s}
+.add-btn:hover{background:#219a52}
+.section-title{font-size:0.95rem;font-weight:700;color:#333;margin-bottom:0.75rem;padding-bottom:4px;border-bottom:1px solid #eee}
+.unit-ref{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1rem}
+.unit-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:10px 12px}
+.unit-card .unit-name{font-weight:700;color:#0077b6;font-size:0.9rem}
+.unit-card .unit-val{font-size:0.8rem;color:#555;margin-top:2px}
+.formula-box{background:#1a1a2e;color:#e0e8ff;border-radius:6px;padding:1rem;font-family:'Courier New',monospace;font-size:0.8rem;margin:0.75rem 0;overflow-x:auto;white-space:pre}
+.bar-wrap{margin:0.5rem 0}
+.bar-track{background:#e0e0e0;border-radius:4px;height:18px;overflow:hidden;margin-bottom:4px}
+.bar-fill{background:#0077b6;height:100%;border-radius:4px;transition:width 0.5s ease}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-top:2.5rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:0.75rem;margin-top:2rem}
+.content-section p{color:#444;font-size:0.9rem;margin-bottom:0.75rem;line-height:1.7}
+.content-section ul{padding-left:1.2rem;color:#444;font-size:0.9rem;line-height:1.9}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.75rem}
+summary{padding:12px 16px;font-weight:600;font-size:0.9rem;cursor:pointer;color:#1a1a2e;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+summary::after{content:'▾';color:#0077b6;font-size:1rem;flex-shrink:0}
+details[open] summary::after{content:'▴'}
+details p{padding:0 16px 14px;font-size:0.875rem;color:#444;line-height:1.7}
+.related-tools{background:#f8f9fa;border-radius:8px;padding:1.5rem;margin-top:2rem}
+.related-tools h3{font-size:1rem;font-weight:700;margin-bottom:0.75rem;color:#1a1a2e}
+.related-tools ul{list-style:none;padding:0}
+.related-tools li{margin-bottom:0.5rem}
+.related-tools a{color:#0077b6;font-size:0.9rem}
+footer{border-top:1px solid #e0e0e0;padding:1.5rem 1rem;text-align:center;font-size:0.8rem;color:#666}
+footer a{color:#666;margin:0 8px}
+footer a:hover{color:#0077b6}
+@media(max-width:600px){
+  .row{grid-template-columns:1fr}
+  .unit-ref{grid-template-columns:1fr 1fr}
+  .ledger-item{flex-direction:column;align-items:stretch}
+  .ledger-item .remove-btn{width:100%}
+  h1{font-size:1.3rem}
+  .result-hero .big-num{font-size:1.8rem}
+  .card{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="site-name">⚙ AncientCalc</a></nav>
+<div class="container">
+<h1>Mesopotamian Cuneiform Trade Ledger Calculator</h1>
+<p class="subtitle">Compute ancient trade values in shekel, mina &amp; talent — the weight/currency system of Babylon &amp; Assyria</p>
+
+<div class="card">
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('converter')">Unit Converter</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('exchange')">Exchange Rates</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('ledger')">Trade Ledger</button>
+  </div>
+
+  <!-- TAB 1: UNIT CONVERTER -->
+  <div id="tab-converter" class="tab-panel active">
+    <div class="info-box">The Mesopotamian weight system: <strong>180 grains = 1 shekel · 60 shekels = 1 mina · 60 minas = 1 talent</strong> (1 talent ≈ 30 kg)</div>
+    <div class="row">
+      <div class="field">
+        <label for="conv-amount">Amount</label>
+        <input type="number" id="conv-amount" placeholder="e.g. 3" min="0" step="any">
+        <div class="error-msg" id="conv-amount-err">Enter a valid positive number.</div>
+      </div>
+      <div class="field">
+        <label for="conv-from">From Unit</label>
+        <select id="conv-from">
+          <option value="grain">Grain (še)</option>
+          <option value="shekel" selected>Shekel (gin₂)</option>
+          <option value="mina">Mina (ma-na)</option>
+          <option value="talent">Talent (gu₂)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" onclick="convertUnits()">Convert All Units</button>
+    <div id="conv-results" class="results" style="margin-top:1.5rem"></div>
+  </div>
+
+  <!-- TAB 2: EXCHANGE RATES -->
+  <div id="tab-exchange" class="tab-panel">
+    <div class="info-box">Historical exchange rates from Old Babylonian period (~1800 BCE). 1 shekel of silver was the standard unit of account.</div>
+    <div class="row">
+      <div class="field">
+        <label for="ex-amount">Quantity</label>
+        <input type="number" id="ex-amount" placeholder="e.g. 10" min="0" step="any">
+        <div class="error-msg" id="ex-amount-err">Enter a valid positive number.</div>
+      </div>
+      <div class="field">
+        <label for="ex-commodity">Commodity</label>
+        <select id="ex-commodity">
+          <option value="barley">Barley (še-numun)</option>
+          <option value="wheat">Emmer Wheat</option>
+          <option value="sesame">Sesame Oil (i₃)</option>
+          <option value="wool">Wool (siki)</option>
+          <option value="copper">Copper (urudu)</option>
+          <option value="tin">Tin (annakum)</option>
+          <option value="lapis">Lapis Lazuli</option>
+          <option value="dates">Dates (zuₓ)</option>
+        </select>
+      </div>
+    </div>
+    <div class="field">
+      <label for="ex-unit">Commodity Unit</label>
+      <select id="ex-unit">
+        <option value="sila">Sila (≈ 1 litre)</option>
+        <option value="barig">Barig (≈ 60 litres)</option>
+        <option value="gur">Gur (≈ 300 litres)</option>
+        <option value="mina_w">Mina (weight, ~500g)</option>
+        <option value="talent_w">Talent (weight, ~30kg)</option>
+      </select>
+    </div>
+    <button class="btn" onclick="calcExchange()">Calculate Silver Value</button>
+    <div id="ex-results" class="results" style="margin-top:1.5rem"></div>
+  </div>
+
+  <!-- TAB 3: TRADE LEDGER -->
+  <div id="tab-ledger" class="tab-panel">
+    <div class="info-box">Build a multi-item trade ledger as a Babylonian merchant would record on clay tablets. All values converted to silver shekels.</div>
+    <div class="section-title">Ledger Items</div>
+    <div id="ledger-items"></div>
+    <button class="add-btn" onclick="addLedgerItem()">+ Add Item</button>
+    <div class="row">
+      <div class="field">
+        <label for="ledger-party">Merchant / Party Name</label>
+        <input type="text" id="ledger-party" placeholder="e.g. Etel-pi-Marduk">
+      </div>
+      <div class="field">
+        <label for="ledger-city">City / Trade Route</label>
+        <input type="text" id="ledger-city" placeholder="e.g. Ur → Nippur">
+      </div>
+    </div>
+    <button class="btn" onclick="calcLedger()">Generate Ledger</button>
+    <div id="ledger-results" class="results" style="margin-top:1.5rem"></div>
+  </div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<div class="content-section">
+  <h2>How to Use This Mesopotamian Trade Ledger Calculator</h2>
+  <p>Select a tab for your task: <strong>Unit Converter</strong> converts any amount between grains, shekels, minas, and talents; <strong>Exchange Rates</strong> converts commodities like barley, wool, or lapis lazuli into their silver shekel equivalent using historically attested Old Babylonian price data; <strong>Trade Ledger</strong> lets you build a multi-item transaction record and see the total value in silver units — just as a Babylonian scribe would have inscribed on a clay tablet.</p>
+
+  <h2>Why This Matters</h2>
+  <p>Mesopotamia — the land between the Tigris and Euphrates rivers — gave us humanity's first writing system around 3200 BCE, and its primary purpose was <em>accounting</em>. The earliest cuneiform tablets aren't poetry; they're receipts, ration lists, and debt records. The weight-based currency system of grains, shekels, minas, and talents governed trade from Sumer through the Akkadian Empire, Old Babylonian period (~1900–1600 BCE), Assyrian merchant colonies in Anatolia (the famous kārum Kanesh), and beyond.</p>
+  <p>Understanding these units matters for historians, archaeology students, anyone playing historical games, writers crafting Bronze Age fiction, and educators teaching ancient economics. A single talent of silver (~30 kg, 3,600 shekels) could fund a small army for months. A laborer earned roughly 10 shekels per month. One shekel of silver could buy about 300 litres of barley in a good year — numbers that become vivid when you run them through a calculator.</p>
+  <p>The exchange rates here draw from cuneiform tablet evidence: Hammurabi's Law Code, Old Babylonian administrative texts, and the Kültepe merchant archives. They're approximate averages; ancient markets fluctuated just like modern ones.</p>
+
+  <h2>How It's Calculated</h2>
+  <p>The weight system was sexagesimal (base-60) throughout:</p>
+  <div class="formula-box">180 grains (še)     = 1 shekel (gin₂)
+ 60 shekels          = 1 mina (ma-na)   ≈ 500 g
+ 60 minas            = 1 talent (gu₂)   ≈ 30 kg
+  1 talent            = 3,600 shekels   = 10,800 grains (in minas × 60)
+
+Exchange (Old Babylonian averages):
+  1 shekel silver → ~300 sila barley (good harvest)
+  1 shekel silver → ~100 sila emmer wheat
+  1 shekel silver → ~10 sila sesame oil
+  1 shekel silver → ~5 mina wool
+  1 shekel silver → ~6 mina copper
+  1 shekel silver → ~4 mina tin (imported, premium)
+  1 shekel silver → ~1/3 mina lapis lazuli (luxury)</div>
+  <p>To convert a commodity quantity to silver: <strong>Silver shekels = Commodity amount ÷ Exchange rate</strong>. All units are normalized to base sila (volume) or mina (weight) before division.</p>
+
+  <h2>Tips &amp; Common Mistakes</h2>
+  <ul>
+    <li><strong>Don't confuse weight mina with volume measures.</strong> Mina is a weight (~500 g); barley was measured in sila (volume ≈ 1 litre). The calculator handles this automatically based on commodity type.</li>
+    <li><strong>Exchange rates varied by year.</strong> During famine, barley prices could multiply 5–10×. The rates here are "normal year" averages. For crisis years, divide the silver output by 5.</li>
+    <li><strong>Silver was rarely coined.</strong> Until the Persian period, silver was weighed in lumps or rings — not coins. "1 shekel of silver" means 8.33 grams by weight, not a coin.</li>
+    <li><strong>Lapis lazuli was imported from Afghanistan</strong> (Badakhshan), making it extremely expensive. A small amount could represent months of a craftsman's wages.</li>
+    <li><strong>The talent was a shipping unit.</strong> No individual merchant carried a talent of silver around; it was an accounting denomination for large contracts, tribute, and royal treasuries.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <details>
+    <summary>How much was one shekel of silver worth in real terms?</summary>
+    <p>In the Old Babylonian period (~1800 BCE), 1 shekel of silver (≈8.33g) could buy roughly 300 litres of barley — enough to feed one person for several months. A skilled craftsman or soldier earned about 10 shekels per month. Think of 1 shekel as roughly equivalent to a week's wages for an average worker.</p>
+  </details>
+  <details>
+    <summary>Were shekels the same as the Biblical shekel?</summary>
+    <p>Yes, the Hebrew shekel (שֶׁקֶל) derives directly from the Mesopotamian gin₂, sharing the same root meaning "to weigh." The Biblical 50-shekel silver price for a slave in Leviticus 27:3 aligns with Old Babylonian slave prices documented in cuneiform contracts. The weight standards varied slightly by region and period, but were broadly comparable.</p>
+  </details>
+  <details>
+    <summary>What is the grain (še) unit?</summary>
+    <p>The grain (Sumerian: še, also transliterated as "she") was the smallest weight unit, originally based on a single grain of barley. 180 grains = 1 shekel, making 1 grain ≈ 0.046 grams. Grains appear mostly in pharmaceutical and precision metalworking contexts. Most everyday trade was conducted in shekels and minas.</p>
+  </details>
+  <details>
+    <summary>How accurate are these historical exchange rates?</summary>
+    <p>The rates are based on published scholarship of cuneiform administrative texts, primarily from Ur III and Old Babylonian archives (roughly 2100–1600 BCE). They represent typical prices, not fixed official rates — actual transactions in the tablets show considerable variation of ±30–50% depending on season, location, and political conditions. Use them for educational modeling and historical fiction research, not precise academic citation without checking primary sources.</p>
+  </details>
+</div>
+
+<div class="related-tools">
+  <h3>Related Tools</h3>
+  <ul>
+    <li><a href="/roman-denarius-calculator">Roman Denarius Salary &amp; Trade Calculator</a></li>
+    <li><a href="/egyptian-deben-calculator">Ancient Egyptian Deben &amp; Kite Weight Calculator</a></li>
+    <li><a href="/greek-drachma-calculator">Ancient Greek Drachma &amp; Talent Calculator</a></li>
+    <li><a href="/medieval-silver-penny-calculator">Medieval Silver Penny &amp; Mark Calculator</a></li>
+    <li><a href="/ancient-grain-volume-converter">Ancient Grain Volume Converter (Sila, Barig, Gur)</a></li>
+  </ul>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+  <div>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+  </div>
+  <div style="margin-top:8px">© 2025 AncientCalc.com</div>
+</footer>
+</div>
+
+<script>
+// ─── Constants ────────────────────────────────────────────────────────────────
+const GRAINS_PER_SHEKEL = 180;
+const SHEKELS_PER_MINA  = 60;
+const MINAS_PER_TALENT  = 60;
+const SHEKELS_PER_TALENT = SHEKELS_PER_MINA * MINAS_PER_TALENT; // 3600
+const GRAINS_PER_MINA   = GRAINS_PER_SHEKEL * SHEKELS_PER_MINA; // 10800
+const GRAINS_PER_TALENT = GRAINS_PER_MINA * MINAS_PER_TALENT;   // 648000
+
+// Exchange: how many commodity units per 1 silver shekel (normal-year averages)
+// Volume units normalized in sila; weight units normalized in mina
+const EXCHANGE = {
+  barley:  { name:'Barley (še-numun)',    sila:300,  mina_w:null, unit:'sila',    glyph:'𒊺' },
+  wheat:   { name:'Emmer Wheat',          sila:100,  mina_w:null, unit:'sila',    glyph:'𒌑' },
+  sesame:  { name:'Sesame Oil (i₃)',       sila:10,   mina_w:null, unit:'sila',    glyph:'𒉌' },
+  wool:    { name:'Wool (siki)',           sila:null, mina_w:5,    unit:'mina_w',  glyph:'𒋠' },
+  copper:  { name:'Copper (urudu)',        sila:null, mina_w:6,    unit:'mina_w',  glyph:'𒌓𒁺' },
+  tin:     { name:'Tin (annakum)',         sila:null, mina_w:4,    unit:'mina_w',  glyph:'𒀭𒇻' },
+  lapis:   { name:'Lapis Lazuli',         sila:null, mina_w:0.333,unit:'mina_w',  glyph:'𒍝' },
+  dates:   { name:'Dates (zuₓ)',           sila:200,  mina_w:null, unit:'sila',    glyph:'𒄑𒋾' }
+};
+
+// Volume conversions to sila
+const VOL_TO_SILA = { sila:1, barig:60, gur:300, mina_w:1, talent_w:60 };
+
+// ─── Utilities ────────────────────────────────────────────────────────────────
+function fmt(n, decimals=2){
+  if(!isFinite(n)) return '—';
+  const factor = Math.pow(10, decimals);
+  const rounded = Math.round(n * factor) / factor;
+  return rounded.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:decimals});
+}
+function toGrains(amount, unit){
+  switch(unit){
+    case 'grain':  return amount;
+    case 'shekel': return amount * GRAINS_PER_SHEKEL;
+    case 'mina':   return amount * GRAINS_PER_MINA;
+    case 'talent': return amount * GRAINS_PER_TALENT;
+  }
+}
+function showError(inputId, msgId, msg){
+  const el = document.getElementById(inputId);
+  const em = document.getElementById(msgId);
+  if(el) el.classList.add('error');
+  if(em){ em.textContent = msg; em.classList.add('show'); }
+}
+function clearError(inputId, msgId){
+  const el = document.getElementById(inputId);
+  const em = document.getElementById(msgId);
+  if(el) el.classList.remove('error');
+  if(em) em.classList.remove('show');
+}
+function copyText(text, btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(()=>{ btn.textContent = orig; }, 2000);
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(()=>{ btn.textContent = orig; }, 2000);
+  });
+}
+
+// ─── Tab Switching ─────────────────────────────────────────────────────────
+function switchTab(name){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const panels=['converter','exchange','ledger'];
+    b.classList.toggle('active', panels[i]===name);
+    b.setAttribute('aria-selected', panels[i]===name ? 'true':'false');
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>{
+    p.classList.toggle('active', p.id==='tab-'+name);
+  });
+}
+
+// ─── Tab 1: Unit Converter ─────────────────────────────────────────────────
+function convertUnits(){
+  clearError('conv-amount','conv-amount-err');
+  const raw = document.getElementById('conv-amount').value.trim();
+  const fromUnit = document.getElementById('conv-from').value;
+  const amount = parseFloat(raw);
+  if(!raw || isNaN(amount) || amount < 0){
+    showError('conv-amount','conv-amount-err','Enter a valid positive number.');
+    return;
+  }
+  const grains = toGrains(amount, fromUnit);
+  const shekels = grains / GRAINS_PER_SHEKEL;
+  const minas   = grains / GRAINS_PER_MINA;
+  const talents = grains / GRAINS_PER_TALENT;
+
+  // Decompose into whole units
+  let rem = grains;
+  const wTalents  = Math.floor(rem / GRAINS_PER_TALENT);  rem -= wTalents * GRAINS_PER_TALENT;
+  const wMinas    = Math.floor(rem / GRAINS_PER_MINA);    rem -= wMinas * GRAINS_PER_MINA;
+  const wShekels  = Math.floor(rem / GRAINS_PER_SHEKEL);  rem -= wShekels * GRAINS_PER_SHEKEL;
+  const wGrains   = Math.round(rem * 1000)/1000;
+
+  const unitNames = {grain:'Grain (še)', shekel:'Shekel (gin₂)', mina:'Mina (ma-na)', talent:'Talent (gu₂)'};
+  const approxGrams = grains * (8.33 / GRAINS_PER_SHEKEL);
+  const barleyEquiv = shekels * EXCHANGE.barley.sila;
+
+  let html = `
+<div class="result-hero">
+  <div class="big-num">${fmt(shekels,4)}</div>
+  <div class="big-label">Total Shekels (gin₂)</div>
+  <div class="sub-num">≈ ${fmt(approxGrams,1)} g silver equivalent · ${fmt(barleyEquiv,0)} sila barley</div>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Unit</th><th>Cuneiform Name</th><th class="num">Decimal Value</th></tr></thead>
+<tbody>
+<tr><td>Talent (gu₂)</td><td>𒄘</td><td class="num">${fmt(talents,6)}</td></tr>
+<tr><td>Mina (ma-na)</td><td>𒈠𒈾</td><td class="num">${fmt(minas,4)}</td></tr>
+<tr><td>Shekel (gin₂)</td><td>𒄀</td><td class="num">${fmt(shekels,4)}</td></tr>
+<tr><td>Grain (še)</td><td>𒊺</td><td class="num">${fmt(grains,2)}</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section-title" style="margin-top:1rem">Decomposed (mixed units)</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Talent</th><th>Mina</th><th>Shekel</th><th>Grain</th></tr></thead>
+<tbody>
+<tr>
+  <td class="num">${fmt(wTalents,0)}</td>
+  <td class="num">${fmt(wMinas,0)}</td>
+  <td class="num">${fmt(wShekels,0)}</td>
+  <td class="num">${fmt(wGrains,2)}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box" style="margin-top:1rem">
+  <strong>Weight context:</strong> ${fmt(amount,4)} ${unitNames[fromUnit]} ≈ <strong>${fmt(approxGrams,1)} grams</strong> of silver metal.
+  A standard modern coin weighs ~5–10g for reference.
+</div>
+`;
+  const res = document.getElementById('conv-results');
+  requestAnimationFrame(()=>{
+    res.innerHTML = html;
+    res.classList.add('visible');
+  });
+}
+
+// ─── Tab 2: Exchange Rates ─────────────────────────────────────────────────
+function calcExchange(){
+  clearError('ex-amount','ex-amount-err');
+  const raw = document.getElementById('ex-amount').value.trim();
+  const commodity = document.getElementById('ex-commodity').value;
+  const inputUnit = document.getElementById('ex-unit').value;
+  const amount = parseFloat(raw);
+  if(!raw || isNaN(amount) || amount <= 0){
+    showError('ex-amount','ex-amount-err','Enter a valid positive number.');
+    return;
+  }
+
+  const ex = EXCHANGE[commodity];
+  const toSila = VOL_TO_SILA[inputUnit] || 1;
+  const normalizedAmount = amount * toSila;
+  const ratePerShekel = ex.unit === 'sila' ? ex.sila : ex.mina_w;
+  const silverShekels = normalizedAmount / ratePerShekel;
+  const silverMinas   = silverShekels / SHEKELS_PER_MINA;
+  const silverTalents = silverShekels / SHEKELS_PER_TALENT;
+  const silverGrams   = silverShekels * 8.33;
+
+  // Decompose
+  let rem2 = silverShekels;
+  const dT = Math.floor(rem2 / SHEKELS_PER_TALENT); rem2 -= dT * SHEKELS_PER_TALENT;
+  const dM = Math.floor(rem2 / SHEKELS_PER_MINA);   rem2 -= dM * SHEKELS_PER_MINA;
+  const dS = Math.round(rem2 * 100)/100;
+
+  // Bar visual (relative to 1 talent)
+  const pct = Math.min(100, (silverShekels / SHEKELS_PER_TALENT) * 100);
+
+  // Comparison table: what else could you buy?
+  let compRows = '';
+  for(const [key, data] of Object.entries(EXCHANGE)){
+    if(key === commodity) continue;
+    const rate2 = data.unit === 'sila' ? data.sila : data.mina_w;
+    const altQty = silverShekels * rate2;
+    const altUnit = data.unit === 'sila' ? 'sila' : 'mina';
+    compRows += `<tr><td>${data.glyph} ${data.name}</td><td class="num">${fmt(altQty,1)}</td><td>${altUnit}</td></tr>`;
+  }
+
+  const unitLabel = (inputUnit==='sila')?'sila':(inputUnit==='barig')?'barig':(inputUnit==='gur')?'gur':(inputUnit==='mina_w')?'mina':'talent';
+
+  let html = `
+<div class="result-hero">
+  <div class="big-num">${fmt(silverShekels,2)}</div>
+  <div class="big-label">Silver Shekels (gin₂ kù-babbar)</div>
+  <div class="sub-num">= ${fmt(silverMinas,4)} minas = ${fmt(silverGrams,1)} g silver</div>
+</div>
+<div class="bar-wrap">
+  <div style="font-size:0.8rem;color:#555;margin-bottom:4px">Proportion of 1 talent (3,600 shekels): ${fmt(pct,2)}%</div>
+  <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+</div>
+<div class="section-title" style="margin-top:1rem">Decomposed Silver Payment</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Talents</th><th>Minas</th><th>Shekels</th></tr></thead>
+<tbody><tr><td class="num">${fmt(dT,0)}</td><td class="num">${fmt(dM,0)}</td><td class="num">${fmt(dS,2)}</td></tr></tbody>
+</table>
+</div>
+<div class="section-title" style="margin-top:1rem">With ${fmt(silverShekels,2)} shekels you could alternatively buy:</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Commodity</th><th class="num">Quantity</th><th>Unit</th></tr></thead>
+<tbody>${compRows}</tbody>
+</table>
+</div>
+<div class="info-box" style="margin-top:1rem">
+  <strong>Labour comparison:</strong> ${fmt(silverShekels,2)} shekels ≈ <strong>${fmt(silverShekels/10,1)} months</strong> of a skilled worker's wages (~10 shekels/month, Old Babylonian).
+</div>
+`;
+  const res = document.getElementById('ex-results');
+  requestAnimationFrame(()=>{
+    res.innerHTML = html;
+    res.classList.add('visible');
+  });
+}
+
+// ─── Tab 3: Trade Ledger ──────────────────────────────────────────────────
+let ledgerCount = 0;
+
+function addLedgerItem(){
+  ledgerCount++;
+  const id = ledgerCount;
+  const div = document.createElement('div');
+  div.className = 'ledger-item';
+  div.id = `li-${id}`;
+  div.innerHTML = `
+    <div style="flex:2;min-width:120px">
+      <label style="font-size:0.8rem;color:#666">Commodity</label>
+      <select class="li-commodity" style="min-height:44px;border:1px solid #ddd;border-radius:6px;padding:10px 12px;width:100%;font-family:inherit;font-size:0.9rem">
+        <option value="barley">Barley</option>
+        <option value="wheat">Emmer Wheat</option>
+        <option value="sesame">Sesame Oil</option>
+        <option value="wool">Wool</option>
+        <option value="copper">Copper</option>
+        <option value="tin">Tin</option>
+        <option value="lapis">Lapis Lazuli</option>
+        <option value="dates">Dates</option>
+      </select>
+    </div>
+    <div style="flex:1;min-width:80px">
+      <label style="font-size:0.8rem;color:#666">Qty</label>
+      <input type="number" class="li-qty" placeholder="0" min="0" step="any" style="min-height:44px">
+    </div>
+    <div style="flex:1;min-width:90px">
+      <label style="font-size:0.8rem;color:#666">Unit</label>
+      <select class="li-unit" style="min-height:44px;border:1px solid #ddd;border-radius:6px;padding:10px 12px;width:100%;font-family:inherit;font-size:0.9rem">
+        <option value="sila">Sila</option>
+        <option value="barig">Barig</option>
+        <option value="gur">Gur</option>
+        <option value="mina_w">Mina (wt)</option>
+        <option value="talent_w">Talent (wt)</option>
+      </select>
+    </div>
+    <div style="flex:1.2;min-width:90px">
+      <label style="font-size:0.8rem;color:#666">Direction</label>
+      <select class="li-dir" style="min-height:44px;border:1px solid #ddd;border-radius:6px;padding:10px 12px;width:100%;font-family:inherit;font-size:0.9rem">
+        <option value="sold">Sold (credit)</option>
+        <option value="bought">Bought (debit)</option>
+      </select>
+    </div>
+    <button class="remove-btn" onclick="removeLedgerItem(${id})">×</button>
+  `;
+  document.getElementById('ledger-items').appendChild(div);
+}
+
+function removeLedgerItem(id){
+  const el = document.getElementById(`li-${id}`);
+  if(el) el.remove();
+}
+
+function calcLedger(){
+  const party = document.getElementById('ledger-party').value.trim() || 'Unknown Merchant';
+  const city  = document.getElementById('ledger-city').value.trim() || 'Unknown Route';
+  const items = document.querySelectorAll('.ledger-item');
+
+  if(items.length === 0){
+    requestAnimationFrame(()=>{
+      const res = document.getElementById('ledger-results');
+      res.innerHTML = '<div class="info-box" style="color:#e74c3c">Add at least one ledger item.</div>';
+      res.classList.add('visible');
+    });
+    return;
+  }
+
+  let rows = '';
+  let totalCredit = 0;
+  let totalDebit  = 0;
+  let copyText_ = `TRADE LEDGER\nMerchant: ${party}\nRoute: ${city}\n\n`;
+  copyText_ += `Item\tQty\tUnit\tSilver (Shekels)\tDirection\n`;
+
+  let hasValid = false;
+  items.forEach(item => {
+    const commodity = item.querySelector('.li-commodity').value;
+    const qty       = parseFloat(item.querySelector('.li-qty').value);
+    const unit      = item.querySelector('.li-unit').value;
+    const dir       = item.querySelector('.li-dir').value;
+    if(isNaN(qty) || qty <= 0) return;
+    hasValid = true;
+    const ex = EXCHANGE[commodity];
+    const normalized = qty * (VOL_TO_SILA[unit] || 1);
+    const rate = ex.unit === 'sila' ? ex.sila : ex.mina_w;
+    const shekels = normalized / rate;
+    if(dir === 'sold') totalCredit += shekels; else totalDebit += shekels;
+    const sign = dir === 'sold' ? '+' : '−';
+    const cls  = dir === 'sold' ? 'color:#27ae60' : 'color:#e74c3c';
+    rows += `<tr>
+      <td>${ex.glyph} ${ex.name}</td>
+      <td class="num">${fmt(qty,2)}</td>
+      <td>${unit}</td>
+      <td class="num" style="${cls}">${sign}${fmt(shekels,2)}</td>
+    </tr>`;
+    copyText_ += `${ex.name}\t${qty}\t${unit}\t${sign}${fmt(shekels,2)}\t${dir}\n`;
+  });
+
+  if(!hasValid){
+    requestAnimationFrame(()=>{
+      const res = document.getElementById('ledger-results');
+      res.innerHTML = '<div class="info-box" style="color:#e74c3c">Enter valid quantities (> 0) for at least one item.</div>';
+      res.classList.add('visible');
+    });
+    return;
+  }
+
+  const balance = totalCredit - totalDebit;
+  const balColor = balance >= 0 ? '#27ae60' : '#e74c3c';
+  const balSign  = balance >= 0 ? '+' : '';
+  const bMinas   = Math.abs(balance) / SHEKELS_PER_MINA;
+  const labourMonths = Math.abs(balance) / 10;
+
+  copyText_ += `\nCREDIT (Sold): ${fmt(totalCredit,2)} shekels\nDEBIT (Bought): ${fmt(totalDebit,2)} shekels\nBALANCE: ${balSign}${fmt(balance,2)} shekels\n`;
+
+  let html = `
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem">
+  <div>
+    <div style="font-weight:700;font-size:1rem">${party}</div>
+    <div style="font-size:0.8rem;color:#555">${city}</div>
+  </div>
+  <button class="btn-sm" onclick="copyText('${copyText_.replace(/'/g,"\\'")}', this)">Copy Ledger</button>
+</div>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Commodity</th><th class="num">Qty</th><th>Unit</th><th class="num">Silver (shekels)</th></tr></thead>
+<tbody>
+${rows}
+<tr style="font-weight:700;background:#f0f0f0">
+  <td>CREDIT TOTAL</td><td></td><td></td><td class="num" style="color:#27ae60">+${fmt(totalCredit,2)}</td>
+</tr>
+<tr style="font-weight:700;background:#f0f0f0">
+  <td>DEBIT TOTAL</td><td></td><td></td><td class="num" style="color:#e74c3c">−${fmt(totalDebit,2)}</td>
+</tr>
+<tr style="font-weight:800;background:#e8f4fd">
+  <td>BALANCE</td><td></td><td></td><td class="num" style="color:${balColor}">${balSign}${fmt(balance,2)}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="result-hero" style="margin-top:1rem">
+  <div class="big-num" style="color:${balColor}">${balSign}${fmt(balance,2)}</div>
+  <div class="big-label">Net Balance (shekels of silver)</div>
+  <div class="sub-num">= ${fmt(bMinas,3)} minas · ≈ ${fmt(labourMonths,1)} months of skilled labour</div>
+</div>
+`;
+
+  const res = document.getElementById('ledger-results');
+  requestAnimationFrame(()=>{
+    res.innerHTML = html;
+    res.classList.add('visible');
+  });
+}
+
+// ─── Keyboard Enter support ───────────────────────────────────────────────
+document.addEventListener('keydown', e=>{
+  if(e.key !== 'Enter') return;
+  const active = document.querySelector('.tab-panel.active');
+  if(!active) return;
+  if(active.id === 'tab-converter') convertUnits();
+  else if(active.id === 'tab-exchange') calcExchange();
+  else if(active.id === 'tab-ledger') calcLedger();
+});
+
+// ─── Init ledger with 2 example items ────────────────────────────────────
+addLedgerItem();
+addLedgerItem();
+// Pre-fill first item
+(()=>{
+  const items = document.querySelectorAll('.ledger-item');
+  if(items[0]){
+    items[0].querySelector('.li-qty').value = 5;
+    items[0].querySelector('.li-commodity').value = 'barley';
+    items[0].querySelector('.li-unit').value = 'gur';
+    items[0].querySelector('.li-dir').value = 'sold';
+  }
+  if(items[1]){
+    items[1].querySelector('.li-qty').value = 10;
+    items[1].querySelector('.li-commodity').value = 'wool';
+    items[1].querySelector('.li-unit').value = 'mina_w';
+    items[1].querySelector('.li-dir').value = 'bought';
+  }
+})();
+</script>
+</body>
+</html>
