@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Siege Engine Comparison Tool — Free Online Tool | SiegeCalc</title>
+<meta name="description" content="Compare medieval siege engines by range, payload, crew size, and combat effectiveness. Trebuchet vs catapult vs ballista — find the best siege weapon for your scenario.">
+<link rel="canonical" href="https://siegecalc.example.com/siege-engine-comparison">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Siege Engine Comparison Tool",
+  "description": "Compare medieval siege engines by range, payload, crew size, and combat effectiveness.",
+  "url": "https://siegecalc.example.com/siege-engine-comparison",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;line-height:1.6;font-size:16px}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:12px 1.5rem;background:#fff}
+nav .brand{font-weight:700;font-size:1.1rem;color:#1a1a2e}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;color:#1a1a2e}
+.subtitle{color:#555;margin-bottom:2rem;font-size:0.95rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:5px}
+select,input[type="number"],input[type="range"]{width:100%;border:1px solid #ddd;border-radius:6px;padding:12px 16px;font-size:1rem;font-family:inherit;background:#fff;color:#1a1a2e;transition:box-shadow 0.2s,border-color 0.2s;appearance:none;-webkit-appearance:none}
+select:focus,input:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+select.error,input.error{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.12)}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.field{margin-bottom:1rem}
+.range-wrap{position:relative}
+input[type="range"]{padding:6px 0;cursor:pointer;accent-color:#0077b6}
+.range-val{font-size:0.85rem;color:#0077b6;font-weight:600;margin-top:2px}
+button{background:#0077b6;color:#fff;border:none;border-radius:6px;padding:12px 24px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s}
+button:hover{background:#006299}
+button:active{background:#005580}
+.btn-secondary{background:#f0f0f0;color:#1a1a2e;border:1px solid #ddd}
+.btn-secondary:hover{background:#e0e0e0}
+.tabs{display:flex;gap:0;border:1px solid #ddd;border-radius:6px;overflow:hidden;margin-bottom:1.5rem}
+.tab{flex:1;padding:10px 8px;text-align:center;background:#f8f9fa;border:none;cursor:pointer;font-size:0.85rem;font-weight:500;color:#555;min-height:44px;transition:background 0.2s,color 0.2s}
+.tab.active{background:#0077b6;color:#fff}
+.tab:not(:last-child){border-right:1px solid #ddd}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.show{opacity:1;pointer-events:auto}
+.big-number{font-size:2.2rem;font-weight:800;color:#0077b6;line-height:1.1}
+.big-label{font-size:0.85rem;color:#666;margin-top:2px}
+.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.score-card{background:#f8f9fa;border-radius:6px;padding:1rem;text-align:center;border:1px solid #e0e0e0}
+.score-card .engine-name{font-size:0.8rem;font-weight:600;color:#444;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:4px}
+.score-card .score-val{font-size:1.8rem;font-weight:800;color:#0077b6}
+.score-card.winner{border-color:#0077b6;background:#f0f8ff}
+.score-card.winner .score-val{color:#005a8e}
+.winner-badge{display:inline-block;background:#0077b6;color:#fff;font-size:0.7rem;font-weight:700;padding:2px 7px;border-radius:20px;margin-bottom:4px;letter-spacing:0.04em}
+.bar-section{margin-bottom:1.2rem}
+.bar-label{display:flex;justify-content:space-between;font-size:0.82rem;color:#444;margin-bottom:3px}
+.bar-track{background:#e9ecef;border-radius:4px;height:14px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.5s ease}
+.bar-a{background:#0077b6}
+.bar-b{background:#e67e22}
+.legend{display:flex;gap:1.2rem;margin-bottom:1rem;flex-wrap:wrap}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:0.82rem;color:#444}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.dot-a{background:#0077b6}
+.dot-b{background:#e67e22}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+th{background:#f0f0f0;padding:9px 12px;text-align:left;font-weight:600;color:#333;border-bottom:2px solid #ddd}
+td{padding:9px 12px;border-bottom:1px solid #eee;color:#1a1a2e}
+tr:nth-child(even) td{background:#fafafa}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+.highlight-row td{background:#f0f8ff !important;font-weight:600;color:#0077b6}
+.copy-btn{background:none;border:1px solid #ddd;border-radius:4px;color:#555;font-size:0.75rem;padding:4px 10px;cursor:pointer;width:auto;min-height:32px;transition:all 0.2s}
+.copy-btn:hover{background:#f0f0f0;color:#1a1a2e}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:2px solid #f0f0f0}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin:2rem 0}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:0.6rem;margin-top:1.8rem}
+.content-section p{color:#333;font-size:0.95rem;line-height:1.7;margin-bottom:0.8rem}
+.content-section ul{padding-left:1.3rem;color:#333;font-size:0.95rem;line-height:1.8}
+.content-section li{margin-bottom:0.3rem}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.7rem;overflow:hidden}
+summary{padding:12px 16px;font-weight:600;font-size:0.92rem;cursor:pointer;background:#f8f9fa;list-style:none;position:relative;padding-right:2rem}
+summary::after{content:'▼';position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:0.7rem;color:#0077b6;transition:transform 0.2s}
+details[open] summary::after{transform:translateY(-50%) rotate(180deg)}
+details p{padding:12px 16px;font-size:0.9rem;color:#333;line-height:1.6}
+.related-tools{background:#f8f9fa;border-radius:8px;padding:1.5rem;margin:2rem 0}
+.related-tools h3{font-size:1rem;font-weight:700;margin-bottom:0.8rem;color:#1a1a2e}
+.related-tools a{display:inline-block;margin:4px 6px 4px 0;padding:6px 14px;background:#fff;border:1px solid #ddd;border-radius:20px;font-size:0.85rem;color:#0077b6;transition:all 0.2s}
+.related-tools a:hover{background:#0077b6;color:#fff;border-color:#0077b6;text-decoration:none}
+footer{border-top:1px solid #e0e0e0;padding:1.2rem 1.5rem;text-align:center;font-size:0.82rem;color:#666;margin-top:2rem}
+footer a{color:#666;margin:0 8px}
+footer a:hover{color:#0077b6}
+.notice{background:#fff8e1;border:1px solid #ffe082;border-radius:6px;padding:10px 14px;font-size:0.82rem;color:#7a6000;margin-bottom:1.2rem}
+@media(max-width:640px){
+  .row{grid-template-columns:1fr}
+  .score-grid{grid-template-columns:1fr 1fr}
+  h1{font-size:1.35rem}
+  .big-number{font-size:1.8rem}
+  .card{padding:1.2rem}
+  .content-section h2{font-size:1.05rem}
+  th,td{padding:7px 9px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="brand">⚔️ SiegeCalc</a>
+</nav>
+
+<div class="container">
+  <h1>Medieval Siege Engine Comparison Tool</h1>
+  <p class="subtitle">Compare any two siege engines side-by-side — range, firepower, crew, and tactical score.</p>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab active" role="tab" aria-selected="true" onclick="switchTab('compare')">⚖️ Compare Two</button>
+      <button class="tab" role="tab" aria-selected="false" onclick="switchTab('custom')">🔧 Custom Build</button>
+      <button class="tab" role="tab" aria-selected="false" onclick="switchTab('all')">📋 All Engines</button>
+    </div>
+
+    <!-- TAB: COMPARE TWO -->
+    <div class="tab-content active" id="tab-compare">
+      <div class="row">
+        <div class="field">
+          <label for="engineA">Engine A</label>
+          <select id="engineA" onchange="populatePreset('A')">
+            <option value="trebuchet">Trebuchet</option>
+            <option value="catapult">Onager (Catapult)</option>
+            <option value="ballista">Ballista</option>
+            <option value="mangonel">Mangonel</option>
+            <option value="springald">Springald</option>
+            <option value="belfry">Belfry (Siege Tower)</option>
+            <option value="battering_ram">Battering Ram</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="engineB">Engine B</label>
+          <select id="engineB" onchange="populatePreset('B')">
+            <option value="trebuchet">Trebuchet</option>
+            <option value="catapult" selected>Onager (Catapult)</option>
+            <option value="ballista">Ballista</option>
+            <option value="mangonel">Mangonel</option>
+            <option value="springald">Springald</option>
+            <option value="belfry">Belfry (Siege Tower)</option>
+            <option value="battering_ram">Battering Ram</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top:0.5rem">Override Parameters (optional)</div>
+      <div class="row">
+        <div class="field">
+          <label for="rangeA">Engine A Range (m)</label>
+          <input type="number" id="rangeA" placeholder="Auto from preset" min="0" max="1000">
+        </div>
+        <div class="field">
+          <label for="rangeB">Engine B Range (m)</label>
+          <input type="number" id="rangeB" placeholder="Auto from preset" min="0" max="1000">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="payloadA">Engine A Payload (kg)</label>
+          <input type="number" id="payloadA" placeholder="Auto from preset" min="0" max="2000">
+        </div>
+        <div class="field">
+          <label for="payloadB">Engine B Payload (kg)</label>
+          <input type="number" id="payloadB" placeholder="Auto from preset" min="0" max="2000">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="crewA">Engine A Crew Size</label>
+          <input type="number" id="crewA" placeholder="Auto from preset" min="1" max="200">
+        </div>
+        <div class="field">
+          <label for="crewB">Engine B Crew Size</label>
+          <input type="number" id="crewB" placeholder="Auto from preset" min="1" max="200">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="rof_A">Shots/Hour (A)</label>
+          <input type="number" id="rof_A" placeholder="Auto from preset" min="1" max="60">
+        </div>
+        <div class="field">
+          <label for="rof_B">Shots/Hour (B)</label>
+          <input type="number" id="rof_B" placeholder="Auto from preset" min="1" max="60">
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:1rem">
+        <label for="scenario">Battle Scenario</label>
+        <select id="scenario">
+          <option value="assault">Castle Assault (maximize breach power)</option>
+          <option value="siege">Long Siege (maximize range + rate of fire)</option>
+          <option value="field">Field Battle (maximize mobility + speed)</option>
+          <option value="anti_personnel">Anti-Personnel (maximize area damage)</option>
+        </select>
+      </div>
+
+      <span id="err-compare" class="error-msg"></span>
+      <button onclick="requestAnimationFrame(runCompare)">⚔️ Compare Engines</button>
+    </div>
+
+    <!-- TAB: CUSTOM BUILD -->
+    <div class="tab-content" id="tab-custom">
+      <p style="font-size:0.88rem;color:#555;margin-bottom:1rem">Design your own siege engine and see how it ranks against historical machines.</p>
+      <div class="field">
+        <label for="customName">Engine Name</label>
+        <input type="text" id="customName" placeholder="e.g. My War Machine" maxlength="40">
+      </div>
+      <div class="field">
+        <label for="customType">Engine Type</label>
+        <select id="customType">
+          <option value="torsion">Torsion (Catapult / Onager)</option>
+          <option value="counterweight">Counterweight (Trebuchet)</option>
+          <option value="tension">Tension (Ballista / Crossbow)</option>
+          <option value="hybrid">Hybrid</option>
+        </select>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="cRange">Max Range (m)</label>
+          <input type="number" id="cRange" value="200" min="10" max="1000">
+        </div>
+        <div class="field">
+          <label for="cPayload">Payload Weight (kg)</label>
+          <input type="number" id="cPayload" value="50" min="1" max="2000">
+        </div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <label for="cCrew">Crew Required</label>
+          <input type="number" id="cCrew" value="10" min="1" max="200">
+        </div>
+        <div class="field">
+          <label for="cROF">Shots per Hour</label>
+          <input type="number" id="cROF" value="5" min="1" max="60">
+        </div>
+      </div>
+      <div class="field">
+        <label>Construction Cost (relative, 1–10)</label>
+        <input type="range" id="cCost" min="1" max="10" value="5" oninput="document.getElementById('cCostVal').textContent=this.value">
+        <div class="range-val">Cost Level: <span id="cCostVal">5</span>/10</div>
+      </div>
+      <div class="field">
+        <label>Accuracy (1–10)</label>
+        <input type="range" id="cAcc" min="1" max="10" value="5" oninput="document.getElementById('cAccVal').textContent=this.value">
+        <div class="range-val">Accuracy: <span id="cAccVal">5</span>/10</div>
+      </div>
+      <div class="field">
+        <label>Mobility (1–10)</label>
+        <input type="range" id="cMob" min="1" max="10" value="5" oninput="document.getElementById('cMobVal').textContent=this.value">
+        <div class="range-val">Mobility: <span id="cMobVal">5</span>/10</div>
+      </div>
+      <span id="err-custom" class="error-msg"></span>
+      <button onclick="requestAnimationFrame(runCustom)">🔧 Evaluate My Engine</button>
+    </div>
+
+    <!-- TAB: ALL ENGINES -->
+    <div class="tab-content" id="tab-all">
+      <p style="font-size:0.88rem;color:#555;margin-bottom:1rem">Full stats for all 7 historical siege engines. Click a column header to sort.</p>
+      <div class="table-wrap">
+        <table id="allTable">
+          <thead>
+            <tr>
+              <th onclick="sortAll('name')" style="cursor:pointer">Engine ↕</th>
+              <th onclick="sortAll('range')" style="cursor:pointer;text-align:right">Range(m) ↕</th>
+              <th onclick="sortAll('payload')" style="cursor:pointer;text-align:right">Payload(kg) ↕</th>
+              <th onclick="sortAll('crew')" style="cursor:pointer;text-align:right">Crew ↕</th>
+              <th onclick="sortAll('rof')" style="cursor:pointer;text-align:right">Shots/hr ↕</th>
+              <th onclick="sortAll('score')" style="cursor:pointer;text-align:right">Score ↕</th>
+            </tr>
+          </thead>
+          <tbody id="allTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results card" id="resultsSection">
+    <div id="resultsInner"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- CONTENT SECTION -->
+  <div class="content-section">
+    <h2>How to Use This Siege Engine Comparison Tool</h2>
+    <p>Select two historical siege engines from the dropdowns in the <strong>Compare Two</strong> tab, optionally override individual parameters like range or crew size, then choose a battle scenario and hit "Compare Engines." The tool scores each machine across six tactical dimensions and declares a winner based on your scenario. Use the <strong>Custom Build</strong> tab to design your own engine and benchmark it against history.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Medieval siege warfare was an engineering arms race that lasted nearly 1,000 years. The choice of siege engine wasn't just about throwing rocks — it was a logistical, tactical, and economic decision that could determine the outcome of entire campaigns. A trebuchet could hurl a 100 kg stone over 300 metres, but it required 40+ crew, weeks to construct, and enormous timber resources. Meanwhile, a ballista could be assembled in hours, manned by 3–4 soldiers, and placed inside a city for defence.</p>
+    <p>Game designers, history enthusiasts, military historians, tabletop wargamers, and teachers building curriculum around medieval warfare all need a quick way to compare these machines on equal terms. When Edward I besieged Stirling Castle in 1304, he deployed a massive trebuchet called "Warwolf" — reportedly so impressive that the garrison surrendered just to watch it fire. Understanding <em>why</em> Warwolf was terrifying requires quantifying its advantages over alternatives. That's exactly what this tool does.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>Each engine is scored on six dimensions: <strong>Range</strong>, <strong>Payload</strong>, <strong>Rate of Fire</strong>, <strong>Crew Efficiency</strong>, <strong>Accuracy</strong>, and <strong>Mobility</strong>. Each dimension is normalised to a 0–100 scale based on historical maximums across all engines.</p>
+    <p>The <strong>Tactical Score</strong> is a weighted composite:</p>
+    <p style="background:#f8f9fa;padding:10px 14px;border-radius:6px;font-family:monospace;font-size:0.88rem">Score = (Range × w₁) + (Payload × w₂) + (RoF × w₃) + (CrewEff × w₄) + (Accuracy × w₅) + (Mobility × w₆)</p>
+    <p>Weights shift depending on your chosen scenario. A <em>Castle Assault</em> weights Payload and Range heavily; a <em>Field Battle</em> weights Mobility and Rate of Fire; a <em>Long Siege</em> prioritises Range and Crew Efficiency. Crew Efficiency is calculated as <code>Payload × RoF / Crew</code> — the throughput per soldier, a key logistical measure.</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't compare apples to oranges by scenario.</strong> A ballista is terrible at breaching walls but exceptional as an anti-personnel engine — always set the scenario appropriately.</li>
+      <li><strong>Crew size dominates logistics.</strong> A trebuchet's 60-man crew needs feeding, housing, and protecting. In a long siege, crew efficiency often matters more than raw firepower.</li>
+      <li><strong>Range beats payload for psychological warfare.</strong> Firing from outside enemy archer range (typically ~180m) was a major tactical advantage even if projectiles were small.</li>
+      <li><strong>Rate of fire is frequently underestimated.</strong> A mangonel firing 10 shots per hour beats a trebuchet firing 2 shots per hour in many field scenarios, even with a lighter payload.</li>
+      <li><strong>The "best" engine rarely existed in isolation.</strong> Historical commanders deployed mixed batteries — trebuchets for walls, ballistae for towers, mangonels for suppression.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What was the most powerful siege engine in medieval history?</summary>
+      <p>By most metrics, the <strong>counterweight trebuchet</strong> was the most powerful. Edward I's "Warwolf" at Stirling (1304) could hurl stones weighing up to 140 kg over 300 metres. The Mongol trebuchets used at the siege of Xiangyang (1267–73) were reportedly even larger. No other engine matched its combination of range, payload, and destructive force against masonry walls.</p>
+    </details>
+    <details>
+      <summary>Was the ballista just a giant crossbow?</summary>
+      <p>Essentially, yes — the ballista used the same tension-based mechanism as a crossbow, scaled up dramatically. Unlike torsion engines (catapults, mangonels), which store energy in twisted rope or sinew, the ballista stored energy in bowed limbs. This made it far more accurate than torsion engines, and it excelled at anti-personnel use and targeting specific defenders on walls. Its bolts could penetrate multiple soldiers in a line.</p>
+    </details>
+    <details>
+      <summary>How long did it take to build a trebuchet?</summary>
+      <p>A full-size counterweight trebuchet required 30–60 days to construct from raw timber, with a skilled crew of carpenters and engineers. Edward I reportedly had Warwolf transported in prefabricated sections. Smaller torsion engines like mangonels could be assembled from pre-cut parts in 1–3 days. This construction time was a critical tactical factor — besieging armies couldn't always wait two months to deploy their heaviest weapons.</p>
+    </details>
+    <details>
+      <summary>Did medieval armies really use Greek fire with these engines?</summary>
+      <p>Yes — incendiary projectiles were commonly fired from trebuchets and mangonels. These included clay pots filled with Greek fire, burning pitch, quicklime, or even beehives and diseased animal carcasses (an early form of biological warfare). The trebuchet's high arc was ideal for dropping incendiary loads into the interior of a castle, which was much harder to extinguish than a direct projectile impact.</p>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h3>Related Tools</h3>
+    <a href="/castle-defense-calculator">Castle Defence Calculator</a>
+    <a href="/army-supply-calculator">Army Supply Calculator</a>
+    <a href="/projectile-physics-calculator">Projectile Physics Calculator</a>
+    <a href="/historical-timeline">Medieval Timeline Tool</a>
+    <a href="/battle-odds-calculator">Battle Odds Calculator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <span style="display:block;margin-top:6px">© 2024 SiegeCalc — All rights reserved</span>
+  </footer>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const ENGINES = {
+  trebuchet:     { name:"Trebuchet",          range:300, payload:120, crew:40, rof:2,  accuracy:6, mobility:2, cost:9, era:"12th–15th c." },
+  catapult:      { name:"Onager (Catapult)",  range:150, payload:50,  crew:8,  rof:8,  accuracy:4, mobility:6, cost:5, era:"Roman–14th c." },
+  ballista:      { name:"Ballista",           range:450, payload:5,   crew:3,  rof:10, accuracy:9, mobility:7, cost:6, era:"Greek–14th c." },
+  mangonel:      { name:"Mangonel",           range:180, payload:35,  crew:12, rof:10, accuracy:5, mobility:5, cost:4, era:"9th–14th c."  },
+  springald:     { name:"Springald",          range:200, payload:8,   crew:3,  rof:12, accuracy:8, mobility:8, cost:5, era:"12th–14th c." },
+  belfry:        { name:"Belfry (Siege Tower)",range:0,  payload:200, crew:60, rof:0,  accuracy:7, mobility:1, cost:8, era:"10th–14th c." },
+  battering_ram: { name:"Battering Ram",      range:0,   payload:500, crew:20, rof:6,  accuracy:10, mobility:3, cost:2, era:"Ancient–15th c." }
+};
+
+// Max values for normalisation
+const MAX = { range:450, payload:500, crew:200, rof:60 };
+
+// Scenario weights: [range, payload, rof, crewEff, accuracy, mobility]
+const SCENARIOS = {
+  assault:         [0.25, 0.35, 0.10, 0.10, 0.10, 0.10],
+  siege:           [0.30, 0.20, 0.20, 0.20, 0.05, 0.05],
+  field:           [0.15, 0.15, 0.20, 0.15, 0.15, 0.20],
+  anti_personnel:  [0.20, 0.10, 0.25, 0.15, 0.25, 0.05]
+};
+
+const SCENARIO_LABELS = {
+  assault:"Castle Assault", siege:"Long Siege", field:"Field Battle", anti_personnel:"Anti-Personnel"
+};
+
+let allSortKey = 'score';
+let allSortDir = -1;
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function fmt(n){ return Math.round(n).toLocaleString(); }
+function clamp(v,lo,hi){ return Math.max(lo,Math.min(hi,v)); }
+
+function computeScore(e, weights){
+  const rNorm   = (e.range   / MAX.range)   * 100;
+  const pNorm   = (e.payload / MAX.payload)  * 100;
+  const rofNorm = (e.rof     / 20)           * 100; // 20 shots/hr = reference
+  const crewEff = e.crew > 0 ? clamp((e.payload * e.rof) / (e.crew * 5), 0, 1) * 100 : 0;
+  const accNorm = e.accuracy * 10;
+  const mobNorm = e.mobility * 10;
+  const dims    = [rNorm, pNorm, rofNorm, crewEff, accNorm, mobNorm];
+  return {
+    total: dims.reduce((s,v,i) => s + v * weights[i], 0),
+    dims, rNorm, pNorm, rofNorm, crewEff, accNorm, mobNorm
+  };
+}
+
+function mergePreset(key, overrides){
+  const base = Object.assign({}, ENGINES[key]);
+  if(overrides.range   !== null) base.range   = overrides.range;
+  if(overrides.payload !== null) base.payload = overrides.payload;
+  if(overrides.crew    !== null) base.crew    = overrides.crew;
+  if(overrides.rof     !== null) base.rof     = overrides.rof;
+  return base;
+}
+
+function pnum(id){ const v = parseFloat(document.getElementById(id).value); return isNaN(v) ? null : v; }
+function pint(id){ const v = parseInt(document.getElementById(id).value);  return isNaN(v) ? null : v; }
+
+function barHtml(labelA, valA, labelB, valB, maxVal, unit){
+  const pA = maxVal > 0 ? (valA/maxVal*100).toFixed(1) : 0;
+  const pB = maxVal > 0 ? (valB/maxVal*100).toFixed(1) : 0;
+  return `<div class="bar-section">
+    <div class="bar-label"><span>${labelA}: ${fmt(valA)}${unit}</span><span>${fmt(pA)}%</span></div>
+    <div class="bar-track"><div class="bar-fill bar-a" style="width:${pA}%"></div></div>
+    <div class="bar-label" style="margin-top:4px"><span>${labelB}: ${fmt(valB)}${unit}</span><span>${fmt(pB)}%</span></div>
+    <div class="bar-track"><div class="bar-fill bar-b" style="width:${pB}%"></div></div>
+  </div>`;
+}
+
+// ── TAB SWITCHER ──────────────────────────────────────────────────────────────
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach((t,i) => {
+    const names=['compare','custom','all'];
+    t.classList.toggle('active', names[i]===name);
+    t.setAttribute('aria-selected', names[i]===name ? 'true':'false');
+  });
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(name==='all') renderAllTable();
+}
+
+// ── PRESET POPULATE ───────────────────────────────────────────────────────────
+function populatePreset(side){ /* intentionally clears overrides */ }
+
+// ── COMPARE ───────────────────────────────────────────────────────────────────
+function runCompare(){
+  const errEl = document.getElementById('err-compare');
+  errEl.className='error-msg';
+  const keyA = document.getElementById('engineA').value;
+  const keyB = document.getElementById('engineB').value;
+  const scenario = document.getElementById('scenario').value;
+  const weights  = SCENARIOS[scenario];
+
+  const eA = mergePreset(keyA, {range:pnum('rangeA'),payload:pnum('payloadA'),crew:pint('crewA'),rof:pnum('rof_A')});
+  const eB = mergePreset(keyB, {range:pnum('rangeB'),payload:pnum('payloadB'),crew:pint('crewB'),rof:pnum('rof_B')});
+
+  const sA = computeScore(eA, weights);
+  const sB = computeScore(eB, weights);
+  const winner = sA.total >= sB.total ? 'A' : 'B';
+  const winEngine = winner==='A' ? eA : eB;
+  const wScore = winner==='A' ? sA : sB;
+  const lScore = winner==='A' ? sB : sA;
+  const diff = Math.abs(sA.total - sB.total).toFixed(1);
+
+  const dimNames = ['Range','Payload','Rate of Fire','Crew Efficiency','Accuracy','Mobility'];
+
+  let rowsHtml = '';
+  dimNames.forEach((d,i) => {
+    const vA = sA.dims[i].toFixed(1);
+    const vB = sB.dims[i].toFixed(1);
+    const wA = winner==='A' && parseFloat(vA)>parseFloat(vB) ? ' class="highlight-row"' : '';
+    const wB = winner==='B' && parseFloat(vB)>parseFloat(vA) ? ' class="highlight-row"' : '';
+    rowsHtml += `<tr${wA||wB}>
+      <td>${d}</td>
+      <td class="num">${vA}</td>
+      <td class="num">${vB}</td>
+      <td class="num">${(parseFloat(vA)*weights[i]).toFixed(1)}</td>
+      <td class="num">${(parseFloat(vB)*weights[i]).toFixed(1)}</td>
+    </tr>`;
+  });
+
+  const maxRange = Math.max(eA.range,eB.range,1);
+  const maxPay   = Math.max(eA.payload,eB.payload,1);
+  const maxRof   = Math.max(eA.rof,eB.rof,1);
+  const maxCrew  = Math.max(eA.crew,eB.crew,1);
+
+  const html = `
+    <div class="section-title">⚔️ Battle Results — ${SCENARIO_LABELS[scenario]}</div>
+    <div class="notice">📜 Historical data is approximated from medieval chronicles and modern reconstructions. Values represent capable field machines, not theoretical maximums.</div>
+    <div class="score-grid">
+      <div class="score-card${winner==='A'?' winner':''}">
+        ${winner==='A'?'<div class="winner-badge">🏆 WINNER</div>':''}
+        <div class="engine-name">${eA.name}</div>
+        <div class="score-val">${sA.total.toFixed(1)}</div>
+        <div class="big-label">Tactical Score</div>
+      </div>
+      <div class="score-card${winner==='B'?' winner':''}">
+        ${winner==='B'?'<div class="winner-badge">🏆 WINNER</div>':''}
+        <div class="engine-name">${eB.name}</div>
+        <div class="score-val">${sB.total.toFixed(1)}</div>
+        <div class="big-label">Tactical Score</div>
+      </div>
+    </div>
+    <p style="font-size:0.88rem;color:#555;margin-bottom:1.2rem">
+      <strong>${winEngine.name}</strong> wins by <strong>${diff} points</strong> (${((parseFloat(diff)/Math.max(lScore.total,1))*100).toFixed(0)}% margin) under the <em>${SCENARIO_LABELS[scenario]}</em> scenario.
+    </p>
+
+    <div class="section-title">📊 Stat Bars</div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot dot-a"></div>${eA.name}</div>
+      <div class="legend-item"><div class="legend-dot dot-b"></div>${eB.name}</div>
+    </div>
+    ${barHtml(eA.name,eA.range,eB.name,eB.range,maxRange,' m')}
+    ${barHtml(eA.name,eA.payload,eB.name,eB.payload,maxPay,' kg')}
+    ${barHtml(eA.name,eA.rof,eB.name,eB.rof,maxRof,' /hr')}
+    ${barHtml(eA.name,eA.crew,eB.name,eB.crew,maxCrew,' crew')}
+
+    <div class="section-title" style="margin-top:1.4rem">📋 Dimension Breakdown</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Dimension</th>
+          <th class="num">${eA.name}<br><small style="font-weight:400">(0–100)</small></th>
+          <th class="num">${eB.name}<br><small style="font-weight:400">(0–100)</small></th>
+          <th class="num">${eA.name}<br><small style="font-weight:400">Weighted</small></th>
+          <th class="num">${eB.name}<br><small style="font-weight:400">Weighted</small></th>
+        </tr></thead>
+        <tbody>${rowsHtml}</tbody>
+        <tfoot>
+          <tr style="background:#f0f0f0;font-weight:700">
+            <td>Total</td>
+            <td class="num">&nbsp;</td><td class="num">&nbsp;</td>
+            <td class="num">${sA.total.toFixed(1)}</td>
+            <td class="num">${sB.total.toFixed(1)}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="section-title" style="margin-top:1.4rem">📜 Historical Profile</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Spec</th><th>${eA.name}</th><th>${eB.name}</th></tr></thead>
+        <tbody>
+          <tr><td>Max Range</td><td class="num">${fmt(eA.range)} m</td><td class="num">${fmt(eB.range)} m</td></tr>
+          <tr><td>Payload</td><td class="num">${fmt(eA.payload)} kg</td><td class="num">${fmt(eB.payload)} kg</td></tr>
+          <tr><td>Crew</td><td class="num">${eA.crew}</td><td class="num">${eB.crew}</td></tr>
+          <tr><td>Shots/Hour</td><td class="num">${eA.rof}</td><td class="num">${eB.rof}</td></tr>
+          <tr><td>Accuracy (1–10)</td><td class="num">${eA.accuracy}</td><td class="num">${eB.accuracy}</td></tr>
+          <tr><td>Mobility (1–10)</td><td class="num">${eA.mobility}</td><td class="num">${eB.mobility}</td></tr>
+          <tr><td>Historical Era</td><td>${ENGINES[keyA].era}</td><td>${ENGINES[keyB].era}</td></tr>
+          <tr><td>Hourly Payload (kg)</td><td class="num">${fmt(eA.payload*eA.rof)}</td><td class="num">${fmt(eB.payload*eB.rof)}</td></tr>
+          <tr><td>Payload/Crew (kg)</td><td class="num">${(eA.payload/eA.crew).toFixed(1)}</td><td class="num">${(eB.payload/eB.crew).toFixed(1)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="text-align:right;margin-top:0.8rem">
+      <button class="copy-btn" onclick="copyResults()">📋 Copy Results</button>
+    </div>`;
+
+  document.getElementById('resultsInner').innerHTML = html;
+  const sec = document.getElementById('resultsSection');
+  sec.classList.add('show');
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+
+  // store for copy
+  window._lastResultText = `Siege Engine Comparison — ${SCENARIO_LABELS[scenario]}\n${eA.name}: ${sA.total.toFixed(1)}\n${eB.name}: ${sB.total.toFixed(1)}\nWinner: ${winEngine.name} (+${diff} pts)`;
+}
+
+// ── CUSTOM ────────────────────────────────────────────────────────────────────
+function runCustom(){
+  const errEl = document.getElementById('err-custom');
+  errEl.className='error-msg';
+
+  const name    = document.getElementById('customName').value.trim() || 'My Engine';
+  const type    = document.getElementById('customType').value;
+  const range   = parseFloat(document.getElementById('cRange').value);
+  const payload = parseFloat(document.getElementById('cPayload').value);
+  const crew    = parseInt(document.getElementById('cCrew').value);
+  const rof     = parseFloat(document.getElementById('cROF').value);
+  const cost    = parseInt(document.getElementById('cCost').value);
+  const acc     = parseInt(document.getElementById('cAcc').value);
+  const mob     = parseInt(document.getElementById('cMob').value);
+
+  if([range,payload,crew,rof].some(v=>isNaN(v)||v<=0)){
+    errEl.textContent='Please fill all numeric fields with positive values.';
+    errEl.className='error-msg show'; return;
+  }
+
+  const customEngine = {name, range, payload, crew, rof, accuracy:acc, mobility:mob, cost, era:'Custom'};
+
+  // Score against all scenarios
+  let compRows='';
+  Object.entries(SCENARIOS).forEach(([sKey,w]) => {
+    const cs = computeScore(customEngine, w);
+    // compare against all historical
+    const historicalScores = Object.values(ENGINES).map(e => computeScore(e,w).total);
+    const beat = historicalScores.filter(s => cs.total > s).length;
+    compRows += `<tr>
+      <td>${SCENARIO_LABELS[sKey]}</td>
+      <td class="num">${cs.total.toFixed(1)}</td>
+      <td class="num">${beat} / ${historicalScores.length}</td>
+    </tr>`;
+  });
+
+  // Best comparison: assault
+  const assaultW = SCENARIOS['assault'];
+  const myScore  = computeScore(customEngine, assaultW).total;
+  let closest = null, closestDiff = Infinity;
+  Object.entries(ENGINES).forEach(([k,e]) => {
+    const s = computeScore(e, assaultW).total;
+    const d = Math.abs(s - myScore);
+    if(d < closestDiff){ closestDiff=d; closest={k,e,s}; }
+  });
+
+  const typeLabels = {torsion:'Torsion (rope/sinew energy)',counterweight:'Counterweight (gravity energy)',tension:'Tension (bow energy)',hybrid:'Hybrid'};
+  const hourlyPay = payload * rof;
+  const payPerCrew = (payload/crew).toFixed(1);
+
+  const html = `
+    <div class="section-title">🔧 Custom Engine: "${name}"</div>
+    <div class="notice">📐 Your engine is evaluated against all 7 historical siege engines using the same scoring model.</div>
+    <div class="score-grid">
+      <div class="score-card winner">
+        <div class="engine-name">${name}</div>
+        <div class="score-val">${computeScore(customEngine, SCENARIOS['assault']).total.toFixed(1)}</div>
+        <div class="big-label">Assault Score</div>
+      </div>
+      <div class="score-card">
+        <div class="engine-name">Closest Match</div>
+        <div class="score-val" style="font-size:1.2rem;margin-top:4px">${closest.e.name}</div>
+        <div class="big-label">±${closestDiff.toFixed(1)} pts (assault)</div>
+      </div>
+    </div>
+    <div class="section-title">📋 Your Specs</div>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>Type</td><td>${typeLabels[type]}</td></tr>
+          <tr><td>Max Range</td><td class="num">${fmt(range)} m</td></tr>
+          <tr><td>Payload</td><td class="num">${fmt(payload)} kg</td></tr>
+          <tr><td>Crew</td><td class="num">${crew}</td></tr>
+          <tr><td>Shots/Hour</td><td class="num">${rof}</td></tr>
+          <tr><td>Hourly Payload</td><td class="num">${fmt(hourlyPay)} kg/hr</td></tr>
+          <tr><td>Payload per Crew</td><td class="num">${payPerCrew} kg</td></tr>
+          <tr><td>Accuracy</td><td class="num">${acc}/10</td></tr>
+          <tr><td>Mobility</td><td class="num">${mob}/10</td></tr>
+          <tr><td>Construction Cost</td><td class="num">${cost}/10</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="section-title" style="margin-top:1.4rem">🗺️ Score by Scenario</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Scenario</th><th class="num">Your Score</th><th class="num">Beats</th></tr></thead>
+        <tbody>${compRows}</tbody>
+      </table>
+    </div>`;
+
+  document.getElementById('resultsInner').innerHTML = html;
+  const sec = document.getElementById('resultsSection');
+  sec.classList.add('show');
+  sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── ALL ENGINES TABLE ─────────────────────────────────────────────────────────
+function renderAllTable(){
+  const weights = SCENARIOS['assault'];
+  let data = Object.entries(ENGINES).map(([k,e]) => ({
+    key:k, name:e.name, range:e.range, payload:e.payload, crew:e.crew, rof:e.rof,
+    score: computeScore(e, weights).total, era:e.era
+  }));
+
+  data.sort((a,b) => {
+    const av = a[allSortKey], bv = b[allSortKey];
+    if(typeof av==='string') return allSortDir * av.localeCompare(bv);
+    return allSortDir * (av - bv);
+  });
+
+  let rows = '';
+  data.forEach(d => {
+    rows += `<tr>
+      <td>${d.name}</td>
+      <td class="num">${fmt(d.range)}</td>
+      <td class="num">${fmt(d.payload)}</td>
+      <td class="num">${d.crew}</td>
+      <td class="num">${d.rof}</td>
+      <td class="num"><strong>${d.score.toFixed(1)}</strong></td>
+    </tr>`;
+  });
+  document.getElementById('allTableBody').innerHTML = rows;
+}
+
+function sortAll(key){
+  if(allSortKey===key) allSortDir *= -1;
+  else { allSortKey=key; allSortDir=-1; }
+  renderAllTable();
+}
+
+// ── COPY ──────────────────────────────────────────────────────────────────────
+function copyResults(){
+  const txt = window._lastResultText || 'No results to copy.';
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    if(btn){ btn.textContent='✅ Copied!'; setTimeout(()=>btn.textContent='📋 Copy Results',2000); }
+  }).catch(() => {});
+}
+
+// ── ENTER KEY ─────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if(e.key==='Enter'){
+    const active = document.querySelector('.tab-content.active');
+    if(!active) return;
+    if(active.id==='tab-compare') requestAnimationFrame(runCompare);
+    else if(active.id==='tab-custom') requestAnimationFrame(runCustom);
+  }
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderAllTable();
+</script>
+</body>
+</html>
