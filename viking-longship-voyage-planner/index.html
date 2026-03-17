@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viking Longship Voyage Planner — Free Online Tool | NorseSea</title>
+<meta name="description" content="Plan your Viking longship voyage with crew size, provisions, rowing power, sailing distance, and journey duration calculations. Free, accurate, historically grounded.">
+<link rel="canonical" href="https://norsesea.tools/viking-longship-voyage-planner">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Viking Longship Voyage Planner",
+  "description": "Plan a Viking longship voyage with crew, provisions, speed, and distance calculations.",
+  "url": "https://norsesea.tools/viking-longship-voyage-planner",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f1eb;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#1a1a2e;padding:12px 1.5rem;display:flex;align-items:center}
+nav a{color:#e0d9cc;font-size:0.95rem;font-weight:600;letter-spacing:0.03em}
+nav a:hover{text-decoration:none;color:#fff}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.65rem;font-weight:800;color:#1a1a2e;margin-bottom:0.4rem;line-height:1.2}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.8rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:1.2rem;padding-bottom:0.4rem;border-bottom:2px solid #0077b6;display:inline-block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.2rem}
+.form-group{display:flex;flex-direction:column;gap:0.3rem}
+.form-group.full{grid-column:1/-1}
+label{font-size:0.85rem;font-weight:500;color:#444}
+label .hint{font-weight:400;color:#888;font-size:0.78rem}
+input,select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:0.95rem;color:#1a1a2e;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;min-height:44px}
+input:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.78rem;margin-top:2px}
+.tabs{display:flex;gap:0;margin-bottom:1.5rem;border:1px solid #ddd;border-radius:6px;overflow:hidden}
+.tab-btn{flex:1;padding:10px;background:#f8f9fa;border:none;cursor:pointer;font-size:0.85rem;font-weight:600;color:#555;transition:background 0.2s,color 0.2s;min-height:44px}
+.tab-btn.active{background:#0077b6;color:#fff}
+.tab-btn:hover:not(.active){background:#e8f4fb;color:#0077b6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.btn{background:#0077b6;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:44px;width:100%;margin-top:1.2rem}
+.btn:hover{background:#006299}
+.btn-sm{padding:6px 14px;font-size:0.8rem;border-radius:4px;min-height:32px;width:auto;margin-top:0;background:#0077b6;color:#fff;border:none;cursor:pointer}
+.btn-sm:hover{background:#006299}
+.btn-sm.copied{background:#27ae60}
+.results{display:none;opacity:0;transition:opacity 0.3s ease}
+.results.visible{display:block;opacity:1}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.stat-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1rem;text-align:center}
+.stat-num{font-size:1.5rem;font-weight:800;color:#0077b6;line-height:1.1}
+.stat-num.warn{color:#e67e22}
+.stat-num.danger{color:#e74c3c}
+.stat-num.good{color:#27ae60}
+.stat-label{font-size:0.73rem;color:#666;margin-top:2px;line-height:1.3}
+.result-copy-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem}
+.result-copy-row h3{font-size:0.95rem;font-weight:700;color:#1a1a2e}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.875rem}
+th{background:#f0f0f0;font-weight:600;padding:8px 10px;text-align:left;border-bottom:2px solid #ddd;white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid #eee}
+tr:nth-child(even) td{background:#fafafa}
+td.num,th.num{text-align:right}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.bar-label{font-size:0.78rem;color:#555;width:90px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;background:#e8e8e8;border-radius:3px;height:14px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;background:#0077b6;transition:width 0.4s ease}
+.bar-fill.warn{background:#e67e22}
+.bar-fill.danger{background:#e74c3c}
+.bar-fill.good{background:#27ae60}
+.bar-val{font-size:0.75rem;color:#444;width:42px;text-align:left;flex-shrink:0}
+.notice{background:#fff8e6;border:1px solid #f0c050;border-radius:6px;padding:0.8rem 1rem;font-size:0.83rem;color:#7a5800;margin-top:1rem;line-height:1.5}
+.notice strong{color:#5a3d00}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:0.6rem;margin-top:1.6rem}
+.content-section p{font-size:0.9rem;color:#333;margin-bottom:0.7rem;line-height:1.65}
+.content-section ul{padding-left:1.3rem;font-size:0.9rem;color:#333;line-height:1.7}
+.content-section ul li{margin-bottom:0.35rem}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.6rem}
+summary{padding:0.75rem 1rem;cursor:pointer;font-weight:600;font-size:0.9rem;color:#1a1a2e;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+summary::after{content:'＋';color:#0077b6;font-size:1rem}
+details[open] summary::after{content:'－'}
+details p{padding:0 1rem 0.75rem;font-size:0.87rem;color:#333;line-height:1.6}
+.related{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+.related h3{font-size:0.95rem;font-weight:700;margin-bottom:0.7rem;color:#1a1a2e}
+.related a{display:inline-block;margin:0.2rem 0.5rem 0.2rem 0;font-size:0.85rem;color:#0077b6}
+footer{background:#1a1a2e;color:#aaa;text-align:center;padding:1.2rem;font-size:0.8rem}
+footer a{color:#aaa}
+footer a:hover{color:#fff}
+footer span{margin:0 0.4rem}
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  .key-stats{grid-template-columns:repeat(3,1fr)}
+  .stat-num{font-size:1.2rem}
+  h1{font-size:1.35rem}
+  .card{padding:1.2rem}
+}
+@media(max-width:400px){
+  .key-stats{grid-template-columns:1fr 1fr;gap:0.6rem}
+  .key-stats .stat-box:last-child{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<nav><a href="/">⚓ NorseSea</a></nav>
+<div class="container">
+  <h1>Viking Longship Voyage Planner</h1>
+  <p class="subtitle">Calculate crew requirements, provisions, sailing speed, journey time, and voyage feasibility for your Norse expedition.</p>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('voyage')">⛵ Voyage</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('ship')">🛶 Ship</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('crew')">⚔️ Crew</button>
+    </div>
+
+    <!-- Voyage Tab -->
+    <div id="tab-voyage" class="tab-panel active">
+      <div class="section-title">Voyage Details</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="distance">Distance <span class="hint">(nautical miles)</span></label>
+          <input type="number" id="distance" min="1" max="10000" value="800" placeholder="e.g. 800">
+          <span class="error-msg" id="err-distance"></span>
+        </div>
+        <div class="form-group">
+          <label for="season">Season</label>
+          <select id="season">
+            <option value="summer">Summer (favourable)</option>
+            <option value="spring">Spring (mixed)</option>
+            <option value="autumn">Autumn (rough)</option>
+            <option value="winter">Winter (dangerous)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="route">Route Type</label>
+          <select id="route">
+            <option value="coastal">Coastal Hugging</option>
+            <option value="open">Open Sea</option>
+            <option value="river">River &amp; Estuary</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="portages">Portages / Stops <span class="hint">(count)</span></label>
+          <input type="number" id="portages" min="0" max="50" value="2" placeholder="e.g. 2">
+          <span class="error-msg" id="err-portages"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ship Tab -->
+    <div id="tab-ship" class="tab-panel">
+      <div class="section-title">Ship Configuration</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="shipType">Ship Type</label>
+          <select id="shipType" onchange="updateShipDefaults()">
+            <option value="snekkja">Snekkja (small raider)</option>
+            <option value="drakkar" selected>Drakkar (war longship)</option>
+            <option value="knarr">Knarr (merchant)</option>
+            <option value="busse">Busse (large warship)</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="oarPairs">Oar Pairs <span class="hint">(per side)</span></label>
+          <input type="number" id="oarPairs" min="4" max="40" value="16">
+          <span class="error-msg" id="err-oarPairs"></span>
+        </div>
+        <div class="form-group">
+          <label for="cargoCapacity">Cargo Capacity <span class="hint">(kg)</span></label>
+          <input type="number" id="cargoCapacity" min="100" max="50000" value="4000">
+          <span class="error-msg" id="err-cargo"></span>
+        </div>
+        <div class="form-group">
+          <label for="cargoLoad">Cargo Load <span class="hint">(kg)</span></label>
+          <input type="number" id="cargoLoad" min="0" max="50000" value="1200">
+          <span class="error-msg" id="err-load"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crew Tab -->
+    <div id="tab-crew" class="tab-panel">
+      <div class="section-title">Crew &amp; Provisions</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="crewCount">Crew Size <span class="hint">(people)</span></label>
+          <input type="number" id="crewCount" min="1" max="300" value="32">
+          <span class="error-msg" id="err-crew"></span>
+        </div>
+        <div class="form-group">
+          <label for="warriors">Warriors / Raiders <span class="hint">(subset of crew)</span></label>
+          <input type="number" id="warriors" min="0" max="300" value="28">
+          <span class="error-msg" id="err-warriors"></span>
+        </div>
+        <div class="form-group">
+          <label for="rationsPerDay">Rations / Person / Day <span class="hint">(kg)</span></label>
+          <input type="number" id="rationsPerDay" min="0.3" max="3" step="0.1" value="0.8">
+        </div>
+        <div class="form-group">
+          <label for="waterPerDay">Water / Person / Day <span class="hint">(litres)</span></label>
+          <input type="number" id="waterPerDay" min="0.5" max="10" step="0.1" value="2">
+        </div>
+      </div>
+    </div>
+
+    <button class="btn" onclick="planVoyage()">⚡ Plan Voyage</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results card" id="results">
+
+    <div class="result-copy-row">
+      <h3>📜 Voyage Report</h3>
+      <button class="btn-sm" id="copyBtn" onclick="copyResults()">Copy Summary</button>
+    </div>
+
+    <div class="key-stats" id="keyStats"></div>
+
+    <div id="voyageBars" style="margin-bottom:1.5rem"></div>
+
+    <div class="result-copy-row" style="margin-top:1.2rem">
+      <h3>📊 Full Breakdown</h3>
+    </div>
+    <div class="tbl-wrap"><table id="breakdownTable"></table></div>
+
+    <div id="provisionsSection"></div>
+    <div id="voyageNotice"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <h2>How to Use This Viking Longship Voyage Planner</h2>
+    <p>Enter your voyage distance in nautical miles, choose your season and route type, then configure your ship and crew across the three tabs. Hit <strong>Plan Voyage</strong> to receive a complete expedition report including journey duration, provisions needed, rowing shifts, risk level, and cargo status.</p>
+    <p>Historical values are pre-loaded for the Drakkar — simply change ship type to auto-fill typical specs for the Snekkja, Knarr, or Busse.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Viking seafaring was one of history's most extraordinary feats of navigation and logistics. A Drakkar carrying 32 men from Norway to Lindisfarne (~750 nautical miles) needed careful provisioning: roughly 25 kg of dried food per man for a 10-day voyage, plus fresh water for multiple days between coastal stops. Get the math wrong and the expedition fails before landfall.</p>
+    <p>The Norse didn't just rely on wind. Oarsmen could sustain about 3–4 knots for hours, while a fair wind pushed the sail to 8–10 knots. Understanding this dual-propulsion system is key to accurate voyage planning. A coastal journey through the Baltic might take 12 days; the same distance open ocean in autumn could take 20 days with storm delays adding 30–40% to estimated time.</p>
+    <p>This tool is used by historical reenactors, game designers, novelists, students, and anyone fascinated by Norse exploration — from the famous Vinland route to the Varangian river trade through Russia down to Byzantium.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>Speed is determined by a base sailing speed (knots) for each ship type, modified by season and route. Rowing speed is ~60% of sailing speed. Effective daily progress uses a weighted average assuming 8 hrs sailing + 4 hrs rowing per day on open sea, reduced for coastal and river routes:</p>
+    <p><strong>Daily Distance (nm) = (Sail Speed × 8 + Row Speed × 4) × Efficiency Factor</strong></p>
+    <p>Journey days = Total Distance ÷ Daily Distance, then +1.5 days per portage stop, plus a season storm-delay multiplier (Summer ×1.0, Spring ×1.1, Autumn ×1.25, Winter ×1.6). Provisions are Crew × Rations/Day × Journey Days × 1.15 safety buffer. Cargo load is checked against capacity — overloaded ships reduce speed by 15%.</p>
+
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Underestimate water needs:</strong> Fresh water was the limiting factor on open-sea routes. Budget 2–3 litres per person per day minimum, more in summer heat.</li>
+      <li><strong>Ignore season penalties:</strong> Autumn and winter crossings were genuinely dangerous. Norse sagas record numerous ships lost to storms. Factor in the delay multiplier.</li>
+      <li><strong>Too few rowers:</strong> Each oar pair needs at minimum 2 rowers for sustained shifts. Fewer crew than 2× oar pairs severely limits rowing endurance.</li>
+      <li><strong>Overload cargo early:</strong> Check your cargo load vs capacity before adding raiding loot. A ship at 90%+ capacity loses meaningful speed and stability.</li>
+      <li><strong>Forget portages:</strong> River routes like the Dnieper to Constantinople required 7–9 portages past rapids, each costing 1–2 days.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How fast did real Viking longships travel?</summary>
+      <p>Under ideal sail conditions (beam reach, good wind), a Drakkar could achieve 10–12 knots. Typical sustained voyage speeds averaged 4–6 knots over a full day including wind lulls, tacking, and rowing periods. The record crossing from Norway to Iceland (~600 nm) was reportedly done in 3–4 days, implying ~6–8 knots sustained.</p>
+    </details>
+    <details>
+      <summary>How many people could a Viking longship carry?</summary>
+      <p>A Snekkja (smaller raider) carried 20–40 men. A full Drakkar held 40–80 warriors plus supplies. The massive Busse ships could carry 70–100+ men. The Knarr merchant vessel sacrificed crew space for cargo, typically crewed by 10–20 sailors.</p>
+    </details>
+    <details>
+      <summary>What did Vikings eat on voyages?</summary>
+      <p>The Norse diet at sea relied on dried, salted, or smoked provisions: dried fish (stockfish), hardtack (flatbread), dried meat, butter preserved in barrels, dried berries, and hazelnuts. Ale was carried but rationed; fresh water was obtained at coastal stops. A warrior needed roughly 700–900g of dry provisions per day.</p>
+    </details>
+    <details>
+      <summary>Can I use this for tabletop RPGs or historical fiction?</summary>
+      <p>Absolutely — that's one of the primary use cases. The tool produces historically grounded numbers you can drop directly into a campaign or novel. Adjust the crew, ship type, and season to fit your narrative, and use the provisions table to add authentic detail to your story or game session.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Tools</h3>
+    <a href="/medieval-siege-calculator">Medieval Siege Calculator</a>
+    <a href="/naval-battle-planner">Naval Battle Planner</a>
+    <a href="/historical-army-supply-calculator">Army Supply Calculator</a>
+    <a href="/age-of-sail-voyage-planner">Age of Sail Planner</a>
+    <a href="/trade-route-profit-calculator">Trade Route Profit</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <div style="margin-bottom:6px">
+      <a href="/about">About</a><span>|</span>
+      <a href="/privacy">Privacy</a><span>|</span>
+      <a href="/contact">Contact</a>
+    </div>
+    <div>© 2025 NorseSea Tools. All rights reserved.</div>
+  </footer>
+</div>
+
+<script>
+// Ship presets
+const SHIPS = {
+  snekkja: { oarPairs:10, cargoCapacity:1500, baseSailSpeed:8, label:'Snekkja' },
+  drakkar: { oarPairs:16, cargoCapacity:4000, baseSailSpeed:9, label:'Drakkar' },
+  knarr:   { oarPairs:5,  cargoCapacity:15000, baseSailSpeed:7, label:'Knarr' },
+  busse:   { oarPairs:25, cargoCapacity:8000, baseSailSpeed:8.5, label:'Busse' },
+  custom:  { oarPairs:16, cargoCapacity:4000, baseSailSpeed:9, label:'Custom' }
+};
+
+const SEASON_MULT = { summer:1.0, spring:1.1, autumn:1.25, winter:1.6 };
+const SEASON_RISK = { summer:'Low', spring:'Moderate', autumn:'High', winter:'Extreme' };
+const ROUTE_EFF   = { coastal:0.72, open:1.0, river:0.48 };
+const ROUTE_LABEL = { coastal:'Coastal', open:'Open Sea', river:'River/Estuary' };
+
+function fmt(n, dec=0) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  return n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+function switchTab(name) {
+  ['voyage','ship','crew'].forEach(t => {
+    document.getElementById('tab-'+t).classList.toggle('active', t===name);
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+    const names = ['voyage','ship','crew'];
+    btn.classList.toggle('active', names[i]===name);
+    btn.setAttribute('aria-selected', names[i]===name);
+  });
+}
+
+function updateShipDefaults() {
+  const type = document.getElementById('shipType').value;
+  if (type === 'custom') return;
+  const s = SHIPS[type];
+  document.getElementById('oarPairs').value = s.oarPairs;
+  document.getElementById('cargoCapacity').value = s.cargoCapacity;
+}
+
+function clearErrors() {
+  document.querySelectorAll('.error-msg').forEach(el => el.textContent='');
+  document.querySelectorAll('input').forEach(el => el.classList.remove('error'));
+}
+
+function setError(inputId, errId, msg) {
+  document.getElementById(inputId).classList.add('error');
+  document.getElementById(errId).textContent = msg;
+}
+
+function validate(fields) {
+  let ok = true;
+  fields.forEach(f => {
+    const val = parseFloat(document.getElementById(f.id).value);
+    if (isNaN(val) || val < f.min || (f.max !== undefined && val > f.max)) {
+      setError(f.id, f.err, f.msg);
+      ok = false;
+    }
+  });
+  return ok;
+}
+
+function planVoyage() {
+  clearErrors();
+
+  const fields = [
+    { id:'distance', err:'err-distance', min:1, max:10000, msg:'Enter a distance between 1 and 10,000 nm' },
+    { id:'portages', err:'err-portages', min:0, max:50, msg:'Portages must be 0–50' },
+    { id:'oarPairs', err:'err-oarPairs', min:1, max:40, msg:'Oar pairs must be 1–40' },
+    { id:'cargoCapacity', err:'err-cargo', min:100, max:50000, msg:'Capacity must be 100–50,000 kg' },
+    { id:'cargoLoad', err:'err-load', min:0, max:50000, msg:'Load must be 0–50,000 kg' },
+    { id:'crewCount', err:'err-crew', min:1, max:300, msg:'Crew must be 1–300' },
+    { id:'warriors', err:'err-warriors', min:0, max:300, msg:'Warriors must be 0–300' }
+  ];
+
+  if (!validate(fields)) {
+    switchTab('voyage');
+    return;
+  }
+
+  const distance      = parseFloat(document.getElementById('distance').value);
+  const season        = document.getElementById('season').value;
+  const route         = document.getElementById('route').value;
+  const portages      = parseInt(document.getElementById('portages').value) || 0;
+  const shipType      = document.getElementById('shipType').value;
+  const oarPairs      = parseInt(document.getElementById('oarPairs').value);
+  const cargoCapacity = parseFloat(document.getElementById('cargoCapacity').value);
+  const cargoLoad     = parseFloat(document.getElementById('cargoLoad').value);
+  const crewCount     = parseInt(document.getElementById('crewCount').value);
+  const warriors      = Math.min(parseInt(document.getElementById('warriors').value)||0, crewCount);
+  const rationsPerDay = parseFloat(document.getElementById('rationsPerDay').value) || 0.8;
+  const waterPerDay   = parseFloat(document.getElementById('waterPerDay').value) || 2;
+
+  const shipPreset    = SHIPS[shipType] || SHIPS.drakkar;
+  const baseSail      = shipPreset.baseSailSpeed;
+
+  // Cargo overload speed penalty
+  const cargoRatio    = Math.min(cargoLoad / cargoCapacity, 1.5);
+  const overloaded    = cargoLoad > cargoCapacity;
+  const speedPenalty  = overloaded ? 0.85 : (cargoRatio > 0.8 ? 0.95 : 1.0);
+
+  const sailSpeed     = baseSail * speedPenalty;
+  const rowSpeed      = sailSpeed * 0.60;
+  const routeEff      = ROUTE_EFF[route];
+
+  // Daily distance
+  let dailyNm;
+  if (route === 'river') {
+    dailyNm = (rowSpeed * 8 + sailSpeed * 2) * routeEff;
+  } else if (route === 'coastal') {
+    dailyNm = (sailSpeed * 10 + rowSpeed * 2) * routeEff;
+  } else {
+    dailyNm = (sailSpeed * 10 + rowSpeed * 4) * routeEff;
+  }
+
+  // Season delay
+  const seasonMult    = SEASON_MULT[season];
+  const journeyDaysBase = distance / dailyNm;
+  const portageDelay  = portages * 1.5;
+  const journeyDays   = journeyDaysBase * seasonMult + portageDelay;
+  const journeyDaysRounded = Math.ceil(journeyDays * 10) / 10;
+
+  // Provisions
+  const buffer = 1.15;
+  const totalRations = crewCount * rationsPerDay * journeyDaysRounded * buffer;
+  const totalWaterL  = crewCount * waterPerDay * journeyDaysRounded;
+  const totalWaterKg = totalWaterL; // 1L ≈ 1 kg
+  const provisionsKg = totalRations + totalWaterKg;
+
+  // Rowing
+  const minCrewForRowing = oarPairs * 2;
+  const rowingShifts     = crewCount >= minCrewForRowing * 2 ? 2 : 1;
+  const rowingCapacity   = Math.min(crewCount / minCrewForRowing * 100, 100);
+
+  // Risk
+  let riskLevel = SEASON_RISK[season];
+  if (route === 'open' && season !== 'summer') riskLevel += '+';
+  if (season === 'winter' && route === 'open') riskLevel = 'Lethal';
+
+  // Cargo status
+  const cargoPercent = (cargoLoad / cargoCapacity) * 100;
+  let cargoStatus = cargoPercent <= 60 ? 'Light' : cargoPercent <= 85 ? 'Moderate' : cargoPercent <= 100 ? 'Heavy' : 'OVERLOADED';
+
+  // Speed class
+  const sailClass = sailSpeed >= 9 ? 'good' : sailSpeed >= 7 ? '' : 'warn';
+  const daysClass = journeyDaysRounded <= 7 ? 'good' : journeyDaysRounded <= 20 ? '' : 'warn';
+  const riskClass = riskLevel.includes('Extreme') || riskLevel.includes('Lethal') ? 'danger' : riskLevel.includes('High') ? 'warn' : 'good';
+
+  // Build HTML
+  const keyStatsHTML = `
+    <div class="stat-box">
+      <div class="stat-num ${daysClass}">${fmt(journeyDaysRounded,1)}</div>
+      <div class="stat-label">Journey Days</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num ${sailClass}">${fmt(sailSpeed,1)}</div>
+      <div class="stat-label">Sail Speed (kn)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num ${riskClass}">${riskLevel}</div>
+      <div class="stat-label">Risk Level</div>
+    </div>`;
+
+  const barsHTML = `
+    <div class="bar-row">
+      <div class="bar-label">Cargo</div>
+      <div class="bar-track"><div class="bar-fill ${cargoPercent>100?'danger':cargoPercent>80?'warn':'good'}" style="width:${Math.min(cargoPercent,100).toFixed(1)}%"></div></div>
+      <div class="bar-val">${fmt(cargoPercent,0)}%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Rowing Power</div>
+      <div class="bar-track"><div class="bar-fill ${rowingCapacity<60?'warn':''}" style="width:${rowingCapacity.toFixed(1)}%"></div></div>
+      <div class="bar-val">${fmt(rowingCapacity,0)}%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Warriors</div>
+      <div class="bar-track"><div class="bar-fill good" style="width:${Math.min(warriors/crewCount*100,100).toFixed(1)}%"></div></div>
+      <div class="bar-val">${fmt(warriors/crewCount*100,0)}%</div>
+    </div>`;
+
+  const breakdownRows = [
+    ['Route', `${ROUTE_LABEL[route]} (${distance} nm)`],
+    ['Ship Type', shipPreset.label],
+    ['Season', season.charAt(0).toUpperCase()+season.slice(1)],
+    ['Base Sail Speed', `${fmt(baseSail,1)} knots`],
+    ['Effective Sail Speed', `${fmt(sailSpeed,1)} knots${overloaded?' (cargo penalty)':''}`],
+    ['Row Speed', `${fmt(rowSpeed,1)} knots`],
+    ['Daily Progress', `${fmt(dailyNm,1)} nm/day`],
+    ['Base Journey', `${fmt(journeyDaysBase,1)} days`],
+    ['Season Delay (×${seasonMult})', `+${fmt((journeyDaysBase*(seasonMult-1)),1)} days`],
+    ['Portage Stops', `${portages} × 1.5d = +${fmt(portageDelay,1)} days`],
+    ['Total Journey', `${fmt(journeyDaysRounded,1)} days`],
+    ['Oar Pairs', `${oarPairs} (${minCrewForRowing} rowers needed)`],
+    ['Rowing Shifts', `${rowingShifts} shift${rowingShifts>1?'s':''} per day`],
+    ['Crew / Warriors', `${crewCount} / ${warriors}`],
+    ['Cargo Load / Capacity', `${fmt(cargoLoad)} kg / ${fmt(cargoCapacity)} kg (${cargoStatus})`],
+  ];
+
+  let tableHTML = '<thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody>';
+  breakdownRows.forEach(([k,v],i) => {
+    tableHTML += `<tr><td>${k}</td><td>${v}</td></tr>`;
+  });
+  tableHTML += '</tbody>';
+
+  const provisionsHTML = `
+    <div class="result-copy-row" style="margin-top:1.5rem"><h3>🍖 Provisions Required</h3></div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Item</th><th class="num">Per Day</th><th class="num">Total</th><th class="num">With Buffer</th></tr></thead>
+      <tbody>
+        <tr><td>Dried Food</td><td class="num">${fmt(crewCount*rationsPerDay,1)} kg</td><td class="num">${fmt(crewCount*rationsPerDay*journeyDaysRounded,1)} kg</td><td class="num">${fmt(totalRations,1)} kg</td></tr>
+        <tr><td>Fresh Water</td><td class="num">${fmt(crewCount*waterPerDay,1)} L</td><td class="num">${fmt(crewCount*waterPerDay*journeyDaysRounded,1)} L</td><td class="num">${fmt(totalWaterL,1)} L</td></tr>
+        <tr><td>Total Provisions</td><td class="num">—</td><td class="num">—</td><td class="num"><strong>${fmt(provisionsKg,1)} kg</strong></td></tr>
+        <tr><td>Remaining Cargo</td><td class="num">—</td><td class="num">—</td><td class="num"><strong>${fmt(Math.max(0, cargoCapacity - cargoLoad - provisionsKg),1)} kg free</strong></td></tr>
+      </tbody>
+    </table></div>`;
+
+  let noticeHTML = '';
+  if (overloaded) {
+    noticeHTML = `<div class="notice">⚠️ <strong>OVERLOADED:</strong> Your cargo exceeds ship capacity by ${fmt(cargoLoad-cargoCapacity)} kg. Speed is reduced 15%. Consider offloading cargo or using a larger vessel.</div>`;
+  } else if (season === 'winter') {
+    noticeHTML = `<div class="notice">🧊 <strong>Winter Warning:</strong> Winter crossings were extremely perilous. Norse sagas record many ships lost to storms and ice. Even experienced skippers avoided open sea in winter. A 60% journey-time buffer has been applied.</div>`;
+  } else if (riskLevel.includes('High') || riskLevel.includes('+')) {
+    noticeHTML = `<div class="notice">⚠️ <strong>Elevated Risk:</strong> Autumn open-sea passages face significant storm risk. Norse mariners typically hugged coastlines in rough seasons. A 25% time buffer is included for weather delays.</div>`;
+  } else if (provisionsKg > cargoLoad && cargoLoad > 0) {
+    noticeHTML = `<div class="notice">🍖 <strong>Provisions Alert:</strong> Estimated provisions (${fmt(provisionsKg,1)} kg) exceed your declared cargo load (${fmt(cargoLoad,1)} kg). Increase cargo allocation or reduce journey length.</div>`;
+  }
+
+  requestAnimationFrame(() => {
+    document.getElementById('keyStats').innerHTML = keyStatsHTML;
+    document.getElementById('voyageBars').innerHTML = barsHTML;
+    document.getElementById('breakdownTable').innerHTML = tableHTML;
+    document.getElementById('provisionsSection').innerHTML = provisionsHTML;
+    document.getElementById('voyageNotice').innerHTML = noticeHTML;
+
+    const resultsEl = document.getElementById('results');
+    resultsEl.classList.add('visible');
+    resultsEl.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
+}
+
+function copyResults() {
+  const ship   = document.getElementById('shipType').value;
+  const dist   = document.getElementById('distance').value;
+  const season = document.getElementById('season').value;
+  const stats  = document.getElementById('keyStats').innerText.replace(/\n+/g,' | ');
+  const text   = `Viking Voyage Plan\nShip: ${SHIPS[ship]?.label||ship} | Distance: ${dist} nm | Season: ${season}\n${stats}\n— Generated by NorseSea Voyage Planner`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Summary'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {});
+}
+
+// Enter key on inputs triggers plan
+document.querySelectorAll('input').forEach(inp => {
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') planVoyage(); });
+});
+</script>
+</body>
+</html>
