@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roman Emperor Reign Timeline Comparator — Free Online Tool | HistoryTools</title>
+<meta name="description" content="Compare Roman Emperor reign lengths side-by-side. Explore all emperors from Augustus to Romulus Augustulus with interactive timeline bars and reign statistics.">
+<link rel="canonical" href="https://historytools.example.com/roman-emperor-comparator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Roman Emperor Reign Timeline Comparator",
+  "description": "Compare Roman Emperor reign lengths interactively. Filter by era, sort by reign length, and explore over 70 emperors.",
+  "url": "https://historytools.example.com/roman-emperor-comparator",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:0.75rem 1.5rem}
+nav .site-name{font-weight:700;color:#1a1a2e;font-size:1rem}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;line-height:1.3}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.05);margin-bottom:2rem}
+.form-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.form-group{flex:1;min-width:160px;display:flex;flex-direction:column;gap:0.4rem}
+label{font-size:0.85rem;font-weight:500;color:#444}
+select,input[type="text"],input[type="number"]{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:0.95rem;font-family:inherit;background:#fff;color:#1a1a2e;min-height:44px;transition:box-shadow 0.2s,border-color 0.2s}
+select:focus,input:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+.input-error{border-color:#e74c3c!important}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.25rem}
+.btn{background:#0077b6;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;min-height:44px;transition:background 0.2s;width:100%}
+.btn:hover{background:#006299}
+.btn-small{background:#0077b6;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:0.8rem;cursor:pointer;min-height:36px;transition:background 0.2s}
+.btn-small:hover{background:#006299}
+.btn-outline{background:#fff;color:#0077b6;border:1px solid #0077b6;padding:8px 18px;border-radius:6px;font-size:0.875rem;cursor:pointer;min-height:40px;transition:all 0.2s}
+.btn-outline:hover{background:#0077b6;color:#fff}
+.results-section{opacity:0;transition:opacity 0.3s ease}
+.results-section.visible{opacity:1}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1rem;text-align:center}
+.stat-card .stat-number{font-size:1.8rem;font-weight:700;color:#0077b6;line-height:1.1}
+.stat-card .stat-label{font-size:0.78rem;color:#666;margin-top:0.25rem}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:1rem}
+.bar-container{margin-bottom:0.6rem}
+.bar-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px;gap:0.5rem}
+.bar-name{font-size:0.82rem;font-weight:600;color:#1a1a2e;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-years{font-size:0.78rem;color:#555;white-space:nowrap}
+.bar-track{background:#f0f0f0;border-radius:4px;height:18px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#0077b6,#00b4d8);border-radius:4px;transition:width 0.4s ease;min-width:2px}
+.bar-fill.highlight{background:linear-gradient(90deg,#e67e22,#f39c12)}
+.bar-fill.selected{background:linear-gradient(90deg,#8e44ad,#9b59b6)}
+.table-wrapper{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:0.875rem}
+thead th{background:#f0f0f0;padding:8px 12px;text-align:left;font-weight:600;font-size:0.8rem;color:#444;border-bottom:2px solid #ddd}
+thead th.num{text-align:right}
+tbody tr:nth-child(even){background:#fafafa}
+tbody tr:hover{background:#f0f7ff}
+tbody td{padding:7px 12px;border-bottom:1px solid #eee;vertical-align:middle}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+.dynasty-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:0.7rem;font-weight:600;background:#e8f4fd;color:#0077b6;white-space:nowrap}
+.era-badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:0.7rem;background:#f0f0f0;color:#555}
+.compare-pill{display:inline-block;background:#8e44ad;color:#fff;border-radius:10px;padding:2px 10px;font-size:0.75rem;font-weight:600;margin-left:4px}
+.tabs{display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:1.5rem}
+.tab-btn{background:none;border:none;padding:10px 18px;font-size:0.875rem;font-weight:600;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all 0.15s;min-height:44px}
+.tab-btn.active{color:#0077b6;border-bottom-color:#0077b6}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.compare-controls{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:1rem;margin-bottom:1.5rem}
+.compare-selected{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;min-height:36px}
+.compare-tag{background:#8e44ad;color:#fff;border-radius:16px;padding:4px 12px;font-size:0.8rem;display:flex;align-items:center;gap:6px}
+.compare-tag button{background:none;border:none;color:#fff;cursor:pointer;font-size:0.9rem;line-height:1;padding:0;min-height:0}
+.longest-tag{background:#e67e22;color:#fff;border-radius:4px;padding:1px 6px;font-size:0.7rem;font-weight:700;margin-left:4px}
+.content-section{margin-top:2.5rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:0.6rem;margin-top:1.8rem}
+.content-section p{font-size:0.9rem;color:#333;margin-bottom:0.75rem;line-height:1.7}
+.content-section ul{font-size:0.9rem;color:#333;padding-left:1.2rem;margin-bottom:0.75rem}
+.content-section ul li{margin-bottom:0.4rem;line-height:1.6}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.75rem}
+details summary{padding:0.75rem 1rem;font-size:0.9rem;font-weight:600;cursor:pointer;color:#1a1a2e;list-style:none;display:flex;justify-content:space-between}
+details summary::after{content:"＋";color:#0077b6;font-size:1rem}
+details[open] summary::after{content:"－"}
+details .faq-body{padding:0 1rem 0.75rem;font-size:0.875rem;color:#444;line-height:1.65}
+.related-tools{background:#f8f9fa;border-radius:8px;padding:1.25rem;margin-top:1.5rem}
+.related-tools h3{font-size:0.95rem;font-weight:700;margin-bottom:0.75rem}
+.related-tools ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:0.5rem}
+.related-tools ul li a{background:#fff;border:1px solid #ddd;border-radius:16px;padding:5px 14px;font-size:0.82rem;color:#0077b6;display:inline-block}
+.ad-slot{min-height:0;margin:0}
+footer{border-top:1px solid #e0e0e0;margin-top:2rem;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#666}
+footer a{color:#0077b6;margin:0 0.4rem}
+.show-all-row{text-align:center;padding:0.75rem}
+.search-row{display:flex;gap:0.75rem;align-items:flex-end;margin-bottom:1rem;flex-wrap:wrap}
+.search-row .form-group{flex:1;min-width:140px}
+.copy-btn{background:#f0f0f0;color:#444;border:1px solid #ddd;padding:4px 10px;border-radius:4px;font-size:0.75rem;cursor:pointer;transition:all 0.2s}
+.copy-btn:hover{background:#0077b6;color:#fff;border-color:#0077b6}
+.results-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:0.5rem}
+@media(max-width:640px){
+.form-row{flex-direction:column}
+.stat-grid{grid-template-columns:1fr 1fr}
+.tab-btn{padding:10px 12px;font-size:0.8rem}
+.card{padding:1.25rem}
+h1{font-size:1.3rem}
+}
+@media(max-width:400px){
+.stat-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav><a href="/" class="site-name">HistoryTools</a></nav>
+<div class="container">
+<h1>Roman Emperor Reign Timeline Comparator</h1>
+<p class="subtitle">Compare reign lengths of Roman Emperors — filter by era, dynasty, or select specific emperors to compare side-by-side.</p>
+
+<div class="card">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="filterEra">Filter by Era</label>
+      <select id="filterEra">
+        <option value="all">All Eras</option>
+        <option value="Principate">Principate (27 BC – 284 AD)</option>
+        <option value="Dominate">Dominate (284 – 476 AD)</option>
+        <option value="JulioClaudian">Julio-Claudian Dynasty</option>
+        <option value="Flavian">Flavian Dynasty</option>
+        <option value="Nerva-Antonine">Nerva-Antonine Dynasty</option>
+        <option value="Severan">Severan Dynasty</option>
+        <option value="Crisis">Crisis of the Third Century</option>
+        <option value="Tetrarchy">Tetrarchy & Constantine</option>
+        <option value="Valentinian">Valentinian–Theodosian</option>
+        <option value="WestFall">Western Fall</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sortBy">Sort By</label>
+      <select id="sortBy">
+        <option value="chronological">Chronological</option>
+        <option value="longest">Longest Reign First</option>
+        <option value="shortest">Shortest Reign First</option>
+        <option value="name">Name (A–Z)</option>
+      </select>
+    </div>
+  </div>
+  <div class="search-row">
+    <div class="form-group" style="flex:2">
+      <label for="searchInput">Search Emperor Name</label>
+      <input type="text" id="searchInput" placeholder="e.g. Augustus, Nero, Constantine…" autocomplete="off">
+    </div>
+    <div class="form-group" style="flex:1;min-width:120px">
+      <label for="minReign">Min Reign (yrs)</label>
+      <input type="number" id="minReign" placeholder="0" min="0" max="44">
+    </div>
+  </div>
+  <button class="btn" id="compareBtn" onclick="runComparison()">Compare Emperors</button>
+</div>
+
+<div class="results-section" id="resultsSection">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('timeline',this)">Timeline Bars</button>
+    <button class="tab-btn" onclick="switchTab('table',this)">Data Table</button>
+    <button class="tab-btn" onclick="switchTab('compare',this)">Compare Mode</button>
+  </div>
+
+  <div class="tab-content active" id="tab-timeline">
+    <div class="results-header">
+      <span class="section-title" id="resultCount"></span>
+      <button class="copy-btn" id="copyBtn" onclick="copyResults()">Copy List</button>
+    </div>
+    <div class="stat-grid" id="statGrid"></div>
+    <div id="timelineBars"></div>
+    <div class="show-all-row" id="showMoreRow" style="display:none">
+      <button class="btn-outline" onclick="showAllBars()">Show All Emperors</button>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-table">
+    <div class="table-wrapper">
+      <table id="dataTable">
+        <thead><tr>
+          <th>#</th>
+          <th>Emperor</th>
+          <th>Dynasty / Era</th>
+          <th class="num">Reign Start</th>
+          <th class="num">Reign End</th>
+          <th class="num">Years</th>
+        </tr></thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="tab-content" id="tab-compare">
+    <div class="compare-controls">
+      <div class="section-title">Select up to 5 emperors to compare</div>
+      <div class="form-group" style="margin-top:0.75rem">
+        <label for="compareSelect">Add Emperor to Comparison</label>
+        <select id="compareSelect" onchange="addToCompare(this.value)">
+          <option value="">— Choose an emperor —</option>
+        </select>
+      </div>
+      <div class="compare-selected" id="compareSelected"></div>
+    </div>
+    <div id="compareCharts"></div>
+  </div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<div class="content-section">
+  <h2>How to Use This Roman Emperor Comparator</h2>
+  <p>Select a filter (era or dynasty) from the dropdown, optionally set a minimum reign length, and type in the search box to narrow results. Click <strong>Compare Emperors</strong> to generate a visual timeline. Switch between <em>Timeline Bars</em>, <em>Data Table</em>, and <em>Compare Mode</em> tabs to explore results from different angles.</p>
+
+  <h2>Why This Matters</h2>
+  <p>The Roman Empire spans roughly 500 years — from Augustus in 27 BC to the fall of the Western Empire in 476 AD — and produced more than 70 emperors. Their reign lengths tell a surprisingly dramatic story. Augustus ruled for an extraordinary 40+ years, providing stability that defined the early empire. By contrast, the Crisis of the Third Century (235–284 AD) saw over 20 emperors in just 50 years — some lasting only weeks.</p>
+  <p>Historians, students, and enthusiasts use reign-length comparisons to understand patterns of succession, political stability, military coups, and dynastic loyalty. Why did the Nerva-Antonine dynasty produce some of Rome's longest-reigning emperors? Why did the Severan era collapse so quickly? Visualizing these reigns side-by-side makes the answers intuitive. Teachers use this to explain why Gibbon called the Antonine Age "the period in the history of the world during which the condition of the human race was most happy and prosperous."</p>
+
+  <h2>How It's Calculated</h2>
+  <p>Reign length is calculated as: <strong>End Year − Start Year</strong>, adjusted for the BC/AD boundary. For example, Augustus (27 BC – 14 AD) = 27 + 14 = 41 years. For emperors who died in office, the end year is their death year. Co-emperors are listed separately with their independent or co-reign periods noted. The timeline bar width is proportional to the longest reign in the current filtered set: <strong>Bar Width % = (Emperor's Years / Max Years) × 100</strong>.</p>
+
+  <h2>Tips &amp; Common Mistakes</h2>
+  <ul>
+    <li><strong>BC years are negative:</strong> When filtering by start year, remember 27 BC comes before 14 AD chronologically — the tool handles this automatically.</li>
+    <li><strong>Co-emperors inflate totals:</strong> Some periods had 2–4 simultaneous emperors (the Tetrarchy). Filter by "Tetrarchy & Constantine" to see this clearly.</li>
+    <li><strong>Short reigns cluster in crises:</strong> Use "Shortest Reign First" sort + "Crisis of the Third Century" filter to see how chaotic the 3rd century truly was.</li>
+    <li><strong>Compare Mode works best with 3–5 emperors</strong> from different eras for dramatic contrast — try Augustus, Nero, Hadrian, Diocletian, and Romulus Augustulus.</li>
+    <li><strong>Disputed reigns:</strong> Some reign dates vary by 1–2 years across sources. This tool uses the most commonly cited dates in modern scholarship.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <details><summary>Who was the longest-reigning Roman Emperor?</summary>
+    <div class="faq-body">Augustus reigned from 27 BC to 14 AD — approximately 40–41 years — making him the longest-reigning undisputed Roman Emperor. Constantine I (306–337 AD) comes close at ~31 years if you count from his initial proclamation. Augustus's long reign was foundational; it established the Principate system that defined Roman governance for centuries.</div>
+  </details>
+  <details><summary>How many Roman Emperors were there in total?</summary>
+    <div class="faq-body">The count varies by definition: roughly 70–80 emperors ruled the Western Empire (27 BC – 476 AD), but if you include Eastern Roman (Byzantine) emperors, the number exceeds 200. This tool covers the Western/unified empire period up to Romulus Augustulus in 476 AD. Many "emperors" during the Crisis of the Third Century were regional usurpers with disputed legitimacy.</div>
+  </details>
+  <details><summary>What was the shortest Roman Emperor reign?</summary>
+    <div class="faq-body">Several emperors reigned for only a few weeks. Gordian I and Gordian II in 238 AD both reigned for roughly 3 weeks before their deaths. The "Year of the Four Emperors" (69 AD) and the "Year of the Five Emperors" (193 AD) also saw extremely short reigns. Didius Julianus famously bought the throne at auction in 193 AD and was killed just 66 days later.</div>
+  </details>
+  <details><summary>Why do some dynasties have much longer reigns than others?</summary>
+    <div class="faq-body">Dynastic stability depended on a mix of hereditary legitimacy, military loyalty, and economic prosperity. The Nerva-Antonine dynasty (96–192 AD) practiced adoptive succession — emperors chose their most competent successors — which Gibbon argued produced Rome's golden age. Conversely, dynasties relying on military coups (the Crisis era) were inherently unstable since any general with loyal legions could claim the throne.</div>
+  </details>
+</div>
+
+<div class="related-tools">
+  <h3>Related History Tools</h3>
+  <ul>
+    <li><a href="/roman-battle-map">Roman Battle Map</a></li>
+    <li><a href="/dynasty-family-tree">Dynasty Family Tree Viewer</a></li>
+    <li><a href="/historical-date-converter">Roman Calendar Converter</a></li>
+    <li><a href="/empire-territory-timeline">Empire Territory Timeline</a></li>
+    <li><a href="/ancient-leaders-comparator">Ancient Leaders Comparator</a></li>
+  </ul>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/contact">Contact</a>
+  <span style="margin-left:0.5rem">© 2025 HistoryTools</span>
+</footer>
+</div>
+
+<script>
+const EMPERORS = [
+  // Julio-Claudian
+  {name:"Augustus",start:-27,end:14,dynasty:"Julio-Claudian",era:"JulioClaudian",group:"Principate"},
+  {name:"Tiberius",start:14,end:37,dynasty:"Julio-Claudian",era:"JulioClaudian",group:"Principate"},
+  {name:"Caligula",start:37,end:41,dynasty:"Julio-Claudian",era:"JulioClaudian",group:"Principate"},
+  {name:"Claudius",start:41,end:54,dynasty:"Julio-Claudian",era:"JulioClaudian",group:"Principate"},
+  {name:"Nero",start:54,end:68,dynasty:"Julio-Claudian",era:"JulioClaudian",group:"Principate"},
+  // Year of Four Emperors
+  {name:"Galba",start:68,end:69,dynasty:"Year of 4 Emperors",era:"Principate",group:"Principate"},
+  {name:"Otho",start:69,end:69,dynasty:"Year of 4 Emperors",era:"Principate",group:"Principate"},
+  {name:"Vitellius",start:69,end:69,dynasty:"Year of 4 Emperors",era:"Principate",group:"Principate"},
+  // Flavian
+  {name:"Vespasian",start:69,end:79,dynasty:"Flavian",era:"Flavian",group:"Principate"},
+  {name:"Titus",start:79,end:81,dynasty:"Flavian",era:"Flavian",group:"Principate"},
+  {name:"Domitian",start:81,end:96,dynasty:"Flavian",era:"Flavian",group:"Principate"},
+  // Nerva-Antonine
+  {name:"Nerva",start:96,end:98,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  {name:"Trajan",start:98,end:117,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  {name:"Hadrian",start:117,end:138,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  {name:"Antoninus Pius",start:138,end:161,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  {name:"Marcus Aurelius",start:161,end:180,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  {name:"Lucius Verus",start:161,end:169,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  {name:"Commodus",start:177,end:192,dynasty:"Nerva-Antonine",era:"Nerva-Antonine",group:"Principate"},
+  // Year of Five Emperors
+  {name:"Pertinax",start:193,end:193,dynasty:"Year of 5 Emperors",era:"Principate",group:"Principate"},
+  {name:"Didius Julianus",start:193,end:193,dynasty:"Year of 5 Emperors",era:"Principate",group:"Principate"},
+  {name:"Pescennius Niger",start:193,end:194,dynasty:"Year of 5 Emperors",era:"Principate",group:"Principate"},
+  {name:"Clodius Albinus",start:193,end:197,dynasty:"Year of 5 Emperors",era:"Principate",group:"Principate"},
+  // Severan
+  {name:"Septimius Severus",start:193,end:211,dynasty:"Severan",era:"Severan",group:"Principate"},
+  {name:"Caracalla",start:198,end:217,dynasty:"Severan",era:"Severan",group:"Principate"},
+  {name:"Geta",start:209,end:211,dynasty:"Severan",era:"Severan",group:"Principate"},
+  {name:"Macrinus",start:217,end:218,dynasty:"Severan",era:"Severan",group:"Principate"},
+  {name:"Elagabalus",start:218,end:222,dynasty:"Severan",era:"Severan",group:"Principate"},
+  {name:"Severus Alexander",start:222,end:235,dynasty:"Severan",era:"Severan",group:"Principate"},
+  // Crisis of Third Century
+  {name:"Maximinus Thrax",start:235,end:238,dynasty:"Gordian",era:"Crisis",group:"Principate"},
+  {name:"Gordian I",start:238,end:238,dynasty:"Gordian",era:"Crisis",group:"Principate"},
+  {name:"Gordian II",start:238,end:238,dynasty:"Gordian",era:"Crisis",group:"Principate"},
+  {name:"Pupienus",start:238,end:238,dynasty:"Gordian",era:"Crisis",group:"Principate"},
+  {name:"Balbinus",start:238,end:238,dynasty:"Gordian",era:"Crisis",group:"Principate"},
+  {name:"Gordian III",start:238,end:244,dynasty:"Gordian",era:"Crisis",group:"Principate"},
+  {name:"Philip the Arab",start:244,end:249,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Decius",start:249,end:251,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Trebonianus Gallus",start:251,end:253,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Aemilianus",start:253,end:253,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Valerian",start:253,end:260,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Gallienus",start:253,end:268,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Claudius II",start:268,end:270,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Quintillus",start:270,end:270,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Aurelian",start:270,end:275,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Tacitus",start:275,end:276,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Florian",start:276,end:276,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Probus",start:276,end:282,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Carus",start:282,end:283,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Carinus",start:283,end:285,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  {name:"Numerian",start:283,end:284,dynasty:"Crisis",era:"Crisis",group:"Principate"},
+  // Tetrarchy & Constantine
+  {name:"Diocletian",start:284,end:305,dynasty:"Tetrarchy",era:"Tetrarchy",group:"Dominate"},
+  {name:"Maximian",start:286,end:305,dynasty:"Tetrarchy",era:"Tetrarchy",group:"Dominate"},
+  {name:"Galerius",start:305,end:311,dynasty:"Tetrarchy",era:"Tetrarchy",group:"Dominate"},
+  {name:"Constantius I",start:305,end:306,dynasty:"Tetrarchy",era:"Tetrarchy",group:"Dominate"},
+  {name:"Constantine I",start:306,end:337,dynasty:"Constantinian",era:"Tetrarchy",group:"Dominate"},
+  {name:"Licinius",start:308,end:324,dynasty:"Tetrarchy",era:"Tetrarchy",group:"Dominate"},
+  {name:"Constantine II",start:337,end:340,dynasty:"Constantinian",era:"Tetrarchy",group:"Dominate"},
+  {name:"Constans",start:337,end:350,dynasty:"Constantinian",era:"Tetrarchy",group:"Dominate"},
+  {name:"Constantius II",start:337,end:361,dynasty:"Constantinian",era:"Tetrarchy",group:"Dominate"},
+  {name:"Julian",start:361,end:363,dynasty:"Constantinian",era:"Tetrarchy",group:"Dominate"},
+  {name:"Jovian",start:363,end:364,dynasty:"Jovian",era:"Tetrarchy",group:"Dominate"},
+  // Valentinian-Theodosian
+  {name:"Valentinian I",start:364,end:375,dynasty:"Valentinian",era:"Valentinian",group:"Dominate"},
+  {name:"Valens",start:364,end:378,dynasty:"Valentinian",era:"Valentinian",group:"Dominate"},
+  {name:"Gratian",start:367,end:383,dynasty:"Valentinian",era:"Valentinian",group:"Dominate"},
+  {name:"Valentinian II",start:375,end:392,dynasty:"Valentinian",era:"Valentinian",group:"Dominate"},
+  {name:"Theodosius I",start:379,end:395,dynasty:"Theodosian",era:"Valentinian",group:"Dominate"},
+  // Western Fall
+  {name:"Honorius",start:393,end:423,dynasty:"Theodosian",era:"WestFall",group:"Dominate"},
+  {name:"Valentinian III",start:425,end:455,dynasty:"Theodosian",era:"WestFall",group:"Dominate"},
+  {name:"Petronius Maximus",start:455,end:455,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Avitus",start:455,end:456,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Majorian",start:457,end:461,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Libius Severus",start:461,end:465,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Anthemius",start:467,end:472,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Olybrius",start:472,end:472,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Glycerius",start:473,end:474,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Julius Nepos",start:474,end:480,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+  {name:"Romulus Augustulus",start:475,end:476,dynasty:"Late Western",era:"WestFall",group:"Dominate"},
+];
+
+function reignYears(e){
+  const y = e.end - e.start;
+  return y < 1 ? 0.2 : y;
+}
+function formatYear(y){
+  if(y <= 0) return Math.abs(y) + ' BC';
+  return y + ' AD';
+}
+function fmt(n){return n.toLocaleString();}
+
+let currentFiltered = [];
+let showingAll = false;
+let compareList = [];
+const MAX_BARS = 25;
+
+function getFiltered(){
+  const era = document.getElementById('filterEra').value;
+  const sort = document.getElementById('sortBy').value;
+  const search = document.getElementById('searchInput').value.trim().toLowerCase();
+  const minR = parseFloat(document.getElementById('minReign').value) || 0;
+
+  let data = EMPERORS.map(e => ({...e, years: reignYears(e)}));
+
+  if(era === 'Principate') data = data.filter(e => e.group === 'Principate');
+  else if(era === 'Dominate') data = data.filter(e => e.group === 'Dominate');
+  else if(era !== 'all') data = data.filter(e => e.era === era);
+
+  if(search) data = data.filter(e => e.name.toLowerCase().includes(search));
+  if(minR > 0) data = data.filter(e => e.years >= minR);
+
+  if(sort === 'longest') data.sort((a,b) => b.years - a.years);
+  else if(sort === 'shortest') data.sort((a,b) => a.years - b.years);
+  else if(sort === 'name') data.sort((a,b) => a.name.localeCompare(b.name));
+  else data.sort((a,b) => a.start - b.start);
+
+  return data;
+}
+
+function runComparison(){
+  const data = getFiltered();
+  currentFiltered = data;
+  showingAll = false;
+
+  requestAnimationFrame(() => {
+    renderResults(data);
+    populateCompareSelect(data);
+    const sec = document.getElementById('resultsSection');
+    sec.classList.add('visible');
+  });
+}
+
+function renderResults(data){
+  if(!data.length){
+    document.getElementById('statGrid').innerHTML = '<div style="color:#e74c3c;padding:0.5rem;font-size:0.9rem">No emperors match your filters. Try adjusting the criteria.</div>';
+    document.getElementById('timelineBars').innerHTML = '';
+    document.getElementById('tableBody').innerHTML = '';
+    document.getElementById('resultCount').textContent = '0 results';
+    document.getElementById('showMoreRow').style.display = 'none';
+    return;
+  }
+
+  // Stats
+  const maxY = Math.max(...data.map(e=>e.years));
+  const minY = Math.min(...data.map(e=>e.years));
+  const avgY = data.reduce((s,e)=>s+e.years,0)/data.length;
+  const longest = data.find(e=>e.years===maxY);
+  const shortest = data.find(e=>e.years===minY);
+
+  document.getElementById('resultCount').textContent = data.length + ' emperor' + (data.length!==1?'s':'') + ' found';
+
+  let statHtml = `
+    <div class="stat-card"><div class="stat-number">${data.length}</div><div class="stat-label">Emperors Shown</div></div>
+    <div class="stat-card"><div class="stat-number">${maxY.toFixed(1)}<span style="font-size:1rem">yrs</span></div><div class="stat-label">Longest: ${longest.name}</div></div>
+    <div class="stat-card"><div class="stat-number">${avgY.toFixed(1)}<span style="font-size:1rem">yrs</span></div><div class="stat-label">Average Reign</div></div>
+    <div class="stat-card"><div class="stat-number">${minY < 1 ? '<1' : minY.toFixed(1)}<span style="font-size:1rem">yrs</span></div><div class="stat-label">Shortest: ${shortest.name}</div></div>
+  `;
+  document.getElementById('statGrid').innerHTML = statHtml;
+
+  // Bars
+  const display = showingAll ? data : data.slice(0, MAX_BARS);
+  let barsHtml = '';
+  display.forEach(e => {
+    const pct = (e.years/maxY*100).toFixed(1);
+    const isLongest = e.years === maxY;
+    const inComp = compareList.includes(e.name);
+    const fillClass = inComp ? 'selected' : (isLongest ? 'highlight' : '');
+    const extra = isLongest ? '<span class="longest-tag">LONGEST</span>' : '';
+    const comp = inComp ? '<span class="compare-pill">★</span>' : '';
+    barsHtml += `<div class="bar-container">
+      <div class="bar-meta">
+        <span class="bar-name">${e.name}${extra}${comp}</span>
+        <span class="bar-years">${formatYear(e.start)} – ${formatYear(e.end)} (${e.years < 1 ? '<1' : e.years.toFixed(1)} yrs)</span>
+      </div>
+      <div class="bar-track"><div class="bar-fill ${fillClass}" style="width:${pct}%"></div></div>
+    </div>`;
+  });
+  document.getElementById('timelineBars').innerHTML = barsHtml;
+  const showRow = document.getElementById('showMoreRow');
+  showRow.style.display = (!showingAll && data.length > MAX_BARS) ? 'block' : 'none';
+
+  // Table
+  let tableHtml = '';
+  data.forEach((e,i) => {
+    const isLongest = e.years === maxY;
+    tableHtml += `<tr>
+      <td>${i+1}</td>
+      <td><strong>${e.name}</strong>${isLongest ? ' <span class="longest-tag">LONGEST</span>' : ''}</td>
+      <td><span class="dynasty-badge">${e.dynasty}</span></td>
+      <td class="num">${formatYear(e.start)}</td>
+      <td class="num">${formatYear(e.end)}</td>
+      <td class="num">${e.years < 1 ? '<1' : e.years.toFixed(1)}</td>
+    </tr>`;
+  });
+  document.getElementById('tableBody').innerHTML = tableHtml;
+
+  renderCompareCharts();
+}
+
+function showAllBars(){
+  showingAll = true;
+  renderResults(currentFiltered);
+}
+
+function populateCompareSelect(data){
+  let opts = '<option value="">— Choose an emperor —</option>';
+  data.forEach(e => {
+    opts += `<option value="${e.name}">${e.name} (${formatYear(e.start)}–${formatYear(e.end)})</option>`;
+  });
+  document.getElementById('compareSelect').innerHTML = opts;
+}
+
+function addToCompare(name){
+  if(!name) return;
+  if(compareList.includes(name)){
+    document.getElementById('compareSelect').value = '';
+    return;
+  }
+  if(compareList.length >= 5){
+    alert('You can compare up to 5 emperors at a time. Remove one first.');
+    document.getElementById('compareSelect').value = '';
+    return;
+  }
+  compareList.push(name);
+  document.getElementById('compareSelect').value = '';
+  renderCompareTags();
+  renderCompareCharts();
+  renderResults(currentFiltered);
+}
+
+function removeFromCompare(name){
+  compareList = compareList.filter(n=>n!==name);
+  renderCompareTags();
+  renderCompareCharts();
+  if(currentFiltered.length) renderResults(currentFiltered);
+}
+
+function renderCompareTags(){
+  let html = '';
+  compareList.forEach(n => {
+    html += `<div class="compare-tag">${n} <button onclick="removeFromCompare('${n.replace(/'/g,"\\'")}')">✕</button></div>`;
+  });
+  if(!compareList.length) html = '<span style="color:#888;font-size:0.82rem">No emperors selected yet.</span>';
+  document.getElementById('compareSelected').innerHTML = html;
+}
+
+function renderCompareCharts(){
+  const container = document.getElementById('compareCharts');
+  if(!compareList.length){
+    container.innerHTML = '<div style="color:#888;font-size:0.875rem;padding:1rem 0">Select emperors above to compare them side-by-side.</div>';
+    return;
+  }
+  const selected = EMPERORS.filter(e=>compareList.includes(e.name)).map(e=>({...e,years:reignYears(e)}));
+  const maxY = Math.max(...selected.map(e=>e.years));
+
+  const colors = ['#0077b6','#e67e22','#27ae60','#8e44ad','#e74c3c'];
+  let html = '<div style="margin-bottom:1rem">';
+  selected.forEach((e,i) => {
+    const pct = (e.years/maxY*100).toFixed(1);
+    html += `<div class="bar-container">
+      <div class="bar-meta">
+        <span class="bar-name" style="font-size:0.9rem">${e.name}</span>
+        <span class="bar-years">${formatYear(e.start)} – ${formatYear(e.end)}</span>
+      </div>
+      <div class="bar-track" style="height:24px">
+        <div class="bar-fill" style="width:${pct}%;background:${colors[i]};height:100%"></div>
+      </div>
+    </div>`;
+  });
+  html += '</div>';
+
+  // Comparison table
+  html += `<div class="table-wrapper"><table>
+    <thead><tr><th>Emperor</th><th>Dynasty</th><th class="num">Start</th><th class="num">End</th><th class="num">Years</th><th class="num">vs Avg</th></tr></thead>
+    <tbody>`;
+  const avg = selected.reduce((s,e)=>s+e.years,0)/selected.length;
+  selected.forEach((e,i) => {
+    const diff = e.years - avg;
+    const diffStr = (diff >= 0 ? '+' : '') + diff.toFixed(1);
+    const diffColor = diff >= 0 ? '#27ae60' : '#e74c3c';
+    html += `<tr>
+      <td><span style="display:inline-block;width:10px;height:10px;background:${colors[i]};border-radius:50%;margin-right:6px"></span><strong>${e.name}</strong></td>
+      <td><span class="dynasty-badge">${e.dynasty}</span></td>
+      <td class="num">${formatYear(e.start)}</td>
+      <td class="num">${formatYear(e.end)}</td>
+      <td class="num"><strong>${e.years < 1 ? '<1' : e.years.toFixed(1)}</strong></td>
+      <td class="num" style="color:${diffColor};font-weight:600">${diffStr} yrs</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+  container.innerHTML = html;
+}
+
+function switchTab(tabId, btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+tabId).classList.add('active');
+}
+
+function copyResults(){
+  if(!currentFiltered.length) return;
+  const lines = currentFiltered.map(e =>
+    `${e.name} | ${formatYear(e.start)}–${formatYear(e.end)} | ${e.years.toFixed(1)} yrs | ${e.dynasty}`
+  );
+  const text = 'Roman Emperor Reign Comparison\n' + lines.join('\n');
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    setTimeout(()=>btn.textContent='Copy List', 2000);
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    setTimeout(()=>btn.textContent='Copy List', 2000);
+  });
+}
+
+// Enter key triggers comparison
+['filterEra','sortBy','searchInput','minReign'].forEach(id => {
+  const el = document.getElementById(id);
+  if(el) el.addEventListener('keydown', e => { if(e.key==='Enter') runComparison(); });
+});
+
+// Auto-run on load with all emperors
+window.addEventListener('load', () => {
+  runComparison();
+});
+</script>
+</body>
+</html>
