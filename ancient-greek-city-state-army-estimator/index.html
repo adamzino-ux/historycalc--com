@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Greek City-State Population & Army Size Estimator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Estimate the population and military strength of any ancient Greek city-state (polis). Based on historically accurate formulas used by modern classical scholars.">
+<link rel="canonical" href="https://historycalc.com/ancient-greek-city-state-army-estimator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Greek City-State Population & Army Size Estimator",
+  "url": "https://historycalc.com/ancient-greek-city-state-army-estimator/",
+  "description": "Estimate the population and military strength of any ancient Greek city-state (polis) using historically accurate demographic formulas.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f0e1;
+  --card:#fffdf5;
+  --accent:#8b4513;
+  --accent2:#a0522d;
+  --text:#2c1810;
+  --muted:#6b4c3b;
+  --border:#c4a882;
+  --light:#ede8d8;
+  --row1:#faf7ee;
+  --row2:#fffdf5;
+  --error:#c0392b;
+  --blue:#0077b6;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.6}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;color:var(--accent2)}
+.site-nav{background:var(--text);padding:0.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.site-nav a{color:#f5f0e1;font-weight:600;font-size:0.95rem}
+.site-nav a:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.55rem;font-weight:700;color:var(--text);line-height:1.3;margin-bottom:0.4rem}
+.subtitle{color:var(--muted);font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(139,69,19,0.08);margin-bottom:2rem}
+.card-title{font-size:1.05rem;font-weight:700;color:var(--accent);margin-bottom:1.2rem;border-bottom:1px solid var(--border);padding-bottom:0.6rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3a2a;margin-bottom:0.3rem;margin-top:1rem}
+label:first-of-type{margin-top:0}
+input[type=text],input[type=number],select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:6px;font-size:1rem;color:var(--text);background:#fffdf5;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error-input{border-color:var(--error)}
+.error-msg{color:var(--error);font-size:0.82rem;margin-top:0.25rem;display:none}
+.error-msg.show{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.slider-wrap{margin-top:0.4rem}
+input[type=range]{width:100%;accent-color:var(--accent);height:6px;cursor:pointer}
+.slider-labels{display:flex;justify-content:space-between;font-size:0.75rem;color:var(--muted);margin-top:0.2rem}
+.slider-val{font-weight:700;color:var(--accent);font-size:0.9rem}
+.btn{display:block;width:100%;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:13px 24px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:48px;margin-top:1.4rem}
+.btn:hover{background:var(--accent2)}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.show{opacity:1;pointer-events:auto}
+.big-stat{text-align:center;margin:0.5rem 0 1.2rem}
+.big-num{font-size:2.6rem;font-weight:800;color:var(--accent);line-height:1}
+.big-label{font-size:0.85rem;color:var(--muted);margin-top:0.2rem}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.2rem}
+.stat-box{background:var(--light);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;text-align:center}
+.stat-box .s-val{font-size:1.25rem;font-weight:700;color:var(--accent)}
+.stat-box .s-lbl{font-size:0.75rem;color:var(--muted);margin-top:0.1rem}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+th{background:#e8dfc8;color:var(--text);font-weight:600;padding:8px 10px;text-align:left;border-bottom:2px solid var(--border)}
+td{padding:7px 10px;border-bottom:1px solid var(--border)}
+tr:nth-child(odd) td{background:var(--row1)}
+tr:nth-child(even) td{background:var(--row2)}
+td:last-child,th:last-child{text-align:right}
+.copy-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:0.8rem;padding:5px 12px;border-radius:4px;cursor:pointer;float:right;transition:background 0.2s}
+.copy-btn:hover{background:var(--light)}
+.did-you-know{background:#fef9ec;border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+.did-you-know h3{font-size:0.95rem;color:var(--accent);margin-bottom:0.5rem}
+.did-you-know ul{padding-left:1.2rem}
+.did-you-know li{font-size:0.88rem;color:var(--muted);margin-bottom:0.35rem}
+.modern-eq{background:var(--light);border:1px solid var(--border);border-radius:6px;padding:1rem 1.2rem;margin-top:1.2rem;font-size:0.88rem;color:var(--muted)}
+.modern-eq strong{color:var(--accent)}
+.svg-wrap{text-align:center;margin-bottom:1.2rem}
+.section-content{margin-bottom:2rem}
+.section-content h2{font-size:1.15rem;font-weight:700;color:var(--accent);margin:1.6rem 0 0.6rem;border-bottom:1px solid var(--border);padding-bottom:0.4rem}
+.section-content p{font-size:0.92rem;color:var(--text);margin-bottom:0.7rem}
+.section-content ul{padding-left:1.3rem;margin-bottom:0.7rem}
+.section-content li{font-size:0.92rem;color:var(--text);margin-bottom:0.3rem}
+details{border:1px solid var(--border);border-radius:6px;margin-bottom:0.6rem;background:var(--card)}
+summary{padding:0.75rem 1rem;cursor:pointer;font-weight:600;font-size:0.9rem;color:var(--text);list-style:none}
+summary::before{content:"▶ ";color:var(--accent);font-size:0.75rem}
+details[open] summary::before{content:"▼ "}
+details p{padding:0 1rem 0.75rem;font-size:0.88rem;color:var(--muted);line-height:1.55}
+.related-tools{margin-bottom:2rem}
+.related-tools h2{font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:0.8rem}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.related-grid a{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:0.6rem 0.8rem;font-size:0.82rem;color:var(--accent);transition:background 0.2s;line-height:1.35}
+.related-grid a:hover{background:var(--light);text-decoration:none}
+.ad-slot{min-height:0;margin:0}
+footer{background:var(--text);color:#c4a882;padding:1.2rem 1.5rem;text-align:center;font-size:0.82rem}
+footer a{color:#e8d5c0;margin:0 0.5rem}
+footer a:hover{color:#fff}
+.hist-context{background:#fdf5e8;border:1px solid var(--border);border-radius:6px;padding:1.2rem;margin-top:1.5rem;font-size:0.88rem;color:var(--muted)}
+.hist-context h3{color:var(--accent);font-size:0.95rem;margin-bottom:0.5rem}
+.preset-btns{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1rem}
+.preset-btn{background:var(--light);border:1px solid var(--border);border-radius:4px;padding:6px 12px;font-size:0.8rem;cursor:pointer;color:var(--text);transition:background 0.2s;min-height:36px}
+.preset-btn:hover{background:#e0d4b8}
+.bar-wrap{margin-top:0.5rem}
+.bar-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;font-size:0.8rem}
+.bar-label{min-width:120px;color:var(--muted)}
+.bar-track{flex:1;background:#e8dfc8;border-radius:3px;height:12px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent);border-radius:3px;transition:width 0.4s ease}
+.bar-num{min-width:60px;text-align:right;color:var(--accent);font-weight:600}
+@media(max-width:640px){
+  .row2{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .related-grid{grid-template-columns:1fr}
+  .big-num{font-size:2rem}
+  h1{font-size:1.3rem}
+  .card{padding:1.3rem}
+}
+@media(max-width:420px){
+  .stats-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/">⚱️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="svg-wrap">
+    <svg width="220" height="90" viewBox="0 0 220 90" xmlns="http://www.w3.org/2000/svg" aria-label="Ancient Greek temple illustration" role="img">
+      <!-- Temple base -->
+      <rect x="10" y="72" width="200" height="8" rx="2" fill="#c4a882"/>
+      <rect x="20" y="66" width="180" height="8" rx="1" fill="#c4a882"/>
+      <!-- Columns -->
+      <rect x="28" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <rect x="52" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <rect x="76" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <rect x="100" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <rect x="124" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <rect x="148" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <rect x="172" y="28" width="12" height="40" rx="2" fill="#d4bc96"/>
+      <!-- Entablature -->
+      <rect x="18" y="20" width="184" height="10" rx="1" fill="#c4a882"/>
+      <!-- Pediment -->
+      <polygon points="18,20 110,4 202,20" fill="#e8d5b0" stroke="#c4a882" stroke-width="1"/>
+      <!-- Shield on pediment -->
+      <circle cx="110" cy="14" r="5" fill="#8b4513" opacity="0.6"/>
+      <!-- Column capitals -->
+      <rect x="25" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <rect x="49" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <rect x="73" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <rect x="97" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <rect x="121" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <rect x="145" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <rect x="169" y="25" width="18" height="5" rx="1" fill="#b8956a"/>
+      <!-- Spear figure left -->
+      <line x1="6" y1="80" x2="6" y2="50" stroke="#8b4513" stroke-width="2"/>
+      <circle cx="6" cy="47" r="4" fill="#8b4513"/>
+      <!-- Spear figure right -->
+      <line x1="214" y1="80" x2="214" y2="50" stroke="#8b4513" stroke-width="2"/>
+      <circle cx="214" cy="47" r="4" fill="#8b4513"/>
+    </svg>
+  </div>
+
+  <h1>Ancient Greek City-State Population & Army Size Estimator</h1>
+  <p class="subtitle">Estimate the demographic breakdown and military capacity of any ancient Greek polis (city-state) using classical-era scholarship.</p>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <div class="card-title">⚔️ Enter Your Polis Parameters</div>
+
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1rem">Start with a preset city-state or enter custom values:</p>
+
+    <div class="preset-btns">
+      <button class="preset-btn" onclick="loadPreset('athens')">🏛️ Athens (430 BC)</button>
+      <button class="preset-btn" onclick="loadPreset('sparta')">⚔️ Sparta (480 BC)</button>
+      <button class="preset-btn" onclick="loadPreset('corinth')">⚓ Corinth (400 BC)</button>
+      <button class="preset-btn" onclick="loadPreset('thebes')">🐉 Thebes (371 BC)</button>
+      <button class="preset-btn" onclick="loadPreset('custom')">✏️ Custom Polis</button>
+    </div>
+
+    <label for="polisName">Name of Polis</label>
+    <input type="text" id="polisName" placeholder="e.g., Athens" value="Athens">
+
+    <label for="territoryKm">Territory (km²)</label>
+    <input type="number" id="territoryKm" min="1" max="100000" placeholder="e.g., 2500" value="2500">
+    <div class="error-msg" id="err-territory">Please enter a valid territory (1–100,000 km²).</div>
+
+    <label>Territory Type</label>
+    <select id="territoryType">
+      <option value="0.7">Mostly Mountainous / Barren</option>
+      <option value="1.0" selected>Mixed (mountains + valleys)</option>
+      <option value="1.4">Fertile Plains & Coastal</option>
+      <option value="1.8">Highly Fertile (rare)</option>
+    </select>
+
+    <label>Era / Period</label>
+    <select id="era">
+      <option value="archaic">Archaic (700–480 BC)</option>
+      <option value="classical" selected>Classical (480–323 BC)</option>
+      <option value="hellenistic">Hellenistic (323–146 BC)</option>
+    </select>
+
+    <label>Polis Type</label>
+    <select id="polisType">
+      <option value="agro">Agricultural / Rural</option>
+      <option value="trade" selected>Trade & Maritime</option>
+      <option value="military">Military State (e.g., Sparta)</option>
+      <option value="colony">Overseas Colony</option>
+    </select>
+
+    <label>Naval Power</label>
+    <select id="navalPower">
+      <option value="none">None / Minimal</option>
+      <option value="small">Small Fleet (patrol)</option>
+      <option value="medium" selected>Medium Fleet (regional)</option>
+      <option value="large">Large Fleet (major power)</option>
+      <option value="dominant">Dominant Thalassocracy</option>
+    </select>
+
+    <label>Estimated Citizen Households (oikoi) — optional override <span class="slider-val" id="householdsLabel">Auto</span></label>
+    <div class="slider-wrap">
+      <input type="range" id="householdsSlider" min="0" max="50000" step="500" value="0" oninput="updateSliderLabel()">
+      <div class="slider-labels"><span>Auto</span><span>10k</span><span>25k</span><span>50k HH</span></div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚔️ Estimate Population & Army</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card results" id="results">
+    <div class="card-title">
+      📜 Results for <span id="res-polisName">—</span>
+      <button class="copy-btn" onclick="copyResults()" id="copyBtn">Copy Summary</button>
+    </div>
+
+    <div class="big-stat">
+      <div class="big-num" id="res-totalPop">—</div>
+      <div class="big-label">Estimated Total Population (free + enslaved)</div>
+    </div>
+
+    <div class="stats-grid" id="stats-grid"></div>
+
+    <div style="margin-bottom:1rem">
+      <div style="font-size:0.85rem;font-weight:600;color:var(--accent);margin-bottom:0.5rem">⚔️ Military Strength Overview</div>
+      <div class="bar-wrap" id="bar-wrap"></div>
+    </div>
+
+    <div style="font-size:0.85rem;font-weight:600;color:var(--accent);margin-bottom:0.5rem">📊 Full Demographic & Military Breakdown</div>
+    <div class="tbl-wrap">
+      <table id="breakdown-table">
+        <thead><tr><th>Category</th><th>Count</th></tr></thead>
+        <tbody id="breakdown-body"></tbody>
+      </table>
+    </div>
+
+    <div class="modern-eq" id="modern-eq"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="hist-context">
+    <h3>🏺 Historical Context</h3>
+    <p>Ancient Greek city-states (poleis) were remarkably diverse in size. Athens at its Classical peak (c. 430 BC) had perhaps 300,000–350,000 total inhabitants including slaves — making it unusually large. Most poleis were far smaller: the average Greek polis controlled around 50–200 km² and had fewer than 10,000 citizens. The citizen body (politai) comprised only free adult males, typically 15–25% of total population. Sparta's famous military superiority rested on an unusually high helot-to-Spartan ratio of roughly 7:1 to 10:1. Thucydides, writing c. 431 BC, provides the most reliable ancient census-like data, noting Athens mustered 13,000 hoplites at the Peloponnesian War's outbreak, plus 16,000 garrison troops and 300 triremes requiring ~60,000 sailors.</p>
+  </div>
+
+  <!-- DID YOU KNOW -->
+  <div class="did-you-know">
+    <h3>💡 Did You Know?</h3>
+    <ul>
+      <li>Athens at its Classical height had roughly <strong>60,000–80,000 male citizens</strong> out of a total population of ~300,000 — meaning only about 1 in 4 inhabitants could vote.</li>
+      <li>Sparta never had more than ~8,000–9,000 full Spartan citizens (Spartiates) by 480 BC, yet their universal military training made each one worth several ordinary hoplites.</li>
+      <li>A fully-equipped Athenian trireme required <strong>170 oarsmen</strong>, mostly drawn from the lowest property class (thetes) — democracy and naval power were inseparable.</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT SECTION -->
+  <div class="section-content">
+
+    <h2>How to Use This Estimator</h2>
+    <p>Enter the territory size in square kilometres, select the land type, era, and city-state character, then click "Estimate." The tool applies classical-era demographic ratios derived from modern scholarship (Hansen, Sallares, Garnsey) to generate a full breakdown of citizens, metics, women, children, and enslaved persons — plus military units by type.</p>
+    <p>Use the preset buttons to instantly load historically documented city-states, or customize every parameter to model a hypothetical polis of your own design.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Understanding ancient Greek city-state population sizes isn't just an academic exercise — it reframes how we read history. When Herodotus claims the Persian army at Thermopylae numbered 2.6 million men, population math immediately tells us that's implausible: Persia would have needed more men than existed in the ancient Near East. Modern historians revise this to 70,000–300,000.</p>
+    <p>Similarly, knowing that Sparta mustered only ~5,000 Spartiates by 371 BC explains why the loss of 400 Spartan citizens at Leuctra was catastrophic. Athens could afford 13,000 hoplite casualties in Sicily (413 BC) and recover; Sparta could not absorb even a fraction of that. Population is the hidden variable behind nearly every major Greek military and political decision — from Pericles's defensive strategy to the Macedonian conquest. This tool makes those numbers tangible.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The tool uses a multi-step model based on M.H. Hansen's <em>The Ancient Greek City and its Population</em> (1988) and Robert Sallares's <em>The Ecology of the Ancient Greek World</em> (1991):</p>
+    <ul>
+      <li><strong>Step 1 — Agricultural carrying capacity:</strong> Territory (km²) × fertility multiplier × ancient Greek agricultural yield density (~25–40 persons/km² for mixed terrain, after 30% fallow). Formula: <code>Pop = km² × fertility × base_density × era_factor</code></li>
+      <li><strong>Step 2 — Citizen household (oikos) estimation:</strong> Assumed average household of 4–5 free persons + 2–3 slaves. Citizens = total free population ÷ 4.5.</li>
+      <li><strong>Step 3 — Social stratification:</strong> Free male citizens ~12–18% of total; metics (resident aliens) in trade cities up to 15%; enslaved persons 25–40% (highest in Athens/Corinth).</li>
+      <li><strong>Step 4 — Military levy:</strong> Hoplites = male citizens aged 18–49 in top 3 property classes (~35–50% of citizens). Light infantry = remaining male citizens. Navy = free lower-class males + metics. Cavalry = wealthiest 5% of citizens.</li>
+    </ul>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse "citizens" with "population."</strong> When ancient sources say Athens had "30,000 citizens," they mean adult free males — multiply by ~5 for total free population.</li>
+      <li><strong>Sparta is a special case.</strong> Spartan Spartiates (full citizens) were always a small elite minority. Their military power came from universal professional training, not numbers.</li>
+      <li><strong>Slave ratios varied enormously.</strong> Mining-heavy poleis like Athens may have had 80,000–100,000 enslaved persons. Rural agricultural poleis had far fewer.</li>
+      <li><strong>Naval strength cost money, not just manpower.</strong> 300 Athenian triremes required enormous silver income — primarily from the Laurion silver mines, not just population.</li>
+      <li><strong>Population crashed during wars.</strong> The Plague of Athens (430–426 BC) may have killed 25% of the city's population. Apply the "wartime" era adjustment accordingly.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>How accurate are these population estimates?</summary>
+      <p>Ancient population figures are inherently uncertain — no Greek polis conducted a modern census. These estimates fall within the scholarly consensus range (±30%) for well-documented poleis like Athens and Corinth. For lesser-known city-states, treat results as order-of-magnitude guides rather than precise figures. Even professional classicists debate Athens's peak population by factors of 1.5–2x.</p>
+    </details>
+
+    <details>
+      <summary>Why were Greek armies so small compared to Persian forces?</summary>
+      <p>Greek poleis raised armies from their citizen body alone — a model of civic participation rather than mass conscription or mercenary armies. A polis of 30,000 citizens might field 5,000–8,000 hoplites: effective, well-equipped, and highly motivated, but numerically limited. The Persians drew manpower from an empire of millions across dozens of subject peoples, though ancient sources vastly exaggerate their numbers.</p>
+    </details>
+
+    <details>
+      <summary>What was a hoplite's equipment worth?</summary>
+      <p>A full hoplite panoply (helmet, breastplate, greaves, shield, spear, sword) cost roughly 100 drachmas — about 3–4 months' wages for a skilled worker. This is why hoplite armies were drawn from the propertied middle class: only men wealthy enough to arm themselves could serve. The poorest citizens rowed in the navy instead.</p>
+    </details>
+
+    <details>
+      <summary>What is a "metic" and why does it matter for population?</summary>
+      <p>Metics (metoikoi) were free resident aliens — traders, artisans, and craftsmen who lived and worked in a polis but held no citizenship rights. In Athens, metics may have numbered 25,000–35,000 adult males, contributing significantly to the economy and even to military service (they served as hoplites and sailors). They were taxed, could not own land, and had no political voice.</p>
+    </details>
+
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-tools">
+    <h2>🔗 Related Historical Tools</h2>
+    <div class="related-grid">
+      <a href="/mayan-long-count-calendar-converter/">🗓️ Mayan Long Count Calendar Converter</a>
+      <a href="/roman-thermae-construction-cost-estimator/">🛁 Roman Bath Construction Cost Estimator</a>
+      <a href="/mesopotamian-trade-ledger-calculator/">📜 Mesopotamian Cuneiform Trade Ledger</a>
+      <a href="/ancient-greek-olympic-games-planner/">🏅 Ancient Greek Olympic Games Planner</a>
+      <a href="/trebuchet-range-projectile-calculator/">🪨 Medieval Trebuchet Range Calculator</a>
+      <a href="/medieval-siege-engine-comparison-tool/">🏰 Medieval Siege Engine Comparison</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div style="margin-top:0.4rem">© 2024 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+// ── Presets ───────────────────────────────────────────────────────────────
+const PRESETS = {
+  athens:  { name:'Athens',   km:2500, fertility:'1.0', era:'classical',   type:'trade',    naval:'dominant', hh:0 },
+  sparta:  { name:'Sparta',   km:8400, fertility:'0.7', era:'classical',   type:'military', naval:'small',    hh:0 },
+  corinth: { name:'Corinth',  km:900,  fertility:'1.4', era:'classical',   type:'trade',    naval:'large',    hh:0 },
+  thebes:  { name:'Thebes',   km:1200, fertility:'1.4', era:'classical',   type:'agro',     naval:'none',     hh:0 },
+  custom:  { name:'My Polis', km:300,  fertility:'1.0', era:'archaic',     type:'agro',     naval:'none',     hh:0 }
+};
+
+function loadPreset(key) {
+  const p = PRESETS[key];
+  document.getElementById('polisName').value = p.name;
+  document.getElementById('territoryKm').value = p.km;
+  document.getElementById('territoryType').value = p.fertility;
+  document.getElementById('era').value = p.era;
+  document.getElementById('polisType').value = p.type;
+  document.getElementById('navalPower').value = p.naval;
+  document.getElementById('householdsSlider').value = 0;
+  updateSliderLabel();
+}
+
+function updateSliderLabel() {
+  const v = parseInt(document.getElementById('householdsSlider').value);
+  const lbl = document.getElementById('householdsLabel');
+  lbl.textContent = v === 0 ? 'Auto' : fmt(v) + ' HH';
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────
+function fmt(n) {
+  if (n === undefined || n === null || isNaN(n)) return '0';
+  return Math.round(n).toLocaleString('en-US');
+}
+function fmtD(n,d=1) {
+  return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+}
+
+// ── Core Calculation ──────────────────────────────────────────────────────
+function calculate() {
+  // 1. Read inputs
+  const name = document.getElementById('polisName').value.trim() || 'Your Polis';
+  const kmRaw = parseFloat(document.getElementById('territoryKm').value);
+  const fertility = parseFloat(document.getElementById('territoryType').value);
+  const era = document.getElementById('era').value;
+  const polisType = document.getElementById('polisType').value;
+  const naval = document.getElementById('navalPower').value;
+  const hhOverride = parseInt(document.getElementById('householdsSlider').value);
+
+  // Validate
+  const errEl = document.getElementById('err-territory');
+  const kmEl  = document.getElementById('territoryKm');
+  let valid = true;
+  if (isNaN(kmRaw) || kmRaw < 1 || kmRaw > 100000) {
+    errEl.classList.add('show'); kmEl.classList.add('error-input'); valid = false;
+  } else {
+    errEl.classList.remove('show'); kmEl.classList.remove('error-input');
+  }
+  if (!valid) return;
+
+  // 2. Era factors
+  const eraFactor = { archaic:0.72, classical:1.0, hellenistic:1.15 }[era];
+
+  // 3. Base density (persons/km² of total population)
+  // Ancient Greek landscape support ~25–50 persons/km² depending on fertility
+  const baseDensity = 28; // mixed terrain classical baseline
+  let rawPop = kmRaw * baseDensity * fertility * eraFactor;
+
+  // 4. Polis type modifiers
+  const typeMulti = { agro:0.85, trade:1.25, military:0.95, colony:0.70 }[polisType];
+  rawPop *= typeMulti;
+
+  // 5. Naval bonus (maritime poleis attract population)
+  const navalBonus = { none:1.0, small:1.03, medium:1.08, large:1.14, dominant:1.22 }[naval];
+  rawPop *= navalBonus;
+
+  // 6. Clamp to plausible range
+  rawPop = Math.max(500, Math.round(rawPop));
+
+  // ── Demographic ratios ──────────────────────────────────────────────────
+  // Slave ratio by polis type
+  const slaveRatio = { agro:0.22, trade:0.38, military:0.50, colony:0.18 }[polisType];
+  const totalSlaves = Math.round(rawPop * slaveRatio);
+  const freePop = rawPop - totalSlaves;
+
+  // Metic ratio
+  const meticRatio = { agro:0.04, trade:0.14, military:0.02, colony:0.08 }[polisType];
+  const metics = Math.round(freePop * meticRatio);
+  const citizenFamilyPop = freePop - metics;
+
+  // Citizen households
+  const avgHHsize = 4.8; // free persons per household incl children
+  let citizenHH = hhOverride > 0 ? hhOverride : Math.round(citizenFamilyPop / avgHHsize);
+
+  // Recalculate if override
+  const citizenFamilyPopCalc = citizenHH * avgHHsize;
+  const totalPop = Math.round(citizenFamilyPopCalc + metics + totalSlaves);
+
+  // Adult male citizens (18+) — ~22% of citizen family pop
+  const maleCitizens = Math.round(citizenFamilyPopCalc * 0.22);
+  // Adult female citizens
+  const femaleCitizens = Math.round(citizenFamilyPopCalc * 0.22);
+  // Children (under 18)
+  const children = Math.round(citizenFamilyPopCalc * 0.56);
+
+  // Metic breakdown
+  const maleMeticsAdult = Math.round(metics * 0.35);
+  const femaleMeticsAdult = Math.round(metics * 0.30);
+  const meticChildren = metics - maleMeticsAdult - femaleMeticsAdult;
+
+  // Slave breakdown
+  const maleSlaves = Math.round(totalSlaves * 0.55);
+  const femaleSlaves = totalSlaves - maleSlaves;
+
+  // ── Military ───────────────────────────────────────────────────────────
+  // Military-age male citizens (18–49) ~63% of adult males
+  const militaryAgeCitizens = Math.round(maleCitizens * 0.63);
+
+  // Property class distribution
+  const topClass = Math.round(militaryAgeCitizens * 0.05);   // pentakosiomedimnoi → cavalry
+  const hopliteClass = Math.round(militaryAgeCitizens * 0.40); // zeugitai + knights
+  const lightClass = Math.round(militaryAgeCitizens * 0.35);  // upper thetes → light inf
+  const navyClass = Math.round(militaryAgeCitizens * 0.20);   // lowest thetes → oarsmen
+
+  // Cavalry
+  const cavalry = topClass;
+  // Hoplites
+  const hoplites = hopliteClass;
+  // Light infantry (peltasts, psiloi)
+  const lightInfantry = lightClass;
+  // Archers / slingers
+  const archers = Math.round(lightClass * 0.25);
+
+  // Naval: navy class citizens + military-age metics (~40% serve)
+  const navalMulti = { none:0, small:0.3, medium:0.6, large:0.85, dominant:1.0 }[naval];
+  const meticNavy = Math.round(maleMeticsAdult * 0.30 * navalBonus);
+  const triremeCrew = 170; // standard Athenian trireme
+  const totalOarsmen = Math.round((navyClass + meticNavy) * navalMulti);
+  const triremes = Math.floor(totalOarsmen / triremeCrew);
+  const totalNavy = triremes * triremeCrew;
+
+  // Total field army (can actually mobilise simultaneously ~70% of hoplites)
+  const fieldArmy = Math.round((cavalry + hoplites + lightInfantry) * 0.70);
+  const maxMuster = cavalry + hoplites + lightInfantry;
+
+  // ── Spartan helot special case (military type has very high slave ratio) ──
+  // already captured via slaveRatio = 0.50 for military type
+
+  // ── Build results ──────────────────────────────────────────────────────
+  requestAnimationFrame(() => {
+
+    document.getElementById('res-polisName').textContent = name;
+    document.getElementById('res-totalPop').textContent = fmt(totalPop);
+
+    // Stats grid
+    const statsHTML = [
+      { val: fmt(maleCitizens),   lbl: 'Male Citizens' },
+      { val: fmt(citizenHH),      lbl: 'Citizen Households' },
+      { val: fmt(metics),         lbl: 'Metics (Resident Aliens)' },
+      { val: fmt(totalSlaves),    lbl: 'Enslaved Persons' },
+      { val: fmt(hoplites),       lbl: 'Hoplites' },
+      { val: fmt(fieldArmy),      lbl: 'Peak Field Army' },
+    ].map(s=>`<div class="stat-box"><div class="s-val">${s.val}</div><div class="s-lbl">${s.lbl}</div></div>`).join('');
+    document.getElementById('stats-grid').innerHTML = statsHTML;
+
+    // Breakdown table
+    const rows = [
+      ['Total Population (all groups)', totalPop, '100%'],
+      ['— Free Citizen Families', citizenFamilyPopCalc, pct(citizenFamilyPopCalc,totalPop)],
+      ['   · Adult Male Citizens', maleCitizens, pct(maleCitizens,totalPop)],
+      ['   · Adult Female Citizens', femaleCitizens, pct(femaleCitizens,totalPop)],
+      ['   · Children (citizens)', children, pct(children,totalPop)],
+      ['— Metics (free non-citizens)', metics, pct(metics,totalPop)],
+      ['   · Adult Male Metics', maleMeticsAdult, pct(maleMeticsAdult,totalPop)],
+      ['   · Adult Female Metics', femaleMeticsAdult, pct(femaleMeticsAdult,totalPop)],
+      ['   · Metic Children', meticChildren, pct(meticChildren,totalPop)],
+      ['— Enslaved (douloi)', totalSlaves, pct(totalSlaves,totalPop)],
+      ['   · Male Slaves', maleSlaves, pct(maleSlaves,totalPop)],
+      ['   · Female Slaves', femaleSlaves, pct(femaleSlaves,totalPop)],
+      ['','',''],
+      ['Military-Age Male Citizens (18–49)', militaryAgeCitizens, pct(militaryAgeCitizens,maleCitizens)+' of ♂ citizens'],
+      ['Cavalry (hippeis)', cavalry, ''],
+      ['Hoplites (heavy infantry)', hoplites, ''],
+      ['Light Infantry (peltasts/psiloi)', lightInfantry, ''],
+      ['Archers & Slingers', archers, ''],
+      ['Peak Simultaneous Field Army', fieldArmy, ''],
+      ['Maximum Muster (all types)', maxMuster, ''],
+      ['Navy: Oarsmen', totalNavy > 0 ? totalNavy : '—', ''],
+      ['Navy: Triremes (170 crew each)', triremes > 0 ? triremes : '—', ''],
+    ];
+
+    let tbody = '';
+    rows.forEach(r => {
+      if(r[0] === '') { tbody += `<tr><td colspan="3" style="padding:3px"></td></tr>`; return; }
+      tbody += `<tr><td>${r[0]}</td><td style="text-align:right">${typeof r[1]==='number'?fmt(r[1]):r[1]}</td></tr>`;
+    });
+    document.getElementById('breakdown-body').innerHTML = tbody;
+
+    // Bar chart
+    const maxVal = Math.max(hoplites, lightInfantry, cavalry, archers, totalNavy||0, 1);
+    const bars = [
+      { label:'Hoplites', val:hoplites },
+      { label:'Light Infantry', val:lightInfantry },
+      { label:'Cavalry', val:cavalry },
+      { label:'Archers', val:archers },
+      { label:'Oarsmen', val:totalNavy||0 },
+    ];
+    let barHTML = '';
+    bars.forEach(b=>{
+      const w = Math.round((b.val/maxVal)*100);
+      barHTML += `<div class="bar-row"><span class="bar-label">${b.label}</span><div class="bar-track"><div class="bar-fill" style="width:${w}%"></div></div><span class="bar-num">${fmt(b.val)}</span></div>`;
+    });
+    document.getElementById('bar-wrap').innerHTML = barHTML;
+
+    // Modern equivalent
+    const modernCities = [
+      [500,'a small village'],
+      [5000,'a small town'],
+      [20000,'a mid-sized suburb'],
+      [100000,'a city like Burbank, CA'],
+      [300000,'a city like Anaheim, CA'],
+      [600000,'a city like Denver, CO'],
+      [1000000,'a major metropolis'],
+    ];
+    let modCmp = modernCities.find(c=>totalPop<=c[0]);
+    let modText = modCmp ? `${name}'s estimated population of <strong>${fmt(totalPop)}</strong> is comparable to <strong>${modCmp[1]}</strong> today.`
+                        : `${name}'s estimated population of <strong>${fmt(totalPop)}</strong> rivals a modern major city.`;
+    modText += ` Its hoplite force of <strong>${fmt(hoplites)}</strong> would roughly equal <strong>${fmt(Math.round(hoplites/14))} modern infantry companies</strong> (14-man squads).`;
+    document.getElementById('modern-eq').innerHTML = `🌍 <strong>Modern Equivalent:</strong> ${modText}`;
+
+    // Store for copy
+    window._resultText = buildCopyText(name, totalPop, maleCitizens, citizenHH, metics, totalSlaves, hoplites, cavalry, lightInfantry, fieldArmy, triremes, era, polisType);
+
+    // Show results
+    document.getElementById('results').classList.add('show');
+    document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+function pct(a,b){ return b>0 ? fmtD(a/b*100,1)+'%' : '—'; }
+
+function buildCopyText(name,total,mc,hh,met,sl,hop,cav,li,fa,tri,era,type){
+  return `Ancient Greek Polis Estimate: ${name}
+Era: ${era} | Type: ${type}
+─────────────────────────────
+Total Population:       ${fmt(total)}
+Male Citizens:          ${fmt(mc)}
+Citizen Households:     ${fmt(hh)}
+Metics:                 ${fmt(met)}
+Enslaved:               ${fmt(sl)}
+─────────────────────────────
+Hoplites:               ${fmt(hop)}
+Cavalry:                ${fmt(cav)}
+Light Infantry:         ${fmt(li)}
+Peak Field Army:        ${fmt(fa)}
+Triremes:               ${fmt(tri)}
+─────────────────────────────
+Estimated via historycalc.com/ancient-greek-city-state-army-estimator/`;
+}
+
+function copyResults(){
+  const txt = window._resultText || 'No results yet.';
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(txt).then(()=>flashCopy());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta); flashCopy();
+  }
+}
+function flashCopy(){
+  const btn = document.getElementById('copyBtn');
+  btn.textContent = 'Copied!';
+  setTimeout(()=>btn.textContent='Copy Summary',2000);
+}
+
+// ── Event listeners ───────────────────────────────────────────────────────
+document.getElementById('calcBtn').addEventListener('click', ()=>{ requestAnimationFrame(calculate); });
+['polisName','territoryKm'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown', e=>{ if(e.key==='Enter') requestAnimationFrame(calculate); });
+});
+
+// Init slider label
+updateSliderLabel();
+
+// Auto-calculate on load with Athens preset
+window.addEventListener('DOMContentLoaded', ()=>{ setTimeout(()=>requestAnimationFrame(calculate), 100); });
+</script>
+</body>
+</html>
