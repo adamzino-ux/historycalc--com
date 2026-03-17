@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mayan Long Count Calendar Converter — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Convert Gregorian dates to Mayan Long Count calendar notation and back. Free online Mayan calendar converter with Tzolk'in and Haab' cycles included.">
+<link rel="canonical" href="https://historycalc.com/mayan-long-count-calendar-converter/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mayan Long Count Calendar Converter",
+  "url": "https://historycalc.com/mayan-long-count-calendar-converter/",
+  "description": "Convert Gregorian dates to Mayan Long Count calendar notation and back. Free online Mayan calendar converter with Tzolk'in and Haab' cycles.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f0e1;
+    --card: #fdf8ef;
+    --accent: #8b4513;
+    --accent-dark: #6b3410;
+    --text: #2c1810;
+    --muted: #6b5040;
+    --border: #c4a882;
+    --border-light: #d9c9a8;
+    --highlight: #fff8f0;
+    --row-alt: #fdf5e6;
+    --red: #c0392b;
+    --green: #2d6a4f;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; color: var(--accent-dark); }
+
+  nav {
+    background: #2c1810;
+    padding: 0.75rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  nav a { color: #f5e6c8; font-weight: 600; font-size: 1rem; letter-spacing: 0.5px; }
+  nav a:hover { color: #fff; text-decoration: none; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-svg {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .tagline {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-light);
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 0.75rem 0.5rem;
+    background: var(--bg);
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: all 0.2s;
+    min-height: 44px;
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+  }
+  .tab-btn:not(.active):hover { background: var(--border-light); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3820;
+    margin-bottom: 0.4rem;
+    margin-top: 1rem;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  input[type="text"], input[type="number"], input[type="date"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 44px;
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  input.error { border-color: var(--red); }
+
+  .error-msg {
+    font-size: 0.8rem;
+    color: var(--red);
+    margin-top: 0.3rem;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  .lc-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .lc-grid label { margin-top: 0; }
+
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1.25rem;
+    min-height: 44px;
+    transition: background 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .btn:hover { background: var(--accent-dark); }
+
+  .result-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .result-section.show {
+    display: block;
+    opacity: 1;
+  }
+
+  .big-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: center;
+    letter-spacing: 2px;
+    font-family: 'Courier New', monospace;
+    padding: 1rem;
+    background: var(--highlight);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    word-break: break-all;
+  }
+
+  .result-label {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .result-table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  th {
+    background: #e8d5b0;
+    color: var(--text);
+    font-weight: 600;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+    vertical-align: middle;
+  }
+  tr:nth-child(even) td { background: var(--row-alt); }
+  td.num { text-align: right; font-family: 'Courier New', monospace; }
+  td.highlight { color: var(--accent); font-weight: 700; }
+
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 36px;
+  }
+  .copy-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .copy-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+  }
+
+  .glyph-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 1rem 0;
+  }
+  .glyph-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    min-width: 70px;
+    flex: 1;
+    max-width: 100px;
+  }
+  .glyph-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+  }
+  .glyph-name {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 0.15rem;
+    font-weight: 500;
+  }
+
+  .did-you-know {
+    background: #fef3dc;
+    border: 1px solid #e8c66e;
+    border-left: 4px solid #d4a017;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .did-you-know h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #7a5c00;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .did-you-know ul { padding-left: 1.25rem; }
+  .did-you-know li { font-size: 0.875rem; color: #5a4000; margin-bottom: 0.5rem; }
+
+  .historical-context {
+    background: #faf4e4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 2rem;
+  }
+  .historical-context h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.6rem;
+  }
+  .historical-context p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+
+  .modern-equiv {
+    background: #e8f4e8;
+    border: 1px solid #a8d5a8;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--green);
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .content-section p { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; line-height: 1.7; }
+  .content-section ul { padding-left: 1.25rem; }
+  .content-section li { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.4rem; line-height: 1.6; }
+
+  .formula-box {
+    background: #2c1810;
+    color: #f5e6c8;
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    margin: 0.75rem 0;
+    line-height: 1.8;
+    overflow-x: auto;
+  }
+
+  details {
+    background: var(--highlight);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+  }
+  summary {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--accent);
+    list-style: none;
+    user-select: none;
+  }
+  summary::before { content: '▶ '; font-size: 0.7rem; }
+  details[open] summary::before { content: '▼ '; }
+  details p {
+    padding: 0 1rem 0.75rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+  }
+  .related-tools a {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    line-height: 1.4;
+    transition: background 0.2s;
+  }
+  .related-tools a:hover { background: #ede0c4; text-decoration: none; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+    margin-top: 2rem;
+  }
+  footer a { color: #e8c89a; margin: 0 0.75rem; }
+  footer a:hover { color: #fff; }
+  footer p { margin-top: 0.5rem; }
+
+  .bar-vis {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+  .bar-row { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
+  .bar-label { width: 80px; text-align: right; color: var(--muted); flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--border-light); border-radius: 4px; height: 14px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.4s ease; }
+  .bar-val { width: 60px; font-family: 'Courier New', monospace; font-weight: 700; color: var(--accent); font-size: 0.8rem; }
+
+  @media (max-width: 480px) {
+    .related-tools { grid-template-columns: 1fr; }
+    .lc-grid { grid-template-columns: repeat(5, 1fr); }
+    .lc-grid input { padding: 10px 6px; font-size: 0.9rem; text-align: center; }
+    .big-number { font-size: 1.4rem; }
+    .glyph-box { min-width: 55px; padding: 0.5rem 0.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⌂ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- Hero SVG: Mayan pyramid / stele -->
+  <div class="hero-svg">
+    <svg width="200" height="140" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg" aria-label="Mayan pyramid illustration" role="img">
+      <!-- Sky -->
+      <rect x="0" y="0" width="200" height="140" fill="#f5e6c8" rx="8"/>
+      <!-- Sun -->
+      <circle cx="160" cy="30" r="18" fill="#d4a017" opacity="0.85"/>
+      <circle cx="160" cy="30" r="13" fill="#f0c040"/>
+      <!-- Rays -->
+      <g stroke="#d4a017" stroke-width="1.5" opacity="0.7">
+        <line x1="160" y1="6" x2="160" y2="0"/>
+        <line x1="178" y1="12" x2="183" y2="7"/>
+        <line x1="184" y1="30" x2="190" y2="30"/>
+        <line x1="178" y1="48" x2="183" y2="53"/>
+        <line x1="142" y1="12" x2="137" y2="7"/>
+        <line x1="136" y1="30" x2="130" y2="30"/>
+        <line x1="142" y1="48" x2="137" y2="53"/>
+      </g>
+      <!-- Ground -->
+      <rect x="0" y="115" width="200" height="25" fill="#c4a060" opacity="0.5"/>
+      <!-- Pyramid steps -->
+      <rect x="60" y="100" width="80" height="15" fill="#8b6914" rx="1"/>
+      <rect x="70" y="85" width="60" height="15" fill="#9b7a20" rx="1"/>
+      <rect x="80" y="70" width="40" height="15" fill="#a88530" rx="1"/>
+      <rect x="87" y="55" width="26" height="15" fill="#b89040" rx="1"/>
+      <!-- Temple top -->
+      <rect x="89" y="38" width="22" height="17" fill="#c4a050" rx="1"/>
+      <rect x="86" y="34" width="28" height="6" fill="#8b6914" rx="1"/>
+      <!-- Door -->
+      <rect x="97" y="47" width="6" height="8" fill="#3a2000" rx="1"/>
+      <!-- Glyph decorations on pyramid -->
+      <rect x="68" y="88" width="8" height="8" fill="none" stroke="#6b5010" stroke-width="1" rx="1" opacity="0.6"/>
+      <rect x="124" y="88" width="8" height="8" fill="none" stroke="#6b5010" stroke-width="1" rx="1" opacity="0.6"/>
+      <circle cx="72" cy="92" r="2.5" fill="#6b5010" opacity="0.5"/>
+      <circle cx="128" cy="92" r="2.5" fill="#6b5010" opacity="0.5"/>
+      <!-- Trees -->
+      <rect x="18" y="100" width="4" height="15" fill="#6b4010"/>
+      <ellipse cx="20" cy="90" rx="12" ry="18" fill="#3a7a2a" opacity="0.7"/>
+      <rect x="172" y="100" width="4" height="15" fill="#6b4010"/>
+      <ellipse cx="174" cy="90" rx="10" ry="16" fill="#3a7a2a" opacity="0.6"/>
+      <!-- Stele / stone tablet -->
+      <rect x="30" y="90" width="16" height="24" fill="#b09060" rx="2"/>
+      <rect x="32" y="92" width="12" height="3" fill="#7a5c30" rx="1" opacity="0.5"/>
+      <rect x="32" y="97" width="12" height="3" fill="#7a5c30" rx="1" opacity="0.5"/>
+      <rect x="32" y="102" width="12" height="3" fill="#7a5c30" rx="1" opacity="0.5"/>
+      <rect x="32" y="107" width="8" height="3" fill="#7a5c30" rx="1" opacity="0.5"/>
+    </svg>
+  </div>
+
+  <h1>Mayan Long Count Calendar Converter</h1>
+  <p class="tagline">Convert Gregorian dates to Mayan Long Count, Tzolk'in & Haab' — and back</p>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" id="tab1-btn" onclick="switchTab(1)" role="tab" aria-selected="true">Gregorian → Mayan</button>
+      <button class="tab-btn" id="tab2-btn" onclick="switchTab(2)" role="tab" aria-selected="false">Mayan → Gregorian</button>
+      <button class="tab-btn" id="tab3-btn" onclick="switchTab(3)" role="tab" aria-selected="false">Today's Date</button>
+    </div>
+
+    <!-- TAB 1: Gregorian → Mayan -->
+    <div class="tab-panel active" id="tab1">
+      <label for="greg-date">Enter Gregorian Date</label>
+      <input type="date" id="greg-date" min="0001-01-01" max="9999-12-31">
+      <div class="error-msg" id="greg-error">Please enter a valid date (must be on or after August 11, 3114 BCE).</div>
+      <button class="btn" id="btn-greg" onclick="calcGregorianToMayan()">Convert to Mayan Calendar ▶</button>
+    </div>
+
+    <!-- TAB 2: Mayan → Gregorian -->
+    <div class="tab-panel" id="tab2">
+      <label>Long Count Date (Bak'tun . K'atun . Tun . Uinal . K'in)</label>
+      <div class="lc-grid">
+        <div>
+          <label style="font-size:0.75rem;text-align:center;display:block;">Bak'tun</label>
+          <input type="number" id="lc-bak" min="0" max="19" placeholder="0" value="13">
+        </div>
+        <div>
+          <label style="font-size:0.75rem;text-align:center;display:block;">K'atun</label>
+          <input type="number" id="lc-kat" min="0" max="19" placeholder="0" value="0">
+        </div>
+        <div>
+          <label style="font-size:0.75rem;text-align:center;display:block;">Tun</label>
+          <input type="number" id="lc-tun" min="0" max="19" placeholder="0" value="0">
+        </div>
+        <div>
+          <label style="font-size:0.75rem;text-align:center;display:block;">Uinal</label>
+          <input type="number" id="lc-uin" min="0" max="17" placeholder="0" value="0">
+        </div>
+        <div>
+          <label style="font-size:0.75rem;text-align:center;display:block;">K'in</label>
+          <input type="number" id="lc-kin" min="0" max="19" placeholder="0" value="0">
+        </div>
+      </div>
+      <div class="error-msg" id="mayan-error">Invalid Long Count values. Check ranges (Uinal 0-17, others 0-19).</div>
+      <button class="btn" id="btn-mayan" onclick="calcMayanToGregorian()">Convert to Gregorian Date ▶</button>
+    </div>
+
+    <!-- TAB 3: Today -->
+    <div class="tab-panel" id="tab3">
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem;">Instantly see today's date expressed in the Mayan Long Count calendar, Tzolk'in sacred calendar, and Haab' civil calendar.</p>
+      <button class="btn" onclick="calcToday()">Show Today's Mayan Date ▶</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="result-section card" id="results">
+    <h2 id="result-title">Mayan Calendar Result</h2>
+
+    <div class="copy-row">
+      <button class="copy-btn" onclick="copyResult()">📋 Copy Result</button>
+    </div>
+
+    <div class="big-number" id="lc-display">0.0.0.0.0</div>
+    <div class="result-label">Long Count Date</div>
+
+    <div class="glyph-row" id="glyph-row"></div>
+
+    <div class="result-table-wrap">
+      <table id="result-table">
+        <thead>
+          <tr><th>Calendar</th><th>Value</th><th>Meaning</th></tr>
+        </thead>
+        <tbody id="result-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="modern-equiv" id="modern-equiv"></div>
+
+    <div class="bar-vis" id="bar-vis"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="historical-context">
+    <h3>📜 Historical Context</h3>
+    <p>The Mayan Long Count calendar was developed around 36 BCE (though some inscriptions date to 400 BCE) and was used across Mesoamerica by the Maya, Olmec, and other civilizations. It counts forward from a mythological creation date corresponding to August 11, 3114 BCE in the proleptic Gregorian calendar (the GMT correlation). The system counts individual days (K'in) in a vigesimal (base-20) progression, with the sole exception of the Uinal period (18 × 20 = 360 days), designed to approximate the solar year. The famous 13th Bak'tun ended on December 21, 2012 CE — the completion of one Great Cycle of 5,125.36 years — an event misinterpreted by modern popular culture but celebrated by contemporary Maya communities as a renewal, not an apocalypse.</p>
+  </div>
+
+  <!-- DID YOU KNOW -->
+  <div class="did-you-know">
+    <h3>🌟 Did You Know?</h3>
+    <ul>
+      <li>The Mayan Long Count calendar was so precise that it only required resetting once every 7,885 solar years — far longer than any civilization has existed continuously.</li>
+      <li>The "zero date" (0.0.0.0.0) corresponds to August 11, 3114 BCE — over 1,000 years before the earliest known Mayan city was built. The Maya were counting into their own mythological past.</li>
+      <li>The Tzolk'in sacred calendar of 260 days is still used by K'iche' Maya daykeepers (Aj Q'ij) in Guatemala today for ceremonial purposes, in unbroken tradition stretching back over 2,500 years.</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Mayan Long Count Calendar Converter</h2>
+    <p>This tool offers three conversion modes. In <strong>Gregorian → Mayan</strong> mode, pick any date and instantly see its Long Count notation, Tzolk'in day name (from the 260-day sacred cycle), and Haab' month position (from the 365-day civil calendar). In <strong>Mayan → Gregorian</strong> mode, enter a Long Count date (such as 9.16.4.1.1 for a famous stele inscription) and recover the equivalent Gregorian date. The <strong>Today</strong> tab shows the current date in all three Mayan calendar systems simultaneously.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>The Mayan calendar system is one of humanity's greatest intellectual achievements. Unlike the Gregorian calendar — which simply counts years from a religious milestone — the Long Count is an absolute positional system capable of expressing any date across millions of years with perfect precision.</p>
+    <p>Historians and archaeologists rely on Long Count dates inscribed on stelae, altars, and codices to anchor Mayan events in real time. For example, the accession of King Pakal of Palenque on 9.9.2.4.8 (July 29, 615 CE) and his death on 9.12.11.5.18 (August 28, 683 CE) are known with absolute certainty because of Long Count inscriptions. Without this calendar, Mayan chronology would be nearly impossible to reconstruct. The calendar also underpins sophisticated astronomical calculations — the Venus Table in the Dresden Codex uses the 584-day Venus cycle interlocked with the 260-day Tzolk'in to make predictions accurate to within 2 hours over 481 years.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The conversion uses the <strong>GMT correlation constant</strong> (584,283 Julian Day Number), the most widely accepted scholarly correlation linking the Mayan and Gregorian calendars.</p>
+    <div class="formula-box">
+JDN = Julian Day Number of target date
+JDN₀ = 584,283  (GMT correlation — Mayan creation date)
+
+Long Count Days = JDN − JDN₀
+
+Bak'tun = floor(days ÷ 144,000)
+K'atun  = floor((days mod 144,000) ÷ 7,200)
+Tun     = floor((days mod 7,200) ÷ 360)
+Uinal   = floor((days mod 360) ÷ 20)
+K'in    = days mod 20
+
+Tzolk'in day number = ((days + 3) mod 13) + 1   [1–13]
+Tzolk'in day name   = (days + 19) mod 20          [0–19 → 20 names]
+Haab' day  = (days + 348) mod 365
+Haab' month = floor(Haab' day ÷ 20) → month name (18 months × 20 + 5 Wayeb' days)</div>
+    <p>The Uinal counts only 0–17 (not 0–19) so that 18 Uinals × 20 K'in = 360 days = 1 Tun, approximating the solar year. All other positions use base 20.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>The Uinal goes 0–17, not 0–19.</strong> This single exception to the base-20 system confuses many people. Entering 18 or 19 in the Uinal field is an error — the tool will flag it.</li>
+      <li><strong>The correlation matters.</strong> This tool uses the GMT (Goodman-Martinez-Thompson) constant of 584,283, the scholarly standard. Some older books use 584,285 — results will differ by 2 days.</li>
+      <li><strong>Dates before August 11, 3114 BCE are undefined</strong> in the Long Count — the counter didn't exist before the Mayan creation date (day 0).</li>
+      <li><strong>The calendar resets at 13.0.0.0.0.</strong> After the 13th Bak'tun completes, some interpretations reset to 0.0.0.0.0 again, similar to an odometer rolling over. This tool counts beyond 13.0.0.0.0 using the 20-Bak'tun Piktun system.</li>
+      <li><strong>Tzolk'in and Haab' together form the 52-year Calendar Round.</strong> Any Tzolk'in + Haab' combination repeats every 52 solar years (18,980 days). The Long Count uniquely identifies a day across all Great Cycles.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>What is the Mayan Long Count calendar?</summary>
+      <p>The Long Count is an absolute positional calendar system used by the ancient Maya to record historical and mythological events. It counts days from a fixed creation date (August 11, 3114 BCE in the Gregorian calendar) in units of K'in (1 day), Uinal (20 days), Tun (360 days), K'atun (7,200 days), and Bak'tun (144,000 days). It's the Mayan equivalent of a Julian Day Number — a single, unambiguous count of elapsed days.</p>
+    </details>
+
+    <details>
+      <summary>Did the world really end on December 21, 2012?</summary>
+      <p>No. The date marked the end of the 13th Bak'tun (13.0.0.0.0), completing one "Great Cycle" of 5,125.36 solar years — a significant calendrical milestone, not a prophecy of destruction. Contemporary Maya scholars and indigenous Maya leaders were unanimous: the date was a moment for renewal and celebration, not apocalypse. The "2012 phenomenon" was a largely Western pop-culture invention with no basis in actual Mayan texts.</p>
+    </details>
+
+    <details>
+      <summary>What are the Tzolk'in and Haab' calendars?</summary>
+      <p>The Tzolk'in is a 260-day sacred calendar combining 13 numbered day signs with 20 named day signs (e.g., 4 Ajaw). It was used for divination, ritual scheduling, and naming children. The Haab' is a 365-day civil calendar of 18 months of 20 days each, plus a 5-day "Wayeb'" period considered unlucky. Together they form the 52-year Calendar Round — the "century" of Mesoamerican civilization.</p>
+    </details>
+
+    <details>
+      <summary>What is the GMT correlation constant?</summary>
+      <p>The GMT correlation (named after scholars Goodman, Martínez, and Thompson) is the number 584,283 — the Julian Day Number corresponding to the Mayan Long Count creation date 0.0.0.0.0. It's the "Rosetta Stone" linking Mayan dates to the Western calendar and is supported by astronomical back-calculations, colonial-era documents, and living Maya tradition. This tool uses the 584,283 constant, which is the current scholarly consensus.</p>
+    </details>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="content-section">
+    <h2>Related Historical Calculators</h2>
+    <div class="related-tools">
+      <a href="/roman-thermae-construction-cost-estimator/">🏛️ Ancient Roman Bath Construction Cost</a>
+      <a href="/mesopotamian-trade-ledger-calculator/">📜 Mesopotamian Cuneiform Trade Ledger</a>
+      <a href="/ancient-greek-olympic-games-planner/">🏟️ Ancient Greek Olympic Games Planner</a>
+      <a href="/trebuchet-range-projectile-calculator/">⚔️ Medieval Trebuchet Range Calculator</a>
+      <a href="/medieval-siege-engine-comparison-tool/">🏰 Medieval Siege Engine Comparison</a>
+      <a href="/aztec-tribute-roll-estimator/">🦅 Aztec Tribute Roll Estimator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <p>© <span id="yr"></span> historycalc.com — Free Historical Calculators</p>
+</footer>
+
+<script>
+// ─── Constants ───────────────────────────────────────────────────────────────
+const GMT_CORRELATION = 584283;
+
+const TZOLKIN_DAYS = [
+  "Imix'","Ik'","Ak'bal","K'an","Chikchan",
+  "Kimi","Manik'","Lamat","Muluk","Ok",
+  "Chuwen","Eb","Ben","Hix","Men",
+  "K'ib'","Kaban","Etz'nab'","Kawak","Ajaw"
+];
+
+const HAAB_MONTHS = [
+  "Pop","Wo","Sip","Sotz'","Sek","Xul",
+  "Yaxk'in","Mol","Ch'en","Yax","Sak","Keh",
+  "Mak","K'ank'in","Muwan","Pax","K'ayab","Kumk'u","Wayeb'"
+];
+
+const PERIOD_NAMES = ["K'in","Uinal","Tun","K'atun","Bak'tun"];
+const PERIOD_DAYS  = [1, 20, 360, 7200, 144000];
+
+// ─── Tab switching ────────────────────────────────────────────────────────────
+function switchTab(n) {
+  [1,2,3].forEach(i => {
+    document.getElementById('tab'  + i).classList.toggle('active', i === n);
+    document.getElementById('tab' + i + '-btn').classList.toggle('active', i === n);
+  });
+}
+
+// ─── Julian Day Number helpers ───────────────────────────────────────────────
+// Proleptic Gregorian to JDN (valid for all dates)
+function gregorianToJDN(year, month, day) {
+  const a = Math.floor((14 - month) / 12);
+  const y = year + 4800 - a;
+  const m = month + 12 * a - 3;
+  return day + Math.floor((153*m + 2)/5) + 365*y + Math.floor(y/4) - Math.floor(y/100) + Math.floor(y/400) - 32045;
+}
+
+function jdnToGregorian(jdn) {
+  const a = jdn + 32044;
+  const b = Math.floor((4*a + 3) / 146097);
+  const c = a - Math.floor(146097*b/4);
+  const d = Math.floor((4*c + 3) / 1461);
+  const e = c - Math.floor(1461*d/4);
+  const m = Math.floor((5*e + 2) / 153);
+  const day   = e - Math.floor((153*m + 2)/5) + 1;
+  const month = m + 3 - 12 * Math.floor(m/10);
+  const year  = 100*b + d - 4800 + Math.floor(m/10);
+  return { year, month, day };
+}
+
+// ─── Mayan calculations ───────────────────────────────────────────────────────
+function jdnToLongCount(jdn) {
+  const totalDays = jdn - GMT_CORRELATION;
+  if (totalDays < 0) return null;
+  const baktun = Math.floor(totalDays / 144000);
+  const rem1   = totalDays % 144000;
+  const katun  = Math.floor(rem1 / 7200);
+  const rem2   = rem1 % 7200;
+  const tun    = Math.floor(rem2 / 360);
+  const rem3   = rem2 % 360;
+  const uinal  = Math.floor(rem3 / 20);
+  const kin    = rem3 % 20;
+  return { baktun, katun, tun, uinal, kin, totalDays };
+}
+
+function longCountToJDN(baktun, katun, tun, uinal, kin) {
+  const totalDays = baktun*144000 + katun*7200 + tun*360 + uinal*20 + kin;
+  return totalDays + GMT_CORRELATION;
+}
+
+function jdnToTzolkin(jdn) {
+  const days = jdn - GMT_CORRELATION;
+  const numCoeff = ((days % 13) + 13) % 13; // 0-12
+  const tzolkinNum = numCoeff + 1; // 1-13 — adjusted for creation date being 4 Ajaw
+  // Official: day 0 = 4 Ajaw. Number cycles: (days+3) mod 13 → 0=13,1=1,...
+  const dn = ((days + 3) % 13 + 13) % 13;
+  const tzNum = dn === 0 ? 13 : dn;
+  const tzName = TZOLKIN_DAYS[((days + 19) % 20 + 20) % 20];
+  return { num: tzNum, name: tzName };
+}
+
+function jdnToHaab(jdn) {
+  const days = jdn - GMT_CORRELATION;
+  // Creation date is 8 Kumk'u (day 348 of Haab')
+  const haabDay = ((days + 348) % 365 + 365) % 365;
+  const monthIdx = Math.floor(haabDay / 20);
+  const dayInMonth = haabDay % 20;
+  // Wayeb' is month index 18 (5 days)
+  const monthName = HAAB_MONTHS[Math.min(monthIdx, 18)];
+  return { day: dayInMonth, month: monthName, monthIdx, absDay: haabDay };
+}
+
+// ─── Format helpers ───────────────────────────────────────────────────────────
+function commas(n) {
+  if (n === undefined || n === null) return '—';
+  return Math.round(n).toLocaleString('en-US');
+}
+
+function padTwoDigits(n) { return n < 10 ? '0' + n : '' + n; }
+
+function formatGregorianDate(y, m, d) {
+  const months = ["January","February","March","April","May","June",
+                  "July","August","September","October","November","December"];
+  const suffix = y < 1 ? ' BCE' : ' CE';
+  const displayYear = y < 1 ? (1 - y) : y;
+  return `${months[m-1]} ${d}, ${displayYear}${suffix}`;
+}
+
+// ─── Parse date input ─────────────────────────────────────────────────────────
+function parseDateInput(val) {
+  // HTML date input returns YYYY-MM-DD, possibly negative years on some browsers
+  const parts = val.split('-');
+  if (parts.length === 3) {
+    return { year: parseInt(parts[0]), month: parseInt(parts[1]), day: parseInt(parts[2]) };
+  }
+  return null;
+}
+
+// ─── Build results HTML ───────────────────────────────────────────────────────
+function buildResults(jdn, label) {
+  const lc = jdnToLongCount(jdn);
+  if (!lc) return false;
+
+  const tz = jdnToTzolkin(jdn);
+  const hb = jdnToHaab(jdn);
+  const greg = jdnToGregorian(jdn);
+  const lcStr = `${lc.baktun}.${lc.katun}.${lc.tun}.${lc.uinal}.${lc.kin}`;
+
+  // Calendar Round
+  const calRound = `${tz.num} ${tz.name} ${hb.day} ${hb.month}`;
+
+  // Modern equivalent: how many years ago / from now
+  const todayJDN = gregorianToJDN(new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate());
+  const diffDays = todayJDN - jdn;
+  let modernNote = '';
+  if (Math.abs(diffDays) < 2) {
+    modernNote = '✨ This is today\'s date!';
+  } else if (diffDays > 0) {
+    const yrs = (diffDays / 365.25).toFixed(1);
+    modernNote = `📅 This date was approximately ${commas(diffDays)} days (${yrs} years) ago.`;
+  } else {
+    const yrs = (Math.abs(diffDays) / 365.25).toFixed(1);
+    modernNote = `📅 This date is approximately ${commas(Math.abs(diffDays))} days (${yrs} years) in the future.`;
+  }
+
+  // Bak'tun fraction for bar visualization
+  const maxDays = 13 * 144000;
+  const pct = Math.min(100, Math.round((lc.totalDays / maxDays) * 100));
+
+  requestAnimationFrame(() => {
+    document.getElementById('result-title').textContent = label || 'Mayan Calendar Result';
+    document.getElementById('lc-display').textContent = lcStr;
+
+    // Glyph boxes
+    const periods = [
+      { n: lc.baktun, name: "Bak'tun" },
+      { n: lc.katun,  name: "K'atun"  },
+      { n: lc.tun,    name: "Tun"     },
+      { n: lc.uinal,  name: "Uinal"   },
+      { n: lc.kin,    name: "K'in"    },
+    ];
+    document.getElementById('glyph-row').innerHTML = periods.map(p =>
+      `<div class="glyph-box"><span class="glyph-num">${p.n}</span><span class="glyph-name">${p.name}</span></div>`
+    ).join('');
+
+    // Table
+    const gregStr = formatGregorianDate(greg.year, greg.month, greg.day);
+    const rows = [
+      ['Long Count',    `<span class="highlight">${lcStr}</span>`,   'Positional day count from creation'],
+      ["Tzolk'in",      `<span class="highlight">${tz.num} ${tz.name}</span>`, '260-day sacred calendar'],
+      ["Haab'",         `<span class="highlight">${hb.day} ${hb.month}</span>`, '365-day civil calendar'],
+      ['Calendar Round',`<span class="highlight">${calRound}</span>`,'52-year cycle (Calendar Round)'],
+      ['Gregorian Date', gregStr,                                     'Western calendar equivalent'],
+      ['Julian Day No.', commas(jdn),                                 'Astronomical day number'],
+      ['Total Days',     commas(lc.totalDays),                        'Days since Mayan creation (0.0.0.0.0)'],
+      ["Bak'tun",        lc.baktun,                                   `${commas(lc.baktun * 144000)} days ≈ ${(lc.baktun * 394.26).toFixed(0)} years`],
+      ["K'atun",         lc.katun,                                    `${commas(lc.katun * 7200)} days ≈ ${(lc.katun * 19.71).toFixed(1)} years`],
+      ['Tun',            lc.tun,                                      `${commas(lc.tun * 360)} days ≈ ${(lc.tun * 0.986).toFixed(2)} years`],
+      ['Uinal',          lc.uinal,                                    `${lc.uinal * 20} days`],
+      ["K'in",           lc.kin,                                      `${lc.kin} day${lc.kin !== 1 ? 's' : ''}`],
+    ];
+
+    document.getElementById('result-tbody').innerHTML = rows.map(r =>
+      `<tr><td>${r[0]}</td><td>${r[1]}</td><td style="font-size:0.8rem;color:var(--muted)">${r[2]}</td></tr>`
+    ).join('');
+
+    document.getElementById('modern-equiv').textContent = modernNote;
+
+    // Bar visualization
+    const barData = [
+      { label: "Bak'tun", val: lc.baktun, max: 19 },
+      { label: "K'atun",  val: lc.katun,  max: 19 },
+      { label: "Tun",     val: lc.tun,    max: 19 },
+      { label: "Uinal",   val: lc.uinal,  max: 17 },
+      { label: "K'in",    val: lc.kin,    max: 19 },
+    ];
+    document.getElementById('bar-vis').innerHTML = barData.map(b =>
+      `<div class="bar-row">
+        <div class="bar-label">${b.label}</div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(b.val/b.max*100)}%"></div></div>
+        <div class="bar-val">${b.val}/${b.max}</div>
+      </div>`
+    ).join('');
+
+    const rs = document.getElementById('results');
+    rs.classList.add('show');
+    rs.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  return true;
+}
+
+// ─── Calculate functions ──────────────────────────────────────────────────────
+function calcGregorianToMayan() {
+  const el = document.getElementById('greg-date');
+  const errEl = document.getElementById('greg-error');
+  const val = el.value;
+
+  el.classList.remove('error');
+  errEl.classList.remove('show');
+
+  if (!val) {
+    el.classList.add('error');
+    errEl.textContent = 'Please enter a date.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  const p = parseDateInput(val);
+  if (!p) {
+    el.classList.add('error');
+    errEl.textContent = 'Invalid date format.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  const jdn = gregorianToJDN(p.year, p.month, p.day);
+  const minJDN = GMT_CORRELATION; // day 0
+
+  if (jdn < minJDN) {
+    el.classList.add('error');
+    errEl.textContent = 'Date must be on or after August 11, 3114 BCE (Mayan creation date 0.0.0.0.0).';
+    errEl.classList.add('show');
+    return;
+  }
+
+  const gregStr = formatGregorianDate(p.year, p.month, p.day);
+  buildResults(jdn, `Mayan Date for ${gregStr}`);
+}
+
+function calcMayanToGregorian() {
+  const bak = parseInt(document.getElementById('lc-bak').value) || 0;
+  const kat = parseInt(document.getElementById('lc-kat').value) || 0;
+  const tun = parseInt(document.getElementById('lc-tun').value) || 0;
+  const uin = parseInt(document.getElementById('lc-uin').value) || 0;
+  const kin = parseInt(document.getElementById('lc-kin').value) || 0;
+
+  const errEl = document.getElementById('mayan-error');
+  errEl.classList.remove('show');
+
+  let valid = true;
+  let msg = '';
+  if (bak < 0 || kat < 0 || kat > 19 || tun < 0 || tun > 19 ||
+      uin < 0 || uin > 17 || kin < 0 || kin > 19) {
+    valid = false;
+    msg = 'Invalid values. Bak\'tun 0+, K\'atun 0-19, Tun 0-19, Uinal 0-17, K\'in 0-19.';
+  }
+
+  if (!valid) {
+    errEl.textContent = msg;
+    errEl.classList.add('show');
+    return;
+  }
+
+  const jdn = longCountToJDN(bak, kat, tun, uin, kin);
+  const greg = jdnToGregorian(jdn);
+  const gregStr = formatGregorianDate(greg.year, greg.month, greg.day);
+  buildResults(jdn, `Gregorian Date for ${bak}.${kat}.${tun}.${uin}.${kin}`);
+}
+
+function calcToday() {
+  const now = new Date();
+  const jdn = gregorianToJDN(now.getFullYear(), now.getMonth()+1, now.getDate());
+  buildResults(jdn, "Today's Mayan Calendar Date");
+}
+
+// ─── Copy to clipboard ────────────────────────────────────────────────────────
+function copyResult() {
+  const lc   = document.getElementById('lc-display').textContent;
+  const rows = document.querySelectorAll('#result-tbody tr');
+  let text = `Mayan Long Count: ${lc}\n\n`;
+  rows.forEach(r => {
+    const cells = r.querySelectorAll('td');
+    if (cells.length >= 2) {
+      text += `${cells[0].textContent}: ${cells[1].textContent}\n`;
+    }
+  });
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showCopied());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied();
+  }
+}
+
+function showCopied() {
+  const btn = document.querySelector('.copy-btn');
+  const orig = btn.textContent;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => { btn.textContent = orig; }, 2000);
+}
+
+// ─── Enter key support ────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('greg-date').addEventListener('keydown', e => {
+    if (e.key === 'Enter') calcGregorianToMayan();
+  });
+  ['lc-bak','lc-kat','lc-tun','lc-uin','lc-kin'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') calcMayanToGregorian();
+    });
+  });
+
+  // Set default date input to today
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm   = String(now.getMonth()+1).padStart(2,'0');
+  const dd   = String(now.getDate()).padStart(2,'0');
+  document.getElementById('greg-date').value = `${yyyy}-${mm}-${dd}`;
+
+  // Set copyright year
+  document.getElementById('yr').textContent = now.getFullYear();
+});
+</script>
+</body>
+</html>
