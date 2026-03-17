@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greek Trireme Voyage Planner — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Plan ancient Greek trireme voyages with historically accurate speed, range, and crew calculations. Calculate travel time, oar strokes, and provisions needed.">
+<link rel="canonical" href="https://historycalc.com/greek-trireme-voyage-planner/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Greek Trireme Voyage Planner",
+  "url": "https://historycalc.com/greek-trireme-voyage-planner/",
+  "description": "Plan ancient Greek trireme voyages with historically accurate speed, range, and crew calculations.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;min-height:100vh;line-height:1.6}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline;color:#6b3410}
+nav{background:#2c1810;padding:0.75rem 1.5rem}
+nav a{color:#f5f0e1;font-weight:600;font-size:1rem;letter-spacing:0.02em}
+nav a:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.7rem;font-weight:700;color:#2c1810;margin-bottom:0.3rem;line-height:1.3}
+.subtitle{color:#6b4c30;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff9f0;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 12px rgba(44,24,16,0.08);margin-bottom:2rem}
+.svgbox{text-align:center;margin-bottom:1.5rem}
+.svgbox svg{max-width:100%;height:auto}
+.section-title{font-size:1.1rem;font-weight:700;color:#8b4513;border-bottom:2px solid #c4a882;padding-bottom:0.4rem;margin-bottom:1.2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3520;margin-bottom:0.35rem;margin-top:1rem}
+label:first-child{margin-top:0}
+input[type=number],select{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fffdf7;color:#2c1810;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px}
+input[type=number]:focus,select:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.18)}
+input[type=range]{width:100%;accent-color:#8b4513;cursor:pointer;margin-top:4px}
+.range-val{font-size:0.85rem;color:#8b4513;font-weight:600;margin-top:2px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn{display:inline-block;background:#8b4513;color:#fff;border:none;padding:12px 28px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:44px;width:100%;margin-top:1.2rem}
+.btn:hover{background:#6b3410}
+.btn-secondary{background:#c4a882;color:#2c1810;margin-top:0.5rem}
+.btn-secondary:hover{background:#b09070}
+.results{opacity:0;transition:opacity 0.35s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:auto}
+.big-stat{text-align:center;padding:1.2rem 0 0.8rem}
+.big-num{font-size:2.8rem;font-weight:800;color:#8b4513;display:block;line-height:1.1}
+.big-label{font-size:0.9rem;color:#6b4c30;margin-top:0.2rem}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin:1.2rem 0}
+.stat-card{background:#f5f0e1;border:1px solid #c4a882;border-radius:6px;padding:0.8rem 1rem;text-align:center}
+.stat-card .val{font-size:1.4rem;font-weight:700;color:#8b4513}
+.stat-card .lbl{font-size:0.78rem;color:#6b4c30;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-top:0.8rem}
+th{background:#c4a882;color:#2c1810;font-weight:600;padding:9px 12px;text-align:left}
+th.num,td.num{text-align:right}
+td{padding:8px 12px;border-bottom:1px solid #e8ddc8;color:#2c1810}
+tr:nth-child(even) td{background:#fdf7ee}
+tr:hover td{background:#f5ecda}
+.tbl-wrap{overflow-x:auto}
+.error{color:#c0392b;font-size:0.83rem;margin-top:4px;display:none}
+input.err,select.err{border-color:#c0392b;box-shadow:0 0 0 3px rgba(192,57,43,0.13)}
+.copy-btn{float:right;background:#8b4513;color:#fff;border:none;padding:5px 14px;border-radius:5px;font-size:0.78rem;cursor:pointer;transition:background 0.2s}
+.copy-btn:hover{background:#6b3410}
+.did-you-know{background:#fdf3e3;border-left:4px solid #8b4513;border-radius:0 6px 6px 0;padding:1rem 1.2rem;margin:1.5rem 0}
+.did-you-know h3{color:#8b4513;font-size:0.95rem;font-weight:700;margin-bottom:0.5rem}
+.did-you-know ul{padding-left:1.2rem}
+.did-you-know li{margin-bottom:0.4rem;font-size:0.88rem;color:#4a2c10}
+.modern-equiv{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:6px;padding:0.9rem 1.1rem;margin-top:1rem;font-size:0.9rem;color:#2c1810}
+.modern-equiv strong{color:#2e7d32}
+.hist-context{background:#fdf9f3;border:1px solid #c4a882;border-radius:6px;padding:1.2rem;margin-bottom:1.5rem}
+.hist-context h2{font-size:1rem;color:#8b4513;font-weight:700;margin-bottom:0.6rem}
+.hist-context p{font-size:0.88rem;color:#4a2c10;line-height:1.65}
+.tabs{display:flex;gap:0;margin-bottom:0;border-radius:6px 6px 0 0;overflow:hidden;border:1px solid #c4a882;border-bottom:none}
+.tab{flex:1;padding:10px 8px;background:#e8ddc8;border:none;cursor:pointer;font-size:0.85rem;font-weight:600;color:#5a3520;transition:background 0.2s;min-height:44px}
+.tab.active{background:#8b4513;color:#fff}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.tab-panel{border:1px solid #c4a882;border-radius:0 0 6px 6px;padding:1.2rem;background:#fff9f0;margin-bottom:1.5rem}
+.progress-bar-wrap{background:#e8ddc8;border-radius:4px;height:14px;margin:4px 0 8px;overflow:hidden}
+.progress-bar{height:100%;background:#8b4513;border-radius:4px;transition:width 0.4s}
+.progress-label{display:flex;justify-content:space-between;font-size:0.78rem;color:#6b4c30}
+content-section h2{font-size:1.15rem;font-weight:700;color:#8b4513;margin:1.8rem 0 0.6rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#8b4513;margin:1.8rem 0 0.6rem}
+.content-section p,.content-section li{font-size:0.9rem;color:#3a2010;line-height:1.7}
+.content-section ul{padding-left:1.3rem}
+.content-section li{margin-bottom:0.4rem}
+details{border:1px solid #c4a882;border-radius:6px;padding:0.75rem 1rem;margin-bottom:0.6rem;background:#fdf9f3}
+summary{font-weight:600;cursor:pointer;color:#8b4513;font-size:0.9rem}
+details p{font-size:0.87rem;margin-top:0.5rem;color:#3a2010;line-height:1.65}
+.related{background:#fff9f0;border:1px solid #c4a882;border-radius:8px;padding:1.5rem;margin-bottom:2rem}
+.related h2{font-size:1.05rem;font-weight:700;color:#8b4513;margin-bottom:0.7rem}
+.related a{display:inline-block;background:#8b4513;color:#fff;padding:8px 18px;border-radius:5px;font-size:0.85rem;margin:4px 4px 4px 0;text-decoration:none}
+.related a:hover{background:#6b3410}
+.ad-slot{min-height:0;margin:0}
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.2rem;font-size:0.83rem}
+footer a{color:#c4a882;margin:0 0.5rem}
+footer a:hover{color:#f5f0e1}
+@media(max-width:640px){
+  .row2{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .big-num{font-size:2.2rem}
+  h1{font-size:1.4rem}
+  .card{padding:1.2rem}
+}
+@media(max-width:400px){
+  .stat-grid{grid-template-columns:1fr}
+  .tabs .tab{font-size:0.75rem;padding:8px 4px}
+}
+</style>
+</head>
+<body>
+
+<nav><a href="/">⚓ historycalc.com</a></nav>
+
+<div class="container">
+  <h1>Greek Trireme Voyage Planner</h1>
+  <p class="subtitle">Plan historically accurate ancient Greek trireme expeditions — speed, range, crew provisions & more</p>
+
+  <!-- SVG Illustration -->
+  <div class="svgbox">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 180" width="580" height="180" aria-label="Ancient Greek trireme illustration">
+      <!-- Sea waves -->
+      <defs>
+        <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#b8d4e8"/>
+          <stop offset="100%" stop-color="#7ba7c4"/>
+        </linearGradient>
+        <linearGradient id="woodGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#c8a87a"/>
+          <stop offset="100%" stop-color="#a07850"/>
+        </linearGradient>
+        <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#d4e8f5"/>
+          <stop offset="100%" stop-color="#f5f0e1"/>
+        </linearGradient>
+      </defs>
+      <!-- Sky -->
+      <rect x="0" y="0" width="580" height="180" fill="url(#skyGrad)"/>
+      <!-- Sun -->
+      <circle cx="520" cy="30" r="20" fill="#f4c542" opacity="0.85"/>
+      <line x1="520" y1="5" x2="520" y2="0" stroke="#f4c542" stroke-width="2"/>
+      <line x1="520" y1="55" x2="520" y2="60" stroke="#f4c542" stroke-width="2"/>
+      <line x1="495" y1="30" x2="490" y2="30" stroke="#f4c542" stroke-width="2"/>
+      <line x1="545" y1="30" x2="550" y2="30" stroke="#f4c542" stroke-width="2"/>
+      <line x1="502" y1="12" x2="499" y2="9" stroke="#f4c542" stroke-width="2"/>
+      <line x1="538" y1="48" x2="541" y2="51" stroke="#f4c542" stroke-width="2"/>
+      <!-- Sea -->
+      <rect x="0" y="120" width="580" height="60" fill="url(#seaGrad)"/>
+      <path d="M0 122 Q30 116 60 122 Q90 128 120 122 Q150 116 180 122 Q210 128 240 122 Q270 116 300 122 Q330 128 360 122 Q390 116 420 122 Q450 128 480 122 Q510 116 540 122 Q560 126 580 122" fill="none" stroke="#5a9bbf" stroke-width="1.5" opacity="0.6"/>
+      <path d="M0 132 Q40 126 80 132 Q120 138 160 132 Q200 126 240 132 Q280 138 320 132 Q360 126 400 132 Q440 138 480 132 Q520 126 560 132 Q570 134 580 132" fill="none" stroke="#5a9bbf" stroke-width="1" opacity="0.4"/>
+      <!-- Hull - main body -->
+      <path d="M80 125 Q140 108 290 107 Q420 108 500 117 L510 130 Q400 140 290 141 Q160 142 80 135 Z" fill="url(#woodGrad)" stroke="#6b4020" stroke-width="1.5"/>
+      <!-- Hull lower strake -->
+      <path d="M80 132 Q200 138 290 139 Q380 140 490 133 L510 130 Q400 140 290 141 Q160 142 80 135 Z" fill="#9a6840" stroke="none"/>
+      <!-- Ram (embolon) -->
+      <path d="M80 125 Q60 127 40 131 Q32 133 30 136 L48 137 Q60 134 80 135 Z" fill="#7a5030" stroke="#5a3010" stroke-width="1"/>
+      <!-- Deck planking -->
+      <rect x="100" y="106" width="380" height="6" rx="2" fill="#d4a870" stroke="#a07840" stroke-width="0.5"/>
+      <!-- Mast -->
+      <line x1="270" y1="107" x2="270" y2="40" stroke="#8b5e2a" stroke-width="4" stroke-linecap="round"/>
+      <!-- Yard arm -->
+      <line x1="195" y1="52" x2="345" y2="48" stroke="#8b5e2a" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Sail -->
+      <path d="M197 53 Q270 55 343 49 Q330 90 270 94 Q210 91 197 53 Z" fill="#e8d0a0" stroke="#c4a060" stroke-width="1"/>
+      <!-- Sail decoration - meander pattern -->
+      <path d="M230 65 L240 65 L240 70 L250 70 L250 65 L260 65" fill="none" stroke="#8b4513" stroke-width="1.5"/>
+      <path d="M275 65 L285 65 L285 70 L295 70 L295 65 L305 65" fill="none" stroke="#8b4513" stroke-width="1.5"/>
+      <!-- Backstay ropes -->
+      <line x1="270" y1="40" x2="480" y2="106" stroke="#9a7040" stroke-width="1" opacity="0.7"/>
+      <line x1="270" y1="40" x2="100" y2="106" stroke="#9a7040" stroke-width="1" opacity="0.7"/>
+      <!-- Oars - upper bank (thranites) -->
+      <line x1="155" y1="115" x2="130" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="185" y1="113" x2="162" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="215" y1="112" x2="193" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="245" y1="111" x2="224" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="310" y1="111" x2="290" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="340" y1="112" x2="321" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="370" y1="113" x2="352" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="400" y1="115" x2="383" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="430" y1="117" x2="414" y2="148" stroke="#6b4020" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Outrigger (parexeiresia) -->
+      <rect x="95" y="113" width="390" height="5" rx="2" fill="#c49050" stroke="#9a6830" stroke-width="0.5"/>
+      <!-- Crew silhouettes at oars -->
+      <ellipse cx="150" cy="113" rx="5" ry="5" fill="#5a3010"/>
+      <ellipse cx="185" cy="112" rx="5" ry="5" fill="#5a3010"/>
+      <ellipse cx="220" cy="111" rx="5" ry="5" fill="#5a3010"/>
+      <ellipse cx="360" cy="112" rx="5" ry="5" fill="#5a3010"/>
+      <ellipse cx="395" cy="113" rx="5" ry="5" fill="#5a3010"/>
+      <ellipse cx="425" cy="114" rx="5" ry="5" fill="#5a3010"/>
+      <!-- Helmsman at stern -->
+      <ellipse cx="478" cy="115" rx="6" ry="6" fill="#4a2808"/>
+      <!-- Stern ornament -->
+      <path d="M500 117 Q515 108 520 100 Q522 95 518 97 Q512 102 505 112" fill="none" stroke="#8b5e2a" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Bow eye -->
+      <circle cx="88" cy="125" r="5" fill="#fff" stroke="#5a3010" stroke-width="1.5"/>
+      <circle cx="88" cy="125" r="2.5" fill="#2c1810"/>
+      <!-- Greek text label -->
+      <text x="265" y="175" text-anchor="middle" font-size="11" fill="#5a3010" font-family="Georgia,serif" font-style="italic">τριήρης — Athenian Trireme, c. 480 BCE</text>
+    </svg>
+  </div>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h2>📜 Historical Context</h2>
+    <p>The Athenian <em>trieres</em> (trireme) was the dominant warship of the classical Mediterranean from roughly 500–322 BCE. Measuring approximately 37 metres long and 5.5 metres wide, it carried 170 oarsmen arranged in three overlapping banks, plus ~30 marines and officers — a total crew of ~200 men. Ancient sources (Thucydides, Herodotus, Xenophon) record sustained cruising speeds of 6–8 knots under oar, with short sprints reaching 10–12 knots. The 1987 reconstruction <em>Olympias</em> achieved 9.0 knots under 170 oarsmen, confirming ancient accounts. Triremes typically hugged coastlines, covering 120–200 km per day, camping ashore each night as no cooking facilities existed aboard.</p>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="card">
+    <div class="section-title">⚓ Plan Your Voyage</div>
+
+    <label for="routePreset">Quick Route Preset</label>
+    <select id="routePreset" onchange="applyPreset()">
+      <option value="">— Choose a historical route or enter custom —</option>
+      <option value="athens_salamis">Athens → Salamis (15 km)</option>
+      <option value="athens_aegina">Athens (Piraeus) → Aegina (27 km)</option>
+      <option value="athens_corinth">Athens → Corinth (74 km)</option>
+      <option value="piraeus_samos">Piraeus → Samos (290 km)</option>
+      <option value="athens_syracuse">Athens → Syracuse (Sicily) (1,480 km)</option>
+      <option value="piraeus_hellespont">Piraeus → Hellespont (400 km)</option>
+      <option value="custom">Custom distance</option>
+    </select>
+
+    <label for="distance">Voyage Distance (km)</label>
+    <input type="number" id="distance" min="1" max="10000" step="1" placeholder="e.g. 400" value="">
+    <div class="error" id="err-distance">Please enter a valid distance (1–10,000 km).</div>
+
+    <label for="speedMode">Rowing Mode</label>
+    <select id="speedMode">
+      <option value="cruise">Cruise (taxiarchikos) — 6 knots — long voyages</option>
+      <option value="battle" selected>Battle speed (agonistikos) — 8 knots — standard</option>
+      <option value="sprint">Sprint (epikôpos) — 10 knots — short bursts only</option>
+    </select>
+
+    <label>Rowing Hours Per Day: <span class="range-val" id="rowHoursVal">8</span> hours</label>
+    <input type="range" id="rowHours" min="4" max="14" step="1" value="8" oninput="document.getElementById('rowHoursVal').textContent=this.value">
+
+    <label>Sailing (Wind) Hours Per Day: <span class="range-val" id="sailHoursVal">4</span> hours</label>
+    <input type="range" id="sailHours" min="0" max="12" step="1" value="4" oninput="document.getElementById('sailHoursVal').textContent=this.value">
+
+    <div class="row2">
+      <div>
+        <label for="crewSize">Crew Size</label>
+        <select id="crewSize">
+          <option value="200" selected>Full crew — 200 men</option>
+          <option value="170">Skeleton — 170 oarsmen only</option>
+          <option value="100">Half crew — 100 men</option>
+        </select>
+      </div>
+      <div>
+        <label for="season">Season</label>
+        <select id="season">
+          <option value="summer" selected>Summer (favourable)</option>
+          <option value="spring">Spring (moderate)</option>
+          <option value="autumn">Autumn (risky)</option>
+          <option value="winter">Winter (dangerous)</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="stops">Number of Shore Stops (nights ashore)</label>
+    <input type="number" id="stops" min="0" max="100" step="1" value="" placeholder="Leave blank to auto-calculate">
+
+    <button class="btn" onclick="calculate()">⚓ Calculate Voyage</button>
+    <button class="btn btn-secondary" onclick="resetTool()">↺ Reset</button>
+  </div>
+
+  <!-- Results -->
+  <div class="card results" id="results">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+      <div class="section-title" style="border:none;margin:0">📊 Voyage Results</div>
+      <button class="copy-btn" onclick="copyResults()" id="copyBtn">📋 Copy</button>
+    </div>
+
+    <div class="big-stat">
+      <span class="big-num" id="res-days">—</span>
+      <div class="big-label">Estimated Voyage Days</div>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="val" id="res-speed">—</div><div class="lbl">Avg Speed (knots)</div></div>
+      <div class="stat-card"><div class="val" id="res-km-day">—</div><div class="lbl">km / Day</div></div>
+      <div class="stat-card"><div class="val" id="res-oarstrokes">—</div><div class="lbl">Total Oar Strokes</div></div>
+      <div class="stat-card"><div class="val" id="res-dist-nm">—</div><div class="lbl">Distance (nautical miles)</div></div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('provisions',this)">🍞 Provisions</button>
+      <button class="tab" onclick="switchTab('daily',this)">📅 Daily Log</button>
+      <button class="tab" onclick="switchTab('risks',this)">⚠️ Risks</button>
+    </div>
+    <div class="tab-panel">
+      <div class="tab-content active" id="tab-provisions"></div>
+      <div class="tab-content" id="tab-daily"></div>
+      <div class="tab-content" id="tab-risks"></div>
+    </div>
+
+    <div class="modern-equiv" id="modern-equiv"></div>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>⚡ Did You Know?</h3>
+    <ul>
+      <li>The Battle of Salamis (480 BCE) involved ~370 Greek triremes defeating ~800 Persian ships — widely considered the most consequential naval battle in Western history.</li>
+      <li>Athenian trireme oarsmen were paid 1 drachma per day — roughly a skilled worker's wage — making the fleet Athens' largest employer during wartime.</li>
+      <li>The 1987 reconstruction <em>Olympias</em> covered 7.2 nautical miles in one hour under the power of 170 volunteer rowers during sea trials, validating Thucydides' speed claims.</li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Content Section -->
+  <div class="content-section card">
+    <h2>How to Use This Voyage Planner</h2>
+    <p>Enter your departure and destination distance (or choose a historical route preset), select a rowing mode, adjust daily rowing and sailing hours with the sliders, and click <strong>Calculate Voyage</strong>. The tool outputs total voyage days, daily distance covered, crew provisions required, a day-by-day log, and historical risk factors for your season of travel.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Understanding trireme logistics reveals why Athenian naval power was both formidable and fragile. The fleet that won at Salamis and Mycale had to solve an immense logistical puzzle: 200 men burning ~3,000 calories each per day, with no cooking facilities aboard, requiring food and fresh water stops every 24–36 hours. Thucydides mentions the disastrous Sicilian Expedition (415–413 BCE) partly foundered on these exact supply problems over a 1,480 km voyage. Modern operational analysis of ancient triremes — driven largely by the <em>Olympias</em> project — shows that an 8-knot sustained battle speed for more than 30 minutes was physiologically impossible without rotating rowers, explaining the three-bank design. By exploring the numbers here you begin to understand why Athens needed over 130 friendly ports around the Aegean to maintain her empire.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>Speed conversions use 1 knot = 1.852 km/h. Daily distance = (rowing hours × rowing speed km/h) + (sailing hours × sailing speed km/h), where sailing speed is approximated at 5 knots (9.26 km/h) for a trireme running before a moderate breeze. Voyage days = total distance ÷ daily distance, rounded up. Provisions use the attested ancient Greek military ration: ~1 kg grain (sitarchia) + ~0.5 L olive oil + ~0.5 L wine per man per day, carried in amphorae aboard or sourced ashore. Oar strokes use the experimental rate of ~40 strokes/minute derived from the <em>Olympias</em> trials.</p>
+    <p><em>Formula:</em> <code>Days = ⌈Distance(km) ÷ ((RowHours × SpeedKmh) + (SailHours × 9.26))⌉</code></p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't use sprint speed for long voyages.</strong> Sprint pace (epikôpos, ~10 knots) could only be maintained for 20–30 minutes — it was reserved for ramming attacks or fleeing battle.</li>
+      <li><strong>Account for stops.</strong> Triremes camped ashore nightly; each stop added time for beaching, guard duty, and foraging. Factor in at least one stop per 100 km in hostile territory.</li>
+      <li><strong>Winter sailing was avoided.</strong> The Greeks observed a <em>mare clausum</em> (closed sea) from roughly November to March. Autumn voyages past Crete or around the Peloponnese were genuinely life-threatening.</li>
+      <li><strong>Sailing hours are a bonus, not a given.</strong> The Aegean's Etesian winds blow reliably NNE in summer afternoons — use them going south, but budget rowing time for northward return legs.</li>
+      <li><strong>Fresh water was the binding constraint.</strong> Each oarsman needed ~4 litres of water per day under hard exertion. A full crew needed 800 litres (800 kg) daily — no trireme could carry more than 1–2 days' supply.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How fast was a Greek trireme really?</summary>
+      <p>Ancient sources including Thucydides record triremes crossing the Aegean at average speeds consistent with 6–8 knots under continuous oar. The 1987 reconstruction <em>Olympias</em> achieved a peak of 9.0 knots in trials. Battle sprint speeds of up to 12 knots were claimed but are archaeologically debated — most scholars accept 7–8 knots as a realistic sustained battle pace for a well-trained crew.</p>
+    </details>
+    <details>
+      <summary>How many oarsmen did a trireme carry?</summary>
+      <p>A full Athenian trireme carried exactly 170 oarsmen arranged in three banks: 62 thranites (top), 54 zygites (middle), and 54 thalamites (bottom). They were supplemented by ~14 sailors, 10 marines (epibatai), officers, and a flute-player (auletes) who kept time — totalling about 200 men.</p>
+    </details>
+    <details>
+      <summary>Could a trireme sail across the open sea or did it hug the coast?</summary>
+      <p>Triremes could and did make open-sea crossings — Herodotus records the Persian fleet crossing from Cilicia to Rhodes. However, their shallow draught (~1 m) and lack of storage made coasting preferable for most voyages. The need for nightly beaching and daily fresh water resupply meant triremes almost never spent two consecutive nights at sea on campaign.</p>
+    </details>
+    <details>
+      <summary>How much did it cost Athens to operate a trireme fleet?</summary>
+      <p>Each trireme cost roughly 1 talent (26 kg silver, ~6,000 drachmas) to build and about 1 talent per month to operate at full pay. Athens' fleet of 200 triremes cost approximately 200 talents per month — equivalent to the total annual tribute income from her entire empire. The financial strain eventually helped doom the Sicilian Expedition.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related">
+    <h2>🔗 Related Tools</h2>
+    <p style="font-size:0.88rem;color:#6b4c30;margin-bottom:0.8rem">Explore more historical calculators on historycalc.com:</p>
+    <a href="/">📚 View All Tools</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <div style="margin-bottom:0.5rem">
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/contact/">Contact</a>
+    </div>
+    © <span id="yr"></span> historycalc.com — Free Historical Calculators
+  </footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const PRESETS = {
+  athens_salamis:   { dist: 15,    label: "Athens → Salamis" },
+  athens_aegina:    { dist: 27,    label: "Piraeus → Aegina" },
+  athens_corinth:   { dist: 74,    label: "Athens → Corinth" },
+  piraeus_samos:    { dist: 290,   label: "Piraeus → Samos" },
+  athens_syracuse:  { dist: 1480,  label: "Athens → Syracuse (Sicily)" },
+  piraeus_hellespont:{ dist: 400,  label: "Piraeus → Hellespont" },
+};
+
+const SPEED_KNS = { cruise: 6, battle: 8, sprint: 10 };
+const SAIL_SPEED_KNS = 5;
+const KN_TO_KMH = 1.852;
+const OAR_STROKES_PER_MIN = 40;
+
+const SEASON_RISK = {
+  summer: { factor: 1.0, label: "Favourable", colour: '#2e7d32', notes: ["Etesian winds (NNE) provide reliable afternoon sailing.", "Sea conditions calm; minimal storm risk.", "Visibility excellent; coastal navigation straightforward."] },
+  spring: { factor: 1.05, label: "Moderate", colour: '#f57f17', notes: ["Occasional NW gales after cold fronts.", "Water still cold; capsize risk elevated.", "Most campaign fleets deployed in late spring (after Thargelion, ~May)."] },
+  autumn: { factor: 1.15, label: "Risky", colour: '#e65100', notes: ["Mnester winds bring sudden Aegean storms Oct–Nov.", "Anchorages can become untenable overnight.", "Greeks considered sailing past Cape Malea in autumn very dangerous."] },
+  winter: { factor: 1.4, label: "Dangerous", colour: '#b71c1c', notes: ["Mare clausum: Greek naval operations essentially ceased Dec–Feb.", "Hull waterlogging and structural stress from rough seas.", "Emergency voyages only; expect 40%+ longer travel times and possible loss."] }
+};
+
+const RATION = { grain_kg: 1.0, oil_l: 0.5, wine_l: 0.5, water_l: 4.0 };
+const AMPHORA_KG = 26;
+
+function applyPreset() {
+  const val = document.getElementById('routePreset').value;
+  if (val && PRESETS[val]) {
+    document.getElementById('distance').value = PRESETS[val].dist;
+    clearError('distance');
+  }
+}
+
+function switchTab(name, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+function fmt(n, dec=0) {
+  if (isNaN(n)) return '—';
+  return Number(n.toFixed(dec)).toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+
+function showError(id) {
+  document.getElementById('err-' + id).style.display = 'block';
+  document.getElementById(id).classList.add('err');
+}
+function clearError(id) {
+  document.getElementById('err-' + id).style.display = 'none';
+  document.getElementById(id).classList.remove('err');
+}
+
+function validate() {
+  let ok = true;
+  const dist = parseFloat(document.getElementById('distance').value);
+  if (!dist || dist < 1 || dist > 10000) { showError('distance'); ok = false; } else clearError('distance');
+  return ok;
+}
+
+function calculate() {
+  if (!validate()) return;
+
+  const dist = parseFloat(document.getElementById('distance').value);
+  const speedMode = document.getElementById('speedMode').value;
+  const rowHours = parseFloat(document.getElementById('rowHours').value);
+  const sailHours = parseFloat(document.getElementById('sailHours').value);
+  const crew = parseInt(document.getElementById('crewSize').value);
+  const season = document.getElementById('season').value;
+  const stopsInput = document.getElementById('stops').value;
+
+  const speedKn = SPEED_KNS[speedMode];
+  const speedKmh = speedKn * KN_TO_KMH;
+  const sailSpeedKmh = SAIL_SPEED_KNS * KN_TO_KMH;
+  const dailyDistRaw = (rowHours * speedKmh) + (sailHours * sailSpeedKmh);
+  const seasonInfo = SEASON_RISK[season];
+  const dailyDist = dailyDistRaw / seasonInfo.factor;
+
+  let voyageDays = Math.ceil(dist / dailyDist);
+  const autoStops = Math.ceil(dist / 100);
+  const stops = (stopsInput !== '' && !isNaN(parseInt(stopsInput))) ? parseInt(stopsInput) : autoStops;
+  const totalDays = voyageDays + Math.ceil(stops * 0.1); // stops add fractional overhead
+
+  const distNm = dist / 1.852;
+  const totalRowingHours = voyageDays * rowHours;
+  const totalOarStrokes = Math.round(totalRowingHours * 60 * OAR_STROKES_PER_MIN);
+
+  // Provisions
+  const totalGrain = (crew * RATION.grain_kg * totalDays);
+  const totalOil = (crew * RATION.oil_l * totalDays);
+  const totalWine = (crew * RATION.wine_l * totalDays);
+  const totalWater = (crew * RATION.water_l * totalDays);
+  const totalMassKg = totalGrain + totalOil + totalWine * 0.8 + totalWater;
+  const amphoraCount = Math.ceil(totalMassKg / AMPHORA_KG);
+  const drachmasPayroll = crew * 1 * totalDays; // 1 drachma per man per day
+  const talentsPayroll = drachmasPayroll / 6000;
+
+  // Build result HTML
+  requestAnimationFrame(() => {
+    document.getElementById('res-days').textContent = fmt(Math.ceil(totalDays));
+    document.getElementById('res-speed').textContent = fmt(speedKn, 0);
+    document.getElementById('res-km-day').textContent = fmt(dailyDist, 1);
+    document.getElementById('res-oarstrokes').textContent = fmt(totalOarStrokes);
+    document.getElementById('res-dist-nm').textContent = fmt(distNm, 1);
+
+    // Provisions tab
+    const provHTML = `
+      <p style="font-size:0.85rem;color:#6b4c30;margin-bottom:0.8rem">For <strong>${fmt(crew)}</strong> crew over <strong>${fmt(Math.ceil(totalDays))}</strong> days:</p>
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Supply</th><th>Per Man/Day</th><th>Total</th><th class="num">Weight (kg)</th></tr></thead>
+        <tbody>
+          <tr><td>Grain (barley/wheat)</td><td>1.0 kg</td><td>${fmt(totalGrain,0)} kg</td><td class="num">${fmt(totalGrain,0)}</td></tr>
+          <tr><td>Olive Oil</td><td>0.5 L</td><td>${fmt(totalOil,0)} L</td><td class="num">${fmt(totalOil*0.92,0)}</td></tr>
+          <tr><td>Wine (diluted)</td><td>0.5 L</td><td>${fmt(totalWine,0)} L</td><td class="num">${fmt(totalWine*0.8,0)}</td></tr>
+          <tr><td>Fresh Water</td><td>4.0 L</td><td>${fmt(totalWater,0)} L</td><td class="num">${fmt(totalWater,0)}</td></tr>
+          <tr style="font-weight:700"><td colspan="2">Total Provision Mass</td><td></td><td class="num">${fmt(totalMassKg,0)}</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p style="font-size:0.83rem;color:#6b4c30;margin-top:0.8rem">📦 Requires approx. <strong>${fmt(amphoraCount)}</strong> amphorae (26 kg each) — must be resupplied every 1–2 days at friendly ports.</p>
+      <p style="font-size:0.83rem;color:#8b4513;margin-top:0.5rem">💰 Crew pay at 1 drachma/day: <strong>${fmt(drachmasPayroll)}</strong> drachmas (<strong>${fmt(talentsPayroll,2)}</strong> talents)</p>
+    `;
+    document.getElementById('tab-provisions').innerHTML = provHTML;
+
+    // Daily log tab
+    const showDays = Math.min(Math.ceil(totalDays), 20);
+    let logRows = '';
+    let cumDist = 0;
+    for (let d = 1; d <= showDays; d++) {
+      const todayDist = Math.min(dailyDist, dist - cumDist);
+      cumDist += todayDist;
+      const pct = Math.round((cumDist / dist) * 100);
+      logRows += `<tr>
+        <td>Day ${d}</td>
+        <td class="num">${fmt(todayDist,1)}</td>
+        <td class="num">${fmt(cumDist,1)}</td>
+        <td class="num">${pct}%</td>
+      </tr>`;
+    }
+    if (Math.ceil(totalDays) > 20) {
+      logRows += `<tr><td colspan="4" style="text-align:center;font-style:italic;color:#8b4513">… ${fmt(Math.ceil(totalDays) - 20)} more days …</td></tr>`;
+    }
+    const dailyHTML = `
+      <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Day</th><th class="num">Distance (km)</th><th class="num">Cumulative (km)</th><th class="num">Complete</th></tr></thead>
+        <tbody>${logRows}</tbody>
+      </table>
+      </div>
+      <div style="margin-top:1rem">
+        <div class="progress-label"><span>Voyage Progress</span><span>${fmt(dist,0)} km total</span></div>
+        <div class="progress-bar-wrap"><div class="progress-bar" style="width:100%"></div></div>
+      </div>
+    `;
+    document.getElementById('tab-daily').innerHTML = dailyHTML;
+
+    // Risks tab
+    const riskHTML = `
+      <p style="font-size:0.85rem;margin-bottom:0.8rem">Season: <strong style="color:${seasonInfo.colour}">${seasonInfo.label}</strong> — Speed penalty: ×${seasonInfo.factor.toFixed(2)}</p>
+      <ul style="font-size:0.88rem;padding-left:1.2rem;color:#3a2010">
+        ${seasonInfo.notes.map(n => `<li style="margin-bottom:0.5rem">${n}</li>`).join('')}
+      </ul>
+      <div style="margin-top:1rem;font-size:0.88rem">
+        <strong>Operational Risks:</strong>
+        <ul style="padding-left:1.2rem;margin-top:0.4rem;color:#3a2010">
+          ${rowHours > 10 ? '<li style="color:#c0392b;margin-bottom:4px">⚠️ Over 10 rowing hours/day risks crew exhaustion — oarsmen cannot maintain pace beyond 10–12 hours.</li>' : '<li style="color:#2e7d32;margin-bottom:4px">✓ Rowing hours within acceptable range for trained crew.</li>'}
+          ${speedMode === 'sprint' ? '<li style="color:#c0392b;margin-bottom:4px">⚠️ Sprint speed is for battle only — impossible to sustain for voyage planning.</li>' : ''}
+          ${dist / dailyDist > 14 ? '<li style="color:#e65100;margin-bottom:4px">⚠️ Voyage exceeds 2 weeks — resupply and political access to friendly harbours becomes critical.</li>' : '<li style="color:#2e7d32;margin-bottom:4px">✓ Voyage length manageable within standard campaign season.</li>'}
+          <li style="margin-bottom:4px">Shore stops (beaching): ~${fmt(autoStops)} estimated, adding ~${fmt(autoStops * 0.1, 1)} days overhead.</li>
+          <li style="margin-bottom:4px">Water resupply needed every ${fmt(Math.floor(4000 / (crew * 4)))} days maximum (limited tank capacity).</li>
+        </ul>
+      </div>
+    `;
+    document.getElementById('tab-risks').innerHTML = riskHTML;
+
+    // Modern equivalent
+    const modernEquivHTML = `<strong>⚖️ Modern Equivalents:</strong> ${fmt(totalMassKg, 0)} kg of provisions ≈ the cargo of <strong>${fmt(totalMassKg / 950, 1)}</strong> modern delivery vans. The ${fmt(drachmasPayroll)}-drachma payroll would be roughly <strong>$${fmt(drachmasPayroll * 35, 0)}</strong> in modern purchasing power (1 drachma ≈ 1 day's skilled labour ≈ $35 today). Your voyage of ${fmt(dist, 0)} km would take a modern ferry roughly <strong>${fmt(dist / 40, 1)}</strong> hours at cruising speed.`;
+    document.getElementById('modern-equiv').innerHTML = modernEquivHTML;
+
+    const resultsEl = document.getElementById('results');
+    resultsEl.classList.add('visible');
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Store for copy
+    window._lastResultText = buildCopyText({
+      dist, speedKn, speedMode, dailyDist, totalDays: Math.ceil(totalDays),
+      distNm, totalOarStrokes, totalGrain, totalOil, totalWine, totalWater,
+      amphoraCount, drachmasPayroll, talentsPayroll, crew, season: seasonInfo.label
+    });
+  });
+}
+
+function buildCopyText(r) {
+  return [
+    "=== Greek Trireme Voyage Results ===",
+    `Distance: ${fmt(r.dist, 0)} km (${fmt(r.distNm, 1)} nm)`,
+    `Speed: ${r.speedKn} knots (${r.speedMode})`,
+    `Daily Distance: ${fmt(r.dailyDist, 1)} km/day`,
+    `Voyage Duration: ${fmt(r.totalDays)} days`,
+    `Total Oar Strokes: ${fmt(r.totalOarStrokes)}`,
+    `Season: ${r.season}`,
+    `--- Provisions (${fmt(r.crew)} crew) ---`,
+    `Grain: ${fmt(r.totalGrain, 0)} kg`,
+    `Olive Oil: ${fmt(r.totalOil, 0)} L`,
+    `Wine: ${fmt(r.totalWine, 0)} L`,
+    `Water: ${fmt(r.totalWater, 0)} L`,
+    `Amphorae needed: ~${fmt(r.amphoraCount)}`,
+    `Payroll: ${fmt(r.drachmasPayroll)} drachmas (${fmt(r.talentsPayroll, 2)} talents)`,
+    "Generated by historycalc.com/greek-trireme-voyage-planner/"
+  ].join('\n');
+}
+
+function copyResults() {
+  if (!window._lastResultText) return;
+  const btn = document.getElementById('copyBtn');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(window._lastResultText).then(() => {
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy', 2000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = window._lastResultText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy', 2000);
+  }
+}
+
+function resetTool() {
+  document.getElementById('distance').value = '';
+  document.getElementById('routePreset').value = '';
+  document.getElementById('speedMode').value = 'battle';
+  document.getElementById('rowHours').value = 8;
+  document.getElementById('rowHoursVal').textContent = '8';
+  document.getElementById('sailHours').value = 4;
+  document.getElementById('sailHoursVal').textContent = '4';
+  document.getElementById('crewSize').value = '200';
+  document.getElementById('season').value = 'summer';
+  document.getElementById('stops').value = '';
+  clearError('distance');
+  document.getElementById('results').classList.remove('visible');
+  window._lastResultText = null;
+}
+
+// Enter key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT') {
+      calculate();
+    }
+  }
+});
+</script>
+</body>
+</html>
