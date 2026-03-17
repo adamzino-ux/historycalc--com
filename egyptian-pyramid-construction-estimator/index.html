@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Egyptian Pyramid Construction Timeline Estimator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Estimate how long it took to build the Egyptian pyramids. Input pyramid dimensions and workforce size to calculate construction time using historically accurate methods.">
+<link rel="canonical" href="https://historycalc.com/egyptian-pyramid-construction-estimator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Egyptian Pyramid Construction Timeline Estimator",
+  "url": "https://historycalc.com/egyptian-pyramid-construction-estimator/",
+  "description": "Estimate how long it took ancient Egyptians to build pyramids using historically accurate formulas, workforce data, and construction methods.",
+  "applicationCategory": "HistoryTool",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f0e1;
+    color: #2c1810;
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  nav {
+    background: #2c1810;
+    padding: 0 1.5rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+  }
+  nav a {
+    color: #f5f0e1;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+  nav a:hover { color: #c4a882; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 2rem;
+  }
+
+  header { margin-bottom: 1.5rem; }
+
+  .pyramid-svg {
+    display: block;
+    margin: 0 auto 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(1.3rem, 4vw, 1.65rem);
+    font-weight: 800;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+
+  .subtitle {
+    color: #6b4226;
+    font-size: 0.95rem;
+  }
+
+  .tool-card {
+    background: #fff8ec;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(139,69,19,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #8b4513;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #c4a882;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    color: #2c1810;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    min-height: 38px;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: #8b4513;
+    color: #fff8ec;
+    border-color: #8b4513;
+  }
+
+  .input-group { margin-bottom: 1.1rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3020;
+    margin-bottom: 5px;
+  }
+  .label-hint {
+    font-weight: 400;
+    color: #8b6550;
+    font-size: 0.78rem;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    background: #fff;
+    color: #2c1810;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    min-height: 44px;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  input.error { border-color: #e74c3c; }
+  .error-msg {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  input[type="range"] {
+    width: 100%;
+    accent-color: #8b4513;
+    cursor: pointer;
+    height: 6px;
+    margin-top: 6px;
+  }
+  .slider-value {
+    display: inline-block;
+    background: #8b4513;
+    color: #fff;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 12px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  @media (max-width: 480px) { .two-col { grid-template-columns: 1fr; } }
+
+  .btn-primary {
+    width: 100%;
+    background: #8b4513;
+    color: #fff8ec;
+    border: none;
+    padding: 13px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    min-height: 48px;
+    letter-spacing: 0.02em;
+    margin-top: 0.5rem;
+  }
+  .btn-primary:hover { background: #6b3410; }
+  .btn-primary:active { transform: scale(0.99); }
+
+  /* Results */
+  #results {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    margin-bottom: 2rem;
+  }
+  #results.visible { opacity: 1; }
+
+  .result-hero {
+    background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+    color: #fff8ec;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .result-hero .big-number {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  .result-hero .big-label {
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr; } }
+
+  .result-card {
+    background: #fff8ec;
+    border: 1px solid #c4a882;
+    border-radius: 7px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .result-card .rc-value {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #8b4513;
+    display: block;
+    margin-bottom: 0.15rem;
+  }
+  .result-card .rc-label {
+    font-size: 0.78rem;
+    color: #6b4226;
+    font-weight: 500;
+  }
+
+  .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    min-width: 420px;
+  }
+  thead th {
+    background: #c4a882;
+    color: #2c1810;
+    padding: 9px 12px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  thead th:last-child { text-align: right; }
+  tbody tr:nth-child(even) { background: #f5f0e1; }
+  tbody tr:nth-child(odd) { background: #fff8ec; }
+  tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e8d9c0;
+    color: #2c1810;
+  }
+  tbody td:last-child { text-align: right; font-weight: 600; }
+
+  .modern-equiv {
+    background: #f0e6d0;
+    border-left: 4px solid #8b4513;
+    border-radius: 0 7px 7px 0;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .modern-equiv strong { color: #8b4513; }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid #c4a882;
+    color: #8b4513;
+    padding: 6px 14px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-height: 34px;
+  }
+  .copy-btn:hover { background: #8b4513; color: #fff; }
+
+  /* Did You Know */
+  .dyk-box {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .dyk-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #c4a882;
+    margin-bottom: 0.75rem;
+  }
+  .dyk-item {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .dyk-item:last-child { margin-bottom: 0; }
+  .dyk-dot { color: #c4a882; font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* Content sections */
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2c1810;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid #c4a882;
+  }
+  .content-section p { margin-bottom: 0.75rem; font-size: 0.92rem; color: #3a2010; line-height: 1.7; }
+  .content-section ul { padding-left: 1.3rem; margin-bottom: 0.75rem; }
+  .content-section li { font-size: 0.92rem; margin-bottom: 0.45rem; color: #3a2010; line-height: 1.6; }
+
+  details {
+    background: #fff8ec;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+  }
+  summary {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    color: #2c1810;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+  }
+  summary::before { content: '▶'; font-size: 0.65rem; color: #8b4513; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details p {
+    padding: 0 1rem 0.85rem;
+    font-size: 0.88rem;
+    color: #3a2010;
+    line-height: 1.65;
+  }
+
+  .hist-context {
+    background: #f0e6d0;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .hist-context h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8b4513;
+    margin-bottom: 0.7rem;
+  }
+  .hist-context p { font-size: 0.88rem; line-height: 1.65; color: #2c1810; }
+
+  .related-tools {
+    background: #fff8ec;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .related-tools h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2c1810;
+    margin-bottom: 0.85rem;
+  }
+  .related-tools a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #8b4513;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 6px 0;
+    border-bottom: 1px dashed #c4a882;
+    width: 100%;
+  }
+  .related-tools a:hover { color: #6b3410; text-decoration: underline; }
+  .related-tools a::before { content: '→'; color: #c4a882; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.83rem;
+  }
+  footer a { color: #c4a882; text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { color: #f5f0e1; text-decoration: underline; }
+  footer .footer-links { margin-bottom: 0.5rem; }
+
+  .formula-box {
+    background: #2c1810;
+    color: #c4a882;
+    font-family: 'Courier New', monospace;
+    font-size: 0.82rem;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    margin: 0.75rem 0;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .phase-bar-wrap { margin-bottom: 1rem; }
+  .phase-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.82rem;
+  }
+  .phase-name { width: 120px; flex-shrink: 0; color: #5a3020; font-weight: 600; }
+  .phase-bar-outer { flex: 1; background: #e8d9c0; border-radius: 4px; height: 16px; overflow: hidden; }
+  .phase-bar-inner { height: 100%; background: #8b4513; border-radius: 4px; transition: width 0.5s ease; }
+  .phase-pct { width: 42px; text-align: right; flex-shrink: 0; font-weight: 700; color: #8b4513; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <header>
+    <!-- SVG Pyramid Illustration -->
+    <svg class="pyramid-svg" width="220" height="130" viewBox="0 0 220 130" xmlns="http://www.w3.org/2000/svg" aria-label="Ancient Egyptian pyramid illustration">
+      <!-- Sky -->
+      <rect width="220" height="130" fill="#f5f0e1" rx="6"/>
+      <!-- Sun -->
+      <circle cx="185" cy="28" r="14" fill="#f4a236" opacity="0.85"/>
+      <line x1="185" y1="8" x2="185" y2="2" stroke="#f4a236" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="200" y1="13" x2="205" y2="9" stroke="#f4a236" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="205" y1="28" x2="211" y2="28" stroke="#f4a236" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="200" y1="43" x2="205" y2="47" stroke="#f4a236" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Sand ground -->
+      <ellipse cx="110" cy="120" rx="105" ry="14" fill="#c4a882" opacity="0.5"/>
+      <rect x="5" y="114" width="210" height="12" rx="4" fill="#c4a882" opacity="0.4"/>
+      <!-- Pyramid shadow -->
+      <polygon points="110,14 196,114 24,114" fill="#b8905a" opacity="0.22"/>
+      <!-- Pyramid body -->
+      <polygon points="110,14 196,114 24,114" fill="#d4a85a"/>
+      <!-- Pyramid shading (right face) -->
+      <polygon points="110,14 196,114 153,114" fill="#b8905a" opacity="0.45"/>
+      <!-- Stone row lines -->
+      <line x1="46" y1="95" x2="174" y2="95" stroke="#a07830" stroke-width="0.8" opacity="0.6"/>
+      <line x1="57" y1="80" x2="163" y2="80" stroke="#a07830" stroke-width="0.8" opacity="0.6"/>
+      <line x1="68" y1="65" x2="152" y2="65" stroke="#a07830" stroke-width="0.8" opacity="0.6"/>
+      <line x1="79" y1="50" x2="141" y2="50" stroke="#a07830" stroke-width="0.8" opacity="0.6"/>
+      <line x1="90" y1="35" x2="130" y2="35" stroke="#a07830" stroke-width="0.8" opacity="0.6"/>
+      <!-- Capstone highlight -->
+      <polygon points="110,14 118,35 102,35" fill="#f0c060" opacity="0.7"/>
+      <!-- Small workers at base -->
+      <circle cx="40" cy="112" r="3" fill="#5a3020"/>
+      <rect x="37" y="112" width="6" height="8" rx="1" fill="#6b4226"/>
+      <circle cx="55" cy="112" r="3" fill="#5a3020"/>
+      <rect x="52" y="112" width="6" height="8" rx="1" fill="#6b4226"/>
+    </svg>
+
+    <h1>Ancient Egyptian Pyramid Construction Timeline Estimator</h1>
+    <p class="subtitle">How long did it take to build the pyramids? Enter your parameters and find out.</p>
+  </header>
+
+  <!-- Tool Card -->
+  <div class="tool-card">
+    <div class="section-title">Choose a Pyramid or Enter Custom Dimensions</div>
+
+    <div class="tabs" id="presetTabs">
+      <button class="tab-btn active" onclick="loadPreset('khufu')">Great Pyramid</button>
+      <button class="tab-btn" onclick="loadPreset('khafre')">Pyramid of Khafre</button>
+      <button class="tab-btn" onclick="loadPreset('menkaure')">Pyramid of Menkaure</button>
+      <button class="tab-btn" onclick="loadPreset('djoser')">Step Pyramid</button>
+      <button class="tab-btn" onclick="loadPreset('custom')">Custom</button>
+    </div>
+
+    <div class="two-col">
+      <div class="input-group">
+        <label for="baseLength">Base Length <span class="label-hint">(meters)</span></label>
+        <input type="number" id="baseLength" min="10" max="300" value="230.4" step="0.1">
+        <div class="error-msg" id="err-base">Enter a valid base length (10–300 m).</div>
+      </div>
+      <div class="input-group">
+        <label for="height">Original Height <span class="label-hint">(meters)</span></label>
+        <input type="number" id="height" min="5" max="200" value="146.5" step="0.1">
+        <div class="error-msg" id="err-height">Enter a valid height (5–200 m).</div>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label for="blockWeight">Average Block Weight <span class="label-hint">(tonnes) — Khufu avg: 2.5 t</span></label>
+      <input type="number" id="blockWeight" min="0.1" max="80" value="2.5" step="0.1">
+      <div class="error-msg" id="err-block">Enter a valid block weight (0.1–80 t).</div>
+    </div>
+
+    <div class="input-group">
+      <label for="workforce">Daily Workforce <span class="label-hint">(workers on site) <span id="wfVal" class="slider-value">20,000</span></span></label>
+      <input type="range" id="workforce" min="1000" max="100000" value="20000" step="500" oninput="updateSliders()">
+    </div>
+
+    <div class="input-group">
+      <label for="productivity">Worker Productivity <span class="label-hint">(blocks placed per worker per year) <span id="prodVal" class="slider-value">365</span></span></label>
+      <input type="range" id="productivity" min="50" max="1000" value="365" step="5" oninput="updateSliders()">
+    </div>
+
+    <div class="two-col">
+      <div class="input-group">
+        <label for="workDays">Working Days per Year <span class="label-hint">(ancient Egyptians ~300)</span></label>
+        <input type="number" id="workDays" min="100" max="365" value="300" step="1">
+        <div class="error-msg" id="err-days">Enter 100–365 working days.</div>
+      </div>
+      <div class="input-group">
+        <label for="overheadFactor">Overhead Factor <span class="label-hint">(logistics, rest, delays)</span></label>
+        <select id="overheadFactor">
+          <option value="1.2">Low (×1.2)</option>
+          <option value="1.5" selected>Medium (×1.5)</option>
+          <option value="2.0">High (×2.0)</option>
+          <option value="2.5">Very High (×2.5)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn-primary" id="calcBtn">⚡ Calculate Construction Timeline</button>
+  </div>
+
+  <!-- Results -->
+  <div id="results">
+    <div class="result-hero">
+      <span class="big-number" id="res-years">—</span>
+      <div class="big-label" id="res-years-label">Estimated years to complete construction</div>
+    </div>
+
+    <div class="result-grid" id="res-grid"></div>
+
+    <div class="tool-card" style="padding: 1.25rem;">
+      <div class="section-title">Construction Phase Breakdown</div>
+      <div class="phase-bar-wrap" id="phase-bars"></div>
+      <div class="table-wrap">
+        <table id="phase-table">
+          <thead>
+            <tr>
+              <th>Phase</th>
+              <th>Activity</th>
+              <th>Duration</th>
+              <th>% of Total</th>
+            </tr>
+          </thead>
+          <tbody id="phase-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modern-equiv" id="modern-equiv"></div>
+
+    <div style="text-align:right; margin-bottom:1rem;">
+      <button class="copy-btn" id="copyBtn" onclick="copyResults()">📋 Copy Results</button>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Did You Know -->
+  <div class="dyk-box">
+    <div class="dyk-title">⚱️ Did You Know?</div>
+    <div class="dyk-item"><span class="dyk-dot">●</span><span>The Great Pyramid of Giza contains approximately 2.3 million stone blocks. If you placed them end-to-end, they'd stretch two-thirds of the way around Earth.</span></div>
+    <div class="dyk-item"><span class="dyk-dot">●</span><span>Ancient Egyptian workers were not slaves — they were paid, skilled laborers who received beer, bread, and medical care. Worker graffiti found in pyramid shafts even show evidence of team rivalries and nicknames.</span></div>
+    <div class="dyk-item"><span class="dyk-dot">●</span><span>The Egyptians used a unit called the Royal Cubit (≈ 52.3 cm) for all construction measurements. The Great Pyramid's base is precisely 440 cubits per side — an astonishing feat of surveying without modern instruments.</span></div>
+  </div>
+
+  <!-- Historical Context -->
+  <div class="hist-context content-section">
+    <h3>📜 Historical Context</h3>
+    <p>The Great Pyramid of Giza was built for Pharaoh Khufu (Cheops) around 2560 BCE during the Old Kingdom's Fourth Dynasty. It stood as the world's tallest structure for over 3,800 years at 146.5 meters. Herodotus claimed 100,000 workers labored for 20 years, but modern Egyptologist Mark Lehner revised this estimate to 20,000–30,000 highly organized workers based on evidence from worker villages discovered at Giza in 1990. The workforce operated in rotating crews called "phyles" (Greek for tribes), each consisting of roughly 200 men. Papyrus Merer, discovered in 2013, is the world's oldest known papyrus and documents the logistics of transporting fine white limestone by boat directly to the pyramid site — confirming the sophistication of Egyptian supply chains.</p>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Pyramid Timeline Estimator</h2>
+    <p>Select a preset pyramid or enter custom dimensions (base length and height in meters). Adjust the workforce slider to reflect the number of workers on site daily, set the productivity level (blocks placed per worker per year), and choose an overhead factor to account for logistics, transport delays, and rest periods. Hit "Calculate" to see the estimated construction timeline broken down by phase.</p>
+    <p>All outputs use the pyramid's calculated volume, estimated block count, and worker throughput to derive realistic durations — grounded in the same scholarly estimates used by modern Egyptologists.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters — How Long Did It Take to Build the Pyramids?</h2>
+    <p>Understanding pyramid construction timelines puts one of history's greatest engineering achievements into breathtaking perspective. The question of how long it took to build the pyramids has fascinated historians, engineers, and travelers for millennia.</p>
+    <p>Conventional scholarly estimates place the Great Pyramid's construction at roughly 20–27 years, coinciding with Pharaoh Khufu's reign (c. 2589–2566 BCE). That means workers needed to place an average of about 800 blocks per hour — roughly one every 4.5 seconds — during working hours. Some blocks, like the granite "King's Chamber" ceiling slabs, weighed up to 80 tonnes and were transported 900 km from Aswan by boat along the Nile.</p>
+    <p>Smaller pyramids like Menkaure's (built c. 2510 BCE) required far less time — perhaps 6–10 years — while the massive Pyramid of Khafre (base 215 m, height 143.5 m) is thought to have taken roughly 20 years. Step Pyramid of Djoser (c. 2650 BCE) is estimated at 15–20 years and represents the prototype that made all later pyramid construction possible. These timelines reveal not just construction logistics, but entire political, religious, and economic systems organized around a single project.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The estimator uses the geometric volume of a square pyramid, converts it to an estimated block count, then divides total work by workforce capacity adjusted for overhead:</p>
+    <div class="formula-box">Volume = (1/3) × Base² × Height  (cubic meters)
+
+Block Count = Volume ÷ Block Volume
+  where Block Volume = Block Weight ÷ 2.5  (limestone density ≈ 2,500 kg/m³)
+
+Total Worker-Years = (Block Count × Overhead Factor) ÷ Productivity
+
+Years = Total Worker-Years ÷ Workforce Size
+
+Phase Durations:
+  Quarrying & transport:  40% of total time
+  Core construction:      35% of total time
+  Casing & finishing:     15% of total time
+  Interior chambers:      10% of total time</div>
+    <p>The overhead factor accounts for the fact that not all workers placed blocks — many were quarrymen, sledge pullers, ramp builders, administrators, cooks, and doctors. The 1 Royal Cubit = 0.5236 m is used for internal reference; the base and height inputs accept modern meters for convenience.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't assume all workers placed blocks.</strong> In reality, only a fraction of the workforce were stone setters. Ramp construction, quarrying, and logistics each consumed large portions of labor.</li>
+      <li><strong>Block weight varies enormously.</strong> The Great Pyramid's average block is 2.5 tonnes, but the granite plugs in the ascending passage weigh 3–5 tonnes, and the King's Chamber ceiling slabs weigh up to 80 tonnes each. Use the average, not the maximum.</li>
+      <li><strong>The Nile flood season was peak construction time.</strong> Farmers who were idled during the July–October inundation joined the workforce, giving the pyramid project its enormous seasonal surge in labor.</li>
+      <li><strong>Higher workforce ≠ faster linearly.</strong> Beyond a certain density, workers get in each other's way. The tool's overhead factor partly compensates for this diminishing return.</li>
+      <li><strong>Finishing stages were often the most time-consuming per block.</strong> The casing stones — polished white Tura limestone — required precise fitting to ±2.3 cm accuracy across the entire 22-acre base.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>How long did it actually take to build the Great Pyramid of Giza?</summary>
+      <p>Most modern Egyptologists estimate between 20 and 27 years, corresponding to the reign of Pharaoh Khufu (c. 2589–2566 BCE). This is based on the total volume of stone (~2.6 million cubic meters), evidence from worker graffiti and papyri, and labor-capacity models developed by researchers like Mark Lehner and Zahi Hawass.</p>
+    </details>
+
+    <details>
+      <summary>Were the pyramid builders slaves?</summary>
+      <p>No — this is a widespread myth. Archaeological evidence from the 1990s discovery of workers' villages at Giza shows a well-fed, medically cared-for permanent workforce of skilled craftsmen, supplemented by rotating crews of conscripted laborers from across Egypt. Workers received payment in bread, beer, and sometimes fine linen. Many were buried with honor near the pyramids they built.</p>
+    </details>
+
+    <details>
+      <summary>How were the massive stones lifted into place?</summary>
+      <p>The most widely accepted theory involves long earthen or mudbrick ramps that allowed workers using wooden sledges and wet sand lubrication to drag blocks upward. Evidence includes a 4,500-year-old ramp system discovered at Hatnub quarry in 2018, featuring staircases with postholes — consistent with a counterweight/pulley-assisted hauling system capable of dragging 2.5-tonne blocks up steep inclines with as few as 40 workers.</p>
+    </details>
+
+    <details>
+      <summary>What is a Royal Cubit and how does it relate to pyramids?</summary>
+      <p>The Royal Cubit (meh niswt) measured approximately 52.3 cm (about 20.6 inches) and was subdivided into 7 palms of 4 fingers each. The Great Pyramid's base was exactly 440 Royal Cubits per side, its height 280 Royal Cubits, giving a ratio of 440/280 = 11/7 ≈ π/2 — meaning the Egyptians may have accidentally (or intentionally) incorporated π into their construction before the concept was formally defined.</p>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h2>Related Tools</h2>
+    <a href="/greek-trireme-voyage-planner/">Greek Trireme Voyage Planner</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /.container -->
+
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© <span id="yr"></span> historycalc.com — Free Historical Calculation Tools</div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const PRESETS = {
+  khufu:    { base: 230.4, height: 146.5, block: 2.5,  label: "Great Pyramid of Khufu (~2560 BCE)" },
+  khafre:   { base: 215.3, height: 143.5, block: 2.5,  label: "Pyramid of Khafre (~2530 BCE)" },
+  menkaure: { base: 103.4, height: 65.5,  block: 2.2,  label: "Pyramid of Menkaure (~2510 BCE)" },
+  djoser:   { base: 121.0, height: 62.5,  block: 0.6,  label: "Step Pyramid of Djoser (~2650 BCE)" },
+  custom:   { base: 100,   height: 60,    block: 2.0,  label: "Custom Pyramid" }
+};
+
+let currentPreset = 'khufu';
+let copyData = '';
+
+function fmt(n, dec=0) {
+  if (isNaN(n) || !isFinite(n)) return '—';
+  return Number(n.toFixed(dec)).toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+function updateSliders() {
+  const wf = parseInt(document.getElementById('workforce').value);
+  const prod = parseInt(document.getElementById('productivity').value);
+  document.getElementById('wfVal').textContent = fmt(wf);
+  document.getElementById('prodVal').textContent = fmt(prod);
+}
+
+function loadPreset(key) {
+  currentPreset = key;
+  document.querySelectorAll('.tab-btn').forEach((b,i) => {
+    const keys = ['khufu','khafre','menkaure','djoser','custom'];
+    b.classList.toggle('active', keys[i] === key);
+  });
+  const p = PRESETS[key];
+  document.getElementById('baseLength').value = p.base;
+  document.getElementById('height').value = p.height;
+  document.getElementById('blockWeight').value = p.block;
+  // Reset workforce defaults per pyramid
+  const wfMap = { khufu: 20000, khafre: 18000, menkaure: 8000, djoser: 10000, custom: 15000 };
+  document.getElementById('workforce').value = wfMap[key] || 15000;
+  updateSliders();
+}
+
+function clearErrors() {
+  ['base','height','block','days'].forEach(id => {
+    document.getElementById('err-'+id).classList.remove('visible');
+    const inputMap = { base: 'baseLength', height: 'height', block: 'blockWeight', days: 'workDays' };
+    document.getElementById(inputMap[id]).classList.remove('error');
+  });
+}
+
+function showError(id, inputId) {
+  document.getElementById('err-'+id).classList.add('visible');
+  document.getElementById(inputId).classList.add('error');
+}
+
+function calculate() {
+  clearErrors();
+
+  const base = parseFloat(document.getElementById('baseLength').value);
+  const height = parseFloat(document.getElementById('height').value);
+  const blockWt = parseFloat(document.getElementById('blockWeight').value);
+  const workforce = parseInt(document.getElementById('workforce').value);
+  const productivity = parseInt(document.getElementById('productivity').value);
+  const workDays = parseInt(document.getElementById('workDays').value);
+  const overhead = parseFloat(document.getElementById('overheadFactor').value);
+
+  let valid = true;
+  if (!base || base < 10 || base > 300) { showError('base','baseLength'); valid=false; }
+  if (!height || height < 5 || height > 200) { showError('height','height'); valid=false; }
+  if (!blockWt || blockWt < 0.1 || blockWt > 80) { showError('block','blockWeight'); valid=false; }
+  if (!workDays || workDays < 100 || workDays > 365) { showError('days','workDays'); valid=false; }
+  if (!valid) return;
+
+  // Calculations
+  const LIMESTONE_DENSITY = 2500; // kg/m³
+  const blockVolume = (blockWt * 1000) / LIMESTONE_DENSITY; // m³
+  const pyramidVolume = (1/3) * base * base * height; // m³
+  const blockCount = Math.round(pyramidVolume / blockVolume);
+
+  // Worker-years needed (with overhead)
+  const totalBlockWork = blockCount * overhead;
+  const workerYears = totalBlockWork / productivity;
+  const years = workerYears / workforce;
+
+  // Phase breakdown (percentages)
+  const phases = [
+    { name: "Quarrying & Transport", pct: 40, desc: "Cutting, hauling, waterway transport of stone blocks" },
+    { name: "Core Construction",     pct: 35, desc: "Placing core limestone blocks, building ramps" },
+    { name: "Casing & Finishing",    pct: 15, desc: "Polishing Tura limestone facing, alignment" },
+    { name: "Interior Chambers",     pct: 10, desc: "Burial chambers, passages, relieving chambers" }
+  ];
+
+  const totalYears = years;
+  const phaseDurations = phases.map(p => ({ ...p, years: totalYears * p.pct / 100 }));
+
+  // Modern equivalents
+  const cubits = base / 0.5236;
+  const weightTotal = (blockCount * blockWt); // tonnes
+  const eiffelTowers = weightTotal / 7300;
+  const workerTotalManYears = Math.round(workforce * years);
+
+  // Build HTML
+  const presetLabel = PRESETS[currentPreset]?.label || 'Custom Pyramid';
+
+  // Result grid cards
+  let gridHTML = `
+    <div class="result-card"><span class="rc-value">${fmt(blockCount)}</span><span class="rc-label">Total Stone Blocks</span></div>
+    <div class="result-card"><span class="rc-value">${fmt(pyramidVolume)} m³</span><span class="rc-label">Pyramid Volume</span></div>
+    <div class="result-card"><span class="rc-value">${fmt(workforce)}</span><span class="rc-label">Workers on Site (daily)</span></div>
+    <div class="result-card"><span class="rc-value">${fmt(workerTotalManYears)}</span><span class="rc-label">Total Person-Years of Labor</span></div>
+  `;
+
+  // Phase bars + table
+  let barsHTML = '';
+  let tbodyHTML = '';
+  phases.forEach(p => {
+    const yrs = totalYears * p.pct / 100;
+    barsHTML += `
+      <div class="phase-row">
+        <div class="phase-name">${p.name.split('&')[0].trim()}</div>
+        <div class="phase-bar-outer"><div class="phase-bar-inner" style="width:${p.pct}%"></div></div>
+        <div class="phase-pct">${p.pct}%</div>
+      </div>`;
+    tbodyHTML += `<tr>
+      <td>${p.name}</td>
+      <td>${p.desc}</td>
+      <td>${fmt(yrs, 1)} yrs</td>
+      <td>${p.pct}%</td>
+    </tr>`;
+  });
+
+  // Modern equiv
+  const modernEquivHTML = `
+    <strong>📏 Modern Equivalent Comparisons:</strong><br><br>
+    <strong>Weight:</strong> The ${fmt(blockCount)} blocks weigh a combined <strong>${fmt(weightTotal)} tonnes</strong> — that's equivalent to roughly <strong>${fmt(eiffelTowers, 0)} Eiffel Towers</strong>.<br>
+    <strong>Labor:</strong> The <strong>${fmt(workerTotalManYears)} person-years</strong> of labor involved is comparable to building approximately <strong>${fmt(workerTotalManYears / 10, 0)} Empire State Buildings</strong> (which required ~7 million person-days / ~28,000 person-years).<br>
+    <strong>Height in Royal Cubits:</strong> The pyramid stands <strong>${fmt(height / 0.5236, 0)} Royal Cubits</strong> tall (1 cubit ≈ 52.36 cm).<br>
+    <strong>Base:</strong> <strong>${fmt(cubits, 0)} Royal Cubits</strong> per side — the Egyptians considered 440 cubits a sacred measure.
+  `;
+
+  copyData = `Pyramid Construction Timeline — ${presetLabel}
+${'='.repeat(52)}
+Estimated Years: ${fmt(years, 1)} years
+Total Blocks: ${fmt(blockCount)}
+Pyramid Volume: ${fmt(pyramidVolume)} m³
+Workforce: ${fmt(workforce)} workers/day
+Total Person-Years: ${fmt(workerTotalManYears)}
+
+Phase Breakdown:
+${phases.map(p => `  ${p.name}: ${fmt(totalYears * p.pct / 100, 1)} yrs (${p.pct}%)`).join('\n')}
+
+Modern Equivalents:
+  Total block weight: ${fmt(weightTotal)} tonnes
+  Eiffel Towers equivalent: ${fmt(eiffelTowers, 0)}`;
+
+  requestAnimationFrame(() => {
+    document.getElementById('res-years').textContent = fmt(years, 1) + ' yrs';
+    document.getElementById('res-years-label').textContent = `Estimated years to complete — ${presetLabel}`;
+    document.getElementById('res-grid').innerHTML = gridHTML;
+    document.getElementById('phase-bars').innerHTML = barsHTML;
+    document.getElementById('phase-tbody').innerHTML = tbodyHTML;
+    document.getElementById('modern-equiv').innerHTML = modernEquivHTML;
+
+    const resultsEl = document.getElementById('results');
+    resultsEl.classList.remove('visible');
+    void resultsEl.offsetWidth; // force reflow for transition
+    resultsEl.classList.add('visible');
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+function copyResults() {
+  if (!copyData) return;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(copyData).then(() => showCopied());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = copyData;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showCopied();
+  }
+}
+
+function showCopied() {
+  const btn = document.getElementById('copyBtn');
+  const orig = btn.textContent;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => { btn.textContent = orig; }, 2000);
+}
+
+// Enter key support
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && ['INPUT','SELECT'].includes(e.target.tagName)) {
+    requestAnimationFrame(() => calculate());
+  }
+});
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => calculate());
+});
+
+// Init
+updateSliders();
+</script>
+</body>
+</html>
