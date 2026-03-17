@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Greek Olympic Games Planner — Free Online Tool | OlympicPlanner</title>
+<meta name="description" content="Plan and explore Ancient Greek Olympic Games events. Calculate training schedules, event timelines, and athlete profiles inspired by the ancient Olympics at Olympia.">
+<link rel="canonical" href="https://olympicplanner.example.com/ancient-greek-olympic-games-planner">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Greek Olympic Games Planner",
+  "description": "Plan and explore Ancient Greek Olympic Games events, calculate training schedules, and create athlete profiles inspired by the ancient Olympics.",
+  "url": "https://olympicplanner.example.com/ancient-greek-olympic-games-planner",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;line-height:1.6;font-size:16px}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:0.75rem 1.5rem;font-size:0.9rem}
+nav a{font-weight:600;color:#1a1a2e}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.7rem;font-weight:700;color:#1a1a2e;margin-bottom:0.4rem}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.tabs{display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:1.5rem;overflow-x:auto}
+.tab-btn{background:none;border:none;padding:10px 16px;font-size:0.9rem;font-weight:500;color:#666;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-2px;white-space:nowrap;min-height:44px;transition:color 0.2s}
+.tab-btn.active{color:#0077b6;border-bottom-color:#0077b6}
+.tab-btn:hover{color:#0077b6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:5px;margin-top:1rem}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;border:1px solid #ddd;border-radius:6px;padding:12px 16px;font-size:1rem;font-family:inherit;color:#1a1a2e;background:#fff;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error,select.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+button.primary{background:#0077b6;color:#fff;border:none;border-radius:6px;padding:12px 24px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;margin-top:1.2rem;min-height:44px;transition:background 0.2s}
+button.primary:hover{background:#006299}
+button.secondary{background:#f0f0f0;color:#1a1a2e;border:1px solid #ddd;border-radius:6px;padding:8px 16px;font-size:0.85rem;cursor:pointer;min-height:36px;transition:background 0.2s}
+button.secondary:hover{background:#e0e0e0}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:auto}
+.big-number{font-size:2.4rem;font-weight:700;color:#0077b6;line-height:1.1}
+.big-label{font-size:0.85rem;color:#666;margin-top:2px}
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem;margin:1.2rem 0}
+.metric-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:1rem;text-align:center}
+.metric-val{font-size:1.4rem;font-weight:700;color:#0077b6}
+.metric-lbl{font-size:0.75rem;color:#666;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+th{background:#f0f0f0;padding:10px 12px;text-align:left;font-weight:600;font-size:0.82rem;color:#444;border-bottom:2px solid #ddd}
+th.right,td.right{text-align:right}
+td{padding:9px 12px;border-bottom:1px solid #eee;color:#1a1a2e}
+tr:nth-child(even) td{background:#fafafa}
+.tbl-wrap{overflow-x:auto;border-radius:6px;border:1px solid #e0e0e0;margin-top:1rem}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.8rem;margin-top:1.5rem;padding-bottom:4px;border-bottom:2px solid #f0f0f0}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.75rem;font-weight:600;background:#e8f4fd;color:#0077b6;margin:2px}
+.gold-badge{background:#fff3cd;color:#856404}
+.silver-badge{background:#f0f0f0;color:#555}
+.bronze-badge{background:#fde8d8;color:#8a4a0a}
+.event-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:1rem;margin-bottom:0.8rem}
+.event-name{font-weight:700;color:#0077b6;font-size:1rem}
+.event-desc{font-size:0.85rem;color:#555;margin-top:3px}
+.event-detail{font-size:0.82rem;color:#666;margin-top:5px}
+.progress-bar-wrap{background:#e0e0e0;border-radius:4px;height:12px;overflow:hidden;margin:4px 0}
+.progress-bar{background:#0077b6;height:100%;border-radius:4px;transition:width 0.5s ease}
+.copy-btn{background:none;border:1px solid #ddd;border-radius:4px;padding:4px 10px;font-size:0.75rem;color:#666;cursor:pointer;margin-left:8px;transition:all 0.2s;min-height:28px}
+.copy-btn:hover{border-color:#0077b6;color:#0077b6}
+.info-box{background:#e8f4fd;border-left:3px solid #0077b6;border-radius:0 6px 6px 0;padding:0.8rem 1rem;font-size:0.88rem;color:#1a1a2e;margin:1rem 0}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-top:2rem}
+.content-section h2{font-size:1.2rem;font-weight:700;color:#1a1a2e;margin-bottom:0.6rem;margin-top:1.8rem}
+.content-section p{font-size:0.93rem;color:#333;margin-bottom:0.8rem;line-height:1.7}
+.content-section ul{margin:0.6rem 0 0.8rem 1.2rem}
+.content-section ul li{font-size:0.93rem;color:#333;margin-bottom:0.4rem;line-height:1.6}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.6rem}
+summary{padding:0.8rem 1rem;font-weight:600;font-size:0.92rem;cursor:pointer;color:#1a1a2e;list-style:none;position:relative;padding-right:2rem}
+summary::after{content:'▼';position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:0.75rem;color:#666;transition:transform 0.2s}
+details[open] summary::after{transform:translateY(-50%) rotate(180deg)}
+details p{padding:0.6rem 1rem 0.8rem;font-size:0.9rem;color:#444;line-height:1.6}
+.related-tools{background:#f8f9fa;border-radius:8px;padding:1.2rem 1.5rem;margin-top:2rem}
+.related-tools h3{font-size:1rem;font-weight:700;margin-bottom:0.8rem;color:#1a1a2e}
+.related-tools a{display:inline-block;margin:3px 4px;padding:5px 12px;background:#fff;border:1px solid #ddd;border-radius:20px;font-size:0.85rem;color:#0077b6}
+.related-tools a:hover{border-color:#0077b6;background:#e8f4fd;text-decoration:none}
+footer{border-top:1px solid #e0e0e0;padding:1.5rem;text-align:center;font-size:0.82rem;color:#888;margin-top:2rem}
+footer a{color:#888;margin:0 8px}
+footer a:hover{color:#0077b6}
+</style>
+</head>
+<body>
+<nav><a href="/">⚡ OlympicPlanner</a></nav>
+<div class="container">
+<h1>Ancient Greek Olympic Games Planner</h1>
+<p class="subtitle">Design your athlete, choose your events, and build a training schedule fit for ancient Olympia.</p>
+
+<div class="card">
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('events')">🏛 Events</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('athlete')">🏃 Athlete</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('training')">📅 Training</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('calendar')">🗓 Games Calendar</button>
+  </div>
+
+  <!-- EVENTS TAB -->
+  <div class="tab-panel active" id="tab-events">
+    <div class="info-box">Select the ancient Olympic events your athlete will compete in and see difficulty ratings, historical context, and prize equivalents.</div>
+    <label>Athlete Name</label>
+    <input type="text" id="ev-name" placeholder="e.g. Diagoras of Rhodes" maxlength="60">
+    <label>City-State (Polis)</label>
+    <select id="ev-polis">
+      <option value="Sparta">Sparta</option>
+      <option value="Athens" selected>Athens</option>
+      <option value="Corinth">Corinth</option>
+      <option value="Thebes">Thebes</option>
+      <option value="Rhodes">Rhodes</option>
+      <option value="Elis">Elis</option>
+      <option value="Argos">Argos</option>
+      <option value="Syracuse">Syracuse</option>
+    </select>
+    <label>Choose Events (select multiple)</label>
+    <div id="event-checkboxes" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px"></div>
+    <div class="error-msg" id="ev-error">Please select at least one event.</div>
+    <button class="primary" onclick="calculateEvents()">⚡ Generate Event Profile</button>
+    <div class="results" id="ev-results"></div>
+  </div>
+
+  <!-- ATHLETE TAB -->
+  <div class="tab-panel" id="tab-athlete">
+    <div class="info-box">Enter your athlete's physical stats. The tool will rank you against historical Greek athletic ideals and suggest your best events.</div>
+    <label>Athlete Name</label>
+    <input type="text" id="ath-name" placeholder="e.g. Milo of Croton" maxlength="60">
+    <div class="form-row">
+      <div>
+        <label>Age (years)</label>
+        <input type="number" id="ath-age" placeholder="20" min="12" max="60">
+      </div>
+      <div>
+        <label>Height (cm)</label>
+        <input type="number" id="ath-height" placeholder="175" min="140" max="220">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label>Weight (kg)</label>
+        <input type="number" id="ath-weight" placeholder="75" min="40" max="150">
+      </div>
+      <div>
+        <label>Body Type</label>
+        <select id="ath-type">
+          <option value="lean">Lean (ectomorph)</option>
+          <option value="athletic" selected>Athletic (mesomorph)</option>
+          <option value="powerful">Powerful (endomorph)</option>
+        </select>
+      </div>
+    </div>
+    <label>Primary Strength</label>
+    <select id="ath-strength">
+      <option value="speed">Speed & Agility</option>
+      <option value="endurance">Endurance</option>
+      <option value="power" selected>Power & Strength</option>
+      <option value="balance">Balance & Technique</option>
+    </select>
+    <div class="error-msg" id="ath-error">Please fill in all fields with valid values.</div>
+    <button class="primary" onclick="calculateAthlete()">🏅 Analyze Athlete Profile</button>
+    <div class="results" id="ath-results"></div>
+  </div>
+
+  <!-- TRAINING TAB -->
+  <div class="tab-panel" id="tab-training">
+    <div class="info-box">Ancient Greek athletes trained for 10 months before the Olympics. Generate a personalized monthly schedule based on your event choices.</div>
+    <label>Primary Event Category</label>
+    <select id="tr-event">
+      <option value="running">Running (Stade, Diaulos, Dolichos)</option>
+      <option value="combat">Combat (Wrestling, Boxing, Pankration)</option>
+      <option value="pentathlon">Pentathlon (5-event combined)</option>
+      <option value="equestrian">Equestrian (Chariot, Horse Race)</option>
+      <option value="throwing">Throwing (Discus, Javelin)</option>
+    </select>
+    <div class="form-row">
+      <div>
+        <label>Training Hours / Day</label>
+        <input type="number" id="tr-hours" placeholder="4" min="1" max="12">
+      </div>
+      <div>
+        <label>Months Until Games</label>
+        <input type="number" id="tr-months" placeholder="10" min="1" max="12">
+      </div>
+    </div>
+    <label>Diet Focus</label>
+    <select id="tr-diet">
+      <option value="meat">Meat-heavy (Pythagoras warned against this)</option>
+      <option value="grain" selected>Grain & cheese (traditional)</option>
+      <option value="fig">Figs & dried fruit (endurance focus)</option>
+      <option value="mixed">Mixed Greek diet</option>
+    </select>
+    <div class="error-msg" id="tr-error">Please enter valid training hours (1–12) and months (1–12).</div>
+    <button class="primary" onclick="calculateTraining()">📋 Generate Training Plan</button>
+    <div class="results" id="tr-results"></div>
+  </div>
+
+  <!-- CALENDAR TAB -->
+  <div class="tab-panel" id="tab-calendar">
+    <div class="info-box">The ancient Olympics were held every 4 years (an Olympiad) at Olympia, in the Greek month of Hekatombaion. Enter a modern year to find the nearest ancient Games equivalent and explore the 5-day festival schedule.</div>
+    <label>Modern Year (to find nearest Olympiad)</label>
+    <input type="number" id="cal-year" placeholder="2024" min="776" max="9999">
+    <label>Estimated Month of Travel Start</label>
+    <select id="cal-month">
+      <option value="5">May</option>
+      <option value="6" selected>June</option>
+      <option value="7">July</option>
+    </select>
+    <label>Distance from Home Polis (km)</label>
+    <input type="number" id="cal-dist" placeholder="300" min="0" max="5000">
+    <div class="error-msg" id="cal-error">Please enter a valid year (776 or later).</div>
+    <button class="primary" onclick="calculateCalendar()">🗓 Plan My Journey</button>
+    <div class="results" id="cal-results"></div>
+  </div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<!-- CONTENT SECTION -->
+<div class="content-section">
+  <h2>How to Use This Ancient Greek Olympic Games Planner</h2>
+  <p>This planner has four tabs. In <strong>Events</strong>, choose your ancient Olympic events (like the Stade sprint or Pankration) and get a full event profile including difficulty, historical context, and prize value in drachmas. In <strong>Athlete</strong>, enter your physical stats to receive a personalized ancient Greek athletic ranking and event recommendations. The <strong>Training</strong> tab generates a 10-month preparation schedule mirroring how Greek athletes actually trained. Finally, <strong>Games Calendar</strong> maps any modern year to the nearest ancient Olympiad cycle and lays out the authentic 5-day festival itinerary.</p>
+
+  <h2>Why This Matters</h2>
+  <p>The ancient Olympic Games were not just a sporting event — they were one of the most important religious and cultural festivals of the ancient Greek world, held at Olympia in honor of Zeus every four years from 776 BCE until 393 CE. For over 1,100 years they shaped Greek identity, diplomacy, and physical culture. During the sacred truce (Ekecheiria), even warring city-states ceased hostilities to allow safe passage for athletes and spectators.</p>
+  <p>Understanding the structure of these games helps students, historians, game designers, authors writing historical fiction, and physical education teachers bring antiquity to life. The events ranged from simple foot races (the Stade was just one length of the stadium, roughly 192 meters) to grueling multi-day combat events like Pankration — a brutal mix of wrestling and boxing with almost no rules. Victors received only an olive wreath (kotinos), yet they were treated as demigods at home, receiving free meals for life, front-row theater seats, and enormous social prestige.</p>
+  <p>Athletes arrived 30 days early to train under judges at Olympia, and had to swear a sacred oath before the statue of Zeus. The Games lasted 5 days, weaving athletic competition with religious sacrifice, feasting, and music.</p>
+
+  <h2>How It's Calculated</h2>
+  <p>The <strong>Event Difficulty Score</strong> is a weighted composite of technique complexity (0–10), endurance demand (0–10), and injury risk (0–10), normalized to a 100-point scale. <strong>Training Load</strong> is computed as: <code>Total Hours = Training Hours/Day × 30 × Months</code>, split across skill drills (40%), physical conditioning (35%), and recovery/ritual (25%). The <strong>Olympiad finder</strong> uses: <code>Olympiad Number = ceil((Year − 776) / 4)</code> with the first Games in 776 BCE. Travel time assumes ancient walking speed of ~30–35 km/day for a fit athlete with equipment.</p>
+
+  <h2>Tips & Common Mistakes</h2>
+  <ul>
+    <li><strong>Don't skip the Pentathlon:</strong> It was considered the most prestigious combined event. Winning it required excellence in running, jumping, discus, javelin, and wrestling — not just brute strength.</li>
+    <li><strong>Training hours matter:</strong> Ancient Greek athletes trained 4–6 hours daily, but overdoing it (8+ hours) risked injury and diminishing returns. The Greeks understood periodization intuitively.</li>
+    <li><strong>Diet was strategic:</strong> Early Greek athletes ate a grain and cheese diet. Around 480 BCE, trainers like Dromeus of Stymphalos pioneered heavy meat diets for strength athletes — a controversial and mocked practice at first.</li>
+    <li><strong>Only free Greek men could compete:</strong> Women, slaves, and non-Greeks (barbarians) were barred from competing — though women had their own games (Heraia) at Olympia in honor of Hera.</li>
+    <li><strong>The olive wreath was everything:</strong> Victors received no money from the Games themselves — but gifts from their home polis, ode commissions from poets like Pindar, and lifelong hero-status made victory enormously valuable.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <details>
+    <summary>How many events were in the ancient Olympics?</summary>
+    <p>The program grew from a single footrace (the Stade) at the first Games in 776 BCE to around 18–20 events by the classical period (5th–4th century BCE). These included multiple running races, combat sports, the Pentathlon, and equestrian events. The chariot race was so expensive to enter it was effectively only open to the aristocracy and kings — Alcibiades of Athens famously entered seven teams at once in 416 BCE.</p>
+  </details>
+  <details>
+    <summary>Did athletes compete naked?</summary>
+    <p>Yes — the word "gymnasium" comes from the Greek "gymnos" meaning naked. Athletic nudity (gymnosia) was a distinctly Greek practice considered both practical and a display of physical excellence. It is said to have begun after a runner named Orsippus lost his loincloth mid-race around 720 BCE and still won, after which nudity became standard.</p>
+  </details>
+  <details>
+    <summary>What was the sacred truce (Ekecheiria)?</summary>
+    <p>The Ekecheiria was a formal truce proclaimed by heralds (spondophoroi) throughout the Greek world about three months before the Games. It guaranteed safe passage to Olympia and prohibited warfare in the region of Elis. It did not always stop all conflict — Sparta was actually fined and banned from competing in 420 BCE for violating it — but it was generally respected as a sacred obligation.</p>
+  </details>
+  <details>
+    <summary>How is an Olympiad different from the Olympic Games?</summary>
+    <p>An "Olympiad" refers to the 4-year period between Games, used by the Greeks as a unit of time measurement. The Games themselves within that period were just called "ta Olympia." Historians date ancient events by their Olympiad number: for example, the Battle of Marathon (490 BCE) occurred in the 72nd Olympiad. The first modern Olympics in Athens 1896 CE would correspond to Olympiad 670 using the ancient counting system.</p>
+  </details>
+</div>
+
+<div class="related-tools">
+  <h3>Related Tools</h3>
+  <a href="/roman-calendar-converter">Roman Calendar Converter</a>
+  <a href="/ancient-unit-converter">Ancient Unit Converter</a>
+  <a href="/marathon-pace-calculator">Marathon Pace Calculator</a>
+  <a href="/greek-mythology-quiz">Greek Mythology Quiz</a>
+  <a href="/historical-timeline-builder">Historical Timeline Builder</a>
+  <a href="/training-plan-generator">Training Plan Generator</a>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/contact">Contact</a>
+  <br><br>
+  © <span id="yr"></span> olympicplanner.example.com
+</footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ── DATA ─────────────────────────────────────────────────────────────────────
+const EVENTS = [
+  {id:'stade',    name:'Stade (Sprint)',        cat:'running',    diff:55, endurance:4, tech:3,  injury:2, days:[2,3], prize:120, desc:'~192m sprint — the oldest and most prestigious event. The Games were named after their Stade winner.'},
+  {id:'diaulos',  name:'Diaulos (2-stade)',     cat:'running',    diff:60, endurance:6, tech:3,  injury:2, days:[3],   prize:100, desc:'One length out and back — roughly 384m. Required cornering skill around the post.'},
+  {id:'dolichos', name:'Dolichos (Long Race)',  cat:'running',    diff:70, endurance:9, tech:3,  injury:3, days:[3],   prize:90,  desc:'7–24 laps (1.3–4.6km). A test of pure endurance over the stadium track.'},
+  {id:'wrestling',name:'Pale (Wrestling)',      cat:'combat',     diff:80, endurance:7, tech:8,  injury:6, days:[4],   prize:180, desc:'Three throws to win. No striking, no joint locks. Held standing — the most technically demanding combat sport.'},
+  {id:'boxing',   name:'Pygmachia (Boxing)',    cat:'combat',     diff:85, endurance:8, tech:7,  injury:9, days:[4],   prize:175, desc:'Leather thong-bound fists, no rounds, no weight classes. Fought until surrender or knockout.'},
+  {id:'pankration',name:'Pankration',           cat:'combat',     diff:95, endurance:9, tech:9,  injury:9, days:[4],   prize:200, desc:'Everything allowed except biting and eye-gouging. The ultimate test of Greek athleticism. Some bouts lasted hours.'},
+  {id:'pentathlon',name:'Pentathlon (5-event)', cat:'pentathlon', diff:88, endurance:8, tech:9,  injury:5, days:[3],   prize:220, desc:'Sprint + long jump + discus + javelin + wrestling. The winner was considered the most complete athlete.'},
+  {id:'discus',   name:'Diskos (Discus)',       cat:'throwing',   diff:65, endurance:3, tech:8,  injury:3, days:[3],   prize:85,  desc:'A stone or bronze disc of ~1.5–2kg. Technique was critical — depicted famously in the Discobolus sculpture.'},
+  {id:'javelin',  name:'Akon (Javelin)',        cat:'throwing',   diff:62, endurance:3, tech:8,  injury:3, days:[3],   prize:80,  desc:'A leather thong (ankyle) wrapped the shaft improved spin and distance. Accuracy and technique were judged.'},
+  {id:'jump',     name:'Halma (Long Jump)',     cat:'jumping',    diff:60, endurance:4, tech:9,  injury:4, days:[3],   prize:85,  desc:'Performed with stone weights (halteres) swung for momentum. Ancient records suggest 15m+ jumps — possibly multiple jumps.'},
+  {id:'chariot',  name:'Tethrippon (Chariot)',  cat:'equestrian', diff:90, endurance:5, tech:10, injury:8, days:[2],   prize:400, desc:'4-horse chariot over 12 laps (~13.5km). The most dangerous event — crashes were common and spectacular.'},
+  {id:'horse',    name:'Keles (Horse Race)',    cat:'equestrian', diff:75, endurance:7, tech:8,  injury:7, days:[2],   prize:250, desc:'Ridden bareback without stirrups over 6 laps. Required extraordinary balance and horsemanship.'},
+];
+
+const TRAINING_PLANS = {
+  running:{
+    phases:[
+      {month:'1–2',focus:'Foundation',activities:['Long distance walks (15km/day)','Basic stride drills','Foot strengthening exercises','Swimming in the river'],cond:30,skill:45,recovery:25},
+      {month:'3–4',focus:'Endurance Build',activities:['Interval runs on the stadium track','Dolichos-pace tempo runs','Sand running for leg power','Diet: figs and grain porridge'],cond:40,skill:40,recovery:20},
+      {month:'5–6',focus:'Speed Development',activities:['Full Stade sprint repeats','Starting technique (no starting blocks — a line)','Breathing rhythm training','Massage with olive oil'],cond:35,skill:50,recovery:15},
+      {month:'7–8',focus:'Race Simulation',activities:['Full distance time trials','Tactical race positioning','Competitor study','Active recovery: wrestling light'],cond:30,skill:55,recovery:15},
+      {month:'9–10',focus:'Peak & Taper',activities:['Reduced volume, maintained speed','Sacred oaths rehearsal','Journey to Olympia','Final sharpening on Olympic track'],cond:20,skill:55,recovery:25},
+    ]
+  },
+  combat:{
+    phases:[
+      {month:'1–2',focus:'Foundation',activities:['Basic grip and stance training','Strength building: boulder lifting','Wrestling on soft sand','Studying opponent types'],cond:35,skill:40,recovery:25},
+      {month:'3–4',focus:'Technique',activities:['Partner throw drills (Pale)','Strike conditioning (Pygmachia)','Grappling transitions (Pankration)','Cold water immersion for recovery'],cond:30,skill:50,recovery:20},
+      {month:'5–6',focus:'Power Build',activities:['Heavy resistance: carrying calves','Clinch and leverage training','Multi-hour sparring sessions','Meat diet begins (debated)'],cond:40,skill:45,recovery:15},
+      {month:'7–8',focus:'Combat Simulation',activities:['Full-contact practice bouts','Endurance: 2-hour combat rounds','Pain tolerance conditioning','Mental preparation rituals'],cond:35,skill:50,recovery:15},
+      {month:'9–10',focus:'Peak & Travel',activities:['Light sparring only','Sacred oath preparation','30 days training at Olympia under judges','Final weight management'],cond:20,skill:50,recovery:30},
+    ]
+  },
+  pentathlon:{
+    phases:[
+      {month:'1–2',focus:'Multi-Discipline Base',activities:['All 5 event introductions','Discus and javelin basic technique','Sprint starts','Long jump approach run'],cond:30,skill:45,recovery:25},
+      {month:'3–4',focus:'Throwing Mastery',activities:['Diskos grip and release','Ankyle javelin thong technique','Stone discus progression','Rotational core strength'],cond:30,skill:50,recovery:20},
+      {month:'5–6',focus:'Jump & Sprint',activities:['Halteres weight training','Long jump run-up optimization','Speed endurance work','Wrestling entries and throws'],cond:35,skill:50,recovery:15},
+      {month:'7–8',focus:'Integrated Training',activities:['Full pentathlon simulations','Cross-event recovery tactics','Energy management strategy','Competitor analysis'],cond:30,skill:55,recovery:15},
+      {month:'9–10',focus:'Refinement',activities:['Weakest event focus','Mental visualization','Journey to Olympia (30 days early)','Ritual bathing and oaths'],cond:20,skill:55,recovery:25},
+    ]
+  },
+  equestrian:{
+    phases:[
+      {month:'1–2',focus:'Horse & Rider Bond',activities:['Daily horse care and grooming','Balance riding — bareback','Horse communication training','Stable management skills'],cond:25,skill:50,recovery:25},
+      {month:'3–4',focus:'Speed Training',activities:['Sprint intervals on horseback','Chariot hitching and handling','Turn practice around posts','Physical fitness: running alongside horse'],cond:35,skill:45,recovery:20},
+      {month:'5–6',focus:'Race Simulation',activities:['Full 6-lap horse race drills','Chariot 12-lap endurance run','Crash avoidance tactics','Multiple horse conditioning'],cond:30,skill:55,recovery:15},
+      {month:'7–8',focus:'Competition Prep',activities:['Race strategy and positioning','Team chariot coordination','Horse diet optimization','Recovery between heats'],cond:25,skill:55,recovery:20},
+      {month:'9–10',focus:'Final Preparation',activities:['Reduced intensity rides','Sacred dedications to Poseidon','Horse transport to Olympia','Track familiarization'],cond:15,skill:50,recovery:35},
+    ]
+  },
+  throwing:{
+    phases:[
+      {month:'1–2',focus:'Foundation',activities:['Grip strength training','Basic throw mechanics','Core rotation exercises','Shoulder mobility work'],cond:30,skill:50,recovery:20},
+      {month:'3–4',focus:'Technique Refinement',activities:['Diskos: spin and follow-through','Javelin: ankyle thong mastery','Distance measurement and benchmarking','Foot placement drills'],cond:30,skill:55,recovery:15},
+      {month:'5–6',focus:'Power',activities:['Progressive stone throwing','Discus weight progression','Explosive hip drive','Plyometric training'],cond:40,skill:45,recovery:15},
+      {month:'7–8',focus:'Distance Optimization',activities:['Wind and angle analysis','Personal best tracking','Combined pentathlon throws','Injury prevention focus'],cond:30,skill:55,recovery:15},
+      {month:'9–10',focus:'Competition Sharpening',activities:['Light technique work only','Mental imagery and ritual','30-day Olympia mandatory training','Equipment selection and dedication'],cond:20,skill:55,recovery:25},
+    ]
+  }
+};
+
+const FIVE_DAY_PROGRAM = [
+  {day:1, name:'Day 1 — Arrival & Oaths', events:['Procession of athletes and judges to Olympia','Sacrifices at the Altar of Zeus','Athletes swear sacred oath on sliced boar flesh','Registration and draw of competitors','Heralds announce the Games to all of Greece']},
+  {day:2, name:'Day 2 — Equestrian & Pentathlon', events:['Chariot racing (Tethrippon) — morning','Horse racing (Keles)','Pentathlon begins: discus, javelin, long jump','Pentathlon: sprint and wrestling to determine winner','Evening: funeral games at Tomb of Pelops']},
+  {day:3, name:'Day 3 — Full Moon & Sacrifice', events:['Great Hecatomb: 100 oxen sacrificed to Zeus','Religious ceremonies and processions','Boys\' events: running, wrestling, boxing','Feasting from sacrificial meat by all Greeks','Torch-lit celebrations through the night']},
+  {day:4, name:'Day 4 — Athletic Contests', events:['Stade (192m sprint) — the oldest event','Diaulos (384m — two stade lengths)','Dolichos (long distance run)','Wrestling (Pale)','Boxing (Pygmachia)','Pankration (the ultimate combat event)','Hoplitodromos: armed race in full armor']},
+  {day:5, name:'Day 5 — Victory & Departure', events:['Crowning ceremony: olive wreaths (kotinos) from sacred tree','Victory procession to Temple of Zeus','Banquet for victors hosted by Elis','Odes commissioned (later written by Pindar)','Victors\' names inscribed in Olympic records','Departure and return to home city-states']},
+];
+
+// ── EVENT CHECKBOXES ──────────────────────────────────────────────────────────
+(function buildCheckboxes(){
+  const wrap = document.getElementById('event-checkboxes');
+  let html = '';
+  EVENTS.forEach(e => {
+    html += `<label style="display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:400;color:#1a1a2e;cursor:pointer;padding:6px 10px;border:1px solid #ddd;border-radius:6px;background:#fff;min-height:44px;margin:0">
+      <input type="checkbox" value="${e.id}" style="width:16px;height:16px;flex-shrink:0;border:none;min-height:auto">
+      ${e.name}
+    </label>`;
+  });
+  wrap.innerHTML = html;
+})();
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────────
+function switchTab(name){
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const names=['events','athlete','training','calendar'];
+    b.classList.toggle('active', names[i]===name);
+    b.setAttribute('aria-selected', names[i]===name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>{
+    p.classList.toggle('active', p.id==='tab-'+name);
+  });
+}
+
+// ── HELPERS ──────────────────────────────────────────────────────────────────
+function fmt(n){return Math.round(n).toLocaleString();}
+function clamp(v,mn,mx){return Math.min(mx,Math.max(mn,v));}
+function showErr(id,msg){const el=document.getElementById(id);el.textContent=msg;el.classList.add('show');}
+function hideErr(id){document.getElementById(id).classList.remove('show');}
+function showResults(id,html){
+  const el=document.getElementById(id);
+  el.innerHTML=html;
+  el.classList.add('visible');
+}
+function diffBar(val){
+  const color = val>=85?'#e74c3c':val>=70?'#e67e22':'#0077b6';
+  return `<div class="progress-bar-wrap"><div class="progress-bar" style="width:${val}%;background:${color}"></div></div>`;
+}
+function medalBadge(rank){
+  if(rank===1)return'<span class="badge gold-badge">🥇 Gold Favorite</span>';
+  if(rank===2)return'<span class="badge silver-badge">🥈 Strong Contender</span>';
+  return'<span class="badge bronze-badge">🥉 Can Place</span>';
+}
+
+// ── EVENTS TAB ───────────────────────────────────────────────────────────────
+function calculateEvents(){
+  const name = document.getElementById('ev-name').value.trim()||'The Athlete';
+  const polis = document.getElementById('ev-polis').value;
+  const checked = [...document.querySelectorAll('#event-checkboxes input:checked')].map(i=>i.value);
+  if(checked.length===0){showErr('ev-error','Please select at least one event.');return;}
+  hideErr('ev-error');
+
+  const selected = EVENTS.filter(e=>checked.includes(e.id));
+  const totalPrize = selected.reduce((s,e)=>s+e.prize,0);
+  const avgDiff = selected.reduce((s,e)=>s+e.diff,0)/selected.length;
+  const totalTrainingDays = selected.reduce((s,e)=>s+e.endurance*8,0);
+
+  let eventCards = '';
+  selected.forEach((e,i)=>{
+    const dayList = e.days.map(d=>FIVE_DAY_PROGRAM[d-1]?.name.split('—')[0].trim()).join(', ');
+    eventCards += `<div class="event-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:4px">
+        <span class="event-name">${e.name}</span>
+        ${medalBadge(i<2?i+1:3)}
+      </div>
+      <div class="event-desc">${e.desc}</div>
+      <div class="event-detail">
+        <strong>Difficulty:</strong> ${e.diff}/100 &nbsp;|&nbsp; <strong>Competed on:</strong> ${dayList} &nbsp;|&nbsp; <strong>Prestige Value:</strong> ~${fmt(e.prize)} drachmas equivalent
+      </div>
+      <div style="margin-top:6px;font-size:0.78rem;color:#666">Difficulty</div>
+      ${diffBar(e.diff)}
+    </div>`;
+  });
+
+  const html = `
+    <div class="section-title">Profile for ${name} of ${polis}</div>
+    <div class="metric-grid">
+      <div class="metric-box"><div class="metric-val">${selected.length}</div><div class="metric-lbl">Events Entered</div></div>
+      <div class="metric-box"><div class="metric-val">${fmt(avgDiff)}<span style="font-size:1rem">/100</span></div><div class="metric-lbl">Avg Difficulty</div></div>
+      <div class="metric-box"><div class="metric-val">${fmt(totalPrize)}</div><div class="metric-lbl">Prestige Points</div></div>
+      <div class="metric-box"><div class="metric-val">${fmt(totalTrainingDays)}</div><div class="metric-lbl">Days Training Needed</div></div>
+    </div>
+    <div class="section-title">Your Events</div>
+    ${eventCards}
+    <div class="info-box">⚠️ Ancient Olympic rules required athletes to attend mandatory 30-day pre-competition training at Olympia under the supervision of the Hellanodikai (judges). All athletes swore to have trained for at least 10 months.</div>`;
+
+  requestAnimationFrame(()=>showResults('ev-results',html));
+}
+
+// ── ATHLETE TAB ──────────────────────────────────────────────────────────────
+function calculateAthlete(){
+  const name = document.getElementById('ath-name').value.trim()||'The Athlete';
+  const age = parseFloat(document.getElementById('ath-age').value);
+  const height = parseFloat(document.getElementById('ath-height').value);
+  const weight = parseFloat(document.getElementById('ath-weight').value);
+  const type = document.getElementById('ath-type').value;
+  const strength = document.getElementById('ath-strength').value;
+
+  if(!age||!height||!weight||age<12||age>60||height<140||height>220||weight<40||weight>150){
+    showErr('ath-error','Please fill in all fields with valid values.');return;
+  }
+  hideErr('ath-error');
+
+  // BMI and body ratios
+  const bmi = weight/((height/100)**2);
+  const idealBMI = {lean:20,athletic:22.5,powerful:25}[type];
+
+  // Score for each event category
+  const scores = {
+    'Stade Sprint': Math.round(clamp((age<=25?90:age<=30?85:75) + (height>=170&&height<=185?5:0) + (strength==='speed'?10:0) + (type==='lean'?5:0) - Math.abs(bmi-20)*1.5, 30, 99)),
+    'Dolichos Long Race': Math.round(clamp(80 + (strength==='endurance'?15:0) + (type==='lean'?8:0) - (weight>75?5:0), 30, 99)),
+    'Wrestling': Math.round(clamp(75 + (strength==='power'?12:0) + (type==='powerful'?8:0) + (weight>80?5:0) + (age>=20&&age<=32?5:0), 30, 99)),
+    'Boxing': Math.round(clamp(72 + (strength==='power'?10:0) + (height>=175?5:0) + (type==='athletic'?5:0), 30, 99)),
+    'Pankration': Math.round(clamp(70 + (strength==='power'?8:0) + (strength==='balance'?5:0) + (age>=20&&age<=28?8:0) + (type==='athletic'?6:0), 30, 99)),
+    'Pentathlon': Math.round(clamp(68 + (strength==='balance'?12:0) + (type==='athletic'?10:0) + (height>=175&&height<=185?5:0), 30, 99)),
+    'Discus': Math.round(clamp(70 + (strength==='power'?10:0) + (strength==='balance'?8:0) + (height>=178?5:0), 30, 99)),
+    'Javelin': Math.round(clamp(72 + (strength==='balance'?10:0) + (strength==='speed'?5:0) + (height>=175?5:0), 30, 99)),
+    'Chariot Race': Math.round(clamp(65 + (strength==='balance'?12:0) + (strength==='speed'?8:0) - (weight>90?10:0), 30, 99)),
+  };
+
+  const sorted = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const top3 = sorted.slice(0,3);
+  const idealAge = 20<=age&&age<=28 ? 'Prime Olympic Age ✓' : age<20 ? 'Young — enter Boys\' events' : 'Veteran — experience counts';
+
+  // Greek athletic archetype
+  const archetypes = {
+    lean:   {speed:'Akontistes (Javelin Master)',endurance:'Dromaios (Distance Champion)',power:'Hoplitodromos (Armed Runner)',balance:'Akrobates (Agile Competitor)'},
+    athletic:{speed:'Stadiadromos (Sprint Champion)',endurance:'Pentathlos (Complete Athlete)',power:'Pale (Wrestler)',balance:'Pentathlos (Complete Athlete)'},
+    powerful:{speed:'Pygmachianos (Boxer)',endurance:'Pankratiast (All-Rounder)',power:'Palikari (Heavy Warrior)',balance:'Pankratiast (All-Rounder)'},
+  };
+  const archetype = archetypes[type]?.[strength] || 'Pantopoles (Versatile Athlete)';
+
+  let rowsHTML = '';
+  sorted.forEach(([ev,sc])=>{
+    const bar = `<div class="progress-bar-wrap"><div class="progress-bar" style="width:${sc}%"></div></div>`;
+    rowsHTML += `<tr><td>${ev}</td><td class="right">${sc}/100</td><td>${bar}</td></tr>`;
+  });
+
+  const html = `
+    <div class="section-title">Athlete Analysis: ${name}</div>
+    <div class="metric-grid">
+      <div class="metric-box"><div class="metric-val">${age}</div><div class="metric-lbl">Age</div></div>
+      <div class="metric-box"><div class="metric-val">${bmi.toFixed(1)}</div><div class="metric-lbl">BMI</div></div>
+      <div class="metric-box"><div class="metric-val">${top3[0][1]}</div><div class="metric-lbl">Best Event Score</div></div>
+      <div class="metric-box"><div class="metric-val">${height}cm</div><div class="metric-lbl">Height</div></div>
+    </div>
+    <div style="margin:1rem 0;padding:0.8rem 1rem;background:#f8f9fa;border-radius:6px">
+      <strong>Archetype:</strong> <span style="color:#0077b6">${archetype}</span><br>
+      <strong>Age Status:</strong> ${idealAge}<br>
+      <strong>Top Recommendation:</strong> ${top3[0][0]}
+    </div>
+    <div class="section-title">Event Suitability Scores</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Event</th><th class="right">Score</th><th>Suitability</th></tr></thead>
+        <tbody>${rowsHTML}</tbody>
+      </table>
+    </div>
+    <div style="margin-top:1rem">
+      <strong>🏅 Top 3 Recommended Events:</strong><br>
+      ${top3.map((t,i)=>`<span class="badge ${i===0?'gold-badge':i===1?'silver-badge':'bronze-badge'}">${t[0]}: ${t[1]}/100</span>`).join(' ')}
+    </div>`;
+
+  requestAnimationFrame(()=>showResults('ath-results',html));
+}
+
+// ── TRAINING TAB ─────────────────────────────────────────────────────────────
+function calculateTraining(){
+  const event = document.getElementById('tr-event').value;
+  const hours = parseFloat(document.getElementById('tr-hours').value);
+  const months = parseFloat(document.getElementById('tr-months').value);
+  const diet = document.getElementById('tr-diet').value;
+
+  if(!hours||!months||hours<1||hours>12||months<1||months>12){
+    showErr('tr-error','Please enter valid training hours (1–12) and months (1–12).');return;
+  }
+  hideErr('tr-error');
+
+  const plan = TRAINING_PLANS[event];
+  const totalHours = hours * 30 * months;
+  const dietNotes = {
+    meat:'High protein: suited for combat/power sports. Coaches like Pythagoras disapproved but results were undeniable.',
+    grain:'Traditional Greek diet. Balanced carbohydrates for endurance. Most common among runners and pentathletes.',
+    fig:'Fig-based diets were favored by long-distance runners for sustained energy. Light and easily digested.',
+    mixed:'A balanced approach. Cheese, olives, bread, fish, and seasonal vegetables.',
+  };
+
+  const phasesToShow = plan.phases.slice(0, months);
+
+  let phaseRows = '';
+  phasesToShow.forEach((p,i)=>{
+    phaseRows += `<div class="event-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px">
+        <span class="event-name">Month ${p.month}: ${p.focus}</span>
+        <span class="badge">${Math.round(hours*30*(i+1))} hrs total by end</span>
+      </div>
+      <div style="margin-top:8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:4px;font-size:0.78rem;color:#666">
+        <span>💪 Conditioning: ${p.cond}%</span>
+        <span>🎯 Skill Drills: ${p.skill}%</span>
+        <span>🛁 Recovery: ${p.recovery}%</span>
+      </div>
+      <ul style="margin-top:8px;margin-left:1rem;font-size:0.84rem;color:#444">
+        ${p.activities.map(a=>`<li style="margin-bottom:3px">${a}</li>`).join('')}
+      </ul>
+    </div>`;
+  });
+
+  const condHours = Math.round(totalHours * 0.35);
+  const skillHours = Math.round(totalHours * 0.40);
+  const recHours = Math.round(totalHours * 0.25);
+
+  const html = `
+    <div class="section-title">Training Plan Summary</div>
+    <div class="metric-grid">
+      <div class="metric-box"><div class="metric-val">${fmt(totalHours)}</div><div class="metric-lbl">Total Hours</div></div>
+      <div class="metric-box"><div class="metric-val">${fmt(hours*30)}</div><div class="metric-lbl">Hrs/Month</div></div>
+      <div class="metric-box"><div class="metric-val">${months}</div><div class="metric-lbl">Months</div></div>
+      <div class="metric-box"><div class="metric-val">${hours}h</div><div class="metric-lbl">Daily Hours</div></div>
+    </div>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Training Type</th><th class="right">Hours</th><th class="right">%</th></tr></thead>
+      <tbody>
+        <tr><td>⚡ Physical Conditioning</td><td class="right">${fmt(condHours)}</td><td class="right">35%</td></tr>
+        <tr><td>🎯 Skill & Technique Drills</td><td class="right">${fmt(skillHours)}</td><td class="right">40%</td></tr>
+        <tr><td>🛁 Recovery & Ritual</td><td class="right">${fmt(recHours)}</td><td class="right">25%</td></tr>
+      </tbody>
+    </table></div>
+    <div class="info-box"><strong>Diet Plan:</strong> ${dietNotes[diet]}</div>
+    <div class="section-title">Monthly Breakdown</div>
+    ${phaseRows}`;
+
+  requestAnimationFrame(()=>showResults('tr-results',html));
+}
+
+// ── CALENDAR TAB ─────────────────────────────────────────────────────────────
+function calculateCalendar(){
+  const year = parseInt(document.getElementById('cal-year').value);
+  const month = parseInt(document.getElementById('cal-month').value);
+  const dist = parseFloat(document.getElementById('cal-dist').value)||0;
+
+  if(!year||year<776){
+    showErr('cal-error','Please enter a valid year (776 BCE or later in modern numbering).');return;
+  }
+  hideErr('cal-error');
+
+  // Ancient Olympics first held 776 BCE; use positive year numbers for BCE
+  // Modern year: if ≥776, treat as CE; we'll do BCE mapping
+  // Olympiad number: count 4-year cycles from 776 BCE
+  // Convert modern CE year to "years since 776 BCE games"
+  // 776 BCE = year -775 in astronomical year numbering
+  // Modern year 2024 CE = astronomical year 2024
+  // Years since 776 BCE = (modern CE year) + 775 (roughly)
+  const yearsSinceFirst = year + 775; // approximate for CE years
+  const olympiadNum = Math.ceil(yearsSinceFirst / 4);
+  const nextOlympiadYear = 776 + (olympiadNum - 1) * 4; // BCE equivalent anchor
+  const yearsToNext = 4 - (yearsSinceFirst % 4 === 0 ? 4 : yearsSinceFirst % 4);
+  const travelDays = dist > 0 ? Math.ceil(dist / 32) : 0;
+  const travelWeeks = (travelDays/7).toFixed(1);
+  const monthNames = {5:'May',6:'June',7:'July'};
+  const departureMonth = monthNames[month];
+  const returnMonthNum = Math.min(month + Math.ceil(travelDays/14) + 1, 12);
+  const returnMonths = {1:'January',2:'February',3:'March',4:'April',5:'May',6:'June',7:'July',8:'August',9:'September',10:'October',11:'November',12:'December'};
+
+  let dayRows = '';
+  FIVE_DAY_PROGRAM.forEach(d=>{
+    dayRows += `<div class="event-card">
+      <div class="event-name">${d.name}</div>
+      <ul style="margin-top:6px;margin-left:1rem">
+        ${d.events.map(e=>`<li style="font-size:0.84rem;color:#444;margin-bottom:3px">${e}</li>`).join('')}
+      </ul>
+    </div>`;
+  });
+
+  const html = `
+    <div class="section-title">Olympiad Calculation</div>
+    <div class="metric-grid">
+      <div class="metric-box"><div class="metric-val">${fmt(olympiadNum)}<span style="font-size:1rem">th</span></div><div class="metric-lbl">Olympiad</div></div>
+      <div class="metric-box"><div class="metric-val">${yearsToNext}</div><div class="metric-lbl">Years Until Next Games</div></div>
+      <div class="metric-box"><div class="metric-val">${travelDays > 0 ? travelDays : '—'}</div><div class="metric-lbl">Travel Days</div></div>
+      <div class="metric-box"><div class="metric-val">${dist > 0 ? fmt(dist) : '—'}</div><div class="metric-lbl">km from Home</div></div>
+    </div>
+    ${dist>0?`<div class="info-box">
+      🚶 Departing <strong>${departureMonth}</strong>, your journey of ${fmt(dist)} km takes approximately <strong>${travelDays} days</strong> (${travelWeeks} weeks) at the ancient Greek pace of ~32 km/day for a fit traveler. Return journey estimated by <strong>${returnMonths[returnMonthNum]||'September'}</strong>, including 5 days at the Games and 30 days mandatory pre-competition training. Pack: olive oil, dried figs, water skins, sandals, and your athletic kit.
+    </div>`:''}
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Fact</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Location</td><td>Olympia, Elis (NW Peloponnese)</td></tr>
+        <tr><td>Host God</td><td>Zeus Olympios</td></tr>
+        <tr><td>Games Duration</td><td>5 days</td></tr>
+        <tr><td>Month Held</td><td>Hekatombaion (≈ July/August)</td></tr>
+        <tr><td>Sacred Truce</td><td>Ekecheiria — 3 months duration</td></tr>
+        <tr><td>Prize</td><td>Kotinos (olive wreath from sacred tree)</td></tr>
+        <tr><td>First Games</td><td>776 BCE (traditional date)</td></tr>
+        <tr><td>Last Ancient Games</td><td>393 CE (banned by Theodosius I)</td></tr>
+        <tr><td>Participants (peak)</td><td>~40,000–100,000 spectators</td></tr>
+        <tr><td>Women Allowed?</td><td>No (separate Heraia Games for women)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="section-title">Authentic 5-Day Festival Program</div>
+    ${dayRows}`;
+
+  requestAnimationFrame(()=>showResults('cal-results',html));
+}
+
+// Enter key support
+document.addEventListener('keydown', e=>{
+  if(e.key==='Enter'){
+    const active = document.querySelector('.tab-panel.active');
+    if(!active)return;
+    const btn = active.querySelector('button.primary');
+    if(btn)btn.click();
+  }
+});
+</script>
+</body>
+</html>
