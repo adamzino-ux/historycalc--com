@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aztec Tribute Estimator — Free Online Tool | HistoryCalc</title>
+<meta name="description" content="Estimate Aztec tribute demands based on province, goods, and period. Explore the Mexica tributary system with historically grounded calculations.">
+<link rel="canonical" href="https://historycalc.com/aztec-tribute-estimator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Aztec Tribute Estimator",
+  "description": "Estimate Aztec tribute demands based on province, goods, and period using historical data from the Codex Mendoza.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "url": "https://historycalc.com/aztec-tribute-estimator",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{padding:12px 1.5rem;border-bottom:1px solid #e0e0e0;background:#fff}
+nav a{font-weight:600;font-size:1rem;color:#1a1a2e}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:0.4rem;color:#1a1a2e}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:2rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.form-group{margin-bottom:1.25rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:6px}
+select,input[type="number"],input[type="text"]{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;font-family:inherit;color:#1a1a2e;background:#fff;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px;appearance:none;-webkit-appearance:none}
+select:focus,input:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+select.error,input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+button.calc-btn{width:100%;background:#0077b6;color:#fff;border:none;padding:14px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:44px;margin-top:0.5rem}
+button.calc-btn:hover{background:#006299}
+button.calc-btn:active{background:#005580}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.show{opacity:1;pointer-events:auto}
+.big-num{font-size:2.2rem;font-weight:700;color:#0077b6;line-height:1.2}
+.big-label{font-size:0.85rem;color:#555;margin-bottom:1rem}
+.summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.summary-box{background:#f8f9fa;border-radius:6px;padding:1rem;text-align:center}
+.summary-box .val{font-size:1.3rem;font-weight:700;color:#0077b6}
+.summary-box .lbl{font-size:0.78rem;color:#666;margin-top:2px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+thead th{background:#f0f0f0;padding:10px 12px;text-align:left;font-weight:600;border-bottom:2px solid #ddd;white-space:nowrap}
+thead th.num{text-align:right}
+tbody tr:nth-child(even){background:#fafafa}
+tbody tr:nth-child(odd){background:#fff}
+tbody td{padding:9px 12px;border-bottom:1px solid #eee}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+.copy-btn{background:#f0f0f0;border:1px solid #ddd;border-radius:4px;padding:4px 10px;font-size:0.78rem;cursor:pointer;color:#444;transition:background 0.2s;margin-left:8px;vertical-align:middle}
+.copy-btn:hover{background:#e0e0e0}
+.bar-visual{margin-top:1rem}
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:0.82rem}
+.bar-label{width:130px;flex-shrink:0;color:#444;text-align:right;font-size:0.78rem}
+.bar-track{flex:1;background:#f0f0f0;border-radius:3px;height:14px;overflow:hidden}
+.bar-fill{height:100%;background:#0077b6;border-radius:3px;transition:width 0.4s ease}
+.bar-val{width:60px;text-align:right;color:#1a1a2e;font-weight:600;font-size:0.78rem}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.75rem;margin-top:1.25rem;border-bottom:1px solid #eee;padding-bottom:6px}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-top:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-top:1.75rem;margin-bottom:0.6rem}
+.content-section p{color:#333;font-size:0.95rem;margin-bottom:0.75rem}
+.content-section ul{padding-left:1.3rem;color:#333;font-size:0.95rem}
+.content-section ul li{margin-bottom:0.4rem}
+details{border:1px solid #e0e0e0;border-radius:6px;padding:0.75rem 1rem;margin-bottom:0.6rem;background:#f8f9fa}
+details[open]{background:#fff}
+summary{font-weight:600;font-size:0.92rem;cursor:pointer;color:#1a1a2e;list-style:none;position:relative;padding-right:20px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'＋';position:absolute;right:0;top:0;color:#0077b6;font-size:0.9rem}
+details[open] summary::after{content:'－'}
+details p{margin-top:0.6rem;font-size:0.9rem;color:#444}
+.related{margin-top:2rem;padding:1.25rem;background:#f8f9fa;border-radius:8px;border:1px solid #e0e0e0}
+.related h3{font-size:0.95rem;font-weight:700;margin-bottom:0.6rem;color:#1a1a2e}
+.related a{display:inline-block;margin-right:1rem;margin-bottom:0.3rem;font-size:0.88rem}
+footer{margin-top:2rem;padding:1.25rem 1.5rem;border-top:1px solid #e0e0e0;text-align:center;font-size:0.82rem;color:#777}
+footer a{color:#777;margin:0 8px}
+.note-box{background:#fff8e1;border-left:3px solid #f0a500;padding:10px 14px;border-radius:0 6px 6px 0;font-size:0.85rem;color:#5a4000;margin-bottom:1rem}
+@media(max-width:640px){
+  .row{grid-template-columns:1fr}
+  .summary-grid{grid-template-columns:1fr 1fr}
+  .card{padding:1.25rem}
+  h1{font-size:1.3rem}
+  .big-num{font-size:1.8rem}
+  .bar-label{width:90px;font-size:0.72rem}
+}
+</style>
+</head>
+<body>
+
+<nav><a href="/">⚡ HistoryCalc</a></nav>
+
+<div class="container">
+  <h1>Aztec Tribute Estimator</h1>
+  <p class="subtitle">Estimate annual tribute demands for an Aztec province using historical data from the Codex Mendoza and Matrícula de Tributos.</p>
+
+  <div class="card">
+    <div class="note-box">📜 Based on historical records from the Codex Mendoza (~1541 CE). Values are educational estimates, not precise archaeological figures.</div>
+
+    <div class="form-group">
+      <label for="province">Province / Region</label>
+      <select id="province">
+        <option value="">— Select a province —</option>
+        <option value="cuauhnahuac">Cuauhnahuac (Cuernavaca) — Central</option>
+        <option value="tochtepec">Tochtepec — Gulf Coast</option>
+        <option value="xoconochco">Xoconochco (Soconusco) — Pacific South</option>
+        <option value="tlapacoyan">Tlapacoyan — Northern Highlands</option>
+        <option value="acolhuacan">Acolhuacan — Lake Texcoco East</option>
+        <option value="tlapa">Tlapa — Guerrero Mountains</option>
+        <option value="custom">Custom Province</option>
+      </select>
+      <div class="error-msg" id="province-err">Please select a province.</div>
+    </div>
+
+    <div id="custom-fields" style="display:none">
+      <div class="row">
+        <div class="form-group">
+          <label for="popUnits">Subject Towns (1–50)</label>
+          <input type="number" id="popUnits" min="1" max="50" placeholder="e.g. 8">
+          <div class="error-msg" id="popUnits-err">Enter 1–50 towns.</div>
+        </div>
+        <div class="form-group">
+          <label for="wealthLevel">Wealth Level (1–10)</label>
+          <input type="number" id="wealthLevel" min="1" max="10" placeholder="e.g. 6">
+          <div class="error-msg" id="wealthLevel-err">Enter 1–10.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="period">Tribute Period</label>
+      <select id="period">
+        <option value="80">Every 80 days (standard Mexica cycle)</option>
+        <option value="180">Twice yearly</option>
+        <option value="365">Annual total</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="multiplier">Ruler's Demand Intensity</label>
+      <select id="multiplier">
+        <option value="0.8">Lenient (80% of standard)</option>
+        <option value="1.0" selected>Standard (100%)</option>
+        <option value="1.25">Demanding (125%)</option>
+        <option value="1.5">Harsh (150%)</option>
+      </select>
+    </div>
+
+    <button class="calc-btn" id="calcBtn">Calculate Tribute ⚡</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results card" id="results">
+    <div id="results-inner"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- CONTENT -->
+  <div class="content-section">
+    <h2>How to Use This Aztec Tribute Estimator</h2>
+    <p>Select one of the six historically documented provinces drawn from the Codex Mendoza, or choose "Custom Province" to enter your own parameters. Pick how often tribute was collected (the standard Aztec cycle was every 80 days, roughly 4–5 times per year) and set a ruler intensity multiplier. Click <strong>Calculate Tribute</strong> to see the full breakdown of goods owed to Tenochtitlan.</p>
+
+    <h2>Why This Matters</h2>
+    <p>The Aztec Triple Alliance — Tenochtitlan, Texcoco, and Tlacopan — sustained one of Mesoamerica's largest empires not through a standing garrison economy alone, but through a sophisticated tributary network. At its height around 1500 CE, roughly 400–500 towns across 38 documented provinces paid regular tribute.</p>
+    <p>Tribute was not just tax — it was the lifeblood of Tenochtitlan's economy, feeding a capital city of perhaps 200,000–300,000 people. The Codex Mendoza records annual deliveries including 7,000+ warrior costumes, tens of thousands of cacao beans, bales of cotton mantles, exotic feathers, amber, gold dust, and even live eagles. A single major province like Tochtepec delivered 1,600 loads of cacao every 80 days — representing enormous agricultural labor.</p>
+    <p>Historians, students of pre-Columbian Mesoamerica, game designers building historical simulations, and teachers explaining colonial-era economics will all find this tool useful. Understanding tribute scale puts the Spanish conquest's disruption into sharp economic context.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>Each province has a base tribute profile sourced from the Codex Mendoza, expressed in standardized "tribute loads" per 80-day period for key goods categories. The formula applied is:</p>
+    <p><strong>Annual Amount = (Base Loads per Period × Periods per Year) × Demand Intensity Multiplier</strong></p>
+    <p>The six preset provinces use historically sourced base values. Custom provinces scale goods linearly from a baseline of 4 towns at wealth level 5. All monetary equivalents use a cacao-bean proxy exchange rate common in scholarly literature (~8,000 cacao = 1 cotton mantle = ~1 quachtli).</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse "loads" with individual items:</strong> One "load" (carga) typically meant a standardized bundle — for cloth, about 20 mantles; for cacao, about 24,000 beans.</li>
+      <li><strong>The 80-day cycle is key:</strong> The Aztec calendar's 20-day month and 365-day solar year meant tribute cycles didn't align neatly with European annual thinking.</li>
+      <li><strong>Luxury goods ≠ food goods:</strong> Feathers and gold had prestige value far exceeding their weight; food tribute (maize, amaranth) was bulkier but equally critical.</li>
+      <li><strong>Resistance inflated costs:</strong> Provinces that revolted faced punitive tribute — sometimes 150–200% of standard — reflected in the "Harsh" multiplier option.</li>
+      <li><strong>The Triple Alliance split tribute:</strong> Roughly 2/5 to Tenochtitlan, 2/5 to Texcoco, 1/5 to Tlacopan — this tool estimates Tenochtitlan's share by default.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What was the Codex Mendoza?</summary>
+      <p>The Codex Mendoza was an Aztec manuscript compiled around 1541 CE at the request of the first Viceroy of New Spain, Antonio de Mendoza. Its second section is essentially an imperial tribute ledger, listing goods owed by each province to Tenochtitlan. It is one of our most reliable primary sources for Aztec economic history.</p>
+    </details>
+    <details>
+      <summary>Did all provinces pay the same goods?</summary>
+      <p>No — tribute was highly regionalized. Coastal provinces paid cacao and tropical feathers; highland provinces paid maize, maguey fiber, and warrior costumes; mining regions paid gold dust and copper. The system was pragmatic: provinces paid what they could produce most efficiently.</p>
+    </details>
+    <details>
+      <summary>How did the Aztecs enforce tribute collection?</summary>
+      <p>Each province had appointed tribute collectors called <em>calpixque</em>, who maintained local records and supervised collection. Failure to pay could result in military punishment, enslavement of community members, or punitive increases in the next cycle. The threat alone was usually sufficient in well-integrated provinces.</p>
+    </details>
+    <details>
+      <summary>Is this tool useful for tabletop RPGs or games?</summary>
+      <p>Absolutely. Many historical strategy games and tabletop RPGs set in Mesoamerica need plausible economic scales for tribute systems. This estimator gives you a defensible baseline rooted in real scholarly data, which you can then adjust with the demand multiplier for dramatic effect.</p>
+    </details>
+  </div>
+
+  <div class="related">
+    <h3>Related Tools</h3>
+    <a href="/roman-tax-estimator">Roman Tax Estimator</a>
+    <a href="/medieval-feudal-dues">Medieval Feudal Dues Calculator</a>
+    <a href="/ancient-grain-calculator">Ancient Grain Storage Calculator</a>
+    <a href="/historical-population-estimator">Historical Population Estimator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <br style="margin-bottom:6px">
+    © <span id="yr"></span> HistoryCalc.com
+  </footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Province data: [towns, wealthLevel, special notes, goods object]
+// goods: { cloth, cacao, feathers, gold, food, warriors, luxury }
+// units are "loads per 80-day period" (base for Tenochtitlan's share)
+const PROVINCES = {
+  cuauhnahuac: {
+    name: 'Cuauhnahuac (Cuernavaca)',
+    region: 'Central Highlands',
+    towns: 9,
+    wealth: 7,
+    notes: 'Major agricultural province; cotton-growing, close to capital',
+    goods: { cloth: 3200, cacao: 0, feathers: 40, gold: 20, food: 4000, warriors: 2, luxury: 60 }
+  },
+  tochtepec: {
+    name: 'Tochtepec',
+    region: 'Gulf Coast',
+    towns: 12,
+    wealth: 9,
+    notes: 'Richest tropical goods province; source of jade, feathers, cacao',
+    goods: { cloth: 1600, cacao: 1600, feathers: 200, gold: 80, food: 800, warriors: 0, luxury: 320 }
+  },
+  xoconochco: {
+    name: 'Xoconochco (Soconusco)',
+    region: 'Pacific Coast South',
+    towns: 8,
+    wealth: 8,
+    notes: 'Distant luxury province; prized quetzal feathers and cacao',
+    goods: { cloth: 400, cacao: 800, feathers: 800, gold: 40, food: 200, warriors: 0, luxury: 480 }
+  },
+  tlapacoyan: {
+    name: 'Tlapacoyan',
+    region: 'Northern Highlands',
+    towns: 7,
+    wealth: 5,
+    notes: 'Mid-range province; cloth and basic goods dominant',
+    goods: { cloth: 2400, cacao: 0, feathers: 20, gold: 10, food: 3200, warriors: 2, luxury: 20 }
+  },
+  acolhuacan: {
+    name: 'Acolhuacan',
+    region: 'Lake Texcoco East',
+    towns: 14,
+    wealth: 8,
+    notes: 'Texcocan heartland; luxury crafts, cloth, warrior equipment',
+    goods: { cloth: 4000, cacao: 200, feathers: 80, gold: 60, food: 2000, warriors: 4, luxury: 200 }
+  },
+  tlapa: {
+    name: 'Tlapa',
+    region: 'Guerrero Mountains',
+    towns: 10,
+    wealth: 7,
+    notes: 'Gold-producing region; warrior costumes and tropical goods',
+    goods: { cloth: 1600, cacao: 400, feathers: 120, gold: 160, food: 1200, warriors: 3, luxury: 100 }
+  }
+};
+
+const GOOD_NAMES = {
+  cloth: 'Cotton Mantles (loads)',
+  cacao: 'Cacao Beans (loads)',
+  feathers: 'Feather Bundles (loads)',
+  gold: 'Gold Dust (loads)',
+  food: 'Food Staples (loads)',
+  warriors: 'Warrior Costumes (sets)',
+  luxury: 'Luxury Goods (loads)'
+};
+
+const GOOD_ICONS = {
+  cloth: '🧵', cacao: '🍫', feathers: '🪶', gold: '🥇', food: '🌽', warriors: '⚔️', luxury: '💎'
+};
+
+// cacao-equivalent loads for relative value
+const GOOD_VALUE = { cloth: 8, cacao: 1, feathers: 40, gold: 120, food: 0.5, warriors: 60, luxury: 20 };
+
+function fmt(n) {
+  return Math.round(n).toLocaleString();
+}
+
+function getCustomGoods(towns, wealth) {
+  const scale = (towns / 4) * (wealth / 5);
+  return {
+    cloth: Math.round(800 * scale),
+    cacao: wealth >= 6 ? Math.round(200 * scale) : 0,
+    feathers: wealth >= 5 ? Math.round(20 * scale) : 0,
+    gold: wealth >= 7 ? Math.round(30 * scale) : 5,
+    food: Math.round(1200 * scale),
+    warriors: Math.round(scale),
+    luxury: Math.round(30 * scale * (wealth / 5))
+  };
+}
+
+function periodsPerYear(period) {
+  return 365 / parseInt(period);
+}
+
+document.getElementById('province').addEventListener('change', function() {
+  document.getElementById('custom-fields').style.display = this.value === 'custom' ? 'block' : 'none';
+  clearError('province-err');
+  clearError('popUnits-err');
+  clearError('wealthLevel-err');
+});
+
+['popUnits','wealthLevel'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => clearError(id + '-err'));
+});
+
+function clearError(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('show');
+}
+
+function showError(id, inputId) {
+  document.getElementById(id).classList.add('show');
+  if (inputId) {
+    const inp = document.getElementById(inputId);
+    if (inp) inp.classList.add('error');
+  }
+}
+
+function clearAllErrors() {
+  document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('.error').forEach(e => e.classList.remove('error'));
+}
+
+function validate() {
+  clearAllErrors();
+  let ok = true;
+  const prov = document.getElementById('province').value;
+  if (!prov) { showError('province-err', 'province'); ok = false; }
+  if (prov === 'custom') {
+    const t = parseFloat(document.getElementById('popUnits').value);
+    const w = parseFloat(document.getElementById('wealthLevel').value);
+    if (!t || t < 1 || t > 50) { showError('popUnits-err', 'popUnits'); ok = false; }
+    if (!w || w < 1 || w > 10) { showError('wealthLevel-err', 'wealthLevel'); ok = false; }
+  }
+  return ok;
+}
+
+function calculate() {
+  if (!validate()) return;
+
+  const provKey = document.getElementById('province').value;
+  const period = parseInt(document.getElementById('period').value);
+  const mult = parseFloat(document.getElementById('multiplier').value);
+  const ppy = 365 / period;
+  const periodLabel = period === 80 ? '80-day cycle' : period === 180 ? 'semi-annual' : 'annual';
+
+  let provData, baseGoods;
+
+  if (provKey === 'custom') {
+    const towns = parseFloat(document.getElementById('popUnits').value);
+    const wealth = parseFloat(document.getElementById('wealthLevel').value);
+    provData = { name: 'Custom Province', region: 'Custom', towns, wealth, notes: 'User-defined parameters' };
+    baseGoods = getCustomGoods(towns, wealth);
+  } else {
+    provData = PROVINCES[provKey];
+    baseGoods = provData.goods;
+  }
+
+  // Calculate per-period and annual
+  const perPeriod = {};
+  const annual = {};
+  let totalValueAnnual = 0;
+
+  Object.keys(baseGoods).forEach(k => {
+    perPeriod[k] = Math.round(baseGoods[k] * mult);
+    annual[k] = Math.round(baseGoods[k] * mult * ppy);
+    totalValueAnnual += annual[k] * (GOOD_VALUE[k] || 1);
+  });
+
+  const cacaoEquiv = Math.round(totalValueAnnual);
+  const mantleEquiv = Math.round(totalValueAnnual / 8);
+
+  // Max good for bar chart
+  const maxAnnual = Math.max(...Object.values(annual));
+
+  // Build rows
+  let tableRows = '';
+  Object.keys(annual).forEach(k => {
+    const pct = maxAnnual > 0 ? Math.round((annual[k] / maxAnnual) * 100) : 0;
+    tableRows += `<tr>
+      <td>${GOOD_ICONS[k]} ${GOOD_NAMES[k]}</td>
+      <td class="num">${fmt(perPeriod[k])}</td>
+      <td class="num">${fmt(annual[k])}</td>
+      <td class="num">${fmt(annual[k] * (GOOD_VALUE[k] || 1))}</td>
+    </tr>`;
+  });
+
+  // Bar rows
+  let barRows = '';
+  Object.keys(annual).forEach(k => {
+    if (annual[k] === 0) return;
+    const pct = maxAnnual > 0 ? Math.round((annual[k] / maxAnnual) * 100) : 0;
+    barRows += `<div class="bar-row">
+      <div class="bar-label">${GOOD_ICONS[k]} ${k.charAt(0).toUpperCase()+k.slice(1)}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+      <div class="bar-val">${fmt(annual[k])}</div>
+    </div>`;
+  });
+
+  const intensityLabel = { '0.8': 'Lenient', '1.0': 'Standard', '1.25': 'Demanding', '1.5': 'Harsh' }[String(mult)] || `${mult}×`;
+
+  const html = `
+    <div class="section-title">📜 Tribute Summary — ${provData.name}</div>
+    <div style="font-size:0.82rem;color:#666;margin-bottom:1rem">
+      ${provData.region} · ${provData.towns} subject towns · ${intensityLabel} demands · Collected every ${period} days (${ppy.toFixed(1)}× per year)<br>
+      <em>${provData.notes}</em>
+    </div>
+
+    <div class="summary-grid">
+      <div class="summary-box">
+        <div class="val">${fmt(cacaoEquiv)}</div>
+        <div class="lbl">Annual Value<br>(cacao-load equiv.)</div>
+      </div>
+      <div class="summary-box">
+        <div class="val">${fmt(mantleEquiv)}</div>
+        <div class="lbl">Annual Value<br>(mantle equiv.)</div>
+      </div>
+      <div class="summary-box">
+        <div class="val">${fmt(perPeriod.cloth + perPeriod.food)}</div>
+        <div class="lbl">Subsistence Loads<br>per ${period}-day cycle</div>
+      </div>
+      <div class="summary-box">
+        <div class="val">${fmt(perPeriod.gold + perPeriod.feathers + perPeriod.luxury)}</div>
+        <div class="lbl">Prestige Loads<br>per ${period}-day cycle</div>
+      </div>
+    </div>
+
+    <div class="section-title">Goods Breakdown <button class="copy-btn" id="copyBtn">Copy</button></div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Good</th>
+            <th class="num">Per ${period}d</th>
+            <th class="num">Annual Total</th>
+            <th class="num">Cacao-Equiv. Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${tableRows}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section-title" style="margin-top:1.25rem">Annual Volume Comparison</div>
+    <div class="bar-visual">${barRows}</div>
+
+    <div style="margin-top:1.25rem;padding:10px 14px;background:#f8f9fa;border-radius:6px;font-size:0.82rem;color:#555">
+      <strong>Note:</strong> 1 load of cloth ≈ 20 mantles (quachtli). 1 load of cacao ≈ 24,000 beans. 
+      Cacao-equivalent values use scholarly proxy rates. Tenochtitlan received ~40% of total Triple Alliance tribute.
+    </div>
+  `;
+
+  requestAnimationFrame(() => {
+    document.getElementById('results-inner').innerHTML = html;
+    const res = document.getElementById('results');
+    res.classList.add('show');
+    res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      let text = `Aztec Tribute Estimate — ${provData.name}\n`;
+      text += `Period: every ${period} days | Intensity: ${intensityLabel}\n\n`;
+      Object.keys(annual).forEach(k => {
+        text += `${GOOD_NAMES[k]}: ${fmt(annual[k])} / year\n`;
+      });
+      text += `\nTotal Annual Value: ${fmt(cacaoEquiv)} cacao-load equiv.`;
+      navigator.clipboard.writeText(text).then(() => {
+        this.textContent = 'Copied!';
+        setTimeout(() => { this.textContent = 'Copy'; }, 2000);
+      }).catch(() => {
+        this.textContent = 'Copy';
+      });
+    });
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => calculate());
+});
+
+// Enter key support
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT') {
+      requestAnimationFrame(() => calculate());
+    }
+  }
+});
+</script>
+</body>
+</html>
