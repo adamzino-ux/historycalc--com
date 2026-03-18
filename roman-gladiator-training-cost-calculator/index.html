@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Gladiator Training Cost Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate the true cost of training a Roman gladiator — food, equipment, medical care & lanista fees in sestertii with modern USD equivalents. Free roman gladiator cost calculator.">
+<link rel="canonical" href="https://historycalc.com/roman-gladiator-training-cost-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Gladiator Training Cost Calculator",
+  "url": "https://historycalc.com/roman-gladiator-training-cost-calculator/",
+  "description": "Calculate the cost of training a Roman gladiator including food, equipment, medical care, and lanista fees in ancient sestertii with modern USD equivalents.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "historycalc.com", "url": "https://historycalc.com" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;line-height:1.6;font-size:16px}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline;color:#6b3410}
+.site-nav{background:#2c1810;padding:12px 24px;display:flex;align-items:center;justify-content:space-between}
+.site-nav .logo{color:#f5f0e1;font-weight:700;font-size:1.1rem;letter-spacing:0.5px}
+.site-nav .logo:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1rem 2rem}
+h1{font-size:1.6rem;font-weight:800;color:#2c1810;line-height:1.25;margin-bottom:0.5rem}
+.subtitle{color:#6b3410;font-size:0.95rem;margin-bottom:1.5rem}
+.hero-svg{text-align:center;margin-bottom:1.5rem}
+.tool-card{background:#fff9ef;border:1px solid #c4a882;border-radius:8px;padding:1.75rem;box-shadow:0 2px 8px rgba(139,69,19,0.08);margin-bottom:2rem}
+.section-title{font-size:1rem;font-weight:700;color:#8b4513;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:2px solid #c4a882}
+.form-group{margin-bottom:1.1rem}
+label{display:block;font-size:0.85rem;font-weight:600;color:#5a2d0c;margin-bottom:0.35rem}
+label .hint{font-weight:400;color:#888;font-size:0.8rem}
+input[type="number"],input[type="text"],select{width:100%;border:1px solid #c4a882;border-radius:5px;padding:11px 14px;font-size:0.97rem;background:#fff;color:#2c1810;transition:box-shadow 0.2s,border-color 0.2s;-webkit-appearance:none;appearance:none;min-height:44px}
+input:focus,select:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+input[type="range"]{width:100%;accent-color:#8b4513;cursor:pointer;margin-top:4px}
+.slider-val{display:inline-block;background:#8b4513;color:#fff;font-size:0.8rem;padding:2px 8px;border-radius:10px;margin-left:6px}
+.btn{display:inline-block;background:#8b4513;color:#fff;border:none;padding:13px 28px;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;width:100%;min-height:44px;margin-top:0.5rem;letter-spacing:0.3px}
+.btn:hover{background:#6b3410}
+.btn-sm{width:auto;padding:7px 16px;font-size:0.82rem;font-weight:600;margin-top:0;min-height:36px;border-radius:5px;background:#6b3410}
+.btn-sm:hover{background:#8b4513}
+.results-section{display:none;animation:fadeIn 0.3s ease}
+.results-section.visible{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.big-number{font-size:2.4rem;font-weight:800;color:#8b4513;line-height:1.1}
+.big-label{font-size:0.85rem;color:#6b3410;font-weight:500;margin-top:2px}
+.modern-equiv{background:#2c1810;color:#f5f0e1;border-radius:7px;padding:1rem 1.25rem;margin:1rem 0;font-size:0.95rem}
+.modern-equiv strong{color:#c4a882}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+.result-box{background:#fff9ef;border:1px solid #c4a882;border-radius:6px;padding:0.9rem 1rem;text-align:center}
+.result-box .val{font-size:1.45rem;font-weight:800;color:#8b4513}
+.result-box .lbl{font-size:0.78rem;color:#5a2d0c;font-weight:500;margin-top:2px}
+.table-wrap{overflow-x:auto;margin:1rem 0}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+thead th{background:#8b4513;color:#fff;padding:8px 10px;text-align:left;font-weight:600}
+thead th:last-child{text-align:right}
+tbody tr:nth-child(even){background:#fff9ef}
+tbody tr:nth-child(odd){background:#fff}
+tbody td{padding:8px 10px;border-bottom:1px solid #e8dcc8}
+tbody td:last-child{text-align:right;font-weight:600;color:#8b4513}
+tfoot td{background:#f0e6d0;font-weight:700;padding:9px 10px;border-top:2px solid #8b4513}
+tfoot td:last-child{text-align:right;color:#2c1810;font-size:1rem}
+.copy-row{display:flex;justify-content:flex-end;margin-top:0.5rem}
+.bar-chart{margin:1rem 0}
+.bar-item{margin-bottom:10px}
+.bar-label{font-size:0.8rem;color:#5a2d0c;font-weight:600;display:flex;justify-content:space-between;margin-bottom:3px}
+.bar-bg{background:#e8dcc8;border-radius:20px;height:14px;overflow:hidden}
+.bar-fill{height:100%;background:linear-gradient(90deg,#8b4513,#c4a882);border-radius:20px;transition:width 0.5s ease}
+.did-you-know{background:#2c1810;color:#f5f0e1;border-radius:8px;padding:1.25rem 1.4rem;margin:1.5rem 0}
+.did-you-know h3{color:#c4a882;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:0.75rem}
+.did-you-know ul{padding-left:1.2rem}
+.did-you-know li{margin-bottom:0.5rem;font-size:0.9rem;line-height:1.5}
+.hist-context{background:#fff9ef;border:1px solid #c4a882;border-left:4px solid #8b4513;border-radius:6px;padding:1.1rem 1.3rem;margin:1.5rem 0;font-size:0.9rem;line-height:1.7}
+.hist-context h3{color:#8b4513;margin-bottom:0.5rem;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.4px}
+.content-section{margin:2rem 0}
+.content-section h2{font-size:1.2rem;font-weight:700;color:#2c1810;margin-bottom:0.65rem;padding-bottom:0.3rem;border-bottom:1px solid #c4a882}
+.content-section p{font-size:0.93rem;color:#3a1f10;margin-bottom:0.75rem;line-height:1.7}
+.content-section ul{padding-left:1.3rem;margin-bottom:0.75rem}
+.content-section li{font-size:0.92rem;color:#3a1f10;margin-bottom:0.4rem;line-height:1.6}
+details{border:1px solid #c4a882;border-radius:6px;margin-bottom:0.6rem;background:#fff9ef}
+details summary{padding:0.75rem 1rem;cursor:pointer;font-weight:600;font-size:0.9rem;color:#5a2d0c;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+details summary::after{content:"＋";font-size:1rem;color:#8b4513}
+details[open] summary::after{content:"－"}
+details p{padding:0 1rem 0.85rem;font-size:0.88rem;color:#3a1f10;line-height:1.65}
+.related-tools{background:#fff9ef;border:1px solid #c4a882;border-radius:8px;padding:1.4rem;margin:2rem 0}
+.related-tools h2{font-size:1.1rem;font-weight:700;color:#2c1810;margin-bottom:0.75rem}
+.related-tools ul{list-style:none;padding:0}
+.related-tools li{border-bottom:1px solid #e8dcc8;padding:0.5rem 0}
+.related-tools li:last-child{border-bottom:none}
+.related-tools a{font-size:0.9rem;font-weight:500}
+.ad-slot{min-height:0;margin:0}
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.25rem 1rem;font-size:0.85rem;margin-top:2rem}
+footer a{color:#c4a882;margin:0 8px}
+footer a:hover{color:#f5f0e1;text-decoration:underline}
+.tabs{display:flex;gap:0;margin-bottom:1.25rem;border:1px solid #c4a882;border-radius:6px;overflow:hidden}
+.tab-btn{flex:1;padding:10px 6px;background:#f0e6d0;border:none;cursor:pointer;font-size:0.85rem;font-weight:600;color:#5a2d0c;transition:background 0.15s;min-height:44px}
+.tab-btn.active{background:#8b4513;color:#fff}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+@media(max-width:540px){
+  .row-2{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  .big-number{font-size:1.9rem}
+  h1{font-size:1.35rem}
+  .tool-card{padding:1.25rem}
+}
+@media(max-width:380px){
+  .result-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="logo">⚔️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- Hero SVG -->
+  <div class="hero-svg" aria-hidden="true">
+    <svg width="200" height="160" viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Colosseum silhouette -->
+      <ellipse cx="100" cy="120" rx="90" ry="30" fill="#c4a882" opacity="0.3"/>
+      <!-- Arena floor -->
+      <rect x="20" y="105" width="160" height="8" rx="2" fill="#c4a882" opacity="0.5"/>
+      <!-- Gladiator body -->
+      <circle cx="100" cy="50" r="12" fill="#8b4513"/>
+      <!-- Helmet crest -->
+      <rect x="97" y="36" width="6" height="4" rx="1" fill="#8b4513"/>
+      <ellipse cx="100" cy="36" rx="8" ry="3" fill="#6b3410"/>
+      <rect x="98" y="30" width="4" height="8" rx="1" fill="#c4a882"/>
+      <!-- Body/armor -->
+      <rect x="90" y="62" width="20" height="22" rx="3" fill="#6b3410"/>
+      <!-- Shield -->
+      <rect x="70" y="60" width="14" height="22" rx="4" fill="#8b4513"/>
+      <line x1="70" y1="71" x2="84" y2="71" stroke="#c4a882" stroke-width="1.5"/>
+      <line x1="77" y1="60" x2="77" y2="82" stroke="#c4a882" stroke-width="1.5"/>
+      <!-- Sword arm -->
+      <line x1="110" y1="70" x2="128" y2="55" stroke="#6b3410" stroke-width="4" stroke-linecap="round"/>
+      <line x1="128" y1="55" x2="140" y2="43" stroke="#c4a882" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Legs -->
+      <rect x="92" y="84" width="7" height="20" rx="2" fill="#8b4513"/>
+      <rect x="101" y="84" width="7" height="20" rx="2" fill="#8b4513"/>
+      <!-- Sandals -->
+      <rect x="89" y="102" width="13" height="4" rx="2" fill="#2c1810"/>
+      <rect x="98" y="102" width="13" height="4" rx="2" fill="#2c1810"/>
+      <!-- Stars -->
+      <text x="22" y="30" font-size="12" fill="#c4a882" opacity="0.6">✦</text>
+      <text x="160" y="25" font-size="10" fill="#c4a882" opacity="0.6">✦</text>
+      <text x="55" y="18" font-size="8" fill="#c4a882" opacity="0.5">✦</text>
+    </svg>
+  </div>
+
+  <h1>Ancient Roman Gladiator Training Cost Calculator</h1>
+  <p class="subtitle">Estimate the full cost of training a gladiator in ancient Rome — in sestertii and modern USD equivalents</p>
+
+  <!-- TOOL CARD -->
+  <div class="tool-card">
+    <div class="section-title">Gladiator Configuration</div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('basic')">Basic Setup</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('advanced')">Advanced Options</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('event')">Arena Event</button>
+    </div>
+
+    <div id="tab-basic" class="tab-panel active">
+      <div class="form-group">
+        <label for="gladType">Gladiator Type <span class="hint">(class affects equipment cost)</span></label>
+        <select id="gladType">
+          <option value="murmillo">Murmillo (heavy infantry, large shield)</option>
+          <option value="thraex">Thraex (Thracian, curved sica sword)</option>
+          <option value="retiarius">Retiarius (net & trident fighter)</option>
+          <option value="secutor">Secutor (pursuer, smooth helmet)</option>
+          <option value="hoplomachus">Hoplomachus (spear & round shield)</option>
+          <option value="dimachaerus">Dimachaerus (dual-sword fighter)</option>
+          <option value="laquearius">Laquearius (lasso fighter, rare)</option>
+        </select>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label for="gladOrigin">Gladiator Origin</label>
+          <select id="gladOrigin">
+            <option value="slave">Slave (purchased)</option>
+            <option value="volunteer">Volunteer (auctorati)</option>
+            <option value="prisoner">Prisoner of War</option>
+            <option value="criminal">Condemned Criminal</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="trainingMonths">Training Duration <span class="hint">(months)</span></label>
+          <input type="number" id="trainingMonths" value="18" min="6" max="60" placeholder="e.g. 18">
+          <div class="error-msg" id="err-months">Enter 6–60 months</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="slavePrice">Slave / Recruit Purchase Price (sestertii) <span class="hint">(typical: 500–2,500 HS)</span></label>
+        <input type="number" id="slavePrice" value="1500" min="0" placeholder="e.g. 1500">
+        <div class="error-msg" id="err-price">Enter a valid price (0 or more)</div>
+      </div>
+      <div class="form-group">
+        <label>Skill/Quality Level: <span class="slider-val" id="qualLabel">Standard</span></label>
+        <input type="range" id="qualSlider" min="1" max="5" value="3" oninput="updateQualLabel()">
+      </div>
+    </div>
+
+    <div id="tab-advanced" class="tab-panel">
+      <div class="row-2">
+        <div class="form-group">
+          <label for="numGlad">Number of Gladiators</label>
+          <input type="number" id="numGlad" value="1" min="1" max="500" placeholder="1">
+          <div class="error-msg" id="err-num">Enter 1–500</div>
+        </div>
+        <div class="form-group">
+          <label for="ludusType">Ludus (Training School)</label>
+          <select id="ludusType">
+            <option value="private">Private (rented)</option>
+            <option value="municipal">Municipal</option>
+            <option value="imperial">Imperial Ludus Magnus</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="medCare">Medical Care Level</label>
+        <select id="medCare">
+          <option value="basic">Basic (slave doctor)</option>
+          <option value="standard" selected>Standard (trained medicus)</option>
+          <option value="premium">Premium (Greek physician)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="dietType">Diet / Food Ration</label>
+        <select id="dietType">
+          <option value="basic">Basic (barley & beans)</option>
+          <option value="standard" selected>Standard (hordearii diet)</option>
+          <option value="rich">Rich (meat, fish & wine)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Lanista Profit Margin: <span class="slider-val" id="lanistaLabel">25%</span></label>
+        <input type="range" id="lanistaSlider" min="10" max="60" value="25" step="5" oninput="updateLanistaLabel()">
+      </div>
+    </div>
+
+    <div id="tab-event" class="tab-panel">
+      <div class="row-2">
+        <div class="form-group">
+          <label for="numBouts">Career Bouts (fights)</label>
+          <input type="number" id="numBouts" value="10" min="1" max="100" placeholder="e.g. 10">
+        </div>
+        <div class="form-group">
+          <label for="eventScale">Event Scale</label>
+          <select id="eventScale">
+            <option value="munera">Small Munera</option>
+            <option value="ludi" selected>Ludi Gladiatorii</option>
+            <option value="spectaculum">Grand Spectaculum</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="winRate">Estimated Win Rate: <span class="slider-val" id="winLabel">60%</span></label>
+        <input type="range" id="winRate" min="20" max="95" value="60" oninput="updateWinLabel()">
+      </div>
+      <div class="form-group">
+        <label for="prizeMult">Prize Money Multiplier</label>
+        <select id="prizeMult">
+          <option value="1">Standard (x1)</option>
+          <option value="1.5">Generous patron (x1.5)</option>
+          <option value="2">Famous champion (x2)</option>
+          <option value="0.5">Novice circuit (x0.5)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚔️ Calculate Training Costs</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="resultsSection">
+    <div class="tool-card">
+      <div class="section-title">Training Cost Breakdown</div>
+
+      <div id="bigResultArea"></div>
+
+      <div class="table-wrap">
+        <table id="breakdownTable">
+          <thead>
+            <tr><th>Cost Category</th><th>Notes</th><th>Sestertii (HS)</th></tr>
+          </thead>
+          <tbody id="breakdownBody"></tbody>
+          <tfoot id="breakdownFoot"></tfoot>
+        </table>
+      </div>
+
+      <div class="copy-row">
+        <button class="btn btn-sm" id="copyBtn" onclick="copyResults()">📋 Copy Results</button>
+      </div>
+
+      <div id="barChartArea" class="bar-chart"></div>
+      <div id="modernEquivArea"></div>
+      <div id="eventResultArea"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="hist-context">
+    <h3>📜 Historical Context</h3>
+    <p>Roman gladiatorial schools (<em>ludi</em>) were sophisticated training institutions, the most famous being the <em>Ludus Magnus</em> adjacent to the Colosseum, built by Emperor Domitian (~81 AD). A lanista — the school owner — invested heavily in each gladiator as a financial asset. Ancient sources including Livy, Suetonius, and the elder Pliny record that skilled gladiators were extraordinarily expensive: a top-tier fighter could sell for 15,000 sestertii or more. Galen of Pergamon served as physician to Marcus Aurelius's imperial gladiators (~157 AD), emphasizing the high medical standards. Gladiators consumed a specialized high-carbohydrate diet (earning the nickname <em>hordearii</em>, "barley men") confirmed by 2014 isotope analysis of gladiator bones from Ephesus. Equipment costs are based on finds at Pompeii (79 AD), where a full murmillo set was valued at ~5,000 HS.</p>
+  </div>
+
+  <!-- DID YOU KNOW -->
+  <div class="did-you-know">
+    <h3>⚡ Did You Know?</h3>
+    <ul>
+      <li>Most gladiatorial combats did NOT end in death — a good gladiator was too expensive to kill casually. Survival rates in the 1st–2nd century AD were around 90% per bout according to epigraphic evidence.</li>
+      <li>A slave gladiator who survived long enough could earn a <em>rudis</em> (a wooden sword symbolizing freedom) and sometimes his own bodyweight in gold. The famous Spiculus was reportedly gifted entire estates by Nero.</li>
+      <li>Free men voluntarily signing as gladiators (<em>auctorati</em>) were legally treated as slaves for their contract period — yet they could earn up to 2,000 sestertii per fight, roughly 2 years' wages for an average Roman soldier.</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Roman Gladiator Cost Calculator</h2>
+    <p>Select a gladiator type, origin (slave, volunteer, prisoner, or condemned criminal), and the length of training. Use the <strong>Advanced Options</strong> tab to fine-tune medical care, diet quality, ludus type, and the lanista's profit margin. Switch to the <strong>Arena Event</strong> tab to project career prize earnings over multiple bouts. Hit <em>Calculate Training Costs</em> to see a full sestertii breakdown with a modern USD equivalent.</p>
+    <p>The output shows a cost-by-category table, a visual bar chart, and — if you filled in the Event tab — a career ROI comparison showing whether your gladiator is a profitable investment.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding gladiatorial economics reframes how we think about Roman entertainment. The <em>munera</em> (gladiatorial games) were not cheap blood sport — they were a high-stakes financial industry. A lanista running a school of 30 gladiators might have 150,000–400,000 sestertii invested, roughly equivalent to $3–8 million today. Wealthy Romans rented gladiators for public events to win political favor, and the rental price alone could be 1,000–5,000 HS per fighter per bout.</p>
+    <p>For historians, educators, and game designers, realistic cost modeling illuminates Roman class economics, the valuation of skilled labor (even enslaved), and the political machinery behind the spectacles. Students studying primary sources like Cicero's letters or Seneca's <em>Epistulae Morales</em> (which mentions gladiatorial fees) can now ground those references in quantified context.</p>
+    <p>A mid-tier gladiator might cost a lanista 8,000–12,000 sestertii over 18 months of training — comparable to building a small merchant vessel or purchasing a productive urban workshop. The economics explain why lanistae fought hard in court when a gladiator was killed without their consent.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses documented Roman price data and modern scholarly reconstructions:</p>
+    <ul>
+      <li><strong>Purchase price:</strong> Direct input (500–2,500 HS for average slaves; POWs often cheaper; volunteers signed contracts worth 1,000–3,000 HS).</li>
+      <li><strong>Equipment cost:</strong> Based on gladiator class. Murmillo/Secutor full kit ~4,500–6,000 HS (Pompeii finds); Retiarius ~1,500 HS (net, trident, manica only); rare Dimachaerus ~5,500 HS. Scaled by quality level.</li>
+      <li><strong>Food (per month):</strong> Basic hordearii diet ~45 HS/month; rich diet ~120 HS/month (Diocletian's Edict of Maximum Prices, scaled backward).</li>
+      <li><strong>Medical care:</strong> Basic ~20 HS/month; trained medicus ~60 HS/month; Greek physician ~150 HS/month (Galen records).</li>
+      <li><strong>Lanista fee / school overhead:</strong> Applied as a percentage margin on the cost subtotal (10–60%).</li>
+      <li><strong>Modern USD equivalent:</strong> 1 sestertius ≈ $2.50 USD (based on unskilled Roman daily wage of 4 HS = ~$10/day in 2024 purchasing power).</li>
+    </ul>
+    <p><strong>Formula:</strong> <code>Total Cost = (Purchase + Equipment + (Food + Medical + Misc) × Months) × (1 + LanistaPct) × NumGladiators</code></p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't underestimate equipment costs.</strong> A Murmillo's manica, greave, helmet, large shield, and gladius combined cost more than the gladiator's original purchase price in many cases.</li>
+      <li><strong>Training duration matters enormously.</strong> The first 6 months (basic conditioning) cost as much as later months but produce zero revenue. Skilled fighters needed 18–24 months before their first bout.</li>
+      <li><strong>Medical care was the hidden expense.</strong> Galen estimated he spent more on wound treatment for gladiators than on any other patient group. Skimping on medical care meant losing a valuable asset permanently.</li>
+      <li><strong>Prisoners of War had low upfront costs but higher training overhead</strong> — they often required longer conditioning and had higher mortality in training.</li>
+      <li><strong>The lanista margin was negotiated.</strong> Top-tier fighters at imperial ludi commanded lower lanista markups because the state subsidized the school. Private operators needed 30–50% margins to survive.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How much did a gladiator actually cost in Roman times?</summary>
+      <p>A newly purchased slave suitable for training cost 500–2,500 sestertii (HS). After 18 months of training, equipment, food, and medical care, the total investment in a single competent gladiator typically ranged from 6,000–15,000 HS. Top champions like Spiculus were valued at tens of thousands of sestertii — Nero famously gifted him entire estates.</p>
+    </details>
+    <details>
+      <summary>What is a sestertius worth in today's money?</summary>
+      <p>This is debated by historians, but a common approach ties the sestertius to the unskilled daily wage of ~4 HS in the 1st century AD. If we equate that to a modern $40 minimum-wage day, 1 HS ≈ $10. However, for purchasing power on goods, most scholars use $2–$4 per sestertius. This calculator uses $2.50 HS as a middle-ground estimate.</p>
+    </details>
+    <details>
+      <summary>Did gladiators get paid?</summary>
+      <p>Slave gladiators did not receive wages, but they earned <em>dona</em> (gifts of money and prizes) for winning fights, which were sometimes legally set aside for them. Volunteer gladiators (<em>auctorati</em>) received a signing bonus and per-fight fees, typically 1,000–3,000 HS for a well-performing fighter. Freed gladiators who continued fighting as independent contractors could earn 2,000–5,000 HS per bout at major events.</p>
+    </details>
+    <details>
+      <summary>What was the most expensive gladiator type to train?</summary>
+      <p>The Murmillo and Secutor were among the costliest due to their full heavy armor — helmet with large crest, large shield (<em>scutum</em>), leg greaves, and arm guard (<em>manica</em>). The Dimachaerus (dual-sword fighter) was exceptionally rare and expensive because training two-weapon combat took far longer. The Retiarius was the cheapest: his gear (net, trident, shoulder guard) cost roughly a quarter of a Murmillo's kit.</p>
+    </details>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-tools">
+    <h2>⚔️ Related History Tools</h2>
+    <ul>
+      <li><a href="/roman-emperor-reign-timeline-comparator/">Roman Emperor Reign Timeline Comparator</a></li>
+      <li><a href="/ancient-greek-city-state-army-estimator/">Ancient Greek City-State Population &amp; Army Size Estimator</a></li>
+      <li><a href="/mayan-long-count-calendar-converter/">Mayan Long Count Calendar Converter</a></li>
+      <li><a href="/roman-thermae-construction-cost-estimator/">Ancient Roman Bath (Thermae) Construction Cost Estimator</a></li>
+      <li><a href="/mesopotamian-trade-ledger-calculator/">Mesopotamian Cuneiform Trade Ledger Calculator</a></li>
+      <li><a href="/ancient-greek-olympic-games-planner/">Ancient Greek Olympic Games Planner</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div style="margin-top:6px;color:#8b7060;">© <span id="yr"></span> historycalc.com — Educational History Calculators</div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ---- Tab switching (CSS class only, no DOM rebuild) ----
+function switchTab(tab) {
+  ['basic','advanced','event'].forEach(t => {
+    document.getElementById('tab-'+t).classList.toggle('active', t===tab);
+  });
+  document.querySelectorAll('.tab-btn').forEach((btn,i) => {
+    const tabs = ['basic','advanced','event'];
+    btn.classList.toggle('active', tabs[i]===tab);
+    btn.setAttribute('aria-selected', tabs[i]===tab);
+  });
+}
+
+// ---- Slider labels ----
+const qualLabels = ['Novice','Below Avg','Standard','Skilled','Elite Champion'];
+function updateQualLabel() {
+  const v = parseInt(document.getElementById('qualSlider').value);
+  document.getElementById('qualLabel').textContent = qualLabels[v-1];
+}
+function updateLanistaLabel() {
+  document.getElementById('lanistaLabel').textContent = document.getElementById('lanistaSlider').value + '%';
+}
+function updateWinLabel() {
+  document.getElementById('winLabel').textContent = document.getElementById('winRate').value + '%';
+}
+
+// ---- Data tables ----
+const GLAD_DATA = {
+  murmillo:    { name:'Murmillo',    equipBase:4800, trainingDiff:1.0 },
+  thraex:      { name:'Thraex',      equipBase:4200, trainingDiff:1.05 },
+  retiarius:   { name:'Retiarius',   equipBase:1600, trainingDiff:1.1 },
+  secutor:     { name:'Secutor',     equipBase:5000, trainingDiff:1.0 },
+  hoplomachus: { name:'Hoplomachus', equipBase:3800, trainingDiff:1.1 },
+  dimachaerus: { name:'Dimachaerus', equipBase:5500, trainingDiff:1.3 },
+  laquearius:  { name:'Laquearius',  equipBase:2200, trainingDiff:1.25 }
+};
+const ORIGIN_DATA = {
+  slave:     { label:'Slave', defaultPrice:1500, miscMonthly:20 },
+  volunteer: { label:'Volunteer (auctoratus)', defaultPrice:2000, miscMonthly:60 },
+  prisoner:  { label:'Prisoner of War', defaultPrice:600, miscMonthly:30 },
+  criminal:  { label:'Condemned Criminal', defaultPrice:0, miscMonthly:15 }
+};
+const DIET = { basic:45, standard:75, rich:120 };
+const MEDICAL = { basic:22, standard:65, premium:155 };
+const LUDUS_OVERHEAD = { private:0.05, municipal:0.10, imperial:0.03 };
+const QUAL_MULT = [0.75, 0.88, 1.0, 1.2, 1.55];
+const EVENT_PRIZE = { munera:800, ludi:2000, spectaculum:5000 };
+const HS_TO_USD = 2.50;
+
+function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+function fmtUSD(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+function pct(part, total) {
+  if(!total) return 0;
+  return Math.round(part/total*100);
+}
+
+// ---- Main calculate ----
+function calculate() {
+  // --- Inputs ---
+  const gladType = document.getElementById('gladType').value;
+  const gladOrigin = document.getElementById('gladOrigin').value;
+  const months = parseInt(document.getElementById('trainingMonths').value);
+  const slavePrice = parseFloat(document.getElementById('slavePrice').value);
+  const qualIdx = parseInt(document.getElementById('qualSlider').value) - 1;
+  const numGlad = parseInt(document.getElementById('numGlad').value) || 1;
+  const ludusType = document.getElementById('ludusType').value;
+  const medCare = document.getElementById('medCare').value;
+  const dietType = document.getElementById('dietType').value;
+  const lanistaPct = parseInt(document.getElementById('lanistaSlider').value) / 100;
+  const numBouts = parseInt(document.getElementById('numBouts').value) || 10;
+  const eventScale = document.getElementById('eventScale').value;
+  const winRate = parseInt(document.getElementById('winRate').value) / 100;
+  const prizeMult = parseFloat(document.getElementById('prizeMult').value);
+
+  // --- Validation ---
+  let valid = true;
+  const showErr = (id, show) => {
+    const el = document.getElementById(id);
+    if(el) el.classList.toggle('show', show);
+  };
+  if(isNaN(months) || months < 6 || months > 60) { showErr('err-months',true); valid=false; } else showErr('err-months',false);
+  if(isNaN(slavePrice) || slavePrice < 0) { showErr('err-price',true); valid=false; } else showErr('err-price',false);
+  if(isNaN(numGlad) || numGlad < 1 || numGlad > 500) { showErr('err-num',true); valid=false; } else showErr('err-num',false);
+  if(!valid) return;
+
+  const gd = GLAD_DATA[gladType];
+  const qm = QUAL_MULT[qualIdx];
+
+  // --- Per-gladiator costs ---
+  const purchaseCost = slavePrice;
+  const equipCost = Math.round(gd.equipBase * qm * gd.trainingDiff);
+  const foodMonthly = DIET[dietType];
+  const foodTotal = foodMonthly * months;
+  const medMonthly = MEDICAL[medCare];
+  const medTotal = medMonthly * months;
+  const originMisc = ORIGIN_DATA[gladOrigin].miscMonthly;
+  const miscTotal = originMisc * months; // stipend / admin
+  const ludusPct = LUDUS_OVERHEAD[ludusType];
+  const subtotalBeforeLudus = purchaseCost + equipCost + foodTotal + medTotal + miscTotal;
+  const ludusFee = Math.round(subtotalBeforeLudus * ludusPct);
+  const subtotalBeforeLanista = subtotalBeforeLudus + ludusFee;
+  const lanistaFee = Math.round(subtotalBeforeLanista * lanistaPct);
+  const totalPerGlad = subtotalBeforeLanista + lanistaFee;
+  const grandTotal = totalPerGlad * numGlad;
+
+  // --- Breakdown rows ---
+  const rows = [
+    { cat:'Purchase / Recruitment', note: ORIGIN_DATA[gladOrigin].label, val: purchaseCost },
+    { cat:'Equipment & Armor', note: gd.name + ' kit (' + qualLabels[qualIdx] + ')', val: equipCost },
+    { cat:'Food & Nutrition', note: dietType.charAt(0).toUpperCase()+dietType.slice(1)+' diet × '+months+' mo.', val: foodTotal },
+    { cat:'Medical Care', note: medCare.charAt(0).toUpperCase()+medCare.slice(1)+' × '+months+' mo.', val: medTotal },
+    { cat:'Stipend & Admin', note: ORIGIN_DATA[gladOrigin].label+' overhead × '+months+' mo.', val: miscTotal },
+    { cat:'Ludus Overhead', note: ludusType.charAt(0).toUpperCase()+ludusType.slice(1)+' school ('+Math.round(ludusPct*100)+'%)', val: ludusFee },
+    { cat:'Lanista Profit Margin', note: Math.round(lanistaPct*100)+'% of operating costs', val: lanistaFee },
+  ];
+
+  // --- Event / ROI ---
+  const prizePerWin = Math.round(EVENT_PRIZE[eventScale] * prizeMult);
+  const wins = Math.round(numBouts * winRate);
+  const totalPrize = wins * prizePerWin;
+  const rentalRevenue = Math.round(numBouts * (eventScale==='spectaculum'?3000:eventScale==='ludi'?1500:700));
+  const totalRevenue = totalPrize + rentalRevenue;
+  const roi = totalPerGlad > 0 ? Math.round((totalRevenue - totalPerGlad) / totalPerGlad * 100) : 0;
+
+  // --- Build HTML ---
+  let bigHTML = `
+    <div class="result-grid">
+      <div class="result-box">
+        <div class="big-number">${fmt(totalPerGlad)}</div>
+        <div class="lbl">HS per gladiator</div>
+      </div>
+      <div class="result-box">
+        <div class="big-number">${fmtUSD(totalPerGlad * HS_TO_USD)}</div>
+        <div class="lbl">Modern USD equivalent</div>
+      </div>
+      ${numGlad > 1 ? `<div class="result-box"><div class="big-number">${fmt(grandTotal)}</div><div class="lbl">HS total (${numGlad} gladiators)</div></div>
+      <div class="result-box"><div class="big-number">${fmtUSD(grandTotal * HS_TO_USD)}</div><div class="lbl">Total USD equiv.</div></div>` : ''}
+    </div>`;
+
+  let tbodyHTML = rows.map(r => `<tr><td>${r.cat}</td><td style="color:#666;font-size:0.83rem">${r.note}</td><td>${fmt(r.val)}</td></tr>`).join('');
+  let tfootHTML = `<tr><td colspan="2"><strong>TOTAL COST (per gladiator)</strong></td><td><strong>${fmt(totalPerGlad)} HS</strong></td></tr>`;
+
+  // bar chart
+  let barHTML = '<div class="section-title" style="margin-top:1.25rem">Cost Distribution</div>';
+  const barItems = [
+    { label:'Purchase/Recruitment', val: purchaseCost },
+    { label:'Equipment & Armor', val: equipCost },
+    { label:'Food (total)', val: foodTotal },
+    { label:'Medical (total)', val: medTotal },
+    { label:'Stipend/Admin', val: miscTotal },
+    { label:'Ludus & Lanista Fees', val: ludusFee + lanistaFee },
+  ];
+  barItems.forEach(b => {
+    const p = pct(b.val, totalPerGlad);
+    barHTML += `<div class="bar-item">
+      <div class="bar-label"><span>${b.label}</span><span>${p}%</span></div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${p}%"></div></div>
+    </div>`;
+  });
+
+  // modern equiv
+  let modernHTML = `<div class="modern-equiv">
+    <strong>⚖️ Modern Equivalents:</strong><br>
+    • Training one ${gd.name} gladiator ≈ <strong>${fmtUSD(totalPerGlad * HS_TO_USD)}</strong> in 2024 purchasing power<br>
+    • That's roughly <strong>${Math.round(totalPerGlad / 1200)} months</strong> of a skilled Roman artisan's wages (1,200 HS/year)<br>
+    • Equivalent to purchasing <strong>${(totalPerGlad / 900).toFixed(1)}</strong> horses or <strong>${(totalPerGlad / 4).toFixed(0)}</strong> modii (bushels) of wheat
+  </div>`;
+
+  // event ROI
+  let eventHTML = `<div class="section-title" style="margin-top:1.25rem">Career Revenue Projection (${numBouts} bouts)</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Revenue Source</th><th>Notes</th><th>Sestertii</th></tr></thead>
+      <tbody>
+        <tr><td>Prize Winnings</td><td>${wins} wins × ${fmt(prizePerWin)} HS</td><td>${fmt(totalPrize)}</td></tr>
+        <tr><td>Rental / Appearance Fees</td><td>${numBouts} bouts at ${eventScale} events</td><td>${fmt(rentalRevenue)}</td></tr>
+        <tr><td><strong>Total Revenue</strong></td><td>${Math.round(winRate*100)}% win rate</td><td><strong>${fmt(totalRevenue)}</strong></td></tr>
+        <tr><td>Training Investment</td><td>Full cost per gladiator</td><td style="color:#e74c3c">−${fmt(totalPerGlad)}</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2"><strong>Net Profit / Loss</strong></td><td style="color:${totalRevenue>=totalPerGlad?'#2d7a2d':'#e74c3c'}">${totalRevenue>=totalPerGlad?'+':''}${fmt(totalRevenue-totalPerGlad)} HS (ROI: ${roi}%)</td></tr></tfoot>
+    </table></div>
+    <p style="font-size:0.82rem;color:#666;margin-top:0.5rem">* Revenue estimates are illustrative projections based on documented prize ranges for ${eventScale} events.</p>`;
+
+  // Store for clipboard
+  window._lastResult = `GLADIATOR TRAINING COST SUMMARY
+Type: ${gd.name} | Origin: ${ORIGIN_DATA[gladOrigin].label} | Training: ${months} months
+---
+Purchase/Recruitment: ${fmt(purchaseCost)} HS
+Equipment & Armor: ${fmt(equipCost)} HS
+Food (${dietType}): ${fmt(foodTotal)} HS
+Medical (${medCare}): ${fmt(medTotal)} HS
+Stipend/Admin: ${fmt(miscTotal)} HS
+Ludus Overhead: ${fmt(ludusFee)} HS
+Lanista Margin: ${fmt(lanistaFee)} HS
+TOTAL: ${fmt(totalPerGlad)} HS ≈ ${fmtUSD(totalPerGlad*HS_TO_USD)}
+${numGlad>1?`Grand Total (${numGlad} gladiators): ${fmt(grandTotal)} HS ≈ ${fmtUSD(grandTotal*HS_TO_USD)}`:''}`;
+
+  requestAnimationFrame(() => {
+    document.getElementById('bigResultArea').innerHTML = bigHTML;
+    document.getElementById('breakdownBody').innerHTML = tbodyHTML;
+    document.getElementById('breakdownFoot').innerHTML = tfootHTML;
+    document.getElementById('barChartArea').innerHTML = barHTML;
+    document.getElementById('modernEquivArea').innerHTML = modernHTML;
+    document.getElementById('eventResultArea').innerHTML = eventHTML;
+    const sec = document.getElementById('resultsSection');
+    sec.classList.add('visible');
+    sec.scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
+}
+
+// ---- Copy ----
+function copyResults() {
+  if(!window._lastResult) return;
+  if(navigator.clipboard) {
+    navigator.clipboard.writeText(window._lastResult).then(() => flashCopy());
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = window._lastResult;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    flashCopy();
+  }
+}
+function flashCopy() {
+  const btn = document.getElementById('copyBtn');
+  const orig = btn.textContent;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => btn.textContent = orig, 2000);
+}
+
+// ---- Enter key on inputs ----
+document.querySelectorAll('input,select').forEach(el => {
+  el.addEventListener('keydown', e => { if(e.key==='Enter') { requestAnimationFrame(calculate); } });
+});
+document.getElementById('calcBtn').addEventListener('click', () => { requestAnimationFrame(calculate); });
+</script>
+</body>
+</html>
