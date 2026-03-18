@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viking Age Silver Hacksilver Wealth Estimator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Estimate Viking Age hacksilver wealth in historical units, modern silver value & purchasing power. The ultimate viking silver currency calculator.">
+<link rel="canonical" href="https://historycalc.com/viking-hacksilver-wealth-estimator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Viking Age Silver Hacksilver Wealth Estimator",
+  "url": "https://historycalc.com/viking-hacksilver-wealth-estimator/",
+  "description": "Estimate Viking Age hacksilver wealth in historical units, modern silver value and purchasing power.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;font-size:16px;line-height:1.6}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline;color:#6b3410}
+nav{background:#2c1810;padding:0.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+nav a{color:#f5f0e1;font-weight:600;font-size:1rem}
+nav a:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1rem 3rem}
+h1{font-size:1.6rem;font-weight:800;color:#2c1810;margin-bottom:0.4rem;line-height:1.3}
+.subtitle{color:#6b4423;font-size:0.95rem;margin-bottom:1.5rem}
+.svg-wrap{text-align:center;margin:0 0 1.5rem}
+.card{background:#fff8ef;border:1px solid #c4a882;border-radius:8px;padding:1.75rem;box-shadow:0 2px 8px rgba(44,24,16,0.08);margin-bottom:2rem}
+.card h2{font-size:1.1rem;font-weight:700;color:#8b4513;margin-bottom:1.2rem;border-bottom:1px solid #c4a882;padding-bottom:0.5rem}
+.form-row{margin-bottom:1.2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3018;margin-bottom:0.35rem}
+input[type=number],select{width:100%;border:1px solid #c4a882;border-radius:6px;padding:12px 16px;font-size:1rem;color:#2c1810;background:#fffdf8;outline:none;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px;-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none}
+input[type=number]:focus,select:focus{border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#c0392b}
+.error-msg{color:#c0392b;font-size:0.8rem;margin-top:0.3rem;display:none}
+.slider-row{margin-bottom:1.2rem}
+.slider-label{display:flex;justify-content:space-between;font-size:0.85rem;font-weight:500;color:#5a3018;margin-bottom:0.35rem}
+input[type=range]{width:100%;accent-color:#8b4513;height:6px;min-height:24px}
+.btn-primary{background:#8b4513;color:#fff;border:none;border-radius:6px;padding:13px 28px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:48px;transition:background 0.2s,transform 0.1s}
+.btn-primary:hover{background:#6b3410}
+.btn-primary:active{transform:scale(0.98)}
+.results{opacity:0;transition:opacity 0.35s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:auto}
+.result-hero{text-align:center;padding:1.2rem 0.5rem;background:#2c1810;border-radius:8px;margin-bottom:1.2rem;color:#f5f0e1}
+.result-hero .big-num{font-size:2.4rem;font-weight:800;color:#c4a882;line-height:1.1}
+.result-hero .big-label{font-size:0.85rem;color:#d4b896;margin-top:0.25rem}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.2rem}
+.result-box{background:#fff8ef;border:1px solid #c4a882;border-radius:6px;padding:0.9rem;text-align:center}
+.result-box .val{font-size:1.25rem;font-weight:700;color:#8b4513}
+.result-box .lbl{font-size:0.75rem;color:#6b4423;margin-top:0.2rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+th{background:#c4a882;color:#2c1810;padding:8px 10px;text-align:left;font-weight:600}
+th:last-child,td:last-child{text-align:right}
+td{padding:7px 10px;border-bottom:1px solid #e8dcc8;color:#2c1810}
+tr:nth-child(even) td{background:#fdf5e6}
+.tbl-wrap{overflow-x:auto}
+.copy-btn{background:#c4a882;color:#2c1810;border:none;border-radius:5px;padding:6px 14px;font-size:0.8rem;font-weight:600;cursor:pointer;margin-top:0.8rem;transition:background 0.2s}
+.copy-btn:hover{background:#b09060}
+.did-you-know{background:#2c1810;color:#f5f0e1;border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.did-you-know h3{color:#c4a882;font-size:1rem;margin-bottom:0.7rem;font-weight:700}
+.did-you-know ul{padding-left:1.2rem}
+.did-you-know li{margin-bottom:0.5rem;font-size:0.88rem;color:#e0ccb0}
+.modern-equiv{background:#fff3cd;border:1px solid #d4aa30;border-radius:8px;padding:1rem 1.25rem;margin-bottom:1.2rem;font-size:0.9rem;color:#5a3e00}
+.modern-equiv strong{color:#8b4513}
+.hist-context{background:#fff8ef;border-left:4px solid #8b4513;padding:1rem 1.25rem;margin-bottom:2rem;border-radius:0 6px 6px 0;font-size:0.88rem;color:#3a2010;line-height:1.7}
+.hist-context h2{font-size:1rem;font-weight:700;color:#8b4513;margin-bottom:0.6rem;border:none;padding:0}
+section.content h2{font-size:1.15rem;font-weight:700;color:#8b4513;margin:1.8rem 0 0.7rem;border-bottom:1px solid #c4a882;padding-bottom:0.4rem}
+section.content p{font-size:0.9rem;color:#3a2010;margin-bottom:0.8rem;line-height:1.75}
+section.content ul{padding-left:1.2rem;margin-bottom:0.8rem}
+section.content ul li{font-size:0.9rem;color:#3a2010;margin-bottom:0.4rem;line-height:1.7}
+details{margin-bottom:0.7rem;border:1px solid #c4a882;border-radius:6px;overflow:hidden}
+summary{padding:0.75rem 1rem;font-weight:600;color:#8b4513;cursor:pointer;font-size:0.9rem;background:#fff8ef;list-style:none;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▶ ";font-size:0.75rem}
+details[open] summary::before{content:"▼ "}
+details p{padding:0.75rem 1rem;font-size:0.88rem;color:#3a2010;background:#fffdf8;line-height:1.7}
+.related-tools{margin-bottom:2rem}
+.related-tools h2{font-size:1.1rem;font-weight:700;color:#8b4513;margin-bottom:0.8rem;border-bottom:1px solid #c4a882;padding-bottom:0.4rem}
+.related-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.related-list a{display:block;padding:0.6rem 0.9rem;background:#fff8ef;border:1px solid #c4a882;border-radius:6px;font-size:0.88rem;color:#8b4513;transition:background 0.2s}
+.related-list a:hover{background:#f0e0c0;text-decoration:none}
+.ad-slot{min-height:0;margin:1.5rem 0}
+footer{background:#2c1810;color:#d4b896;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem}
+footer a{color:#c4a882}
+footer a:hover{color:#f5f0e1}
+footer .foot-links{margin-bottom:0.4rem;display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}
+@media(max-width:520px){
+  .result-grid{grid-template-columns:1fr}
+  h1{font-size:1.35rem}
+  .result-hero .big-num{font-size:1.9rem}
+  .card{padding:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚓ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="svg-wrap">
+    <svg width="320" height="110" viewBox="0 0 320 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Viking longship with hacksilver">
+      <!-- Sea -->
+      <path d="M0 88 Q40 80 80 88 Q120 96 160 88 Q200 80 240 88 Q280 96 320 88 L320 110 L0 110Z" fill="#8db4c8" opacity="0.5"/>
+      <!-- Hull -->
+      <path d="M40 80 Q80 100 160 100 Q240 100 280 80 L270 72 Q230 88 160 88 Q90 88 50 72Z" fill="#5a3018"/>
+      <rect x="50" y="60" width="220" height="18" rx="4" fill="#6b3d1e"/>
+      <!-- Shields on side -->
+      <circle cx="80" cy="72" r="7" fill="#c4a882" stroke="#2c1810" stroke-width="1.5"/>
+      <circle cx="110" cy="72" r="7" fill="#8b4513" stroke="#2c1810" stroke-width="1.5"/>
+      <circle cx="140" cy="72" r="7" fill="#c4a882" stroke="#2c1810" stroke-width="1.5"/>
+      <circle cx="170" cy="72" r="7" fill="#8b4513" stroke="#2c1810" stroke-width="1.5"/>
+      <circle cx="200" cy="72" r="7" fill="#c4a882" stroke="#2c1810" stroke-width="1.5"/>
+      <circle cx="230" cy="72" r="7" fill="#8b4513" stroke="#2c1810" stroke-width="1.5"/>
+      <!-- Mast -->
+      <rect x="157" y="15" width="5" height="50" fill="#3a1f0a"/>
+      <!-- Sail -->
+      <polygon points="162,18 210,35 162,55" fill="#c4a882" opacity="0.85"/>
+      <line x1="162" y1="18" x2="210" y2="35" stroke="#8b4513" stroke-width="1"/>
+      <line x1="162" y1="35" x2="210" y2="35" stroke="#8b4513" stroke-width="1"/>
+      <line x1="162" y1="55" x2="210" y2="35" stroke="#8b4513" stroke-width="1"/>
+      <!-- Prow dragon head -->
+      <path d="M40 72 Q28 60 20 52 Q30 55 38 62 Q36 52 42 46 Q46 56 46 66Z" fill="#5a3018"/>
+      <circle cx="24" cy="53" r="2" fill="#f5f0e1"/>
+      <!-- Coins/hacksilver pile -->
+      <ellipse cx="255" cy="82" rx="16" ry="5" fill="#d4aa30" opacity="0.9"/>
+      <ellipse cx="255" cy="79" rx="13" ry="4" fill="#c4a882"/>
+      <ellipse cx="255" cy="76" rx="10" ry="3" fill="#d4aa30" opacity="0.85"/>
+      <text x="249" y="79" font-size="5" fill="#2c1810" font-weight="bold">⚒</text>
+    </svg>
+  </div>
+
+  <h1>Viking Age Silver Hacksilver Wealth Estimator</h1>
+  <p class="subtitle">Enter a weight of silver and discover its Viking Age purchasing power, historical units, and modern equivalent.</p>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h2>📜 Historical Context</h2>
+    <p>Vikings did not rely on minted coins for daily trade — instead, they used <strong>hacksilver</strong>: chopped fragments of silver objects weighed on portable folding scales. Arm-rings, ingots, and foreign coins were all fair game; what mattered was the weight. The primary unit was the <em>öre</em> (roughly 24–27g in 9th–11th century Scandinavia), subdivided into <em>örtugar</em> (⅓ öre) and <em>penningar</em>. A full <em>mark</em> equalled 8 öre (~192–216g). Archaeological hoards from Gotland, Ireland, and Russia confirm silver purity typically between 85–97%, and merchants routinely nicked silver objects to check authenticity.</p>
+  </div>
+
+  <!-- Calculator Card -->
+  <div class="card">
+    <h2>⚖️ Calculate Hacksilver Wealth</h2>
+
+    <div class="form-row">
+      <label for="silverGrams">Silver weight (grams)</label>
+      <input type="number" id="silverGrams" placeholder="e.g. 500" min="0.1" step="0.1" value="500">
+      <div class="error-msg" id="err-grams">Please enter a positive weight (grams).</div>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">
+        <span>Silver purity (%): <strong id="purityDisplay">92</strong>%</span>
+        <span style="font-size:0.78rem;color:#8b4513">Typical hoard: 85–97%</span>
+      </div>
+      <input type="range" id="puritySlider" min="50" max="99" value="92" step="1">
+    </div>
+
+    <div class="form-row">
+      <label for="oreWeight">Regional öre weight (grams)</label>
+      <select id="oreWeight">
+        <option value="24.5">Scandinavian öre ~24.5g (common 10th c.)</option>
+        <option value="27.0" selected>Swedish öre ~27.0g (Birka standard)</option>
+        <option value="25.9">Norwegian öre ~25.9g</option>
+        <option value="24.0">Danish öre ~24.0g</option>
+        <option value="26.5">Gotlandic öre ~26.5g</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label for="silverSpotPrice">Modern silver spot price (USD per troy oz)</label>
+      <input type="number" id="silverSpotPrice" placeholder="e.g. 31.00" min="1" step="0.01" value="31.00">
+      <div class="error-msg" id="err-spot">Please enter a valid silver price (USD/troy oz).</div>
+    </div>
+
+    <button class="btn-primary" id="calcBtn">⚒ Estimate Wealth</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="resultsSection">
+    <div class="card">
+      <h2>📊 Your Hacksilver Wealth</h2>
+      <div id="resultsInner"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>⚡ Did You Know?</h3>
+    <ul>
+      <li>The largest Viking silver hoard ever found — the <strong>Cuerdale Hoard</strong> (Lancashire, England, c. 905 AD) — contained over <strong>40 kg</strong> of hacksilver, coins, and ingots. That's roughly 1,481 Swedish öre.</li>
+      <li>Viking merchants carried <strong>folding pocket scales</strong> (weighing as little as 50g themselves) with tiny counterweights shaped as animals or Christian crosses, blending Norse and Christian symbolism in daily commerce.</li>
+      <li>A thrall (slave) in 10th-century Scandinavia cost approximately <strong>6–12 öre</strong> of silver — roughly the same as a good sword or a cow, illustrating how precisely integrated hacksilver was into the Norse economy.</li>
+    </ul>
+  </div>
+
+  <!-- Content Section -->
+  <section class="content">
+    <h2>How to Use This Viking Silver Currency Calculator</h2>
+    <p>Enter the total weight of silver in grams, adjust the purity slider to reflect typical hoard quality (85–97% for most Viking Age silver), select your regional öre standard, and set the current silver spot price. Hit "Estimate Wealth" to see the breakdown in historical Viking units, purchasing equivalents, and modern USD value.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Understanding hacksilver wealth helps historians, re-enactors, writers, and curious readers grasp what Viking prosperity actually looked like. When the sagas mention a jarl gifting "three marks of silver," most modern readers have no frame of reference — was that a fortune, or a week's wages? This tool makes it concrete.</p>
+    <p>Consider: a Norwegian merchant arriving in Hedeby (Denmark's great trading emporium) with 500 grams of silver was carrying roughly 18–19 öre. That could buy two dairy cows, a set of fine iron tools, or several bolts of quality wool cloth. A successful raiding voyage to England might yield 10–50 marks — the equivalent of decades of agricultural labor. Context transforms raw numbers into vivid history.</p>
+    <p>This calculator is also useful for game masters running Norse-themed RPGs, novelists researching Viking Age fiction, and students studying medieval Scandinavian economics. The purchasing-power equivalents are drawn from comparative price records in the Icelandic sagas, Norwegian law codes (<em>Gulathingslög</em>), and archaeological price studies.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The core formula adjusts gross silver weight by purity, then divides into historical units:</p>
+    <p><strong>Pure silver (g) = Weight (g) × (Purity% ÷ 100)</strong></p>
+    <p><strong>Öre = Pure silver ÷ Regional öre weight</strong><br>
+    <strong>Mark = Öre ÷ 8</strong><br>
+    <strong>Örtugar = Öre × 3</strong><br>
+    <strong>Penningar ≈ Öre × 24</strong> (varies by region and era)</p>
+    <p>Modern value uses: <strong>USD = Weight (g) ÷ 31.1035 × Spot Price (USD/troy oz)</strong></p>
+    <p>Purchasing power equivalents use saga-era price benchmarks: 1 milk cow ≈ 1 öre; 1 slave ≈ 6–12 öre; 1 sword ≈ 1–2 öre; 1 longship ≈ 30–50 marks (estimated from shipbuilding labor and timber costs in the <em>Gulathingslög</em>).</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't assume 100% purity.</strong> Viking hoards typically test at 85–97% silver. Using 100% inflates your results significantly.</li>
+      <li><strong>Öre weight varied by region and century.</strong> The Swedish Birka öre (~27g) differed from the Danish standard (~24g). Choose the region closest to your scenario.</li>
+      <li><strong>Mark ≠ German Mark.</strong> The Norse mark of silver is a weight unit (8 öre, ~192–216g), not a coin denomination — don't confuse them.</li>
+      <li><strong>Purchasing power is approximate.</strong> Saga price records are inconsistent, and barter ratios fluctuated with supply, season, and geography. Use purchasing equivalents as educated estimates, not exact conversions.</li>
+      <li><strong>Small hoards were the norm.</strong> Most Viking silver hoards found archaeologically contain under 200g. A "wealthy" farmer might hold 1–3 marks; a great jarl or king might command hundreds.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What exactly is hacksilver?</summary>
+      <p>Hacksilver (from Old Norse <em>hakk</em>, to chop) refers to cut pieces of silver — arm-rings, brooches, ingots, and foreign coins — chopped to specific weights for use as bullion currency. Vikings traded by weight rather than face value, so any silver object could be cut and weighed. It was the dominant form of monetary exchange in the Norse world from roughly 750–1100 AD.</p>
+    </details>
+    <details>
+      <summary>How accurate are the purchasing power estimates?</summary>
+      <p>They are informed approximations based on price references in the Icelandic Sagas, Norwegian law codes, and comparative medieval economic studies. Real prices fluctuated based on local supply, season, and the bargaining skill of the parties involved. Think of these as reasonable historical averages, not fixed exchange rates.</p>
+    </details>
+    <details>
+      <summary>Did all Vikings use the same weight system?</summary>
+      <p>No — regional standards varied meaningfully. Denmark, Norway, Sweden, and Gotland each developed slightly different öre weights, and these evolved over the Viking Age (roughly 793–1066 AD). Merchants carried weight sets calibrated to local standards, and cross-regional trade required conversion. This calculator lets you select the most relevant regional standard for your context.</p>
+    </details>
+    <details>
+      <summary>What's the difference between öre and penning?</summary>
+      <p>The öre was the primary weight/accounting unit (~24–27g of silver), while the penning (plural: penningar) was a smaller subdivision — roughly 1/24th of an öre, or about 1–1.1g of silver. The örtugar sat in between at 1/3 of an öre. These subdivisions allowed for precise small transactions without requiring physical coins.</p>
+    </details>
+  </section>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>🏛️ Related Historical Calculators</h2>
+    <ul class="related-list">
+      <li><a href="/roman-gladiator-training-cost-calculator/">Ancient Roman Gladiator Training Cost Calculator</a></li>
+      <li><a href="/roman-emperor-reign-timeline-comparator/">Roman Emperor Reign Timeline Comparator</a></li>
+      <li><a href="/ancient-greek-city-state-army-estimator/">Ancient Greek City-State Population & Army Size Estimator</a></li>
+      <li><a href="/mayan-long-count-calendar-converter/">Mayan Long Count Calendar Converter</a></li>
+      <li><a href="/roman-thermae-construction-cost-estimator/">Ancient Roman Bath (Thermae) Construction Cost Estimator</a></li>
+      <li><a href="/mesopotamian-trade-ledger-calculator/">Mesopotamian Cuneiform Trade Ledger Calculator</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="foot-links">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© 2025 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+(function(){
+  const puritySlider = document.getElementById('puritySlider');
+  const purityDisplay = document.getElementById('purityDisplay');
+  puritySlider.addEventListener('input', function(){
+    purityDisplay.textContent = this.value;
+  });
+
+  function fmt(n, dec){
+    if(dec === undefined) dec = 2;
+    return Number(n.toFixed(dec)).toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+  }
+  function fmtI(n){ return Math.round(n).toLocaleString('en-US'); }
+
+  function calculate(){
+    const gramsRaw = parseFloat(document.getElementById('silverGrams').value);
+    const spotRaw = parseFloat(document.getElementById('silverSpotPrice').value);
+    const purity = parseFloat(puritySlider.value) / 100;
+    const oreWeight = parseFloat(document.getElementById('oreWeight').value);
+    const errGrams = document.getElementById('err-grams');
+    const errSpot = document.getElementById('err-spot');
+    const gramsEl = document.getElementById('silverGrams');
+    const spotEl = document.getElementById('silverSpotPrice');
+
+    let valid = true;
+    errGrams.style.display = 'none'; gramsEl.classList.remove('error');
+    errSpot.style.display = 'none'; spotEl.classList.remove('error');
+
+    if(isNaN(gramsRaw) || gramsRaw <= 0){
+      errGrams.style.display = 'block'; gramsEl.classList.add('error'); valid = false;
+    }
+    if(isNaN(spotRaw) || spotRaw <= 0){
+      errSpot.style.display = 'block'; spotEl.classList.add('error'); valid = false;
+    }
+    if(!valid) return;
+
+    const pureSilver = gramsRaw * purity;
+    const ore = pureSilver / oreWeight;
+    const mark = ore / 8;
+    const ortugar = ore * 3;
+    const penningar = ore * 24;
+
+    // Modern USD
+    const TROY_OZ_G = 31.1035;
+    const modernUSD = (gramsRaw / TROY_OZ_G) * spotRaw;
+    const pureSilverUSD = (pureSilver / TROY_OZ_G) * spotRaw;
+
+    // Purchasing equivalents (saga-era benchmarks, in öre)
+    const goods = [
+      {item: "Dairy cows (1 öre each)",        oreEach: 1,    icon: "🐄"},
+      {item: "Sheep (¼ öre each)",              oreEach: 0.25, icon: "🐑"},
+      {item: "Swords (quality, 1–2 öre each)",  oreEach: 1.5,  icon: "⚔️"},
+      {item: "Thralls/slaves (8 öre each)",     oreEach: 8,    icon: "⛓️"},
+      {item: "Iron axes (½ öre each)",          oreEach: 0.5,  icon: "🪓"},
+      {item: "Bolts of wool cloth (⅓ öre each)",oreEach: 0.333,icon: "🧶"},
+      {item: "Longships (300 öre each, est.)",  oreEach: 300,  icon: "⛵"},
+      {item: "Fine horses (4 öre each)",        oreEach: 4,    icon: "🐴"},
+    ];
+
+    // Weight comparisons
+    const weightComps = [
+      {label:"US quarters (5.67g each)", value: fmt(gramsRaw / 5.67, 0)},
+      {label:"Smartphone-sized ingots (~80g)", value: fmt(gramsRaw / 80, 1)},
+      {label:"Standard silver rounds (31.1g/troy oz)", value: fmt(gramsRaw / 31.1035, 2)},
+    ];
+
+    let goodsRows = '';
+    goods.forEach(g => {
+      const qty = ore / g.oreEach;
+      const qtyStr = qty >= 1000 ? fmtI(qty) : (qty < 1 ? fmt(qty, 3) : fmt(qty, qty < 10 ? 2 : 1));
+      goodsRows += `<tr><td>${g.icon} ${g.item}</td><td>${qtyStr}</td></tr>`;
+    });
+
+    let weightRows = '';
+    weightComps.forEach(w => {
+      weightRows += `<tr><td>${w.label}</td><td>${w.value}</td></tr>`;
+    });
+
+    const oreLabel = document.getElementById('oreWeight').options[document.getElementById('oreWeight').selectedIndex].text.split('~')[0].trim();
+
+    const modernNote = `At today's silver spot price of <strong>$${fmt(spotRaw,2)}/troy oz</strong>, your ${fmt(gramsRaw,1)}g of silver (${Math.round(purity*100)}% pure) is worth approximately <strong>$${fmt(modernUSD,2)} USD</strong> gross, or <strong>$${fmt(pureSilverUSD,2)} USD</strong> for the pure silver content only.`;
+
+    const summaryText = `${fmt(gramsRaw,1)}g silver | ${Math.round(purity*100)}% purity | ${fmt(pureSilver,2)}g pure silver | ${fmt(mark,3)} marks | ${fmt(ore,3)} öre | $${fmt(modernUSD,2)} USD`;
+
+    const html = `
+      <div class="result-hero">
+        <div class="big-num">${fmt(mark, 3)}</div>
+        <div class="big-label">Norse Marks of Silver</div>
+      </div>
+      <div class="result-grid">
+        <div class="result-box"><div class="val">${fmt(ore, 2)}</div><div class="lbl">Öre (${oreWeight}g standard)</div></div>
+        <div class="result-box"><div class="val">${fmt(ortugar, 2)}</div><div class="lbl">Örtugar (⅓ öre each)</div></div>
+        <div class="result-box"><div class="val">${fmtI(penningar)}</div><div class="lbl">Penningar (1/24 öre each)</div></div>
+        <div class="result-box"><div class="val">${fmt(pureSilver, 2)}g</div><div class="lbl">Pure silver content</div></div>
+      </div>
+
+      <div class="modern-equiv">💰 <strong>Modern Value:</strong> ${modernNote}
+      </div>
+
+      <h3 style="font-size:0.95rem;font-weight:700;color:#8b4513;margin-bottom:0.6rem;">🛒 Purchasing Power in the Viking Age</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Goods / Services</th><th>How Many?</th></tr></thead>
+          <tbody>${goodsRows}</tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:0.95rem;font-weight:700;color:#8b4513;margin:1rem 0 0.6rem;">⚖️ Weight Equivalents</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Comparison</th><th>Count</th></tr></thead>
+          <tbody>${weightRows}</tbody>
+        </table>
+      </div>
+
+      <button class="copy-btn" id="copyBtn" onclick="copyResult('${summaryText.replace(/'/g,"\\'")}')">📋 Copy Summary</button>
+    `;
+
+    requestAnimationFrame(() => {
+      document.getElementById('resultsInner').innerHTML = html;
+      const sec = document.getElementById('resultsSection');
+      sec.classList.add('visible');
+      setTimeout(() => {
+        sec.scrollIntoView({behavior:'smooth', block:'nearest'});
+      }, 50);
+    });
+  }
+
+  window.copyResult = function(text){
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(() => flashCopy());
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      flashCopy();
+    }
+  };
+
+  function flashCopy(){
+    const btn = document.getElementById('copyBtn');
+    if(!btn) return;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = '📋 Copy Summary'; }, 2000);
+  }
+
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  ['silverGrams','silverSpotPrice'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if(e.key === 'Enter') requestAnimationFrame(() => { calculate(); });
+    });
+  });
+
+  document.getElementById('oreWeight').addEventListener('change', () => {
+    const sec = document.getElementById('resultsSection');
+    if(sec.classList.contains('visible')) requestAnimationFrame(() => { calculate(); });
+  });
+
+  puritySlider.addEventListener('change', () => {
+    const sec = document.getElementById('resultsSection');
+    if(sec.classList.contains('visible')) requestAnimationFrame(() => { calculate(); });
+  });
+
+  // Auto-calculate on load
+  requestAnimationFrame(() => { calculate(); });
+
+})();
+</script>
+</body>
+</html>
