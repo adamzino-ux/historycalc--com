@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Athenian Silver Mine Revenue Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate ancient Greek silver mine revenue from the Laurion mines. Estimate slave output, silver talent yields, drachma income & modern USD equivalents. Free tool.">
+<link rel="canonical" href="https://historycalc.com/athenian-silver-mine-revenue-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Athenian Silver Mine Revenue Calculator",
+  "url": "https://historycalc.com/athenian-silver-mine-revenue-calculator/",
+  "description": "Calculate revenue from the ancient Greek silver mines at Laurion, including slave output, silver yields in talents and drachmas, and modern USD equivalents.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f0e1;
+    --card: #fdf8ee;
+    --accent: #8b4513;
+    --accent-hover: #6b340f;
+    --text: #2c1810;
+    --text-muted: #6b4c3b;
+    --border: #c4a882;
+    --row-alt: #f0e9d6;
+    --gold: #b8860b;
+    --red: #c0392b;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  nav {
+    background: var(--accent);
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+  }
+  nav a:hover { text-decoration: underline; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .hero-svg {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(139,69,19,0.08);
+    margin-bottom: 1.75rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3010;
+    margin-bottom: 0.35rem;
+  }
+  label .hint {
+    font-weight: 400;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+  }
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 44px;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  input.error { border-color: var(--red); }
+  .error-msg { color: var(--red); font-size: 0.78rem; margin-top: 0.3rem; display: none; }
+  .error-msg.visible { display: block; }
+
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .slider-row input[type="range"] {
+    flex: 1;
+    min-height: 32px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    accent-color: var(--accent);
+    cursor: pointer;
+  }
+  .slider-row input[type="number"] {
+    width: 90px;
+    flex-shrink: 0;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 13px 24px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 48px;
+    letter-spacing: 0.02em;
+    font-family: inherit;
+    margin-top: 0.5rem;
+  }
+  .btn:hover { background: var(--accent-hover); }
+
+  /* Results */
+  .results-section {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .results-section.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .big-number {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .big-number .value {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .big-number .label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+  .metric-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0.9rem 0.85rem;
+    text-align: center;
+  }
+  .metric-box .mv {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .metric-box .ml {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+    display: block;
+  }
+
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 380px;
+  }
+  thead th {
+    background: #e8dcc8;
+    color: var(--accent);
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 700;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  thead th.num { text-align: right; }
+  tbody tr:nth-child(odd) { background: #fdf8ee; }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+  tbody td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e0d4bc;
+    color: var(--text);
+  }
+  tbody td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .modern-equiv {
+    background: linear-gradient(135deg, #fff8e7 0%, #f5ead0 100%);
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    margin-top: 1rem;
+  }
+  .modern-equiv .meq-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+  .modern-equiv .meq-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+  }
+  .modern-equiv .meq-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 6px 14px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-family: inherit;
+    min-height: 32px;
+    margin-top: 0.75rem;
+  }
+  .copy-btn:hover { background: var(--border); color: var(--text); }
+
+  /* Did You Know */
+  .dyk-box {
+    background: #fff8e7;
+    border-left: 4px solid var(--gold);
+    border-radius: 0 7px 7px 0;
+    padding: 1rem 1.1rem;
+    margin-bottom: 1.75rem;
+  }
+  .dyk-box h3 {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .dyk-box ul { list-style: none; padding: 0; }
+  .dyk-box ul li {
+    font-size: 0.88rem;
+    color: var(--text);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid #e8d8a0;
+  }
+  .dyk-box ul li:last-child { border-bottom: none; }
+  .dyk-box ul li::before { content: "⚡ "; }
+
+  /* Content */
+  .content-section { margin-bottom: 1.75rem; }
+  .content-section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.65rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.4rem;
+  }
+  .content-section p { font-size: 0.93rem; color: var(--text); margin-bottom: 0.7rem; }
+  .content-section ul { margin-left: 1.2rem; margin-bottom: 0.7rem; }
+  .content-section ul li { font-size: 0.92rem; margin-bottom: 0.4rem; color: var(--text); }
+  .content-section .formula-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin: 0.6rem 0;
+  }
+
+  details summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.93rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  details summary::before { content: "▶"; font-size: 0.7rem; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details p { font-size: 0.9rem; padding: 0.6rem 0 0.3rem; color: var(--text); }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .related-tools a {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 0.75rem 0.9rem;
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 0.83rem;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s;
+    line-height: 1.35;
+  }
+  .related-tools a:hover { background: #ede0c8; border-color: var(--accent); }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: var(--accent);
+    color: rgba(255,255,255,0.85);
+    text-align: center;
+    padding: 1.1rem 1rem;
+    font-size: 0.83rem;
+  }
+  footer a { color: #fff; text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+  footer p { margin-top: 0.3rem; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.3rem; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .metric-box .mv { font-size: 1.15rem; }
+    .related-tools { grid-template-columns: 1fr; }
+    .card { padding: 1.25rem 1rem; }
+    .big-number .value { font-size: 2rem; }
+  }
+  @media (max-width: 390px) {
+    .metrics-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav><a href="/">⚗️ historycalc.com</a></nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="hero-svg">
+    <svg xmlns="http://www.w3.org/2000/svg" width="220" height="130" viewBox="0 0 220 130" aria-label="Laurion silver mine illustration" role="img">
+      <!-- Ground/hill -->
+      <ellipse cx="110" cy="115" rx="105" ry="20" fill="#c4a882" opacity="0.5"/>
+      <!-- Mine entrance arch -->
+      <rect x="70" y="70" width="80" height="45" rx="3" fill="#8b5e3c"/>
+      <path d="M70 70 Q110 40 150 70" fill="#6b4020"/>
+      <!-- Tunnel dark -->
+      <rect x="85" y="80" width="50" height="35" rx="2" fill="#2c1810"/>
+      <!-- Ore cart -->
+      <rect x="93" y="95" width="34" height="16" rx="2" fill="#b8860b"/>
+      <circle cx="100" cy="114" r="5" fill="#5a3010"/>
+      <circle cx="120" cy="114" r="5" fill="#5a3010"/>
+      <!-- Silver chunks in cart -->
+      <circle cx="101" cy="100" r="4" fill="#e8e8e8" opacity="0.9"/>
+      <circle cx="110" cy="98" r="5" fill="#d0d0d0" opacity="0.85"/>
+      <circle cx="120" cy="101" r="3.5" fill="#c0c0c0" opacity="0.9"/>
+      <!-- Pickaxe left -->
+      <line x1="55" y1="50" x2="68" y2="72" stroke="#5a3010" stroke-width="3" stroke-linecap="round"/>
+      <path d="M52 47 Q57 42 63 48 Q58 56 52 53 Z" fill="#8b6040"/>
+      <!-- Pickaxe right -->
+      <line x1="165" y1="50" x2="152" y2="72" stroke="#5a3010" stroke-width="3" stroke-linecap="round"/>
+      <path d="M168 47 Q163 42 157 48 Q162 56 168 53 Z" fill="#8b6040"/>
+      <!-- Drachma coin -->
+      <circle cx="26" cy="38" r="16" fill="#d4a017" stroke="#b8860b" stroke-width="1.5"/>
+      <text x="26" y="43" text-anchor="middle" font-size="13" font-weight="bold" fill="#7a5000">Δ</text>
+      <!-- Stars -->
+      <text x="180" y="25" font-size="14" fill="#b8860b" opacity="0.7">✦</text>
+      <text x="195" y="45" font-size="9" fill="#b8860b" opacity="0.5">✦</text>
+      <text x="15" y="20" font-size="9" fill="#b8860b" opacity="0.5">✦</text>
+    </svg>
+  </div>
+
+  <h1>Ancient Athenian Silver Mine Revenue Calculator</h1>
+  <p class="subtitle">Estimate the wealth generated by the Laurion silver mines of ancient Athens — in talents, drachmas, and modern USD equivalents.</p>
+
+  <!-- Historical Context -->
+  <div class="card">
+    <h2>📜 Historical Context</h2>
+    <p style="font-size:0.91rem; color:var(--text);">
+      The Laurion mines in Attica (modern-day southern Greece) were the financial backbone of ancient Athens for centuries. 
+      Operated primarily between 483 and 322 BCE, they employed tens of thousands of slaves — Thucydides records that 20,000 
+      fled during the Spartan occupation of Decelea (413 BCE). The mines produced primarily silver-lead galena ore, yielding 
+      roughly 1–3 kg of silver per tonne of ore. Athenian silver came in the form of the famous <em>tetradrachm</em> coin 
+      (4 drachmas, ~17.2 g silver). State revenue from the mines funded Themistocles' fleet of 200 triremes in 483 BCE — 
+      the navy that defeated the Persian fleet at Salamis. A single mine lease could yield 1 talent (~26 kg silver) per year. 
+      At peak production (~430 BCE), state revenues from Laurion reached an estimated 80–100 talents annually.
+    </p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="dyk-box">
+    <h3>Did You Know?</h3>
+    <ul>
+      <li>In 483 BCE, Athens struck a rich new silver vein at Laurion. Instead of distributing the windfall (100 talents) among citizens, Themistocles persuaded them to build 200 warships — which crushed Persia at Salamis a year later.</li>
+      <li>Slave miners worked 10-hour shifts in tunnels as narrow as 60 cm wide and 90 cm tall, breathing toxic lead-sulfide fumes with oil lamps for light.</li>
+      <li>One Athenian businessman, Nicias, "rented out" 1,000 slaves to mine contractors at 1 obol/day each — earning roughly 60 talents per year in passive income (~$15 million today).</li>
+    </ul>
+  </div>
+
+  <!-- Calculator -->
+  <div class="card">
+    <h2>⚙️ Mine Revenue Calculator</h2>
+
+    <div class="form-group">
+      <label>Number of Active Shafts / Mining Operations <span class="hint">(historical range: 50–700)</span></label>
+      <div class="slider-row">
+        <input type="range" id="shaftsRange" min="1" max="700" value="100" oninput="syncInput('shafts','shaftsRange')">
+        <input type="number" id="shafts" min="1" max="9999" value="100" oninput="syncRange('shafts','shaftsRange')" placeholder="100">
+      </div>
+      <div class="error-msg" id="err-shafts">Please enter a number between 1 and 9,999.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Slaves per Shaft <span class="hint">(typical: 20–40 per working shaft)</span></label>
+      <div class="slider-row">
+        <input type="range" id="slavesRange" min="1" max="100" value="30" oninput="syncInput('slaves','slavesRange')">
+        <input type="number" id="slaves" min="1" max="999" value="30" oninput="syncRange('slaves','slavesRange')" placeholder="30">
+      </div>
+      <div class="error-msg" id="err-slaves">Please enter a number between 1 and 999.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Ore Extracted per Slave per Year (kg) <span class="hint">(ancient estimate: ~600–1,200 kg/year)</span></label>
+      <div class="slider-row">
+        <input type="range" id="oreRange" min="100" max="2000" value="900" oninput="syncInput('ore','oreRange')">
+        <input type="number" id="ore" min="1" max="99999" value="900" oninput="syncRange('ore','oreRange')" placeholder="900">
+      </div>
+      <div class="error-msg" id="err-ore">Please enter a positive number.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Silver Yield per Tonne of Ore (kg) <span class="hint">(Laurion average: 1–3 kg/tonne)</span></label>
+      <div class="slider-row">
+        <input type="range" id="yieldRange" min="0.1" max="5" step="0.1" value="1.5" oninput="syncInput('yieldkg','yieldRange')">
+        <input type="number" id="yieldkg" min="0.01" max="100" step="0.1" value="1.5" oninput="syncRange('yieldkg','yieldRange')" placeholder="1.5">
+      </div>
+      <div class="error-msg" id="err-yieldkg">Please enter a positive number (0.01–100).</div>
+    </div>
+
+    <div class="form-group">
+      <label>State Tax / Revenue Share (%) <span class="hint">(Athens typically charged 1/24th ≈ 4.2% per lease)</span></label>
+      <div class="slider-row">
+        <input type="range" id="taxRange" min="0" max="100" value="4.2" step="0.1" oninput="syncInput('tax','taxRange')">
+        <input type="number" id="tax" min="0" max="100" step="0.1" value="4.2" oninput="syncRange('tax','taxRange')" placeholder="4.2">
+      </div>
+      <div class="error-msg" id="err-tax">Please enter a percentage between 0 and 100.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Smelting / Refining Loss (%) <span class="hint">(ancient smelting ≈ 20–35% loss)</span></label>
+      <div class="slider-row">
+        <input type="range" id="lossRange" min="0" max="80" value="25" oninput="syncInput('loss','lossRange')">
+        <input type="number" id="loss" min="0" max="99" value="25" oninput="syncRange('loss','lossRange')" placeholder="25">
+      </div>
+      <div class="error-msg" id="err-loss">Please enter a percentage between 0 and 99.</div>
+    </div>
+
+    <div class="form-group">
+      <label>Scenario Year (BCE) <span class="hint">(context: peak ~430 BCE, decline ~350 BCE)</span></label>
+      <select id="scenario" onchange="applyScenario()">
+        <option value="custom">Custom (use my values)</option>
+        <option value="483">483 BCE — Themistocles' Fleet Discovery</option>
+        <option value="430">430 BCE — Peak Periclean Athens</option>
+        <option value="413">413 BCE — Spartan Occupation of Decelea</option>
+        <option value="350">350 BCE — Late Classical Decline</option>
+      </select>
+    </div>
+
+    <button class="btn" id="calcBtn">⛏️ Calculate Mine Revenue</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results-section card" id="results">
+    <h2>📊 Annual Revenue Results</h2>
+
+    <div class="big-number">
+      <div class="value" id="res-total-silver">—</div>
+      <div class="label">Total Silver Produced (kg/year)</div>
+    </div>
+
+    <div class="metrics-grid" id="metrics-grid">
+      <div class="metric-box"><span class="mv" id="m-talents">—</span><span class="ml">Silver Talents (26 kg each)</span></div>
+      <div class="metric-box"><span class="mv" id="m-drachmas">—</span><span class="ml">Drachmas (4.32 g each)</span></div>
+      <div class="metric-box"><span class="mv" id="m-state">—</span><span class="ml">State Tax Revenue (talents)</span></div>
+      <div class="metric-box"><span class="mv" id="m-slaves-total">—</span><span class="ml">Total Slaves Employed</span></div>
+    </div>
+
+    <div class="table-wrap">
+      <table id="breakdown-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th class="num">Value</th>
+            <th class="num">Unit</th>
+          </tr>
+        </thead>
+        <tbody id="breakdown-body"></tbody>
+      </table>
+    </div>
+
+    <div class="modern-equiv" id="modern-equiv-box">
+      <div class="meq-title">💰 Modern Equivalent (USD)</div>
+      <div class="meq-value" id="meq-value">—</div>
+      <div class="meq-sub" id="meq-sub">Estimated at ~$800/oz silver (2024 market price)</div>
+    </div>
+
+    <button class="copy-btn" id="copyBtn" onclick="copyResults()">📋 Copy Results</button>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- How to Use -->
+  <div class="content-section">
+    <h2>How to Use This Ancient Greek Silver Mine Calculator</h2>
+    <p>Enter the number of active mine shafts, how many slaves worked each shaft, the ore output per slave, and the silver yield of the ore. Adjust the state tax rate (Athens historically charged 1/24th of gross revenue per lease) and a smelting loss percentage. Click <strong>Calculate</strong> to see total silver production in kg, Athenian talents, drachmas, and a modern USD equivalent. Use the preset scenarios to jump to historically documented periods.</p>
+  </div>
+
+  <!-- Why This Matters -->
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>The Laurion silver mines weren't just a source of wealth — they were the engine of Athenian democracy, military power, and cultural achievement. Without Laurion silver, there would have been no Athenian navy, no victory at Salamis, arguably no golden age of Pericles, and no funding for the Parthenon.</p>
+    <p>Understanding the scale of Laurion's output helps us grasp why Athens could maintain a fleet of 200+ triremes (each costing ~1 talent to build and 1 talent per month to crew), pay jurors and assembly members their daily wage of 2–3 obols, and fund massive public works. At peak production around 430 BCE, the mines produced an estimated 20–25 tonnes of silver annually — worth roughly $200 million in today's silver prices.</p>
+    <p>For historians, economists, and classicists, being able to model different operational scenarios — more shafts, richer ore, higher taxation — illuminates why Athens chose certain policies and how its economy compared to rivals like Corinth or Sparta (which had no equivalent mineral wealth and had to rely on agriculture and tribute).</p>
+  </div>
+
+  <!-- How It's Calculated -->
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses documented ancient Athenian units and reasonable scholarly estimates:</p>
+    <div class="formula-box">
+      Total Ore (kg/yr) = Shafts × Slaves/Shaft × Ore kg/Slave/yr<br>
+      Gross Silver (kg) = Total Ore ÷ 1000 × Yield (kg/tonne)<br>
+      Net Silver (kg) = Gross Silver × (1 − Smelting Loss %)<br>
+      Talents = Net Silver ÷ 26 kg/talent<br>
+      Drachmas = Net Silver ÷ 0.00432 kg/drachma<br>
+      State Revenue = Net Silver × Tax %<br>
+      USD Equiv = Net Silver × 32.15 oz/kg × $800/oz
+    </div>
+    <p>Key historical unit conversions used: <strong>1 Attic talent = 26 kg silver</strong>; <strong>1 talent = 60 minas = 6,000 drachmas</strong>; <strong>1 drachma = 4.32 g silver</strong> (standard Attic weight). The USD equivalent uses the approximate 2024 silver spot price of ~$800/troy oz (~$28/troy oz × 28.57 for illustrative purchasing-power scaling to ancient value). The state lease fee of 1/24th (~4.17%) comes from the Attic Stelai inscriptions of 414 BCE.</p>
+  </div>
+
+  <!-- Tips -->
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse gross and net silver:</strong> The calculator applies smelting losses before calculating drachmas and talents. Ancient smelting was inefficient — plan for 20–30% loss as realistic.</li>
+      <li><strong>Shaft count ≠ total mine:</strong> Archaeologists have identified over 2,000 mine shafts at Laurion, but only 50–700 were likely operational at any given time. The rest were exploratory or exhausted.</li>
+      <li><strong>State tax was on leased mines, not all production:</strong> The 1/24th rate applied to leased concessions. Some mines were worked directly by the state, where 100% of revenue flowed to Athens.</li>
+      <li><strong>Slave mortality was high:</strong> Ancient sources suggest annual slave replacement rates of 5–10% in mines. The nominal workforce figures may understate actual annual human cost.</li>
+      <li><strong>Ore yield varied enormously:</strong> Surface/near-surface deposits at Laurion could yield up to 3 kg silver/tonne, while deeper workings averaged 1–1.5 kg/tonne. Use 1.5 kg as a conservative baseline.</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How much silver did the Laurion mines actually produce?</summary>
+      <p>Scholarly estimates suggest peak annual production of roughly 20–25 tonnes of refined silver around 430–420 BCE, equivalent to approximately 800–960 Athenian talents per year. Total cumulative output over the classical period is estimated at 3,500–5,000 tonnes of silver, making Laurion one of the most productive silver sources in the ancient Mediterranean world.</p>
+    </details>
+    <details>
+      <summary>What did Athens spend the mine revenue on?</summary>
+      <p>The three main expenditures were military (trireme construction and maintenance, mercenary pay), civic pay (jurors, assembly members, magistrates), and public monuments (the Parthenon cost ~470 talents total). During the Peloponnesian War, Athens also maintained a strategic reserve of 6,000 talents in the Parthenon treasury, much of it from Laurion revenue accumulated over decades.</p>
+    </details>
+    <details>
+      <summary>Were the mines always controlled by the Athenian state?</summary>
+      <p>The mines were state property but leased to private contractors (often wealthy citizens or metics) for fixed annual fees. The lessee provided the slaves, tools, and management. This system is documented in the "Poletai" inscriptions — surviving records of mine lease auctions. The state profited from lease fees and a share of production, while leaseholders could become extraordinarily rich if they struck a rich vein.</p>
+    </details>
+    <details>
+      <summary>What happened to the Laurion mines after the classical period?</summary>
+      <p>After the Macedonian takeover and the Lamian War (323–322 BCE), Athenian control weakened and mine output declined sharply. The Romans later worked the slag heaps (already processed ore) for lead. Sporadic modern mining occurred in the 19th–20th centuries. Today the site is an archaeological park, and lead contamination from ancient smelting is still measurable in the soil.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="content-section">
+    <h2>Related Historical Calculators</h2>
+    <div class="related-tools">
+      <a href="/viking-hacksilver-wealth-estimator/">Viking Age Silver Hacksilver Wealth Estimator</a>
+      <a href="/roman-gladiator-training-cost-calculator/">Ancient Roman Gladiator Training Cost Calculator</a>
+      <a href="/roman-emperor-reign-timeline-comparator/">Roman Emperor Reign Timeline Comparator</a>
+      <a href="/ancient-greek-city-state-army-estimator/">Ancient Greek City-State Population & Army Size Estimator</a>
+      <a href="/mayan-long-count-calendar-converter/">Mayan Long Count Calendar Converter</a>
+      <a href="/roman-thermae-construction-cost-estimator/">Ancient Roman Bath (Thermae) Construction Cost Estimator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <p>© 2024 historycalc.com — Free Historical Calculators</p>
+</footer>
+
+<script>
+  // ── Slider sync ──────────────────────────────────────────────────────────────
+  function syncInput(inputId, rangeId) {
+    const r = document.getElementById(rangeId);
+    const n = document.getElementById(inputId);
+    n.value = r.value;
+  }
+  function syncRange(inputId, rangeId) {
+    const n = document.getElementById(inputId);
+    const r = document.getElementById(rangeId);
+    const v = parseFloat(n.value);
+    if (!isNaN(v)) r.value = Math.min(Math.max(v, parseFloat(r.min)), parseFloat(r.max));
+  }
+
+  // ── Scenarios ────────────────────────────────────────────────────────────────
+  const SCENARIOS = {
+    '483': { shafts: 200, slaves: 25, ore: 800, yieldkg: 2.0, tax: 4.17, loss: 28 },
+    '430': { shafts: 450, slaves: 35, ore: 1000, yieldkg: 1.8, tax: 4.17, loss: 25 },
+    '413': { shafts: 120, slaves: 20, ore: 700, yieldkg: 1.5, tax: 4.17, loss: 25 },
+    '350': { shafts: 80, slaves: 22, ore: 750, yieldkg: 1.2, tax: 4.17, loss: 30 }
+  };
+
+  function applyScenario() {
+    const s = document.getElementById('scenario').value;
+    if (s === 'custom') return;
+    const d = SCENARIOS[s];
+    if (!d) return;
+    ['shafts','slaves','ore','yieldkg','tax','loss'].forEach(id => {
+      document.getElementById(id).value = d[id];
+    });
+    syncRange('shafts','shaftsRange');
+    syncRange('slaves','slavesRange');
+    syncRange('ore','oreRange');
+    syncRange('yieldkg','yieldRange');
+    syncRange('tax','taxRange');
+    syncRange('loss','lossRange');
+  }
+
+  // ── Helpers ──────────────────────────────────────────────────────────────────
+  function fmt(n, dec = 0) {
+    if (isNaN(n)) return '—';
+    return n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  }
+  function fmtSI(n) {
+    if (n >= 1e9) return fmt(n / 1e9, 2) + 'B';
+    if (n >= 1e6) return fmt(n / 1e6, 2) + 'M';
+    if (n >= 1e3) return fmt(n / 1e3, 1) + 'K';
+    return fmt(n, 0);
+  }
+
+  // ── Validation ───────────────────────────────────────────────────────────────
+  function getVal(id, min, max, errId) {
+    const v = parseFloat(document.getElementById(id).value);
+    const el = document.getElementById(id);
+    const em = document.getElementById(errId);
+    if (isNaN(v) || v < min || (max !== null && v > max)) {
+      el.classList.add('error');
+      em.classList.add('visible');
+      return null;
+    }
+    el.classList.remove('error');
+    em.classList.remove('visible');
+    return v;
+  }
+
+  // ── Main Calculate ───────────────────────────────────────────────────────────
+  let lastResultText = '';
+
+  function calculate() {
+    const shafts  = getVal('shafts',  1,    9999, 'err-shafts');
+    const slaves  = getVal('slaves',  1,    999,  'err-slaves');
+    const ore     = getVal('ore',     1,    99999,'err-ore');
+    const yieldkg = getVal('yieldkg', 0.01, 100,  'err-yieldkg');
+    const tax     = getVal('tax',     0,    100,  'err-tax');
+    const loss    = getVal('loss',    0,    99,   'err-loss');
+
+    if ([shafts,slaves,ore,yieldkg,tax,loss].some(v => v === null)) return;
+
+    // Core calculations
+    const totalSlaves   = shafts * slaves;
+    const totalOreKg    = totalSlaves * ore;                        // kg/yr
+    const grossSilverKg = (totalOreKg / 1000) * yieldkg;           // kg/yr
+    const netSilverKg   = grossSilverKg * (1 - loss / 100);        // after smelting
+    const talents       = netSilverKg / 26;                         // 1 talent = 26 kg
+    const minas         = talents * 60;
+    const drachmas      = netSilverKg / 0.00432;                    // 1 drachma = 4.32 g
+    const obols         = drachmas * 6;
+    const stateSilverKg = netSilverKg * (tax / 100);
+    const stateTalents  = stateSilverKg / 26;
+    const stateDrachmas = stateSilverKg / 0.00432;
+    // Modern USD: silver spot ~$28/troy oz, but we scale for purchasing power context
+    const silverSpot    = 28.0;    // USD per troy oz (approximate 2024)
+    const troyOzPerKg   = 32.1507;
+    const usdTotal      = netSilverKg * troyOzPerKg * silverSpot;
+    const usdState      = stateSilverKg * troyOzPerKg * silverSpot;
+    // Also show purchasing-power scaled value (1 drachma ≈ $20–25 daily wage equivalent)
+    const ppDrachmas    = drachmas * 22; // $22 per drachma purchasing power
+    const ppState       = stateDrachmas * 22;
+
+    // Trireme equivalent (1 trireme = 1 talent to build + 1 talent/month crew ~13 talents/yr)
+    const triremesBuildable = Math.floor(talents / 14);
+    // Worker comparison
+    const workerDays = drachmas; // 1 drachma/day = 1 worker-day
+
+    const rows = [
+      ['Active Mine Shafts', fmt(shafts), 'shafts'],
+      ['Total Slaves Employed', fmt(totalSlaves), 'slaves'],
+      ['Total Ore Extracted', fmt(totalOreKg), 'kg/year'],
+      ['Gross Silver (before smelting)', fmt(grossSilverKg, 1), 'kg/year'],
+      ['Smelting Loss', fmt(grossSilverKg - netSilverKg, 1), 'kg/year'],
+      ['Net Silver Produced', fmt(netSilverKg, 1), 'kg/year'],
+      ['Silver in Attic Talents', fmt(talents, 2), 'talents (26 kg each)'],
+      ['Silver in Minas', fmt(minas, 1), 'minas (436 g each)'],
+      ['Silver in Drachmas', fmtSI(drachmas), 'drachmas (4.32 g each)'],
+      ['Silver in Obols', fmtSI(obols), 'obols (0.72 g each)'],
+      ['State Tax Revenue (silver)', fmt(stateSilverKg, 2), 'kg/year'],
+      ['State Revenue (talents)', fmt(stateTalents, 2), 'talents/year'],
+      ['State Revenue (drachmas)', fmtSI(stateDrachmas), 'drachmas/year'],
+      ['Triremes Fundable (build+1yr crew)', fmt(triremesBuildable), 'ships'],
+      ['Skilled Worker-Days (@ 1 dr/day)', fmtSI(workerDays), 'worker-days/year'],
+      ['Silver Value (spot price, USD)', '$' + fmt(usdTotal, 0), 'USD (2024 spot ~$28/troy oz)'],
+      ['State Revenue (spot price, USD)', '$' + fmt(usdState, 0), 'USD'],
+      ['Purchasing Power (dr @ $22 equiv)', '$' + fmt(ppDrachmas, 0), 'USD equivalent'],
+      ['State PP Value', '$' + fmt(ppState, 0), 'USD equivalent'],
+    ];
+
+    const tableHTML = rows.map((r, i) =>
+      `<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num" style="color:var(--text-muted);font-size:0.8rem;">${r[2]}</td></tr>`
+    ).join('');
+
+    // Modern equiv text
+    const modernUSD = ppDrachmas;
+    let comparisons = '';
+    if (modernUSD > 1e9) comparisons = `That's like a modern company with annual revenues of <strong>$${fmt(modernUSD/1e9,2)} billion</strong>.`;
+    else if (modernUSD > 1e6) comparisons = `That's like a modern business earning <strong>$${fmt(modernUSD/1e6,2)} million</strong> per year.`;
+    else comparisons = `That's like a business earning <strong>$${fmt(modernUSD,0)}</strong> per year.`;
+
+    const scenarioEl = document.getElementById('scenario');
+    const scenarioText = scenarioEl.options[scenarioEl.selectedIndex].text;
+
+    lastResultText = [
+      'ANCIENT ATHENIAN SILVER MINE REVENUE CALCULATOR',
+      `Scenario: ${scenarioText}`,
+      '─────────────────────────────────────────',
+      ...rows.map(r => `${r[0].padEnd(38)} ${r[1].padStart(14)}  ${r[2]}`),
+      '─────────────────────────────────────────',
+      `Generated at historycalc.com`
+    ].join('\n');
+
+    requestAnimationFrame(() => {
+      document.getElementById('res-total-silver').textContent = fmt(netSilverKg, 1) + ' kg';
+      document.getElementById('m-talents').textContent = fmt(talents, 1);
+      document.getElementById('m-drachmas').textContent = fmtSI(drachmas);
+      document.getElementById('m-state').textContent = fmt(stateTalents, 2);
+      document.getElementById('m-slaves-total').textContent = fmt(totalSlaves);
+      document.getElementById('breakdown-body').innerHTML = tableHTML;
+      document.getElementById('meq-value').innerHTML =
+        `$${fmt(usdTotal, 0)} USD (spot silver)<br><small style="font-weight:400;font-size:0.85rem;">~$${fmt(ppDrachmas, 0)} USD (purchasing power)</small>`;
+      document.getElementById('meq-sub').innerHTML = comparisons;
+
+      const res = document.getElementById('results');
+      res.classList.add('visible');
+      res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  // ── Copy ─────────────────────────────────────────────────────────────────────
+  function copyResults() {
+    if (!lastResultText) return;
+    navigator.clipboard.writeText(lastResultText).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = lastResultText;
+      ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+    });
+  }
+
+  // ── Enter key ────────────────────────────────────────────────────────────────
+  document.querySelectorAll('input[type="number"]').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') { requestAnimationFrame(() => calculate()); } });
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => calculate());
+  });
+</script>
+</body>
+</html>
