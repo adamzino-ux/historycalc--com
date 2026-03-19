@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Soldier Pay Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate ancient Roman soldier pay by rank, era, and service length. Includes deductions, donatives, and modern USD equivalent. Free roman soldier salary calculator.">
+<link rel="canonical" href="https://historycalc.com/roman-soldier-pay-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Soldier Pay Calculator",
+  "url": "https://historycalc.com/roman-soldier-pay-calculator/",
+  "description": "Calculate ancient Roman soldier salaries by rank, era, and deductions. Includes modern USD equivalent and historical context.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #ede8d5;
+    color: #2c1810;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: #8b4513; text-decoration: none; }
+  a:hover { text-decoration: underline; color: #6b3410; }
+
+  nav {
+    background: #2c1810;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+  }
+  nav a {
+    color: #f5f0e1;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+  nav a:hover { color: #c4a882; text-decoration: none; }
+
+  .page-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  /* SVG hero */
+  .hero-svg {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #2c1810;
+    text-align: center;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .subtitle {
+    text-align: center;
+    color: #6b4c35;
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
+
+  /* Card */
+  .card {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.07);
+    margin-bottom: 2rem;
+  }
+
+  /* Form */
+  .form-group { margin-bottom: 1.25rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3825;
+    margin-bottom: 0.4rem;
+  }
+  select, input[type="number"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    background: #fffdf7;
+    color: #2c1810;
+    font-size: 0.97rem;
+    font-family: inherit;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    min-height: 44px;
+    appearance: auto;
+  }
+  select:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  .input-error {
+    border-color: #c0392b !important;
+    box-shadow: 0 0 0 3px rgba(192,57,43,0.12) !important;
+  }
+  .error-msg {
+    color: #c0392b;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  /* Slider row */
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .slider-row input[type="range"] {
+    flex: 1;
+    height: 44px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    accent-color: #8b4513;
+    cursor: pointer;
+  }
+  .slider-row span {
+    min-width: 52px;
+    text-align: right;
+    font-weight: 700;
+    color: #8b4513;
+    font-size: 1rem;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    background: #8b4513;
+    color: #f5f0e1;
+    border: none;
+    border-radius: 6px;
+    padding: 13px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+    margin-top: 0.5rem;
+  }
+  .btn:hover { background: #6b3410; }
+  .btn:active { background: #5a2c0e; }
+
+  /* Results */
+  #results-section {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  #results-section.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .result-headline {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .result-headline .big-num {
+    font-size: 2.6rem;
+    font-weight: 900;
+    color: #8b4513;
+    line-height: 1.1;
+  }
+  .result-headline .big-label {
+    font-size: 1rem;
+    color: #5a3825;
+    margin-top: 0.2rem;
+  }
+
+  .modern-equiv {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 6px;
+    padding: 0.85rem 1.1rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .modern-equiv strong { color: #e8c98a; font-size: 1.05rem; }
+
+  /* Table */
+  .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  thead th {
+    background: #c4a882;
+    color: #2c1810;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #a0845c;
+  }
+  thead th:last-child { text-align: right; }
+  tbody tr:nth-child(even) { background: #ece7d6; }
+  tbody tr:nth-child(odd) { background: #f5f0e1; }
+  tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #d6c9af;
+    vertical-align: top;
+  }
+  tbody td:last-child { text-align: right; font-weight: 600; }
+  .negative { color: #c0392b; }
+  .positive { color: #2e7d32; }
+
+  /* Copy button */
+  .copy-btn {
+    display: inline-block;
+    background: transparent;
+    border: 1px solid #c4a882;
+    color: #8b4513;
+    border-radius: 4px;
+    padding: 5px 14px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+    min-height: 36px;
+    margin-top: 0.5rem;
+  }
+  .copy-btn:hover { background: #e8dfc8; }
+
+  /* Rank comparison bars */
+  .rank-bars { margin: 1.2rem 0; }
+  .rank-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.55rem;
+    gap: 0.5rem;
+    font-size: 0.83rem;
+  }
+  .rank-bar-label { min-width: 130px; color: #5a3825; font-weight: 500; }
+  .rank-bar-track {
+    flex: 1;
+    height: 18px;
+    background: #e0d5be;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .rank-bar-fill {
+    height: 100%;
+    background: #8b4513;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    min-width: 3px;
+  }
+  .rank-bar-val { min-width: 70px; text-align: right; font-weight: 700; color: #2c1810; font-size: 0.82rem; }
+
+  /* Did You Know */
+  .dyk-box {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .dyk-box h3 {
+    color: #e8c98a;
+    font-size: 1rem;
+    margin-bottom: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .dyk-box ul { padding-left: 1.2rem; }
+  .dyk-box ul li { margin-bottom: 0.5rem; font-size: 0.9rem; line-height: 1.5; }
+
+  /* Historical context */
+  .hist-context {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    border-left: 4px solid #8b4513;
+    border-radius: 6px;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 2rem;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #3a2218;
+  }
+  .hist-context h3 { color: #8b4513; margin-bottom: 0.5rem; font-size: 1rem; }
+
+  /* Content sections */
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.2rem;
+    color: #2c1810;
+    border-bottom: 2px solid #c4a882;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+  .content-section p { font-size: 0.93rem; line-height: 1.65; color: #3a2218; margin-bottom: 0.6rem; }
+  .content-section ul { padding-left: 1.3rem; }
+  .content-section ul li { font-size: 0.92rem; line-height: 1.6; color: #3a2218; margin-bottom: 0.45rem; }
+
+  details { margin-bottom: 0.7rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.93rem;
+    color: #8b4513;
+    padding: 0.5rem 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid #d6c9af;
+    user-select: none;
+  }
+  summary::before { content: '▶'; font-size: 0.7rem; transition: transform 0.2s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  details p { font-size: 0.9rem; color: #3a2218; padding: 0.6rem 0 0.3rem 1rem; line-height: 1.6; }
+
+  /* Related tools */
+  .related-tools { margin-bottom: 2rem; }
+  .related-tools h2 {
+    font-size: 1.2rem;
+    color: #2c1810;
+    border-bottom: 2px solid #c4a882;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.85rem;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .related-link {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.85rem;
+    color: #8b4513;
+    text-decoration: none;
+    transition: background 0.15s;
+    line-height: 1.4;
+  }
+  .related-link:hover { background: #e8dfc8; text-decoration: none; color: #6b3410; }
+
+  /* Ad slots */
+  .ad-slot { min-height: 0; margin: 0; }
+
+  /* Footer */
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.2rem 1rem;
+    font-size: 0.83rem;
+  }
+  footer a { color: #e8c98a; margin: 0 0.5rem; }
+  footer a:hover { color: #f5f0e1; text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    .related-grid { grid-template-columns: 1fr; }
+    h1 { font-size: 1.35rem; }
+    .result-headline .big-num { font-size: 2rem; }
+    .rank-bar-label { min-width: 100px; font-size: 0.78rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav><a href="/">⚔ historycalc.com</a></nav>
+
+<div class="page-wrap">
+
+  <!-- SVG Hero -->
+  <div class="hero-svg">
+    <svg width="220" height="110" viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" aria-label="Roman soldier illustration" role="img">
+      <!-- Column left -->
+      <rect x="10" y="20" width="22" height="88" fill="#c4a882" rx="2"/>
+      <rect x="8" y="18" width="26" height="8" fill="#a0845c" rx="1"/>
+      <rect x="8" y="100" width="26" height="8" fill="#a0845c" rx="1"/>
+      <rect x="12" y="26" width="3" height="74" fill="#e8dfc8" opacity="0.5"/>
+      <rect x="17" y="26" width="3" height="74" fill="#e8dfc8" opacity="0.5"/>
+      <!-- Column right -->
+      <rect x="188" y="20" width="22" height="88" fill="#c4a882" rx="2"/>
+      <rect x="186" y="18" width="26" height="8" fill="#a0845c" rx="1"/>
+      <rect x="186" y="100" width="26" height="8" fill="#a0845c" rx="1"/>
+      <rect x="190" y="26" width="3" height="74" fill="#e8dfc8" opacity="0.5"/>
+      <rect x="195" y="26" width="3" height="74" fill="#e8dfc8" opacity="0.5"/>
+      <!-- Soldier body -->
+      <rect x="98" y="58" width="24" height="36" fill="#8b4513" rx="3"/>
+      <!-- Lorica segmentata stripes -->
+      <rect x="98" y="62" width="24" height="3" fill="#6b3410" rx="1"/>
+      <rect x="98" y="68" width="24" height="3" fill="#6b3410" rx="1"/>
+      <rect x="98" y="74" width="24" height="3" fill="#6b3410" rx="1"/>
+      <!-- Legs -->
+      <rect x="101" y="92" width="8" height="14" fill="#c4a882" rx="2"/>
+      <rect x="111" y="92" width="8" height="14" fill="#c4a882" rx="2"/>
+      <!-- Head with helmet -->
+      <circle cx="110" cy="47" r="11" fill="#f5d5a0"/>
+      <rect x="99" y="33" width="22" height="14" fill="#8b4513" rx="3"/>
+      <rect x="97" y="38" width="26" height="5" fill="#6b3410" rx="1"/>
+      <!-- Crest -->
+      <path d="M100,33 Q110,18 120,33" fill="#c0392b" stroke="none"/>
+      <!-- Shield -->
+      <rect x="75" y="55" width="16" height="28" fill="#c0392b" rx="3"/>
+      <rect x="78" y="58" width="10" height="22" fill="#a0291f" rx="2"/>
+      <circle cx="83" cy="69" r="3" fill="#e8c98a"/>
+      <!-- Pilum (spear) -->
+      <line x1="138" y1="20" x2="138" y2="90" stroke="#6b3410" stroke-width="2.5"/>
+      <polygon points="138,14 135,24 141,24" fill="#a0845c"/>
+      <!-- Coin -->
+      <circle cx="168" cy="85" r="9" fill="#e8c98a" stroke="#a0845c" stroke-width="1.5"/>
+      <text x="168" y="89" text-anchor="middle" font-size="9" fill="#8b4513" font-weight="bold">S</text>
+    </svg>
+  </div>
+
+  <h1>Ancient Roman Soldier Pay Calculator</h1>
+  <p class="subtitle">Calculate legionary wages, deductions & modern equivalents from 200 BCE to 300 CE</p>
+
+  <!-- Main Tool Card -->
+  <div class="card">
+    <div class="form-group">
+      <label for="era">Historical Era</label>
+      <select id="era">
+        <option value="republic">Roman Republic (~200–31 BCE)</option>
+        <option value="augustan" selected>Early Empire — Augustus (~27 BCE–14 CE)</option>
+        <option value="flavian">Flavian–Trajanic Era (~69–117 CE)</option>
+        <option value="severan">Severan Era (~193–235 CE)</option>
+        <option value="crisis">Crisis of the Third Century (~235–284 CE)</option>
+        <option value="dominate">Dominate — Diocletian (~284–305 CE)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="rank">Military Rank</label>
+      <select id="rank">
+        <option value="tirones">Tirones (Recruit, 0–6 months)</option>
+        <option value="miles" selected>Miles Gregarius (Basic Legionary)</option>
+        <option value="immunis">Immunis (Specialist / Immune)</option>
+        <option value="tesserarius">Tesserarius (Section Leader)</option>
+        <option value="optio">Optio (Deputy Centurion)</option>
+        <option value="centurion">Centurion</option>
+        <option value="primus_pilus">Primus Pilus (Chief Centurion)</option>
+        <option value="tribunus">Tribunus Militum (Military Tribune)</option>
+        <option value="praefectus">Praefectus / Legatus Legionis</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="years">Years of Service: <span id="years-display">10</span> yrs</label>
+      <div class="slider-row">
+        <input type="range" id="years" min="1" max="25" value="10" step="1">
+        <span id="years-val">10</span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="donatives">Number of Donatives (Emperor's Gifts) Received</label>
+      <select id="donatives">
+        <option value="0">0 — None</option>
+        <option value="1" selected>1 — Accession of new Emperor</option>
+        <option value="2">2 — Occasional celebrations</option>
+        <option value="4">4 — Generous reign</option>
+        <option value="8">8 — Very generous / wartime</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="booty">Campaign Booty Share (estimated, in denarii)</label>
+      <input type="number" id="booty" min="0" max="999999" value="0" placeholder="e.g. 500">
+      <div class="error-msg" id="booty-error">Please enter a valid number (0 or above).</div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚔ Calculate Roman Pay</button>
+  </div>
+
+  <!-- Results Section -->
+  <div id="results-section">
+    <div class="card">
+      <div class="result-headline">
+        <div class="big-num" id="res-total">—</div>
+        <div class="big-label" id="res-label">Total career earnings (denarii)</div>
+      </div>
+
+      <div class="modern-equiv" id="res-modern">—</div>
+
+      <div class="table-wrap">
+        <table id="res-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th style="text-align:right">Denarii / yr</th>
+              <th style="text-align:right">Career Total</th>
+            </tr>
+          </thead>
+          <tbody id="res-tbody"></tbody>
+        </table>
+      </div>
+
+      <p style="font-size:0.8rem;color:#7a5c3e;margin-top:0.5rem;">* Deductions vary by source; figures are scholarly estimates.</p>
+
+      <button class="copy-btn" id="copy-btn" onclick="copyResults()">📋 Copy Summary</button>
+    </div>
+
+    <div class="card">
+      <h2 style="font-size:1rem;color:#8b4513;margin-bottom:0.85rem;">⚖ Pay Comparison by Rank (per year, selected era)</h2>
+      <div class="rank-bars" id="rank-bars"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h3>📜 Historical Context</h3>
+    <p>Roman legionary pay is documented in sources like Polybius, Suetonius, and papyri from Egypt. Under the Republic, a basic miles earned roughly 120 denarii per year (later raised to 225 by Caesar). Augustus standardized pay at 225 denarii annually — approximately 3 asses per day — paid in three instalments (stipendia). Domitian raised it to 300 denarii; Septimius Severus roughly tripled it to 600+ denarii. Soldiers didn't receive full pay in hand: deductions for food (cibaria), clothing, arms, and burial club fees (the <em>collegium</em>) could consume 30–50% of gross pay. Upon honorable discharge (missio honesta) after 20–25 years, a legionary received a praemia (gratuity) of 3,000 denarii or a land grant.</p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="dyk-box">
+    <h3>💡 Did You Know?</h3>
+    <ul>
+      <li>The word <strong>"salary"</strong> derives from the Latin <em>salarium</em> — an allowance paid to Roman soldiers for purchasing salt (<em>sal</em>), a precious preservative in antiquity.</li>
+      <li>Julius Caesar <strong>doubled legionary pay</strong> from 112 to 225 denarii per year as both a recruitment incentive and a way to secure loyalty — a move that changed Roman politics forever.</li>
+      <li>The Severan emperor Caracalla raised pay to around <strong>675–750 denarii</strong> but simultaneously debased the silver content of the denarius by 50%, meaning soldiers' real purchasing power barely improved.</li>
+    </ul>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Roman Soldier Salary Calculator</h2>
+    <p>Select a historical era and military rank, then adjust the slider for years of service. Optionally add donatives (special cash gifts from emperors) and any estimated booty share from campaigns. Click <strong>"Calculate Roman Pay"</strong> to see annual pay, deductions, net career earnings in denarii, and a modern USD equivalent. The rank comparison bars show how your soldier's pay stacks up against other grades in the same era.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding what Roman soldiers actually earned — and spent — illuminates one of history's most consequential institutions. The legions were the engine of Roman expansion, and their pay structure drove everything from provincial taxation to imperial politics. When emperors couldn't pay soldiers, civil wars broke out; the so-called "Crisis of the Third Century" (235–284 CE) saw 50+ emperors in 50 years, many elevated and killed by unpaid troops.</p>
+    <p>A basic miles earning 225 denarii per year in Augustus's time could buy roughly 450 kg of wheat annually — enough to feed a small family with surplus. Yet after deductions, his actual take-home might be closer to 100–120 denarii. Centurions, earning 3,375 denarii (15× a legionary's base), were effectively the Roman middle class. Understanding these numbers helps us grasp why centurions were so fiercely loyal to the institution — they had genuine economic stakes in it.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses rank multipliers drawn from Polybius, Suetonius (<em>Life of Domitian</em>), the Historia Augusta, and modern scholarship (Alston 1994, Speidel 1992). Base pay for a <em>miles gregarius</em> varies by era:</p>
+    <ul>
+      <li><strong>Republic (200–31 BCE):</strong> 120 → 225 denarii/yr (post-Caesar)</li>
+      <li><strong>Augustan (27 BCE–14 CE):</strong> 225 denarii/yr</li>
+      <li><strong>Flavian–Trajanic (69–117 CE):</strong> 300 denarii/yr (Domitian's raise)</li>
+      <li><strong>Severan (193–235 CE):</strong> 600 denarii/yr</li>
+      <li><strong>Crisis era (235–284 CE):</strong> 900 denarii/yr (inflation-driven)</li>
+      <li><strong>Diocletian (284–305 CE):</strong> 1,800 denarii/yr (severe inflation)</li>
+    </ul>
+    <p>Rank multipliers: Immunis ×1.25, Tesserarius ×1.5, Optio ×2, Centurion ×15, Primus Pilus ×60, Tribunus ×80, Legatus ×200. Deductions (food, clothing, arms, burial club) average 40% of gross. Donatives use historically attested values (e.g., Augustus paid 1,000 denarii per soldier at his death). Modern USD equivalents use a wheat-price parity method: 1 denarius ≈ $20–$28 USD (2024), averaging $24.</p>
+    <p><strong>Formula:</strong> Net Career Pay = (Gross Annual Pay × Years) − (Deductions × Years) + (Donative Value × Donatives) + Booty + Praemia</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse nominal and real pay.</strong> Severan-era soldiers earned 3× Augustan wages, but silver debasement eroded purchasing power. The calculator shows nominal denarii — real value was often lower in later eras.</li>
+      <li><strong>Donatives were irregular and enormous.</strong> A single imperial accession donative could equal 6–12 months of gross pay, often dwarfing annual salary in soldiers' financial planning.</li>
+      <li><strong>The praemia mattered enormously.</strong> A 3,000-denarius discharge bonus was 13 years of Augustan take-home pay. Many soldiers viewed the praemia as their primary retirement goal.</li>
+      <li><strong>Centurions are their own category.</strong> With 15× base pay plus rich plunder opportunities and graft, centurions were genuinely wealthy by Roman standards — comparable to prosperous merchants.</li>
+      <li><strong>Auxiliary troops earned less.</strong> Non-citizen auxiliaries received about 5/6 the pay of legionaries until Caracalla's <em>Constitutio Antoniniana</em> (212 CE) granted universal citizenship.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How much did a Roman soldier earn compared to a civilian worker?</summary>
+      <p>A basic legionary earned roughly 225 denarii per year under Augustus, while a skilled urban craftsman might earn 1–2 sesterces (0.25–0.5 denarii) per day, or 90–180 denarii annually. Soldiers actually earned somewhat more than average laborers, plus they received housing, food, and eventual discharge benefits — making the legions genuinely attractive employment.</p>
+    </details>
+    <details>
+      <summary>What could a Roman soldier buy with his pay?</summary>
+      <p>Under Augustus, 1 denarius bought about 2 kg of wheat, a liter of cheap wine, or a day's labor from a common worker. A soldier's annual take-home (~120 denarii net) could buy roughly 240 kg of wheat, several pairs of sandals, and leave modest savings — not lavish, but stable. Centurions, with vastly higher pay, could afford slaves, townhouses, and fine goods.</p>
+    </details>
+    <details>
+      <summary>Were Roman soldiers paid in coins or other forms?</summary>
+      <p>Pay was predominantly in silver denarii and bronze sestertii/asses until the 3rd century CE, when coinage debased severely. By the Dominate period (284+ CE), much compensation shifted to payments <em>in kind</em> (food rations, clothing, equipment) — the <em>annona militaris</em> — supplemented by debased coin. Diocletian's Edict on Maximum Prices (301 CE) was partly aimed at stabilizing soldier purchasing power.</p>
+    </details>
+    <details>
+      <summary>How accurate are the modern USD equivalents?</summary>
+      <p>They are rough purchasing-power estimates using wheat-price parity — a standard economic history methodology (Hopkins 1980, Scheidel & Friesen 2009). One denarius is estimated at approximately $20–28 in 2024 dollars based on wheat prices. This is an approximation only; the Roman economy differed structurally from modern ones, and conversions should be treated as order-of-magnitude guides.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>Related Historical Calculators</h2>
+    <div class="related-grid">
+      <a class="related-link" href="/athenian-silver-mine-revenue-calculator/">⛏ Ancient Athenian Silver Mine Revenue Calculator</a>
+      <a class="related-link" href="/viking-hacksilver-wealth-estimator/">🪙 Viking Age Hacksilver Wealth Estimator</a>
+      <a class="related-link" href="/roman-gladiator-training-cost-calculator/">🗡 Roman Gladiator Training Cost Calculator</a>
+      <a class="related-link" href="/roman-emperor-reign-timeline-comparator/">👑 Roman Emperor Reign Timeline Comparator</a>
+      <a class="related-link" href="/ancient-greek-city-state-army-estimator/">🛡 Greek City-State Population & Army Size Estimator</a>
+      <a class="related-link" href="/mayan-long-count-calendar-converter/">📅 Mayan Long Count Calendar Converter</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- end page-wrap -->
+
+<footer>
+  <div>⚔ historycalc.com — Ancient History Calculators</div>
+  <div style="margin-top:0.5rem;">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div style="margin-top:0.4rem;">© 2024 historycalc.com — For educational purposes</div>
+</footer>
+
+<script>
+  // ─── DATA TABLES ───────────────────────────────────────────────────────────
+
+  const ERA_DATA = {
+    republic:  { label: "Roman Republic",        basePay: 180,  donativeVal: 400,  praemia: 2000, usdMult: 26 },
+    augustan:  { label: "Augustan Empire",        basePay: 225,  donativeVal: 1000, praemia: 3000, usdMult: 24 },
+    flavian:   { label: "Flavian–Trajanic Empire", basePay: 300,  donativeVal: 750,  praemia: 3000, usdMult: 22 },
+    severan:   { label: "Severan Empire",          basePay: 600,  donativeVal: 1500, praemia: 5000, usdMult: 12 },
+    crisis:    { label: "Crisis of Third Century", basePay: 900,  donativeVal: 2000, praemia: 6000, usdMult: 6  },
+    dominate:  { label: "Dominate (Diocletian)",   basePay: 1800, donativeVal: 3000, praemia: 10000,usdMult: 3  }
+  };
+
+  const RANK_DATA = [
+    { key: "tirones",     label: "Tirones (Recruit)",         mult: 0.5,  dedRate: 0.50 },
+    { key: "miles",       label: "Miles Gregarius",           mult: 1.0,  dedRate: 0.40 },
+    { key: "immunis",     label: "Immunis (Specialist)",      mult: 1.25, dedRate: 0.38 },
+    { key: "tesserarius", label: "Tesserarius",               mult: 1.5,  dedRate: 0.35 },
+    { key: "optio",       label: "Optio",                     mult: 2.0,  dedRate: 0.32 },
+    { key: "centurion",   label: "Centurion",                 mult: 15.0, dedRate: 0.20 },
+    { key: "primus_pilus",label: "Primus Pilus",              mult: 60.0, dedRate: 0.15 },
+    { key: "tribunus",    label: "Tribunus Militum",          mult: 80.0, dedRate: 0.12 },
+    { key: "praefectus",  label: "Praefectus / Legatus",      mult: 200.0,dedRate: 0.10 }
+  ];
+
+  // ─── SLIDER SYNC ───────────────────────────────────────────────────────────
+  const yearsSlider = document.getElementById('years');
+  const yearsDisplay = document.getElementById('years-display');
+  const yearsVal = document.getElementById('years-val');
+  yearsSlider.addEventListener('input', () => {
+    yearsDisplay.textContent = yearsSlider.value;
+    yearsVal.textContent = yearsSlider.value;
+  });
+
+  // ─── ENTER KEY ─────────────────────────────────────────────────────────────
+  document.querySelectorAll('select, input').forEach(el => {
+    el.addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+  });
+
+  // ─── BUTTON ────────────────────────────────────────────────────────────────
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  // ─── HELPERS ───────────────────────────────────────────────────────────────
+  function fmt(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+  function fmtD(n) {
+    return n.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+  }
+
+  // ─── MAIN CALCULATE ────────────────────────────────────────────────────────
+  let lastSummary = '';
+
+  function calculate() {
+    // --- Inputs ---
+    const eraKey   = document.getElementById('era').value;
+    const rankKey  = document.getElementById('rank').value;
+    const years    = parseInt(yearsSlider.value, 10);
+    const donCount = parseInt(document.getElementById('donatives').value, 10);
+    const bootyRaw = document.getElementById('booty').value.trim();
+
+    // Validate booty
+    const bootyInput = document.getElementById('booty');
+    const bootyError = document.getElementById('booty-error');
+    let booty = 0;
+    if (bootyRaw !== '') {
+      booty = parseFloat(bootyRaw);
+      if (isNaN(booty) || booty < 0) {
+        bootyInput.classList.add('input-error');
+        bootyError.classList.add('visible');
+        return;
+      }
+    }
+    bootyInput.classList.remove('input-error');
+    bootyError.classList.remove('visible');
+
+    const era  = ERA_DATA[eraKey];
+    const rank = RANK_DATA.find(r => r.key === rankKey);
+
+    // Calculations
+    const grossPerYear   = era.basePay * rank.mult;
+    const deductionsPerY = grossPerYear * rank.dedRate;
+    const netPerYear     = grossPerYear - deductionsPerY;
+    const grossCareer    = grossPerYear * years;
+    const deductCareer   = deductionsPerY * years;
+    const netBeforeExtra = netPerYear * years;
+    const donativeTotal  = era.donativeVal * donCount;
+    const praemia        = era.praemia;
+    const totalCareer    = netBeforeExtra + donativeTotal + booty + praemia;
+
+    // Modern equivalent (wheat parity ~$24/denarius for augustan, scaled by usdMult)
+    const modernUSD = totalCareer * era.usdMult;
+
+    // Build result string
+    const rankLabel = rank.label;
+    const eraLabel  = era.label;
+
+    // Table rows
+    let tbodyHTML = '';
+    const rows = [
+      { item: `Gross Pay (${rankLabel})`, yr: grossPerYear, total: grossCareer, cls: '' },
+      { item: 'Deductions (food, clothing, arms, burial)', yr: -deductionsPerY, total: -deductCareer, cls: 'negative' },
+      { item: 'Net Pay', yr: netPerYear, total: netBeforeExtra, cls: '' },
+      { item: `Donatives (${donCount} × ${fmt(era.donativeVal)} den.)`, yr: 0, total: donativeTotal, cls: 'positive' },
+      { item: 'Campaign Booty Share', yr: 0, total: booty, cls: 'positive' },
+      { item: 'Praemia (discharge bonus)', yr: 0, total: praemia, cls: 'positive' }
+    ];
+    rows.forEach(r => {
+      const yrStr = r.yr !== 0 ? `<span class="${r.cls}">${r.yr < 0 ? '−' : ''}${fmt(Math.abs(r.yr))}</span>` : '<span style="color:#aaa">—</span>';
+      const totStr = `<span class="${r.cls}">${r.total < 0 ? '−' : ''}${fmt(Math.abs(r.total))}</span>`;
+      tbodyHTML += `<tr><td>${r.item}</td><td style="text-align:right">${yrStr}</td><td style="text-align:right">${totStr}</td></tr>`;
+    });
+    tbodyHTML += `<tr style="background:#c4a882;font-weight:700"><td>TOTAL CAREER EARNINGS</td><td style="text-align:right">—</td><td style="text-align:right">${fmt(totalCareer)} den.</td></tr>`;
+
+    // Rank bars for selected era
+    const maxVal = era.basePay * 200.0; // praefectus is max
+    let barsHTML = '';
+    RANK_DATA.forEach(r => {
+      const val = era.basePay * r.mult;
+      const pct = Math.min(100, (val / maxVal) * 100);
+      const isActive = r.key === rankKey;
+      barsHTML += `<div class="rank-bar-row">
+        <div class="rank-bar-label" style="${isActive ? 'font-weight:700;color:#8b4513' : ''}">${r.label}</div>
+        <div class="rank-bar-track">
+          <div class="rank-bar-fill" style="width:${pct}%;${isActive ? 'background:#c0392b' : ''}"></div>
+        </div>
+        <div class="rank-bar-val">${fmt(val)}</div>
+      </div>`;
+    });
+
+    // Modern equiv text
+    const modernFmt = modernUSD >= 1000000
+      ? '$' + (modernUSD / 1000000).toFixed(2) + 'M'
+      : '$' + fmt(modernUSD);
+    const modernText = `💵 Modern Equivalent: <strong>${modernFmt} USD</strong> (wheat-price parity, ${new Date().getFullYear()} dollars)<br><span style="font-size:0.85rem;opacity:0.85">Based on 1 denarius ≈ $${era.usdMult} (purchasing power, ${eraLabel})</span>`;
+
+    // Summary for clipboard
+    lastSummary = [
+      `Roman Soldier Pay Summary — historycalc.com`,
+      `Era: ${eraLabel} | Rank: ${rankLabel} | Years: ${years}`,
+      `Gross Pay/yr: ${fmt(grossPerYear)} den. | Deductions/yr: ${fmt(deductionsPerY)} den.`,
+      `Net Pay/yr: ${fmt(netPerYear)} den.`,
+      `Donatives: ${fmt(donativeTotal)} den. | Booty: ${fmt(booty)} den. | Praemia: ${fmt(praemia)} den.`,
+      `TOTAL CAREER: ${fmt(totalCareer)} denarii`,
+      `Modern Equivalent: ${modernFmt} USD (wheat-price parity)`
+    ].join('\n');
+
+    // --- DOM Updates (all at once) ---
+    document.getElementById('res-total').textContent = fmt(totalCareer) + ' dn.';
+    document.getElementById('res-label').textContent = `Total career earnings over ${years} years as ${rankLabel} in the ${eraLabel}`;
+    document.getElementById('res-modern').innerHTML = modernText;
+    document.getElementById('res-tbody').innerHTML = tbodyHTML;
+    document.getElementById('rank-bars').innerHTML = barsHTML;
+
+    const sec = document.getElementById('results-section');
+    sec.classList.add('visible');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // ─── COPY ──────────────────────────────────────────────────────────────────
+  function copyResults() {
+    if (!lastSummary) return;
+    const btn = document.getElementById('copy-btn');
+    navigator.clipboard.writeText(lastSummary).then(() => {
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Summary'; }, 2000);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = lastSummary;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Summary'; }, 2000);
+    });
+  }
+</script>
+</body>
+</html>
