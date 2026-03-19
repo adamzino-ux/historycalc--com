@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Black Death Population Loss Estimator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Estimate population loss from the Black Death (1347–1353) by region, city, or custom area. Free black death population loss calculator with historical context.">
+<link rel="canonical" href="https://historycalc.com/medieval-black-death-population-estimator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Black Death Population Loss Estimator",
+  "url": "https://historycalc.com/medieval-black-death-population-estimator/",
+  "description": "Estimate medieval Black Death population losses by region or custom population with historically accurate mortality rates.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f0ebe0;
+    color: #2c1810;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  nav {
+    background: #2c1810;
+    padding: 0 1.5rem;
+    height: 52px;
+    display: flex;
+    align-items: center;
+  }
+  nav a {
+    color: #f5f0e1;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+  }
+  nav a:hover { color: #c4a882; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .hero-svg {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #2c1810;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  .subtitle {
+    text-align: center;
+    color: #6b4226;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: #fdf8ef;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    color: #8b4513;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid #c4a882;
+    padding-bottom: 0.5rem;
+  }
+
+  .tab-bar {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    background: #f5f0e1;
+    border: none;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6b4226;
+    transition: background 0.2s, color 0.2s;
+    min-height: 44px;
+  }
+  .tab-btn.active {
+    background: #8b4513;
+    color: #fff;
+  }
+  .tab-btn:hover:not(.active) { background: #e8dcc8; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3010;
+    margin-bottom: 0.35rem;
+    margin-top: 1rem;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #c4a882;
+    border-radius: 5px;
+    background: #fff;
+    font-size: 1rem;
+    color: #2c1810;
+    appearance: none;
+    transition: box-shadow 0.2s;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.18);
+    border-color: #8b4513;
+  }
+  input.error { border-color: #e74c3c; }
+  .err-msg { color: #e74c3c; font-size: 0.8rem; margin-top: 0.3rem; display: none; }
+  .err-msg.show { display: block; }
+
+  input[type="range"] {
+    width: 100%;
+    margin-top: 0.5rem;
+    accent-color: #8b4513;
+  }
+  .range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: #8b6040;
+    margin-top: 0.2rem;
+  }
+  .range-val {
+    text-align: center;
+    font-weight: 700;
+    color: #8b4513;
+    font-size: 1.05rem;
+    margin-top: 0.2rem;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 13px 24px;
+    background: #8b4513;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    min-height: 44px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: #6b3210; }
+
+  .results-section {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: none;
+  }
+  .results-section.visible {
+    opacity: 1;
+    display: block;
+  }
+
+  .big-number {
+    text-align: center;
+    margin: 1rem 0 1.5rem;
+  }
+  .big-number .label { font-size: 0.9rem; color: #6b4226; }
+  .big-number .value {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #8b4513;
+    line-height: 1.1;
+  }
+  .big-number .sublabel { font-size: 0.85rem; color: #8b6040; margin-top: 0.2rem; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .stat-box {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    text-align: center;
+  }
+  .stat-box .s-val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #8b4513;
+  }
+  .stat-box .s-lbl { font-size: 0.78rem; color: #6b4226; }
+
+  .modern-equiv {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  .modern-equiv strong { color: #c4a882; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  thead tr { background: #c4a882; color: #2c1810; }
+  thead th { padding: 9px 10px; text-align: left; font-weight: 700; }
+  thead th:last-child { text-align: right; }
+  tbody tr:nth-child(odd) { background: #fdf8ef; }
+  tbody tr:nth-child(even) { background: #f5f0e1; }
+  tbody td { padding: 8px 10px; border-bottom: 1px solid #e0d5c0; }
+  tbody td:last-child { text-align: right; font-weight: 600; color: #8b4513; }
+
+  .scroll-wrap { overflow-x: auto; }
+
+  .bar-wrap { margin: 0.5rem 0; }
+  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.82rem; }
+  .bar-label { width: 130px; flex-shrink: 0; color: #5a3010; font-weight: 500; }
+  .bar-track { flex: 1; background: #e8dcc8; border-radius: 3px; height: 18px; overflow: hidden; }
+  .bar-fill { height: 100%; background: #8b4513; border-radius: 3px; transition: width 0.5s ease; }
+  .bar-pct { width: 42px; text-align: right; color: #6b4226; font-weight: 700; }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid #c4a882;
+    color: #8b4513;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    float: right;
+    transition: background 0.2s;
+    margin-top: -2px;
+  }
+  .copy-btn:hover { background: #e8dcc8; }
+
+  .did-you-know {
+    background: #fff8e7;
+    border-left: 4px solid #8b4513;
+    border-radius: 0 6px 6px 0;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .did-you-know h3 { font-size: 0.95rem; color: #8b4513; margin-bottom: 0.6rem; }
+  .did-you-know ul { padding-left: 1.2rem; }
+  .did-you-know li { font-size: 0.88rem; color: #3a2010; margin-bottom: 0.4rem; }
+
+  .hist-context {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+    color: #3a2010;
+  }
+  .hist-context h3 { font-size: 1rem; color: #8b4513; margin-bottom: 0.5rem; }
+
+  .content-section h2 {
+    font-size: 1.2rem;
+    color: #8b4513;
+    margin: 2rem 0 0.75rem;
+    border-bottom: 1px solid #c4a882;
+    padding-bottom: 0.4rem;
+  }
+  .content-section p { margin-bottom: 0.85rem; font-size: 0.93rem; color: #3a2010; }
+  .content-section ul { padding-left: 1.4rem; margin-bottom: 0.85rem; }
+  .content-section li { font-size: 0.92rem; color: #3a2010; margin-bottom: 0.35rem; }
+
+  details { margin-bottom: 0.75rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #8b4513;
+    font-size: 0.93rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #e0d5c0;
+    list-style: none;
+  }
+  summary::before { content: "▶ "; font-size: 0.75rem; }
+  details[open] summary::before { content: "▼ "; }
+  details p { padding: 0.6rem 0 0.25rem 1rem; font-size: 0.9rem; color: #3a2010; }
+
+  .related-tools {
+    background: #fdf8ef;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+  .related-tools h2 { font-size: 1.1rem; color: #8b4513; margin-bottom: 1rem; }
+  .related-tools a {
+    display: block;
+    color: #8b4513;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.92rem;
+    border-bottom: 1px solid #e0d5c0;
+    transition: color 0.2s;
+  }
+  .related-tools a:last-child { border-bottom: none; }
+  .related-tools a:hover { color: #2c1810; text-decoration: underline; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: #f5f0e1; text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+  footer p { margin-top: 0.4rem; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.35rem; }
+    .card { padding: 1.25rem; }
+    .big-number .value { font-size: 2.2rem; }
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .bar-label { width: 100px; font-size: 0.78rem; }
+    .tab-btn { font-size: 0.78rem; padding: 10px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<nav><a href="/">⚜ historycalc.com</a></nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="hero-svg">
+    <svg width="220" height="110" viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" aria-label="Medieval town silhouette during the Black Death">
+      <!-- Sky -->
+      <rect width="220" height="110" fill="#f5f0e1" rx="8"/>
+      <!-- Moon -->
+      <circle cx="185" cy="22" r="14" fill="#e8dcc8"/>
+      <circle cx="191" cy="18" r="11" fill="#f5f0e1"/>
+      <!-- Stars -->
+      <circle cx="30" cy="15" r="1.5" fill="#c4a882"/>
+      <circle cx="60" cy="10" r="1" fill="#c4a882"/>
+      <circle cx="90" cy="18" r="1.5" fill="#c4a882"/>
+      <circle cx="145" cy="8" r="1" fill="#c4a882"/>
+      <!-- Ground -->
+      <rect x="0" y="90" width="220" height="20" fill="#c4a882"/>
+      <!-- Buildings -->
+      <rect x="10" y="70" width="25" height="20" fill="#8b4513"/>
+      <polygon points="10,70 22,55 35,70" fill="#6b3210"/>
+      <rect x="13" y="78" width="8" height="12" fill="#2c1810"/>
+
+      <rect x="40" y="60" width="30" height="30" fill="#7a3c0f"/>
+      <polygon points="40,60 55,42 70,60" fill="#5a2c0a"/>
+      <rect x="50" y="68" width="10" height="22" fill="#2c1810"/>
+
+      <!-- Church/Cathedral -->
+      <rect x="80" y="50" width="40" height="40" fill="#6b3210"/>
+      <polygon points="80,50 100,28 120,50" fill="#4a2208"/>
+      <!-- Tower -->
+      <rect x="92" y="28" width="16" height="8" fill="#4a2208"/>
+      <polygon points="92,28 100,18 108,28" fill="#2c1810"/>
+      <!-- Cross -->
+      <rect x="98" y="13" width="4" height="8" fill="#c4a882"/>
+      <rect x="95" y="16" width="10" height="3" fill="#c4a882"/>
+      <rect x="88" y="58" width="12" height="32" fill="#2c1810"/>
+
+      <rect x="130" y="65" width="28" height="25" fill="#8b4513"/>
+      <polygon points="130,65 144,50 158,65" fill="#6b3210"/>
+      <rect x="138" y="74" width="8" height="16" fill="#2c1810"/>
+
+      <rect x="165" y="72" width="20" height="18" fill="#7a3c0f"/>
+      <polygon points="165,72 175,60 185,72" fill="#5a2c0a"/>
+
+      <!-- Plague cross symbol -->
+      <rect x="103" y="86" width="3" height="10" fill="#c4a882" opacity="0.6"/>
+      <rect x="99" y="89" width="11" height="3" fill="#c4a882" opacity="0.6"/>
+
+      <!-- Smoke/atmosphere -->
+      <ellipse cx="55" cy="56" rx="12" ry="4" fill="#2c1810" opacity="0.12"/>
+      <ellipse cx="100" cy="44" rx="8" ry="3" fill="#2c1810" opacity="0.1"/>
+    </svg>
+  </div>
+
+  <h1>Medieval Black Death Population Loss Estimator</h1>
+  <p class="subtitle">Calculate population losses from the 1347–1353 bubonic plague pandemic by region, city, or custom parameters</p>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <h2>📊 Calculate Population Loss</h2>
+
+    <!-- Tabs -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('preset')">Historical Regions</button>
+      <button class="tab-btn" onclick="switchTab('city')">City Estimate</button>
+      <button class="tab-btn" onclick="switchTab('custom')">Custom</button>
+    </div>
+
+    <!-- Tab: Preset Regions -->
+    <div class="tab-panel active" id="tab-preset">
+      <label for="regionSelect">Select Region</label>
+      <select id="regionSelect" onchange="updateRegionInfo()">
+        <option value="western_europe">Western Europe (overall)</option>
+        <option value="england">England</option>
+        <option value="france">France</option>
+        <option value="italy">Italy</option>
+        <option value="germany">Holy Roman Empire (Germany)</option>
+        <option value="iberia">Iberian Peninsula (Spain/Portugal)</option>
+        <option value="scandinavia">Scandinavia</option>
+        <option value="byzantium">Byzantine Empire</option>
+        <option value="middle_east">Middle East / North Africa</option>
+        <option value="china">China (Yuan Dynasty)</option>
+      </select>
+
+      <div id="regionInfoBox" style="background:#f5f0e1;border:1px solid #c4a882;border-radius:5px;padding:0.75rem 1rem;margin-top:0.75rem;font-size:0.85rem;color:#5a3010;"></div>
+
+      <label for="yearSlider">Plague Year Range: <span id="yearDisplay">1347–1353</span></label>
+      <input type="range" id="yearSlider" min="1" max="3" value="2" step="1" oninput="updateYearDisplay()">
+      <div class="range-labels">
+        <span>First Wave Only</span>
+        <span>Main Outbreak</span>
+        <span>Extended (1353)</span>
+      </div>
+
+      <button class="btn" onclick="calculate('preset')">⚔ Estimate Population Loss</button>
+    </div>
+
+    <!-- Tab: City -->
+    <div class="tab-panel" id="tab-city">
+      <label for="citySelect">Select Historical City</label>
+      <select id="citySelect">
+        <option value="london">London (~80,000 pop. 1340)</option>
+        <option value="paris">Paris (~200,000 pop. 1340)</option>
+        <option value="florence">Florence (~95,000 pop. 1340)</option>
+        <option value="venice">Venice (~120,000 pop. 1340)</option>
+        <option value="siena">Siena (~52,000 pop. 1340)</option>
+        <option value="avignon">Avignon (~25,000 pop. 1340)</option>
+        <option value="hamburg">Hamburg (~22,000 pop. 1340)</option>
+        <option value="cairo">Cairo (~500,000 pop. 1340)</option>
+        <option value="constantinople">Constantinople (~400,000 pop. 1340)</option>
+        <option value="barcelona">Barcelona (~35,000 pop. 1340)</option>
+      </select>
+
+      <label>Estimated Mortality Rate</label>
+      <input type="range" id="cityMortSlider" min="10" max="80" value="40" step="1" oninput="document.getElementById('cityMortVal').textContent=this.value+'%'">
+      <div class="range-val" id="cityMortVal">40%</div>
+      <div class="range-labels"><span>10% (mild)</span><span>45% (severe)</span><span>80% (catastrophic)</span></div>
+
+      <button class="btn" onclick="calculate('city')">⚔ Estimate City Loss</button>
+    </div>
+
+    <!-- Tab: Custom -->
+    <div class="tab-panel" id="tab-custom">
+      <label for="customPop">Pre-Plague Population</label>
+      <input type="number" id="customPop" placeholder="e.g. 500000" min="1" max="999999999">
+      <div class="err-msg" id="err-customPop">Please enter a valid population (1 – 999,999,999).</div>
+
+      <label for="customLow">Low Mortality Estimate (%)</label>
+      <input type="number" id="customLow" placeholder="e.g. 25" min="1" max="99" value="25">
+
+      <label for="customMid">Median Mortality Estimate (%)</label>
+      <input type="number" id="customMid" placeholder="e.g. 40" min="1" max="99" value="40">
+
+      <label for="customHigh">High Mortality Estimate (%)</label>
+      <input type="number" id="customHigh" placeholder="e.g. 60" min="1" max="99" value="60">
+
+      <label for="recoveryYears">Years to Recover Pre-Plague Population (estimate)</label>
+      <input type="number" id="recoveryYears" placeholder="e.g. 150" min="10" max="500" value="150">
+      <div class="err-msg" id="err-customHigh">High estimate must be greater than Low estimate.</div>
+
+      <button class="btn" onclick="calculate('custom')">⚔ Calculate Loss Scenarios</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section card" id="resultsCard">
+    <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #c4a882;padding-bottom:0.5rem;margin-bottom:1rem;">
+      <h2 style="border:none;margin:0;padding:0;">📜 Results</h2>
+      <button class="copy-btn" id="copyBtn" onclick="copyResults()">Copy Results</button>
+    </div>
+    <div id="resultsContent"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h3>🏰 Historical Context</h3>
+    <p>The Black Death (Yersinia pestis) reached Sicily in October 1347 via Genoese trading ships from Caffa on the Black Sea. It swept through Europe in successive waves between 1347 and 1353. Historians estimate that between 30% and 60% of Europe's population perished — approximately 25 million out of a pre-plague total of roughly 75 million people. Some regions fared worse: Tuscany lost an estimated 50–60% of its population, while isolated communities like the Milanese city-state, which imposed strict quarantines, may have lost only 15%. England's population did not return to pre-plague levels until roughly 1650 — nearly 300 years later. In China, the Yuan Dynasty's population may have fallen from 120 million to 60 million between 1331 and 1353, though scholars debate how much of this decline was attributable to the plague versus warfare and famine.</p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>🕯️ Did You Know?</h3>
+    <ul>
+      <li>The term "quarantine" derives from the Italian <em>quarantina</em> — a 40-day isolation period imposed by Venice starting in 1377 on arriving ships, one of history's first public health regulations.</li>
+      <li>The Black Death killed so many clergy that the Catholic Church was forced to ordain men who hadn't completed normal training — contributing to widespread theological corruption decried a century later during the Reformation.</li>
+      <li>Labor became so scarce after the plague that serfs across Europe began demanding wages and freedoms, directly accelerating the collapse of the feudal system and setting conditions for the Renaissance.</li>
+    </ul>
+  </div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+
+    <h2>How to Use This Black Death Population Loss Calculator</h2>
+    <p>Choose from three modes: <strong>Historical Regions</strong> (pre-loaded data for major European and Asian territories), <strong>City Estimate</strong> (specific medieval cities with known pre-plague populations), or <strong>Custom</strong> (enter any population and define your own mortality range). The tool outputs deaths, survivors, population scenarios, a visual comparison by region, and a modern equivalence so you can grasp the true scale of the catastrophe.</p>
+
+    <h2>Why This Matters</h2>
+    <p>The Black Death remains the deadliest pandemic in recorded human history as a proportion of world population. Understanding its demographic impact is essential for historians, students, epidemiologists, and anyone trying to contextualize modern outbreaks. Consider Florence: in 1340 it was one of Europe's wealthiest cities, home to ~95,000 people; by 1352 barely 40,000 remained. Giovanni Boccaccio wrote the <em>Decameron</em> while watching his city die around him, describing streets choked with bodies and a complete breakdown of social order.</p>
+    <p>For epidemiologists, the Black Death's R₀ (reproductive number) has been estimated between 1.5 and 2.5 for bubonic plague and as high as 4 for the pneumonic form — comparable to measles. The three-form hypothesis (bubonic, pneumonic, septicaemic) explains why mortality varied so drastically: bubonic plague killed 30–60%, while the pneumonic form was nearly 100% fatal without modern antibiotics. Regional variation was enormous — Poland and parts of the Holy Roman Empire experienced comparatively lower mortality, possibly due to lower trade connectivity, while the Mediterranean coast lost half its population within 18 months.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses historically documented mortality rates drawn from archaeological evidence (mass burial analysis), tax records, and ecclesiastical death registers — some of the most reliable surviving data from the 14th century.</p>
+    <p><strong>Core formula:</strong></p>
+    <p style="background:#f5f0e1;border:1px solid #c4a882;border-radius:4px;padding:0.75rem 1rem;font-family:monospace;font-size:0.9rem;">Deaths = Pre-plague Population × Mortality Rate (%)<br>Survivors = Pre-plague Population − Deaths<br>Recovery Year = Plague Year + Recovery Period</p>
+    <p>For regional estimates, the calculator applies the scholarly consensus mortality rate range (low/median/high) documented for each region. Recovery time is modeled on the assumption that medieval population growth rates averaged 0.1–0.3% per year once plague subsided, calibrated to known recovery timelines: England ~1650, France ~1450, Italy ~1500.</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse waves:</strong> The 1347–1353 first wave was the worst, but recurring outbreaks struck in 1361, 1369, and 1374–75. Total 14th-century mortality was often 5–10% higher than the initial wave alone.</li>
+      <li><strong>Urban vs. rural mortality differed massively:</strong> Cities with dense populations and proximity to ports lost 40–60%; isolated rural areas sometimes lost only 10–20%. A single regional figure masks enormous local variation.</li>
+      <li><strong>Pre-plague population estimates are uncertain:</strong> Medieval census data is sparse. England's Domesday Book (1086) and the Poll Tax records of 1377 bracket the period, but most figures are scholarly reconstructions — treat all numbers as estimates with ±20% margins.</li>
+      <li><strong>Jewish communities were wrongly blamed:</strong> Anti-Jewish massacres across the Rhineland and France killed tens of thousands independently of plague — some "plague death" figures in those regions include these victims.</li>
+      <li><strong>Use the High estimate for port cities:</strong> Coastal and river-trade cities typically experienced the fastest spread and highest mortality. Use low estimates only for landlocked, low-trade communities.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What percentage of Europe's population died in the Black Death?</summary>
+      <p>Most modern historians estimate between 30% and 60% of Europe's total population perished in the initial outbreak of 1347–1353. The most commonly cited figure is roughly one-third (33%), but recent analysis of archaeological mass graves and DNA evidence suggests 40–50% may be closer to the true figure in many regions. China and parts of the Middle East may have suffered comparable or even higher losses.</p>
+    </details>
+    <details>
+      <summary>How long did it take Europe to recover its pre-plague population?</summary>
+      <p>Recovery was painfully slow and was repeatedly interrupted by subsequent plague outbreaks. England's population, which fell from about 6 million to roughly 2.5–3 million, did not return to pre-plague levels until approximately 1650 — roughly 300 years later. France recovered faster, reaching pre-plague numbers by around 1450–1480, partly because its territory is larger and more agriculturally productive.</p>
+    </details>
+    <details>
+      <summary>Were any places untouched by the Black Death?</summary>
+      <p>A few regions experienced notably lower mortality. Parts of Poland, Milan (due to early quarantine measures), and some remote rural areas in eastern Europe appear to have been comparatively spared. Milan's draconian response — bricking up the homes of the first infected families with their occupants inside — may have kept mortality below 15%. Certain isolated island communities also avoided the worst outbreaks.</p>
+    </details>
+    <details>
+      <summary>How does the Black Death compare to modern pandemics?</summary>
+      <p>As a share of global population, the Black Death is unmatched in recorded history: it killed approximately 30–50% of Europe's people and perhaps 15–20% of the global population in 6 years. The 1918 Spanish Flu killed approximately 2–3% of the world population. COVID-19's global death toll through 2023 represents under 0.1% of world population. The Black Death's scale is genuinely difficult for the modern mind to comprehend.</p>
+    </details>
+
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>🔗 Related Historical Calculators</h2>
+    <a href="/roman-soldier-pay-calculator/">Ancient Roman Soldier Pay Calculator</a>
+    <a href="/athenian-silver-mine-revenue-calculator/">Ancient Athenian Silver Mine Revenue Calculator</a>
+    <a href="/viking-hacksilver-wealth-estimator/">Viking Age Silver Hacksilver Wealth Estimator</a>
+    <a href="/roman-gladiator-training-cost-calculator/">Ancient Roman Gladiator Training Cost Calculator</a>
+    <a href="/roman-emperor-reign-timeline-comparator/">Roman Emperor Reign Timeline Comparator</a>
+    <a href="/ancient-greek-city-state-army-estimator/">Ancient Greek City-State Population & Army Size Estimator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <a href="/about/">About</a>
+  <a href="/privacy/">Privacy</a>
+  <a href="/contact/">Contact</a>
+  <p>© 2024 historycalc.com — Free Historical Calculators</p>
+</footer>
+
+<script>
+// ===================== DATA =====================
+const REGIONS = {
+  western_europe: {
+    name: "Western Europe (overall)",
+    prePop: 75000000,
+    low: 30, mid: 40, high: 55,
+    recovery: 200,
+    info: "Europe's total pre-plague population c.1340: ~75 million. Scholars estimate 25–40 million deaths in the first pandemic wave.",
+    modern: "Europe"
+  },
+  england: {
+    name: "England",
+    prePop: 6000000,
+    low: 30, mid: 40, high: 50,
+    recovery: 300,
+    info: "England 1340 population: ~6 million. Poll Tax records of 1377 show only ~2.5 million taxpayers. Population didn't recover until c.1650.",
+    modern: "United Kingdom"
+  },
+  france: {
+    name: "France",
+    prePop: 19000000,
+    low: 30, mid: 40, high: 50,
+    recovery: 130,
+    info: "France c.1340: ~19 million. Combination of Black Death and Hundred Years' War (1337–1453) caused prolonged depopulation.",
+    modern: "France"
+  },
+  italy: {
+    name: "Italy",
+    prePop: 10000000,
+    low: 40, mid: 50, high: 65,
+    recovery: 150,
+    info: "Italian city-states were among the first hit (Sicily, Oct 1347). Tuscany lost 50–60% of its population. Florence fell from ~95,000 to ~40,000.",
+    modern: "Italy"
+  },
+  germany: {
+    name: "Holy Roman Empire (Germany)",
+    prePop: 12000000,
+    low: 25, mid: 35, high: 50,
+    recovery: 180,
+    info: "The HRE's mortality was uneven — Rhineland cities lost 50%+, while rural Bavaria may have lost only 20%. Anti-Jewish pogroms complicated demographic records.",
+    modern: "Germany/Austria"
+  },
+  iberia: {
+    name: "Iberian Peninsula",
+    prePop: 9000000,
+    low: 25, mid: 35, high: 55,
+    recovery: 140,
+    info: "Spain and Portugal: ~9 million c.1340. The crown of Aragon was hardest hit; Castile somewhat less so due to geographic isolation of some communities.",
+    modern: "Spain/Portugal"
+  },
+  scandinavia: {
+    name: "Scandinavia",
+    prePop: 2500000,
+    low: 40, mid: 50, high: 65,
+    recovery: 200,
+    info: "Norway lost up to 60–70% of its population — among the worst in Europe. Entire communities were wiped out; many Norwegian farms abandoned until the 1600s.",
+    modern: "Norway/Sweden/Denmark"
+  },
+  byzantium: {
+    name: "Byzantine Empire",
+    prePop: 10000000,
+    low: 30, mid: 40, high: 55,
+    recovery: 150,
+    info: "Constantinople (~400,000) was devastated after the plague entered via the Golden Horn harbor. Emperor John VI Kantakouzenos lost his son to the plague.",
+    modern: "Greece/Turkey (Anatolia)"
+  },
+  middle_east: {
+    name: "Middle East / North Africa",
+    prePop: 20000000,
+    low: 25, mid: 35, high: 45,
+    recovery: 170,
+    info: "Ibn Battuta described Cairo's daily death toll at 21,000 at peak. Egypt's Mamluk Sultanate lost critical military manpower, weakening its defenses for centuries.",
+    modern: "Egypt, Syria, Iraq region"
+  },
+  china: {
+    name: "China (Yuan Dynasty)",
+    prePop: 90000000,
+    low: 25, mid: 35, high: 45,
+    recovery: 200,
+    info: "China may have been plague's origin point (~1330s). Yuan Dynasty census data shows population falling from ~120M to ~60M by 1393, though famine and civil war also contributed.",
+    modern: "China"
+  }
+};
+
+const CITIES = {
+  london:        { name: "London",         pop: 80000,  low: 30, mid: 40, high: 50 },
+  paris:         { name: "Paris",          pop: 200000, low: 25, mid: 35, high: 50 },
+  florence:      { name: "Florence",       pop: 95000,  low: 45, mid: 55, high: 65 },
+  venice:        { name: "Venice",         pop: 120000, low: 30, mid: 40, high: 55 },
+  siena:         { name: "Siena",          pop: 52000,  low: 50, mid: 60, high: 70 },
+  avignon:       { name: "Avignon",        pop: 25000,  low: 35, mid: 45, high: 60 },
+  hamburg:       { name: "Hamburg",        pop: 22000,  low: 25, mid: 35, high: 50 },
+  cairo:         { name: "Cairo",          pop: 500000, low: 25, mid: 35, high: 45 },
+  constantinople:{ name: "Constantinople", pop: 400000, low: 30, mid: 40, high: 55 },
+  barcelona:     { name: "Barcelona",      pop: 35000,  low: 30, mid: 40, high: 55 }
+};
+
+const YEAR_RANGES = ["1347–1348 (First Wave)", "1347–1351 (Main Outbreak)", "1347–1353 (Extended)"];
+const YEAR_MULT   = [0.85, 1.0, 1.1];
+
+// ===================== HELPERS =====================
+function fmt(n) {
+  if (n === undefined || n === null || isNaN(n)) return '—';
+  return Math.round(n).toLocaleString('en-US');
+}
+function pct(p) { return p.toFixed(1) + '%'; }
+
+// ===================== TAB SWITCHING =====================
+function switchTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ===================== REGION INFO UPDATE =====================
+function updateRegionInfo() {
+  const key = document.getElementById('regionSelect').value;
+  const r = REGIONS[key];
+  document.getElementById('regionInfoBox').textContent = r.info;
+}
+updateRegionInfo();
+
+function updateYearDisplay() {
+  const v = parseInt(document.getElementById('yearSlider').value);
+  document.getElementById('yearDisplay').textContent = YEAR_RANGES[v-1];
+}
+
+// ===================== CALCULATE =====================
+function calculate(mode) {
+  requestAnimationFrame(() => {
+    let html = '';
+
+    if (mode === 'preset') {
+      html = calcPreset();
+    } else if (mode === 'city') {
+      html = calcCity();
+    } else {
+      html = calcCustom();
+    }
+
+    if (!html) return;
+
+    const card = document.getElementById('resultsCard');
+    document.getElementById('resultsContent').innerHTML = html;
+    card.classList.add('visible');
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+function calcPreset() {
+  const key = document.getElementById('regionSelect').value;
+  const r = REGIONS[key];
+  const waveMult = YEAR_MULT[parseInt(document.getElementById('yearSlider').value) - 1];
+  const waveLabel = YEAR_RANGES[parseInt(document.getElementById('yearSlider').value) - 1];
+
+  const low  = Math.round(r.prePop * (r.low  / 100) * waveMult);
+  const mid  = Math.round(r.prePop * (r.mid  / 100) * waveMult);
+  const high = Math.round(r.prePop * (r.high / 100) * waveMult);
+
+  const survLow  = r.prePop - low;
+  const survMid  = r.prePop - mid;
+  const survHigh = r.prePop - high;
+
+  const recovYear = 1353 + r.recovery;
+
+  // Modern equivalent
+  const modernComparison = modernEquiv(mid, r.name);
+
+  return buildPresetHTML(r, waveLabel, low, mid, high, survLow, survMid, survHigh, recovYear, modernComparison, key);
+}
+
+function buildPresetHTML(r, wave, low, mid, high, sL, sM, sH, recovYear, modernComp, key) {
+  const barData = getAllRegionBars(key);
+
+  let html = `
+  <div class="big-number">
+    <div class="label">Median Deaths — ${r.name}</div>
+    <div class="value">${fmt(mid)}</div>
+    <div class="sublabel">${wave} · Median scenario (${pct(r.mid)} mortality)</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box"><div class="s-val">${fmt(r.prePop)}</div><div class="s-lbl">Pre-Plague Pop.</div></div>
+    <div class="stat-box"><div class="s-val">${fmt(sM)}</div><div class="s-lbl">Survivors (median)</div></div>
+    <div class="stat-box"><div class="s-val">~${recovYear}</div><div class="s-lbl">Est. Recovery Year</div></div>
+    <div class="stat-box"><div class="s-val">${r.recovery} yrs</div><div class="s-lbl">Recovery Period</div></div>
+  </div>
+
+  <div class="modern-equiv">${modernComp}</div>
+
+  <h3 style="font-size:0.95rem;color:#8b4513;margin-bottom:0.6rem;">Mortality Scenario Comparison</h3>
+  <div class="scroll-wrap">
+  <table>
+    <thead><tr><th>Scenario</th><th>Mortality %</th><th>Deaths</th><th>Survivors</th></tr></thead>
+    <tbody>
+      <tr><td>Low Estimate</td><td>${pct(r.low)}</td><td>${fmt(low)}</td><td>${fmt(sL)}</td></tr>
+      <tr><td>Median Estimate</td><td>${pct(r.mid)}</td><td>${fmt(mid)}</td><td>${fmt(sM)}</td></tr>
+      <tr><td>High Estimate</td><td>${pct(r.high)}</td><td>${fmt(high)}</td><td>${fmt(sH)}</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="font-size:0.95rem;color:#8b4513;margin:1.25rem 0 0.6rem;">Regional Mortality Comparison (Median %)</h3>
+  <div class="bar-wrap">${barData}</div>
+  `;
+  return html;
+}
+
+function getAllRegionBars(selectedKey) {
+  const keys = Object.keys(REGIONS);
+  let html = '';
+  keys.forEach(k => {
+    const reg = REGIONS[k];
+    const shortName = reg.name.replace(/\s*\(.*\)/, '').trim().substring(0, 18);
+    const pctVal = reg.mid;
+    const widthPct = (pctVal / 70 * 100).toFixed(1);
+    const isSelected = k === selectedKey ? 'font-weight:700;' : '';
+    html += `<div class="bar-row">
+      <div class="bar-label" style="${isSelected}">${shortName}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${widthPct}%"></div></div>
+      <div class="bar-pct">${pctVal}%</div>
+    </div>`;
+  });
+  return html;
+}
+
+function calcCity() {
+  const key = document.getElementById('citySelect').value;
+  const c = CITIES[key];
+  const mortPct = parseInt(document.getElementById('cityMortSlider').value);
+
+  const deaths   = Math.round(c.pop * mortPct / 100);
+  const survivors = c.pop - deaths;
+  const compLow  = Math.round(c.pop * c.low  / 100);
+  const compMid  = Math.round(c.pop * c.mid  / 100);
+  const compHigh = Math.round(c.pop * c.high / 100);
+
+  const modernComp = modernEquiv(deaths, c.name);
+
+  let html = `
+  <div class="big-number">
+    <div class="label">Estimated Deaths — ${c.name}</div>
+    <div class="value">${fmt(deaths)}</div>
+    <div class="sublabel">At ${mortPct}% mortality · Pre-plague population: ${fmt(c.pop)}</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box"><div class="s-val">${fmt(c.pop)}</div><div class="s-lbl">Pre-Plague Pop.</div></div>
+    <div class="stat-box"><div class="s-val">${fmt(survivors)}</div><div class="s-lbl">Survivors</div></div>
+    <div class="stat-box"><div class="s-val">${mortPct}%</div><div class="s-lbl">Your Mortality Rate</div></div>
+    <div class="stat-box"><div class="s-val">${pct((survivors/c.pop)*100)}</div><div class="s-lbl">% Remaining</div></div>
+  </div>
+
+  <div class="modern-equiv">${modernComp}</div>
+
+  <h3 style="font-size:0.95rem;color:#8b4513;margin-bottom:0.6rem;">Historical Mortality Scenarios for ${c.name}</h3>
+  <div class="scroll-wrap">
+  <table>
+    <thead><tr><th>Scenario</th><th>Mortality %</th><th>Deaths</th><th>Survivors</th></tr></thead>
+    <tbody>
+      <tr><td>Low (scholarly min.)</td><td>${pct(c.low)}</td><td>${fmt(compLow)}</td><td>${fmt(c.pop - compLow)}</td></tr>
+      <tr><td>Median (consensus)</td><td>${pct(c.mid)}</td><td>${fmt(compMid)}</td><td>${fmt(c.pop - compMid)}</td></tr>
+      <tr><td>High (worst case)</td><td>${pct(c.high)}</td><td>${fmt(compHigh)}</td><td>${fmt(c.pop - compHigh)}</td></tr>
+      <tr style="background:#fff3e0;"><td><strong>Your Estimate</strong></td><td><strong>${mortPct}%</strong></td><td><strong>${fmt(deaths)}</strong></td><td><strong>${fmt(survivors)}</strong></td></tr>
+    </tbody>
+  </table>
+  </div>
+  `;
+  return html;
+}
+
+function calcCustom() {
+  const popEl  = document.getElementById('customPop');
+  const highEl = document.getElementById('customHigh');
+  const errPop = document.getElementById('err-customPop');
+  const errHigh = document.getElementById('err-customHigh');
+
+  const pop  = parseFloat(popEl.value);
+  const low  = parseFloat(document.getElementById('customLow').value);
+  const mid  = parseFloat(document.getElementById('customMid').value);
+  const high = parseFloat(document.getElementById('customHigh').value);
+  const rec  = parseInt(document.getElementById('recoveryYears').value) || 150;
+
+  // Validate
+  let hasError = false;
+  if (!pop || pop < 1 || pop > 999999999) {
+    popEl.classList.add('error'); errPop.classList.add('show'); hasError = true;
+  } else {
+    popEl.classList.remove('error'); errPop.classList.remove('show');
+  }
+  if (high <= low) {
+    highEl.classList.add('error'); errHigh.classList.add('show'); hasError = true;
+  } else {
+    highEl.classList.remove('error'); errHigh.classList.remove('show');
+  }
+  if (hasError) return null;
+
+  const dLow  = Math.round(pop * low  / 100);
+  const dMid  = Math.round(pop * mid  / 100);
+  const dHigh = Math.round(pop * high / 100);
+  const sLow  = pop - dLow;
+  const sMid  = pop - dMid;
+  const sHigh = pop - dHigh;
+  const recovYear = 1353 + rec;
+
+  const modernComp = modernEquiv(dMid, 'this area');
+
+  // Annual deaths breakdown (simplified linear spread over ~6 years)
+  const annualTable = buildAnnualTable(pop, dMid);
+
+  let html = `
+  <div class="big-number">
+    <div class="label">Median Deaths — Custom Population</div>
+    <div class="value">${fmt(dMid)}</div>
+    <div class="sublabel">At ${mid}% mortality · Starting population: ${fmt(pop)}</div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-box"><div class="s-val">${fmt(pop)}</div><div class="s-lbl">Pre-Plague Pop.</div></div>
+    <div class="stat-box"><div class="s-val">${fmt(sMid)}</div><div class="s-lbl">Survivors (median)</div></div>
+    <div class="stat-box"><div class="s-val">~${recovYear}</div><div class="s-lbl">Est. Recovery Year</div></div>
+    <div class="stat-box"><div class="s-val">${rec} yrs</div><div class="s-lbl">Recovery Period</div></div>
+  </div>
+
+  <div class="modern-equiv">${modernComp}</div>
+
+  <h3 style="font-size:0.95rem;color:#8b4513;margin-bottom:0.6rem;">Three-Scenario Comparison</h3>
+  <div class="scroll-wrap">
+  <table>
+    <thead><tr><th>Scenario</th><th>Mortality %</th><th>Deaths</th><th>Survivors</th><th>% Remaining</th></tr></thead>
+    <tbody>
+      <tr><td>Low Estimate</td><td>${pct(low)}</td><td>${fmt(dLow)}</td><td>${fmt(sLow)}</td><td>${pct((sLow/pop)*100)}</td></tr>
+      <tr><td>Median Estimate</td><td>${pct(mid)}</td><td>${fmt(dMid)}</td><td>${fmt(sMid)}</td><td>${pct((sMid/pop)*100)}</td></tr>
+      <tr><td>High Estimate</td><td>${pct(high)}</td><td>${fmt(dHigh)}</td><td>${fmt(sHigh)}</td><td>${pct((sHigh/pop)*100)}</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 style="font-size:0.95rem;color:#8b4513;margin:1.25rem 0 0.6rem;">Approximate Annual Death Progression (Median)</h3>
+  ${annualTable}
+  `;
+  return html;
+}
+
+function buildAnnualTable(pop, totalDeaths) {
+  // Historical plague spread: roughly 40% in year 1, 30% in yr 2, 15% yr3, 10% yr4, 5% later
+  const weights  = [0.40, 0.30, 0.15, 0.08, 0.05, 0.02];
+  const years    = [1347, 1348, 1349, 1350, 1351, 1352];
+  let remaining  = pop;
+  let rows = '';
+  for (let i = 0; i < years.length; i++) {
+    const dead = Math.round(totalDeaths * weights[i]);
+    remaining  = Math.max(0, remaining - dead);
+    rows += `<tr><td>${years[i]}</td><td>${fmt(dead)}</td><td>${fmt(remaining)}</td><td>${pct((remaining/pop)*100)}</td></tr>`;
+  }
+  return `<div class="scroll-wrap"><table>
+    <thead><tr><th>Year</th><th>Est. Deaths</th><th>Pop. Remaining</th><th>% of Original</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>`;
+}
+
+function modernEquiv(deaths, region) {
+  // Modern equivalences for scale
+  const worldPop2024 = 8100000000;
+  const worldPct = ((deaths / worldPop2024) * 100).toFixed(2);
+
+  let comparison = '';
+  if (deaths >= 1000000) {
+    comparison = `That is equivalent to the entire population of <strong>${getModernCity(deaths)}</strong> being wiped out.`;
+  } else if (deaths >= 10000) {
+    comparison = `That is equivalent to filling <strong>${fmt(Math.round(deaths/80000))} Wembley Stadiums</strong> (80,000 capacity) with people who perished.`;
+  } else {
+    comparison = `That is roughly the population of <strong>a small medieval market town</strong> — an entire community erased.`;
+  }
+
+  return `<strong>Modern Scale:</strong> ${fmt(deaths)} deaths in ${region} would represent <strong>${worldPct}%</strong> of today's world population (8.1 billion). ${comparison}`;
+}
+
+function getModernCity(deaths) {
+  if (deaths >= 80000000) return "the entire populations of Germany + France combined";
+  if (deaths >= 40000000) return "the entire population of California (40M)";
+  if (deaths >= 20000000) return "the entire population of Australia (26M)";
+  if (deaths >= 10000000) return "greater London and New York City combined";
+  if (deaths >= 5000000)  return "Singapore and New Zealand combined";
+  if (deaths >= 2000000)  return "a major modern metropolis like Paris";
+  if (deaths >= 1000000)  return "a large city like Los Angeles";
+  return "a mid-size modern city";
+}
+
+// ===================== COPY =====================
+let copyTimeout;
+function copyResults() {
+  const content = document.getElementById('resultsContent');
+  const text = content.innerText || content.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => { btn.textContent = 'Copy Results'; }, 2000);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => { btn.textContent = 'Copy Results'; }, 2000);
+  });
+}
+
+// ===================== ENTER KEY =====================
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const activeTab = document.querySelector('.tab-panel.active');
+    if (!activeTab) return;
+    const id = activeTab.id;
+    if (id === 'tab-preset') calculate('preset');
+    else if (id === 'tab-city') calculate('city');
+    else calculate('custom');
+  }
+});
+</script>
+</body>
+</html>
