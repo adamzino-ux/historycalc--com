@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Greek Hoplite Phalanx Battle Strength Calculator — Free Online Tool | AncientWarfare.tools</title>
+<meta name="description" content="Calculate the battle strength of a Greek hoplite phalanx. Input unit size, equipment, morale, and terrain to get combat effectiveness ratings.">
+<link rel="canonical" href="https://ancientwarfare.tools/phalanx-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Greek Hoplite Phalanx Battle Strength Calculator",
+  "description": "Calculate the battle strength and combat effectiveness of a Greek hoplite phalanx formation based on unit size, equipment quality, morale, terrain, and flanking conditions.",
+  "url": "https://ancientwarfare.tools/phalanx-calculator",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:12px 1.5rem;font-size:0.9rem}
+nav span{font-weight:700;font-size:1rem}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:800;color:#1a1a2e;margin-bottom:0.4rem;line-height:1.25}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.field{margin-bottom:1.25rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:6px}
+input[type="number"],select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;color:#1a1a2e;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none;min-height:44px}
+input[type="number"]:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+input.error+.error-msg,.error-msg.show{display:block}
+.hint{font-size:0.78rem;color:#888;margin-top:4px}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.btn{display:inline-block;background:#0077b6;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s}
+.btn:hover{background:#006299}
+.btn:active{background:#005580}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:all}
+.strength-display{text-align:center;padding:1.5rem;background:#f0f7ff;border-radius:8px;margin-bottom:1.5rem;border:1px solid #c8e0f4}
+.strength-number{font-size:3.5rem;font-weight:900;color:#0077b6;line-height:1;letter-spacing:-1px}
+.strength-label{font-size:0.9rem;color:#555;margin-top:4px;font-weight:500}
+.rating-badge{display:inline-block;padding:4px 14px;border-radius:20px;font-size:0.85rem;font-weight:700;margin-top:10px}
+.rating-elite{background:#d4edda;color:#155724}
+.rating-veteran{background:#cce5ff;color:#004085}
+.rating-regular{background:#fff3cd;color:#856404}
+.rating-militia{background:#f8d7da;color:#721c24}
+.rating-rabble{background:#e2e3e5;color:#383d41}
+.breakdown-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.75rem}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+thead th{background:#f0f0f0;padding:10px 12px;text-align:left;font-weight:600;font-size:0.82rem;color:#444;border-bottom:2px solid #ddd}
+thead th:last-child{text-align:right}
+tbody tr:nth-child(even){background:#fafafa}
+tbody tr:nth-child(odd){background:#fff}
+tbody td{padding:9px 12px;border-bottom:1px solid #eee;vertical-align:middle}
+tbody td:last-child{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.bar-cell{width:110px}
+.bar-outer{background:#eee;border-radius:4px;height:8px;overflow:hidden}
+.bar-inner{height:8px;border-radius:4px;background:#0077b6;transition:width 0.4s ease}
+.bar-neg{background:#e74c3c}
+.bar-pos{background:#27ae60}
+.divider{border:none;border-top:1px solid #eee;margin:1.25rem 0}
+.copy-btn{background:none;border:1px solid #ddd;border-radius:4px;padding:4px 10px;font-size:0.78rem;color:#555;cursor:pointer;float:right;margin-top:-2px;transition:all 0.2s;min-height:30px}
+.copy-btn:hover{background:#f0f0f0}
+.scenario-tabs{display:flex;gap:8px;margin-bottom:1.25rem;flex-wrap:wrap}
+.tab{flex:1;min-width:0;padding:8px 10px;border:1px solid #ddd;border-radius:6px;background:#f8f9fa;font-size:0.82rem;font-weight:600;cursor:pointer;color:#555;text-align:center;min-height:44px;display:flex;align-items:center;justify-content:center;transition:all 0.2s}
+.tab.active{background:#0077b6;color:#fff;border-color:#0077b6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.ad-slot{min-height:0;margin:0}
+section.content{margin-bottom:2rem}
+section.content h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin:1.75rem 0 0.6rem}
+section.content p{color:#333;font-size:0.95rem;margin-bottom:0.75rem}
+section.content ul{color:#333;font-size:0.95rem;padding-left:1.2rem;margin-bottom:0.75rem}
+section.content ul li{margin-bottom:0.4rem}
+details{border:1px solid #e0e0e0;border-radius:6px;padding:0;margin-bottom:0.6rem;overflow:hidden}
+details summary{padding:12px 16px;cursor:pointer;font-weight:600;font-size:0.9rem;color:#1a1a2e;background:#f8f9fa;list-style:none;display:flex;align-items:center;justify-content:space-between;min-height:44px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'＋';font-size:1rem;color:#0077b6;font-weight:700}
+details[open] summary::after{content:'－'}
+details[open] summary{border-bottom:1px solid #e0e0e0}
+.details-body{padding:12px 16px;font-size:0.9rem;color:#333;line-height:1.6}
+.related{margin-bottom:2rem}
+.related h2{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.6rem}
+.related-links{display:flex;flex-wrap:wrap;gap:8px}
+.related-links a{background:#f0f7ff;border:1px solid #c8e0f4;border-radius:20px;padding:6px 14px;font-size:0.82rem;color:#0077b6;white-space:nowrap}
+footer{border-top:1px solid #e0e0e0;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#888}
+footer a{color:#888;margin:0 8px}
+footer a:hover{color:#0077b6}
+.formula-box{background:#f8f9fa;border-left:3px solid #0077b6;border-radius:0 6px 6px 0;padding:12px 16px;font-size:0.88rem;color:#333;margin:0.75rem 0;font-family:monospace,monospace}
+@media(max-width:640px){
+  .row-2{grid-template-columns:1fr}
+  h1{font-size:1.3rem}
+  .strength-number{font-size:2.8rem}
+  .card{padding:1.25rem}
+  .scenario-tabs{flex-direction:column}
+  .tab{flex:none}
+}
+</style>
+</head>
+<body>
+<nav><span><a href="/" style="color:#1a1a2e;text-decoration:none">⚔️ AncientWarfare.tools</a></span></nav>
+
+<div class="container">
+  <h1>Greek Hoplite Phalanx Battle Strength Calculator</h1>
+  <p class="subtitle">Estimate the combat effectiveness of a hoplite phalanx based on formation size, equipment, morale, terrain, and tactical conditions.</p>
+
+  <div class="card">
+    <div class="scenario-tabs" role="tablist" aria-label="Scenario presets">
+      <div class="tab active" role="tab" tabindex="0" data-tab="custom" aria-selected="true" onclick="switchTab('custom')">Custom</div>
+      <div class="tab" role="tab" tabindex="0" data-tab="thermopylae" aria-selected="false" onclick="switchTab('thermopylae')">Thermopylae</div>
+      <div class="tab" role="tab" tabindex="0" data-tab="marathon" aria-selected="false" onclick="switchTab('marathon')">Marathon</div>
+      <div class="tab" role="tab" tabindex="0" data-tab="plataea" aria-selected="false" onclick="switchTab('plataea')">Plataea</div>
+    </div>
+
+    <!-- FORMATION -->
+    <div class="field">
+      <label for="hoplites">Number of Hoplites</label>
+      <input type="number" id="hoplites" min="8" max="100000" value="1000" placeholder="e.g. 1000">
+      <span class="error-msg" id="err-hoplites">Enter a number between 8 and 100,000.</span>
+      <span class="hint">Total warriors in the phalanx formation.</span>
+    </div>
+
+    <div class="row-2">
+      <div class="field">
+        <label for="ranks">Depth (Ranks)</label>
+        <select id="ranks">
+          <option value="4">4 ranks (light)</option>
+          <option value="8" selected>8 ranks (standard)</option>
+          <option value="12">12 ranks (deep)</option>
+          <option value="16">16 ranks (Macedonian)</option>
+          <option value="25">25 ranks (Leuctra)</option>
+        </select>
+        <span class="hint">Typical Greek: 8 ranks. Epaminondas used 50 at Leuctra.</span>
+      </div>
+      <div class="field">
+        <label for="quality">Troop Quality</label>
+        <select id="quality">
+          <option value="0.55">Militia / Levy</option>
+          <option value="0.75">City Citizen</option>
+          <option value="1.0" selected>Veteran Hoplite</option>
+          <option value="1.25">Elite (e.g. Sacred Band)</option>
+          <option value="1.45">Spartan Spartiates</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="field">
+        <label for="armor">Armor & Equipment</label>
+        <select id="armor">
+          <option value="0.7">Light (linothorax, no greaves)</option>
+          <option value="0.85">Medium (linothorax + greaves)</option>
+          <option value="1.0" selected>Full Panoply (bronze breastplate)</option>
+          <option value="1.1">Heavy Panoply + reinforced aspis</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="morale">Morale</label>
+        <select id="morale">
+          <option value="0.6">Low (conscripts, poor leadership)</option>
+          <option value="0.8">Average</option>
+          <option value="1.0" selected>High (defending homeland)</option>
+          <option value="1.15">Very High (religious fervor)</option>
+          <option value="1.3">Fanatical (Spartans at bay)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- TERRAIN & TACTICS -->
+    <hr class="divider">
+    <div class="row-2">
+      <div class="field">
+        <label for="terrain">Terrain</label>
+        <select id="terrain">
+          <option value="1.2">Narrow pass / chokepoint</option>
+          <option value="1.0" selected>Open flat plain</option>
+          <option value="0.85">Uneven / rocky ground</option>
+          <option value="0.7">Steep slope (ascending)</option>
+          <option value="1.05">Slight downhill advantage</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="flanks">Flank Security</label>
+        <select id="flanks">
+          <option value="1.2">Both flanks secured (walls/sea)</option>
+          <option value="1.0" selected>Covered by cavalry/light troops</option>
+          <option value="0.8">Flanks exposed</option>
+          <option value="0.55">Flanks actively threatened</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row-2">
+      <div class="field">
+        <label for="cohesion">Formation Cohesion</label>
+        <select id="cohesion">
+          <option value="0.7">Disordered (rough march, panic)</option>
+          <option value="0.85">Slightly disordered</option>
+          <option value="1.0" selected>Intact</option>
+          <option value="1.1">Tight & well-drilled</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fatigue">Fatigue Level</label>
+        <select id="fatigue">
+          <option value="1.0" selected>Fresh</option>
+          <option value="0.9">Slightly fatigued</option>
+          <option value="0.75">Fatigued (long march/heat)</option>
+          <option value="0.6">Exhausted</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="commander">Commander Ability</label>
+      <select id="commander">
+        <option value="0.8">Poor / absent</option>
+        <option value="0.95">Average strategos</option>
+        <option value="1.0" selected>Competent strategos</option>
+        <option value="1.1">Skilled (e.g. Miltiades)</option>
+        <option value="1.25">Brilliant (e.g. Epaminondas, Leonidas)</option>
+      </select>
+    </div>
+
+    <button class="btn" id="calcBtn" onclick="calculate()">⚔️ Calculate Battle Strength</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results card" id="results" aria-live="polite">
+    <div class="strength-display">
+      <div id="res-score" class="strength-number">—</div>
+      <div class="strength-label">Phalanx Battle Strength Index</div>
+      <div id="res-badge" class="rating-badge">—</div>
+    </div>
+
+    <p class="breakdown-title">Factor Breakdown <button class="copy-btn" id="copyBtn" onclick="copyResults()">Copy</button></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Factor</th><th>Value</th><th>Modifier</th><th class="bar-cell">Impact</th></tr></thead>
+        <tbody id="breakdown-body"></tbody>
+      </table>
+    </div>
+
+    <hr class="divider">
+    <div id="res-narrative" style="font-size:0.92rem;color:#333;line-height:1.65"></div>
+    <hr class="divider">
+    <p class="breakdown-title" style="margin-bottom:0.5rem">Comparable Historical Force</p>
+    <div id="res-historical" style="font-size:0.9rem;color:#555"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <section class="content">
+    <h2>How to Use This Phalanx Calculator</h2>
+    <p>Enter the number of hoplites and adjust the dropdown selectors for troop quality, armor, morale, terrain, flanking security, cohesion, fatigue, and commander ability. Hit <strong>Calculate Battle Strength</strong> to get a composite Battle Strength Index (BSI) and a detailed factor breakdown. You can also click one of the historical scenario tabs to pre-fill conditions from famous battles.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Raw numbers rarely decide ancient battles. At <strong>Marathon (490 BC)</strong>, roughly 10,000 Athenians routed a Persian force several times their size — because the Greeks had better armor, superior morale on home ground, and intelligent use of terrain. At <strong>Leuctra (371 BC)</strong>, Epaminondas crushed Sparta's reputation forever with a force of ~6,000 Boeotians by concentrating 50 ranks deep on the left wing, breaking the Spartan right before the rest of the line could engage.</p>
+    <p>Understanding how each variable compounds helps wargamers, history students, tabletop RPG players, authors, and military history enthusiasts reason about ancient battles beyond simple head-counts. A 300-man Spartan force defending a narrow pass (see: Thermopylae) can be a genuine military asset against tens of thousands if terrain nullifies numerical advantage.</p>
+    <p>This calculator uses a multiplicative model — the same logic that military historians apply when qualitatively assessing ancient engagements. Every factor from equipment to commander genius has a documented, measurable effect on outcomes.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The Battle Strength Index is computed using a multiplicative modifier chain applied to a base score derived from formation size and rank depth, then scaled to a readable index.</p>
+    <div class="formula-box">
+      Base = Hoplites × RankDepthBonus<br>
+      BSI = Base × Quality × Armor × Morale × Terrain × Flanks × Cohesion × Fatigue × Commander<br>
+      Display Score = log₁₀(BSI) × ScaleFactor → normalized to ~100–10,000
+    </div>
+    <p><strong>Rank Depth Bonus:</strong> Deeper formations increase pushing force (othismos) but reduce frontage. The formula rewards ranks up to 16 (sweet spot), with diminishing returns beyond, since rear ranks can't fight directly but do add mass and psychological weight.</p>
+    <p><strong>Multiplicative vs. Additive:</strong> Each modifier multiplies — not adds to — the running total. This means a poorly-armored, fatigued phalanx in broken terrain isn't just "a bit weaker" — it's potentially less than 30% as effective as the same unit in ideal conditions. That matches historical accounts of phalanxes simply dissolving when multiple disadvantages stacked.</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't ignore flanks.</strong> The phalanx was nearly invincible from the front and nearly helpless from the sides. Exposed flanks (0.55×) can negate every other advantage you have.</li>
+      <li><strong>Terrain is decisive, not just favorable.</strong> A narrow pass converts a 10:1 numerical disadvantage into a winnable fight. Open plains neutralize that advantage completely.</li>
+      <li><strong>Deeper isn't always better.</strong> 16 ranks maximizes othismos; 50 ranks (Leuctra) was a one-time shock tactic, not a general doctrine. Using it on open ground wastes frontage.</li>
+      <li><strong>Morale compounds dramatically.</strong> Fanatical morale (1.3×) plus terrain security (1.2×) equals 1.56× multiplier — almost double the effect of either alone.</li>
+      <li><strong>Commander genius is real but capped.</strong> Even the best general can't compensate for an exhausted, militia-quality force with exposed flanks in broken ground. Use the commander rating honestly.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What is the "Battle Strength Index"?</summary>
+      <div class="details-body">The BSI is a dimensionless composite score, not a direct casualty predictor. It represents relative combat effectiveness — a score of 4,200 vs 1,800 means the first force is roughly 2.3× more effective in those conditions, not that it will necessarily win. Morale collapse, surprise, and supply can override any calculation.</div>
+    </details>
+    <details>
+      <summary>Why does rank depth have diminishing returns?</summary>
+      <div class="details-body">Ancient authors like Thucydides and Xenophon noted that ranks beyond the 8th primarily served to push forward ranks and maintain morale — they couldn't physically fight. The calculator models this with a logarithmic depth bonus: going from 4 to 8 ranks helps enormously; going from 16 to 25 helps modestly. Aristotle himself noted that extremely deep formations simply "waste men."</div>
+    </details>
+    <details>
+      <summary>How accurate is this for historical wargaming?</summary>
+      <div class="details-body">It's a stylized educational model, not a validated simulation. Real ancient battles involved friction, deception, disease, and supply factors not modeled here. For tabletop wargames (SAGA, Hail Caesar, etc.), you can use the BSI ratio between two forces as a rough odds multiplier. Treat it as a starting point for scenario balance, not a verdict.</div>
+    </details>
+    <details>
+      <summary>Can I compare two phalanxes against each other?</summary>
+      <div class="details-body">Yes — calculate each force separately, note both BSI scores, and divide the larger by the smaller to get a relative advantage ratio. A ratio above 2.0 suggests a decisive advantage; below 1.3 is essentially even and the battle will hinge on friction and chance. Remember to flip the terrain modifier for the defender if fighting in a prepared position.</div>
+    </details>
+  </section>
+
+  <div class="related">
+    <h2>Related Tools</h2>
+    <div class="related-links">
+      <a href="/roman-legion-strength">Roman Legion Strength Calculator</a>
+      <a href="/catapult-range">Ancient Catapult Range Calculator</a>
+      <a href="/siege-duration">Siege Duration Estimator</a>
+      <a href="/ancient-army-supply">Army Supply & Logistics Calculator</a>
+      <a href="/chariot-speed">War Chariot Speed & Impact Calculator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <div style="margin-bottom:6px">⚔️ <strong>AncientWarfare.tools</strong></div>
+    <div>
+      <a href="/about">About</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <div style="margin-top:6px">© 2025 AncientWarfare.tools — Educational use only</div>
+  </footer>
+</div>
+
+<script>
+const SCENARIOS = {
+  thermopylae: { hoplites:300, ranks:'12', quality:'1.45', armor:'1.0', morale:'1.3', terrain:'1.2', flanks:'1.2', cohesion:'1.1', fatigue:'0.9', commander:'1.25' },
+  marathon:    { hoplites:10000, ranks:'8', quality:'1.0', armor:'1.0', morale:'1.15', terrain:'1.05', flanks:'1.0', cohesion:'1.0', fatigue:'1.0', commander:'1.1' },
+  plataea:     { hoplites:38700, ranks:'8', quality:'0.85', armor:'0.85', morale:'1.0', terrain:'0.85', flanks:'0.8', cohesion:'0.85', fatigue:'0.75', commander:'0.95' }
+};
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+  const active = document.querySelector('[data-tab="' + name + '"]');
+  if (active) { active.classList.add('active'); active.setAttribute('aria-selected','true'); }
+  if (name !== 'custom' && SCENARIOS[name]) {
+    const s = SCENARIOS[name];
+    document.getElementById('hoplites').value = s.hoplites;
+    document.getElementById('ranks').value = s.ranks;
+    document.getElementById('quality').value = s.quality;
+    document.getElementById('armor').value = s.armor;
+    document.getElementById('morale').value = s.morale;
+    document.getElementById('terrain').value = s.terrain;
+    document.getElementById('flanks').value = s.flanks;
+    document.getElementById('cohesion').value = s.cohesion;
+    document.getElementById('fatigue').value = s.fatigue;
+    document.getElementById('commander').value = s.commander;
+    calculate();
+  }
+}
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' ') switchTab(t.dataset.tab); });
+});
+
+['hoplites'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') calculate(); });
+});
+
+function rankBonus(r) {
+  const map = { 4:0.78, 8:1.0, 12:1.1, 16:1.17, 25:1.22 };
+  return map[r] || 1.0;
+}
+
+function getRating(score) {
+  if (score >= 6000) return { label: 'Legendary Force', cls: 'rating-elite' };
+  if (score >= 4000) return { label: 'Elite', cls: 'rating-elite' };
+  if (score >= 2500) return { label: 'Veteran', cls: 'rating-veteran' };
+  if (score >= 1200) return { label: 'Regular', cls: 'rating-regular' };
+  if (score >= 500)  return { label: 'Militia Grade', cls: 'rating-militia' };
+  return { label: 'Rabble', cls: 'rating-rabble' };
+}
+
+function commas(n) { return Math.round(n).toLocaleString(); }
+
+function barHtml(modifier) {
+  const neutral = 1.0;
+  const pct = Math.min(100, Math.max(0, ((modifier - 0.4) / (1.5 - 0.4)) * 100));
+  const isPos = modifier >= 1.0;
+  const cls = isPos ? 'bar-pos' : 'bar-neg';
+  return '<div class="bar-outer"><div class="bar-inner ' + cls + '" style="width:' + pct.toFixed(1) + '%"></div></div>';
+}
+
+function getHistorical(score, hoplites) {
+  if (score >= 7000) return '🏛️ Comparable to the Spartan army at full strength (~8,000 Spartiates at Plataea) — an ancient force that inspired fear across the Greek world for generations.';
+  if (score >= 5000) return '🛡️ Comparable to the Theban Sacred Band and allied forces at Leuctra (371 BC) — small but so qualitatively dominant they shattered Spartan myth.';
+  if (score >= 3500) return '⚔️ Comparable to the Athenian force at Marathon (490 BC) — citizen soldiers fighting at peak morale and under brilliant command.';
+  if (score >= 2000) return '🗡️ Comparable to a typical allied Greek contingent at Plataea — solid, but requiring careful placement in the line of battle.';
+  if (score >= 900)  return '📜 Comparable to levied troops from smaller city-states — useful in mass, dangerous if flanked or pursuing too aggressively.';
+  return '⚠️ This force resembles a hastily-mustered levy or garrison troops — capable of defending walls but unlikely to hold an open phalanx contest.';
+}
+
+function getNarrative(score, hoplites, qualityVal, moraleVal, terrainVal, flankVal) {
+  let text = '<strong>Assessment:</strong> ';
+  if (score >= 5000) text += 'This is a formidable fighting force — qualitatively superior and well-positioned. Enemy commanders would need significant numerical superiority or a strategic turning movement to overcome it.';
+  else if (score >= 3000) text += 'A solid, reliable phalanx. Capable of holding the line against most opponents and exploiting weaknesses. Success depends on maintaining cohesion during the advance.';
+  else if (score >= 1500) text += 'An average citizen force — useful in the main battle line but vulnerable to elite opponents or flank pressure. A skilled commander can compensate for equipment or morale shortfalls.';
+  else text += 'A weak phalanx. Without significant improvements to morale, cohesion, or terrain advantage, this force risks collapse under sustained pressure from a quality opponent.';
+
+  if (flankVal <= 0.55) text += ' <strong style="color:#e74c3c">⚠️ Critically exposed flanks — this is the most urgent vulnerability.</strong>';
+  if (moraleVal <= 0.6) text += ' <strong style="color:#e74c3c">⚠️ Low morale is a serious risk: a single setback could trigger a rout.</strong>';
+  if (terrainVal >= 1.2) text += ' <em>The chokepoint terrain is a major force multiplier — use it aggressively.</em>';
+  return text;
+}
+
+function calculate() {
+  const hoplitesEl = document.getElementById('hoplites');
+  const errEl = document.getElementById('err-hoplites');
+  const hoplites = parseFloat(hoplitesEl.value);
+
+  if (!hoplites || hoplites < 8 || hoplites > 100000) {
+    hoplitesEl.classList.add('error');
+    errEl.classList.add('show');
+    return;
+  }
+  hoplitesEl.classList.remove('error');
+  errEl.classList.remove('show');
+
+  const ranks    = parseInt(document.getElementById('ranks').value);
+  const qualityVal   = parseFloat(document.getElementById('quality').value);
+  const armorVal     = parseFloat(document.getElementById('armor').value);
+  const moraleVal    = parseFloat(document.getElementById('morale').value);
+  const terrainVal   = parseFloat(document.getElementById('terrain').value);
+  const flankVal     = parseFloat(document.getElementById('flanks').value);
+  const cohesionVal  = parseFloat(document.getElementById('cohesion').value);
+  const fatigueVal   = parseFloat(document.getElementById('fatigue').value);
+  const cmdVal       = parseFloat(document.getElementById('commander').value);
+
+  const rb = rankBonus(ranks);
+  const base = hoplites * rb;
+  const rawBSI = base * qualityVal * armorVal * moraleVal * terrainVal * flankVal * cohesionVal * fatigueVal * cmdVal;
+  const score = Math.max(1, (Math.log10(rawBSI) - 1.5) * 1800);
+
+  const rating = getRating(score);
+
+  const factors = [
+    { name: 'Hoplites × Rank Bonus', value: commas(hoplites) + ' × ' + rb.toFixed(2), mod: rb, modLabel: rb.toFixed(2) + '×' },
+    { name: 'Troop Quality', value: document.getElementById('quality').options[document.getElementById('quality').selectedIndex].text, mod: qualityVal, modLabel: qualityVal.toFixed(2) + '×' },
+    { name: 'Armor & Equipment', value: document.getElementById('armor').options[document.getElementById('armor').selectedIndex].text, mod: armorVal, modLabel: armorVal.toFixed(2) + '×' },
+    { name: 'Morale', value: document.getElementById('morale').options[document.getElementById('morale').selectedIndex].text, mod: moraleVal, modLabel: moraleVal.toFixed(2) + '×' },
+    { name: 'Terrain', value: document.getElementById('terrain').options[document.getElementById('terrain').selectedIndex].text, mod: terrainVal, modLabel: terrainVal.toFixed(2) + '×' },
+    { name: 'Flank Security', value: document.getElementById('flanks').options[document.getElementById('flanks').selectedIndex].text, mod: flankVal, modLabel: flankVal.toFixed(2) + '×' },
+    { name: 'Formation Cohesion', value: document.getElementById('cohesion').options[document.getElementById('cohesion').selectedIndex].text, mod: cohesionVal, modLabel: cohesionVal.toFixed(2) + '×' },
+    { name: 'Fatigue', value: document.getElementById('fatigue').options[document.getElementById('fatigue').selectedIndex].text, mod: fatigueVal, modLabel: fatigueVal.toFixed(2) + '×' },
+    { name: 'Commander Ability', value: document.getElementById('commander').options[document.getElementById('commander').selectedIndex].text, mod: cmdVal, modLabel: cmdVal.toFixed(2) + '×' }
+  ];
+
+  let rows = '';
+  factors.forEach(f => {
+    rows += '<tr><td>' + f.name + '</td><td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">' + f.value + '</td><td style="text-align:right">' + f.modLabel + '</td><td class="bar-cell">' + barHtml(f.mod) + '</td></tr>';
+  });
+  rows += '<tr style="font-weight:700;background:#f0f7ff"><td colspan="2">Battle Strength Index (BSI)</td><td style="text-align:right;color:#0077b6">' + commas(score) + '</td><td></td></tr>';
+
+  const narrative = getNarrative(score, hoplites, qualityVal, moraleVal, terrainVal, flankVal);
+  const historical = getHistorical(score, hoplites);
+
+  requestAnimationFrame(() => {
+    document.getElementById('res-score').textContent = commas(score);
+    document.getElementById('res-badge').textContent = rating.label;
+    document.getElementById('res-badge').className = 'rating-badge ' + rating.cls;
+    document.getElementById('breakdown-body').innerHTML = rows;
+    document.getElementById('res-narrative').innerHTML = narrative;
+    document.getElementById('res-historical').textContent = historical;
+    const resultsEl = document.getElementById('results');
+    resultsEl.classList.add('visible');
+    resultsEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+}
+
+let copyTimeout;
+function copyResults() {
+  const score = document.getElementById('res-score').textContent;
+  const badge = document.getElementById('res-badge').textContent;
+  const narrative = document.getElementById('res-narrative').innerText;
+  const text = 'Phalanx Battle Strength Index: ' + score + '\nRating: ' + badge + '\n\n' + narrative;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied!';
+    clearTimeout(copyTimeout);
+    copyTimeout = setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  }).catch(() => {});
+}
+
+document.getElementById('calcBtn').addEventListener('keydown', e => { if(e.key==='Enter') calculate(); });
+</script>
+</body>
+</html>
