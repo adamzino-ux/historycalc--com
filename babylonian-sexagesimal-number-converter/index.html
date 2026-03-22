@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Babylonian Sexagesimal Number Converter — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Convert numbers to and from the ancient Babylonian base-60 (sexagesimal) system. Learn how Mesopotamian mathematicians calculated 4,000 years ago.">
+<link rel="canonical" href="https://historycalc.com/babylonian-sexagesimal-number-converter/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Babylonian Sexagesimal Number Converter",
+  "description": "Convert numbers to and from the ancient Babylonian base-60 sexagesimal number system used in Mesopotamia.",
+  "url": "https://historycalc.com/babylonian-sexagesimal-number-converter/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f0e1;
+  --card: #fdf8ee;
+  --accent: #8b4513;
+  --accent-dark: #6b3410;
+  --text: #2c1810;
+  --border: #c4a882;
+  --muted: #7a6652;
+  --highlight: #fff8e8;
+  --red: #c0392b;
+  --shadow: 0 2px 12px rgba(139,69,19,0.12);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+  font-size: 16px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+nav {
+  background: var(--accent);
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+nav a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+nav a:hover { color: #ffe8cc; text-decoration: none; }
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.hero-svg {
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+}
+
+h1 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.8rem;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 2rem;
+}
+.card h2 {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.card h2::before { content: ''; display: inline-block; width: 4px; height: 1.1rem; background: var(--accent); border-radius: 2px; }
+
+/* Tabs */
+.tabs { display: flex; border-bottom: 2px solid var(--border); margin-bottom: 1.5rem; gap: 0; }
+.tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 0.7rem 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.2s, border-color 0.2s;
+  min-height: 44px;
+}
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-btn:hover { color: var(--accent); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Inputs */
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #5a3e2b;
+  margin-bottom: 0.35rem;
+  margin-top: 1rem;
+}
+label:first-child { margin-top: 0; }
+
+input[type="number"], input[type="text"], textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fff;
+  color: var(--text);
+  transition: box-shadow 0.2s, border-color 0.2s;
+  font-family: inherit;
+  min-height: 44px;
+}
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+}
+input.error { border-color: var(--red); }
+.error-msg { color: var(--red); font-size: 0.8rem; margin-top: 0.3rem; display: none; }
+.error-msg.show { display: block; }
+
+.hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.3rem; }
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-height: 44px;
+  width: 100%;
+  margin-top: 1.2rem;
+  letter-spacing: 0.02em;
+}
+.btn:hover { background: var(--accent-dark); }
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 16px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-height: 36px;
+}
+.btn-secondary:hover { background: rgba(139,69,19,0.08); }
+
+/* Results */
+.results {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.results.visible { opacity: 1; pointer-events: auto; }
+
+.result-big {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+.result-big .label { font-size: 0.82rem; opacity: 0.85; margin-bottom: 0.2rem; }
+.result-big .value { font-size: 1.8rem; font-weight: 800; word-break: break-all; line-height: 1.2; }
+.result-big .sub { font-size: 0.85rem; opacity: 0.8; margin-top: 0.3rem; }
+
+.result-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+.result-box {
+  flex: 1;
+  background: var(--highlight);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  text-align: center;
+}
+.result-box .r-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.2rem; }
+.result-box .r-val { font-size: 1.1rem; font-weight: 700; color: var(--accent); word-break: break-all; }
+
+.copy-row { display: flex; justify-content: flex-end; margin-bottom: 0.8rem; }
+
+/* Cuneiform display */
+.cuneiform-display {
+  background: #3d2b1f;
+  border-radius: 8px;
+  padding: 1.2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  border: 2px solid #6b4c3b;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.cuneiform-group {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.4rem 0.6rem;
+  border-right: 1px solid #6b4c3b;
+}
+.cuneiform-group:last-child { border-right: none; }
+.cuneiform-symbols { font-size: 1.6rem; letter-spacing: 0.05em; color: #f5c842; line-height: 1; }
+.cuneiform-num { font-size: 0.72rem; color: #c4a882; }
+.cuneiform-place { font-size: 0.68rem; color: #a08060; margin-top: 0.1rem; }
+
+/* Table */
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+th { background: #e8dcc8; color: var(--accent); font-weight: 700; padding: 8px 10px; text-align: left; border-bottom: 2px solid var(--border); }
+td { padding: 7px 10px; border-bottom: 1px solid #e0d4c0; }
+tr:nth-child(even) td { background: rgba(196,168,130,0.08); }
+.num { text-align: right; font-variant-numeric: tabular-nums; }
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* Info boxes */
+.did-you-know {
+  background: #fff8e8;
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 1rem 1.2rem;
+  margin: 1.5rem 0;
+}
+.did-you-know h3 { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.6rem; }
+.did-you-know ul { padding-left: 1.2rem; }
+.did-you-know li { font-size: 0.88rem; margin-bottom: 0.4rem; }
+
+.modern-equiv {
+  background: #f0ebe0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+.modern-equiv strong { color: var(--text); }
+
+/* Content sections */
+.content-section { margin-bottom: 2rem; }
+.content-section h2 {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border);
+}
+.content-section p { margin-bottom: 0.8rem; font-size: 0.93rem; }
+.content-section ul, .content-section ol { padding-left: 1.4rem; margin-bottom: 0.8rem; }
+.content-section li { font-size: 0.9rem; margin-bottom: 0.4rem; }
+
+details { margin-bottom: 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+summary {
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background: var(--highlight);
+  color: var(--accent);
+  list-style: none;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; font-size: 0.7rem; transition: transform 0.2s; }
+details[open] summary::before { transform: rotate(90deg); }
+details p { padding: 0.9rem 1rem; font-size: 0.88rem; background: #fff; }
+
+.related-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.related-link {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--accent);
+  transition: background 0.2s, box-shadow 0.2s;
+  display: block;
+}
+.related-link:hover { background: #ede4d0; box-shadow: 0 2px 8px rgba(139,69,19,0.1); text-decoration: none; }
+
+.ad-slot { min-height: 0; margin: 0; }
+
+footer {
+  background: var(--accent);
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.83rem;
+  margin-top: 2rem;
+}
+footer a { color: rgba(255,255,255,0.85); margin: 0 0.5rem; }
+footer a:hover { color: #fff; }
+
+.formula-box {
+  background: #3d2b1f;
+  color: #f5c842;
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  margin: 0.8rem 0;
+  overflow-x: auto;
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: 1.3rem; }
+  .related-grid { grid-template-columns: 1fr; }
+  .result-row { flex-direction: column; }
+  .result-box { min-width: 0; }
+  .cuneiform-symbols { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚱️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- Hero SVG: Babylonian clay tablet scene -->
+  <div class="hero-svg">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 140" width="320" height="140" role="img" aria-label="Babylonian clay tablet with cuneiform numbers">
+      <!-- Sky/background -->
+      <rect width="320" height="140" fill="#c9b99a" rx="6"/>
+      <!-- Stars -->
+      <circle cx="30" cy="18" r="1.5" fill="#f5c842" opacity="0.8"/>
+      <circle cx="80" cy="10" r="1" fill="#f5c842" opacity="0.7"/>
+      <circle cx="140" cy="15" r="1.5" fill="#f5c842" opacity="0.8"/>
+      <circle cx="200" cy="8" r="1" fill="#f5c842" opacity="0.6"/>
+      <circle cx="260" cy="20" r="1.5" fill="#f5c842" opacity="0.8"/>
+      <circle cx="295" cy="12" r="1" fill="#f5c842" opacity="0.7"/>
+      <!-- Ziggurat silhouette -->
+      <rect x="0" y="90" width="320" height="50" fill="#8b6b47"/>
+      <rect x="50" y="78" width="220" height="15" fill="#9a7655" rx="1"/>
+      <rect x="75" y="65" width="170" height="16" fill="#8b6b47" rx="1"/>
+      <rect x="100" y="52" width="120" height="16" fill="#9a7655" rx="1"/>
+      <rect x="125" y="40" width="70" height="14" fill="#8b6b47" rx="1"/>
+      <rect x="148" y="28" width="24" height="14" fill="#9a7655" rx="1"/>
+      <!-- Clay Tablet -->
+      <rect x="30" y="20" width="105" height="75" rx="8" fill="#d4a96a" stroke="#8b5e2a" stroke-width="2"/>
+      <rect x="35" y="25" width="95" height="65" rx="5" fill="#c9985a"/>
+      <!-- Cuneiform strokes on tablet -->
+      <!-- Row 1 - tens: 2 tens symbols -->
+      <text x="42" y="46" font-size="13" fill="#3d1f00" font-family="serif">𒐐𒐐</text>
+      <!-- Row 2 - units: 3 unit symbols -->
+      <text x="42" y="62" font-size="13" fill="#3d1f00" font-family="serif">𒁹𒁹𒁹</text>
+      <!-- Row 3 -->
+      <text x="42" y="78" font-size="11" fill="#5a3500" font-family="serif">𒐐𒁹𒁹</text>
+      <!-- separator line -->
+      <line x1="38" y1="83" x2="122" y2="83" stroke="#8b5e2a" stroke-width="0.8" opacity="0.5"/>
+      <!-- Stylus -->
+      <line x1="148" y1="28" x2="185" y2="65" stroke="#6b4c3b" stroke-width="4" stroke-linecap="round"/>
+      <polygon points="185,65 182,72 190,67" fill="#4a3020"/>
+      <rect x="145" y="16" width="8" height="16" rx="3" fill="#a0785a"/>
+      <!-- Moon -->
+      <circle cx="270" cy="30" r="16" fill="#f5c842" opacity="0.9"/>
+      <circle cx="280" cy="25" r="12" fill="#c9b99a"/>
+      <!-- Label -->
+      <text x="160" y="130" font-size="10" fill="#f5f0e1" text-anchor="middle" font-weight="bold">Babylonian Clay Tablet · c. 1800 BCE</text>
+    </svg>
+  </div>
+
+  <h1>Babylonian Sexagesimal Number Converter</h1>
+  <p class="subtitle">Decode ancient Mesopotamian base-60 mathematics — the system behind our 60-second minutes and 360° circles</p>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <h2>Convert Numbers</h2>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="decimal-to-sex" onclick="switchTab('decimal-to-sex')">Decimal → Sexagesimal</button>
+      <button class="tab-btn" data-tab="sex-to-decimal" onclick="switchTab('sex-to-decimal')">Sexagesimal → Decimal</button>
+      <button class="tab-btn" data-tab="reference" onclick="switchTab('reference')">Symbol Table</button>
+    </div>
+
+    <!-- Tab 1: Decimal to Sexagesimal -->
+    <div class="tab-panel active" id="tab-decimal-to-sex">
+      <label for="decInput">Enter a decimal (base-10) number</label>
+      <input type="number" id="decInput" placeholder="e.g. 3661" min="0" max="999999999" step="1">
+      <p class="hint">Enter any positive integer up to 999,999,999</p>
+      <span class="error-msg" id="decErr">Please enter a valid positive integer.</span>
+
+      <label>Include fractional part?</label>
+      <div style="display:flex;gap:1rem;align-items:center;margin-top:0.3rem;">
+        <label style="margin:0;display:flex;align-items:center;gap:0.4rem;font-size:0.9rem;font-weight:400;cursor:pointer;">
+          <input type="radio" name="fracMode" value="no" checked> No
+        </label>
+        <label style="margin:0;display:flex;align-items:center;gap:0.4rem;font-size:0.9rem;font-weight:400;cursor:pointer;">
+          <input type="radio" name="fracMode" value="yes"> Yes (enter decimal number)
+        </label>
+      </div>
+
+      <div id="fracInputArea" style="display:none; margin-top:0.8rem;">
+        <label for="decFracInput">Enter number with decimal fraction</label>
+        <input type="number" id="decFracInput" placeholder="e.g. 3661.5" step="any">
+        <p class="hint">Fractional part will be converted to sexagesimal fractions</p>
+      </div>
+
+      <button class="btn" id="convertBtn" onclick="convertDecToSex()">Convert to Sexagesimal ▸</button>
+
+      <div class="results" id="results-d2s">
+        <div style="margin-top:1.4rem;">
+          <div class="result-big">
+            <div class="label">Sexagesimal (base-60) Representation</div>
+            <div class="value" id="sexResult">—</div>
+            <div class="sub" id="sexResultSub"></div>
+          </div>
+
+          <div class="copy-row">
+            <button class="btn-secondary" onclick="copyResult('sexResult')">Copy Result</button>
+          </div>
+
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:0.6rem;">Cuneiform Visual Approximation:</p>
+          <div class="cuneiform-display" id="cuneiformDisplay"></div>
+
+          <div class="table-wrap" style="margin-top:1rem;">
+            <table id="breakdownTable">
+              <thead>
+                <tr>
+                  <th>Place</th>
+                  <th>Power of 60</th>
+                  <th>Value of Place</th>
+                  <th class="num">Digit (0–59)</th>
+                  <th class="num">Contribution</th>
+                </tr>
+              </thead>
+              <tbody id="breakdownBody"></tbody>
+            </table>
+          </div>
+
+          <div class="modern-equiv" id="modernEquivD2S"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Sexagesimal to Decimal -->
+    <div class="tab-panel" id="tab-sex-to-decimal">
+      <label for="sexInput">Enter sexagesimal digits (separated by commas or spaces)</label>
+      <input type="text" id="sexInput" placeholder="e.g. 1, 1, 1 or 45 30">
+      <p class="hint">Enter each base-60 digit (0–59) separated by commas or spaces. E.g. "1 0 0" = 3,600. For fractional parts, use a semicolon: "1 0; 30" means 60 + 30/60.</p>
+      <span class="error-msg" id="sexErr">Each digit must be between 0 and 59.</span>
+
+      <button class="btn" onclick="convertSexToDec()">Convert to Decimal ▸</button>
+
+      <div class="results" id="results-s2d">
+        <div style="margin-top:1.4rem;">
+          <div class="result-big">
+            <div class="label">Decimal (base-10) Equivalent</div>
+            <div class="value" id="decResult">—</div>
+            <div class="sub" id="decResultSub"></div>
+          </div>
+
+          <div class="copy-row">
+            <button class="btn-secondary" onclick="copyResult('decResult')">Copy Result</button>
+          </div>
+
+          <div class="table-wrap">
+            <table id="s2dTable">
+              <thead>
+                <tr>
+                  <th>Position</th>
+                  <th class="num">Digit</th>
+                  <th>× Power of 60</th>
+                  <th class="num">= Value</th>
+                </tr>
+              </thead>
+              <tbody id="s2dBody"></tbody>
+            </table>
+          </div>
+
+          <div class="modern-equiv" id="modernEquivS2D"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: Reference Table -->
+    <div class="tab-panel" id="tab-reference">
+      <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem;">The Babylonians used two cuneiform wedge marks to write all numbers 1–59. The vertical wedge 𒁹 = 1, the horizontal corner wedge 𒐐 = 10.</p>
+      <div class="table-wrap">
+        <table id="refTable">
+          <thead>
+            <tr>
+              <th>Decimal</th>
+              <th>Cuneiform Symbols</th>
+              <th>How it works</th>
+            </tr>
+          </thead>
+          <tbody id="refBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Historical Context -->
+  <div class="card content-section">
+    <h2>Historical Context</h2>
+    <p>The Babylonian sexagesimal (base-60) number system emerged in Mesopotamia around 2000–1800 BCE, building on earlier Sumerian traditions. Babylonian scribes pressed a reed stylus into soft clay tablets to create wedge-shaped marks — the origin of the term "cuneiform" (from Latin <em>cuneus</em>, wedge). These tablets, preserved by the very fires that burned ancient Babylon, reveal a sophisticated mathematical culture.</p>
+    <p>The system used just two symbols: a vertical wedge for units (1) and a corner wedge for tens (10). Grouped together, these formed numbers 1–59; then a new "place" began — just as 10 ones become a "tens" column in our system, 60 ones became a new column in Babylonian math. Famous tablets like <em>Plimpton 322</em> (c. 1800 BCE, now at Columbia University) show Pythagorean triplets calculated in this system — nearly 1,000 years before Pythagoras was born.</p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>🏺 Did You Know?</h3>
+    <ul>
+      <li>Our 60-minute hour, 60-second minute, and 360° circle all descend directly from the Babylonian base-60 system — making it the oldest mathematical framework still embedded in daily life.</li>
+      <li>The Babylonians had no zero symbol for centuries; context determined whether a blank space meant "empty place" or "none." A proper zero placeholder finally appeared around 300 BCE in later Babylonian texts.</li>
+      <li>The famous clay tablet <em>YBC 7289</em> (Yale Babylonian Collection) shows √2 calculated in sexagesimal to 6 decimal-equivalent places of accuracy — a feat not surpassed in Europe until the Renaissance.</li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Converter</h2>
+    <p>Choose a conversion direction using the tabs above. In <strong>Decimal → Sexagesimal</strong> mode, enter any positive integer (or decimal fraction) and click Convert. The tool displays the sexagesimal notation in standard scholarly format (digits separated by commas, with a semicolon before fractional places), a visual cuneiform approximation using Unicode wedge characters, and a full positional breakdown table.</p>
+    <p>In <strong>Sexagesimal → Decimal</strong> mode, enter the base-60 digits separated by spaces or commas. Use a semicolon (;) to separate integer and fractional sexagesimal places. The <strong>Symbol Table</strong> tab shows how every number 1–59 is written in cuneiform.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>The Babylonian sexagesimal system is not merely a historical curiosity — it is the direct ancestor of how we measure time and angles today. Every time you read "3:45 PM" or set a compass to 270°, you are using a number system perfected in ancient Mesopotamia around 1800 BCE.</p>
+    <p>Why base 60? Historians believe 60 was chosen because it is highly composite — divisible by 1, 2, 3, 4, 5, 6, 10, 12, 15, 20, 30, and 60 — making fractions far simpler to express. One-third of 60 is a clean 20; one-quarter is 15. Try that cleanly in base-10! This made Babylonian merchants and astronomers unusually efficient at practical calculation.</p>
+    <p>Babylonian astronomers used sexagesimal math to predict lunar eclipses with remarkable accuracy. Their "saros cycle" of 223 lunar months (≈18 years, 11 days) was calculated in base-60 arithmetic. Greek astronomers inherited these methods, which passed through Islamic scholars like Al-Battani into Renaissance Europe. When Copernicus and Tycho Brahe recorded celestial angles in degrees, minutes, and seconds, they were using Babylonian notation.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>Sexagesimal is a positional numeral system with base 60, exactly analogous to our decimal (base-10) system. Each position represents a successive power of 60:</p>
+    <div class="formula-box">
+      Value = d₃×60³ + d₂×60² + d₁×60¹ + d₀×60⁰
+            = d₃×216,000 + d₂×3,600 + d₁×60 + d₀×1
+    </div>
+    <p>For fractional parts (after the "sexagesimal point", denoted by semicolon):</p>
+    <div class="formula-box">
+      Fractional Value = f₁/60 + f₂/3,600 + f₃/216,000 + ...
+    </div>
+    <p><strong>Converting decimal → sexagesimal:</strong> Repeatedly divide by 60 and record remainders (for integer part). For fractions, multiply by 60 and record the integer portion at each step.</p>
+    <p><strong>Example:</strong> 3,661 ÷ 60 = 61 remainder 1. Then 61 ÷ 60 = 1 remainder 1. So 3,661 = 1,1,1 in sexagesimal (1×3,600 + 1×60 + 1×1).</p>
+    <p>Scholarly notation writes sexagesimal integers with commas between digits and a semicolon before the fractional part. For example: 2,24;30 = 2×3,600 + 24×60 + 30/60 = 8,640 + 1,440 + 0.5 = 10,080.5</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Remember: digits go up to 59, not 9.</strong> In base-60, a single "digit" can be any value from 0 to 59. "1,0,0" in sexagesimal means 3,600 — not one hundred.</li>
+      <li><strong>The semicolon is the sexagesimal point.</strong> Scholars use ";" (not ".") to separate integer and fractional places. So 1;30 = 1 + 30/60 = 1.5, not 1.3.</li>
+      <li><strong>Beware the missing zero.</strong> Ancient Babylonian texts often left a space where we'd write 0. The number 1,0,1 (= 3,601) could look like 1,1 (= 61) without careful reading of the tablet layout.</li>
+      <li><strong>Context was everything.</strong> Without an absolute magnitude marker, "1" could mean 1, 60, 3,600, or even 1/60. Babylonians relied on context (like the problem being about areas vs. lengths) to determine scale.</li>
+      <li><strong>Multiplying is elegant in base-60.</strong> Try it: 0;30 × 0;30 = 0;15 (i.e., 0.5 × 0.5 = 0.25). Fractions that are ugly in base-10 are often clean in base-60.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Why did the Babylonians choose base 60 instead of base 10?</summary>
+      <p>The most widely accepted explanation is that 60 is the smallest number divisible by 1, 2, 3, 4, 5, and 6 — making it extremely convenient for fractions in trade, land measurement, and astronomy. Some historians also suggest it arose from combining a 5-finger counting system with a 12-segment system (counting finger segments on one hand). The Sumerians who preceded the Babylonians likely developed the base-60 foundation around 3000 BCE.</p>
+    </details>
+
+    <details>
+      <summary>How do I read a cuneiform number on an actual clay tablet?</summary>
+      <p>Cuneiform numbers are read right to left within each sexagesimal place, and each group is separated spatially. The vertical wedge 𒁹 represents 1 and the corner wedge 𒐐 represents 10. Three 𒐐 symbols plus two 𒁹 symbols = 32. Large numbers are stacked vertically in columns. The symbol table in this tool's third tab shows all values 1–59.</p>
+    </details>
+
+    <details>
+      <summary>Is base-60 still used anywhere today?</summary>
+      <p>Yes — directly and extensively. Hours are divided into 60 minutes, minutes into 60 seconds (both time and arc). A full circle is 360° (= 6 × 60). Navigation uses degrees, minutes, and seconds of latitude/longitude. Even in modern astronomy, right ascension is measured in hours (0–24) broken into minutes and seconds. The Babylonian legacy is embedded in every GPS coordinate you read.</p>
+    </details>
+
+    <details>
+      <summary>What is the largest number this converter handles?</summary>
+      <p>This tool converts integers up to 999,999,999 (about one billion), which in sexagesimal requires up to 6 places (since 60⁶ = 46,656,000,000). Babylonian tablets rarely exceeded 5–6 sexagesimal places in practice, as most calculations involved areas, commodity quantities, and astronomical periods well within that range. JavaScript's floating-point precision limits very large decimal fractions.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="content-section">
+    <h2>Related Historical Calculators</h2>
+    <div class="related-grid">
+      <a class="related-link" href="/inca-quipu-knot-encoder/">🪢 Inca Quipu Knot Encoder</a>
+      <a class="related-link" href="/roman-chariot-race-betting-calculator/">🏇 Roman Chariot Race Betting</a>
+      <a class="related-link" href="/greek-hoplite-phalanx-calculator/">⚔️ Greek Hoplite Battle Calculator</a>
+      <a class="related-link" href="/medieval-black-death-population-estimator/">☠️ Black Death Population Loss</a>
+      <a class="related-link" href="/roman-soldier-pay-calculator/">🪙 Roman Soldier Pay Calculator</a>
+      <a class="related-link" href="/athenian-silver-mine-revenue-calculator/">⛏️ Athenian Silver Mine Revenue</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- end .container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div style="margin-top:0.5rem;">© 2025 historycalc.com — All rights reserved</div>
+</footer>
+
+<script>
+// ─── Constants ───────────────────────────────────────────────
+const UNIT = '𒁹';   // vertical wedge = 1
+const TEN  = '𒐐';   // corner wedge = 10
+
+// Build cuneiform string for a digit 0–59
+function toCuneiform(n) {
+  if (n < 0 || n > 59) return '?';
+  if (n === 0) return '⬜'; // empty/placeholder
+  const tens = Math.floor(n / 10);
+  const ones = n % 10;
+  return TEN.repeat(tens) + UNIT.repeat(ones);
+}
+
+// Format number with commas
+function fmt(n) {
+  if (isNaN(n)) return '0';
+  return n.toLocaleString('en-US', { maximumFractionDigits: 8 });
+}
+
+function fmtInt(n) {
+  return Math.round(n).toLocaleString('en-US');
+}
+
+// ─── Tab Switching ────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`[data-tab="${name}"]`).classList.add('active');
+  document.getElementById(`tab-${name}`).classList.add('active');
+
+  // Build reference table lazily
+  if (name === 'reference' && !document.getElementById('refBody').innerHTML) {
+    buildRefTable();
+  }
+}
+
+// ─── Decimal → Sexagesimal ────────────────────────────────────
+document.getElementById('decInput').addEventListener('keydown', e => { if (e.key === 'Enter') convertDecToSex(); });
+document.getElementById('decFracInput').addEventListener('keydown', e => { if (e.key === 'Enter') convertDecToSex(); });
+
+document.querySelectorAll('input[name="fracMode"]').forEach(r => {
+  r.addEventListener('change', () => {
+    const yes = document.querySelector('input[name="fracMode"]:checked').value === 'yes';
+    document.getElementById('fracInputArea').style.display = yes ? 'block' : 'none';
+    document.getElementById('decInput').style.display = yes ? 'none' : 'block';
+    document.querySelector('label[for="decInput"]').style.display = yes ? 'none' : 'block';
+  });
+});
+
+function decimalToSexagesimalParts(value) {
+  // Returns array of integer digits and array of fractional digits
+  const intPart = Math.floor(Math.abs(value));
+  const fracPart = Math.abs(value) - intPart;
+
+  const intDigits = [];
+  let n = intPart;
+  if (n === 0) {
+    intDigits.push(0);
+  } else {
+    while (n > 0) {
+      intDigits.unshift(n % 60);
+      n = Math.floor(n / 60);
+    }
+  }
+
+  const fracDigits = [];
+  let frac = fracPart;
+  for (let i = 0; i < 4 && frac > 1e-12; i++) {
+    frac *= 60;
+    const d = Math.floor(frac);
+    fracDigits.push(d);
+    frac -= d;
+  }
+
+  return { intDigits, fracDigits, negative: value < 0 };
+}
+
+function convertDecToSex() {
+  const useFrac = document.querySelector('input[name="fracMode"]:checked').value === 'yes';
+  const rawVal = useFrac
+    ? parseFloat(document.getElementById('decFracInput').value)
+    : parseFloat(document.getElementById('decInput').value);
+
+  const errEl = document.getElementById('decErr');
+  const inp = useFrac ? document.getElementById('decFracInput') : document.getElementById('decInput');
+
+  if (isNaN(rawVal) || rawVal < 0 || (!useFrac && rawVal !== Math.floor(rawVal))) {
+    inp.classList.add('error');
+    errEl.classList.add('show');
+    errEl.textContent = useFrac
+      ? 'Please enter a valid non-negative number.'
+      : 'Please enter a valid non-negative integer.';
+    return;
+  }
+  if (rawVal > 999999999) {
+    inp.classList.add('error');
+    errEl.classList.add('show');
+    errEl.textContent = 'Please enter a number ≤ 999,999,999.';
+    return;
+  }
+  inp.classList.remove('error');
+  errEl.classList.remove('show');
+
+  const { intDigits, fracDigits } = decimalToSexagesimalParts(rawVal);
+  const sexStr = intDigits.join(',') + (fracDigits.length ? ';' + fracDigits.join(',') : '');
+
+  // Build breakdown table HTML
+  let tableHTML = '';
+  for (let i = 0; i < intDigits.length; i++) {
+    const place = intDigits.length - 1 - i;
+    const pow = Math.pow(60, place);
+    const contrib = intDigits[i] * pow;
+    tableHTML += `<tr>
+      <td>Place ${place + 1} (integer)</td>
+      <td>60<sup>${place}</sup> = ${fmtInt(pow)}</td>
+      <td>${fmtInt(pow)}</td>
+      <td class="num">${intDigits[i]}</td>
+      <td class="num">${fmt(contrib)}</td>
+    </tr>`;
+  }
+  for (let i = 0; i < fracDigits.length; i++) {
+    const pow = Math.pow(60, -(i + 1));
+    const contrib = fracDigits[i] * pow;
+    tableHTML += `<tr>
+      <td>Frac. place ${i + 1}</td>
+      <td>60<sup>-${i + 1}</sup> = 1/${fmtInt(Math.pow(60, i + 1))}</td>
+      <td>1/${fmtInt(Math.pow(60, i + 1))}</td>
+      <td class="num">${fracDigits[i]}</td>
+      <td class="num">${contrib.toFixed(6)}</td>
+    </tr>`;
+  }
+
+  // Build cuneiform display HTML
+  let cuneHTML = '';
+  for (let i = 0; i < intDigits.length; i++) {
+    const place = intDigits.length - 1 - i;
+    const placeVal = Math.pow(60, place);
+    cuneHTML += `<div class="cuneiform-group">
+      <div class="cuneiform-symbols">${toCuneiform(intDigits[i])}</div>
+      <div class="cuneiform-num">${intDigits[i]}</div>
+      <div class="cuneiform-place">×${fmtInt(placeVal)}</div>
+    </div>`;
+  }
+  if (fracDigits.length) {
+    cuneHTML += `<div class="cuneiform-group" style="border-left:2px dashed #c4a882;padding-left:0.6rem;">`;
+    for (let i = 0; i < fracDigits.length; i++) {
+      cuneHTML += `<span title="1/${Math.pow(60, i + 1)}" style="margin:0 0.2rem;">
+        <span class="cuneiform-symbols" style="font-size:1.1rem;">${toCuneiform(fracDigits[i])}</span>
+        <span class="cuneiform-num" style="display:block;">/${fmtInt(Math.pow(60, i + 1))}</span>
+      </span>`;
+    }
+    cuneHTML += `</div>`;
+  }
+
+  // Modern equivalent
+  let modernHTML = '';
+  const intVal = Math.floor(rawVal);
+  if (intVal >= 3600) {
+    const hrs = (intVal / 3600).toFixed(2);
+    const yrs = (intVal / 31536000).toFixed(4);
+    modernHTML = `<strong>Modern equivalents:</strong> If these were seconds: <strong>${fmt(parseFloat(hrs))} hours</strong> (${fmt(parseFloat(yrs))} years). As degrees: <strong>${(rawVal / 360).toFixed(4)} full rotations</strong>.`;
+  } else if (intVal >= 60) {
+    const mins = (intVal / 60).toFixed(2);
+    modernHTML = `<strong>Modern equivalents:</strong> If these were seconds: <strong>${fmt(parseFloat(mins))} minutes</strong>. As arc: <strong>${intVal} arcminutes</strong> (${(intVal / 60).toFixed(2)}°).`;
+  } else {
+    modernHTML = `<strong>Note:</strong> In Babylonian astronomy, ${intVal} could represent ${intVal} degrees of arc, ${intVal} shekels of silver, or ${intVal} units of grain measure (qû) depending on context.`;
+  }
+
+  requestAnimationFrame(() => {
+    document.getElementById('sexResult').textContent = sexStr;
+    document.getElementById('sexResultSub').textContent = `= ${fmt(rawVal)} in decimal (base-10)`;
+    document.getElementById('breakdownBody').innerHTML = tableHTML;
+    document.getElementById('cuneiformDisplay').innerHTML = cuneHTML;
+    document.getElementById('modernEquivD2S').innerHTML = modernHTML;
+
+    const res = document.getElementById('results-d2s');
+    res.classList.add('visible');
+  });
+}
+
+// ─── Sexagesimal → Decimal ────────────────────────────────────
+document.getElementById('sexInput').addEventListener('keydown', e => { if (e.key === 'Enter') convertSexToDec(); });
+
+function convertSexToDec() {
+  const raw = document.getElementById('sexInput').value.trim();
+  const errEl = document.getElementById('sexErr');
+  const inp = document.getElementById('sexInput');
+
+  if (!raw) {
+    inp.classList.add('error');
+    errEl.textContent = 'Please enter at least one sexagesimal digit.';
+    errEl.classList.add('show');
+    return;
+  }
+
+  // Split on semicolon for integer/fractional parts
+  const halves = raw.split(';');
+  const intStr = halves[0];
+  const fracStr = halves.length > 1 ? halves[1] : '';
+
+  // Parse digits
+  function parseDigits(str) {
+    if (!str || !str.trim()) return [];
+    return str.trim().split(/[\s,]+/).map(s => s.trim()).filter(s => s !== '').map(Number);
+  }
+
+  const intDigs = parseDigits(intStr);
+  const fracDigs = fracStr ? parseDigits(fracStr) : [];
+  const allDigs = [...intDigs, ...fracDigs];
+
+  if (allDigs.length === 0) {
+    inp.classList.add('error');
+    errEl.textContent = 'No valid digits found. Use 0–59 separated by spaces or commas.';
+    errEl.classList.add('show');
+    return;
+  }
+  if (allDigs.some(d => isNaN(d) || d < 0 || d > 59 || !Number.isInteger(d))) {
+    inp.classList.add('error');
+    errEl.textContent = 'Each digit must be a whole number between 0 and 59.';
+    errEl.classList.add('show');
+    return;
+  }
+  inp.classList.remove('error');
+  errEl.classList.remove('show');
+
+  let total = 0;
+  let tableHTML = '';
+
+  // Integer part
+  for (let i = 0; i < intDigs.length; i++) {
+    const place = intDigs.length - 1 - i;
+    const pow = Math.pow(60, place);
+    const contrib = intDigs[i] * pow;
+    total += contrib;
+    tableHTML += `<tr>
+      <td>Integer place ${i + 1}</td>
+      <td class="num">${intDigs[i]}</td>
+      <td>× 60<sup>${place}</sup> (${fmtInt(pow)})</td>
+      <td class="num">${fmt(contrib)}</td>
+    </tr>`;
+  }
+
+  // Fractional part
+  for (let i = 0; i < fracDigs.length; i++) {
+    const pow = Math.pow(60, -(i + 1));
+    const contrib = fracDigs[i] * pow;
+    total += contrib;
+    tableHTML += `<tr>
+      <td>Frac. place ${i + 1}</td>
+      <td class="num">${fracDigs[i]}</td>
+      <td>÷ 60<sup>${i + 1}</sup> (${fmtInt(Math.pow(60, i + 1))})</td>
+      <td class="num">${contrib.toFixed(8)}</td>
+    </tr>`;
+  }
+
+  // Modern equiv
+  const modernHTML = total >= 3600
+    ? `<strong>Modern equivalents:</strong> As seconds of time: <strong>${fmt(total / 3600)} hours</strong>. As arc: <strong>${fmt(total / 360)} full rotations</strong>.`
+    : `<strong>Modern equivalents:</strong> As degrees: <strong>${fmt(total)}°</strong>. As seconds of time: <strong>${fmt(total)} seconds</strong> (${(total / 60).toFixed(3)} minutes).`;
+
+  // Scholarly notation
+  const schol = intDigs.join(',') + (fracDigs.length ? ';' + fracDigs.join(',') : '');
+
+  requestAnimationFrame(() => {
+    document.getElementById('decResult').textContent = fmt(total);
+    document.getElementById('decResultSub').textContent = `Sexagesimal: ${schol} | Total places: ${allDigs.length}`;
+    document.getElementById('s2dBody').innerHTML = tableHTML;
+    document.getElementById('modernEquivS2D').innerHTML = modernHTML;
+
+    const res = document.getElementById('results-s2d');
+    res.classList.add('visible');
+  });
+}
+
+// ─── Reference Table ──────────────────────────────────────────
+function buildRefTable() {
+  const rows = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,20,25,30,35,40,45,50,55,59];
+  let html = '';
+  rows.forEach(n => {
+    const tens = Math.floor(n / 10);
+    const ones = n % 10;
+    const how = tens > 0 && ones > 0
+      ? `${tens} × 𒐐 (ten) + ${ones} × 𒁹 (one)`
+      : tens > 0
+        ? `${tens} × 𒐐 (ten)`
+        : `${ones} × 𒁹 (one)`;
+    html += `<tr>
+      <td><strong>${n}</strong></td>
+      <td style="font-size:1.3rem;letter-spacing:0.1em;background:#3d2b1f;color:#f5c842;padding:4px 10px;border-radius:4px;">${toCuneiform(n)}</td>
+      <td style="font-size:0.82rem;">${how}</td>
+    </tr>`;
+  });
+  document.getElementById('refBody').innerHTML = html;
+}
+
+// ─── Copy to Clipboard ────────────────────────────────────────
+function copyResult(id) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.btn-secondary');
+    btns.forEach(b => {
+      if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(id)) {
+        const orig = b.textContent;
+        b.textContent = 'Copied! ✓';
+        setTimeout(() => { b.textContent = orig; }, 2000);
+      }
+    });
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+// ─── Initialize ───────────────────────────────────────────────
+// Pre-load reference table if tab is active
+if (document.getElementById('tab-reference').classList.contains('active')) {
+  buildRefTable();
+}
+</script>
+
+</body>
+</html>
