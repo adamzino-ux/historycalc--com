@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inca Quipu Knot Encoder — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Encode any number into authentic Inca Quipu knot patterns. Visualize the ancient Andean knotted-string recording system with our free inca quipu number system calculator.">
+<link rel="canonical" href="https://historycalc.com/inca-quipu-knot-encoder/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Inca Quipu Knot Encoder",
+  "url": "https://historycalc.com/inca-quipu-knot-encoder/",
+  "description": "Encode any number into authentic Inca Quipu knot patterns using the ancient Andean base-10 knotted-string recording system.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;line-height:1.6;font-size:16px}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline;color:#6b3410}
+nav{background:#2c1810;padding:12px 20px;display:flex;align-items:center}
+nav a{color:#f5f0e1;font-weight:600;font-size:1rem;letter-spacing:0.5px}
+nav a:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.75rem;font-weight:700;color:#2c1810;margin-bottom:0.5rem;line-height:1.2}
+.subtitle{color:#6b4c2a;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff9f0;border:1px solid #c4a882;border-radius:8px;padding:2rem;margin-bottom:2rem;box-shadow:0 2px 8px rgba(44,24,16,0.08)}
+.hero-svg{text-align:center;margin-bottom:1.5rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3520;margin-bottom:6px}
+input[type="number"],input[type="text"]{width:100%;border:1px solid #c4a882;border-radius:6px;padding:12px 16px;font-size:1rem;background:#fff;color:#2c1810;transition:box-shadow 0.2s,border-color 0.2s;-webkit-appearance:none}
+input:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.visible{display:block}
+.btn{background:#8b4513;color:#fff;border:none;padding:13px 28px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s;letter-spacing:0.3px;margin-top:1rem}
+.btn:hover{background:#6b3410}
+.btn-secondary{background:transparent;border:1px solid #8b4513;color:#8b4513;padding:6px 14px;border-radius:6px;font-size:0.82rem;cursor:pointer;min-height:36px;width:auto;margin-top:0;transition:background 0.2s,color 0.2s}
+.btn-secondary:hover{background:#8b4513;color:#fff}
+.results{display:none;opacity:0;transition:opacity 0.3s ease}
+.results.visible{display:block;opacity:1}
+.big-number{font-size:2.5rem;font-weight:700;color:#8b4513;margin:0.25rem 0}
+.big-label{font-size:0.85rem;color:#6b4c2a;font-weight:500;margin-bottom:1rem}
+.quipu-visual{background:#2c1810;border-radius:8px;padding:1.5rem;margin:1.2rem 0;overflow-x:auto}
+.quipu-cord{display:flex;align-items:flex-start;gap:10px;min-width:min-content}
+.cord-label{color:#c4a882;font-size:0.75rem;font-weight:600;width:70px;flex-shrink:0;padding-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+.cord-strand{display:flex;flex-direction:column;align-items:center;gap:8px;position:relative}
+.cord-line{width:4px;background:linear-gradient(to bottom,#c4a882,#8b6040);border-radius:2px;flex:1;min-height:200px;position:relative}
+.knot-group{display:flex;flex-direction:column;align-items:center;gap:2px}
+.knot{width:22px;height:14px;background:radial-gradient(ellipse at 40% 40%,#f5d08a,#c4782a);border-radius:50%;border:1px solid #8b4513;display:flex;align-items:center;justify-content:center;font-size:0;position:relative;box-shadow:1px 1px 3px rgba(0,0,0,0.4)}
+.knot.long-knot{width:26px;height:16px;background:radial-gradient(ellipse at 40% 40%,#e8c060,#a05520);border:2px solid #6b3410}
+.knot.figure-eight{width:20px;height:20px;background:radial-gradient(circle at 40% 40%,#f0d890,#b06030);border-radius:50%;border:2px solid #7a3a10;clip-path:ellipse(48% 48%)}
+.pos-label{color:#f5d08a;font-size:0.7rem;font-weight:700;text-align:center;margin-bottom:4px;letter-spacing:0.5px}
+.digit-cols{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.digit-col{display:flex;flex-direction:column;align-items:center}
+.separator-line{width:1px;background:#5a3520;height:200px}
+.result-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem}
+.result-header h3{font-size:1rem;font-weight:600;color:#2c1810}
+table{width:100%;border-collapse:collapse;margin-top:0.5rem;font-size:0.9rem}
+th{background:#c4a882;color:#2c1810;padding:8px 12px;text-align:left;font-weight:600;font-size:0.82rem}
+th:last-child,td:last-child{text-align:right}
+td{padding:8px 12px;border-bottom:1px solid #e8ddc8;color:#2c1810}
+tr:nth-child(even) td{background:#fdf6e8}
+tr:nth-child(odd) td{background:#fff9f0}
+.did-you-know{background:#2c1810;color:#f5d08a;border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.did-you-know h3{color:#c4a882;font-size:1rem;margin-bottom:0.75rem;font-weight:700;letter-spacing:0.5px}
+.did-you-know ul{padding-left:1.2rem}
+.did-you-know li{margin-bottom:0.5rem;font-size:0.9rem;color:#f5e8c0}
+.hist-context{background:#fff3e0;border-left:4px solid #8b4513;padding:1.25rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.hist-context h3{color:#8b4513;font-size:1rem;font-weight:700;margin-bottom:0.5rem}
+.hist-context p{font-size:0.9rem;color:#3a2010;line-height:1.7}
+.modern-equiv{background:#f5f0e1;border:1px solid #c4a882;border-radius:8px;padding:1rem 1.25rem;margin:1rem 0;display:flex;align-items:center;gap:12px}
+.modern-equiv .equiv-icon{font-size:1.8rem;flex-shrink:0}
+.modern-equiv p{font-size:0.88rem;color:#3a2010;margin:0}
+.modern-equiv strong{color:#8b4513}
+section{margin-bottom:2rem}
+h2{font-size:1.2rem;font-weight:700;color:#2c1810;margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:2px solid #c4a882}
+.content-body p{font-size:0.92rem;color:#3a2010;line-height:1.75;margin-bottom:0.75rem}
+.content-body ul{padding-left:1.3rem;margin-bottom:0.75rem}
+.content-body li{font-size:0.92rem;color:#3a2010;line-height:1.75;margin-bottom:0.3rem}
+details{border:1px solid #c4a882;border-radius:6px;margin-bottom:0.6rem;background:#fff9f0}
+summary{padding:12px 16px;font-weight:600;cursor:pointer;font-size:0.92rem;color:#5a3520;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▶ ";font-size:0.7rem;transition:transform 0.2s}
+details[open] summary::before{content:"▼ "}
+details p{padding:0 16px 12px;font-size:0.88rem;color:#3a2010;line-height:1.7}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.related-link{background:#fff9f0;border:1px solid #c4a882;border-radius:6px;padding:10px 14px;font-size:0.85rem;color:#8b4513;display:block;transition:background 0.2s}
+.related-link:hover{background:#f0e8d0;text-decoration:none}
+.ad-slot{min-height:0;margin:0}
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.5rem;font-size:0.85rem}
+footer a{color:#f5d08a;margin:0 8px}
+footer a:hover{color:#fff;text-decoration:underline}
+.knot-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:0.75rem}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:#c4a882}
+.legend-knot{width:16px;height:11px;border-radius:50%;border:1px solid #8b4513}
+.cord-container{display:flex;gap:20px;justify-content:center;align-items:flex-start;padding:10px 0}
+.single-cord{display:flex;flex-direction:column;align-items:center;gap:0}
+.cord-pos-label{color:#f5d08a;font-size:0.65rem;font-weight:700;letter-spacing:0.5px;margin-bottom:4px;text-align:center}
+.cord-thread{width:6px;background:linear-gradient(to bottom,#d4a870 0%,#8b5a2b 40%,#c4883a 70%,#6b3a10 100%);border-radius:3px;min-height:30px;flex:1}
+.knot-zone{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 0}
+.empty-zone{height:40px}
+.cord-divider{width:60px;height:1px;background:#5a3520;margin:0 8px;align-self:center;flex-shrink:0}
+@media(max-width:640px){
+  .container{padding:1rem}
+  h1{font-size:1.4rem}
+  .card{padding:1.25rem}
+  .big-number{font-size:2rem}
+  .related-grid{grid-template-columns:1fr}
+  .digit-cols{gap:8px}
+  .quipu-visual{padding:1rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚓ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <div class="hero-svg">
+    <svg width="200" height="110" viewBox="0 0 200 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Inca Quipu illustration">
+      <!-- Main horizontal cord -->
+      <line x1="10" y1="30" x2="190" y2="30" stroke="#8b4513" stroke-width="4" stroke-linecap="round"/>
+      <!-- Pendant cords -->
+      <line x1="30" y1="30" x2="30" y2="100" stroke="#c4883a" stroke-width="3" stroke-linecap="round"/>
+      <line x1="65" y1="30" x2="65" y2="95" stroke="#a0622a" stroke-width="3" stroke-linecap="round"/>
+      <line x1="100" y1="30" x2="100" y2="105" stroke="#c4883a" stroke-width="3" stroke-linecap="round"/>
+      <line x1="135" y1="30" x2="135" y2="90" stroke="#a0622a" stroke-width="3" stroke-linecap="round"/>
+      <line x1="170" y1="30" x2="170" y2="100" stroke="#c4883a" stroke-width="3" stroke-linecap="round"/>
+      <!-- Knots on cord 1 -->
+      <ellipse cx="30" cy="48" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <ellipse cx="30" cy="62" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <ellipse cx="30" cy="76" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <!-- Knots on cord 2 -->
+      <ellipse cx="65" cy="52" rx="7" ry="5" fill="#e8c060" stroke="#7a3a10" stroke-width="1.5"/>
+      <!-- Knots on cord 3 -->
+      <ellipse cx="100" cy="50" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <ellipse cx="100" cy="64" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <ellipse cx="100" cy="78" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <ellipse cx="100" cy="92" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <!-- Knots on cord 4 -->
+      <ellipse cx="135" cy="55" rx="7" ry="5" fill="#e8c060" stroke="#7a3a10" stroke-width="1.5"/>
+      <ellipse cx="135" cy="69" rx="7" ry="5" fill="#e8c060" stroke="#7a3a10" stroke-width="1.5"/>
+      <!-- Knots on cord 5 -->
+      <ellipse cx="170" cy="60" rx="8" ry="6" fill="#d4903a" stroke="#5a3010" stroke-width="2"/>
+      <ellipse cx="170" cy="78" rx="7" ry="5" fill="#f5d08a" stroke="#8b4513" stroke-width="1"/>
+      <!-- Labels -->
+      <text x="100" y="14" text-anchor="middle" font-size="9" fill="#8b4513" font-family="serif" font-style="italic">Quipu — Andean Knot Record</text>
+    </svg>
+  </div>
+
+  <h1>Inca Quipu Knot Encoder</h1>
+  <p class="subtitle">Encode numbers as authentic Andean knotted-string patterns — the Inca empire's remarkable recording system</p>
+
+  <div class="card">
+    <div>
+      <label for="numberInput">Enter a Number to Encode (0 – 9,999,999)</label>
+      <input type="number" id="numberInput" placeholder="e.g. 4,235" min="0" max="9999999" step="1">
+      <div class="error-msg" id="numError">Please enter a whole number between 0 and 9,999,999.</div>
+    </div>
+
+    <div style="margin-top:1rem">
+      <label for="cordColor">Pendant Cord Color <span style="font-size:0.78rem;color:#8b7050">(optional — affects visual only)</span></label>
+      <select id="cordColor" style="width:100%;border:1px solid #c4a882;border-radius:6px;padding:12px 16px;font-size:1rem;background:#fff;color:#2c1810;cursor:pointer;min-height:44px">
+        <option value="natural">Natural (tan/brown)</option>
+        <option value="red">Red — armies, warfare</option>
+        <option value="yellow">Yellow — gold, sun</option>
+        <option value="green">Green — agriculture</option>
+        <option value="black">Black — time periods</option>
+        <option value="white">White — silver, peace</option>
+      </select>
+    </div>
+
+    <button class="btn" id="encodeBtn">🪢 Encode as Quipu</button>
+  </div>
+
+  <div class="results" id="results">
+
+    <div class="card">
+      <div class="result-header">
+        <div>
+          <div class="big-number" id="displayNum">0</div>
+          <div class="big-label" id="digitCount">encoded in 1 digit position</div>
+        </div>
+        <button class="btn-secondary" id="copyBtn">Copy Description</button>
+      </div>
+
+      <div class="quipu-visual" id="quipuViz">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="knot-legend">
+        <div class="legend-item">
+          <div class="legend-knot" style="background:radial-gradient(ellipse,#f5d08a,#c4782a)"></div> Single knot = 1 unit
+        </div>
+        <div class="legend-item">
+          <div class="legend-knot" style="background:radial-gradient(ellipse,#e8c060,#a05520);width:20px"></div> Long knot = 2–9 units
+        </div>
+        <div class="legend-item">
+          <div class="legend-knot" style="background:radial-gradient(ellipse,#f0d890,#b06030);border-radius:50%;width:14px;height:14px"></div> Figure-8 = units digit 1
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="result-header">
+        <h3>📊 Digit Breakdown Table</h3>
+      </div>
+      <div style="overflow-x:auto">
+        <table id="breakdownTable">
+          <thead><tr><th>Position</th><th>Place Value</th><th>Digit</th><th>Knot Type</th><th>Knots</th></tr></thead>
+          <tbody id="breakdownBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="modern-equiv" id="modernEquiv">
+      <div class="equiv-icon">📦</div>
+      <p id="modernEquivText"></p>
+    </div>
+
+    <div class="did-you-know">
+      <h3>🌟 Did You Know?</h3>
+      <ul>
+        <li>The Inca had no written language — quipus were their <em>only</em> system for storing numerical records across an empire of 12 million people spanning 4,000 km of the Andes.</li>
+        <li>Some quipus contain up to 1,500 pendant cords. The largest known, housed in Lima's Larco Museum, records tax census data from an entire province.</li>
+        <li>Harvard researchers in 2023 identified quipus from the village of San Juan de Collata that may encode narrative text — suggesting some quipus could be a form of writing, not just numbers.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <div class="hist-context">
+    <h3>📜 Historical Context</h3>
+    <p>Quipus (from the Quechua word <em>khipu</em>, meaning "knot") were used by the Inca Empire from roughly 1400 CE until the Spanish conquest in 1532. Specially trained officials called <strong>quipucamayocs</strong> ("knot-keepers") maintained these records. A quipu could encode census figures, tribute amounts, calendar data, and military tallies using a sophisticated base-10 positional system — the same mathematical foundation as our modern decimal system. The knots were tied at specific positions along each pendant cord, with the distance from the bottom encoding place value. The Inca maintained relay networks (<em>chasquis</em>) who carried quipus across 40,000 km of roads at speeds rivalling a horse.</p>
+  </div>
+
+  <div class="content-body">
+
+    <section>
+      <h2>How to Use This Inca Quipu Knot Encoder</h2>
+      <p>Enter any whole number from 0 to 9,999,999 in the input field, optionally select a cord color (colors carried meaning in real quipus), then click "Encode as Quipu." The tool will display an interactive visual of how your number would appear as knots on pendant cords, along with a full breakdown of each digit position.</p>
+      <p>The output shows the quipu structure from left to right, with each column representing one decimal place (millions, hundred-thousands, ten-thousands, thousands, hundreds, tens, units). Read the knot patterns to understand exactly how the ancient Inca would have recorded your number.</p>
+    </section>
+
+    <section>
+      <h2>Why This Matters</h2>
+      <p>The Inca quipu is one of history's most ingenious information technologies. Without paper, ink, or an alphabet, the Inca Empire administered a population of roughly 12 million people across modern-day Peru, Ecuador, Bolivia, Chile, and Argentina — using only knotted strings. Tax collection, census data, calendar systems, military supplies, and crop yields were all recorded on quipus.</p>
+      <p>Understanding how quipus encode numbers reveals that the Inca independently developed a positional base-10 number system — the same logical structure that underlies our modern decimal system. When a quipucamayoc read that 4,235 was recorded as three knots (thousands) + two knots (hundreds) + three long knots (tens) + a figure-eight plus four knots (units), they were performing the same mental operation we use every day. This tool makes that invisible cognitive bridge visible.</p>
+      <p>Scholars estimate fewer than 900 quipus survive worldwide. Decoding them remains one of archaeology's great unsolved challenges — which makes understanding their numerical structure all the more important.</p>
+    </section>
+
+    <section>
+      <h2>How It's Calculated</h2>
+      <p>Quipus use a <strong>base-10 positional system</strong> identical to our modern decimal notation. Each decimal digit of your number is encoded on a separate pendant cord, with the units cord at the bottom, tens above it, hundreds above that, and so on.</p>
+      <p><strong>Knot types by digit:</strong></p>
+      <ul>
+        <li><strong>Zero:</strong> No knots on that cord (an empty space on the strand)</li>
+        <li><strong>Units digit 1:</strong> One figure-eight knot (a special twist that marks the units position)</li>
+        <li><strong>Units digit 2–9:</strong> One long knot with that many turns (a long knot with 5 turns = digit 5 in the units place)</li>
+        <li><strong>Non-units digits (tens, hundreds, etc.) 1–9:</strong> That many individual single-overhand knots clustered together</li>
+      </ul>
+      <p><strong>Formula:</strong> Number → extract each digit Dₙ via <code>digit = Math.floor(N / 10^position) % 10</code> → apply knot-type rule for that position → render knots at the correct height on the cord.</p>
+    </section>
+
+    <section>
+      <h2>Tips &amp; Common Mistakes</h2>
+      <ul>
+        <li><strong>Zero is meaningful.</strong> An empty cord (no knots) is not an error — it explicitly encodes zero in that place value, just as we write "0" in 4,035.</li>
+        <li><strong>The units cord is special.</strong> The figure-eight knot only appears in the units position. Using a single overhand knot for "1" in the units place would be incorrect per archaeological evidence.</li>
+        <li><strong>Position matters more than color.</strong> While cord color encoded category (armies, food, textiles), the knot position encodes the actual number. Don't confuse the two dimensions.</li>
+        <li><strong>Read from bottom up.</strong> On a real quipu, the knots nearest the bottom of the cord encode the units digit. Higher knots encode higher place values — opposite to how we write numbers left-to-right.</li>
+        <li><strong>Long knots count their twists.</strong> A long knot is not just one knot — it is a knot tied with multiple loops. Counting the loops gives you the digit value (2–9).</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>Could quipus only record numbers, or did they store other information?</summary>
+        <p>Primarily, confirmed quipus record numerical data in base-10. However, color, cord direction (S-twist vs Z-twist), the attachment method, and subsidiary cords all added additional layers of meaning — likely encoding categories like "llamas," "people," or "textiles." Some researchers believe a subset of quipus may encode phonetic or narrative information, though this remains contested.</p>
+      </details>
+
+      <details>
+        <summary>How accurate is this encoder compared to real quipus?</summary>
+        <p>The knot-type rules (figure-eight for units-1, long knots for units-2–9, single overhand knots for higher positions, empty for zero) are based on the scholarly consensus established by anthropologist Gary Urton and archaeologist Marcia and Robert Ascher, who catalogued hundreds of surviving quipus. The positional encoding is archaeologically accurate. Cord colors in this tool are simplified — real quipus used intricate dye combinations.</p>
+      </details>
+
+      <details>
+        <summary>Why did the Spanish destroy so many quipus?</summary>
+        <p>Spanish colonial authorities, particularly the Catholic Church, viewed quipus with suspicion — fearing they might record non-Christian religious practices or encode resistance to colonial rule. A 1583 Church council ordered quipus with "superstitious" content burned. Thousands were destroyed, leaving the roughly 900 survivors we have today. This destruction is one of history's most devastating losses of indigenous intellectual heritage.</p>
+      </details>
+
+      <details>
+        <summary>What is the largest number a quipu could theoretically record?</summary>
+        <p>There is no hard theoretical limit — you simply add more pendant cords for higher place values. The largest archaeological quipus contain hundreds of cords. Practically, quipucamayocs worked with numbers in the tens of thousands to record provincial census and tax data. One quipu from Puruchuco near Lima records data from multiple administrative levels, with subsidiary cords adding up to match totals on primary cords.</p>
+      </details>
+
+    </section>
+
+    <section>
+      <h2>Related Historical Tools</h2>
+      <div class="related-grid">
+        <a class="related-link" href="/roman-chariot-race-betting-calculator/">🏇 Ancient Roman Chariot Race Betting Calculator</a>
+        <a class="related-link" href="/greek-hoplite-phalanx-calculator/">🛡️ Greek Hoplite Phalanx Battle Strength Calculator</a>
+        <a class="related-link" href="/medieval-black-death-population-estimator/">☠️ Medieval Black Death Population Loss Estimator</a>
+        <a class="related-link" href="/roman-soldier-pay-calculator/">⚔️ Ancient Roman Soldier Pay Calculator</a>
+        <a class="related-link" href="/athenian-silver-mine-revenue-calculator/">🪙 Ancient Athenian Silver Mine Revenue Calculator</a>
+        <a class="related-link" href="/viking-hacksilver-wealth-estimator/">🪓 Viking Age Silver Hacksilver Wealth Estimator</a>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div>
+
+<footer>
+  <p>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </p>
+  <p style="margin-top:0.5rem;font-size:0.8rem;color:#8b6040">© 2024 historycalc.com — Free Historical Calculators</p>
+</footer>
+
+<script>
+(function(){
+
+  const CORD_COLORS = {
+    natural: ['#c4883a','#a0622a','#d4a870','#8b5a2b'],
+    red:     ['#c43a3a','#a02a2a','#d47070','#8b2b2b'],
+    yellow:  ['#c4b83a','#a09a2a','#d4cc70','#8b7a2b'],
+    green:   ['#3ac44a','#2aa03a','#70d480','#2b8b3a'],
+    black:   ['#444','#222','#666','#333'],
+    white:   ['#ddd','#bbb','#eee','#aaa']
+  };
+
+  function getColors(sel){
+    return CORD_COLORS[sel] || CORD_COLORS.natural;
+  }
+
+  function numberWithCommas(n){
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,',');
+  }
+
+  function getDigits(n){
+    if(n===0) return [0];
+    const digits=[];
+    let tmp=n;
+    while(tmp>0){digits.unshift(tmp%10);tmp=Math.floor(tmp/10);}
+    return digits;
+  }
+
+  function placeLabel(pos, total){
+    const places=['Units','Tens','Hundreds','Thousands','Ten-Thousands','Hundred-Thousands','Millions'];
+    const idx = total - 1 - pos;
+    return places[idx] || 'Higher';
+  }
+
+  function placeValue(pos, total){
+    const idx = total - 1 - pos;
+    const vals=['1','10','100','1,000','10,000','100,000','1,000,000'];
+    return vals[idx] || '?';
+  }
+
+  function knotDescription(digit, isUnits){
+    if(digit===0) return 'Empty (no knots)';
+    if(isUnits){
+      if(digit===1) return 'Figure-eight knot (×1)';
+      return `Long knot (${digit} turns)`;
+    }
+    return digit===1 ? 'Single overhand knot (×1)' : `${digit} overhand knots`;
+  }
+
+  function buildQuipuHTML(digits, colorKey){
+    const colors = getColors(colorKey);
+    const maxDigit = Math.max(...digits, 1);
+    // Each cord has 3 zones: top (highest place), mid, bottom (units)
+    // We render columns for each digit from left=most significant to right=units
+    const n = digits.length;
+
+    let html = `<div style="overflow-x:auto"><div style="display:flex;align-items:flex-start;gap:0;justify-content:center;min-width:${n*60}px">`;
+
+    // Top horizontal main cord
+    html += `<div style="position:relative;width:100%">`;
+
+    // Build columns
+    html += `<div style="display:flex;align-items:flex-start;justify-content:center;gap:8px">`;
+
+    digits.forEach((digit, idx)=>{
+      const isUnits = (idx === n-1);
+      const isLast = idx === n-1;
+      const cordColor = colors[idx % colors.length];
+      const posLabel = placeLabel(idx, n);
+
+      // Determine knot rendering
+      // Height: units at bottom, higher places cluster higher on cord
+      // We use fixed height zones
+      const CORD_H = 200;
+      const KNOT_ZONE_TOP = 20;  // px from top where knots for this pos start
+      const ZONE_H = Math.floor((CORD_H - 30) / (n>1 ? n : 1));
+
+      // knots for this position
+      let knotsHTML = '';
+      if(digit > 0){
+        if(isUnits){
+          if(digit===1){
+            // figure-eight: one special knot
+            knotsHTML += `<div style="width:22px;height:22px;background:radial-gradient(circle at 40% 40%,#f0e090,#b06030);border-radius:50%;border:2px solid #7a3a10;box-shadow:1px 1px 4px rgba(0,0,0,0.5);margin:2px auto" title="Figure-eight knot"></div>`;
+          } else {
+            // long knot: one tall elongated knot
+            const h = 10 + digit*4;
+            knotsHTML += `<div style="width:24px;height:${h}px;background:linear-gradient(to bottom,#f5d08a,#c4782a,#f5d08a);border-radius:8px;border:2px solid #6b3410;box-shadow:1px 1px 4px rgba(0,0,0,0.5);margin:2px auto" title="Long knot, ${digit} turns"></div>`;
+          }
+        } else {
+          // Single overhand knots stacked
+          for(let k=0;k<digit;k++){
+            knotsHTML += `<div style="width:20px;height:13px;background:radial-gradient(ellipse at 40% 40%,#f5d08a,#c4782a);border-radius:50%;border:1px solid #8b4513;box-shadow:1px 1px 3px rgba(0,0,0,0.4);margin:2px auto" title="Overhand knot ${k+1}"></div>`;
+          }
+        }
+      } else {
+        knotsHTML = `<div style="color:#5a3520;font-size:0.7rem;font-style:italic;text-align:center;padding:4px 0;opacity:0.7">∅</div>`;
+      }
+
+      html += `<div style="display:flex;flex-direction:column;align-items:center;min-width:52px">`;
+      // Position label
+      html += `<div style="color:#f5d08a;font-size:0.6rem;font-weight:700;letter-spacing:0.4px;text-align:center;margin-bottom:4px;text-transform:uppercase">${posLabel}</div>`;
+      // Top attachment nub
+      html += `<div style="width:8px;height:10px;background:${cordColor};border-radius:3px 3px 0 0;opacity:0.9"></div>`;
+      // Cord with knots
+      html += `<div style="position:relative;display:flex;flex-direction:column;align-items:center;width:52px">`;
+      // Cord line behind
+      html += `<div style="position:absolute;left:50%;transform:translateX(-50%);width:5px;height:${CORD_H}px;background:linear-gradient(to bottom,${cordColor},${colors[1]});border-radius:2px;z-index:0"></div>`;
+      // Knot zone (centered vertically for non-units, bottom for units)
+      const knotTop = isUnits ? CORD_H - 60 : Math.max(20, CORD_H/2 - digit*8);
+      html += `<div style="position:relative;z-index:1;margin-top:${knotTop}px;display:flex;flex-direction:column;align-items:center">${knotsHTML}</div>`;
+      html += `</div>`;// end cord
+      // Digit label
+      html += `<div style="color:#c4a882;font-size:0.75rem;font-weight:700;margin-top:4px;text-align:center">${digit}</div>`;
+      html += `</div>`;// end column
+
+      // Separator
+      if(!isLast){
+        html+=`<div style="width:2px;background:#3a2010;align-self:stretch;margin-top:20px;opacity:0.4;border-radius:1px"></div>`;
+      }
+    });
+
+    html += `</div>`; // end flex columns
+    html += `</div>`; // end position:relative
+    html += `</div>`; // end overflow wrapper
+
+    return html;
+  }
+
+  function buildBreakdownHTML(digits){
+    const n = digits.length;
+    let rows = '';
+    digits.forEach((d, idx)=>{
+      const isUnits = idx===n-1;
+      const label = placeLabel(idx, n);
+      const pv = placeValue(idx, n);
+      const kt = knotDescription(d, isUnits);
+      const kc = d===0 ? '—' : (isUnits ? (d===1?'1 (special)':String(d)) : String(d));
+      rows += `<tr><td>${label}</td><td>${pv}</td><td style="text-align:right">${d}</td><td>${kt}</td><td style="text-align:right">${kc}</td></tr>`;
+    });
+    return rows;
+  }
+
+  function modernEquivText(n){
+    if(n===0) return 'Zero — an empty quipu cord. The Inca, like us, understood the concept of zero as an explicit empty position.';
+    if(n<10) return `This small number (${n}) might record a single llama herder's daily tally. A quipucamayoc could read this at a glance.`;
+    if(n<100) return `${numberWithCommas(n)} — typical of a small household census entry or a week's supply quota for a chasqui runner post.`;
+    if(n<1000) return `${numberWithCommas(n)} — could represent the number of workers assigned to a single mit'a (labor tax) project, like road construction.`;
+    if(n<10000) return `${numberWithCommas(n)} — comparable to the population of a mid-sized Inca administrative unit (<em>huaranga</em>), roughly 1,000 households.`;
+    if(n<100000) return `${numberWithCommas(n)} — on the scale of a provincial army detachment or the llama herd of a major Inca storehouse at Huánuco Pampa.`;
+    if(n<1000000) return `${numberWithCommas(n)} — approaching census-scale data. The 1548 Spanish count found ~1.5 million people in Peru — quipus had tracked their ancestors for generations.`;
+    return `${numberWithCommas(n)} — an imperial-scale number! The entire Inca road network was ~40,000 km; their army at its peak numbered ~200,000 soldiers. This data would require a master quipu.`;
+  }
+
+  function buildCopyText(n, digits){
+    const n2 = digits.length;
+    let lines = [`Quipu encoding for ${numberWithCommas(n)}:\n`];
+    digits.forEach((d,idx)=>{
+      const isUnits = idx===n2-1;
+      const label = placeLabel(idx,n2);
+      lines.push(`  ${label}: digit ${d} → ${knotDescription(d,isUnits)}`);
+    });
+    return lines.join('\n');
+  }
+
+  function calculate(){
+    const raw = document.getElementById('numberInput').value.trim();
+    const errEl = document.getElementById('numError');
+    const inp = document.getElementById('numberInput');
+
+    inp.classList.remove('error');
+    errEl.classList.remove('visible');
+
+    if(raw===''||raw===null){
+      inp.classList.add('error');
+      errEl.textContent='Please enter a number between 0 and 9,999,999.';
+      errEl.classList.add('visible');
+      return;
+    }
+
+    const n = parseInt(raw, 10);
+    if(isNaN(n)||n<0||n>9999999||!Number.isInteger(Number(raw))){
+      inp.classList.add('error');
+      errEl.textContent='Please enter a whole number between 0 and 9,999,999.';
+      errEl.classList.add('visible');
+      return;
+    }
+
+    const colorKey = document.getElementById('cordColor').value;
+    const digits = getDigits(n);
+    const nd = digits.length;
+
+    requestAnimationFrame(()=>{
+      document.getElementById('displayNum').textContent = numberWithCommas(n);
+      document.getElementById('digitCount').textContent = `encoded across ${nd} digit position${nd!==1?'s':''}`;
+      document.getElementById('quipuViz').innerHTML = buildQuipuHTML(digits, colorKey);
+      document.getElementById('breakdownBody').innerHTML = buildBreakdownHTML(digits);
+      document.getElementById('modernEquivText').innerHTML = modernEquivText(n);
+
+      const results = document.getElementById('results');
+      results.style.display='block';
+      requestAnimationFrame(()=>{ results.classList.add('visible'); });
+
+      // Store for copy
+      results.dataset.copyText = buildCopyText(n, digits);
+    });
+  }
+
+  document.getElementById('encodeBtn').addEventListener('click', ()=>{
+    requestAnimationFrame(()=>{ calculate(); });
+  });
+
+  document.getElementById('numberInput').addEventListener('keydown', (e)=>{
+    if(e.key==='Enter'){ requestAnimationFrame(()=>{ calculate(); }); }
+  });
+
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    const text = document.getElementById('results').dataset.copyText||'';
+    if(!text) return;
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(()=>{
+        this.textContent='Copied!';
+        setTimeout(()=>{ this.textContent='Copy Description'; },2000);
+      });
+    } else {
+      const ta=document.createElement('textarea');
+      ta.value=text;
+      ta.style.position='fixed';ta.style.opacity='0';
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand('copy');}catch(e){}
+      document.body.removeChild(ta);
+      this.textContent='Copied!';
+      setTimeout(()=>{ this.textContent='Copy Description'; },2000);
+    }
+  });
+
+})();
+</script>
+
+</body>
+</html>
