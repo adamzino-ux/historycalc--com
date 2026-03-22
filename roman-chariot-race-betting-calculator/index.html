@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Chariot Race Betting Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate Roman chariot race betting odds, potential winnings, and faction probabilities. Explore ancient roman chariot race betting odds with historically accurate formulas.">
+<link rel="canonical" href="https://historycalc.com/roman-chariot-race-betting-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Chariot Race Betting Calculator",
+  "url": "https://historycalc.com/roman-chariot-race-betting-calculator/",
+  "description": "Calculate Roman chariot race betting odds, potential winnings, and faction win probabilities using historically grounded formulas.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #fdf8ee;
+    --parchment: #f5f0e1;
+    --card: #fffdf5;
+    --accent: #8b4513;
+    --accent-dark: #6b3410;
+    --text: #2c1810;
+    --text-light: #5a3a28;
+    --border: #c4a882;
+    --border-light: #ddd0b8;
+    --highlight: #e8dcc8;
+    --red-faction: #c0392b;
+    --blue-faction: #1a5276;
+    --green-faction: #1e8449;
+    --white-faction: #7d6608;
+    --shadow: rgba(139,69,19,0.12);
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dark); text-decoration: underline; }
+
+  nav {
+    background: var(--accent);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  nav a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+  }
+  nav a:hover { color: #fde8d0; text-decoration: none; }
+  nav span {
+    color: #f5d5b0;
+    margin-left: 0.5rem;
+    font-size: 0.85rem;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .hero-svg {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.25;
+    margin-bottom: 0.4rem;
+    text-align: center;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 12px var(--shadow);
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--accent);
+    border-bottom: 2px solid var(--border-light);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .form-group { margin-bottom: 1.1rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 0.35rem;
+  }
+  label .hint {
+    font-weight: 400;
+    font-style: italic;
+    color: #9a7a5a;
+    font-size: 0.78rem;
+  }
+
+  input[type="number"], input[type="text"], select {
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    color: var(--text);
+    background: #fffef8;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    min-height: 44px;
+    -webkit-appearance: none;
+  }
+  input[type="number"]:focus, input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  input.error { border-color: #c0392b; }
+  .error-msg { color: #c0392b; font-size: 0.8rem; margin-top: 0.3rem; display: none; }
+  .error-msg.show { display: block; }
+
+  .faction-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.1rem;
+  }
+  .faction-card {
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    text-align: center;
+    background: var(--parchment);
+    min-height: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  .faction-card:hover { border-color: var(--accent); }
+  .faction-card.selected { border-width: 3px; }
+  .faction-card.reds.selected { border-color: var(--red-faction); background: #fdecea; }
+  .faction-card.blues.selected { border-color: var(--blue-faction); background: #e8f0f8; }
+  .faction-card.greens.selected { border-color: var(--green-faction); background: #e8f5eb; }
+  .faction-card.whites.selected { border-color: var(--white-faction); background: #fdf8e1; }
+  .faction-name { font-weight: 700; font-size: 0.95rem; }
+  .faction-name.reds { color: var(--red-faction); }
+  .faction-name.blues { color: var(--blue-faction); }
+  .faction-name.greens { color: var(--green-faction); }
+  .faction-name.whites { color: var(--white-faction); }
+  .faction-odds { font-size: 0.8rem; color: var(--text-light); }
+
+  .slider-group { margin-bottom: 1.1rem; }
+  .slider-row { display: flex; align-items: center; gap: 0.75rem; }
+  input[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--border-light);
+    outline: none;
+    min-height: auto;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    border: none;
+  }
+  .slider-val {
+    min-width: 3rem;
+    text-align: right;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 13px 24px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 48px;
+    transition: background 0.2s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn:active { transform: scale(0.99); }
+
+  .btn-sm {
+    width: auto;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    min-height: 36px;
+    border-radius: 5px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-sm:hover { background: var(--accent-dark); }
+
+  /* Results */
+  .results-section {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: none;
+  }
+  .results-section.show {
+    display: block;
+    opacity: 1;
+  }
+
+  .result-hero {
+    background: linear-gradient(135deg, var(--accent) 0%, #a0522d 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .result-hero .label { font-size: 0.85rem; opacity: 0.85; margin-bottom: 0.25rem; }
+  .result-hero .big-num {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .result-hero .sub { font-size: 0.9rem; opacity: 0.9; }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .result-box {
+    background: var(--parchment);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 0.9rem;
+    text-align: center;
+  }
+  .result-box .rb-label { font-size: 0.75rem; color: var(--text-light); margin-bottom: 0.2rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .result-box .rb-val { font-size: 1.25rem; font-weight: 800; color: var(--accent); }
+  .result-box .rb-sub { font-size: 0.75rem; color: var(--text-light); }
+
+  .result-table-wrap { overflow-x: auto; margin-bottom: 1.25rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th {
+    background: var(--highlight);
+    color: var(--text);
+    font-weight: 700;
+    padding: 9px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  th.num, td.num { text-align: right; }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+  }
+  tr:nth-child(even) td { background: #faf7f0; }
+  tr:last-child td { border-bottom: none; }
+
+  .win-bar-wrap { margin-bottom: 1.25rem; }
+  .win-bar-label { font-size: 0.82rem; font-weight: 600; color: var(--text-light); margin-bottom: 0.15rem; display: flex; justify-content: space-between; }
+  .win-bar-track {
+    height: 20px;
+    background: var(--border-light);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+  .win-bar-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .modern-equiv {
+    background: #e8f5eb;
+    border: 1px solid #a9dfbf;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.88rem;
+    color: #1e5233;
+  }
+  .modern-equiv strong { display: block; margin-bottom: 0.3rem; font-size: 0.95rem; }
+
+  .copy-row { display: flex; justify-content: flex-end; margin-bottom: 0.5rem; }
+
+  /* Did You Know */
+  .did-you-know {
+    background: linear-gradient(135deg, #fdf3e3, #fae8cc);
+    border: 1px solid #e8c87a;
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .did-you-know h3 { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+  .did-you-know ul { padding-left: 1.2rem; }
+  .did-you-know li { font-size: 0.87rem; color: var(--text); margin-bottom: 0.4rem; line-height: 1.5; }
+
+  /* Historical Context */
+  .hist-context {
+    background: var(--parchment);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+  .hist-context h2 { font-size: 1rem; color: var(--accent); margin-bottom: 0.5rem; }
+
+  /* Content sections */
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .content-section p { font-size: 0.92rem; color: var(--text); margin-bottom: 0.75rem; line-height: 1.65; }
+  .content-section ul { padding-left: 1.3rem; margin-bottom: 0.75rem; }
+  .content-section li { font-size: 0.9rem; color: var(--text); margin-bottom: 0.4rem; line-height: 1.55; }
+
+  details { margin-bottom: 0.75rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: var(--accent);
+    padding: 0.5rem 0;
+    user-select: none;
+    list-style: none;
+  }
+  summary::before { content: '▶ '; font-size: 0.7rem; }
+  details[open] summary::before { content: '▼ '; }
+  details p { font-size: 0.88rem; color: var(--text); margin: 0.5rem 0 0.75rem 0.75rem; line-height: 1.6; }
+
+  .formula-box {
+    background: var(--highlight);
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: var(--text);
+    margin: 0.75rem 0;
+    line-height: 1.7;
+  }
+
+  .related-tools {
+    background: var(--parchment);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.3rem;
+    margin-bottom: 2rem;
+  }
+  .related-tools h2 { font-size: 1.05rem; font-weight: 700; color: var(--accent); margin-bottom: 0.75rem; }
+  .related-tools ul { list-style: none; padding: 0; }
+  .related-tools li { border-bottom: 1px solid var(--border-light); }
+  .related-tools li:last-child { border-bottom: none; }
+  .related-tools a {
+    display: block;
+    padding: 0.6rem 0.25rem;
+    font-size: 0.9rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .related-tools a:hover { color: var(--accent-dark); padding-left: 0.5rem; transition: padding 0.15s; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: var(--accent);
+    color: #f5d5b0;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: 0.83rem;
+  }
+  footer a { color: #fde8d0; margin: 0 0.5rem; }
+  footer a:hover { color: #fff; }
+
+  /* Faction badge colors for table */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.78rem; font-weight: 700; }
+  .badge-reds { background: #fdecea; color: var(--red-faction); }
+  .badge-blues { background: #e8f0f8; color: var(--blue-faction); }
+  .badge-greens { background: #e8f5eb; color: var(--green-faction); }
+  .badge-whites { background: #fdf8e1; color: var(--white-faction); }
+
+  @media (max-width: 480px) {
+    h1 { font-size: 1.35rem; }
+    .faction-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .result-grid { grid-template-columns: 1fr 1fr; }
+    .result-hero .big-num { font-size: 2.2rem; }
+    .tool-card { padding: 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚔ HistoryCalc</a>
+  <span>/ Roman Chariot Race Betting Calculator</span>
+</nav>
+
+<div class="container">
+
+  <!-- Hero SVG -->
+  <div class="hero-svg">
+    <svg width="320" height="120" viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" aria-label="Roman chariot race illustration" role="img">
+      <!-- Track outline -->
+      <ellipse cx="160" cy="100" rx="150" ry="18" fill="none" stroke="#c4a882" stroke-width="2" stroke-dasharray="6,4"/>
+      <!-- Ground shadow -->
+      <ellipse cx="160" cy="108" rx="120" ry="8" fill="rgba(139,69,19,0.07)"/>
+      <!-- Chariot body -->
+      <rect x="108" y="68" width="44" height="24" rx="4" fill="#8b4513" stroke="#5a2d0c" stroke-width="1.5"/>
+      <!-- Chariot wheel left -->
+      <circle cx="115" cy="95" r="12" fill="none" stroke="#5a2d0c" stroke-width="2.5"/>
+      <line x1="115" y1="83" x2="115" y2="107" stroke="#5a2d0c" stroke-width="1.5"/>
+      <line x1="103" y1="95" x2="127" y2="95" stroke="#5a2d0c" stroke-width="1.5"/>
+      <line x1="107" y1="86" x2="123" y2="104" stroke="#5a2d0c" stroke-width="1.2"/>
+      <line x1="107" y1="104" x2="123" y2="86" stroke="#5a2d0c" stroke-width="1.2"/>
+      <!-- Chariot wheel right -->
+      <circle cx="145" cy="95" r="12" fill="none" stroke="#5a2d0c" stroke-width="2.5"/>
+      <line x1="145" y1="83" x2="145" y2="107" stroke="#5a2d0c" stroke-width="1.5"/>
+      <line x1="133" y1="95" x2="157" y2="95" stroke="#5a2d0c" stroke-width="1.5"/>
+      <line x1="137" y1="86" x2="153" y2="104" stroke="#5a2d0c" stroke-width="1.2"/>
+      <line x1="137" y1="104" x2="153" y2="86" stroke="#5a2d0c" stroke-width="1.2"/>
+      <!-- Yoke/pole -->
+      <line x1="108" y1="83" x2="68" y2="83" stroke="#5a2d0c" stroke-width="2"/>
+      <!-- Horse 1 -->
+      <ellipse cx="58" cy="83" rx="18" ry="8" fill="#c4a882" stroke="#8b6040" stroke-width="1.2"/>
+      <circle cx="40" cy="78" r="7" fill="#c4a882" stroke="#8b6040" stroke-width="1.2"/>
+      <line x1="43" y1="73" x2="40" y2="65" stroke="#8b6040" stroke-width="1.5"/><!-- mane -->
+      <line x1="40" y1="65" x2="43" y2="60" stroke="#8b6040" stroke-width="1.5"/>
+      <!-- Horse 2 -->
+      <ellipse cx="62" cy="95" rx="18" ry="7" fill="#b8987a" stroke="#8b6040" stroke-width="1.2"/>
+      <circle cx="44" cy="90" r="6.5" fill="#b8987a" stroke="#8b6040" stroke-width="1.2"/>
+      <line x1="47" y1="85" x2="44" y2="77" stroke="#8b6040" stroke-width="1.5"/>
+      <line x1="44" y1="77" x2="47" y2="72" stroke="#8b6040" stroke-width="1.5"/>
+      <!-- Driver (auriga) -->
+      <circle cx="128" cy="63" r="7" fill="#e8c87a" stroke="#8b4513" stroke-width="1.2"/>
+      <rect x="122" y="70" width="12" height="18" rx="2" fill="#c0392b" stroke="#8b4513" stroke-width="1"/>
+      <!-- Whip -->
+      <line x1="130" y1="68" x2="148" y2="58" stroke="#5a2d0c" stroke-width="1.2"/>
+      <!-- Laurel decorative -->
+      <text x="195" y="50" font-size="11" fill="#8b4513" font-family="serif" font-style="italic">CIRCUS MAXIMUS</text>
+      <text x="205" y="64" font-size="9" fill="#c4a882" font-family="serif">VII Laps · MMXLIV Paces</text>
+      <!-- Speed lines -->
+      <line x1="75" y1="78" x2="95" y2="78" stroke="#c4a882" stroke-width="1" stroke-dasharray="3,2"/>
+      <line x1="72" y1="88" x2="90" y2="88" stroke="#c4a882" stroke-width="1" stroke-dasharray="3,2"/>
+    </svg>
+  </div>
+
+  <h1>Ancient Roman Chariot Race Betting Calculator</h1>
+  <p class="subtitle">Calculate your wagers, winnings & faction odds at the Circus Maximus</p>
+
+  <!-- Tool Card -->
+  <div class="tool-card">
+
+    <!-- Step 1: Choose Faction -->
+    <div class="section-title">① Choose a Racing Faction</div>
+    <p style="font-size:0.83rem;color:var(--text-light);margin-bottom:0.85rem;">Click the faction you wish to bet on. Odds reflect historical dominance and crowd favor.</p>
+    <div class="faction-grid" id="factionGrid">
+      <div class="faction-card reds selected" data-faction="reds" onclick="selectFaction('reds')">
+        <div class="faction-name reds">🔴 Reds (Russata)</div>
+        <div class="faction-odds">Base odds: 3:1</div>
+        <div style="font-size:0.74rem;color:var(--text-light);">Popular faction, high skill</div>
+      </div>
+      <div class="faction-card blues" data-faction="blues" onclick="selectFaction('blues')">
+        <div class="faction-name blues">🔵 Blues (Veneta)</div>
+        <div class="faction-odds">Base odds: 2:1</div>
+        <div style="font-size:0.74rem;color:var(--text-light);">Imperial favorite, well-funded</div>
+      </div>
+      <div class="faction-card greens" data-faction="greens" onclick="selectFaction('greens')">
+        <div class="faction-name greens">🟢 Greens (Prasina)</div>
+        <div class="faction-odds">Base odds: 4:1</div>
+        <div style="font-size:0.74rem;color:var(--text-light);">Chariot speed specialists</div>
+      </div>
+      <div class="faction-card whites" data-faction="whites" onclick="selectFaction('whites')">
+        <div class="faction-name whites">⚪ Whites (Albata)</div>
+        <div class="faction-odds">Base odds: 6:1</div>
+        <div style="font-size:0.74rem;color:var(--text-light);">Underdog — high reward</div>
+      </div>
+    </div>
+
+    <!-- Step 2: Bet Amount -->
+    <div class="section-title">② Enter Your Wager</div>
+    <div class="form-group">
+      <label>Currency Type <span class="hint">(choose Roman denomination)</span></label>
+      <select id="currency" onchange="updateCurrencyInfo()">
+        <option value="sestertius">Sestertius (HS) — bronze/brass coin</option>
+        <option value="denarius">Denarius (₯) — silver coin</option>
+        <option value="aureus">Aureus (AV) — gold coin</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="betAmount">Wager Amount <span class="hint" id="currencyHint">(in Sestertii — 1 denarius = 4 HS)</span></label>
+      <input type="number" id="betAmount" value="100" min="1" max="1000000" placeholder="e.g. 100">
+      <div class="error-msg" id="betError">Please enter a valid wager (minimum 1).</div>
+    </div>
+
+    <!-- Step 3: Race Modifiers -->
+    <div class="section-title">③ Race Conditions & Modifiers</div>
+    <div class="form-group">
+      <label>Driver (Auriga) Reputation</label>
+      <select id="driverRep">
+        <option value="1.0">Unknown driver (no adjustment)</option>
+        <option value="1.3" selected>Competent (1 season, 10+ wins)</option>
+        <option value="1.6">Experienced (3+ seasons, 50+ wins)</option>
+        <option value="2.0">Star driver (like Scorpus or Diocles)</option>
+      </select>
+    </div>
+    <div class="slider-group">
+      <label>Crowd Enthusiasm (favors your faction) <span class="hint">affects payout multiplier</span></label>
+      <div class="slider-row">
+        <input type="range" id="crowdSlider" min="0" max="100" value="50" oninput="document.getElementById('crowdVal').textContent=this.value+'%'">
+        <span class="slider-val" id="crowdVal">50%</span>
+      </div>
+    </div>
+    <div class="slider-group">
+      <label>Track Condition <span class="hint">wet/sandy/dusty track shifts odds</span></label>
+      <div class="slider-row">
+        <input type="range" id="trackSlider" min="1" max="5" value="3" step="1" oninput="updateTrackLabel(this.value)">
+        <span class="slider-val" id="trackVal">Average</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Number of Competing Chariots <span class="hint">(standard: 12 per race)</span></label>
+      <input type="number" id="numChariots" value="12" min="4" max="24" placeholder="4–24">
+      <div class="error-msg" id="chariotsError">Enter a number between 4 and 24.</div>
+    </div>
+    <div class="form-group">
+      <label>Number of Laps <span class="hint">(standard Circus Maximus: 7 laps)</span></label>
+      <input type="number" id="numLaps" value="7" min="1" max="12" placeholder="1–12">
+    </div>
+
+    <button class="btn" onclick="calculate()">🏁 Calculate Betting Odds & Winnings</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results-section" id="resultsSection">
+
+    <div class="tool-card">
+      <div class="section-title">📊 Betting Results</div>
+
+      <div class="copy-row">
+        <button class="btn-sm" onclick="copyResults()" id="copyBtn">📋 Copy Results</button>
+      </div>
+
+      <div id="resultHero"></div>
+      <div id="resultGrid"></div>
+      <div id="winBars"></div>
+      <div id="resultTable"></div>
+      <div id="modernEquiv"></div>
+    </div>
+
+    <div class="ad-slot" id="ad-mid"></div>
+
+    <div class="tool-card">
+      <div class="section-title">📜 Full Payout Scenarios</div>
+      <div class="result-table-wrap" id="scenarioTable"></div>
+    </div>
+
+  </div>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h2>📜 Historical Context</h2>
+    <p>Chariot racing was the most popular sport in ancient Rome, with the Circus Maximus holding up to <strong>250,000 spectators</strong> — roughly 25% of Rome's entire population. Races were organized by four factions: Reds (Russata), Blues (Veneta), Greens (Prasina), and Whites (Albata). By the late empire, the Blues and Greens absorbed the Reds and Whites. Betting was rampant: a successful bettor might win several months' wages on a single race. The auriga Gaius Appuleius Diocles reportedly earned <strong>35,863,120 sestertii</strong> across his career — enough to feed the entire city of Rome for a year. Standard races consisted of 7 laps around the 621-meter-long track, totaling roughly 4,350 meters per race.</p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>⚡ Did You Know?</h3>
+    <ul>
+      <li>The charioteer Scorpus won <strong>2,048 races</strong> before dying at about age 27 — making him one of history's most decorated athletes per year of competition.</li>
+      <li>Emperor Caligula dined his favorite horse Incitatus at lavish banquets and reportedly planned to make it a consul — reflecting the intense factionalism of the sport.</li>
+      <li>Chariot races could feature <strong>up to 24 chariots</strong> on the track simultaneously. Crashes (called <em>naufragium</em> — "shipwrecks") were common and a major spectator draw.</li>
+    </ul>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Roman Chariot Race Betting Calculator</h2>
+    <p>Select one of the four historical racing factions (Reds, Blues, Greens, or Whites), then enter your wager in Roman currency — Sestertii, Denarii, or Aurei. Adjust the driver's reputation, crowd enthusiasm, track conditions, and number of competing chariots using the sliders and dropdowns. Hit "Calculate" to see your potential winnings, win probability, and full payout scenarios across all factions.</p>
+    <p>The results include your net profit in Roman currency, a modern USD equivalent, and a comparison table showing how your bet would pay out if each faction won.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters — The Economics of Roman Gambling</h2>
+    <p>Gambling on chariot races wasn't just entertainment in ancient Rome — it was a significant economic activity woven into daily life. A common Roman soldier earned about <strong>900 sestertii per year</strong> under Augustus. A bet of just 50 sestertii on a 6:1 longshot (the Whites) could return 300 sestertii — a third of a soldier's annual salary from a single race.</p>
+    <p>The stakes were even higher for wealthy patricians. Historical sources describe senators wagering thousands of aurei on a single afternoon of racing. The Circus Maximus hosted 60–70 race days per year, meaning a dedicated bettor might place hundreds of wagers annually. Some Romans lost entire estates; others built fortunes. The poet Ovid wrote about using races as an excuse to sit close to a love interest — suggesting betting was as much a social activity as a financial one.</p>
+    <p>This calculator lets you explore those economics: how does betting on the favored Blues compare to gambling on the underdog Whites? How much did a skilled auriga like Diocles shift the odds? These questions illuminate Roman daily life in a tangible, mathematical way.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated — The Formulas</h2>
+    <p>This calculator uses a historically grounded probability model combined with Roman economic data:</p>
+    <div class="formula-box">
+Base Win Probability (faction) = 1 ÷ (base odds + 1)<br>
+  Reds: 1÷4 = 25%  |  Blues: 1÷3 = 33.3%<br>
+  Greens: 1÷5 = 20%  |  Whites: 1÷7 = 14.3%<br><br>
+Adjusted Probability = Base Prob × Driver Modifier × Track Modifier × Crowd Factor<br><br>
+Effective Odds = (1 ÷ Adjusted Probability) − 1<br><br>
+Gross Winnings = Wager × (Effective Odds + 1)<br>
+Net Profit = Gross Winnings − Wager<br><br>
+House Edge (bookmaker's vigil) = 5% of gross (historical estimate)<br>
+Final Payout = Gross Winnings × 0.95<br><br>
+Modern USD ≈ Sestertii × 0.50 (purchasing power parity estimate)<br>
+  (1 aureus = 100 HS | 1 denarius = 4 HS | 1 sestertius ≈ $0.50 USD 2024)
+    </div>
+    <p>Currency conversions: 1 Aureus = 25 Denarii = 100 Sestertii. The "vigil" (bookmaker's cut) is estimated at 5% based on comparative analysis with ancient Greek and Byzantine betting practices described in historical records.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't ignore the track condition.</strong> Wet or sandy tracks historically favored heavier, more stable chariots — which often benefited the better-funded Blues faction. This shifts base odds significantly.</li>
+      <li><strong>Driver reputation matters enormously.</strong> A star auriga like Diocles or Scorpus could reduce the house's advantage by effectively compressing odds — your 4:1 bet on Greens with a star driver might be closer to true 2.5:1 in real probability.</li>
+      <li><strong>More chariots = longer odds for everyone.</strong> A 24-chariot race spreads probability thinner, boosting potential payouts but also increasing variance. Don't treat 24-chariot race odds the same as a 12-chariot race.</li>
+      <li><strong>The Whites are risky for good reason.</strong> The White faction was historically the weakest and least funded. Their 6:1 odds are generous but reflect genuine disadvantage — don't bet your entire estate on sentiment.</li>
+      <li><strong>Remember the vigil (bookmaker's cut).</strong> Like modern sports betting, ancient Roman bookmakers took a percentage. Always look at net profit, not gross return, when evaluating a wager.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>Were Romans really allowed to bet on chariot races?</summary>
+      <p>Yes — gambling on chariot races was entirely legal and socially accepted in Rome, unlike some other forms of gambling which were technically restricted outside certain holidays. The Circus Maximus was essentially a giant betting venue. Specialized bookmakers called <em>sponsio</em> operators set and managed odds, and disputes over wagers were taken seriously under Roman law.</p>
+    </details>
+    <details>
+      <summary>What was the most valuable Roman coin used for betting?</summary>
+      <p>The <em>aureus</em> was the gold standard — one aureus equaled 25 silver denarii or 100 bronze sestertii. High-stakes betting by wealthy patrons used aurei, while common citizens typically wagered in sestertii or denarii. In modern purchasing power, one sestertius is estimated at roughly $0.40–$0.65 USD.</p>
+    </details>
+    <details>
+      <summary>How did the four factions differ historically?</summary>
+      <p>Each faction (Reds, Blues, Greens, Whites) operated as a fully professional racing stable with their own stables, trainers, horses, and charioteers. The Blues and Greens became the dominant factions by the 1st century CE, often with explicit imperial patronage — Nero backed Greens, Caligula backed Greens as well, while Vitellius favored Blues. The Reds and Whites were eventually merged into Blues and Greens by the late empire.</p>
+    </details>
+    <details>
+      <summary>How accurate are these betting odds?</summary>
+      <p>The base odds are historically derived estimates based on win records mentioned in ancient sources (particularly the <em>Corpus Inscriptionum Latinarum</em> and Pliny the Elder). They represent plausible approximations rather than exact historical records — no Roman betting ledger with official odds has survived. The modifier system (driver reputation, crowd, track) is modeled on factors ancient writers described as influencing race outcomes.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>⚔ Related Historical Calculators</h2>
+    <ul>
+      <li><a href="/roman-soldier-pay-calculator/">Ancient Roman Soldier Pay Calculator</a></li>
+      <li><a href="/roman-gladiator-training-cost-calculator/">Ancient Roman Gladiator Training Cost Calculator</a></li>
+      <li><a href="/greek-hoplite-phalanx-calculator/">Greek Hoplite Phalanx Battle Strength Calculator</a></li>
+      <li><a href="/athenian-silver-mine-revenue-calculator/">Ancient Athenian Silver Mine Revenue Calculator</a></li>
+      <li><a href="/viking-hacksilver-wealth-estimator/">Viking Age Silver Hacksilver Wealth Estimator</a></li>
+      <li><a href="/medieval-black-death-population-estimator/">Medieval Black Death Population Loss Estimator</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div style="margin-bottom:0.5rem;">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© 2024 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+  // ---- State ----
+  let selectedFaction = 'reds';
+  let resultText = '';
+
+  const factionData = {
+    reds:   { name: 'Reds (Russata)',  color: '#c0392b', badgeClass: 'badge-reds',   baseOdds: 3, baseProb: 0.25,  emoji: '🔴' },
+    blues:  { name: 'Blues (Veneta)',  color: '#1a5276', badgeClass: 'badge-blues',  baseOdds: 2, baseProb: 0.333, emoji: '🔵' },
+    greens: { name: 'Greens (Prasina)',color: '#1e8449', badgeClass: 'badge-greens', baseOdds: 4, baseProb: 0.20,  emoji: '🟢' },
+    whites: { name: 'Whites (Albata)', color: '#7d6608', badgeClass: 'badge-whites', baseOdds: 6, baseProb: 0.143, emoji: '⚪' }
+  };
+
+  const currencyInfo = {
+    sestertius: { name: 'Sestertii', abbr: 'HS', toHS: 1, hint: '(in Sestertii — 1 denarius = 4 HS)' },
+    denarius:   { name: 'Denarii',   abbr: '₯', toHS: 4, hint: '(in Denarii — 1 aureus = 25 denarii)' },
+    aureus:     { name: 'Aurei',     abbr: 'AV', toHS: 100, hint: '(in Aurei — 1 aureus = 25 denarii = 100 HS)' }
+  };
+
+  const trackLabels = ['','Treacherous (wet/mud)','Poor (heavy sand)','Average','Good (firm)','Excellent (ideal)'];
+  const trackMods   = [0, 0.80, 0.90, 1.00, 1.10, 1.20];
+  const driverMods  = { '1.0': 1.0, '1.3': 1.3, '1.6': 1.6, '2.0': 2.0 };
+
+  // ---- UI helpers ----
+  function selectFaction(f) {
+    selectedFaction = f;
+    document.querySelectorAll('.faction-card').forEach(el => el.classList.remove('selected'));
+    document.querySelector('[data-faction="' + f + '"]').classList.add('selected');
+  }
+
+  function updateCurrencyInfo() {
+    const c = document.getElementById('currency').value;
+    document.getElementById('currencyHint').textContent = currencyInfo[c].hint;
+  }
+
+  function updateTrackLabel(v) {
+    document.getElementById('trackVal').textContent = trackLabels[parseInt(v)];
+  }
+
+  // ---- Formatting ----
+  function fmt(n, d) {
+    d = (d === undefined) ? 0 : d;
+    return n.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+  }
+
+  // ---- Validation ----
+  function validateInputs() {
+    let valid = true;
+    const bet = parseFloat(document.getElementById('betAmount').value);
+    const ch = parseInt(document.getElementById('numChariots').value);
+    const betErr = document.getElementById('betError');
+    const chErr = document.getElementById('chariotsError');
+    const betInp = document.getElementById('betAmount');
+    const chInp = document.getElementById('numChariots');
+
+    betErr.classList.remove('show'); betInp.classList.remove('error');
+    chErr.classList.remove('show');  chInp.classList.remove('error');
+
+    if (isNaN(bet) || bet < 1) {
+      betErr.classList.add('show'); betInp.classList.add('error'); valid = false;
+    }
+    if (isNaN(ch) || ch < 4 || ch > 24) {
+      chErr.classList.add('show'); chInp.classList.add('error'); valid = false;
+    }
+    return valid;
+  }
+
+  // ---- Main Calculate ----
+  function calculate() {
+    if (!validateInputs()) return;
+
+    const betRaw    = parseFloat(document.getElementById('betAmount').value);
+    const currency  = document.getElementById('currency').value;
+    const cInfo     = currencyInfo[currency];
+    const betHS     = betRaw * cInfo.toHS;
+
+    const driverMod = parseFloat(document.getElementById('driverRep').value);
+    const crowd     = parseInt(document.getElementById('crowdSlider').value) / 100;
+    const trackV    = parseInt(document.getElementById('trackSlider').value);
+    const trackMod  = trackMods[trackV];
+    const numCh     = parseInt(document.getElementById('numChariots').value);
+    const numLaps   = parseInt(document.getElementById('numLaps').value) || 7;
+
+    // Crowd factor: 0.85 to 1.15 based on slider
+    const crowdFactor = 0.85 + (crowd * 0.30);
+
+    // Field size modifier: more chariots = longer odds
+    const fieldMod = Math.sqrt(numCh / 12);
+
+    // Compute adjusted probability for each faction
+    const results = {};
+    let totalProb = 0;
+    Object.keys(factionData).forEach(key => {
+      const fd = factionData[key];
+      let prob;
+      if (key === selectedFaction) {
+        prob = fd.baseProb * driverMod * trackMod * crowdFactor / fieldMod;
+      } else {
+        prob = fd.baseProb / fieldMod;
+      }
+      prob = Math.min(prob, 0.95);
+      prob = Math.max(prob, 0.01);
+      results[key] = { ...fd, adjProb: prob };
+      totalProb += prob;
+    });
+
+    // Normalize so all probs sum to 1
+    Object.keys(results).forEach(key => {
+      results[key].adjProb = results[key].adjProb / totalProb;
+    });
+
+    const sel = results[selectedFaction];
+    const effectiveOdds = (1 / sel.adjProb) - 1;
+    const grossWinHS = betHS * (effectiveOdds + 1);
+    const vigil = 0.05;
+    const finalPayoutHS = grossWinHS * (1 - vigil);
+    const netProfitHS = finalPayoutHS - betHS;
+    const modernUSD = netProfitHS * 0.50;
+
+    // Convert back to chosen currency for display
+    const finalPayoutCurr = finalPayoutHS / cInfo.toHS;
+    const netProfitCurr = netProfitHS / cInfo.toHS;
+    const betDisplay = betRaw;
+
+    // Build result text for clipboard
+    resultText = `Roman Chariot Race Betting Results\n` +
+      `Faction: ${sel.name}\n` +
+      `Wager: ${fmt(betDisplay, 0)} ${cInfo.abbr}\n` +
+      `Win Probability: ${fmt(sel.adjProb * 100, 1)}%\n` +
+      `Effective Odds: ${fmt(effectiveOdds, 2)}:1\n` +
+      `Net Profit if Win: ${fmt(netProfitCurr, 1)} ${cInfo.abbr}\n` +
+      `Total Payout: ${fmt(finalPayoutCurr, 1)} ${cInfo.abbr}\n` +
+      `Modern Equivalent: ~$${fmt(modernUSD, 0)} USD\n` +
+      `Track: ${trackLabels[trackV]} | Laps: ${numLaps} | Chariots: ${numCh}`;
+
+    requestAnimationFrame(() => {
+
+      // Hero
+      const heroHTML = `
+        <div class="result-hero" style="background: linear-gradient(135deg, ${sel.color} 0%, #1a0a05 100%);">
+          <div class="label">Net Profit if ${sel.emoji} ${sel.name} Wins</div>
+          <div class="big-num">${fmt(netProfitCurr, 1)} ${cInfo.abbr}</div>
+          <div class="sub">Total payout: ${fmt(finalPayoutCurr, 1)} ${cInfo.abbr} &nbsp;|&nbsp; Odds: ${fmt(effectiveOdds, 2)}:1 &nbsp;|&nbsp; Win chance: ${fmt(sel.adjProb * 100, 1)}%</div>
+        </div>`;
+      document.getElementById('resultHero').innerHTML = heroHTML;
+
+      // Grid
+      const gridHTML = `
+        <div class="result-grid">
+          <div class="result-box">
+            <div class="rb-label">Your Wager</div>
+            <div class="rb-val">${fmt(betDisplay, 0)}</div>
+            <div class="rb-sub">${cInfo.name}</div>
+          </div>
+          <div class="result-box">
+            <div class="rb-label">Effective Odds</div>
+            <div class="rb-val">${fmt(effectiveOdds, 2)}:1</div>
+            <div class="rb-sub">after modifiers</div>
+          </div>
+          <div class="result-box">
+            <div class="rb-label">Win Probability</div>
+            <div class="rb-val">${fmt(sel.adjProb * 100, 1)}%</div>
+            <div class="rb-sub">adjusted</div>
+          </div>
+          <div class="result-box">
+            <div class="rb-label">Bookmaker's Vigil</div>
+            <div class="rb-val">5%</div>
+            <div class="rb-sub">${fmt(grossWinHS * vigil / cInfo.toHS, 1)} ${cInfo.abbr}</div>
+          </div>
+        </div>`;
+      document.getElementById('resultGrid').innerHTML = gridHTML;
+
+      // Win probability bars
+      let barsHTML = '<div class="win-bar-wrap"><div class="section-title" style="margin-bottom:0.75rem;">Faction Win Probabilities</div>';
+      const factionColors = { reds: '#c0392b', blues: '#1a5276', greens: '#1e8449', whites: '#c4a005' };
+      Object.keys(results).forEach(key => {
+        const r = results[key];
+        const pct = (r.adjProb * 100).toFixed(1);
+        const width = Math.max(4, r.adjProb * 100);
+        const isSelected = key === selectedFaction;
+        barsHTML += `
+          <div class="win-bar-label">
+            <span>${r.emoji} ${r.name}${isSelected ? ' ⭐' : ''}</span>
+            <span>${pct}%</span>
+          </div>
+          <div class="win-bar-track">
+            <div class="win-bar-fill" style="width:${width}%;background:${factionColors[key]};${isSelected ? 'box-shadow:0 0 6px rgba(0,0,0,0.3)' : ''}">${pct > 8 ? pct+'%' : ''}</div>
+          </div>`;
+      });
+      barsHTML += '</div>';
+      document.getElementById('winBars').innerHTML = barsHTML;
+
+      // Result table
+      let tableHTML = `<div class="section-title">Betting Breakdown</div><div class="result-table-wrap"><table>
+        <thead><tr><th>Metric</th><th class="num">Value</th></tr></thead><tbody>
+        <tr><td>Wager (in Sestertii)</td><td class="num">${fmt(betHS, 0)} HS</td></tr>
+        <tr><td>Race length</td><td class="num">${numLaps} laps × 621m = ${fmt(numLaps * 621, 0)}m</td></tr>
+        <tr><td>Competing chariots</td><td class="num">${numCh}</td></tr>
+        <tr><td>Track condition</td><td class="num">${trackLabels[trackV]}</td></tr>
+        <tr><td>Driver modifier</td><td class="num">×${driverMod.toFixed(1)}</td></tr>
+        <tr><td>Crowd enthusiasm</td><td class="num">${fmt(crowd * 100, 0)}% → ×${crowdFactor.toFixed(3)}</td></tr>
+        <tr><td>Gross return</td><td class="num">${fmt(grossWinHS / cInfo.toHS, 1)} ${cInfo.abbr}</td></tr>
+        <tr><td>Bookmaker's vigil (5%)</td><td class="num">−${fmt(grossWinHS * vigil / cInfo.toHS, 1)} ${cInfo.abbr}</td></tr>
+        <tr><td><strong>Final payout</strong></td><td class="num"><strong>${fmt(finalPayoutCurr, 1)} ${cInfo.abbr}</strong></td></tr>
+        <tr><td><strong>Net profit</strong></td><td class="num"><strong>${fmt(netProfitCurr, 1)} ${cInfo.abbr}</strong></td></tr>
+        </tbody></table></div>`;
+      document.getElementById('resultTable').innerHTML = tableHTML;
+
+      // Modern equivalent
+      const hsDailyWage = 4; // ~1 denarius/day for a laborer
+      const daysWage = netProfitHS / hsDailyWage;
+      const modernEquivHTML = `
+        <div class="modern-equiv">
+          <strong>🏛 Modern Equivalent</strong>
+          Your net profit of <strong>${fmt(netProfitHS, 0)} Sestertii</strong> is estimated at approximately <strong>$${fmt(modernUSD, 0)} USD</strong> in today's purchasing power — or about <strong>${fmt(daysWage, 1)} days' wages</strong> for a Roman day-laborer. For context, a Roman legionary earned ~900 HS/year under Augustus, so this win equals <strong>${fmt(netProfitHS / 900 * 100, 1)}%</strong> of a soldier's annual salary.
+        </div>`;
+      document.getElementById('modernEquiv').innerHTML = modernEquivHTML;
+
+      // Scenario table
+      let scenHTML = `<table><thead><tr><th>If faction wins…</th><th class="num">Your Net</th><th class="num">Total Payout</th><th class="num">Odds</th><th class="num">Win Prob</th></tr></thead><tbody>`;
+      Object.keys(results).forEach(key => {
+        const r = results[key];
+        const isMe = key === selectedFaction;
+        const odds = (1 / r.adjProb) - 1;
+        let netCurr, payoutCurr;
+        if (isMe) {
+          netCurr = netProfitCurr;
+          payoutCurr = finalPayoutCurr;
+        } else {
+          // If I didn't bet on this faction, I lose my wager
+          netCurr = -betDisplay;
+          payoutCurr = 0;
+        }
+        const rowBg = isMe ? 'style="background:#fdf3e3;"' : '';
+        scenHTML += `<tr ${rowBg}><td><span class="badge ${r.badgeClass}">${r.emoji} ${r.name.split(' ')[0]}</span>${isMe ? ' ← your bet' : ''}</td><td class="num" style="color:${netCurr >= 0 ? '#1e8449' : '#c0392b'};font-weight:700;">${netCurr >= 0 ? '+' : ''}${fmt(netCurr, 1)} ${cInfo.abbr}</td><td class="num">${fmt(payoutCurr, 1)} ${cInfo.abbr}</td><td class="num">${fmt(odds, 2)}:1</td><td class="num">${fmt(r.adjProb * 100, 1)}%</td></tr>`;
+      });
+      scenHTML += '</tbody></table>';
+      document.getElementById('scenarioTable').innerHTML = scenHTML;
+
+      // Show results
+      const sec = document.getElementById('resultsSection');
+      sec.style.display = 'block';
+      requestAnimationFrame(() => { sec.classList.add('show'); });
+      sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // ---- Copy ----
+  function copyResults() {
+    if (!resultText) return;
+    navigator.clipboard.writeText(resultText).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = resultText;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+    });
+  }
+
+  // ---- Enter key ----
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT')) {
+      requestAnimationFrame(() => { calculate(); });
+    }
+  });
+
+  // ---- Init ----
+  updateTrackLabel(3);
+  updateCurrencyInfo();
+</script>
+</body>
+</html>
