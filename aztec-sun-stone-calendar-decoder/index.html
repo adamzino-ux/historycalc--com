@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aztec Sun Stone Calendar Decoder — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Decode the Aztec Sun Stone calendar meaning. Enter any date to find your Tonalpohualli day sign, Xiuhpohualli position, and Calendar Round. Free online tool.">
+<link rel="canonical" href="https://historycalc.com/aztec-sun-stone-calendar-decoder/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Aztec Sun Stone Calendar Decoder",
+  "url": "https://historycalc.com/aztec-sun-stone-calendar-decoder/",
+  "description": "Decode the Aztec Sun Stone calendar meaning. Find your Tonalpohualli day sign, trecena, Xiuhpohualli position, and 52-year Calendar Round for any date.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;font-size:16px;line-height:1.6}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#2c1810;padding:0.75rem 1.5rem;display:flex;align-items:center}
+nav a{color:#f5f0e1;font-weight:600;font-size:1rem;letter-spacing:0.03em}
+nav a:hover{text-decoration:none;opacity:0.85}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:700;color:#2c1810;margin-bottom:0.4rem;line-height:1.25}
+.subtitle{color:#6b4226;font-size:0.95rem;margin-bottom:1.5rem}
+.svg-wrap{text-align:center;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(44,24,16,0.08);margin-bottom:2rem}
+.card h2{font-size:1.1rem;color:#8b4513;margin-bottom:1.2rem;border-bottom:2px solid #c4a882;padding-bottom:0.4rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3320;margin-bottom:0.35rem;margin-top:1rem}
+label:first-of-type{margin-top:0}
+input[type="date"],input[type="number"],select{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fffdf7;color:#2c1810;outline:none;transition:box-shadow 0.2s}
+input[type="date"]:focus,input[type="number"]:focus,select:focus{box-shadow:0 0 0 3px rgba(139,69,19,0.18);border-color:#8b4513}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none}
+.error-msg.show{display:block}
+.btn-row{display:flex;gap:0.75rem;margin-top:1.25rem;flex-wrap:wrap}
+button{background:#8b4513;color:#fff;border:none;border-radius:6px;padding:12px 24px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:44px}
+button:hover{background:#6b3410}
+button.secondary{background:#c4a882;color:#2c1810;padding:8px 16px;font-size:0.85rem;font-weight:500}
+button.secondary:hover{background:#b8976d}
+.results{opacity:0;transition:opacity 0.3s ease;display:none}
+.results.show{opacity:1;display:block}
+.big-result{font-size:2rem;font-weight:700;color:#8b4513;margin:0.25rem 0}
+.big-label{font-size:0.8rem;color:#6b4226;text-transform:uppercase;letter-spacing:0.05em;font-weight:600}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1.2rem 0}
+.result-box{background:#f5f0e1;border:1px solid #c4a882;border-radius:6px;padding:1rem;text-align:center}
+.result-box .val{font-size:1.3rem;font-weight:700;color:#8b4513;display:block;margin-bottom:0.15rem}
+.result-box .lbl{font-size:0.75rem;color:#6b4226;font-weight:500;text-transform:uppercase;letter-spacing:0.04em}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+th{background:#c4a882;color:#2c1810;padding:8px 10px;text-align:left;font-weight:600}
+td{padding:8px 10px;border-bottom:1px solid #e8dcc8}
+tr:nth-child(even) td{background:#faf7f0}
+tr:nth-child(odd) td{background:#fff}
+td:last-child,th:last-child{text-align:right}
+.tbl-wrap{overflow-x:auto}
+.did-you-know{background:#2c1810;color:#f5f0e1;border-radius:8px;padding:1.5rem;margin-bottom:2rem}
+.did-you-know h3{color:#c4a882;font-size:1rem;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.05em}
+.did-you-know ul{padding-left:1.25rem}
+.did-you-know li{margin-bottom:0.5rem;font-size:0.9rem;line-height:1.5}
+.hist-context{background:#fff8ee;border-left:4px solid #8b4513;border-radius:0 6px 6px 0;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.hist-context h3{color:#8b4513;font-size:1rem;font-weight:700;margin-bottom:0.5rem}
+.hist-context p{font-size:0.9rem;color:#3d2010;line-height:1.6}
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;color:#8b4513;margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:1px solid #c4a882}
+.content-section p{font-size:0.92rem;color:#3d2010;margin-bottom:0.75rem;line-height:1.65}
+.content-section ul{padding-left:1.2rem;margin-bottom:0.75rem}
+.content-section li{font-size:0.92rem;color:#3d2010;margin-bottom:0.4rem;line-height:1.55}
+details{border:1px solid #c4a882;border-radius:6px;margin-bottom:0.6rem;background:#fff}
+summary{padding:0.75rem 1rem;cursor:pointer;font-weight:600;color:#8b4513;font-size:0.9rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"▼";font-size:0.7rem;transition:transform 0.2s}
+details[open] summary::after{transform:rotate(180deg)}
+details p{padding:0 1rem 0.75rem;font-size:0.88rem;color:#3d2010;line-height:1.6}
+.related{margin-bottom:2rem}
+.related h2{font-size:1.1rem;color:#8b4513;margin-bottom:0.75rem;border-bottom:1px solid #c4a882;padding-bottom:0.4rem}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+.related-link{background:#fff;border:1px solid #c4a882;border-radius:6px;padding:0.65rem 0.9rem;font-size:0.83rem;color:#8b4513;font-weight:500;transition:background 0.2s;display:block}
+.related-link:hover{background:#f5f0e1;text-decoration:none}
+.ad-slot{min-height:0;margin:0}
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.25rem;font-size:0.82rem}
+footer a{color:#c4a882;margin:0 0.5rem}
+footer a:hover{color:#f5f0e1}
+.day-sign-display{font-size:3rem;text-align:center;margin:0.5rem 0;line-height:1}
+.copy-btn{background:#c4a882;color:#2c1810;border:none;border-radius:4px;padding:6px 14px;font-size:0.8rem;cursor:pointer;font-weight:500;min-height:32px;margin-left:auto}
+.copy-btn:hover{background:#b8976d}
+.result-header{display:flex;align-items:center;gap:0.75rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.modern-equiv{background:#8b4513;color:#f5f0e1;border-radius:6px;padding:1rem 1.25rem;margin-top:1rem;font-size:0.88rem}
+.modern-equiv strong{color:#f5d59f}
+@media(max-width:640px){
+  .result-grid{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:1fr}
+  .btn-row{flex-direction:column}
+  button{width:100%}
+  h1{font-size:1.35rem}
+  .big-result{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚙ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <div class="svg-wrap">
+    <svg viewBox="0 0 240 240" width="180" height="180" aria-label="Aztec Sun Stone illustration" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="120" cy="120" r="115" fill="#2c1810" stroke="#c4a882" stroke-width="3"/>
+      <!-- Second ring -->
+      <circle cx="120" cy="120" r="100" fill="none" stroke="#8b4513" stroke-width="6"/>
+      <!-- Calendar ring -->
+      <circle cx="120" cy="120" r="88" fill="#4a2010" stroke="#c4a882" stroke-width="2"/>
+      <!-- Day glyphs ring marks -->
+      <circle cx="120" cy="120" r="72" fill="#f5f0e1" stroke="#8b4513" stroke-width="3"/>
+      <!-- Sun face center -->
+      <circle cx="120" cy="120" r="52" fill="#c4a882" stroke="#8b4513" stroke-width="2.5"/>
+      <circle cx="120" cy="120" r="38" fill="#8b4513"/>
+      <!-- Tonatiuh face -->
+      <circle cx="120" cy="120" r="28" fill="#f5d59f"/>
+      <!-- Eyes -->
+      <ellipse cx="110" cy="116" rx="5" ry="5.5" fill="#2c1810"/>
+      <ellipse cx="130" cy="116" rx="5" ry="5.5" fill="#2c1810"/>
+      <ellipse cx="110" cy="115" rx="2" ry="2" fill="#fff" opacity="0.5"/>
+      <ellipse cx="130" cy="115" rx="2" ry="2" fill="#fff" opacity="0.5"/>
+      <!-- Nose -->
+      <path d="M116 122 Q120 127 124 122" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+      <!-- Tongue (obsidian knife) -->
+      <path d="M113 130 Q120 140 127 130 Q120 133 113 130Z" fill="#8b4513"/>
+      <!-- Sun rays -->
+      <g fill="#c4a882" stroke="#8b4513" stroke-width="0.5">
+        <polygon points="120,68 116,80 124,80"/>
+        <polygon points="120,172 116,160 124,160"/>
+        <polygon points="68,120 80,116 80,124"/>
+        <polygon points="172,120 160,116 160,124"/>
+        <polygon points="82,82 88,94 96,88"/>
+        <polygon points="158,82 152,94 144,88"/>
+        <polygon points="82,158 88,146 96,152"/>
+        <polygon points="158,158 152,146 144,152"/>
+      </g>
+      <!-- Day ring tick marks -->
+      <g stroke="#8b4513" stroke-width="2">
+        <circle cx="120" cy="120" r="80" fill="none" stroke="#c4a882" stroke-width="1" stroke-dasharray="6 7"/>
+      </g>
+      <!-- Decorative outer symbols -->
+      <g fill="#c4a882" font-size="8" text-anchor="middle" font-family="serif">
+        <text x="120" y="22">☀</text>
+        <text x="218" y="124">☽</text>
+        <text x="120" y="228">★</text>
+        <text x="22" y="124">✦</text>
+      </g>
+    </svg>
+  </div>
+
+  <h1>Aztec Sun Stone Calendar Decoder</h1>
+  <p class="subtitle">Discover the aztec sun stone calendar meaning for any date — find your day sign, trecena, and Calendar Round</p>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <h2>🗓 Enter a Date to Decode</h2>
+    <label for="inputDate">Select any date (Gregorian)</label>
+    <input type="date" id="inputDate" min="0001-01-01" max="9999-12-31">
+    <div class="error-msg" id="dateError">Please enter a valid date.</div>
+
+    <label for="displayMode">Display language</label>
+    <select id="displayMode">
+      <option value="nahuatl">Nahuatl (original names)</option>
+      <option value="english">English translations</option>
+      <option value="both">Both</option>
+    </select>
+
+    <div class="btn-row">
+      <button id="calcBtn">🔍 Decode Calendar</button>
+      <button class="secondary" id="todayBtn">📅 Use Today</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results">
+    <div class="card">
+      <div class="result-header">
+        <div>
+          <div class="big-label">Your Tonalpohualli Day Sign</div>
+          <div class="big-result" id="rDaySign">—</div>
+        </div>
+        <button class="copy-btn" id="copyBtn">Copy Results</button>
+      </div>
+
+      <div class="day-sign-display" id="rDayEmoji">☀</div>
+
+      <div class="result-grid">
+        <div class="result-box">
+          <span class="val" id="rDayNum">—</span>
+          <span class="lbl">Day Number (1–13)</span>
+        </div>
+        <div class="result-box">
+          <span class="val" id="rDayPos">—</span>
+          <span class="lbl">Day Sign (1–20)</span>
+        </div>
+        <div class="result-box">
+          <span class="val" id="rTrecena">—</span>
+          <span class="lbl">Trecena (13-day week)</span>
+        </div>
+        <div class="result-box">
+          <span class="val" id="rTonalDay">—</span>
+          <span class="lbl">Tonalpohualli Day (1–260)</span>
+        </div>
+      </div>
+
+      <div class="tbl-wrap">
+        <table id="resultsTable">
+          <thead>
+            <tr><th>Calendar</th><th>Value</th></tr>
+          </thead>
+          <tbody id="resultsTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="modern-equiv" id="modernEquiv"></div>
+    </div>
+  </div>
+
+  <!-- DID YOU KNOW -->
+  <div class="did-you-know">
+    <h3>☀ Did You Know?</h3>
+    <ul>
+      <li>The Aztec Sun Stone weighs approximately <strong>24 metric tonnes</strong> and measures 3.6 meters (nearly 12 feet) in diameter — it was carved from a single piece of basalt around 1502 CE during the reign of Emperor Moctezuma II.</li>
+      <li>The Tonalpohualli (260-day sacred calendar) may have been designed around human gestation (~266 days) or the agricultural cycles of maize cultivation in Mesoamerica.</li>
+      <li>A full Calendar Round — one complete cycle where both the 260-day Tonalpohualli and 365-day Xiuhpohualli align — takes exactly <strong>18,980 days (52 years)</strong>. The Aztecs called this a "Bundle of Years" (Xiuhmolpilli).</li>
+    </ul>
+  </div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="hist-context">
+    <h3>📜 Historical Context</h3>
+    <p>The Aztec Sun Stone (Piedra del Sol) was commissioned around 1502 CE and dedicated to Tonatiuh, the sun god. Discovered buried beneath Mexico City's Plaza Mayor in 1790, it encodes the Aztec dual calendar system: the sacred 260-day <em>Tonalpohualli</em> and the 365-day solar <em>Xiuhpohualli</em>. Aztec priests called <em>tonalpouhque</em> (day-keepers) used the calendar to determine auspicious dates for births, marriages, and warfare. Each of the 260 day-signs carried distinct omens — the day 1-Crocodile (Ce Cipactli) began every new Tonalpohualli cycle. The solar year was divided into 18 months of 20 days, plus 5 "nameless" days (Nemontemi) considered extremely unlucky.</p>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Aztec Sun Stone Calendar Decoder</h2>
+    <p>Select any Gregorian date in the date picker above and click "Decode Calendar." The tool instantly calculates your position within the Tonalpohualli (260-day sacred count), your day sign and its number, your trecena (13-day period), the Xiuhpohualli solar year position, and where you fall in the 52-year Calendar Round. Use the display mode dropdown to see original Nahuatl names, English translations, or both.</p>
+    <p>The results show your unique day-name combination — the same way Aztec priests would have recorded your birth date in their sacred almanacs (<em>tonalamatl</em>).</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding the aztec sun stone calendar meaning isn't just an academic exercise — it unlocks one of the most sophisticated timekeeping systems ever devised by a pre-Columbian civilization. The Aztec (Mexica) calendar was used daily for everything from naming newborns to scheduling military campaigns. A child born on the day 1-Rabbit (Ce Tochtli) was believed destined for drinking and excess; one born on 4-Wind (Nahui Ehecatl) faced a life of hardship. These weren't superstitions to the Aztecs — they were cosmic law.</p>
+    <p>Modern historians use the Calendar Round to cross-reference Aztec historical records with European dates. When Spanish conquistador Hernán Cortés arrived in 1519, that year corresponded to 1-Reed (Ce Acatl) in the Aztec calendar — the prophesied return year of the feathered serpent god Quetzalcoatl. This calendrical coincidence may have contributed to Moctezuma II's initial hesitation to resist the Spanish invasion, with world-altering consequences.</p>
+    <p>Today, Indigenous Nahua communities in Mexico still observe the Tonalpohualli. Knowing your day sign connects you to over 3,000 years of continuous Mesoamerican calendrical tradition.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculation anchors to a known Aztec date correlation. Scholars use the <strong>GMT correlation constant (584283)</strong> — established by Goodman, Martínez Hernández, and Thompson — linking the Mayan/Aztec calendar to the Julian Day Number. The most widely accepted Aztec correlation places the Tonalpohualli day <strong>1-Cipactli (1-Crocodile)</strong> on the Julian date of September 13, 1521 CE (Gregorian).</p>
+    <p><strong>Formulas used:</strong></p>
+    <ul>
+      <li><strong>Tonalpohualli position:</strong> Day number in 260-day cycle = (days since epoch) mod 260</li>
+      <li><strong>Day sign (1–20):</strong> position mod 20 + 1</li>
+      <li><strong>Day number (1–13):</strong> position mod 13 + 1</li>
+      <li><strong>Xiuhpohualli position:</strong> days since epoch mod 365</li>
+      <li><strong>Xiuhpohualli month:</strong> floor(xiuh_pos / 20) → one of 18 named months + Nemontemi</li>
+      <li><strong>Calendar Round:</strong> days since epoch mod 18,980 (LCM of 260 and 365)</li>
+      <li><strong>Xiuhpohualli year sign:</strong> One of 4 year-bearers (Reed, Flint, House, Rabbit) cycling every 52 years</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Gregorian vs. Julian:</strong> Before October 15, 1582, dates used the Julian calendar. This tool accepts Gregorian proleptic dates — results before 1582 are academically approximate.</li>
+      <li><strong>Correlation constants vary:</strong> Different scholars use slightly different correlation constants (GMT vs. Spinden). This tool uses the most widely accepted GMT+4 correlation.</li>
+      <li><strong>Day names have deep meaning:</strong> Each of the 20 day signs (like Cipactli/Crocodile, Ehecatl/Wind, Calli/House) carries layers of symbolic, divine, and omen-based significance — not just a number.</li>
+      <li><strong>The Nemontemi:</strong> The 5 "unlucky" days at the end of the solar year (days 361–365) were days of fasting and dread. If your date falls in this period, the tool will flag it.</li>
+      <li><strong>Use "today" for personal meaning:</strong> Click "Use Today" to decode your current date — many people find meaning in knowing their personal day sign, like a Mesoamerican horoscope.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What is the Aztec Sun Stone actually showing?</summary>
+      <p>Despite popular belief, the Sun Stone is not a functional calendar — it's a monument encoding cosmological information about the Aztec universe, specifically the five "Suns" (cosmic eras). The central face is Tonatiuh (the sun god), surrounded by the four previous world-ages, the 20 day signs, and solar and stellar symbols. It was likely used as a sacrificial altar or cosmic reference stone, not as a daily planning tool.</p>
+    </details>
+    <details>
+      <summary>How does the 260-day Tonalpohualli work?</summary>
+      <p>It combines 20 named day signs (Cipactli, Ehecatl, Calli, etc.) with the numbers 1–13, cycling simultaneously. Because 20 and 13 share no common factors, every unique combination of number + sign takes exactly 260 days before repeating. Each person's birthday in this system served as their "name" and determined their destiny according to Aztec belief.</p>
+    </details>
+    <details>
+      <summary>What is the Calendar Round?</summary>
+      <p>The Calendar Round is the 52-year cycle created when the 260-day Tonalpohualli and 365-day Xiuhpohualli (solar year) realign. The LCM of 260 and 365 is 18,980 days, or exactly 52 solar years. At the end of each Calendar Round, Aztecs held the New Fire Ceremony (Toxiuhmolpilia), extinguishing all fires and drilling new fire on a priest's chest to ensure the sun would rise again.</p>
+    </details>
+    <details>
+      <summary>Is the Aztec calendar still in use today?</summary>
+      <p>Yes. Indigenous Nahua communities in Mexico, particularly in states like Guerrero and Oaxaca, still practice the Tonalpohualli count. The Aztec calendar shares its 260-day structure with the Maya Tzolkin and other Mesoamerican sacred calendars, which are observed continuously across the region to this day, making it one of the longest unbroken calendar traditions in the world.</p>
+    </details>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related">
+    <h2>🏛 Related Historical Tools</h2>
+    <div class="related-grid">
+      <a class="related-link" href="/ancient-egyptian-farming-yield-calculator/">🌾 Ancient Egyptian Farming Yield Calculator</a>
+      <a class="related-link" href="/babylonian-sexagesimal-number-converter/">🔢 Babylonian Sexagesimal Number Converter</a>
+      <a class="related-link" href="/inca-quipu-knot-encoder/">🪢 Inca Quipu Knot Encoder</a>
+      <a class="related-link" href="/roman-chariot-race-betting-calculator/">🏇 Roman Chariot Race Betting Calculator</a>
+      <a class="related-link" href="/greek-hoplite-phalanx-calculator/">⚔ Greek Hoplite Phalanx Battle Strength Calculator</a>
+      <a class="related-link" href="/medieval-black-death-population-estimator/">☠ Medieval Black Death Population Loss Estimator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div style="margin-top:0.5rem">© 2025 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+// === DATA ===
+const DAY_SIGNS = [
+  { nahuatl:"Cipactli",  english:"Crocodile", emoji:"🐊", omen:"Favorable — industrious and energetic" },
+  { nahuatl:"Ehecatl",   english:"Wind",       emoji:"💨", omen:"Variable — creative but scattered" },
+  { nahuatl:"Calli",     english:"House",      emoji:"🏠", omen:"Stable — domestic and protective" },
+  { nahuatl:"Cuetzpallin",english:"Lizard",   emoji:"🦎", omen:"Fortunate — sexual vitality and luck" },
+  { nahuatl:"Coatl",     english:"Serpent",    emoji:"🐍", omen:"Mixed — rich but unstable" },
+  { nahuatl:"Miquiztli", english:"Death",      emoji:"💀", omen:"Unlucky — linked to dreams and the dead" },
+  { nahuatl:"Mazatl",    english:"Deer",       emoji:"🦌", omen:"Mild — gentle, wandering nature" },
+  { nahuatl:"Tochtli",   english:"Rabbit",     emoji:"🐇", omen:"Mixed — festivity but excess drinking" },
+  { nahuatl:"Atl",       english:"Water",      emoji:"💧", omen:"Variable — powerful and dangerous" },
+  { nahuatl:"Itzcuintli",english:"Dog",        emoji:"🐕", omen:"Good — loyal guide to the underworld" },
+  { nahuatl:"Ozomatli",  english:"Monkey",     emoji:"🐒", omen:"Favorable — arts, dance, and mischief" },
+  { nahuatl:"Malinalli", english:"Grass",      emoji:"🌿", omen:"Unlucky — struggle and hardship" },
+  { nahuatl:"Acatl",     english:"Reed",       emoji:"🎋", omen:"Powerful — associated with Quetzalcoatl" },
+  { nahuatl:"Ocelotl",   english:"Jaguar",     emoji:"🐆", omen:"Fierce — warriors and the night" },
+  { nahuatl:"Cuauhtli",  english:"Eagle",      emoji:"🦅", omen:"Noble — solar warriors and courage" },
+  { nahuatl:"Cozcacuauhtli",english:"Vulture", emoji:"🦅", omen:"Wise — old age and long life" },
+  { nahuatl:"Ollin",     english:"Earthquake", emoji:"🌀", omen:"Dangerous — our current sun's end-sign" },
+  { nahuatl:"Tecpatl",   english:"Flint Knife",emoji:"🔪", omen:"Sharp — sacrifice and conflict" },
+  { nahuatl:"Quiahuitl", english:"Rain",       emoji:"🌧", omen:"Mixed — Tlaloc's blessing or wrath" },
+  { nahuatl:"Xochitl",   english:"Flower",     emoji:"🌸", omen:"Favorable — arts, love, and beauty" }
+];
+
+const TRECENAS = [
+  "Ce Cipactli","Ce Ocelotl","Ce Mazatl","Ce Xochitl","Ce Acatl",
+  "Ce Miquiztli","Ce Quiahuitl","Ce Malinalli","Ce Coatl","Ce Tecpatl",
+  "Ce Ozomatli","Ce Cuetzpallin","Ce Ollin","Ce Itzcuintli","Ce Calli",
+  "Ce Cozcacuauhtli","Ce Atl","Ce Ehecatl","Ce Cuauhtli","Ce Tochtli"
+];
+
+const MONTHS_XIUH = [
+  {nahuatl:"Atlcahualo",    english:"Ceasing of Water"},
+  {nahuatl:"Tlacaxipehualiztli",english:"Flaying of Men"},
+  {nahuatl:"Tozoztontli",   english:"Small Vigil"},
+  {nahuatl:"Hueytozoztli",  english:"Great Vigil"},
+  {nahuatl:"Toxcatl",       english:"Dryness"},
+  {nahuatl:"Etzalcualiztli",english:"Eating of Maize & Beans"},
+  {nahuatl:"Tecuilhuitontli",english:"Small Feast of Lords"},
+  {nahuatl:"Hueytecuilhuitl",english:"Great Feast of Lords"},
+  {nahuatl:"Tlaxochimaco", english:"Offering of Flowers"},
+  {nahuatl:"Xocotlhuetzi", english:"Falling of Fruit"},
+  {nahuatl:"Ochpaniztli",  english:"Sweeping"},
+  {nahuatl:"Teotleco",     english:"Return of the Gods"},
+  {nahuatl:"Tepeilhuitl",  english:"Feast of Mountains"},
+  {nahuatl:"Quecholli",    english:"Roseate Spoonbill"},
+  {nahuatl:"Panquetzaliztli",english:"Raising of Banners"},
+  {nahuatl:"Atemoztli",    english:"Descent of Water"},
+  {nahuatl:"Tititl",       english:"Stretching"},
+  {nahuatl:"Izcalli",      english:"Encouragement"},
+  {nahuatl:"Nemontemi",    english:"Nameless / Unlucky Days"}
+];
+
+const YEAR_BEARERS = [
+  {nahuatl:"Tochtli", english:"Rabbit",    emoji:"🐇"},
+  {nahuatl:"Acatl",   english:"Reed",      emoji:"🎋"},
+  {nahuatl:"Tecpatl", english:"Flint",     emoji:"🔪"},
+  {nahuatl:"Calli",   english:"House",     emoji:"🏠"}
+];
+
+// Correlation: Day 0 of Tonalpohualli (i.e., 1-Cipactli at index 0)
+// correlates to Julian Day Number 2284283 (= September 13, 1521 CE Gregorian)
+// Using widely-accepted Aztec correlation
+
+function gregorianToJDN(year,month,day){
+  // Proleptic Gregorian calendar to Julian Day Number
+  const a=Math.floor((14-month)/12);
+  const y=year+4800-a;
+  const m=month+12*a-3;
+  return day+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4)-Math.floor(y/100)+Math.floor(y/400)-32045;
+}
+
+function decodeAztec(year,month,day){
+  const jdn = gregorianToJDN(year,month,day);
+  // Anchor: JDN 2284283 = 1-Cipactli (Tonal day 0 internally, day 1 in display)
+  const ANCHOR_JDN = 2284283;
+  const daysSinceAnchor = jdn - ANCHOR_JDN;
+
+  // Tonalpohualli (260-day cycle)
+  const tonal260 = ((daysSinceAnchor % 260) + 260) % 260; // 0-indexed
+  const daySignIndex = tonal260 % 20;          // 0-19
+  const dayNumber    = (tonal260 % 13) + 1;   // 1-13
+  const trecenaIndex = Math.floor(tonal260 / 13) % 20;
+  const tonalDay     = tonal260 + 1;           // 1-260
+
+  // Xiuhpohualli (365-day solar year)
+  const xiuh365 = ((daysSinceAnchor % 365) + 365) % 365; // 0-indexed
+  const monthIndex = Math.min(Math.floor(xiuh365 / 20), 18); // 0-18
+  const dayInMonth = (xiuh365 % 20) + 1; // 1-20
+
+  // Calendar Round (18,980 day cycle = 52 years)
+  const calRound = ((daysSinceAnchor % 18980) + 18980) % 18980;
+  const calRoundYear = Math.floor(calRound / 365) + 1; // 1-52
+
+  // Year Bearer — cycles through Tochtli, Acatl, Tecpatl, Calli
+  const yearBearerIndex = Math.floor(((daysSinceAnchor + 365) / 365)) % 4;
+  const yearBearerNum = (Math.floor(((daysSinceAnchor) / 365)) % 13) + 1; // 1-13
+  const yb = ((Math.floor(daysSinceAnchor / 365) % 4) + 4) % 4;
+  const ybNum = ((Math.floor(daysSinceAnchor / 365) % 13) + 13) % 13 + 1;
+
+  const isNemontemi = monthIndex === 18;
+
+  return {
+    daySignIndex, dayNumber, trecenaIndex, tonalDay,
+    monthIndex, dayInMonth, calRound, calRoundYear,
+    yb, ybNum, isNemontemi, jdn, daysSinceAnchor
+  };
+}
+
+function formatName(obj, mode) {
+  if(mode === 'nahuatl') return obj.nahuatl;
+  if(mode === 'english') return obj.english;
+  return `${obj.nahuatl} (${obj.english})`;
+}
+
+function calculate(){
+  const dateVal = document.getElementById('inputDate').value;
+  const errEl = document.getElementById('dateError');
+
+  if(!dateVal){
+    errEl.classList.add('show');
+    document.getElementById('inputDate').classList.add('error');
+    return;
+  }
+  errEl.classList.remove('show');
+  document.getElementById('inputDate').classList.remove('error');
+
+  const parts = dateVal.split('-');
+  const year = parseInt(parts[0],10);
+  const month = parseInt(parts[1],10);
+  const day = parseInt(parts[2],10);
+
+  if(isNaN(year)||isNaN(month)||isNaN(day)||year<1){
+    errEl.textContent='Please enter a valid date (year must be > 0).';
+    errEl.classList.add('show');
+    return;
+  }
+
+  const mode = document.getElementById('displayMode').value;
+  const d = decodeAztec(year,month,day);
+  const sign = DAY_SIGNS[d.daySignIndex];
+  const trecena = TRECENAS[d.trecenaIndex];
+  const xiuhMonth = MONTHS_XIUH[d.monthIndex];
+  const yearBearer = YEAR_BEARERS[d.yb];
+
+  const calRoundDaysLeft = 18980 - (d.calRound % 18980);
+  const calRoundPct = Math.round((d.calRound / 18980) * 100);
+
+  let signDisplay = '';
+  if(mode==='nahuatl') signDisplay = `${d.dayNumber}-${sign.nahuatl}`;
+  else if(mode==='english') signDisplay = `${d.dayNumber}-${sign.english}`;
+  else signDisplay = `${d.dayNumber}-${sign.nahuatl} / ${sign.english}`;
+
+  let monthDisplay = formatName(xiuhMonth, mode);
+  let ybDisplay = mode==='nahuatl'?`${d.ybNum}-${yearBearer.nahuatl}`:mode==='english'?`${d.ybNum}-${yearBearer.english}`:`${d.ybNum}-${yearBearer.nahuatl} (${yearBearer.english})`;
+
+  const nemNote = d.isNemontemi ? ' ⚠ Nemontemi (Unlucky Days!)' : '';
+
+  let tableRows = `
+    <tr><td>Day Name (Nahuatl)</td><td>${d.dayNumber}-${sign.nahuatl} ${sign.emoji}</td></tr>
+    <tr><td>Day Name (English)</td><td>${d.dayNumber}-${sign.english}</td></tr>
+    <tr><td>Day Omen</td><td>${sign.omen}</td></tr>
+    <tr><td>Trecena (13-day period)</td><td>${trecena}</td></tr>
+    <tr><td>Tonalpohualli Day</td><td>${d.tonalDay.toLocaleString()} of 260</td></tr>
+    <tr><td>Days until next cycle</td><td>${(260 - d.tonalDay + 1).toLocaleString()}</td></tr>
+    <tr><td colspan="2" style="background:#f5f0e1;font-weight:600;color:#8b4513">☀ Solar Year (Xiuhpohualli)</td></tr>
+    <tr><td>Month (Veintena)</td><td>${monthDisplay}${nemNote}</td></tr>
+    <tr><td>Day in Month</td><td>${d.dayInMonth} of 20</td></tr>
+    <tr><td>Year Sign (Carrier)</td><td>${yearBearer.emoji} ${ybDisplay}</td></tr>
+    <tr><td colspan="2" style="background:#f5f0e1;font-weight:600;color:#8b4513">🔄 Calendar Round (52 Years)</td></tr>
+    <tr><td>Day in Calendar Round</td><td>${d.calRound.toLocaleString()} of 18,980</td></tr>
+    <tr><td>Year in Calendar Round</td><td>${d.calRoundYear} of 52</td></tr>
+    <tr><td>Calendar Round % complete</td><td>${calRoundPct}%</td></tr>
+    <tr><td>Days to next New Fire Ceremony</td><td>${calRoundDaysLeft.toLocaleString()}</td></tr>
+    <tr><td>Julian Day Number</td><td>${d.jdn.toLocaleString()}</td></tr>
+  `;
+
+  const modernEquiv = `<strong>Modern Equivalent:</strong> Your Calendar Round year ${d.calRoundYear} of 52 is like being ${Math.round((d.calRoundYear/52)*100)}% through a 52-year Aztec "century." The next New Fire Ceremony (Toxiuhmolpilia) equivalent would be in <strong>${calRoundDaysLeft.toLocaleString()} days</strong> (~${(calRoundDaysLeft/365.25).toFixed(1)} years). In Aztec society, living through an entire Calendar Round was considered a great spiritual achievement.`;
+
+  requestAnimationFrame(()=>{
+    document.getElementById('rDaySign').textContent = signDisplay;
+    document.getElementById('rDayEmoji').textContent = sign.emoji;
+    document.getElementById('rDayNum').textContent = d.dayNumber;
+    document.getElementById('rDayPos').textContent = d.daySignIndex + 1;
+    document.getElementById('rTrecena').textContent = trecena;
+    document.getElementById('rTonalDay').textContent = d.tonalDay;
+    document.getElementById('resultsTbody').innerHTML = tableRows;
+    document.getElementById('modernEquiv').innerHTML = modernEquiv;
+
+    const resultsEl = document.getElementById('results');
+    resultsEl.style.display = 'block';
+    requestAnimationFrame(()=>{ resultsEl.classList.add('show'); });
+
+    resultsEl.scrollIntoView({behavior:'smooth',block:'start'});
+
+    // Store for copy
+    window._copyText = `Aztec Calendar Decode for ${dateVal}\n` +
+      `Day Sign: ${d.dayNumber}-${sign.nahuatl} (${sign.english}) ${sign.emoji}\n` +
+      `Omen: ${sign.omen}\n` +
+      `Trecena: ${trecena}\n` +
+      `Tonalpohualli Day: ${d.tonalDay} of 260\n` +
+      `Xiuhpohualli Month: ${xiuhMonth.nahuatl} (${xiuhMonth.english}), Day ${d.dayInMonth}\n` +
+      `Year Bearer: ${yearBearer.emoji} ${d.ybNum}-${yearBearer.nahuatl} (${yearBearer.english})\n` +
+      `Calendar Round: Day ${d.calRound.toLocaleString()} of 18,980 (Year ${d.calRoundYear}/52)\n` +
+      `historycalc.com/aztec-sun-stone-calendar-decoder/`;
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  requestAnimationFrame(calculate);
+});
+
+document.getElementById('todayBtn').addEventListener('click', ()=>{
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth()+1).padStart(2,'0');
+  const dy = String(now.getDate()).padStart(2,'0');
+  document.getElementById('inputDate').value = `${y}-${m}-${dy}`;
+  requestAnimationFrame(calculate);
+});
+
+document.getElementById('inputDate').addEventListener('keydown',(e)=>{
+  if(e.key==='Enter') requestAnimationFrame(calculate);
+});
+
+document.getElementById('copyBtn').addEventListener('click', ()=>{
+  if(!window._copyText) return;
+  navigator.clipboard.writeText(window._copyText).then(()=>{
+    const btn = document.getElementById('copyBtn');
+    btn.textContent='Copied!';
+    setTimeout(()=>{ btn.textContent='Copy Results'; },2000);
+  }).catch(()=>{
+    const btn = document.getElementById('copyBtn');
+    btn.textContent='Copy failed';
+    setTimeout(()=>{ btn.textContent='Copy Results'; },2000);
+  });
+});
+
+// Pre-fill today on load
+(function(){
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = String(now.getMonth()+1).padStart(2,'0');
+  const dy = String(now.getDate()).padStart(2,'0');
+  document.getElementById('inputDate').value = `${y}-${m}-${dy}`;
+})();
+</script>
+</body>
+</html>
