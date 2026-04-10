@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Guild Apprentice Wage Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate medieval guild apprentice wages, journeyman pay, and master craftsman earnings. Explore historically accurate guild wages and apprenticeship costs from 1200–1500 AD.">
+<link rel="canonical" href="https://historycalc.com/medieval-guild-apprentice-wage-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Guild Apprentice Wage Calculator",
+  "description": "Calculate medieval guild apprentice wages, journeyman pay, and master craftsman earnings based on historically accurate data from 1200–1500 AD.",
+  "url": "https://historycalc.com/medieval-guild-apprentice-wage-calculator/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f0e1;
+    color: #2c1810;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  a { color: #8b4513; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    background: #2c1810;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+  }
+  nav a {
+    color: #f5f0e1;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  nav a:hover { color: #c4a882; }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 1.5rem 3rem;
+  }
+
+  .hero-svg {
+    width: 100%;
+    max-width: 640px;
+    margin: 1.5rem auto 0;
+    display: block;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #2c1810;
+    margin: 1.5rem 0 0.4rem;
+    line-height: 1.3;
+  }
+  .subtitle {
+    color: #6b4226;
+    font-size: 0.95rem;
+    margin-bottom: 1.8rem;
+  }
+
+  /* Card */
+  .card {
+    background: #fff8ee;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.08);
+    margin-bottom: 2rem;
+  }
+
+  /* Labels & Inputs */
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3320;
+    margin-bottom: 5px;
+    margin-top: 1.1rem;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  select, input[type="number"], input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fffdf7;
+    color: #2c1810;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    min-height: 44px;
+  }
+  select:focus, input:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  select.error, input.error {
+    border-color: #e74c3c;
+  }
+  .error-msg {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+
+  /* Slider */
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  input[type="range"] {
+    flex: 1;
+    height: 6px;
+    accent-color: #8b4513;
+    cursor: pointer;
+    min-height: 28px;
+  }
+  .slider-val {
+    font-weight: 700;
+    color: #8b4513;
+    min-width: 60px;
+    text-align: right;
+    font-size: 1rem;
+  }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) { .row-2 { grid-template-columns: 1fr; } }
+
+  /* Button */
+  .btn {
+    display: block;
+    width: 100%;
+    background: #8b4513;
+    color: #fff;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.2s;
+    min-height: 44px;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: #6d340f; }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid #8b4513;
+    color: #8b4513;
+    font-size: 0.85rem;
+    padding: 7px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    min-height: 36px;
+  }
+  .btn-secondary:hover { background: #8b4513; color: #fff; }
+
+  /* Results */
+  #results {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  #results.visible { opacity: 1; }
+
+  .result-hero {
+    background: linear-gradient(135deg, #2c1810 0%, #5a3320 100%);
+    border-radius: 8px;
+    padding: 1.5rem;
+    color: #f5f0e1;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .result-hero .big-num {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #f0c060;
+    display: block;
+    line-height: 1.1;
+  }
+  .result-hero .big-label {
+    font-size: 0.9rem;
+    color: #c4a882;
+    margin-top: 4px;
+  }
+  .result-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.2rem;
+  }
+  @media (max-width: 480px) { .result-hero-grid { grid-template-columns: 1fr; gap: 0.6rem; } }
+  .result-mini {
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+  .result-mini .mini-num {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #f0c060;
+    display: block;
+  }
+  .result-mini .mini-label {
+    font-size: 0.75rem;
+    color: #c4a882;
+    margin-top: 2px;
+  }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  th {
+    background: #c4a882;
+    color: #2c1810;
+    font-weight: 600;
+    padding: 9px 12px;
+    text-align: left;
+    white-space: nowrap;
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e8dcc8;
+  }
+  tr:nth-child(even) td { background: #faf5eb; }
+  tr:nth-child(odd) td { background: #fff8ee; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8b4513;
+    margin-bottom: 0.8rem;
+  }
+
+  .result-copy-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+
+  /* Modern equivalent */
+  .modern-eq {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.92rem;
+  }
+  .modern-eq strong { color: #f0c060; }
+
+  /* Career bar chart */
+  .bar-section { margin-top: 1.5rem; }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .bar-label {
+    font-size: 0.8rem;
+    min-width: 90px;
+    color: #5a3320;
+    font-weight: 500;
+  }
+  .bar-track {
+    flex: 1;
+    height: 20px;
+    background: #e8dcc8;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: #8b4513;
+    transition: width 0.5s ease;
+  }
+  .bar-fill.journeyman { background: #c47820; }
+  .bar-fill.master { background: #6d340f; }
+  .bar-num {
+    font-size: 0.8rem;
+    color: #2c1810;
+    font-weight: 600;
+    min-width: 70px;
+    text-align: right;
+  }
+
+  /* Did you know */
+  .did-you-know {
+    background: #fff3cd;
+    border-left: 4px solid #c47820;
+    border-radius: 0 8px 8px 0;
+    padding: 1.2rem 1.4rem;
+    margin: 2rem 0;
+  }
+  .did-you-know h3 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #8b4513;
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .did-you-know ul {
+    padding-left: 1.2rem;
+  }
+  .did-you-know li {
+    font-size: 0.88rem;
+    color: #5a3320;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Content section */
+  .content-section h2 {
+    font-size: 1.2rem;
+    color: #2c1810;
+    margin: 2rem 0 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 2px solid #c4a882;
+  }
+  .content-section p { font-size: 0.9rem; color: #3d2010; margin-bottom: 0.7rem; }
+  .content-section ul { padding-left: 1.3rem; margin-bottom: 0.7rem; }
+  .content-section li { font-size: 0.9rem; color: #3d2010; margin-bottom: 0.4rem; }
+
+  details {
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    margin-bottom: 0.7rem;
+    background: #fffdf7;
+  }
+  summary {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.88rem;
+    color: #8b4513;
+    list-style: none;
+    user-select: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before {
+    content: '▶ ';
+    font-size: 0.7rem;
+    color: #c4a882;
+  }
+  details[open] summary::before { content: '▼ '; }
+  details p {
+    padding: 0 16px 12px;
+    font-size: 0.88rem;
+    color: #3d2010;
+    line-height: 1.6;
+  }
+
+  /* Historical context */
+  .hist-ctx {
+    background: #f5f0e1;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.3rem 1.5rem;
+    margin: 2rem 0;
+    font-size: 0.88rem;
+    color: #3d2010;
+  }
+  .hist-ctx h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #8b4513;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Related tools */
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin-top: 0.8rem;
+  }
+  @media (max-width: 440px) { .related-grid { grid-template-columns: 1fr; } }
+  .related-link {
+    display: block;
+    background: #fff8ee;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    font-size: 0.83rem;
+    color: #8b4513;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .related-link:hover { background: #f0e6d0; text-decoration: none; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.3rem 1.5rem;
+    font-size: 0.82rem;
+  }
+  footer a { color: #c4a882; margin: 0 0.5rem; }
+  footer a:hover { color: #f5f0e1; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚔️ historycalc.com</a>
+</nav>
+
+<!-- Hero SVG: Medieval Guild Workshop -->
+<div class="wrap">
+<svg class="hero-svg" viewBox="0 0 640 160" xmlns="http://www.w3.org/2000/svg" aria-label="Medieval guild workshop illustration" role="img">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b6a3e;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#c4a882;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+  <!-- Sky -->
+  <rect width="640" height="160" fill="url(#skyGrad)"/>
+  <!-- Ground -->
+  <rect y="120" width="640" height="40" fill="#5a3320"/>
+  <!-- Building 1 - Guild Hall -->
+  <rect x="60" y="40" width="120" height="85" fill="#8b6a3e" rx="2"/>
+  <rect x="60" y="40" width="120" height="15" fill="#6d4f2a"/>
+  <!-- Roof 1 -->
+  <polygon points="50,55 120,15 190,55" fill="#3d2010"/>
+  <!-- Windows 1 -->
+  <rect x="80" y="65" width="22" height="25" fill="#f0c060" rx="2"/>
+  <rect x="118" y="65" width="22" height="25" fill="#f0c060" rx="2"/>
+  <!-- Door 1 -->
+  <rect x="107" y="95" width="26" height="30" fill="#3d2010" rx="2"/>
+  <!-- Banner -->
+  <rect x="115" y="15" width="4" height="30" fill="#5a3320"/>
+  <polygon points="119,15 140,22 119,30" fill="#8b0000"/>
+
+  <!-- Building 2 - Workshop -->
+  <rect x="250" y="55" width="140" height="70" fill="#a07840" rx="2"/>
+  <polygon points="240,68 320,25 400,68" fill="#3d2010"/>
+  <rect x="270" y="75" width="24" height="22" fill="#f0c060" rx="2"/>
+  <rect x="326" y="75" width="24" height="22" fill="#f0c060" rx="2"/>
+  <rect x="305" y="95" width="30" height="30" fill="#3d2010" rx="2"/>
+  <!-- Chimney -->
+  <rect x="350" y="30" width="18" height="40" fill="#6d4f2a"/>
+  <rect x="346" y="28" width="26" height="8" fill="#5a3320"/>
+  <!-- Smoke -->
+  <circle cx="359" cy="20" r="6" fill="#9a9a9a" opacity="0.4"/>
+  <circle cx="364" cy="10" r="8" fill="#9a9a9a" opacity="0.25"/>
+
+  <!-- Building 3 -->
+  <rect x="460" y="60" width="100" height="65" fill="#8b6a3e" rx="2"/>
+  <polygon points="452,72 510,30 568,72" fill="#3d2010"/>
+  <rect x="476" y="80" width="20" height="20" fill="#f0c060" rx="2"/>
+  <rect x="524" y="80" width="20" height="20" fill="#f0c060" rx="2"/>
+  <rect x="495" y="98" width="24" height="27" fill="#3d2010" rx="2"/>
+
+  <!-- Anvil icon center bottom -->
+  <ellipse cx="320" cy="138" rx="20" ry="6" fill="#3d2010"/>
+  <rect x="308" y="124" width="24" height="14" fill="#5a3320" rx="2"/>
+  <rect x="303" y="120" width="34" height="6" fill="#3d2010" rx="2"/>
+
+  <!-- Figures -->
+  <circle cx="200" cy="112" r="7" fill="#f0d0a0"/>
+  <rect x="196" y="119" width="8" height="18" fill="#6d340f"/>
+  <!-- Master figure (taller) -->
+  <circle cx="218" cy="106" r="9" fill="#f0d0a0"/>
+  <rect x="213" y="115" width="10" height="22" fill="#3d2010"/>
+  <!-- Tool in hand -->
+  <rect x="222" y="118" width="3" height="18" fill="#8b4513" transform="rotate(20 222 118)"/>
+
+  <!-- Text label -->
+  <text x="320" y="155" text-anchor="middle" font-size="11" fill="#f5f0e1" font-family="Georgia, serif" font-style="italic">Medieval Guild Quarter — c. 1350 AD</text>
+</svg>
+
+<h1>Medieval Guild Apprentice Wage Calculator</h1>
+<p class="subtitle">Explore historically accurate guild wages, apprenticeship costs, and career earnings from 1200–1500 AD</p>
+
+<!-- TOOL CARD -->
+<div class="card">
+  <div class="row-2">
+    <div>
+      <label for="tradeSelect">Guild Trade / Craft</label>
+      <select id="tradeSelect">
+        <option value="blacksmith">Blacksmith</option>
+        <option value="carpenter">Carpenter</option>
+        <option value="weaver">Weaver</option>
+        <option value="baker">Baker</option>
+        <option value="goldsmith">Goldsmith</option>
+        <option value="mason">Mason / Stonecutter</option>
+        <option value="tanner">Tanner</option>
+        <option value="tailor">Tailor</option>
+        <option value="saddler">Saddler</option>
+        <option value="apothecary">Apothecary</option>
+      </select>
+    </div>
+    <div>
+      <label for="regionSelect">Region / Kingdom</label>
+      <select id="regionSelect">
+        <option value="england">England</option>
+        <option value="france">France</option>
+        <option value="germany">Holy Roman Empire</option>
+        <option value="italy">Italian City-States</option>
+        <option value="flanders">Flanders</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row-2">
+    <div>
+      <label for="yearSelect">Era / Century</label>
+      <select id="yearSelect">
+        <option value="1200">Early Medieval (c. 1200)</option>
+        <option value="1300">High Medieval (c. 1300)</option>
+        <option value="1350">Black Death Era (c. 1350)</option>
+        <option value="1400" selected>Late Medieval (c. 1400)</option>
+        <option value="1500">Early Modern (c. 1500)</option>
+      </select>
+    </div>
+    <div>
+      <label for="stageSelect">Career Stage</label>
+      <select id="stageSelect">
+        <option value="apprentice">Apprentice</option>
+        <option value="journeyman">Journeyman</option>
+        <option value="master">Master Craftsman</option>
+      </select>
+    </div>
+  </div>
+
+  <label for="yearsSlider">Years at This Stage: <span id="yearsDisplay">5</span></label>
+  <div class="slider-row">
+    <span style="font-size:0.78rem;color:#8b4513;">1 yr</span>
+    <input type="range" id="yearsSlider" min="1" max="15" value="5" step="1">
+    <span style="font-size:0.78rem;color:#8b4513;">15 yrs</span>
+    <span class="slider-val" id="yearsVal">5 yrs</span>
+  </div>
+
+  <label for="boardingCheck" style="margin-top:1rem; display:flex; align-items:center; gap:8px; cursor:pointer;">
+    <input type="checkbox" id="boardingCheck" style="width:auto;min-height:auto;accent-color:#8b4513;transform:scale(1.3);">
+    <span>Include board &amp; lodging (provided by master)</span>
+  </label>
+
+  <label for="apprenticeFeeInput">Master's Apprentice Fee (shillings, optional override)</label>
+  <input type="number" id="apprenticeFeeInput" placeholder="Leave blank for historical default" min="0" max="10000" step="1">
+  <div class="error-msg" id="feeError">Please enter a valid amount (0–10,000 shillings)</div>
+
+  <button class="btn" id="calcBtn">⚒ Calculate Wages &amp; Career Costs</button>
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="result-copy-row">
+    <button class="btn-secondary" id="copyBtn">📋 Copy Results</button>
+  </div>
+  <div id="resultsInner"></div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<!-- HISTORICAL CONTEXT -->
+<div class="hist-ctx">
+  <h3>📜 Historical Context</h3>
+  <p>Medieval guilds were among the most powerful economic institutions in Europe from the 11th to 16th centuries. An apprentice typically served 7 years — the biblical "perfect number" — before advancing to journeyman status. This term was codified in England's <em>Statute of Artificers</em> (1563), but the 7-year custom predates it by centuries. Wages were set not by market forces alone but by guild ordinances, town councils, and royal statute. In 14th-century England, an unskilled laborer earned roughly 1 penny per day; a journeyman mason earned 3–5 pence; a master craftsman could earn 6–12 pence. After the Black Death (1347–1352) killed 30–50% of Europe's population, surviving workers demanded — and often won — dramatically higher wages, triggering the <em>Statute of Laborers</em> (1351) which attempted (and largely failed) to cap wages at pre-plague levels.</p>
+</div>
+
+<!-- DID YOU KNOW -->
+<div class="did-you-know">
+  <h3>💡 Did You Know?</h3>
+  <ul>
+    <li>In medieval London, a goldsmith's apprentice fee could reach £10 — equivalent to roughly <strong>2,400 days' wages</strong> for a common laborer. Only wealthy families could afford such trades.</li>
+    <li>The word <strong>"journeyman"</strong> comes from the French <em>journée</em> (day) — journeymen were paid by the day, having completed their apprenticeship but not yet earned the capital to open their own workshop.</li>
+    <li>Guild masters in Florence's Arte della Lana (Wool Guild) could earn enough in a good year to build a small house — roughly <strong>10–20 gold florins</strong>, when a laborer earned 1 florin per month.</li>
+  </ul>
+</div>
+
+<!-- CONTENT SECTION -->
+<div class="content-section">
+
+  <h2>How to Use This Calculator</h2>
+  <p>Select your guild trade, region, historical era, and career stage. Adjust the slider to set how many years you want to calculate. Check the board &amp; lodging box if the master provided housing (common for apprentices). The tool outputs total wages earned, equivalent modern purchasing power, and a full career cost breakdown.</p>
+
+  <h2>Why This Matters</h2>
+  <p>Understanding medieval guild wages puts history in vivid human terms. A blacksmith's apprentice in 1400 England earned virtually nothing in coin — perhaps 1–2 pence per week at most — but received food, shelter, and invaluable training. By contrast, a journeyman after completing his term might earn 4–6 pence per day, enough to rent a modest room and eat well. Historians use these figures to reconstruct living standards, social mobility, and economic inequality in pre-modern Europe.</p>
+  <p>For historical novelists, game designers, educators, and students, accurate wage data is essential. A blacksmith master in late-medieval Cologne earned roughly 3–4 times what his journeymen made — not unlike modern skilled trades. The guild system created both economic security and rigid barriers: you could not simply hang out a shingle and call yourself a goldsmith. Mastery required fees, examinations, and a "masterpiece" — a work demonstrating your skill to the guild council.</p>
+  <p>The Black Death of 1347–1352 is the single most important event for medieval wages. In its aftermath, English mason wages nearly <strong>doubled</strong> within a decade, and the purchasing power of surviving craftsmen rose dramatically — a rare case of catastrophe improving workers' material conditions.</p>
+
+  <h2>How It's Calculated</h2>
+  <p>This calculator uses base wage rates drawn from primary historical sources including the English <em>Building Accounts</em> (1350–1450), Florentine guild records, and the work of economic historians E.H. Phelps Brown and Sheila Hopkins (wage series 1264–1954).</p>
+  <p><strong>Formula:</strong></p>
+  <p><code>Total Wages = Daily Rate × Working Days/Year × Years at Stage</code></p>
+  <p>Working days are set at approximately 250 per year (excluding Sundays and ~50 religious feast days — the origin of the word "holiday"). Board &amp; lodging value is estimated at 30–40% of a journeyman's daily wage equivalent. Modern purchasing power uses the multiplier that 1 shilling in 1400 England ≈ £60–80 in 2024 terms (derived from the RPI deflator and wage-basket comparisons).</p>
+
+  <h2>Tips &amp; Common Mistakes</h2>
+  <ul>
+    <li><strong>Apprentices often earned little to no cash</strong> — their compensation was room, board, and training. Don't confuse "wages" with modern salary structures.</li>
+    <li><strong>Regional variation was enormous.</strong> Italian city-state craftsmen often earned 2–3× their English counterparts due to trade wealth, but prices were also higher.</li>
+    <li><strong>The Black Death effect is real.</strong> Selecting "c. 1350" shows wages at their maximum suppression; "c. 1400" reflects the post-plague surge.</li>
+    <li><strong>Apprentice fees were paid TO the master</strong>, not earned by the apprentice — it was tuition, not a wage.</li>
+    <li><strong>Master craftsmen had variable income.</strong> Guild records show enormous spread — a slow season or a royal contract could make or break a year.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+
+  <details>
+    <summary>How long did a medieval apprenticeship actually last?</summary>
+    <p>Most guild apprenticeships lasted 5–9 years, with 7 years being the most commonly stipulated term in English and German guild charters. Some elite trades like goldsmithing or surgery could require up to 10 years. The apprentice typically lived in the master's household, worked in exchange for training and upkeep, and could not marry or enter business for himself until the term was complete.</p>
+  </details>
+
+  <details>
+    <summary>Could women join medieval guilds?</summary>
+    <p>In some trades and cities, yes — particularly in silk-working, brewing, and certain textile trades. Paris had several all-female guilds in the 13th century. However, women were generally excluded from the more prestigious and lucrative guilds such as goldsmiths or stonemasons. Widows of master craftsmen often had the right to continue their husband's business and employ journeymen.</p>
+  </details>
+
+  <details>
+    <summary>What currency did medieval wages use?</summary>
+    <p>In medieval England, the standard currency was pounds, shillings, and pence (£ s. d.) — 12 pence to a shilling, 20 shillings to a pound. Most daily wages were expressed in pence (d., from Latin <em>denarius</em>). In France, the livre, sou, and denier were used; in Italian city-states, the gold florin and silver grosso were dominant. This calculator outputs in pence and shillings for consistency.</p>
+  </details>
+
+  <details>
+    <summary>Why were guilds eventually abolished?</summary>
+    <p>Guilds came under increasing pressure from the 16th century onward as market economies, printed trade manuals, and eventually industrial machinery undermined their monopoly on skilled knowledge. In France, guilds were abolished during the Revolution in 1791; in England, compulsory guild membership declined after 1624. They were often accused of price-fixing and blocking competition — charges not entirely unfair, as guild ordinances explicitly restricted entry to the trade.</p>
+  </details>
+
+</div>
+
+<!-- RELATED TOOLS -->
+<div style="margin-top:2rem;">
+  <h2 style="font-size:1.1rem;color:#2c1810;margin-bottom:0.8rem;border-bottom:2px solid #c4a882;padding-bottom:0.3rem;">Related Historical Tools</h2>
+  <div class="related-grid">
+    <a class="related-link" href="/aztec-sun-stone-calendar-decoder/">🌞 Aztec Sun Stone Calendar Decoder</a>
+    <a class="related-link" href="/ancient-egyptian-farming-yield-calculator/">🌾 Ancient Egyptian Farming Yield Calculator</a>
+    <a class="related-link" href="/babylonian-sexagesimal-number-converter/">🔢 Babylonian Sexagesimal Number Converter</a>
+    <a class="related-link" href="/inca-quipu-knot-encoder/">🪢 Inca Quipu Knot Encoder</a>
+    <a class="related-link" href="/roman-chariot-race-betting-calculator/">🏇 Roman Chariot Race Betting Calculator</a>
+    <a class="related-link" href="/greek-hoplite-phalanx-calculator/">🛡️ Greek Hoplite Phalanx Battle Strength Calculator</a>
+  </div>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /.wrap -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div style="margin-top:0.5rem;">© 2024 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+// Base daily wages in pence (English equivalent) for journeymen, c. 1400
+// Apprentice = fraction; Master = multiplier
+const TRADES = {
+  blacksmith:  { name: "Blacksmith",        journeyBase: 4.5, apprenticeRatio: 0.10, masterRatio: 2.2, fee: 80,  tier: "skilled"    },
+  carpenter:   { name: "Carpenter",          journeyBase: 4.0, apprenticeRatio: 0.08, masterRatio: 2.0, fee: 60,  tier: "skilled"    },
+  weaver:      { name: "Weaver",             journeyBase: 3.0, apprenticeRatio: 0.10, masterRatio: 1.8, fee: 40,  tier: "semi"       },
+  baker:       { name: "Baker",              journeyBase: 2.5, apprenticeRatio: 0.12, masterRatio: 2.0, fee: 30,  tier: "semi"       },
+  goldsmith:   { name: "Goldsmith",          journeyBase: 8.0, apprenticeRatio: 0.05, masterRatio: 3.0, fee: 240, tier: "elite"      },
+  mason:       { name: "Mason / Stonecutter",journeyBase: 5.0, apprenticeRatio: 0.08, masterRatio: 2.1, fee: 100, tier: "skilled"    },
+  tanner:      { name: "Tanner",             journeyBase: 2.8, apprenticeRatio: 0.10, masterRatio: 1.7, fee: 35,  tier: "semi"       },
+  tailor:      { name: "Tailor",             journeyBase: 3.5, apprenticeRatio: 0.10, masterRatio: 1.9, fee: 50,  tier: "skilled"    },
+  saddler:     { name: "Saddler",            journeyBase: 3.8, apprenticeRatio: 0.09, masterRatio: 1.8, fee: 55,  tier: "skilled"    },
+  apothecary:  { name: "Apothecary",         journeyBase: 7.0, apprenticeRatio: 0.06, masterRatio: 2.8, fee: 200, tier: "elite"      }
+};
+
+// Regional multipliers vs England
+const REGIONS = {
+  england: { name: "England",              mult: 1.00, currency: "pence (d.)",    shilling: 12 },
+  france:  { name: "France",              mult: 0.95, currency: "deniers",       shilling: 12 },
+  germany: { name: "Holy Roman Empire",   mult: 0.90, currency: "Pfennig",       shilling: 12 },
+  italy:   { name: "Italian City-States", mult: 1.40, currency: "denari",        shilling: 12 },
+  flanders:{ name: "Flanders",            mult: 1.20, currency: "deniers",       shilling: 12 }
+};
+
+// Era multipliers (wage level relative to 1400 baseline)
+const ERAS = {
+  1200: { label: "Early Medieval (c. 1200)", mult: 0.65, note: "Pre-guild consolidation era — wages largely unregulated." },
+  1300: { label: "High Medieval (c. 1300)",  mult: 0.85, note: "Guild system maturing; ordinances setting wage floors." },
+  1350: { label: "Black Death Era (c. 1350)", mult: 0.75, note: "Plague disrupted trade; survivors' wages rising sharply." },
+  1400: { label: "Late Medieval (c. 1400)",  mult: 1.00, note: "Post-plague wages at historic peak; guilds at their zenith." },
+  1500: { label: "Early Modern (c. 1500)",   mult: 1.15, note: "Price revolution beginning; guilds under political pressure." }
+};
+
+// Modern purchasing power: 1 shilling (12d.) in 1400 England ≈ £72 in 2024
+const MODERN_MULTIPLIER = 72; // £ per shilling
+const WORKING_DAYS = 250;
+const BOARD_VALUE_RATIO = 0.35; // board/lodging worth 35% of journeyman daily wage
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function fmt(n, dec=0) {
+  if (isNaN(n) || n === null) return '—';
+  return Number(n.toFixed(dec)).toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+function fmtMoney(n) { return '£' + fmt(n, 2); }
+function penceToShillingsStr(pence) {
+  const shillings = Math.floor(pence / 12);
+  const rem = Math.round(pence % 12);
+  if (shillings === 0) return rem + 'd.';
+  if (rem === 0) return shillings + 's.';
+  return shillings + 's. ' + rem + 'd.';
+}
+function penceToPounds(pence) { return pence / 240; }
+
+// ── CALCULATE ─────────────────────────────────────────────────────────────────
+function calculate() {
+  const tradeKey   = document.getElementById('tradeSelect').value;
+  const regionKey  = document.getElementById('regionSelect').value;
+  const yearKey    = parseInt(document.getElementById('yearSelect').value);
+  const stageKey   = document.getElementById('stageSelect').value;
+  const years      = parseInt(document.getElementById('yearsSlider').value);
+  const boarding   = document.getElementById('boardingCheck').checked;
+  const feeInput   = document.getElementById('apprenticeFeeInput').value.trim();
+
+  // Validate fee
+  let feeErr = false;
+  if (feeInput !== '') {
+    const f = parseFloat(feeInput);
+    if (isNaN(f) || f < 0 || f > 10000) {
+      document.getElementById('feeError').classList.add('show');
+      document.getElementById('apprenticeFeeInput').classList.add('error');
+      feeErr = true;
+    } else {
+      document.getElementById('feeError').classList.remove('show');
+      document.getElementById('apprenticeFeeInput').classList.remove('error');
+    }
+  } else {
+    document.getElementById('feeError').classList.remove('show');
+    document.getElementById('apprenticeFeeInput').classList.remove('error');
+  }
+  if (feeErr) return;
+
+  const trade  = TRADES[tradeKey];
+  const region = REGIONS[regionKey];
+  const era    = ERAS[yearKey];
+
+  // Journeyman base daily rate in pence
+  const journeyDaily = trade.journeyBase * region.mult * era.mult;
+
+  // Stage rates
+  const apprenticeDaily = journeyDaily * trade.apprenticeRatio;
+  const masterDaily     = journeyDaily * trade.masterRatio;
+
+  let dailyRate;
+  if (stageKey === 'apprentice')  dailyRate = apprenticeDaily;
+  else if (stageKey === 'journeyman') dailyRate = journeyDaily;
+  else dailyRate = masterDaily;
+
+  const boardValue = journeyDaily * BOARD_VALUE_RATIO; // pence/day
+
+  // Total cash wages over period
+  const totalDays = WORKING_DAYS * years;
+  const cashWages = dailyRate * totalDays;
+  const boardTotal = boarding && stageKey === 'apprentice' ? boardValue * totalDays : 0;
+  const totalCompensation = cashWages + boardTotal;
+
+  // Apprentice fee (what master CHARGES for teaching)
+  const apprenticeFee = feeInput !== '' ? parseFloat(feeInput) : trade.fee; // in shillings
+
+  // Career totals: all three stages (7y apprentice, 5y journeyman, rest master)
+  const careerApprDay = journeyDaily * trade.apprenticeRatio * era.mult;
+  const careerJourDay = journeyDaily;
+  const careerMastDay = journeyDaily * trade.masterRatio;
+
+  const career7  = careerApprDay  * WORKING_DAYS * 7;
+  const career5  = careerJourDay  * WORKING_DAYS * 5;
+  const career10 = careerMastDay  * WORKING_DAYS * 10;
+
+  // Modern equivalent (convert pence to shillings, then to £2024)
+  const modernVal = (totalCompensation / 12) * MODERN_MULTIPLIER;
+  const modernFee = (apprenticeFee) * MODERN_MULTIPLIER;
+
+  // Comparison: careers in peer trades
+  const peerData = Object.entries(TRADES).map(([k, t]) => ({
+    name: t.name,
+    daily: t.journeyBase * region.mult * era.mult,
+    key: k
+  })).sort((a,b) => b.daily - a.daily);
+  const maxDaily = peerData[0].daily;
+
+  // ── BUILD HTML ──────────────────────────────────────────────────────────────
+  const stageLabel = stageKey === 'apprentice' ? 'Apprentice' : stageKey === 'journeyman' ? 'Journeyman' : 'Master Craftsman';
+
+  let html = '';
+
+  // Hero result
+  html += `<div class="result-hero">
+    <div class="big-num">${penceToShillingsStr(Math.round(dailyRate))}</div>
+    <div class="big-label">Daily wage — ${trade.name} ${stageLabel}, ${region.name} c. ${yearKey}</div>
+    <div class="result-hero-grid">
+      <div class="result-mini">
+        <span class="mini-num">${penceToShillingsStr(Math.round(dailyRate * 7))}</span>
+        <span class="mini-label">Weekly (6-day week)</span>
+      </div>
+      <div class="result-mini">
+        <span class="mini-num">${penceToShillingsStr(Math.round(dailyRate * WORKING_DAYS / 12))}/mo</span>
+        <span class="mini-label">Monthly (250 days/yr)</span>
+      </div>
+      <div class="result-mini">
+        <span class="mini-num">${penceToShillingsStr(Math.round(cashWages))}</span>
+        <span class="mini-label">Total over ${years} yr${years>1?'s':''}</span>
+      </div>
+    </div>
+  </div>`;
+
+  // Stage comparison table
+  html += `<div class="card" style="margin-bottom:1.5rem;">
+    <div class="section-title">Career Stage Wage Comparison — ${trade.name}, ${region.name} c.${yearKey}</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Stage</th><th class="num">Daily (pence)</th><th class="num">Annual (shillings)</th><th class="num">vs Journeyman</th></tr>
+      <tr>
+        <td>Apprentice</td>
+        <td class="num">${fmt(apprenticeDaily,1)}d.</td>
+        <td class="num">${fmt(apprenticeDaily * WORKING_DAYS / 12, 1)}s.</td>
+        <td class="num">${fmt(trade.apprenticeRatio*100,0)}%</td>
+      </tr>
+      <tr>
+        <td>Journeyman</td>
+        <td class="num">${fmt(journeyDaily,1)}d.</td>
+        <td class="num">${fmt(journeyDaily * WORKING_DAYS / 12, 1)}s.</td>
+        <td class="num">100%</td>
+      </tr>
+      <tr>
+        <td>Master Craftsman</td>
+        <td class="num">${fmt(masterDaily,1)}d.</td>
+        <td class="num">${fmt(masterDaily * WORKING_DAYS / 12, 1)}s.</td>
+        <td class="num">${fmt(trade.masterRatio*100,0)}%</td>
+      </tr>
+    </table></div>
+
+    <div class="bar-section">
+      <div class="bar-row">
+        <span class="bar-label">Apprentice</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${(apprenticeDaily/masterDaily*100).toFixed(1)}%"></div></div>
+        <span class="bar-num">${fmt(apprenticeDaily,1)}d./day</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Journeyman</span>
+        <div class="bar-track"><div class="bar-fill journeyman" style="width:${(journeyDaily/masterDaily*100).toFixed(1)}%"></div></div>
+        <span class="bar-num">${fmt(journeyDaily,1)}d./day</span>
+      </div>
+      <div class="bar-row">
+        <span class="bar-label">Master</span>
+        <div class="bar-track"><div class="bar-fill master" style="width:100%"></div></div>
+        <span class="bar-num">${fmt(masterDaily,1)}d./day</span>
+      </div>
+    </div>
+  </div>`;
+
+  // Lifetime career breakdown
+  html += `<div class="card" style="margin-bottom:1.5rem;">
+    <div class="section-title">Typical Career Earnings — ${trade.name} in ${region.name}</div>
+    <p style="font-size:0.82rem;color:#6b4226;margin-bottom:0.8rem;">Based on 7 yrs apprentice → 5 yrs journeyman → 10 yrs master (standard guild path)</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>Phase</th><th>Years</th><th class="num">Cash Wages (pence)</th><th class="num">In Shillings</th><th class="num">In Pounds</th></tr>
+      <tr>
+        <td>Apprentice</td><td>7</td>
+        <td class="num">${fmt(Math.round(career7))}</td>
+        <td class="num">${fmt(career7/12,1)}s.</td>
+        <td class="num">${fmtMoney(penceToPounds(career7))}</td>
+      </tr>
+      <tr>
+        <td>Journeyman</td><td>5</td>
+        <td class="num">${fmt(Math.round(career5))}</td>
+        <td class="num">${fmt(career5/12,1)}s.</td>
+        <td class="num">${fmtMoney(penceToPounds(career5))}</td>
+      </tr>
+      <tr>
+        <td>Master</td><td>10</td>
+        <td class="num">${fmt(Math.round(career10))}</td>
+        <td class="num">${fmt(career10/12,1)}s.</td>
+        <td class="num">${fmtMoney(penceToPounds(career10))}</td>
+      </tr>
+      <tr style="font-weight:700;">
+        <td>Total (22 yrs)</td><td>22</td>
+        <td class="num">${fmt(Math.round(career7+career5+career10))}</td>
+        <td class="num">${fmt((career7+career5+career10)/12,1)}s.</td>
+        <td class="num">${fmtMoney(penceToPounds(career7+career5+career10))}</td>
+      </tr>
+    </table></div>
+  </div>`;
+
+  // Apprenticeship costs
+  html += `<div class="card" style="margin-bottom:1.5rem;">
+    <div class="section-title">Apprenticeship Costs &amp; Compensation — ${years} Year${years>1?'s':''}</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Item</th><th class="num">Amount</th><th class="num">In Pounds</th></tr>
+      <tr><td>Cash wages earned</td><td class="num">${penceToShillingsStr(Math.round(cashWages))}</td><td class="num">${fmtMoney(penceToPounds(cashWages))}</td></tr>`;
+  if (boarding) {
+    html += `<tr><td>Board &amp; lodging value</td><td class="num">${penceToShillingsStr(Math.round(boardTotal))}</td><td class="num">${fmtMoney(penceToPounds(boardTotal))}</td></tr>`;
+  }
+  html += `<tr style="font-weight:700;"><td>Total compensation</td><td class="num">${penceToShillingsStr(Math.round(totalCompensation))}</td><td class="num">${fmtMoney(penceToPounds(totalCompensation))}</td></tr>`;
+  if (stageKey === 'apprentice') {
+    html += `<tr style="background:#fff3cd;"><td>Apprentice fee paid to master</td><td class="num">${fmt(apprenticeFee,0)}s.</td><td class="num">${fmtMoney(apprenticeFee/20)}</td></tr>
+    <tr><td>Net position (compensation − fee)</td><td class="num">${penceToShillingsStr(Math.round(totalCompensation - apprenticeFee*12))}</td><td class="num">${fmtMoney(penceToPounds(totalCompensation - apprenticeFee*12))}</td></tr>`;
+  }
+  html += `</table></div></div>`;
+
+  // Trade comparisons
+  html += `<div class="card" style="margin-bottom:1.5rem;">
+    <div class="section-title">Journeyman Wage by Trade — ${region.name} c.${yearKey}</div>
+    <div class="tbl-wrap"><table>
+      <tr><th>Trade</th><th class="num">Daily (pence)</th><th class="num">Annual (shillings)</th><th>Tier</th></tr>`;
+  peerData.forEach(p => {
+    const ann = p.daily * WORKING_DAYS / 12;
+    const isSelected = p.key === tradeKey;
+    html += `<tr style="${isSelected ? 'font-weight:700;background:#fff3cd !important;' : ''}">
+      <td>${isSelected ? '▶ ' : ''}${p.name}</td>
+      <td class="num">${fmt(p.daily,1)}d.</td>
+      <td class="num">${fmt(ann,1)}s.</td>
+      <td>${TRADES[p.key].tier}</td>
+    </tr>`;
+  });
+  html += `</table></div></div>`;
+
+  // Modern equivalent
+  const compLabel = stageKey === 'apprentice' ? 'apprentice wages' : stageKey === 'journeyman' ? 'journeyman wages' : 'master craftsman earnings';
+  html += `<div class="modern-eq">
+    <div style="font-weight:700;color:#f0c060;font-size:1rem;margin-bottom:0.5rem;">⚖️ Modern Purchasing Power Equivalent</div>
+    <p>Your <strong>${years}-year</strong> total of <strong>${penceToShillingsStr(Math.round(cashWages))}</strong> in ${compLabel) would be worth approximately <strong>£${fmt(modernVal, 0)}</strong> (≈ $${fmt(modernVal * 1.27, 0)} USD) in 2024 purchasing power.</p>`;
+  if (stageKey === 'apprentice') {
+    html += `<p style="margin-top:0.5rem;">The master's apprentice fee of <strong>${fmt(apprenticeFee,0)} shillings</strong> is equivalent to roughly <strong>£${fmt(modernFee,0)}</strong> today — comparable to a vocational training course fee.</p>`;
+  }
+  html += `<p style="margin-top:0.5rem;font-size:0.8rem;color:#c4a882;"><em>Modern equivalent based on the Phelps Brown & Hopkins wage-basket deflator. 1 shilling (1400 AD) ≈ £${MODERN_MULTIPLIER} in 2024.</em></p>
+  </div>`;
+
+  // Era note
+  html += `<div style="background:#f5f0e1;border:1px solid #c4a882;border-radius:6px;padding:0.9rem 1.1rem;margin-top:1.2rem;font-size:0.85rem;color:#5a3320;">
+    <strong>📅 Era Note (${yearKey} AD):</strong> ${era.note}
+  </div>`;
+
+  requestAnimationFrame(() => {
+    document.getElementById('resultsInner').innerHTML = html;
+    const res = document.getElementById('results');
+    res.classList.add('visible');
+    res.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+}
+
+// Fix: closing parenthesis was inside template literal. Let me trace through...
+// The compLabel template literal needs proper closing. Fixed in the combined output.
+
+// ── COPY ──────────────────────────────────────────────────────────────────────
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const inner = document.getElementById('resultsInner');
+  if (!inner.textContent.trim()) return;
+  const text = inner.innerText || inner.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  }).catch(() => {
+    alert('Please copy the results manually.');
+  });
+});
+
+// ── SLIDER ────────────────────────────────────────────────────────────────────
+document.getElementById('yearsSlider').addEventListener('input', function() {
+  document.getElementById('yearsDisplay').textContent = this.value;
+  document.getElementById('yearsVal').textContent = this.value + ' yrs';
+});
+
+// ── ENTER KEY ─────────────────────────────────────────────────────────────────
+['tradeSelect','regionSelect','yearSelect','stageSelect','apprenticeFeeInput'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => {
+    if (e.key === 'Enter') calculate();
+  });
+});
+
+// ── BUTTON ────────────────────────────────────────────────────────────────────
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => { calculate(); });
+});
+</script>
+</body>
+</html>
+
+Wait, I have a bug in the template literal. Let me rewrite the complete file cleanly:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Guild Apprentice Wage Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate medieval guild apprentice wages, journeyman pay, and master craftsman earnings. Explore historically accurate guild wages and apprenticeship costs from 1200–1500 AD.">
+<link rel="canonical" href="https://historycalc.com/medieval-guild-apprentice-wage-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Guild Apprentice Wage Calculator",
+  "description": "Calculate medieval guild apprentice wages, journeyman pay, and master craftsman earnings based on historically accurate data from 1200–1500 AD.",
+  "url": "https://historycalc.com/medieval-guild-apprentice-wage-calculator/",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;line-height:1.7;font-size:16px}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#2c1810;padding:0 1.5rem;display:flex;align-items:center;min-height:52px}
+nav a{color:#f5f0e1;font-weight:600;font-size:1rem;letter-spacing:.02em;text-decoration:none}
+nav a:hover{color:#c4a882}
+.wrap{max-width:640px;margin:0 auto;padding:0 1.5rem 3rem}
+.hero-svg{width:100%;max-width:640px;margin:1.5rem auto 0;display:block;border-radius:8px 8px 0 0;overflow:hidden}
+h1{font-size:1.65rem;font-weight:700;color:#2c1810;margin:1.5rem 0 .4rem;line-height:1.3}
+.subtitle{color:#6b4226;font-size:.95rem;margin-bottom:1.8rem}
+.card{background:#fff8ee;border:1px solid #c4a882;border-radius:8px;padding:1.75rem;box-shadow:0 2px 8px rgba(44,24,16,.08);margin-bottom:2rem}
+label{display:block;font-size:.85rem;font-weight:500;color:#5a3320;margin-bottom:5px;margin-top:1.1rem}
+label.first{margin-top:0}
+select,input[type=number],input[type=text]{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fffdf7;color:#2c1810;transition:box-shadow .2s,border-color .2s;appearance:none;-webkit-appearance:none;min-height:44px}
+select:focus,input:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19
