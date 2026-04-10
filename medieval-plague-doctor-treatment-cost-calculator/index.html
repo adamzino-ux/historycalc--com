@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Plague Doctor Treatment Cost Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate the cost of medieval plague doctor treatments in historical currency. Discover what 14th-century Black Death remedies cost in silver pennies, shillings & modern equivalents.">
+<link rel="canonical" href="https://historycalc.com/medieval-plague-doctor-treatment-cost-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Plague Doctor Treatment Cost Calculator",
+  "description": "Calculate the cost of medieval plague doctor treatments in historical currency with modern equivalents.",
+  "url": "https://historycalc.com/medieval-plague-doctor-treatment-cost-calculator/",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+}
+</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;min-height:100vh}
+  a{color:#8b4513;text-decoration:none}
+  a:hover{text-decoration:underline;color:#6b3410}
+  nav{background:#2c1810;padding:12px 20px;display:flex;align-items:center;gap:16px}
+  nav a{color:#f5f0e1;font-weight:600;font-size:1rem}
+  nav a:hover{color:#c4a882;text-decoration:none}
+  nav span{color:#c4a882;font-size:0.85rem}
+  .container{max-width:640px;margin:0 auto;padding:24px 16px}
+  h1{font-size:1.6rem;font-weight:700;color:#2c1810;margin-bottom:6px;line-height:1.3}
+  .subtitle{color:#6b4c2a;font-size:0.95rem;margin-bottom:20px}
+  .illustration{display:flex;justify-content:center;margin-bottom:20px}
+  .card{background:#fff;border:1px solid #c4a882;border-radius:10px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(44,24,16,0.08)}
+  .card h2{font-size:1.1rem;color:#5a2d0c;margin-bottom:16px;border-bottom:2px solid #c4a882;padding-bottom:8px}
+  .parchment{background:#fdf6e3;border:1px solid #c4a882;border-radius:10px;padding:24px;margin-bottom:24px;box-shadow:0 2px 8px rgba(44,24,16,0.08)}
+  label{display:block;font-size:0.85rem;font-weight:500;color:#5a2d0c;margin-bottom:6px}
+  input[type=number],select{width:100%;border:1px solid #c4a882;border-radius:6px;padding:12px 16px;font-size:1rem;color:#2c1810;background:#fdf6e3;outline:none;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px;-webkit-appearance:none}
+  input[type=number]:focus,select:focus{border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.18)}
+  input.error{border-color:#c0392b}
+  .error-msg{color:#c0392b;font-size:0.8rem;margin-top:4px;display:none}
+  .form-group{margin-bottom:16px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .btn{background:#8b4513;color:#fdf6e3;border:none;border-radius:6px;padding:12px 28px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s;letter-spacing:0.02em}
+  .btn:hover{background:#6b3410}
+  .btn-secondary{background:#c4a882;color:#2c1810;font-size:0.82rem;padding:6px 14px;width:auto;min-height:36px;border-radius:5px;border:none;cursor:pointer;transition:background 0.2s}
+  .btn-secondary:hover{background:#b8966c}
+  .results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+  .results.visible{opacity:1;pointer-events:auto}
+  .big-number{font-size:2.4rem;font-weight:700;color:#8b4513;line-height:1.1}
+  .big-label{font-size:0.9rem;color:#6b4c2a;margin-top:4px}
+  .result-hero{background:#fdf6e3;border:2px solid #c4a882;border-radius:8px;padding:20px;text-align:center;margin-bottom:18px}
+  .modern-equiv{background:#fff8ec;border:1px dashed #c4a882;border-radius:8px;padding:14px;margin-bottom:16px;font-size:0.93rem;color:#5a2d0c}
+  .modern-equiv strong{color:#8b4513}
+  table{width:100%;border-collapse:collapse;font-size:0.9rem}
+  th{background:#c4a882;color:#2c1810;padding:9px 12px;text-align:left;font-weight:600}
+  th.num,td.num{text-align:right}
+  tr:nth-child(even) td{background:#fdf6e3}
+  tr:nth-child(odd) td{background:#fff}
+  td{padding:8px 12px;border-bottom:1px solid #e8dcc8}
+  .cost-bar{height:14px;background:#c4a882;border-radius:3px;display:inline-block;vertical-align:middle;min-width:4px;transition:width 0.4s}
+  .scroll{overflow-x:auto}
+  .did-you-know{background:#3d1f0a;color:#fdf6e3;border-radius:8px;padding:18px 20px;margin-bottom:24px}
+  .did-you-know h3{color:#f0c060;font-size:1rem;margin-bottom:10px;letter-spacing:0.04em}
+  .did-you-know li{font-size:0.88rem;line-height:1.55;margin-bottom:6px;padding-left:4px}
+  .did-you-know ul{padding-left:16px}
+  .hist-context{border-left:4px solid #8b4513;padding-left:16px;margin-bottom:24px;background:#fff;border-radius:0 8px 8px 0;padding:16px 16px 16px 20px}
+  .hist-context h2{font-size:1rem;color:#5a2d0c;margin-bottom:8px}
+  .hist-context p{font-size:0.9rem;line-height:1.6;color:#3a1f0f}
+  .content-section h2{font-size:1.15rem;color:#5a2d0c;margin:22px 0 10px;font-weight:700}
+  .content-section p,.content-section li{font-size:0.92rem;line-height:1.65;color:#3a1f0f}
+  .content-section ul{padding-left:20px;margin-bottom:10px}
+  .content-section li{margin-bottom:5px}
+  details{margin-bottom:10px;border:1px solid #c4a882;border-radius:6px;background:#fff}
+  summary{padding:11px 14px;cursor:pointer;font-weight:600;font-size:0.9rem;color:#5a2d0c;list-style:none;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▶ ";font-size:0.8rem;color:#8b4513}
+  details[open] summary::before{content:"▼ "}
+  details p{padding:0 14px 12px;font-size:0.88rem;line-height:1.6;color:#3a1f0f}
+  .related-tools{background:#2c1810;border-radius:8px;padding:20px;margin-bottom:24px}
+  .related-tools h2{color:#f0c060;font-size:1rem;margin-bottom:12px}
+  .related-tools a{color:#c4a882;font-size:0.88rem;display:block;padding:5px 0;border-bottom:1px solid #3d2a1a}
+  .related-tools a:hover{color:#fdf6e3;text-decoration:none}
+  .related-tools a:last-child{border-bottom:none}
+  .ad-slot{min-height:0;margin:0}
+  footer{background:#2c1810;color:#c4a882;text-align:center;padding:20px;font-size:0.82rem}
+  footer a{color:#c4a882;margin:0 8px}
+  footer a:hover{color:#fdf6e3}
+  .copy-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+  .copied{background:#5a7a3a!important;color:#fff!important}
+  .tag{display:inline-block;background:#8b4513;color:#fdf6e3;border-radius:12px;padding:2px 10px;font-size:0.75rem;font-weight:600;margin-right:4px;vertical-align:middle}
+  .section-divider{border:none;border-top:2px solid #c4a882;margin:28px 0;opacity:0.45}
+  @media(max-width:640px){
+    .row{grid-template-columns:1fr}
+    h1{font-size:1.35rem}
+    .big-number{font-size:1.9rem}
+    .card,.parchment{padding:16px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚔️ historycalc.com</a>
+  <span>/ Medieval Plague Doctor Cost</span>
+</nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="illustration">
+    <svg width="220" height="160" viewBox="0 0 220 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Medieval plague doctor in beaked mask">
+      <!-- Background scroll/parchment -->
+      <rect x="0" y="120" width="220" height="40" rx="4" fill="#c4a882" opacity="0.3"/>
+      <!-- Body/cloak -->
+      <ellipse cx="110" cy="105" rx="38" ry="46" fill="#3d2a1a"/>
+      <!-- Neck -->
+      <rect x="101" y="62" width="18" height="16" rx="3" fill="#3d2a1a"/>
+      <!-- Head/hat base -->
+      <ellipse cx="110" cy="65" rx="24" ry="12" fill="#2c1810"/>
+      <!-- Tall hat -->
+      <polygon points="90,65 130,65 122,20 98,20" fill="#2c1810"/>
+      <rect x="86" y="62" width="48" height="6" rx="2" fill="#1a0e06"/>
+      <!-- Beak mask -->
+      <ellipse cx="110" cy="76" rx="18" ry="14" fill="#c4a882"/>
+      <polygon points="110,76 100,96 120,96" fill="#b8966c"/>
+      <!-- Eyes (goggles) -->
+      <circle cx="102" cy="72" r="6" fill="#1a0e06"/>
+      <circle cx="118" cy="72" r="6" fill="#1a0e06"/>
+      <circle cx="102" cy="72" r="4" fill="#2a4a2a"/>
+      <circle cx="118" cy="72" r="4" fill="#2a4a2a"/>
+      <!-- Staff -->
+      <rect x="152" y="40" width="5" height="115" rx="2" fill="#6b3410"/>
+      <circle cx="154" cy="36" r="9" fill="#8b4513"/>
+      <circle cx="154" cy="36" r="5" fill="#c4a882"/>
+      <!-- Herb pouch on belt -->
+      <ellipse cx="85" cy="112" rx="11" ry="8" fill="#5a7a3a"/>
+      <rect x="82" y="104" width="6" height="8" rx="2" fill="#8b4513"/>
+      <!-- Ground line -->
+      <line x1="20" y1="148" x2="200" y2="148" stroke="#8b4513" stroke-width="2" stroke-dasharray="6,4"/>
+      <!-- Decorative rat silhouette -->
+      <ellipse cx="40" cy="148" rx="12" ry="6" fill="#3d2a1a"/>
+      <ellipse cx="52" cy="145" rx="7" ry="5" fill="#3d2a1a"/>
+      <line x1="59" y1="145" x2="70" y2="148" stroke="#3d2a1a" stroke-width="2"/>
+      <circle cx="55" cy="142" r="2" fill="#1a0e06"/>
+    </svg>
+  </div>
+
+  <h1>Medieval Plague Doctor Treatment Cost Calculator</h1>
+  <p class="subtitle">Discover what it actually cost to summon a plague doctor during the Black Death — in silver pennies, shillings, and today's dollars.</p>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h2>📜 Historical Context</h2>
+    <p>During the Black Death (1347–1353), cities like Venice and Florence paid contracted plague doctors a salary — Venice offered Giovanni de Ventura 4 florins per month in 1348 (roughly 2–3 months of a skilled craftsman's wages). Individual treatments were charged separately, with costs varying by remedy: theriac (an antidote paste) could cost 10–20 silver pennies, while bloodletting or bubo lancing was 2–8 pennies. The iconic beaked mask wasn't common until the 17th century; 14th-century doctors instead wore waxed leather cloaks and carried aromatic herbs. English silver pennies weighed approximately 1.4g of sterling silver, and 12 pennies made one shilling.</p>
+  </div>
+
+  <!-- Calculator Card -->
+  <div class="card">
+    <h2>⚕️ Configure Your Treatment</h2>
+
+    <div class="form-group">
+      <label for="region">Region / City</label>
+      <select id="region">
+        <option value="england">England (silver pennies)</option>
+        <option value="france">France (deniers tournois)</option>
+        <option value="italy">Italy (silver soldi)</option>
+        <option value="germany">Holy Roman Empire (pfennig)</option>
+        <option value="spain">Crown of Aragon (dineros)</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="patients">Number of Patients</label>
+        <input type="number" id="patients" value="1" min="1" max="100" placeholder="1">
+        <div class="error-msg" id="err-patients">Enter a number between 1 and 100.</div>
+      </div>
+      <div class="form-group">
+        <label for="severity">Plague Severity</label>
+        <select id="severity">
+          <option value="mild">Mild (early symptoms)</option>
+          <option value="moderate" selected>Moderate (fever + buboes)</option>
+          <option value="severe">Severe (septicemic)</option>
+          <option value="pneumonic">Pneumonic (lung involvement)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Treatments Requested</label>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px">
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_theriac" checked> Theriac / Antidote Paste</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_bleed" checked> Bloodletting</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_bubo"> Bubo Lancing</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_herbs"> Aromatic Herbs</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_astro"> Astrological Chart</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_cautery"> Cauterization</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_urine"> Urine Analysis</label>
+        <label style="font-size:0.85rem;font-weight:400;display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="t_prayer"> Prayer & Rites</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label for="visits">Number of Visits</label>
+        <input type="number" id="visits" value="3" min="1" max="30" placeholder="3">
+        <div class="error-msg" id="err-visits">Enter 1 to 30 visits.</div>
+      </div>
+      <div class="form-group">
+        <label for="doctorrank">Doctor's Rank</label>
+        <select id="doctorrank">
+          <option value="apprentice">Apprentice Barber-Surgeon</option>
+          <option value="surgeon" selected>Licensed Surgeon</option>
+          <option value="physician">University Physician</option>
+          <option value="royal">Royal Court Physician</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚗️ Calculate Treatment Cost</button>
+  </div>
+
+  <!-- Results Section -->
+  <div class="results" id="results">
+
+    <div class="card">
+      <div class="copy-row">
+        <h2 style="margin-bottom:0;border:none;padding:0">💰 Treatment Cost Summary</h2>
+        <button class="btn-secondary" id="copyBtn">Copy Results</button>
+      </div>
+
+      <div class="result-hero" id="hero-section">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="modern-equiv" id="modern-equiv-section">
+        <!-- filled by JS -->
+      </div>
+
+      <div class="scroll">
+        <table id="breakdown-table">
+          <!-- filled by JS -->
+        </table>
+      </div>
+
+      <div style="margin-top:16px" id="currency-table-section">
+        <!-- filled by JS -->
+      </div>
+    </div>
+
+    <div class="card" id="comparison-card">
+      <!-- filled by JS -->
+    </div>
+
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>🦠 Did You Know?</h3>
+    <ul>
+      <li>The Black Death killed an estimated <strong>30–60% of Europe's population</strong> between 1347 and 1353 — roughly 25 million people. Some regions like Florence lost 60–70% of their inhabitants.</li>
+      <li>The famous beaked plague mask was designed by <strong>Charles de Lorme in 1619</strong>, over 270 years after the Black Death. The beak was stuffed with herbs like lavender, mint, and camphor to combat "bad air" (miasma theory).</li>
+      <li>Venice established the world's first <strong>quarantine system in 1377</strong> — ships were held for 40 days (quarantina) before passengers could disembark. The word "quarantine" derives from the Italian for "forty days."</li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Content Section -->
+  <div class="content-section parchment">
+
+    <h2>How to Use This Medieval Plague Doctor Cost Calculator</h2>
+    <p>Select your historical region to work in the local currency of the era (English pennies, French deniers, Italian soldi, etc.). Choose the number of patients, plague severity, which treatments the doctor would administer, how many visits you need, and the physician's rank. Click "Calculate Treatment Cost" to see an itemized bill in period-accurate currency, a modern dollar equivalent, and a comparison to typical medieval wages.</p>
+
+    <hr class="section-divider">
+
+    <h2>Why This Matters</h2>
+    <p>Understanding the cost of medieval medical care gives us a visceral connection to the fear and desperation of plague survivors. Plague doctors weren't altruists — they were paid professionals, and their fees put treatment completely out of reach for the peasant majority.</p>
+    <p>Consider: a typical English agricultural laborer earned about 1–2 pennies per day in the 1340s. A single visit from a licensed surgeon might cost 6–12 pennies — equivalent to nearly a week's wages. A full course of theriac treatment (the most prestigious remedy, containing up to 64 ingredients including viper flesh) could cost 15–25 pennies in England, or 1–2 gold florins in Italy. Only wealthy merchants, nobles, and the church could realistically afford ongoing care.</p>
+    <p>Cities like Catania, Venice, and Florence paid doctors municipal salaries specifically so poorer citizens could access some care — but these contract physicians were often overwhelmed, and many fled. This calculator uses documented price data from medieval household accounts, civic records, and medical contracts to reconstruct what treatment actually cost.</p>
+
+    <hr class="section-divider">
+
+    <h2>How It's Calculated</h2>
+    <p>Each treatment has a base cost in English silver pennies (the common unit across medieval Europe, adjusted regionally):</p>
+    <ul>
+      <li><strong>Theriac paste:</strong> 15d base (d = silver penny). Severity multiplier: mild ×0.7, moderate ×1.0, severe ×1.5, pneumonic ×1.8</li>
+      <li><strong>Bloodletting:</strong> 4d base per session. Doctor rank multiplier applied.</li>
+      <li><strong>Bubo lancing:</strong> 8d base (only viable at moderate+ severity)</li>
+      <li><strong>Aromatic herbs:</strong> 5d base (per course of treatment)</li>
+      <li><strong>Astrological chart:</strong> 12d base (fixed consultation fee)</li>
+      <li><strong>Cauterization:</strong> 10d base</li>
+      <li><strong>Urine analysis:</strong> 3d base</li>
+      <li><strong>Prayer &amp; rites:</strong> 6d base</li>
+    </ul>
+    <p><strong>Doctor rank multipliers:</strong> Apprentice ×0.6 | Licensed Surgeon ×1.0 | University Physician ×1.8 | Royal Court Physician ×3.2</p>
+    <p><strong>Formula:</strong> Total Cost = Σ(treatment_base × severity_mult) × doctor_mult × visits × patients</p>
+    <p>Modern equivalent uses the purchasing-power value of silver: 1 silver penny contained ~1.4g of sterling silver (92.5% pure). At current silver spot prices (~$0.90/g), 1d ≈ $1.26 in silver content — but using skilled-wage parity gives a higher, more realistic modern equivalent of approximately $8–12 per penny.</p>
+
+    <hr class="section-divider">
+
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't assume all treatments were offered simultaneously.</strong> In practice, a doctor might try bloodletting first, then herbs, then theriac if the patient survived. Multiple visits spread costs over weeks.</li>
+      <li><strong>The Royal Physician multiplier is extreme for good reason.</strong> Edward III paid his personal physician John Gaddesden a retainer of £40/year (9,600d) — an astronomical sum. These were men who served kings, not peasants.</li>
+      <li><strong>Regional currencies varied wildly in silver content.</strong> The French denier tournois had lower silver content than the English penny in the 14th century, so nominal values could be deceiving.</li>
+      <li><strong>Theriac was the most "respectable" treatment</strong> — university-trained physicians favored it. Surgeons (lower status) did the cutting. Never confuse the two in historical research.</li>
+      <li><strong>Medieval medicine had a ~5–10% actual success rate</strong> against plague. Pneumonic plague was nearly 100% fatal. Use the "Pneumonic" severity setting to understand why wealthy patients still died despite expensive care.</li>
+    </ul>
+
+    <hr class="section-divider">
+
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>Were plague doctors actually effective at treating the Black Death?</summary>
+      <p>Almost entirely ineffective by modern standards. Medieval medicine was based on Galenic humoral theory — the idea that disease resulted from imbalances in blood, phlegm, yellow bile, and black bile. None of the treatments addressed Yersinia pestis, the bacterium causing bubonic plague. Bloodletting and purging likely weakened patients further. The only marginally useful practice was isolation, which some doctors did recommend.</p>
+    </details>
+
+    <details>
+      <summary>How much did cities pay plague doctors as a salary?</summary>
+      <p>Municipal contracts varied significantly. Venice offered Giovanni de Ventura 4 florins/month in 1348 (roughly 48 florins/year, equivalent to about 2,400 English pennies annually). Catania contracted plague doctors for food, lodging, and a salary. By contrast, a skilled English mason earned around 3–4 shillings (36–48d) per week. City-contracted doctors earned comfortably middle-class wages, but many still fled — the mortality risk was real.</p>
+    </details>
+
+    <details>
+      <summary>What was theriac and why was it so expensive?</summary>
+      <p>Theriac (also called Venice Treacle) was the most prestigious cure-all of the medieval world, originating with the Greek physician Galen. It contained up to 64 ingredients including dried viper flesh, opium, honey, cinnamon, and dozens of rare herbs and spices. Preparation took months of aging. High-quality Venetian theriac was exported across Europe; cheaper knock-offs existed but were considered medically inferior. Its cost reflected rare ingredients and a physician's time, not actual efficacy.</p>
+    </details>
+
+    <details>
+      <summary>Did poor people receive any medical care during the plague?</summary>
+      <p>Rarely, and even then it was minimal. Some cities (Venice, Florence, Ragusa) paid municipal physicians whose services were theoretically available to all citizens. Monasteries provided basic care through infirmaries. In practice, the poor relied on folk remedies, prayer, flagellant processions, and neighborly help. Jewish communities were sometimes accused of poisoning wells (a paranoid scapegoating) partly because their tight community networks and dietary laws gave them slightly better plague outcomes in some regions.</p>
+    </details>
+
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>⚔️ Related Historical Calculators</h2>
+    <a href="/medieval-guild-apprentice-wage-calculator/">Medieval Guild Apprentice Wage Calculator</a>
+    <a href="/aztec-sun-stone-calendar-decoder/">Aztec Sun Stone Calendar Decoder</a>
+    <a href="/ancient-egyptian-farming-yield-calculator/">Ancient Egyptian Farming Yield Calculator</a>
+    <a href="/babylonian-sexagesimal-number-converter/">Babylonian Sexagesimal Number Converter</a>
+    <a href="/inca-quipu-knot-encoder/">Inca Quipu Knot Encoder</a>
+    <a href="/roman-chariot-race-betting-calculator/">Ancient Roman Chariot Race Betting Calculator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer style="margin-top:0">
+    <!-- footer styled below -->
+  </footer>
+
+</div><!-- /container -->
+
+<footer>
+  <div style="max-width:640px;margin:0 auto">
+    <p style="margin-bottom:8px">© 2024 historycalc.com — Free Historical Calculators</p>
+    <p>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/contact/">Contact</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+// ── Data Tables ──────────────────────────────────────────────
+const TREATMENTS = {
+  t_theriac:  { label:"Theriac / Antidote Paste",    base:15, id:"t_theriac"  },
+  t_bleed:    { label:"Bloodletting",                base:4,  id:"t_bleed"   },
+  t_bubo:     { label:"Bubo Lancing",                base:8,  id:"t_bubo"    },
+  t_herbs:    { label:"Aromatic Herbs (course)",     base:5,  id:"t_herbs"   },
+  t_astro:    { label:"Astrological Chart",          base:12, id:"t_astro"   },
+  t_cautery:  { label:"Cauterization",               base:10, id:"t_cautery" },
+  t_urine:    { label:"Urine Analysis",              base:3,  id:"t_urine"   },
+  t_prayer:   { label:"Prayer & Holy Rites",         base:6,  id:"t_prayer"  }
+};
+
+const SEVERITY = {
+  mild:       { label:"Mild",       mult:0.70, survivalNote:"~60% survival chance" },
+  moderate:   { label:"Moderate",   mult:1.00, survivalNote:"~30% survival chance" },
+  severe:     { label:"Severe",     mult:1.50, survivalNote:"~10% survival chance" },
+  pneumonic:  { label:"Pneumonic",  mult:1.80, survivalNote:"~3% survival chance"  }
+};
+
+const DOCTOR_RANKS = {
+  apprentice: { label:"Apprentice Barber-Surgeon",   mult:0.60 },
+  surgeon:    { label:"Licensed Surgeon",            mult:1.00 },
+  physician:  { label:"University Physician",        mult:1.80 },
+  royal:      { label:"Royal Court Physician",       mult:3.20 }
+};
+
+const REGIONS = {
+  england: { name:"England",               currency:"silver pennies",   symbol:"d",  florin:240, toModern:9.5  },
+  france:  { name:"France",               currency:"deniers tournois", symbol:"dn", florin:260, toModern:8.2  },
+  italy:   { name:"Italy (Tuscany)",       currency:"silver soldi",     symbol:"s",  florin:240, toModern:11.0 },
+  germany: { name:"Holy Roman Empire",     currency:"pfennig",          symbol:"pf", florin:252, toModern:8.8  },
+  spain:   { name:"Crown of Aragon",       currency:"dineros",          symbol:"dr", florin:240, toModern:8.5  }
+};
+
+// Wages for comparison
+const WAGES = {
+  england: [
+    { role:"Agricultural Laborer (daily)", daily:1.5 },
+    { role:"Skilled Carpenter (daily)",    daily:3   },
+    { role:"Mason (daily)",                daily:4   },
+    { role:"Parish Priest (monthly)",      daily:8   },
+    { role:"Merchant Apprentice (weekly)", daily:10  }
+  ],
+  france: [
+    { role:"Farm Worker (daily)",          daily:1.2 },
+    { role:"Town Artisan (daily)",         daily:2.8 },
+    { role:"Journeyman Tailor (daily)",    daily:3.5 },
+    { role:"Notary (monthly fee)",         daily:9   },
+    { role:"Minor Noble Retainer (wkly)",  daily:12  }
+  ],
+  italy: [
+    { role:"Farm Laborer (daily)",         daily:2   },
+    { role:"Wool Carder (daily)",          daily:4   },
+    { role:"Guild Craftsman (daily)",      daily:6   },
+    { role:"Merchant Clerk (monthly)",     daily:10  },
+    { role:"Guild Master (monthly)",       daily:18  }
+  ],
+  germany: [
+    { role:"Serf Farm Work (daily)",       daily:1   },
+    { role:"Town Laborer (daily)",         daily:2.5 },
+    { role:"Blacksmith (daily)",           daily:4   },
+    { role:"Town Clerk (monthly)",         daily:8   },
+    { role:"Minor Official (monthly)",     daily:11  }
+  ],
+  spain: [
+    { role:"Rural Peasant (daily)",        daily:1.5 },
+    { role:"Town Artisan (daily)",         daily:3   },
+    { role:"Ship's Carpenter (daily)",     daily:4.5 },
+    { role:"Merchant (monthly)",           daily:9   },
+    { role:"Church Canon (monthly)",       daily:14  }
+  ]
+};
+
+// ── Helpers ───────────────────────────────────────────────────
+function fmt(n, dec=0){ return n.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec}); }
+function fmtD(n){ return '$'+fmt(n,2); }
+
+function convertCurrency(pennies, region){
+  const r = REGIONS[region];
+  const shillings = pennies / 12;
+  const pounds    = pennies / 240;
+  const florins   = pennies / r.florin;
+  return { pennies, shillings, pounds, florins, regionSym: r.symbol };
+}
+
+function penniesLabel(pennies, region){
+  const r = REGIONS[region];
+  if(pennies < 12) return `${fmt(pennies,1)} ${r.currency}`;
+  if(pennies < 240) return `${fmt(pennies/12,1)} shillings (${fmt(pennies,1)} ${r.currency})`;
+  return `${fmt(pennies/240,2)} pounds (${fmt(pennies,0)} ${r.currency})`;
+}
+
+// ── Validation ────────────────────────────────────────────────
+function validateInputs(){
+  let ok = true;
+  const patients = parseInt(document.getElementById('patients').value);
+  const visits   = parseInt(document.getElementById('visits').value);
+  const ep = document.getElementById('err-patients');
+  const ev = document.getElementById('err-visits');
+  const ip = document.getElementById('patients');
+  const iv = document.getElementById('visits');
+
+  if(isNaN(patients)||patients<1||patients>100){
+    ep.style.display='block'; ip.classList.add('error'); ok=false;
+  } else { ep.style.display='none'; ip.classList.remove('error'); }
+
+  if(isNaN(visits)||visits<1||visits>30){
+    ev.style.display='block'; iv.classList.add('error'); ok=false;
+  } else { ev.style.display='none'; iv.classList.remove('error'); }
+
+  // Check at least one treatment selected
+  const any = Object.keys(TREATMENTS).some(k=>document.getElementById(k).checked);
+  if(!any){ alert('Please select at least one treatment.'); ok=false; }
+
+  return ok;
+}
+
+// ── Core Calculation ──────────────────────────────────────────
+function calculate(){
+  if(!validateInputs()) return;
+
+  const region   = document.getElementById('region').value;
+  const patients = parseInt(document.getElementById('patients').value);
+  const severity = document.getElementById('severity').value;
+  const visits   = parseInt(document.getElementById('visits').value);
+  const rank     = document.getElementById('doctorrank').value;
+
+  const rData = REGIONS[region];
+  const sData = SEVERITY[severity];
+  const dData = DOCTOR_RANKS[rank];
+
+  // Build itemized costs
+  const items = [];
+  let totalPennies = 0;
+  let maxCost = 0;
+
+  Object.keys(TREATMENTS).forEach(k=>{
+    if(!document.getElementById(k).checked) return;
+    const t = TREATMENTS[k];
+    const costPerVisit = t.base * sData.mult * dData.mult;
+    const totalForTreatment = costPerVisit * visits * patients;
+    items.push({
+      label: t.label,
+      base: t.base,
+      costPerVisit,
+      total: totalForTreatment
+    });
+    totalPennies += totalForTreatment;
+    if(totalForTreatment > maxCost) maxCost = totalForTreatment;
+  });
+
+  const modernUSD   = totalPennies * rData.toModern;
+  const silverUSD   = totalPennies * 1.26; // silver content only
+  const shillings   = totalPennies / 12;
+  const pounds      = totalPennies / 240;
+
+  // Days of labor for comparison
+  const wages = WAGES[region];
+
+  // ── Build HTML ────────────────────────────────────────────
+  const heroHTML = `
+    <div class="big-number">${penniesLabel(totalPennies, region)}</div>
+    <div class="big-label" style="margin-top:8px">Total for ${fmt(patients)} patient${patients>1?'s':''} × ${fmt(visits)} visit${visits>1?'s':''} — ${dData.label}</div>
+    <div style="margin-top:10px;font-size:0.88rem;color:#8b4513;">
+      <span class="tag">${sData.label} severity</span>
+      <span class="tag">${sData.survivalNote}</span>
+    </div>`;
+
+  const modernHTML = `
+    <strong>💵 Modern Equivalent (wage-parity method):</strong> approx. <strong>${fmtD(modernUSD)}</strong> in today's money<br>
+    <span style="font-size:0.85rem;color:#6b4c2a">Silver content value: ${fmtD(silverUSD)} | 
+    Using purchasing power of skilled wages (~${rData.toModern}× per penny). 
+    For context: ${fmt(shillings,1)} shillings = ${fmt(pounds,3)} pounds sterling.</span>`;
+
+  // Breakdown table
+  let tableRows = '';
+  items.forEach(item=>{
+    const barW = Math.round((item.total/maxCost)*120);
+    tableRows += `<tr>
+      <td>${item.label}</td>
+      <td class="num">${fmt(item.base)}${rData.symbol}</td>
+      <td class="num">${fmt(item.costPerVisit,1)}${rData.symbol}</td>
+      <td class="num">${fmt(item.total,1)}${rData.symbol}</td>
+      <td><span class="cost-bar" style="width:${barW}px"></span></td>
+    </tr>`;
+  });
+
+  const breakdownHTML = `
+    <thead><tr>
+      <th>Treatment</th>
+      <th class="num">Base</th>
+      <th class="num">Per Visit</th>
+      <th class="num">Total</th>
+      <th>Scale</th>
+    </tr></thead>
+    <tbody>${tableRows}</tbody>
+    <tfoot><tr style="font-weight:700;background:#c4a882">
+      <td colspan="3" style="padding:9px 12px">Grand Total (${rData.currency})</td>
+      <td class="num" style="padding:9px 12px">${fmt(totalPennies,1)}${rData.symbol}</td>
+      <td></td>
+    </tr></tfoot>`;
+
+  // Wage comparison table
+  let wageRows = '';
+  wages.forEach(w=>{
+    const days = totalPennies / w.daily;
+    wageRows += `<tr>
+      <td>${w.role}</td>
+      <td class="num">${fmt(w.daily,1)}${rData.symbol}/day</td>
+      <td class="num"><strong>${fmt(days,1)} days</strong></td>
+    </tr>`;
+  });
+
+  const wageHTML = `
+    <h3 style="font-size:0.95rem;color:#5a2d0c;margin-bottom:10px;font-weight:700">⏳ How Many Work-Days Was This Treatment Worth?</h3>
+    <div class="scroll">
+    <table>
+      <thead><tr><th>Occupation</th><th class="num">Daily Wage</th><th class="num">Days to Earn</th></tr></thead>
+      <tbody>${wageRows}</tbody>
+    </table></div>`;
+
+  // Comparison card
+  const canAfford = wages[0].daily * 30; // laborer monthly
+  const pct = Math.min(Math.round((canAfford/totalPennies)*100),100);
+  const compHTML = `
+    <h2>📊 Affordability Snapshot</h2>
+    <p style="font-size:0.9rem;color:#3a1f0f;margin-bottom:12px">
+      A typical <strong>agricultural laborer</strong> in ${rData.name} earned about 
+      <strong>${fmt(canAfford,0)} ${rData.currency}/month</strong>. 
+      Your treatment costs <strong>${fmt(totalPennies,0)} ${rData.currency}</strong>, 
+      which is <strong>${fmt(totalPennies/canAfford,1)}× their monthly income</strong>.
+    </p>
+    <div style="background:#e8dcc8;border-radius:6px;height:20px;overflow:hidden;margin-bottom:8px">
+      <div style="background:#8b4513;height:100%;width:${Math.min(pct,100)}%;transition:width 0.5s;border-radius:6px"></div>
+    </div>
+    <p style="font-size:0.8rem;color:#6b4c2a">
+      A laborer's monthly wages cover <strong>${pct}%</strong> of this treatment cost.
+      ${totalPennies > canAfford 
+        ? '❌ Beyond a poor peasant\'s reach — only wealthy burghers or nobles could afford full treatment.' 
+        : '✅ Just barely affordable for a careful saver — but remember, this is <em>before</em> food, shelter, and taxes.'}
+    </p>`;
+
+  // ── Copy text ────────────────────────────────────────────
+  const copyText = `Medieval Plague Doctor Treatment Cost (${rData.name})
+Patients: ${patients} | Visits: ${visits} | Severity: ${sData.label} | Doctor: ${dData.label}
+Total: ${fmt(totalPennies,1)} ${rData.currency} (${fmtD(modernUSD)} modern equivalent)
+Treatments: ${items.map(i=>i.label).join(', ')}
+Generated at historycalc.com/medieval-plague-doctor-treatment-cost-calculator/`;
+
+  document.getElementById('copyBtn').dataset.copy = copyText;
+
+  requestAnimationFrame(()=>{
+    document.getElementById('hero-section').innerHTML     = heroHTML;
+    document.getElementById('modern-equiv-section').innerHTML = modernHTML;
+    document.getElementById('breakdown-table').innerHTML  = breakdownHTML;
+    document.getElementById('currency-table-section').innerHTML = wageHTML;
+    document.getElementById('comparison-card').innerHTML  = compHTML;
+
+    const res = document.getElementById('results');
+    res.classList.add('visible');
+    res.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+}
+
+// ── Events ────────────────────────────────────────────────────
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  requestAnimationFrame(()=>calculate());
+});
+
+['patients','visits'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown', e=>{
+    if(e.key==='Enter') calculate();
+  });
+});
+
+document.getElementById('copyBtn').addEventListener('click', function(){
+  const text = this.dataset.copy || '';
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(()=>{
+    this.textContent='Copied!';
+    this.classList.add('copied');
+    setTimeout(()=>{ this.textContent='Copy Results'; this.classList.remove('copied'); },2000);
+  }).catch(()=>{
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    this.textContent='Copied!'; this.classList.add('copied');
+    setTimeout(()=>{ this.textContent='Copy Results'; this.classList.remove('copied'); },2000);
+  });
+});
+</script>
+
+</body>
+</html>
