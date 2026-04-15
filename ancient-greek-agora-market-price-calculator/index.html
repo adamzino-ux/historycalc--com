@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Greek Agora Market Price Calculator — Free Online Tool | HistoryCalc</title>
+<meta name="description" content="Convert ancient Greek currency (drachma, obol, talent) to modern equivalents and calculate agora market prices for goods, wages, and services in classical Athens.">
+<link rel="canonical" href="https://historycalc.com/ancient-greek-agora-price-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Greek Agora Market Price Calculator",
+  "description": "Convert ancient Greek currency and calculate agora market prices for goods, wages, and services in classical Athens.",
+  "url": "https://historycalc.com/ancient-greek-agora-price-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e0e0e0;padding:12px 20px}
+.nav-inner{max-width:640px;margin:0 auto;display:flex;align-items:center}
+.site-name{font-weight:700;font-size:1.1rem;color:#1a1a2e}
+.site-name span{color:#0077b6}
+main{max-width:640px;margin:0 auto;padding:1.5rem 1rem 2rem}
+h1{font-size:1.6rem;font-weight:800;color:#1a1a2e;margin-bottom:0.4rem;line-height:1.3}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab-btn{padding:8px 16px;border:1px solid #ddd;border-radius:20px;background:#f8f9fa;color:#444;font-size:0.85rem;cursor:pointer;transition:all 0.2s;min-height:36px;font-weight:500}
+.tab-btn.active{background:#0077b6;color:#fff;border-color:#0077b6}
+.tab-btn:hover:not(.active){background:#e8f4fb;border-color:#0077b6;color:#0077b6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:5px;margin-top:1rem}
+label:first-child{margin-top:0}
+select,input[type="number"],input[type="text"]{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;color:#1a1a2e;background:#fff;transition:box-shadow 0.2s,border-color 0.2s;-webkit-appearance:none;appearance:none}
+select:focus,input:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+.input-error{border-color:#e74c3c!important;box-shadow:0 0 0 3px rgba(231,76,60,0.12)!important}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{width:100%;background:#0077b6;color:#fff;border:none;padding:14px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:1.2rem;min-height:48px;transition:background 0.2s}
+.btn:hover{background:#006299}
+.btn:active{background:#005580}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.show{opacity:1;pointer-events:auto}
+.big-result{background:#f0f7ff;border:1px solid #b3d9f2;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:1.2rem;text-align:center}
+.big-result .label{font-size:0.85rem;color:#555;font-weight:500}
+.big-result .value{font-size:2.2rem;font-weight:800;color:#0077b6;line-height:1.2;margin:4px 0}
+.big-result .sub{font-size:0.85rem;color:#666}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.2rem}
+.result-card{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:0.9rem 1rem;text-align:center}
+.result-card .rc-label{font-size:0.75rem;color:#666;font-weight:500;text-transform:uppercase;letter-spacing:0.03em}
+.result-card .rc-val{font-size:1.25rem;font-weight:700;color:#1a1a2e;margin-top:2px}
+.table-wrap{overflow-x:auto;border-radius:6px;border:1px solid #e0e0e0;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+thead th{background:#f0f0f0;padding:10px 12px;text-align:left;font-weight:600;color:#333;white-space:nowrap}
+thead th.num{text-align:right}
+tbody tr:nth-child(odd){background:#fafafa}
+tbody tr:nth-child(even){background:#fff}
+tbody td{padding:9px 12px;border-bottom:1px solid #eee;color:#1a1a2e}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:last-child td{border-bottom:none}
+.copy-btn{background:none;border:1px solid #ddd;border-radius:4px;padding:4px 10px;font-size:0.75rem;color:#555;cursor:pointer;margin-left:8px;transition:all 0.2s;vertical-align:middle}
+.copy-btn:hover{background:#f0f7ff;border-color:#0077b6;color:#0077b6}
+.coin-visual{display:flex;gap:8px;flex-wrap:wrap;margin:0.8rem 0}
+.coin{display:flex;flex-direction:column;align-items:center;gap:4px}
+.coin-circle{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:#fff;text-align:center;line-height:1.2;border:2px solid rgba(0,0,0,0.15)}
+.coin-label{font-size:0.7rem;color:#555;text-align:center}
+.info-box{background:#fffbf0;border:1px solid #f0d080;border-radius:6px;padding:0.9rem 1rem;font-size:0.85rem;color:#5a4a00;margin-bottom:1rem}
+.info-box strong{color:#3a3000}
+.section-title{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.8rem;padding-bottom:6px;border-bottom:2px solid #f0f0f0}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin:1.5rem 0 0.6rem}
+.content-section p{color:#333;font-size:0.92rem;margin-bottom:0.8rem;line-height:1.7}
+.content-section ul{padding-left:1.3rem;color:#333;font-size:0.92rem}
+.content-section ul li{margin-bottom:0.5rem;line-height:1.6}
+details{border:1px solid #e0e0e0;border-radius:6px;padding:0;margin-bottom:0.6rem;overflow:hidden}
+summary{padding:12px 16px;font-weight:600;font-size:0.9rem;cursor:pointer;background:#f8f9fa;color:#1a1a2e;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:'▼';font-size:0.7rem;color:#888;transition:transform 0.2s}
+details[open] summary::after{transform:rotate(180deg)}
+details[open] summary{background:#f0f7ff}
+.details-body{padding:12px 16px;font-size:0.88rem;color:#333;line-height:1.7}
+.related-tools{background:#f8f9fa;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+.related-tools h3{font-size:0.95rem;font-weight:700;color:#1a1a2e;margin-bottom:0.8rem}
+.related-tools ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.related-tools ul li a{display:inline-block;padding:6px 12px;background:#fff;border:1px solid #ddd;border-radius:20px;font-size:0.82rem;color:#0077b6;transition:all 0.2s}
+.related-tools ul li a:hover{background:#0077b6;color:#fff;border-color:#0077b6;text-decoration:none}
+footer{background:#f8f9fa;border-top:1px solid #e0e0e0;padding:16px 20px;text-align:center;font-size:0.82rem;color:#666}
+footer a{color:#555;margin:0 8px}
+footer a:hover{color:#0077b6}
+.formula-box{background:#1a1a2e;color:#e0e0e0;border-radius:6px;padding:1rem 1.2rem;font-family:monospace;font-size:0.85rem;margin:0.6rem 0;line-height:1.8}
+.formula-box .highlight{color:#4fc3f7}
+@media(max-width:640px){
+  .row-2{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  h1{font-size:1.35rem}
+  .big-result .value{font-size:1.8rem}
+  .card{padding:1.3rem}
+}
+@media(max-width:400px){
+  .result-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="site-name">History<span>Calc</span></a>
+  </div>
+</nav>
+
+<main>
+  <h1>Ancient Greek Agora Market Price Calculator</h1>
+  <p class="subtitle">Explore the economy of Classical Athens — convert currencies, calculate wages, and price goods from the agora marketplace.</p>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('currency')">💰 Currency Converter</button>
+      <button class="tab-btn" onclick="switchTab('prices')">🏺 Agora Prices</button>
+      <button class="tab-btn" onclick="switchTab('wages')">⚒️ Wages & Work</button>
+    </div>
+
+    <!-- TAB 1: Currency Converter -->
+    <div class="tab-panel active" id="tab-currency">
+      <div class="info-box">
+        <strong>Greek Currency System:</strong> 1 Talent = 60 Minas = 6,000 Drachmas = 36,000 Obols. An unskilled worker earned ~1 drachma per day in Classical Athens (~450–300 BCE).
+      </div>
+      <div class="coin-visual">
+        <div class="coin"><div class="coin-circle" style="background:#b8860b">Obol</div><div class="coin-label">⅙ Drach.</div></div>
+        <div class="coin"><div class="coin-circle" style="background:#c0a000">Diobos</div><div class="coin-label">2 Obols</div></div>
+        <div class="coin"><div class="coin-circle" style="background:#c8a800">Triobos</div><div class="coin-label">3 Obols</div></div>
+        <div class="coin"><div class="coin-circle" style="background:#d4a000">Drach.</div><div class="coin-label">6 Obols</div></div>
+        <div class="coin"><div class="coin-circle" style="background:#7d6608">Mina</div><div class="coin-label">100 Drach.</div></div>
+        <div class="coin"><div class="coin-circle" style="background:#4a3c00">Talent</div><div class="coin-label">6,000 Drach.</div></div>
+      </div>
+
+      <label for="amt-in">Amount</label>
+      <input type="number" id="amt-in" min="0" step="any" placeholder="e.g. 10" value="">
+      <div class="error-msg" id="err-currency">Please enter a valid positive number.</div>
+
+      <label for="unit-in">From currency</label>
+      <select id="unit-in">
+        <option value="obol">Obol (χαλκός)</option>
+        <option value="diobol">Diobol (2 obols)</option>
+        <option value="triobol">Triobol (3 obols)</option>
+        <option value="drachma" selected>Drachma (δραχμή)</option>
+        <option value="didrachm">Didrachm (2 drachmas)</option>
+        <option value="tetradrachm">Tetradrachm (4 drachmas)</option>
+        <option value="mina">Mina (μνᾶ)</option>
+        <option value="talent">Talent (τάλαντον)</option>
+      </select>
+
+      <label for="modern-wage">Modern daily wage equivalent (USD)</label>
+      <input type="number" id="modern-wage" min="1" step="1" value="150" placeholder="e.g. 150">
+      <div class="error-msg" id="err-wage">Please enter a valid daily wage amount.</div>
+      <p style="font-size:0.78rem;color:#777;margin-top:4px;">1 drachma ≈ 1 day's unskilled labor. Adjust to match your comparison.</p>
+
+      <button class="btn" onclick="calcCurrency()">Convert Currency</button>
+
+      <div class="results" id="res-currency">
+        <div class="big-result">
+          <div class="label">Modern USD Equivalent</div>
+          <div class="value" id="modern-usd">—</div>
+          <div class="sub" id="modern-sub">based on labor-day purchasing power</div>
+        </div>
+        <p class="section-title">All Denomination Equivalents</p>
+        <div class="table-wrap">
+          <table id="denom-table">
+            <thead><tr><th>Denomination</th><th>Greek Name</th><th class="num">Equivalent</th><th class="num">≈ USD</th></tr></thead>
+            <tbody id="denom-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Agora Prices -->
+    <div class="tab-panel" id="tab-prices">
+      <div class="info-box">
+        <strong>Classical Athenian Agora (~400 BCE):</strong> Select a commodity to see its historical price, modern equivalent, and how many days of labor it represented.
+      </div>
+
+      <label for="cat-select">Category</label>
+      <select id="cat-select" onchange="filterGoods()">
+        <option value="all">All Categories</option>
+        <option value="food">Food & Drink</option>
+        <option value="clothing">Clothing & Textiles</option>
+        <option value="tools">Tools & Equipment</option>
+        <option value="animals">Animals & Livestock</option>
+        <option value="luxury">Luxury & Imports</option>
+        <option value="services">Services & Fees</option>
+      </select>
+
+      <label for="wage2">Modern daily wage (USD) for comparison</label>
+      <input type="number" id="wage2" min="1" step="1" value="150" placeholder="150">
+
+      <button class="btn" onclick="calcPrices()">Show Agora Prices</button>
+
+      <div class="results" id="res-prices">
+        <p class="section-title">Agora Market Prices</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Category</th>
+                <th class="num">Ancient Price</th>
+                <th class="num">Days' Labor</th>
+                <th class="num">≈ USD Today</th>
+              </tr>
+            </thead>
+            <tbody id="prices-body"></tbody>
+          </table>
+        </div>
+        <div class="info-box" style="margin-top:0.8rem" id="prices-note"></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Wages & Work -->
+    <div class="tab-panel" id="tab-wages">
+      <div class="info-box">
+        <strong>Historical Athenian wages:</strong> In 5th–4th century BCE Athens, wages varied significantly by skill and citizenship status. Calculate earnings for a given period.
+      </div>
+
+      <label for="job-select">Occupation</label>
+      <select id="job-select" onchange="updateJobInfo()">
+        <option value="unskilled">Unskilled laborer (thetes)</option>
+        <option value="craftsman">Craftsman / artisan</option>
+        <option value="soldier">Hoplite soldier</option>
+        <option value="rower">Trireme oarsman</option>
+        <option value="teacher">Elementary teacher</option>
+        <option value="sculptor">Sculptor (Parthenon rate)</option>
+        <option value="jury">Juror (dikast)</option>
+        <option value="magistrate">Magistrate (archon)</option>
+        <option value="architect">Master architect</option>
+      </select>
+      <p style="font-size:0.8rem;color:#0077b6;margin-top:6px" id="job-info-text"></p>
+
+      <div class="row-2">
+        <div>
+          <label for="work-days">Days worked</label>
+          <input type="number" id="work-days" min="1" max="36500" value="30" placeholder="30">
+          <div class="error-msg" id="err-days">Enter 1–36,500 days.</div>
+        </div>
+        <div>
+          <label for="wage3">Modern daily wage (USD)</label>
+          <input type="number" id="wage3" min="1" step="1" value="150" placeholder="150">
+        </div>
+      </div>
+
+      <button class="btn" onclick="calcWages()">Calculate Earnings</button>
+
+      <div class="results" id="res-wages">
+        <div class="big-result">
+          <div class="label">Total Earnings</div>
+          <div class="value" id="wage-total-drach">—</div>
+          <div class="sub" id="wage-total-sub">drachmas</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-card"><div class="rc-label">In Obols</div><div class="rc-val" id="wage-obols">—</div></div>
+          <div class="result-card"><div class="rc-label">In Minas</div><div class="rc-val" id="wage-minas">—</div></div>
+          <div class="result-card"><div class="rc-label">In Talents</div><div class="rc-val" id="wage-talents">—</div></div>
+          <div class="result-card"><div class="rc-label">≈ USD Today</div><div class="rc-val" id="wage-usd">—</div></div>
+        </div>
+        <p class="section-title">What Could You Buy With This?</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Item</th><th class="num">Quantity Affordable</th><th class="num">Price Each</th></tr></thead>
+            <tbody id="wage-buying-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <div class="content-section">
+    <h2>How to Use This Ancient Greek Agora Price Calculator</h2>
+    <p>Choose one of three tabs: <strong>Currency Converter</strong> converts between ancient Greek denominations (obol, drachma, mina, talent) and estimates modern USD equivalents using labor-day purchasing power. <strong>Agora Prices</strong> shows historically attested prices for goods and services sold in Classical Athenian markets. <strong>Wages & Work</strong> calculates earnings for various ancient occupations over a custom period.</p>
+    <p>Adjust the "modern daily wage" input to personalize comparisons — the default $150/day roughly represents median US take-home pay. The tool uses 1 drachma = 1 unskilled labor-day as the baseline conversion.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Understanding ancient Greek prices brings history to life in a way no textbook can. When you learn that a copy of a philosophical treatise cost 1 drachma — the same as a day's wages — you suddenly grasp why literacy was a luxury. When you calculate that the sculptor Pheidias's workers on the Parthenon earned 1 drachma per day per man (we have the actual accounts on stone), you understand the scale of Pericles' ambition: the entire project cost roughly 500 talents, or about 3 million drachmas.</p>
+    <p>Classical Athens (~450–300 BCE) had a surprisingly market-driven economy. The agora wasn't just a marketplace — it was the economic heart of the polis. Grain prices fluctuated seasonally; imported goods from Egypt, Persia, and Phoenicia commanded premiums. A jar of good Chian wine cost 3–4 obols. A slave could cost 150–300 drachmas. Jury service paid 3 obols per day under Pericles, later raised to 3 drachmas under the demagogues — a deliberate policy choice that shaped Athenian democracy. These numbers are real, sourced from inscriptions, court speeches (especially Lysias and Demosthenes), and papyri.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The conversion uses the <strong>labor-day purchasing power parity</strong> method — the most historically defensible approach for ancient economies:</p>
+    <div class="formula-box">
+      <span class="highlight">USD Equivalent</span> = (Ancient Price in Drachmas) × (Modern Daily Wage in USD)<br><br>
+      <span class="highlight">Currency Hierarchy:</span><br>
+      1 Talent = 60 Minas = 6,000 Drachmas = 36,000 Obols<br>
+      1 Mina = 100 Drachmas = 600 Obols<br>
+      1 Drachma = 6 Obols<br>
+      1 Tetradrachm = 4 Drachmas (most common large coin)<br>
+      1 Triobol = 3 Obols (½ drachma, common daily transaction)
+    </div>
+    <p>Note: economists debate all ancient-to-modern conversions. Some prefer grain-price parity (1 medimnos of barley ≈ 5 drachmas in 400 BCE). The labor-day method gives the most intuitive sense of <em>relative effort cost</em> — how hard did an average person have to work to afford something?</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't use modern inflation directly.</strong> Ancient Greek coinage was silver-based; comparing to modern fiat currency using CPI is meaningless. Labor-day parity is far more useful.</li>
+      <li><strong>Prices varied enormously by time and place.</strong> A medimnos of grain cost 1 drachma in peacetime but 5–6 during the Peloponnesian War. These figures represent typical 4th-century Athenian rates.</li>
+      <li><strong>The talent was rarely a physical coin.</strong> It was an accounting unit — 26kg of silver. Only states and wealthy individuals transacted in talents.</li>
+      <li><strong>Slaves were capital investments, not just purchases.</strong> A skilled slave-craftsman earning 1–2 obols/day for his master could pay back his purchase price in 2–3 years.</li>
+      <li><strong>Women and metics (resident foreigners) had different economic access.</strong> Metics paid a special tax (metoikion) but could own businesses; women typically could not own property over a certain value without a male guardian (kyrios).</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How much was a drachma really worth in modern money?</summary>
+      <div class="details-body">It depends on your conversion method. Using labor-day parity at $150/day, 1 drachma ≈ $150. Using grain parity (5 drachmas per medimnos ≈ 52 liters of barley), it comes out closer to $30–50. The labor-day method is preferred here because it reflects the everyday felt value — "how many hours must I work to buy this?" — rather than commodity arbitrage across 2,400 years.</div>
+    </details>
+    <details>
+      <summary>What was the most common coin in the Athenian agora?</summary>
+      <div class="details-body">The tetradrachm (4 drachmas, ~17g of silver) was Athens' international trade coin, featuring the owl of Athena — so famous it circulated throughout the Mediterranean. For daily shopping, the obol and triobol (3 obols) were the everyday coins, much like modern quarters and dollar coins. The Athenian "owl" tetradrachm is the most recognizable ancient Greek coin today.</div>
+    </details>
+    <details>
+      <summary>How do we know these prices? Are they accurate?</summary>
+      <div class="details-body">Many prices come from remarkable surviving sources: stone inscriptions recording public building accounts (the Erechtheion accounts list workers by name and daily wage), court speeches by Lysias and Demosthenes that cite market prices as evidence, Aristophanes' comedies (full of references to food prices), and Xenophon's economic writings. Prices shown here are consensus figures from academic sources including David Schaps' "Economic Rights of Women in Ancient Greece" and the Oxford Handbook of Ancient Greek Economy.</div>
+    </details>
+    <details>
+      <summary>Could a poor Athenian citizen survive on jury pay?</summary>
+      <div class="details-body">Barely, and deliberately so. At 2 obols/day (Pericles' original rate, later 3 obols, then 3 drachmas under 4th-century demagogues), jury pay was just enough to feed one person a basic diet of barley porridge and olives. Aristophanes' comedy "Wasps" (422 BCE) satirizes elderly jurors who are essentially dependent on jury pay to live — the playwright portrays this as a form of political manipulation, keeping poor citizens loyal to the courts and away from the assembly.</div>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h3>Related Historical Tools</h3>
+    <ul>
+      <li><a href="/roman-currency-calculator">Roman Currency Calculator</a></li>
+      <li><a href="/medieval-price-calculator">Medieval Market Price Calculator</a></li>
+      <li><a href="/ancient-egypt-economy">Ancient Egypt Economy Calculator</a></li>
+      <li><a href="/historical-inflation-calculator">Historical Inflation Calculator</a></li>
+      <li><a href="/roman-legion-pay-calculator">Roman Legion Pay Calculator</a></li>
+      <li><a href="/ancient-trade-route-calculator">Ancient Trade Route Calculator</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+</main>
+
+<footer>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/contact">Contact</a>
+  <span style="display:block;margin-top:6px">© 2025 HistoryCalc.com — Free historical calculators for education and research</span>
+</footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+
+// Currency in obols (base unit)
+const DENOM = {
+  obol:       { name:"Obol",        greek:"ὀβολός",      obols:1 },
+  diobol:     { name:"Diobol",      greek:"διώβολον",    obols:2 },
+  triobol:    { name:"Triobol",     greek:"τριώβολον",   obols:3 },
+  drachma:    { name:"Drachma",     greek:"δραχμή",      obols:6 },
+  didrachm:   { name:"Didrachm",    greek:"δίδραχμον",   obols:12 },
+  tetradrachm:{ name:"Tetradrachm", greek:"τετράδραχμον",obols:24 },
+  mina:       { name:"Mina",        greek:"μνᾶ",         obols:600 },
+  talent:     { name:"Talent",      greek:"τάλαντον",    obols:36000 }
+};
+
+// Goods data: price in obols, category, description
+const GOODS = [
+  // Food
+  { name:"Loaf of bread (barley)",        cat:"food",     obols:1,      note:"Basic sustenance" },
+  { name:"Loaf of bread (wheat)",         cat:"food",     obols:2,      note:"Higher quality" },
+  { name:"Jar of cheap wine (1 kotyle)",  cat:"food",     obols:1,      note:"~0.27L table wine" },
+  { name:"Jar of Chian wine (1 kotyle)",  cat:"food",     obols:4,      note:"Premium imported wine" },
+  { name:"Dried fish (tariche)",          cat:"food",     obols:1,      note:"Common protein" },
+  { name:"Fresh fish (sea bream)",        cat:"food",     obols:3,      note:"Market fresh" },
+  { name:"Olives (1 choinix)",            cat:"food",     obols:1,      note:"~1.1L measure" },
+  { name:"Olive oil (1 kotyle)",          cat:"food",     obols:3,      note:"For cooking/lighting" },
+  { name:"Honey (1 kotyle)",              cat:"food",     obols:4,      note:"Attic honey, prized" },
+  { name:"Garlic (1 bunch)",              cat:"food",     obols:0.5,    note:"Market staple" },
+  { name:"Medimnos of barley (~52L)",     cat:"food",     obols:30,     note:"5 drachmas, ~month supply" },
+  { name:"Medimnos of wheat (~52L)",      cat:"food",     obols:48,     note:"8 drachmas, premium grain" },
+
+  // Clothing
+  { name:"Simple chiton (linen)",         cat:"clothing", obols:12,     note:"Basic garment" },
+  { name:"Woolen himation (cloak)",       cat:"clothing", obols:60,     note:"10 drachmas, respectable" },
+  { name:"Pair of sandals",               cat:"clothing", obols:8,      note:"Simple leather" },
+  { name:"Fine dyed himation",            cat:"clothing", obols:300,    note:"50 drachmas, luxury" },
+
+  // Tools
+  { name:"Iron stylus (writing)",         cat:"tools",    obols:1,      note:"School/office tool" },
+  { name:"Papyrus scroll (blank)",        cat:"tools",    obols:6,      note:"1 drachma, writing material" },
+  { name:"Copy of a book/treatise",       cat:"tools",    obols:6,      note:"1 drachma — Diogenes Laertius" },
+  { name:"Iron hoe",                      cat:"tools",    obols:12,     note:"Farm implement" },
+  { name:"Bronze cooking pot",            cat:"tools",    obols:18,     note:"Household essential" },
+  { name:"Pickaxe (iron)",                cat:"tools",    obols:24,     note:"Mining/construction" },
+  { name:"Lamp (terracotta)",             cat:"tools",    obols:4,      note:"Common household item" },
+
+  // Animals
+  { name:"Chicken",                       cat:"animals",  obols:3,      note:"Common fowl" },
+  { name:"Piglet",                        cat:"animals",  obols:18,     note:"3 drachmas" },
+  { name:"Sheep",                         cat:"animals",  obols:60,     note:"10 drachmas, standard" },
+  { name:"Ox (working)",                  cat:"animals",  obols:600,    note:"100 drachmas, major purchase" },
+  { name:"Donkey",                        cat:"animals",  obols:300,    note:"50 drachmas, transport" },
+  { name:"Unskilled slave",               cat:"animals",  obols:900,    note:"150 dr — Xenophon ref." },
+  { name:"Skilled slave (craftsman)",     cat:"animals",  obols:1800,   note:"300 drachmas, Nicias's miners" },
+
+  // Luxury
+  { name:"Purple-dyed wool (per mina wt)",cat:"luxury",   obols:900,    note:"Tyrian purple, elite only" },
+  { name:"Perfume (myrrh, 1 kotyle)",     cat:"luxury",   obols:120,    note:"20 drachmas" },
+  { name:"Egyptian papyrus (fine)",       cat:"luxury",   obols:12,     note:"Imported premium" },
+  { name:"Silver kylix (cup)",            cat:"luxury",   obols:1200,   note:"200 drachmas" },
+  { name:"Incense (1 mina weight)",       cat:"luxury",   obols:180,    note:"30 drachmas, religious use" },
+
+  // Services
+  { name:"Haircut at barber",             cat:"services", obols:2,      note:"Social/grooming" },
+  { name:"Public bath entry",             cat:"services", obols:1,      note:"Balaneion fee" },
+  { name:"Hetaira (companion) fee",       cat:"services", obols:6,      note:"1 drachma, Athenaeus" },
+  { name:"Doctor's consultation",         cat:"services", obols:6,      note:"1 drachma, basic" },
+  { name:"Elementary schooling (month)",  cat:"services", obols:60,     note:"10 drachmas per month" },
+  { name:"Sophist lecture (single)",      cat:"services", obols:6,      note:"Some charged 100 dr/course!" },
+  { name:"Court filing fee",              cat:"services", obols:18,     note:"3 drachmas, minor case" },
+  { name:"Trireme crew berth (per day)",  cat:"services", obols:6,      note:"1 drachma naval pay" },
+];
+
+// Jobs: daily rate in obols
+const JOBS = {
+  unskilled:  { label:"Unskilled laborer",   obols:6,   note:"1 drachma/day — thetes, general labor, Erechtheion accounts 408 BCE" },
+  craftsman:  { label:"Craftsman/artisan",   obols:9,   note:"1.5 drachmas/day — masons, potters, leatherworkers" },
+  soldier:    { label:"Hoplite soldier",     obols:6,   note:"1 drachma/day + rations — Thucydides, Peloponnesian War rates" },
+  rower:      { label:"Trireme oarsman",     obols:6,   note:"1 drachma/day — could rise to 1.5–2 dr during crises" },
+  teacher:    { label:"Elementary teacher",  obols:4,   note:"~20 obols/week, ~3-4 obols/day equivalent — low-status profession" },
+  sculptor:   { label:"Sculptor",            obols:6,   note:"1 drachma/day — Parthenon accounts show equal pay across trades!" },
+  jury:       { label:"Juror (dikast)",      obols:3,   note:"3 obols/day — Pericles' original rate; raised to 3 drachmas later" },
+  magistrate: { label:"Magistrate (archon)", obols:6,   note:"4 obols/day basic + 2 for two attendants — Aristotle, Ath. Pol." },
+  architect:  { label:"Master architect",    obols:12,  note:"2 drachmas/day — Philokles at Erechtheion earned same as laborers!" },
+};
+
+// Buying power items (obols) for wage results
+const BUYITEMS = [
+  { name:"Loaves of bread",        obols:1 },
+  { name:"Days of wine (table)",   obols:1 },
+  { name:"Fresh fish portions",    obols:3 },
+  { name:"Medimnoi of barley",     obols:30 },
+  { name:"Simple chitons",         obols:12 },
+  { name:"Pairs of sandals",       obols:8 },
+  { name:"Chickens",               obols:3 },
+  { name:"Jars of olive oil",      obols:3 },
+];
+
+// ── UTILITIES ─────────────────────────────────────────────────────────────────
+
+function fmt(n, decimals=2) {
+  if (!isFinite(n)) return '—';
+  if (n === 0) return '0';
+  if (n < 0.01 && n > 0) return n.toFixed(4);
+  return Number(n.toFixed(decimals)).toLocaleString('en-US', {maximumFractionDigits: decimals});
+}
+
+function fmtInt(n) {
+  return Math.round(n).toLocaleString('en-US');
+}
+
+function obolsToDrachmas(o) { return o / 6; }
+function obolsToMinas(o)    { return o / 600; }
+function obolsToTalents(o)  { return o / 36000; }
+
+// ── TAB SWITCHING ─────────────────────────────────────────────────────────────
+
+function switchTab(id) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const map = { currency:0, prices:1, wages:2 };
+  btns[map[id]].classList.add('active');
+}
+
+// ── TAB 1: CURRENCY CONVERTER ─────────────────────────────────────────────────
+
+function calcCurrency() {
+  const amtEl = document.getElementById('amt-in');
+  const wageEl = document.getElementById('modern-wage');
+  const errC = document.getElementById('err-currency');
+  const errW = document.getElementById('err-wage');
+
+  let valid = true;
+  const amt = parseFloat(amtEl.value);
+  const dailyWage = parseFloat(wageEl.value);
+
+  amtEl.classList.remove('input-error'); errC.classList.remove('show');
+  wageEl.classList.remove('input-error'); errW.classList.remove('show');
+
+  if (isNaN(amt) || amt < 0) {
+    amtEl.classList.add('input-error'); errC.classList.add('show'); valid = false;
+  }
+  if (isNaN(dailyWage) || dailyWage <= 0) {
+    wageEl.classList.add('input-error'); errW.classList.add('show'); valid = false;
+  }
+  if (!valid) return;
+
+  const unit = document.getElementById('unit-in').value;
+  const totalObols = amt * DENOM[unit].obols;
+  const totalDrachmas = obolsToDrachmas(totalObols);
+  const usdEquiv = totalDrachmas * dailyWage;
+
+  requestAnimationFrame(() => {
+    document.getElementById('modern-usd').textContent = '$' + fmt(usdEquiv, 2);
+    document.getElementById('modern-sub').textContent =
+      fmt(totalDrachmas, 3) + ' drachmas × $' + dailyWage + '/day labor-day rate';
+
+    const denomKeys = ['obol','triobol','drachma','tetradrachm','mina','talent'];
+    let rows = '';
+    for (const key of denomKeys) {
+      const d = DENOM[key];
+      const equiv = totalObols / d.obols;
+      const usd = obolsToDrachmas(totalObols) * dailyWage;
+      rows += `<tr>
+        <td><strong>${d.name}</strong></td>
+        <td style="color:#666;font-size:0.82rem">${d.greek}</td>
+        <td class="num">${equiv < 0.0001 ? '< 0.0001' : fmt(equiv, equiv < 1 ? 4 : 2)}</td>
+        <td class="num">$${fmt(usd, 2)}</td>
+      </tr>`;
+    }
+    document.getElementById('denom-body').innerHTML = rows;
+    document.getElementById('res-currency').classList.add('show');
+  });
+}
+
+// ── TAB 2: AGORA PRICES ───────────────────────────────────────────────────────
+
+function filterGoods() { /* just visual change, recalc on button */ }
+
+function calcPrices() {
+  const cat = document.getElementById('cat-select').value;
+  const dailyWage = parseFloat(document.getElementById('wage2').value) || 150;
+  const filtered = cat === 'all' ? GOODS : GOODS.filter(g => g.cat === cat);
+
+  const catNames = {food:'Food',clothing:'Clothing',tools:'Tools & Equipment',
+    animals:'Animals',luxury:'Luxury',services:'Services'};
+
+  requestAnimationFrame(() => {
+    let rows = '';
+    for (const g of filtered) {
+      const dr = obolsToDrachmas(g.obols);
+      const days = dr;
+      const usd = dr * dailyWage;
+      const priceStr = g.obols < 6
+        ? `${fmt(g.obols,1)} obol${g.obols!==1?'s':''}`
+        : g.obols < 600
+          ? `${fmt(dr,2)} dr`
+          : g.obols < 36000
+            ? `${fmt(obolsToMinas(g.obols),2)} mina${obolsToMinas(g.obols)!==1?'s':''}`
+            : `${fmt(obolsToTalents(g.obols),2)} tal.`;
+      rows += `<tr>
+        <td><strong>${g.name}</strong><br><span style="font-size:0.76rem;color:#888">${g.note}</span></td>
+        <td style="font-size:0.82rem;color:#555">${catNames[g.cat]||g.cat}</td>
+        <td class="num">${priceStr}</td>
+        <td class="num">${days < 0.1 ? '< 0.1' : fmt(days, days < 1 ? 2 : 1)}</td>
+        <td class="num">$${fmt(usd, usd < 1 ? 2 : 0)}</td>
+      </tr>`;
+    }
+    document.getElementById('prices-body').innerHTML = rows || '<tr><td colspan="5" style="text-align:center;color:#888;padding:20px">No items in this category.</td></tr>';
+    document.getElementById('prices-note').innerHTML =
+      `<strong>Note:</strong> Prices are for Classical Athens (~400 BCE), primarily sourced from Athenian inscriptions, court speeches (Lysias, Demosthenes), Aristophanes, and Xenophon. Prices could vary ±50% by season, war, and supply. Daily wage baseline: <strong>$${dailyWage}</strong>.`;
+    document.getElementById('res-prices').classList.add('show');
+  });
+}
+
+// ── TAB 3: WAGES ─────────────────────────────────────────────────────────────
+
+function updateJobInfo() {
+  const key = document.getElementById('job-select').value;
+  const j = JOBS[key];
+  document.getElementById('job-info-text').textContent = j ? '📜 ' + j.note : '';
+}
+
+function calcWages() {
+  const key = document.getElementById('job-select').value;
+  const daysEl = document.getElementById('work-days');
+  const wageEl = document.getElementById('wage3');
+  const errD = document.getElementById('err-days');
+
+  daysEl.classList.remove('input-error'); errD.classList.remove('show');
+
+  const days = parseFloat(daysEl.value);
+  const dailyWage = parseFloat(wageEl.value) || 150;
+
+  if (isNaN(days) || days < 1 || days > 36500) {
+    daysEl.classList.add('input-error'); errD.classList.add('show'); return;
+  }
+
+  const job = JOBS[key];
+  const totalObols = job.obols * days;
+  const totalDrachmas = obolsToDrachmas(totalObols);
+  const totalMinas = obolsToMinas(totalObols);
+  const totalTalents = obolsToTalents(totalObols);
+  const totalUSD = totalDrachmas * dailyWage;
+
+  requestAnimationFrame(() => {
+    document.getElementById('wage-total-drach').textContent = fmt(totalDrachmas, 1) + ' dr';
+    document.getElementById('wage-total-sub').textContent =
+      job.label + ' · ' + fmtInt(days) + ' day' + (days!==1?'s':'') + ' · ' + fmt(job.obols/6,2) + ' dr/day';
+
+    document.getElementById('wage-obols').textContent = fmtInt(totalObols);
+    document.getElementById('wage-minas').textContent = fmt(totalMinas, 3);
+    document.getElementById('wage-talents').textContent = fmt(totalTalents, 4);
+    document.getElementById('wage-usd').textContent = '$' + fmtInt(totalUSD);
+
+    let rows = '';
+    for (const item of BUYITEMS) {
+      const qty = Math.floor(totalObols / item.obols);
+      if (qty === 0) continue;
+      const priceStr = item.obols < 6
+        ? item.obols + ' obol' + (item.obols!==1?'s':'')
+        : (item.obols/6) + ' drachma' + (item.obols/6!==1?'s':'');
+      rows += `<tr>
+        <td>${item.name}</td>
+        <td class="num">${fmtInt(qty)}</td>
+        <td class="num">${priceStr} ea.</td>
+      </tr>`;
+    }
+    document.getElementById('wage-buying-body').innerHTML = rows;
+    document.getElementById('res-wages').classList.add('show');
+  });
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+  updateJobInfo();
+
+  // Enter key triggers calc on active tab
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    const activeTab = document.querySelector('.tab-panel.active');
+    if (!activeTab) return;
+    const id = activeTab.id;
+    if (id === 'tab-currency') calcCurrency();
+    else if (id === 'tab-prices') calcPrices();
+    else if (id === 'tab-wages') calcWages();
+  });
+
+  // Pre-populate job info
+  document.getElementById('job-info-text').textContent =
+    '📜 ' + JOBS['unskilled'].note;
+});
+</script>
+
+</body>
+</html>
