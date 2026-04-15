@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mongol Empire Conquest Speed Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate the Mongol Empire's expansion rate, conquest speed, and territorial growth across history. Compare to modern nations with accurate historical data.">
+<link rel="canonical" href="https://historycalc.com/mongol-empire-conquest-speed-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Mongol Empire Conquest Speed Calculator",
+  "url": "https://historycalc.com/mongol-empire-conquest-speed-calculator/",
+  "description": "Calculate and visualize the Mongol Empire's unprecedented territorial expansion rate, conquest speed, and historical comparisons.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f0e1;
+  --card:#fffdf5;
+  --accent:#8b4513;
+  --accent-hover:#6b3410;
+  --text:#2c1810;
+  --border:#c4a882;
+  --light-bg:#faf5e9;
+  --gold:#b8860b;
+  --red:#c0392b;
+  --green:#2d6a4f;
+  --shadow:rgba(44,24,16,0.12);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;color:var(--accent-hover)}
+nav{background:var(--accent);padding:12px 20px;text-align:center}
+nav a{color:#fff;font-weight:700;font-size:1.1rem;letter-spacing:0.5px}
+nav a:hover{text-decoration:none;opacity:0.85}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:800;color:var(--accent);margin:1.2rem 0 0.4rem;line-height:1.3}
+.subtitle{font-size:0.95rem;color:#6b4c30;margin-bottom:1.5rem}
+.tool-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2rem;box-shadow:0 2px 12px var(--shadow);margin-bottom:2rem}
+.svg-hero{text-align:center;margin-bottom:1.5rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3825;margin-bottom:4px;margin-top:1rem}
+label:first-of-type{margin-top:0}
+input,select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:6px;font-size:1rem;background:#fffdf5;color:var(--text);transition:box-shadow 0.2s,border-color 0.2s;min-height:44px}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:var(--red)}
+.error-msg{color:var(--red);font-size:0.8rem;margin-top:3px;display:none}
+.error-msg.show{display:block}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:480px){.row-2{grid-template-columns:1fr}}
+.btn{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;margin-top:1.2rem;min-height:44px;transition:background 0.2s}
+.btn:hover{background:var(--accent-hover)}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:auto}
+.big-stat{text-align:center;margin:1rem 0}
+.big-number{font-size:2.8rem;font-weight:800;color:var(--accent);line-height:1}
+.big-label{font-size:0.9rem;color:#6b4c30;margin-top:4px}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin:1.2rem 0}
+@media(max-width:420px){.stats-grid{grid-template-columns:1fr}}
+.stat-box{background:var(--light-bg);border:1px solid var(--border);border-radius:6px;padding:0.9rem;text-align:center}
+.stat-box .val{font-size:1.35rem;font-weight:700;color:var(--accent)}
+.stat-box .lbl{font-size:0.78rem;color:#6b4c30;margin-top:2px}
+.section-title{font-size:1rem;font-weight:700;color:var(--accent);margin:1.2rem 0 0.5rem;border-bottom:1px solid var(--border);padding-bottom:4px}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+th{background:#e8ddc8;color:var(--text);font-weight:600;padding:8px 10px;text-align:left;white-space:nowrap}
+td{padding:7px 10px;border-bottom:1px solid #e5d9c3;vertical-align:top}
+tr:nth-child(even) td{background:#faf5e9}
+td.num{text-align:right}
+.bar-wrap{background:#e8ddc8;border-radius:4px;height:14px;overflow:hidden;margin-top:4px}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width 0.5s ease}
+.modern-eq{background:linear-gradient(135deg,#fdf6e3,#f5ead0);border:1px solid var(--gold);border-radius:8px;padding:1.2rem;margin:1.2rem 0}
+.modern-eq .me-title{font-size:0.85rem;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.modern-eq p{font-size:0.9rem;color:var(--text)}
+.did-you-know{background:linear-gradient(135deg,#f0e8d0,#e8d5b0);border-left:4px solid var(--gold);border-radius:0 8px 8px 0;padding:1.2rem;margin:1.5rem 0}
+.dyk-title{font-weight:700;color:var(--gold);font-size:0.9rem;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px}
+.dyk-title span{margin-right:6px}
+.dyk-list{list-style:none;padding:0}
+.dyk-list li{font-size:0.88rem;color:var(--text);padding:4px 0 4px 18px;position:relative}
+.dyk-list li::before{content:"⚔";position:absolute;left:0;font-size:0.75rem}
+.copy-btn{background:transparent;border:1px solid var(--border);color:var(--accent);padding:5px 14px;border-radius:4px;font-size:0.8rem;cursor:pointer;float:right;transition:background 0.2s}
+.copy-btn:hover{background:var(--light-bg)}
+.copy-btn.copied{color:var(--green);border-color:var(--green)}
+h2{font-size:1.2rem;font-weight:700;color:var(--accent);margin:2rem 0 0.5rem}
+.content-section{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem 2rem;margin-bottom:1.5rem}
+.content-section p{font-size:0.93rem;color:var(--text);margin-bottom:0.8rem}
+.content-section ul{margin:0.5rem 0 0.8rem 1.2rem}
+.content-section ul li{font-size:0.93rem;margin-bottom:0.4rem}
+details{border:1px solid var(--border);border-radius:6px;margin-bottom:0.5rem;overflow:hidden}
+summary{padding:10px 14px;cursor:pointer;font-weight:600;font-size:0.9rem;color:var(--accent);background:var(--light-bg);list-style:none;min-height:44px;display:flex;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▶ ";font-size:0.7rem;margin-right:6px;transition:transform 0.2s}
+details[open] summary::before{content:"▼ "}
+details p{padding:10px 14px;font-size:0.88rem;color:var(--text);background:#fffdf5}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+@media(max-width:440px){.related-grid{grid-template-columns:1fr}}
+.related-link{background:var(--light-bg);border:1px solid var(--border);border-radius:6px;padding:0.7rem 1rem;font-size:0.85rem;color:var(--accent);font-weight:500;transition:background 0.2s;display:block}
+.related-link:hover{background:#efe5cc;text-decoration:none}
+.hist-context{background:linear-gradient(135deg,#f9f2e2,#f0e5cc);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.5rem;margin:1.5rem 0}
+.hc-title{font-weight:700;color:var(--accent);margin-bottom:6px;font-size:0.95rem}
+.hc-title span{margin-right:6px}
+.ad-slot{min-height:0;margin:0}
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.5rem;font-size:0.85rem}
+footer a{color:#d4a882}
+footer a:hover{color:#fff}
+footer .sep{margin:0 8px;opacity:0.5}
+.tab-row{display:flex;gap:0.5rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:100px;padding:8px 12px;border:1px solid var(--border);border-radius:6px;background:var(--light-bg);color:var(--text);font-size:0.85rem;cursor:pointer;font-weight:600;min-height:44px;transition:background 0.2s,border-color 0.2s}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.range-row{display:flex;align-items:center;gap:10px}
+.range-row input[type=range]{flex:1;padding:0;border:none;box-shadow:none;background:transparent;height:auto;min-height:32px}
+.range-row input[type=range]:focus{box-shadow:none}
+.range-val{min-width:50px;text-align:right;font-weight:700;color:var(--accent)}
+.phase-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:0.75rem;font-weight:600;color:#fff;background:var(--accent)}
+.note{font-size:0.78rem;color:#7a5c3a;font-style:italic;margin-top:4px}
+</style>
+</head>
+<body>
+<nav><a href="/">⚔ historycalc.com</a></nav>
+
+<div class="container">
+<!-- SVG Hero -->
+<div class="svg-hero">
+<svg width="340" height="120" viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mongol horseback archer silhouette with yurt and steppe landscape">
+  <!-- sky gradient -->
+  <defs>
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9a96e" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f5ede0" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <rect width="340" height="120" fill="url(#skyGrad)" rx="8"/>
+  <!-- ground -->
+  <rect x="0" y="90" width="340" height="30" fill="#8b6914" opacity="0.25" rx="0"/>
+  <!-- distant mountains -->
+  <polygon points="0,90 30,50 60,80 90,35 130,90" fill="#8b4513" opacity="0.18"/>
+  <polygon points="130,90 160,45 195,70 230,30 280,90" fill="#8b4513" opacity="0.18"/>
+  <!-- yurt -->
+  <ellipse cx="50" cy="80" rx="20" ry="12" fill="#c4a882" stroke="#8b4513" stroke-width="1.2"/>
+  <path d="M30,80 Q50,55 70,80" fill="#d4b896" stroke="#8b4513" stroke-width="1.2"/>
+  <line x1="50" y1="55" x2="50" y2="68" stroke="#8b4513" stroke-width="1.5"/>
+  <!-- horse silhouette -->
+  <g transform="translate(170,42)">
+    <!-- horse body -->
+    <ellipse cx="0" cy="25" rx="30" ry="13" fill="#2c1810"/>
+    <!-- horse head & neck -->
+    <path d="M25,20 Q38,10 42,5 Q44,2 40,4 Q38,6 36,10 Q34,16 28,18 Z" fill="#2c1810"/>
+    <!-- horse ear -->
+    <path d="M41,5 L43,1 L45,5" fill="#2c1810"/>
+    <!-- horse legs -->
+    <rect x="-20" y="35" width="5" height="18" rx="2" fill="#2c1810"/>
+    <rect x="-8" y="36" width="5" height="20" rx="2" fill="#2c1810" transform="rotate(-5,-8,36)"/>
+    <rect x="8" y="36" width="5" height="18" rx="2" fill="#2c1810"/>
+    <rect x="18" y="35" width="5" height="20" rx="2" fill="#2c1810" transform="rotate(5,18,35)"/>
+    <!-- tail -->
+    <path d="M-28,22 Q-40,18 -38,28 Q-36,35 -30,30" fill="none" stroke="#2c1810" stroke-width="3"/>
+  </g>
+  <!-- rider -->
+  <g transform="translate(170,20)">
+    <!-- body -->
+    <rect x="-5" y="0" width="14" height="18" rx="3" fill="#8b4513"/>
+    <!-- head with helmet -->
+    <ellipse cx="4" cy="-5" rx="7" ry="6" fill="#5c3317"/>
+    <path d="M-3,-5 Q4,-14 11,-5" fill="#8b4513"/>
+    <!-- bow arm -->
+    <path d="M9,5 Q20,-5 22,5" fill="none" stroke="#4a2c0a" stroke-width="2"/>
+    <!-- arrow -->
+    <line x1="15" y1="-2" x2="30" y2="-10" stroke="#8b6914" stroke-width="1.5"/>
+    <polygon points="30,-10 26,-12 27,-8" fill="#8b4513"/>
+  </g>
+  <!-- flag/banner -->
+  <line x1="280" y1="30" x2="280" y2="85" stroke="#2c1810" stroke-width="2"/>
+  <path d="M280,30 L310,40 L280,50" fill="#8b4513" opacity="0.8"/>
+  <!-- sun -->
+  <circle cx="310" cy="22" r="12" fill="#b8860b" opacity="0.6"/>
+  <!-- decorative text -->
+  <text x="170" y="112" text-anchor="middle" font-size="10" fill="#8b4513" font-family="serif" font-style="italic" opacity="0.7">Mongol Empire — The Largest Contiguous Land Empire in History</text>
+</svg>
+</div>
+
+<h1>Mongol Empire Conquest Speed Calculator</h1>
+<p class="subtitle">Measure the unprecedented territorial expansion rate of the Mongol Empire — the fastest-growing empire in recorded history.</p>
+
+<div class="tool-card">
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="switchTab('expansion')">Expansion Rate</button>
+    <button class="tab-btn" onclick="switchTab('campaign')">Campaign Speed</button>
+    <button class="tab-btn" onclick="switchTab('compare')">Empire Compare</button>
+  </div>
+
+  <!-- TAB 1: Expansion Rate -->
+  <div class="tab-panel active" id="tab-expansion">
+    <div class="row-2">
+      <div>
+        <label for="startYear">Start Year</label>
+        <input type="number" id="startYear" value="1206" placeholder="e.g. 1206" min="-5000" max="2024">
+        <div class="error-msg" id="err-startYear">Please enter a valid year.</div>
+      </div>
+      <div>
+        <label for="endYear">End Year</label>
+        <input type="number" id="endYear" value="1279" placeholder="e.g. 1279" min="-5000" max="2024">
+        <div class="error-msg" id="err-endYear">Please enter a valid year.</div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div>
+        <label for="startArea">Territory at Start (km²)</label>
+        <input type="number" id="startArea" value="2000000" placeholder="e.g. 2000000" min="0">
+        <div class="error-msg" id="err-startArea">Please enter a positive number.</div>
+      </div>
+      <div>
+        <label for="endArea">Territory at End (km²)</label>
+        <input type="number" id="endArea" value="24000000" placeholder="e.g. 24000000" min="0">
+        <div class="error-msg" id="err-endArea">Please enter a positive number.</div>
+      </div>
+    </div>
+    <div>
+      <label>Population Under Mongol Control at Peak</label>
+      <div class="range-row">
+        <input type="range" id="popSlider" min="50" max="200" value="100" step="5" oninput="updatePop()">
+        <span class="range-val" id="popVal">100M</span>
+      </div>
+    </div>
+    <button class="btn" onclick="calcExpansion()">⚔ Calculate Expansion Rate</button>
+  </div>
+
+  <!-- TAB 2: Campaign Speed -->
+  <div class="tab-panel" id="tab-campaign">
+    <label for="campaignName">Campaign / Target Region</label>
+    <input type="text" id="campaignName" value="Khwarezm Empire" placeholder="e.g. Khwarezm Empire">
+    <div class="row-2">
+      <div>
+        <label for="campStart">Campaign Start Year</label>
+        <input type="number" id="campStart" value="1219" placeholder="e.g. 1219">
+        <div class="error-msg" id="err-campStart">Please enter a valid year.</div>
+      </div>
+      <div>
+        <label for="campEnd">Campaign End Year</label>
+        <input type="number" id="campEnd" value="1221" placeholder="e.g. 1221">
+        <div class="error-msg" id="err-campEnd">Please enter a valid year.</div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div>
+        <label for="campArea">Territory Seized (km²)</label>
+        <input type="number" id="campArea" value="3500000" placeholder="e.g. 3500000">
+        <div class="error-msg" id="err-campArea">Please enter a positive number.</div>
+      </div>
+      <div>
+        <label for="campForce">Estimated Mongol Force Size</label>
+        <input type="number" id="campForce" value="150000" placeholder="e.g. 150000">
+        <div class="error-msg" id="err-campForce">Please enter a positive number.</div>
+      </div>
+    </div>
+    <div>
+      <label for="campDist">Approximate Distance Traveled (km)</label>
+      <input type="number" id="campDist" value="4000" placeholder="e.g. 4000">
+    </div>
+    <button class="btn" onclick="calcCampaign()">⚔ Calculate Campaign Speed</button>
+  </div>
+
+  <!-- TAB 3: Empire Comparison -->
+  <div class="tab-panel" id="tab-compare">
+    <p style="font-size:0.88rem;color:#6b4c30;margin-bottom:1rem">Compare the Mongol Empire's expansion rate against other great empires of history.</p>
+    <label for="compareMetric">Comparison Metric</label>
+    <select id="compareMetric">
+      <option value="km2_per_year">km² Gained per Year</option>
+      <option value="km2_per_decade">km² Gained per Decade</option>
+      <option value="pct_world">% of World Land Area at Peak</option>
+    </select>
+    <div>
+      <label>Highlight Expansion Years</label>
+      <div class="range-row">
+        <input type="range" id="yearRange" min="1" max="100" value="73" step="1" oninput="updateYearRange()">
+        <span class="range-val" id="yearRangeVal">73 yrs</span>
+      </div>
+    </div>
+    <button class="btn" onclick="calcCompare()">⚔ Generate Comparison</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results"></div>
+</div>
+
+<!-- Historical Context -->
+<div class="hist-context">
+  <div class="hc-title"><span>📜</span>Historical Context</div>
+  <p style="font-size:0.88rem;color:var(--text)">
+    Beginning with Genghis Khan's unification of the Mongolian steppe tribes in 1206, the Mongol Empire expanded at a pace unmatched in history. From roughly 2 million km² (the Mongolian plateau) in 1206, the empire surged to over 24 million km² by 1279 under Kublai Khan — roughly 22% of Earth's total land area. This required absorbing territory at an average of approximately <strong>308,000 km² per year</strong> over 73 years. For comparison, the Roman Empire took ~400 years to reach its peak of 5 million km². The Mongols' success rested on revolutionary mobile warfare: horse armies covering 80–120 km per day, advanced siege technology, and a decimal-organized military structure called the <em>tümen</em> system (units of 10,000). Historical population losses from Mongol campaigns are estimated at 30–40 million people, including roughly 75% of Persia's population.
+  </p>
+</div>
+
+<!-- Did You Know -->
+<div class="did-you-know">
+  <div class="dyk-title"><span>⚡</span>Did You Know?</div>
+  <ul class="dyk-list">
+    <li>At its height, the Mongol Empire stretched 9,700 km east-to-west — wider than modern Russia is today, and covered lands from Korea to Hungary.</li>
+    <li>Mongol cavalry units called "arban" (10 riders) could travel up to 120 km per day using a relay system called <em>yam</em> — faster than any communication network until the telegraph in 1837.</li>
+    <li>Genghis Khan personally oversaw the destruction of the Khwarezm Empire in just 2 years (1219–1221) — a territory larger than modern Iran, Iraq, Afghanistan, Uzbekistan, and Turkmenistan combined.</li>
+  </ul>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<!-- Content Sections -->
+<div class="content-section">
+  <h2>How to Use This Mongol Empire Conquest Speed Calculator</h2>
+  <p>This tool has three modes. In <strong>Expansion Rate</strong> mode, enter a start and end year along with territory sizes in km² to calculate overall expansion speed in km² per year, per month, and per day. The population slider lets you estimate the scale of Mongol rule at any point. In <strong>Campaign Speed</strong> mode, analyze a specific Mongol military campaign by entering dates, territory seized, army size, and distance traveled. In <strong>Empire Compare</strong> mode, see how the Mongols stacked up against Rome, Alexander, the British Empire, and others across your chosen metric.</p>
+</div>
+
+<div class="content-section">
+  <h2>Why Mongol Empire Expansion Rate History Matters</h2>
+  <p>Understanding the Mongol Empire's expansion rate history isn't just academic — it reshapes how we think about military logistics, state-building, and the limits of human organizational capacity. No empire before or since has conquered territory at this speed while maintaining administrative coherence.</p>
+  <p>Consider: Napoleon's France expanded across Europe over roughly 15 years, reaching about 2 million km² of direct control. The British Empire took 200+ years to reach 35 million km² (including ocean territories). The Mongols added roughly 22 million km² in 73 years of active campaigning — and did so across deserts, mountains, jungles, and frozen steppe, against armies ranging from Chinese crossbowmen to Polish knights to Persian mathematicians.</p>
+  <p>For historians, military strategists, teachers, and students, quantifying the Mongol expansion rate reveals why scholars call it the most transformative geopolitical event between 1200–1400 CE. It explains the genetic legacy Genghis Khan left behind (estimated 16 million direct descendants today), why the Silk Road briefly flourished under the <em>Pax Mongolica</em>, and how the Black Death spread so efficiently westward. Numbers here aren't just statistics — they're the skeleton of an entire era's history.</p>
+</div>
+
+<div class="content-section">
+  <h2>How It's Calculated</h2>
+  <p>The core formula for expansion rate is straightforward:</p>
+  <p><strong>Annual Expansion Rate = (End Territory − Start Territory) ÷ Years Elapsed</strong></p>
+  <p>For campaign analysis, we calculate advance speed:</p>
+  <p><strong>Daily Advance = Distance Traveled ÷ (Campaign Days)</strong></p>
+  <p><strong>Territory Density = km² Seized ÷ Soldiers Deployed</strong> (km² per soldier — a measure of logistical efficiency)</p>
+  <p>For empire comparisons, we normalize all empires to km² per year of peak expansion phase, then calculate percentage of Earth's land area (148.94 million km² total). All pre-modern empire size estimates draw from peer-reviewed historical geography sources including Taagepera (1979) and Turchin et al. (2006). Year durations use the Julian/proleptic Gregorian calendar standard (365.25 days/year).</p>
+</div>
+
+<div class="content-section">
+  <h2>Tips & Common Mistakes</h2>
+  <ul>
+    <li><strong>Don't confuse nominal and effective control.</strong> Mongol "territory" often included vassal states with limited direct administration. The 24 million km² peak figure includes all khanates including the Golden Horde and Ilkhanate.</li>
+    <li><strong>The empire didn't expand uniformly.</strong> Expansion was fastest 1206–1227 (Genghis Khan era) and again 1231–1260 (Möngke Khan). Use Campaign Speed mode for specific phases.</li>
+    <li><strong>Army size estimates are wide-ranging.</strong> Medieval sources wildly exaggerated Mongol numbers. Modern estimates for total Mongol field forces range from 100,000 to 200,000 — not millions as claimed by some contemporaries.</li>
+    <li><strong>Peak territory year matters.</strong> The empire peaked around 1279 CE. After Kublai Khan's death in 1294, the khanates fragmented rapidly. If you're measuring decline rate, use post-1294 figures.</li>
+    <li><strong>Compare in km², not miles.</strong> Historical geography scholarship uses metric. The empire was approximately 9.27 million square miles at peak if you prefer imperial units.</li>
+  </ul>
+</div>
+
+<div class="content-section">
+  <h2>Frequently Asked Questions</h2>
+  <details>
+    <summary>How fast did the Mongol Empire expand per year on average?</summary>
+    <p>From Genghis Khan's founding of the empire in 1206 to its peak under Kublai Khan around 1279, the empire gained approximately 303,000–309,000 km² per year on average. That's roughly the entire land area of Poland or New Mexico being added to the empire every single year for 73 years. No other empire in recorded history matches this rate over a comparable time span.</p>
+  </details>
+  <details>
+    <summary>What was the largest single Mongol campaign by territory?</summary>
+    <p>The conquest of the Jin Dynasty of northern China (1211–1234) was the largest single conquest by territory, absorbing roughly 3.7 million km² over 23 years. However, the fastest single campaign was arguably the destruction of the Khwarezm Empire (1219–1221), which seized approximately 3.5 million km² in just 2 years — an extraordinary 4,795 km² per day. This campaign included the sacking of Samarkand, Bukhara, and Urgench, cities with populations in the hundreds of thousands.</p>
+  </details>
+  <details>
+    <summary>How does the Mongol Empire compare to the British Empire in size?</summary>
+    <p>The British Empire at its 1920 peak covered approximately 35.5 million km², making it larger in total area — but it included vast ocean territories and took 200+ years to build. The Mongol Empire covered about 24 million km² of contiguous land in just 73 years. Contiguous land control — militarily the most difficult form — makes the Mongol achievement arguably more impressive. The Mongols never needed a navy to hold their empire together.</p>
+  </details>
+  <details>
+    <summary>How many people did the Mongol Empire rule at its peak?</summary>
+    <p>Estimates range from 100 million to 130 million people — roughly 25–30% of the world's total population of approximately 400 million in 1279 CE. After accounting for massive population losses during conquest (estimated at 30–40 million deaths total), the empire still administered more people than any previous political entity. The <em>Pax Mongolica</em> (1260–1368) that followed briefly unified these populations under a relatively stable trade network connecting China to Europe.</p>
+  </details>
+</div>
+
+<!-- Related Tools -->
+<div class="content-section">
+  <h2>Related Historical Tools</h2>
+  <div class="related-grid">
+    <a href="/medieval-plague-doctor-treatment-cost-calculator/" class="related-link">🩺 Medieval Plague Doctor Treatment Cost</a>
+    <a href="/medieval-guild-apprentice-wage-calculator/" class="related-link">⚒ Medieval Guild Apprentice Wage</a>
+    <a href="/aztec-sun-stone-calendar-decoder/" class="related-link">☀ Aztec Sun Stone Calendar Decoder</a>
+    <a href="/ancient-egyptian-farming-yield-calculator/" class="related-link">🌾 Ancient Egyptian Farming Yield</a>
+    <a href="/babylonian-sexagesimal-number-converter/" class="related-link">🔢 Babylonian Sexagesimal Numbers</a>
+    <a href="/inca-quipu-knot-encoder/" class="related-link">🪢 Inca Quipu Knot Encoder</a>
+  </div>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+  <p style="margin-bottom:8px">⚔ historycalc.com — Historical Calculators & Converters</p>
+  <p>
+    <a href="/about/">About</a><span class="sep">|</span>
+    <a href="/privacy/">Privacy</a><span class="sep">|</span>
+    <a href="/contact/">Contact</a>
+  </p>
+  <p style="margin-top:8px;opacity:0.6;font-size:0.8rem">© 2024 historycalc.com — Educational tool. Historical data based on academic sources.</p>
+</footer>
+</div>
+
+<script>
+// ---- UTILITY ----
+function fmt(n){
+  if(isNaN(n)||!isFinite(n)) return "—";
+  if(Math.abs(n)>=1000) return Math.round(n).toLocaleString();
+  if(Math.abs(n)<0.01) return n.toExponential(2);
+  return parseFloat(n.toFixed(2)).toLocaleString(undefined,{maximumFractionDigits:2});
+}
+function fmtLarge(n){return Math.round(n).toLocaleString();}
+function clearErrors(){
+  document.querySelectorAll('.error-msg').forEach(e=>e.classList.remove('show'));
+  document.querySelectorAll('input').forEach(e=>e.classList.remove('error'));
+}
+function showError(id,msgId){
+  document.getElementById(id).classList.add('error');
+  document.getElementById(msgId).classList.add('show');
+}
+function updatePop(){
+  document.getElementById('popVal').textContent = document.getElementById('popSlider').value + 'M';
+}
+function updateYearRange(){
+  document.getElementById('yearRangeVal').textContent = document.getElementById('yearRange').value + ' yrs';
+}
+
+// ---- TABS ----
+function switchTab(name){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  event.target.classList.add('active');
+  document.getElementById('results').className='results';
+  document.getElementById('results').innerHTML='';
+}
+
+// ---- EMPIRE DATA ----
+const EMPIRES = [
+  {name:"Mongol Empire",      peak:24000000, start:1206, end:1279, world:16.11, color:"#8b4513"},
+  {name:"British Empire",     peak:35500000, start:1583, end:1920, world:23.84, color:"#6b3410"},
+  {name:"Russian Empire",     peak:23700000, start:1721, end:1895, world:15.91, color:"#7a4010"},
+  {name:"Spanish Empire",     peak:13000000, start:1492, end:1740, world:8.73,  color:"#9a5020"},
+  {name:"Umayyad Caliphate",  peak:11100000, start:661,  end:750,  world:7.45,  color:"#a05818"},
+  {name:"Qing Dynasty",       peak:14700000, start:1644, end:1790, world:9.87,  color:"#b06030"},
+  {name:"Roman Empire",       peak:5000000,  start:-27,  end:117,  world:3.36,  color:"#c07038"},
+  {name:"Alexander's Empire", peak:5200000,  start:-336, end:-323, world:3.49,  color:"#d08040"},
+  {name:"Ottoman Empire",     peak:5200000,  start:1299, end:1683, world:3.49,  color:"#b86828"},
+  {name:"Achaemenid Persia",  peak:5500000,  start:-550, end:-480, world:3.69,  color:"#c07830"},
+];
+
+// ---- CALC EXPANSION ----
+function calcExpansion(){
+  clearErrors();
+  let sY=parseFloat(document.getElementById('startYear').value);
+  let eY=parseFloat(document.getElementById('endYear').value);
+  let sA=parseFloat(document.getElementById('startArea').value);
+  let eA=parseFloat(document.getElementById('endArea').value);
+  let pop=parseFloat(document.getElementById('popSlider').value);
+  let valid=true;
+  if(isNaN(sY)){showError('startYear','err-startYear');valid=false;}
+  if(isNaN(eY)||eY<=sY){showError('endYear','err-endYear');valid=false;}
+  if(isNaN(sA)||sA<0){showError('startArea','err-startArea');valid=false;}
+  if(isNaN(eA)||eA<=0){showError('endArea','err-endArea');valid=false;}
+  if(!valid) return;
+  const years=eY-sY;
+  const days=years*365.25;
+  const gained=eA-sA;
+  const perYear=gained/years;
+  const perMonth=gained/(years*12);
+  const perDay=gained/days;
+  const perHour=gained/(days*24);
+  const worldPct=(eA/148940000)*100;
+  const startPct=(sA/148940000)*100;
+  const growthFactor=eA/sA;
+  // modern equivalents
+  const franceSq=551695;
+  const texasSq=695662;
+  const polandSq=312696;
+  const txPerYear=perYear/texasSq;
+  const francePerDay=perDay/franceSq;
+  const popDensity=pop/eA*1000000;
+
+  const phaseData=[
+    {phase:"Genghis Khan",start:1206,end:1227,est:4000000,note:"Unification + Central Asia"},
+    {phase:"Ögedei Khan",start:1227,end:1241,est:10000000,note:"Russia, Persia, China expansion"},
+    {phase:"Möngke Khan",start:1251,end:1259,est:20000000,note:"Major push East & West"},
+    {phase:"Kublai Khan",start:1260,end:1279,est:24000000,note:"Peak — conquest of Song China"},
+  ];
+
+  let phaseRows='';
+  phaseData.forEach((p,i)=>{
+    const py=p.end-p.start;
+    const prev=i>0?phaseData[i-1].est:2000000;
+    const added=p.est-prev;
+    const rate=added/py;
+    const pct=(p.est/148940000*100).toFixed(1);
+    phaseRows+=`<tr>
+      <td>${p.phase} <span class="phase-badge">${p.start}–${p.end}</span></td>
+      <td class="num">${fmtLarge(p.est)}</td>
+      <td class="num">${added>=0?'+':''}${fmtLarge(added)}</td>
+      <td class="num">${fmtLarge(rate)}</td>
+      <td class="num">${pct}%</td>
+    </tr>`;
+  });
+
+  const barW=Math.min(100,(eA/35500000)*100);
+  const barWs=Math.min(100,(sA/35500000)*100);
+
+  const html=`
+  <div class="section-title" style="margin-top:1.5rem">
+    <button class="copy-btn" id="copyBtn1" onclick="copyResults('copyBtn1')">Copy</button>
+    Expansion Results
+  </div>
+  <div class="big-stat">
+    <div class="big-number">${fmtLarge(perYear)}</div>
+    <div class="big-label">km² conquered per year (average)</div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="val">${fmtLarge(years)} yrs</div><div class="lbl">Total Expansion Period</div></div>
+    <div class="stat-box"><div class="val">${fmtLarge(gained)} km²</div><div class="lbl">Total Territory Gained</div></div>
+    <div class="stat-box"><div class="val">${fmtLarge(perMonth)} km²/mo</div><div class="lbl">Monthly Expansion</div></div>
+    <div class="stat-box"><div class="val">${fmtLarge(perDay)} km²/day</div><div class="lbl">Daily Expansion</div></div>
+    <div class="stat-box"><div class="val">${fmt(perHour)} km²/hr</div><div class="lbl">Hourly Expansion</div></div>
+    <div class="stat-box"><div class="val">${fmt(worldPct)}%</div><div class="lbl">of World Land at Peak</div></div>
+    <div class="stat-box"><div class="val">${fmt(growthFactor)}×</div><div class="lbl">Growth Multiplier</div></div>
+    <div class="stat-box"><div class="val">${fmt(popDensity)}/km²</div><div class="lbl">Pop. Density at Peak</div></div>
+  </div>
+
+  <div class="section-title">Territory vs. World's Largest Empires</div>
+  <div style="font-size:0.82rem;color:#6b4c30;margin-bottom:8px">Relative to British Empire peak (35.5M km²)</div>
+  <div style="margin-bottom:6px;font-size:0.85rem">Peak end territory (${fmtLarge(eA)} km²)</div>
+  <div class="bar-wrap"><div class="bar-fill" style="width:${barW}%"></div></div>
+  <div style="margin:8px 0 4px;font-size:0.85rem">Start territory (${fmtLarge(sA)} km²)</div>
+  <div class="bar-wrap"><div class="bar-fill" style="width:${barWs}%;background:linear-gradient(90deg,#c4a882,#b8860b)"></div></div>
+
+  <div class="section-title">Expansion by Khan Phase</div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Phase</th><th>Total km²</th><th>Added km²</th><th>km²/yr</th><th>% World</th></tr></thead>
+    <tbody>${phaseRows}</tbody>
+  </table>
+  </div>
+
+  <div class="modern-eq">
+    <div class="me-title">🌍 Modern Equivalents</div>
+    <p>• At ${fmtLarge(perYear)} km²/year, that's equivalent to conquering <strong>${fmt(txPerYear)} Texas-sized regions per year</strong> (Texas = 695,662 km²).</p>
+    <p>• At ${fmtLarge(perDay)} km²/day, roughly <strong>${fmt(francePerDay)} Frances were added per day</strong> (France = 551,695 km²).</p>
+    <p>• The ${pop}M people under Mongol rule at peak represented approximately <strong>~${fmt((pop/400)*100)}% of Earth's entire population</strong> (est. ~400M in 1279 CE).</p>
+  </div>`;
+
+  requestAnimationFrame(()=>{
+    const r=document.getElementById('results');
+    r.innerHTML=html;
+    r.className='results visible';
+  });
+}
+
+// ---- CALC CAMPAIGN ----
+function calcCampaign(){
+  clearErrors();
+  const name=document.getElementById('campaignName').value||'Campaign';
+  const cS=parseFloat(document.getElementById('campStart').value);
+  const cE=parseFloat(document.getElementById('campEnd').value);
+  const area=parseFloat(document.getElementById('campArea').value);
+  const force=parseFloat(document.getElementById('campForce').value);
+  const dist=parseFloat(document.getElementById('campDist').value)||0;
+  let valid=true;
+  if(isNaN(cS)){showError('campStart','err-campStart');valid=false;}
+  if(isNaN(cE)||cE<=cS){showError('campEnd','err-campEnd');valid=false;}
+  if(isNaN(area)||area<=0){showError('campArea','err-campArea');valid=false;}
+  if(isNaN(force)||force<=0){showError('campForce','err-campForce');valid=false;}
+  if(!valid) return;
+  const years=cE-cS;
+  const days=Math.round(years*365.25);
+  const km2PerDay=area/days;
+  const km2PerSoldier=area/force;
+  const advPerDay=dist>0?dist/days:0;
+  // tumen (10000) units
+  const tumen=Math.round(force/10000*10)/10;
+  const horses=force*4; // ~4 horses per warrior
+  const logisticsFootprint=horses*10; // ~10kg fodder per horse per day (daily)
+  const fodderTons=logisticsFootprint/1000;
+  const pctWorld=(area/148940000)*100;
+
+  // comparison to known campaigns
+  const known=[
+    {name:"Khwarezm Empire (1219–21)",area:3500000,years:2,days:730},
+    {name:"Jin Dynasty N.China (1211–34)",area:3700000,years:23,days:8400},
+    {name:"Persian Ilkhanate (1255–60)",area:2000000,years:5,days:1825},
+    {name:"Song Dynasty China (1234–79)",area:2600000,years:45,days:16436},
+    {name:"Eastern Europe (1237–42)",area:1800000,years:5,days:1825},
+  ];
+  let knownRows='';
+  known.forEach(k=>{
+    const r=k.area/k.days;
+    const highlight=(Math.abs(k.area-area)<500000&&Math.abs(k.years-years)<5);
+    knownRows+=`<tr${highlight?' style="background:#fdf0e0"':''}>
+      <td>${k.name}${highlight?' ←similar':''}</td>
+      <td class="num">${fmtLarge(k.area)}</td>
+      <td class="num">${k.years}</td>
+      <td class="num">${fmtLarge(Math.round(r))}</td>
+    </tr>`;
+  });
+
+  const html=`
+  <div class="section-title" style="margin-top:1.5rem">
+    <button class="copy-btn" id="copyBtn2" onclick="copyResults('copyBtn2')">Copy</button>
+    Campaign: ${name} (${cS}–${cE})
+  </div>
+  <div class="big-stat">
+    <div class="big-number">${fmtLarge(Math.round(km2PerDay))}</div>
+    <div class="big-label">km² seized per day</div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-box"><div class="val">${fmtLarge(days)} days</div><div class="lbl">Campaign Duration</div></div>
+    <div class="stat-box"><div class="val">${fmtLarge(area)} km²</div><div class="lbl">Territory Seized</div></div>
+    <div class="stat-box"><div class="val">${fmtLarge(Math.round(force))}</div><div class="lbl">Estimated Force</div></div>
+    <div class="stat-box"><div class="val">${fmt(tumen)}</div><div class="lbl">Tümen Units (×10,000)</div></div>
+    <div class="stat-box"><div class="val">${fmt(km2PerSoldier)}</div><div class="lbl">km² per Soldier</div></div>
+    <div class="stat-box"><div class="val">${fmt(pctWorld)}%</div><div class="lbl">% of World Land</div></div>
+    ${dist>0?`<div class="stat-box"><div class="val">${fmt(advPerDay)} km/day</div><div class="lbl">Advance Speed</div></div>`:''}
+    <div class="stat-box"><div class="val">${fmtLarge(Math.round(horses))}</div><div class="lbl">Est. Horses Required</div></div>
+  </div>
+  <div class="note" style="margin-bottom:1rem">* Tümen = Mongol military unit of ~10,000 men. 4 horses/warrior is standard military history estimate. Logistics assume ~10kg fodder per horse per day.</div>
+  ${dist>0?`<div class="modern-eq"><div class="me-title">📍 Logistics Footprint</div>
+  <p>• Daily horse fodder requirement: <strong>${fmtLarge(Math.round(fodderTons))} metric tons/day</strong>.</p>
+  <p>• Advance speed of ${fmt(advPerDay)} km/day vs. modern infantry march rate of ~30 km/day — Mongol cavalry was <strong>${fmt(advPerDay/30)}× faster</strong> than foot soldiers.</p>
+  <p>• If the campaign covered ${fmtLarge(dist)} km, the army moved the equivalent of <strong>${fmt(dist/40075*100)}% of Earth's circumference</strong>.</p></div>`:''}
+
+  <div class="section-title">vs. Known Mongol Campaigns</div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Campaign</th><th>km²</th><th>Years</th><th>km²/day</th></tr></thead>
+    <tbody>${knownRows}</tbody>
+  </table>
+  </div>`;
+
+  requestAnimationFrame(()=>{
+    const r=document.getElementById('results');
+    r.innerHTML=html;
+    r.className='results visible';
+  });
+}
+
+// ---- CALC COMPARE ----
+function calcCompare(){
+  clearErrors();
+  const metric=document.getElementById('compareMetric').value;
+  const yrs=parseInt(document.getElementById('yearRange').value);
+
+  const getVal=(e)=>{
+    const span=e.end-e.start;
+    if(metric==='km2_per_year') return e.peak/span;
+    if(metric==='km2_per_decade') return (e.peak/span)*10;
+    if(metric==='pct_world') return e.world;
+    return 0;
+  };
+  const metricLabel={
+    km2_per_year:'km² per Year (Expansion Phase)',
+    km2_per_decade:'km² per Decade',
+    pct_world:'% of World Land at Peak'
+  }[metric];
+
+  const sorted=[...EMPIRES].sort((a,b)=>getVal(b)-getVal(a));
+  const maxVal=getVal(sorted[0]);
+  const mongol=sorted.find(e=>e.name==='Mongol Empire');
+
+  // Filter by year range if selected
+  const activeEmpires=sorted.filter(e=>(e.end-e.start)<=yrs*2); // show all within ~2× the selected range
+  const displayList=activeEmpires.length>=3?activeEmpires:sorted;
+
+  let tableRows='';
+  let barRows='';
+  displayList.forEach((e,i)=>{
+    const val=getVal(e);
+    const barPct=Math.min(100,(val/maxVal)*100);
+    const isMongol=e.name==='Mongol Empire';
+    const span=e.end-e.start;
+    tableRows+=`<tr${isMongol?' style="background:#fdf0e0;font-weight:600"':''}>
+      <td>${i+1}. ${e.name}</td>
+      <td class="num">${e.start < 0 ? Math.abs(e.start)+'BCE' : e.start} – ${e.end < 0 ? Math.abs(e.end)+'BCE' : e.end}</td>
+      <td class="num">${span} yrs</td>
+      <td class="num">${fmtLarge(Math.round(e.peak))} km²</td>
+      <td class="num">${metric==='pct_world'?fmt(val)+'%':fmtLarge(Math.round(val))}</td>
+    </tr>`;
+    barRows+=`<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;font-size:0.83rem;margin-bottom:3px">
+        <span style="font-weight:${isMongol?700:400}">${e.name}</span>
+        <span style="color:var(--accent)">${metric==='pct_world'?fmt(val)+'%':fmtLarge(Math.round(val))}</span>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar-fill" style="width:${barPct}%;${isMongol?'':'background:linear-gradient(90deg,#c4a882,#b8860b)'}"></div>
+      </div>
+    </div>`;
+  });
+
+  const mongolVal=getVal(mongol);
+  const roman=sorted.find(e=>e.name==='Roman Empire');
+  const romanVal=getVal(roman);
+
+  const html=`
+  <div class="section-title" style="margin-top:1.5rem">
+    <button class="copy-btn" id="copyBtn3" onclick="copyResults('copyBtn3')">Copy</button>
+    Empire Comparison — ${metricLabel}
+  </div>
+  <div class="big-stat">
+    <div class="big-number">${mongolVal>1000?fmtLarge(Math.round(mongolVal)):fmt(mongolVal)}${metric==='pct_world'?'%':''}</div>
+    <div class="big-label">Mongol Empire — ${metricLabel}</div>
+  </div>
+  <div class="modern-eq">
+    <div class="me-title">📊 Key Comparison</div>
+    <p>The Mongol Empire expanded at <strong>${fmt(mongolVal/romanVal)}× the rate of the Roman Empire</strong> by this metric. ${metric==='pct_world'?'At '+fmt(mongolVal)+'% of world land, the Mongols controlled more land than any empire in history except the British.':''}</p>
+  </div>
+  <div class="section-title">Bar Chart Comparison</div>
+  ${barRows}
+  <div class="section-title">Data Table</div>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Empire</th><th>Period</th><th>Span</th><th>Peak km²</th><th>${metricLabel}</th></tr></thead>
+    <tbody>${tableRows}</tbody>
+  </table>
+  </div>
+  <p class="note">Sources: Taagepera (1979), Turchin et al. (2006), Rein Taagepera "Size and Duration of Empires". British Empire includes all overseas territories.</p>`;
+
+  requestAnimationFrame(()=>{
+    const r=document.getElementById('results');
+    r.innerHTML=html;
+    r.className='results visible';
+  });
+}
+
+// ---- COPY ----
+function copyResults(btnId){
+  const r=document.getElementById('results');
+  const text=r.innerText;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.getElementById(btnId);
+    if(btn){btn.textContent='Copied!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);}
+  }).catch(()=>{});
+}
+
+// Enter key support
+document.addEventListener('keydown',function(e){
+  if(e.key==='Enter'){
+    const active=document.querySelector('.tab-panel.active');
+    if(active.id==='tab-expansion') calcExpansion();
+    else if(active.id==='tab-campaign') calcCampaign();
+    else if(active.id==='tab-compare') calcCompare();
+  }
+});
+</script>
+</body>
+</html>
