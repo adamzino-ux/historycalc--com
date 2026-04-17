@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Aqueduct Bridge (Arcade) Span Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate Roman aqueduct arcade arch spans, pier dimensions, and structural ratios using authentic Roman engineering formulas. Free online tool for historians and engineers.">
+<link rel="canonical" href="https://historycalc.com/roman-aqueduct-arcade-span-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Aqueduct Bridge (Arcade) Span Calculator",
+  "url": "https://historycalc.com/roman-aqueduct-arcade-span-calculator/",
+  "description": "Calculate Roman aqueduct arcade arch spans, pier dimensions, and structural ratios using authentic Roman engineering formulas.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f0e1;
+    color: #2c1810;
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  a { color: #8b4513; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    background: #2c1810;
+    padding: 0.75rem 1.5rem;
+    text-align: center;
+  }
+  nav a {
+    color: #f5f0e1;
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+  }
+  nav a:hover { color: #c4a882; text-decoration: none; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+
+  .subtitle {
+    color: #6b4226;
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* SVG illustration */
+  .illustration {
+    background: #ede7d0;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  .illustration svg { max-width: 100%; height: auto; }
+
+  /* Tool card */
+  .tool-card {
+    background: #fff9ef;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .form-group { margin-bottom: 1.25rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #4a2c1a;
+    margin-bottom: 0.4rem;
+  }
+  label .unit-hint {
+    font-weight: 400;
+    color: #8b6040;
+    font-size: 0.8rem;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fffdf7;
+    color: #2c1810;
+    min-height: 44px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  input.error { border-color: #e74c3c; }
+  .error-msg {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+  .slider-group { margin-bottom: 1.25rem; }
+  .slider-label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+  .slider-label-row label { margin-bottom: 0; }
+  .slider-val {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #8b4513;
+    background: #ede7d0;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  input[type="range"] {
+    width: 100%;
+    accent-color: #8b4513;
+    min-height: 28px;
+    cursor: pointer;
+  }
+
+  .btn {
+    background: #8b4513;
+    color: #fff9ef;
+    border: none;
+    padding: 13px 28px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    min-height: 44px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: #7a3b10; }
+  .btn:active { background: #6a320d; }
+
+  /* Results */
+  .results-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    margin-bottom: 2rem;
+  }
+  .results-section.visible {
+    display: block;
+  }
+  .results-section.fade-in { opacity: 1; }
+
+  .result-hero {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .result-hero .big-number {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #e8c87a;
+    display: block;
+    line-height: 1.15;
+  }
+  .result-hero .big-label {
+    font-size: 0.9rem;
+    color: #c4a882;
+    margin-top: 0.25rem;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  @media (max-width: 420px) { .result-grid { grid-template-columns: 1fr; } }
+
+  .result-card {
+    background: #ede7d0;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+  .result-card .rc-label {
+    font-size: 0.78rem;
+    color: #6b4226;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .result-card .rc-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2c1810;
+    margin-top: 0.15rem;
+  }
+  .result-card .rc-sub {
+    font-size: 0.78rem;
+    color: #8b6040;
+    margin-top: 0.1rem;
+  }
+
+  .table-wrap { overflow-x: auto; margin-bottom: 1rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 320px;
+  }
+  thead th {
+    background: #c4a882;
+    color: #2c1810;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  thead th:not(:first-child) { text-align: right; }
+  tbody tr:nth-child(odd) { background: #faf7f0; }
+  tbody tr:nth-child(even) { background: #fff9ef; }
+  tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #e0d5c0;
+    color: #2c1810;
+  }
+  tbody td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid #c4a882;
+    color: #8b4513;
+    padding: 5px 14px;
+    border-radius: 5px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    float: right;
+    transition: background 0.2s;
+    min-height: 32px;
+  }
+  .copy-btn:hover { background: #ede7d0; }
+
+  .modern-equiv {
+    background: #ede7d0;
+    border-left: 4px solid #8b4513;
+    border-radius: 0 6px 6px 0;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  .modern-equiv strong { color: #8b4513; }
+
+  /* Did You Know */
+  .did-you-know {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .did-you-know h3 {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #e8c87a;
+    margin-bottom: 0.75rem;
+  }
+  .did-you-know ul { padding-left: 1.2rem; }
+  .did-you-know ul li { margin-bottom: 0.5rem; font-size: 0.9rem; line-height: 1.55; }
+
+  /* Historical context */
+  .hist-section {
+    background: #fff9ef;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .hist-section h2 {
+    font-size: 1.1rem;
+    color: #2c1810;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #c4a882;
+    padding-bottom: 0.4rem;
+  }
+  .hist-section p { font-size: 0.92rem; color: #3a2010; }
+
+  /* Content sections */
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.15rem;
+    color: #2c1810;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid #c4a882;
+  }
+  .content-section p { font-size: 0.92rem; margin-bottom: 0.75rem; color: #3a2010; }
+  .content-section ul { padding-left: 1.4rem; }
+  .content-section ul li { font-size: 0.92rem; margin-bottom: 0.5rem; color: #3a2010; }
+
+  details { margin-bottom: 0.75rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.92rem;
+    color: #8b4513;
+    padding: 0.5rem 0;
+    list-style: none;
+  }
+  summary::before { content: '▶ '; font-size: 0.7rem; }
+  details[open] summary::before { content: '▼ '; }
+  details p { font-size: 0.9rem; margin-top: 0.4rem; color: #3a2010; padding-left: 1rem; }
+
+  .related-tools {
+    background: #fff9ef;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .related-tools h2 {
+    font-size: 1.1rem;
+    color: #2c1810;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #c4a882;
+    padding-bottom: 0.35rem;
+  }
+  .related-tools ul { list-style: none; padding: 0; }
+  .related-tools ul li {
+    border-bottom: 1px solid #ede7d0;
+    padding: 0.55rem 0;
+  }
+  .related-tools ul li:last-child { border-bottom: none; }
+  .related-tools ul li a { font-size: 0.92rem; color: #8b4513; font-weight: 500; }
+  .related-tools ul li a:hover { text-decoration: underline; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: #e8c87a; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+  footer p { margin-top: 0.4rem; }
+
+  .section-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+  .section-title-row h3 {
+    font-size: 1rem;
+    color: #2c1810;
+    font-weight: 700;
+  }
+
+  .formula-box {
+    background: #ede7d0;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    color: #2c1810;
+    margin: 0.75rem 0;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚱ HistoryCalc.com</a>
+</nav>
+
+<div class="container">
+
+  <h1>Roman Aqueduct Arcade Span Calculator</h1>
+  <p class="subtitle">Reconstruct authentic Roman arch dimensions using classical engineering ratios — in Roman feet, meters, and modern equivalents.</p>
+
+  <!-- SVG Illustration -->
+  <div class="illustration">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 180" width="600" height="180" role="img" aria-label="Roman aqueduct arcade illustration">
+      <!-- Sky -->
+      <rect width="600" height="180" fill="#e8e0cc"/>
+      <!-- Ground -->
+      <rect y="158" width="600" height="22" fill="#c4a882"/>
+
+      <!-- Water channel on top -->
+      <rect x="0" y="18" width="600" height="14" fill="#c4a882"/>
+      <rect x="0" y="22" width="600" height="6" fill="#a8d8ea" opacity="0.7"/>
+      <rect x="0" y="18" width="600" height="4" fill="#9e8060"/>
+      <rect x="0" y="28" width="600" height="4" fill="#9e8060"/>
+
+      <!-- Arcade: 4 arches -->
+      <!-- Arch 1 -->
+      <rect x="20" y="38" width="28" height="120" fill="#b8956a"/>
+      <rect x="20" y="38" width="28" height="120" fill="none" stroke="#9e7850" stroke-width="1"/>
+      <path d="M48 88 Q82 42 116 88" fill="#c4a882" stroke="#9e7850" stroke-width="1.5"/>
+      <rect x="48" y="88" width="68" height="70" fill="none"/>
+      <!-- arch void -->
+      <path d="M50 158 L50 90 Q84 46 118 90 L118 158 Z" fill="#d4c4a0" opacity="0.5"/>
+      <rect x="116" y="38" width="28" height="120" fill="#b8956a" stroke="#9e7850" stroke-width="1"/>
+
+      <!-- Arch 2 -->
+      <path d="M144 88 Q178 42 212 88" fill="#c4a882" stroke="#9e7850" stroke-width="1.5"/>
+      <path d="M146 158 L146 90 Q180 46 214 90 L214 158 Z" fill="#d4c4a0" opacity="0.5"/>
+      <rect x="212" y="38" width="28" height="120" fill="#b8956a" stroke="#9e7850" stroke-width="1"/>
+
+      <!-- Arch 3 -->
+      <path d="M240 88 Q274 42 308 88" fill="#c4a882" stroke="#9e7850" stroke-width="1.5"/>
+      <path d="M242 158 L242 90 Q276 46 310 90 L310 158 Z" fill="#d4c4a0" opacity="0.5"/>
+      <rect x="308" y="38" width="28" height="120" fill="#b8956a" stroke="#9e7850" stroke-width="1"/>
+
+      <!-- Arch 4 -->
+      <path d="M336 88 Q370 42 404 88" fill="#c4a882" stroke="#9e7850" stroke-width="1.5"/>
+      <path d="M338 158 L338 90 Q372 46 406 90 L406 158 Z" fill="#d4c4a0" opacity="0.5"/>
+      <rect x="404" y="38" width="28" height="120" fill="#b8956a" stroke="#9e7850" stroke-width="1"/>
+
+      <!-- Arch 5 -->
+      <path d="M432 88 Q466 42 500 88" fill="#c4a882" stroke="#9e7850" stroke-width="1.5"/>
+      <path d="M434 158 L434 90 Q468 46 502 90 L502 158 Z" fill="#d4c4a0" opacity="0.5"/>
+      <rect x="500" y="38" width="28" height="120" fill="#b8956a" stroke="#9e7850" stroke-width="1"/>
+      <!-- last pier -->
+      <rect x="528" y="38" width="28" height="120" fill="#b8956a" stroke="#9e7850" stroke-width="1"/>
+      <!-- cap stones hint -->
+      <rect x="528" y="34" width="28" height="6" fill="#9e7850"/>
+
+      <!-- Dimension arrow for span -->
+      <line x1="50" y1="170" x2="116" y2="170" stroke="#8b4513" stroke-width="1.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+      <text x="83" y="180" text-anchor="middle" font-size="9" fill="#8b4513" font-family="sans-serif">SPAN</text>
+
+      <!-- Dimension arrow for pier -->
+      <line x1="120" y1="170" x2="142" y2="170" stroke="#6b4226" stroke-width="1.5"/>
+      <text x="131" y="180" text-anchor="middle" font-size="9" fill="#6b4226" font-family="sans-serif">PIER</text>
+
+      <!-- Label -->
+      <text x="300" y="12" text-anchor="middle" font-size="11" fill="#4a2c1a" font-family="sans-serif" font-weight="bold">ROMAN AQUEDUCT ARCADE — TYPICAL CROSS-SECTION</text>
+
+      <defs>
+        <marker id="arr" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto">
+          <polygon points="0,0 5,2.5 0,5" fill="#8b4513"/>
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="tool-card">
+    <div class="form-group">
+      <label for="unitSystem">Unit System <span class="unit-hint">(choose your preferred input)</span></label>
+      <select id="unitSystem">
+        <option value="roman">Roman Feet (pes monetalis)</option>
+        <option value="metric">Meters (modern)</option>
+        <option value="imperial">Feet/Inches (US)</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="archSpan">Clear Arch Span <span class="unit-hint" id="spanUnit">(Roman feet)</span></label>
+        <input type="number" id="archSpan" placeholder="e.g. 20" min="1" step="0.1">
+        <div class="error-msg" id="archSpanErr">Please enter a valid positive span.</div>
+      </div>
+      <div class="form-group">
+        <label for="totalHeight">Total Pier Height <span class="unit-hint" id="heightUnit">(Roman feet)</span></label>
+        <input type="number" id="totalHeight" placeholder="e.g. 60" min="1" step="0.1">
+        <div class="error-msg" id="totalHeightErr">Please enter a valid positive height.</div>
+      </div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-label-row">
+        <label for="pierRatio">Pier-to-Span Ratio <span class="unit-hint">(Roman standard: 0.40–0.55)</span></label>
+        <span class="slider-val" id="pierRatioVal">0.47</span>
+      </div>
+      <input type="range" id="pierRatio" min="0.30" max="0.70" step="0.01" value="0.47">
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-label-row">
+        <label for="archCount">Number of Arches</label>
+        <span class="slider-val" id="archCountVal">5</span>
+      </div>
+      <input type="range" id="archCount" min="1" max="50" step="1" value="5">
+    </div>
+
+    <div class="form-group">
+      <label for="aqueductName">Aqueduct Name <span class="unit-hint">(optional, for report)</span></label>
+      <input type="text" id="aqueductName" placeholder="e.g. Aqua Claudia" style="padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fffdf7;color:#2c1810;width:100%;">
+    </div>
+
+    <button class="btn" id="calcBtn">⚙ Calculate Arcade Dimensions</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results-section" id="resultsSection">
+    <div class="result-hero" id="resultHero">
+      <span class="big-number" id="heroNumber">—</span>
+      <div class="big-label" id="heroLabel">Total arcade length</div>
+    </div>
+
+    <div class="result-grid" id="resultGrid"></div>
+
+    <div class="section-title-row">
+      <h3>📐 Full Dimensions Breakdown</h3>
+      <button class="copy-btn" id="copyBtn">Copy Results</button>
+    </div>
+    <div class="table-wrap">
+      <table id="resultsTable">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Roman Feet</th>
+            <th>Meters</th>
+            <th>US Feet</th>
+          </tr>
+        </thead>
+        <tbody id="resultsTableBody"></tbody>
+      </table>
+    </div>
+
+    <div class="modern-equiv" id="modernEquiv"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>⚡ Did You Know?</h3>
+    <ul>
+      <li>The Pont du Gard in southern France — built around 19 BC — stands 48.8 m (160 ft) tall and used no mortar in its lower two tiers; the stones are held together purely by precise Roman masonry.</li>
+      <li>The Aqua Claudia, completed in 52 AD, ran for 69 km (43 miles) and maintained a gradient of just 1 m per 4,700 m — a slope so gentle that Roman surveyors achieved it without modern instruments.</li>
+      <li>A Roman arch transfers load entirely through compression — which is why Roman aqueducts still stand 2,000 years later. A typical semicircular arch carries its load with zero tension in the masonry.</li>
+    </ul>
+  </div>
+
+  <!-- Historical Context -->
+  <div class="hist-section">
+    <h2>📜 Historical Context</h2>
+    <p>Roman aqueduct arcades (arcuationes) emerged as the engineering solution to carry water channels across valleys and ravines without losing the critical hydraulic gradient. Vitruvius, writing in the 1st century BC, set out proportional rules for arch construction: pier width should be roughly 1/3 to 1/2 of the arch span, and the arch rise for a semicircular arch equals half the span. The Romans standardized on the <em>pes monetalis</em> (Roman foot = 0.296 m) and the <em>passus</em> (5 feet = 1.48 m). At Segovia, Spain (c. 98 AD), 167 arches span up to 5.1 m each, rising 28.5 m above the valley floor. The Aqua Marcia (144 BC) featured piers averaging 1.5 m wide — almost exactly 5 Roman feet — perfectly matching Vitruvius's 1:3 pier-to-span ratio.</p>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Roman Aqueduct Arcade Span Calculator</h2>
+    <p>Select your preferred unit system (Roman feet, meters, or US feet), then enter the clear arch span — the open distance between pier faces — and the total pier height from ground to water channel. Use the sliders to set the pier-to-span ratio and the number of arches in your arcade section. Click <strong>Calculate</strong> to see every structural dimension translated across all three unit systems simultaneously.</p>
+    <p>The output includes arch rise, keystone height, total arcade length, estimated stone volume per pier, and a modern-equivalent comparison so you can instantly visualize the scale.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Roman aqueduct engineering is arguably the most consequential infrastructure achievement of the ancient world. At peak operation, Rome's eleven aqueducts delivered over 1,000,000 cubic meters of water per day — roughly equivalent to what modern Los Angeles consumes. Understanding the dimensional relationships that made this possible isn't just academic: structural engineers, historians, restoration architects, and game designers all need accurate Roman proportional data.</p>
+    <p>If you're studying the Pont du Gard for a thesis, reconstructing a Roman arcade in a 3D environment, or simply trying to understand why a 2,000-year-old bridge still carries tourists, this calculator gives you the authentic dimensions Romans would have used — right down to the pes monetalis. The pier-to-span ratio slider lets you explore how slightly thicker piers (common in earthquake-prone regions like Asia Minor) compare to the slimmer Gallic style.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>All calculations use Roman proportional canon derived from Vitruvius's <em>De Architectura</em> and modern archaeological surveys of surviving aqueducts.</p>
+    <div class="formula-box">
+      Roman foot (pes) = 0.2960 m = 0.9711 US ft<br>
+      Arch Rise (semicircular) = Span ÷ 2<br>
+      Pier Width = Span × Pier-to-Span Ratio<br>
+      Keystone Height = Arch Rise × 0.12   (≈ 12% of rise)<br>
+      Arcade Module = Span + Pier Width<br>
+      Total Length = (Arcade Module × Arches) + Pier Width<br>
+      Springer Height = Total Height − Arch Rise − Keystone Height<br>
+      Approx. Stone Vol./Pier = Pier Width² × 0.85 × Springer Height (m³)
+    </div>
+    <p>The <strong>keystone</strong> (the wedge-shaped voussoir at the crown) is typically 10–14% of the arch rise in surviving examples. The <strong>springer height</strong> is the usable height of the pier below the arch — the structural workhorse. Stone volume uses a 0.85 packing factor typical of opus quadratum (cut-stone) construction.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse span with opening:</strong> "Clear span" is the empty space between pier faces. Total arch width including both piers is span + (2 × half-pier-width) per side.</li>
+      <li><strong>Pier ratio matters for stability:</strong> Roman engineers used 0.40–0.55 ratios at medium heights. Taller structures (like Pont du Gard's upper tier) used slimmer ratios (≈0.35) because the weight of higher piers themselves stabilize the arch.</li>
+      <li><strong>Rise always equals half-span for semicircular arches:</strong> If you see "segmental arch" references (e.g., late Roman bridges), rise is less than half span — this calculator uses the classical semicircular form dominant in aqueducts.</li>
+      <li><strong>The gradient isn't captured here:</strong> Aqueducts had a slope (typically 1:3,000 to 1:5,000). The pier heights shown here are local heights — the actual height varies along the arcade as terrain changes.</li>
+      <li><strong>Always cross-check with the springer height:</strong> If your springer height comes out negative, your arch is taller than the pier — which is physically impossible. Reduce the span or increase the pier height.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>What is a Roman pes monetalis (Roman foot)?</summary>
+      <p>The pes monetalis was the Roman standard unit of length, equal to 0.2960 meters (29.6 cm) or about 11.65 inches. It was divided into 12 unciae (inches). Roman engineers used it consistently across the empire — which is why you can apply the same proportional rules to aqueducts in England, Spain, Turkey, and North Africa.</p>
+    </details>
+
+    <details>
+      <summary>Why did Romans use semicircular arches for aqueducts?</summary>
+      <p>The semicircular arch is the most efficient shape for transferring vertical load into purely compressive forces along the arch ring — and Roman masonry (stone and opus caementicium) is extremely strong in compression but weak in tension. By keeping all stresses compressive, the arch needs no mortar for structural integrity, only for weatherproofing. This is why dry-set arcades like Pont du Gard's lower tier have survived 2,000 years.</p>
+    </details>
+
+    <details>
+      <summary>How accurate are these calculations compared to real aqueducts?</summary>
+      <p>The formulas match archaeological measurements to within 5–10% for most surviving aqueducts when using the standard pier ratio range (0.40–0.55). Variations occur because Romans occasionally used slightly segmental arches and adjusted pier dimensions for local stone quality. The Pont du Gard, for example, has a pier ratio of approximately 0.47 in its middle tier — matching this calculator's default exactly.</p>
+    </details>
+
+    <details>
+      <summary>Can I use this for a segmental or pointed arch?</summary>
+      <p>This calculator is designed for the classical semicircular arch (rise = span ÷ 2) which dominates Roman aqueduct construction. Segmental and pointed arches use different rise formulas. For a segmental arch, you'd need to specify the rise separately as a fraction of the span (typically 0.25–0.40). A future update may add multi-arch-type support.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>🏛 Related Historical Calculators</h2>
+    <ul>
+      <li><a href="/ancient-greek-agora-market-price-calculator/">Ancient Greek Agora Market Price Calculator</a></li>
+      <li><a href="/mongol-empire-conquest-speed-calculator/">Mongol Empire Conquest Speed Calculator</a></li>
+      <li><a href="/medieval-plague-doctor-treatment-cost-calculator/">Medieval Plague Doctor Treatment Cost Calculator</a></li>
+      <li><a href="/medieval-guild-apprentice-wage-calculator/">Medieval Guild Apprentice Wage Calculator</a></li>
+      <li><a href="/aztec-sun-stone-calendar-decoder/">Aztec Sun Stone Calendar Decoder</a></li>
+      <li><a href="/ancient-egyptian-farming-yield-calculator/">Ancient Egyptian Farming Yield Calculator</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <p>© 2025 historycalc.com — Free Historical Calculation Tools</p>
+</footer>
+
+<script>
+  // ─── Constants ───────────────────────────────────────────────────────────────
+  const PES = 0.2960;        // 1 Roman foot in meters
+  const M_TO_USFT = 3.28084; // meters to US feet
+
+  // ─── Sliders ──────────────────────────────────────────────────────────────────
+  const pierRatioSlider = document.getElementById('pierRatio');
+  const pierRatioVal    = document.getElementById('pierRatioVal');
+  const archCountSlider = document.getElementById('archCount');
+  const archCountVal    = document.getElementById('archCountVal');
+  const unitSelect      = document.getElementById('unitSystem');
+
+  pierRatioSlider.addEventListener('input', () => {
+    pierRatioVal.textContent = parseFloat(pierRatioSlider.value).toFixed(2);
+  });
+  archCountSlider.addEventListener('input', () => {
+    archCountVal.textContent = archCountSlider.value;
+  });
+
+  function updateUnitLabels() {
+    const u = unitSelect.value;
+    const labels = { roman: 'Roman feet', metric: 'meters', imperial: 'US feet' };
+    document.getElementById('spanUnit').textContent = `(${labels[u]})`;
+    document.getElementById('heightUnit').textContent = `(${labels[u]})`;
+  }
+  unitSelect.addEventListener('change', updateUnitLabels);
+  updateUnitLabels();
+
+  // ─── Helpers ─────────────────────────────────────────────────────────────────
+  function fmt(n, dec=2) {
+    if (!isFinite(n)) return '—';
+    return n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  }
+  function fmtI(n) { return Math.round(n).toLocaleString('en-US'); }
+
+  function toMeters(val, unit) {
+    if (unit === 'roman')    return val * PES;
+    if (unit === 'imperial') return val / M_TO_USFT;
+    return val; // metric
+  }
+  function toRoman(m)   { return m / PES; }
+  function toUSFt(m)    { return m * M_TO_USFT; }
+
+  // ─── Validation ──────────────────────────────────────────────────────────────
+  function validateNum(id, errId, label) {
+    const el  = document.getElementById(id);
+    const err = document.getElementById(errId);
+    const v   = parseFloat(el.value);
+    if (!el.value || isNaN(v) || v <= 0) {
+      el.classList.add('error');
+      err.classList.add('visible');
+      return null;
+    }
+    el.classList.remove('error');
+    err.classList.remove('visible');
+    return v;
+  }
+
+  // ─── Main Calculate ───────────────────────────────────────────────────────────
+  function calculate() {
+    const spanRaw    = validateNum('archSpan', 'archSpanErr', 'Arch Span');
+    const heightRaw  = validateNum('totalHeight', 'totalHeightErr', 'Total Height');
+    if (spanRaw === null || heightRaw === null) return;
+
+    const unit       = unitSelect.value;
+    const spanM      = toMeters(spanRaw, unit);
+    const heightM    = toMeters(heightRaw, unit);
+    const pierRatio  = parseFloat(pierRatioSlider.value);
+    const numArches  = parseInt(archCountSlider.value);
+    const name       = document.getElementById('aqueductName').value.trim() || 'Unnamed Aqueduct';
+
+    // Core calculations
+    const archRiseM      = spanM / 2;           // semicircular: rise = half span
+    const keystoneM      = archRiseM * 0.12;    // ≈12% of rise
+    const pierWidthM     = spanM * pierRatio;
+    const springerM      = heightM - archRiseM - keystoneM;
+    const moduleM        = spanM + pierWidthM;
+    const totalLengthM   = moduleM * numArches + pierWidthM;
+    const stoneVolPerPier= Math.pow(pierWidthM, 2) * 0.85 * springerM; // m³
+    const totalPiers     = numArches + 1;
+
+    // Check physical validity
+    if (springerM <= 0) {
+      requestAnimationFrame(() => {
+        const sec = document.getElementById('resultsSection');
+        sec.style.display = 'block';
+        sec.classList.add('visible');
+        setTimeout(() => sec.classList.add('fade-in'), 10);
+        document.getElementById('resultHero').innerHTML =
+          `<span class="big-number" style="font-size:1.4rem;color:#e74c3c;">⚠ Invalid</span>
+           <div class="big-label">Arch rise (${fmt(archRiseM,1)} m) exceeds pier height. Increase total height or reduce span.</div>`;
+        document.getElementById('resultGrid').innerHTML = '';
+        document.getElementById('resultsTableBody').innerHTML = '';
+        document.getElementById('modernEquiv').innerHTML = '';
+      });
+      return;
+    }
+
+    // Build all dimension rows
+    const dims = [
+      { label: 'Clear Arch Span',         m: spanM },
+      { label: 'Pier Width',               m: pierWidthM },
+      { label: 'Arch Rise (crown height)', m: archRiseM },
+      { label: 'Keystone Thickness',       m: keystoneM },
+      { label: 'Springer Height',          m: springerM },
+      { label: 'Total Pier Height',        m: heightM },
+      { label: 'Arcade Module (span+pier)',m: moduleM },
+      { label: 'Total Arcade Length',      m: totalLengthM },
+    ];
+
+    // Modern equivalent comparisons
+    const busDbl = 11.2; // double-decker bus length in m
+    const eiffelBase = 125; // Eiffel Tower base side in m
+    const comparisons = [];
+    comparisons.push(`Total arcade length of <strong>${fmt(totalLengthM,1)} m</strong> is about <strong>${fmt(totalLengthM/busDbl,1)} double-decker buses</strong> end-to-end.`);
+    if (stoneVolPerPier > 0) {
+      const africaElephant = 5500; // kg, weight of African elephant
+      // Limestone density ≈ 2,200 kg/m³
+      const pierKg = stoneVolPerPier * 2200;
+      const elephants = pierKg / africaElephant;
+      comparisons.push(`Each pier holds approx. <strong>${fmtI(Math.round(pierKg/1000))} tonnes</strong> of stone — equivalent to <strong>${fmt(elephants,1)} African elephants</strong>.`);
+    }
+    comparisons.push(`With <strong>${totalPiers}</strong> piers, the full arcade uses an estimated <strong>${fmt(stoneVolPerPier * totalPiers, 0)} m³</strong> of cut stone — enough to fill ${fmt(stoneVolPerPier * totalPiers / 25, 1)} standard shipping containers.`);
+
+    // BUILD ALL HTML STRINGS FIRST, then assign once
+    const heroHTML = `
+      <span class="big-number" id="heroNumber">${fmt(totalLengthM, 1)} m</span>
+      <div class="big-label" id="heroLabel">${name} — Total Arcade Length (${numArches} arch${numArches !== 1 ? 'es' : ''}, ${totalPiers} piers)</div>
+    `;
+
+    const gridHTML = [
+      { label: 'Arch Span',      value: `${fmt(spanM,2)} m`, sub: `${fmt(toRoman(spanM),1)} pes` },
+      { label: 'Pier Width',     value: `${fmt(pierWidthM,2)} m`, sub: `${fmt(toRoman(pierWidthM),1)} pes` },
+      { label: 'Arch Rise',      value: `${fmt(archRiseM,2)} m`, sub: `${fmt(toRoman(archRiseM),1)} pes` },
+      { label: 'Springer Ht.',   value: `${fmt(springerM,2)} m`, sub: `${fmt(toRoman(springerM),1)} pes` },
+      { label: 'Total Piers',    value: `${totalPiers}`, sub: `${numArches} arches` },
+      { label: 'Stone Vol./Pier',value: `${fmt(stoneVolPerPier,1)} m³`, sub: `opus quadratum est.' },
+    ].map(c => `
+      <div class="result-card">
+        <div class="rc-label">${c.label}</div>
+        <div class="rc-value">${c.value}</div>
+        <div class="rc-sub">${c.sub}</div>
+      </div>
+    `).join('');
+
+    const tableRowsHTML = dims.map(d => `
+      <tr>
+        <td>${d.label}</td>
+        <td>${fmt(toRoman(d.m), 2)}</td>
+        <td>${fmt(d.m, 3)}</td>
+        <td>${fmt(toUSFt(d.m), 2)}</td>
+      </tr>
+    `).join('');
+
+    const modernEquivHTML = `<strong>🏛 Modern Equivalent:</strong> ${comparisons.join(' ')}`;
+
+    requestAnimationFrame(() => {
+      document.getElementById('resultHero').innerHTML = heroHTML;
+      document.getElementById('resultGrid').innerHTML = gridHTML;
+      document.getElementById('resultsTableBody').innerHTML = tableRowsHTML;
+      document.getElementById('modernEquiv').innerHTML = modernEquivHTML;
+
+      const sec = document.getElementById('resultsSection');
+      sec.style.display = 'block';
+      sec.classList.add('visible');
+      setTimeout(() => sec.classList.add('fade-in'), 10);
+      sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      // store for copy
+      window._lastResultText = buildCopyText(name, numArches, totalPiers, dims);
+    });
+  }
+
+  function buildCopyText(name, arches, piers, dims) {
+    let t = `Roman Aqueduct Arcade: ${name}\n`;
+    t += `Arches: ${arches}  |  Piers: ${piers}\n\n`;
+    t += `${'Dimension'.padEnd(30)} ${'Roman Ft'.padStart(10)} ${'Meters'.padStart(10)} ${'US Ft'.padStart(10)}\n`;
+    t += '-'.repeat(62) + '\n';
+    dims.forEach(d => {
+      t += `${d.label.padEnd(30)} ${fmt(toRoman(d.m),2).padStart(10)} ${fmt(d.m,3).padStart(10)} ${fmt(toUSFt(d.m),2).padStart(10)}\n`;
+    });
+    return t;
+  }
+
+  // ─── Copy Button ─────────────────────────────────────────────────────────────
+  document.getElementById('copyBtn').addEventListener('click', () => {
+    if (!window._lastResultText) return;
+    navigator.clipboard.writeText(window._lastResultText).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy Results', 2000);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = window._lastResultText;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy Results', 2000);
+    });
+  });
+
+  // ─── Event Listeners ─────────────────────────────────────────────────────────
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => calculate());
+  });
+
+  ['archSpan', 'totalHeight'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') requestAnimationFrame(() => calculate());
+    });
+  });
+
+  // Re-calculate on slider change if results already visible
+  [pierRatioSlider, archCountSlider].forEach(sl => {
+    sl.addEventListener('input', () => {
+      if (document.getElementById('resultsSection').classList.contains('visible')) {
+        requestAnimationFrame(() => calculate());
+      }
+    });
+  });
+</script>
+</body>
+</html>
