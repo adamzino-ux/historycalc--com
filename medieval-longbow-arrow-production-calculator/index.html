@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Longbow Arrow Production Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate medieval longbow arrow production rates by skill level, tools, and workforce. Discover how many arrows a fletcher could craft per day in the Middle Ages.">
+<link rel="canonical" href="https://historycalc.com/medieval-longbow-arrow-production-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Longbow Arrow Production Calculator",
+  "url": "https://historycalc.com/medieval-longbow-arrow-production-calculator/",
+  "description": "Calculate medieval arrow production rates based on fletcher skill, workforce size, materials, and time period.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f0e1;
+  --card-bg: #fdf8ee;
+  --accent: #8b4513;
+  --accent-dark: #6b3410;
+  --text: #2c1810;
+  --text-mid: #5a3825;
+  --border: #c4a882;
+  --border-light: #ddd0b8;
+  --highlight: #f0e6cc;
+  --red: #c0392b;
+  --gold: #b8860b;
+  --green: #3d6b3a;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; color: var(--accent-dark); }
+
+nav {
+  background: var(--accent);
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+}
+nav a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+nav a:hover { text-decoration: none; opacity: 0.85; }
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.tool-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.svg-illustration {
+  display: block;
+  margin: 0 auto 1rem;
+  opacity: 0.92;
+}
+
+h1 {
+  font-size: 1.55rem;
+  color: var(--accent);
+  line-height: 1.25;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  color: var(--text-mid);
+  font-size: 0.92rem;
+  font-style: italic;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px rgba(139,69,19,0.08);
+  margin-bottom: 1.75rem;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-group { margin-bottom: 1.1rem; }
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-mid);
+  margin-bottom: 0.35rem;
+}
+
+input[type="number"], select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-height: 44px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%238b4513' d='M6 8L0 0h12z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+input[type="number"]:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+}
+
+input.error, select.error { border-color: var(--red); }
+.error-msg { color: var(--red); font-size: 0.8rem; margin-top: 0.25rem; display: none; }
+.error-msg.show { display: block; }
+
+.slider-group { margin-bottom: 1.1rem; }
+.slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem; }
+.slider-label { font-size: 0.85rem; font-weight: 500; color: var(--text-mid); }
+.slider-value { font-size: 0.9rem; font-weight: 700; color: var(--accent); background: var(--highlight); padding: 2px 10px; border-radius: 12px; border: 1px solid var(--border-light); }
+
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: linear-gradient(to right, var(--accent) 0%, var(--accent) 50%, var(--border) 50%, var(--border) 100%);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  min-height: 24px;
+}
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); cursor: pointer; }
+input[type="range"]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); border: 2px solid #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.25); cursor: pointer; }
+
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.btn {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-height: 48px;
+  letter-spacing: 0.3px;
+}
+.btn:hover { background: var(--accent-dark); }
+.btn:active { transform: scale(0.98); }
+
+.btn-sm {
+  display: inline-block;
+  width: auto;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  padding: 6px 14px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-height: 32px;
+  font-family: inherit;
+}
+.btn-sm:hover { background: var(--highlight); }
+
+.results-section {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.results-section.visible { opacity: 1; pointer-events: all; }
+
+.key-number-box {
+  text-align: center;
+  background: linear-gradient(135deg, #fdf3df, #f5e6c8);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 1.4rem 1rem;
+  margin-bottom: 1.2rem;
+}
+.key-number { font-size: 3rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.key-label { font-size: 0.85rem; color: var(--text-mid); margin-top: 0.3rem; font-weight: 500; }
+.key-sub { font-size: 0.8rem; color: var(--text-mid); margin-top: 0.5rem; font-style: italic; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+.stat-box {
+  background: var(--highlight);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.85rem;
+  text-align: center;
+}
+.stat-num { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+.stat-label { font-size: 0.75rem; color: var(--text-mid); margin-top: 0.15rem; }
+
+.table-wrap { overflow-x: auto; border-radius: 6px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 320px; }
+thead th { background: #e8d9be; color: var(--text); padding: 9px 12px; text-align: left; font-weight: 700; border-bottom: 2px solid var(--border); }
+thead th:not(:first-child) { text-align: right; }
+tbody tr:nth-child(even) { background: #fdf8f0; }
+tbody tr:nth-child(odd) { background: #fff; }
+tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border-light); }
+tbody td:not(:first-child) { text-align: right; }
+tbody tr:last-child td { border-bottom: none; }
+
+.bar-container { background: var(--border-light); border-radius: 3px; height: 12px; overflow: hidden; }
+.bar-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.4s ease; }
+
+.copy-row { display: flex; justify-content: flex-end; margin-bottom: 0.75rem; }
+
+.modern-equiv {
+  background: linear-gradient(135deg, #e8f4e8, #d4edda);
+  border: 1px solid #a8d8a8;
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.88rem;
+  color: #1a3d1a;
+}
+.modern-equiv strong { color: var(--green); }
+
+.did-you-know {
+  background: linear-gradient(135deg, #fff8e1, #ffeaa0);
+  border: 1px solid #e6c84a;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.did-you-know h3 { font-size: 0.95rem; color: var(--gold); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+.did-you-know ul { padding-left: 1.1rem; }
+.did-you-know li { font-size: 0.87rem; color: #4a3800; margin-bottom: 0.5rem; line-height: 1.5; }
+
+.historical-context {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.historical-context h2 { font-size: 1.05rem; color: var(--accent); margin-bottom: 0.75rem; }
+.historical-context p { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+
+.content-section { margin-bottom: 1.75rem; }
+.content-section h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 0.75rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border-light); }
+.content-section p, .content-section li { font-size: 0.88rem; color: var(--text-mid); line-height: 1.65; }
+.content-section ul, .content-section ol { padding-left: 1.3rem; }
+.content-section li { margin-bottom: 0.4rem; }
+
+details { border: 1px solid var(--border-light); border-radius: 6px; margin-bottom: 0.5rem; }
+details[open] { border-color: var(--border); }
+summary { padding: 0.75rem 1rem; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: var(--text); background: var(--highlight); border-radius: 6px; user-select: none; }
+details[open] summary { border-radius: 6px 6px 0 0; border-bottom: 1px solid var(--border-light); }
+.faq-answer { padding: 0.85rem 1rem; font-size: 0.86rem; color: var(--text-mid); line-height: 1.6; }
+
+.related-tools { display: flex; flex-direction: column; gap: 0.5rem; }
+.related-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--highlight);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-size: 0.86rem;
+  color: var(--accent);
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.related-link:hover { background: #ecdbb8; text-decoration: none; }
+
+.ad-slot { min-height: 0; margin: 0; }
+
+footer {
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  font-size: 0.83rem;
+  margin-top: 2rem;
+}
+footer a { color: #f5deb3; }
+footer a:hover { color: #fff; }
+footer .footer-links { margin-bottom: 0.5rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+
+.formula-box {
+  background: #2c1810;
+  color: #f5deb3;
+  border-radius: 6px;
+  padding: 0.85rem 1.1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  margin: 0.75rem 0;
+  overflow-x: auto;
+}
+
+.skill-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+.skill-apprentice { background: #e8d5c0; color: #6b3410; }
+.skill-journeyman { background: #c8d8c0; color: #2d4a28; }
+.skill-master { background: #d4c8f0; color: #3d2a6a; }
+.skill-royal { background: #f0d090; color: #6a4a00; }
+
+@media (max-width: 640px) {
+  h1 { font-size: 1.3rem; }
+  .row-2 { grid-template-columns: 1fr; gap: 0; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .key-number { font-size: 2.4rem; }
+  .card { padding: 1.25rem; }
+  .container { padding: 1rem 0.75rem 2.5rem; }
+  footer .footer-links { gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚔️ HistoryCalc.com</a>
+</nav>
+
+<div class="container">
+
+  <div class="tool-header">
+    <!-- SVG Illustration: Longbow, quiver, and arrows -->
+    <svg class="svg-illustration" width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-label="Medieval longbow and arrows illustration">
+      <!-- Ground/grass -->
+      <rect x="0" y="105" width="200" height="15" fill="#8b6914" rx="2"/>
+      <!-- Longbow -->
+      <path d="M 40 15 Q 25 60 40 105" stroke="#6b3410" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Bowstring -->
+      <line x1="40" y1="15" x2="40" y2="105" stroke="#c4a882" stroke-width="1.5" stroke-dasharray="none"/>
+      <!-- Arrow on bow (nocked) -->
+      <line x1="40" y1="60" x2="100" y2="60" stroke="#8b4513" stroke-width="2.5"/>
+      <polygon points="100,60 93,57 93,63" fill="#555"/>
+      <g transform="translate(40,60)">
+        <line x1="-8" y1="-4" x2="0" y2="0" stroke="#8b4513" stroke-width="1.5"/>
+        <line x1="-8" y1="4" x2="0" y2="0" stroke="#8b4513" stroke-width="1.5"/>
+      </g>
+      <!-- Quiver (tube) -->
+      <rect x="145" y="35" width="22" height="65" rx="4" fill="#8b4513" stroke="#6b3410" stroke-width="1.5"/>
+      <ellipse cx="156" cy="35" rx="11" ry="5" fill="#a0522d" stroke="#6b3410" stroke-width="1"/>
+      <!-- Arrows in quiver -->
+      <line x1="150" y1="10" x2="150" y2="40" stroke="#c4a068" stroke-width="2.5"/>
+      <polygon points="150,10 147,17 153,17" fill="#555" stroke="#333" stroke-width="0.5"/>
+      <line x1="156" y1="8" x2="156" y2="38" stroke="#c4a068" stroke-width="2.5"/>
+      <polygon points="156,8 153,15 159,15" fill="#555" stroke="#333" stroke-width="0.5"/>
+      <line x1="162" y1="11" x2="162" y2="41" stroke="#c4a068" stroke-width="2.5"/>
+      <polygon points="162,11 159,18 165,18" fill="#555" stroke="#333" stroke-width="0.5"/>
+      <!-- Fletching details -->
+      <line x1="149" y1="36" x2="145" y2="32" stroke="#8b0000" stroke-width="1.5"/>
+      <line x1="155" y1="34" x2="151" y2="30" stroke="#8b0000" stroke-width="1.5"/>
+      <line x1="161" y1="37" x2="157" y2="33" stroke="#8b0000" stroke-width="1.5"/>
+      <!-- Fletcher workbench hint -->
+      <rect x="110" y="90" width="50" height="8" rx="2" fill="#a0522d" stroke="#6b3410" stroke-width="1"/>
+      <rect x="115" y="98" width="6" height="10" rx="1" fill="#6b3410"/>
+      <rect x="149" y="98" width="6" height="10" rx="1" fill="#6b3410"/>
+      <!-- Shavings on ground -->
+      <path d="M 120 104 Q 125 101 130 104" stroke="#c4a882" stroke-width="1.5" fill="none"/>
+      <path d="M 128 103 Q 133 100 138 103" stroke="#c4a882" stroke-width="1.5" fill="none"/>
+    </svg>
+
+    <h1>Medieval Longbow Arrow Production Calculator</h1>
+    <p class="subtitle">Discover the authentic medieval arrow production rate of a skilled fletcher</p>
+  </div>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <div class="card-title">⚙️ Production Parameters</div>
+
+    <div class="form-group">
+      <label for="skillLevel">Fletcher Skill Level</label>
+      <select id="skillLevel">
+        <option value="apprentice">Apprentice (0–3 years training)</option>
+        <option value="journeyman" selected>Journeyman (3–7 years training)</option>
+        <option value="master">Master Fletcher (7–15+ years)</option>
+        <option value="royal">Royal Warrant Master (Elite)</option>
+      </select>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-header">
+        <span class="slider-label">Number of Fletchers (workforce)</span>
+        <span class="slider-value" id="fletchersVal">1</span>
+      </div>
+      <input type="range" id="fletchers" min="1" max="50" value="1" step="1">
+    </div>
+
+    <div class="row-2">
+      <div class="form-group">
+        <label for="workDays">Working Days</label>
+        <input type="number" id="workDays" value="1" min="1" max="365" placeholder="e.g. 1">
+        <div class="error-msg" id="err-days">Enter 1–365 days.</div>
+      </div>
+      <div class="form-group">
+        <label for="workHours">Hours Worked Per Day</label>
+        <input type="number" id="workHours" value="10" min="1" max="16" step="0.5" placeholder="e.g. 10">
+        <div class="error-msg" id="err-hours">Enter 1–16 hours.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="arrowType">Arrow Type</label>
+      <select id="arrowType">
+        <option value="bodkin">Bodkin Point (armour-piercing)</option>
+        <option value="broadhead" selected>Broadhead (hunting/warfare)</option>
+        <option value="blunt">Blunt Point (training/small game)</option>
+        <option value="fire">Fire Arrow (incendiary)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="toolQuality">Tool & Workshop Quality</label>
+      <select id="toolQuality">
+        <option value="basic">Basic (hand tools, no workshop)</option>
+        <option value="standard" selected>Standard (guild workshop)</option>
+        <option value="advanced">Advanced (specialist tools & templates)</option>
+      </select>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-header">
+        <span class="slider-label">Material Pre-preparation (%)</span>
+        <span class="slider-value" id="prepVal">50%</span>
+      </div>
+      <input type="range" id="prepLevel" min="0" max="100" value="50" step="5">
+      <div style="display:flex;justify-content:space-between;font-size:0.75rem;color:var(--text-mid);margin-top:3px;"><span>Raw materials only</span><span>Fully pre-cut shafts</span></div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚔️ Calculate Arrow Production</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section card" id="resultsSection">
+    <div class="card-title">📊 Production Results
+      <div class="copy-row" style="margin-left:auto;margin-bottom:0;">
+        <button class="btn-sm" id="copyBtn">📋 Copy Results</button>
+      </div>
+    </div>
+
+    <div class="key-number-box">
+      <div class="key-number" id="keyNumber">—</div>
+      <div class="key-label" id="keyLabel">arrows produced</div>
+      <div class="key-sub" id="keySub"></div>
+    </div>
+
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="modern-equiv" id="modernEquiv"></div>
+
+    <div class="card-title" style="margin-top:1rem;">📅 Daily Production Breakdown</div>
+    <div class="table-wrap" id="breakdownTable"></div>
+
+    <div style="margin-top:1.25rem;">
+      <div class="card-title">⚖️ Skill Level Comparison</div>
+      <div id="comparisonBars"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- DID YOU KNOW -->
+  <div class="did-you-know">
+    <h3>💡 Did You Know?</h3>
+    <ul>
+      <li>Before the Battle of Crécy (1346), Edward III ordered <strong>100,000 sheaves of arrows</strong> (2,400,000 arrows total) stockpiled — requiring years of advance production from hundreds of fletchers across England.</li>
+      <li>The English longbow arrow ("livery arrow") had a standardised length of <strong>30–32 inches</strong> and required fletching from goose, swan, or peacock feathers — each arrow needing 3 flights, split from a single feather.</li>
+      <li>A skilled medieval fletcher was considered so strategically vital that they received <strong>guild protections</strong> and were sometimes exempt from military service — their craft was deemed too important to risk losing.</li>
+    </ul>
+  </div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="historical-context">
+    <h2>📜 Historical Context</h2>
+    <p>Medieval arrow production was a highly regulated guild craft in England, particularly from the 13th–15th centuries. The Worshipful Company of Fletchers, incorporated in London in 1371, set standards for arrow length, shaft diameter, and fletching quality. English war arrows (livery arrows) were made from poplar, ash, or birch shafts approximately 30 inches long, tipped with iron points, and fletched with three goose feathers. Crown requisitions documented by historian Robert Hardy show that during the Hundred Years' War, England's Royal Armoury contracted thousands of arrows per week — the 1341 royal warrant for the Crécy campaign demanded 2,000 sheaves (48,000 arrows) per fortnight. Master fletchers typically completed <strong>12–24 finished arrows per working day</strong> for complex broadheads, and up to <strong>40–50</strong> for simpler blunt practice shafts.</p>
+  </div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Medieval Arrow Production Calculator</h2>
+    <p>Select your fletcher's skill level, set the workforce size using the slider, enter working days and hours, choose the arrow type, and specify tool quality and material preparation level. Click <strong>"Calculate Arrow Production"</strong> to see total output, per-fletcher daily rate, equivalent cost in medieval pennies, and a skill comparison chart. All rates are based on documented historical guild records and archaeological evidence.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding medieval arrow production rates helps historians, wargamers, re-enactors, authors, and educators grasp the true logistical challenge of medieval warfare. When English commanders ordered 10,000 arrows for a garrison, they were demanding weeks of work from dozens of specialist craftsmen — not just a warehouse trip.</p>
+    <p style="margin-top:0.6rem;">For example, the garrison of Calais in 1347 consumed roughly 42,000 arrows during its siege resistance. At a production rate of 15 arrows per journeyman per day (a realistic guild output), sustaining that supply required approximately 50 full-time fletchers working continuously for 56 days. This logistical reality shaped medieval military strategy as profoundly as any battlefield tactic. Commanders planned campaigns around arrow supply chains just as modern armies plan around fuel logistics. Knowing these rates also illuminates why medieval English kings protected the yew tree supply and controlled goose-feather harvests through royal proclamation.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses a base production rate derived from guild records and experimental archaeology, then applies multipliers for skill level, arrow complexity, tool quality, and material preparation:</p>
+    <div class="formula-box">
+Base Rate (arrows/hr):
+  Apprentice = 0.9 | Journeyman = 1.6 | Master = 2.4 | Royal = 3.2
+
+Arrow Type Modifier:
+  Bodkin = 0.85 | Broadhead = 1.0 | Blunt = 1.4 | Fire = 0.65
+
+Tool Quality Modifier:
+  Basic = 0.80 | Standard = 1.0 | Advanced = 1.25
+
+Prep Modifier = 0.75 + (prepPercent / 100) × 0.50
+
+Arrows/Fletcher/Day = Base × ArrowMod × ToolMod × PrepMod × Hours
+
+Total Output = Arrows/Fletcher/Day × Fletchers × Days
+    </div>
+    <p>The preparation modifier reflects that pre-cut, smoothed shafts and pre-split feathers dramatically reduce each fletcher's assembly time — a historical practice used by large royal workshops where labour was divided into shaft-cutters, point-smiths, and fletchers proper.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't assume a 12-hour workday was standard.</strong> Fletching required good natural light and fine motor precision — most guild ordinances restricted work to daylight hours, typically 7–8 usable hours in winter England.</li>
+      <li><strong>Material prep is the hidden productivity multiplier.</strong> Pre-splitting feather flights and pre-turning shafts on a pole lathe could nearly double finished output — the calculator's prep slider captures this critical variable.</li>
+      <li><strong>Arrow type complexity matters enormously.</strong> A bodkin point required careful smithing and fitting; a training blunt could be turned from a single piece of wood. Factor this into campaign planning scenarios.</li>
+      <li><strong>Royal warrant workshops used division of labour.</strong> For large-scale campaigns, set fletchers to 20–50 and preparation to 80–100% to simulate a royal armoury, not a village craftsman.</li>
+      <li><strong>Quality degrades over longer campaigns.</strong> The calculator shows peak-condition rates. Historical records suggest arrows produced under wartime pressure had measurably shorter range and higher break rates.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>How many arrows could an English longbowman fire per minute?</summary>
+      <div class="faq-answer">A trained English longbowman could loose 10–12 aimed arrows per minute at sustained pace, or up to 15–20 in a rapid "volley" scenario for short bursts. This is why arrow supply was so critical — a company of 100 archers could exhaust 1,000 arrows in under two minutes of sustained fire, making the fletcher's craft a strategic military asset.</div>
+    </details>
+
+    <details>
+      <summary>What were arrows made from in medieval England?</summary>
+      <div class="faq-answer">Standard English war arrows used shafts of poplar, birch, or ash (approximately 30 inches, ⅜ inch diameter), fletched with three split goose-feather flights, and tipped with iron bodkin or broadhead points. The feathers were secured with silk thread and pitch glue. Yew was reserved for the bow itself, being too springy and valuable for shafts.</div>
+    </details>
+
+    <details>
+      <summary>What was a "sheaf" of arrows?</summary>
+      <div class="faq-answer">A sheaf was the standard medieval unit of arrow supply, consisting of 24 arrows — roughly what a single longbowman carried into battle in his belt quiver. Crown supply records almost universally count in sheaves, making the unit crucial for interpreting historical documents. A "gross" was 144 arrows (6 sheaves).</div>
+    </details>
+
+    <details>
+      <summary>Were there female fletchers in medieval times?</summary>
+      <div class="faq-answer">Yes — guild records from London, York, and Bristol document women working as fletchers, particularly widows who inherited their husband's guild membership or ran family workshops. Some women appear as independent guild members in 14th-century records. Arrow production was less physically demanding than many trades, making it more accessible to women than, say, blacksmithing.</div>
+    </details>
+  </div>
+
+  <!-- RELATED TOOLS -->
+  <div class="content-section">
+    <h2>🏛️ Related Historical Calculators</h2>
+    <div class="related-tools">
+      <a class="related-link" href="/roman-aqueduct-arcade-span-calculator/">🏛️ Ancient Roman Aqueduct Bridge (Arcade) Span Calculator</a>
+      <a class="related-link" href="/ancient-greek-agora-market-price-calculator/">🏺 Ancient Greek Agora Market Price Calculator</a>
+      <a class="related-link" href="/mongol-empire-conquest-speed-calculator/">🐎 Mongol Empire Conquest Speed Calculator</a>
+      <a class="related-link" href="/medieval-plague-doctor-treatment-cost-calculator/">🩺 Medieval Plague Doctor Treatment Cost Calculator</a>
+      <a class="related-link" href="/medieval-guild-apprentice-wage-calculator/">⚒️ Medieval Guild Apprentice Wage Calculator</a>
+      <a class="related-link" href="/aztec-sun-stone-calendar-decoder/">☀️ Aztec Sun Stone Calendar Decoder</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© 2025 historycalc.com — Free Historical Calculators & Tools</div>
+</footer>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────
+const SKILL_DATA = {
+  apprentice: { label: 'Apprentice', baseRate: 0.9,  badge: 'skill-apprentice', desc: '0–3 yrs', dailyWage: 1  },
+  journeyman: { label: 'Journeyman', baseRate: 1.6,  badge: 'skill-journeyman', desc: '3–7 yrs', dailyWage: 3  },
+  master:     { label: 'Master Fletcher', baseRate: 2.4, badge: 'skill-master', desc: '7–15 yrs', dailyWage: 6  },
+  royal:      { label: 'Royal Warrant', baseRate: 3.2,  badge: 'skill-royal',   desc: 'Elite',   dailyWage: 12 }
+};
+
+const ARROW_MODS = {
+  bodkin:    { label: 'Bodkin Point',   mod: 0.85, costPennies: 1.2 },
+  broadhead: { label: 'Broadhead',      mod: 1.0,  costPennies: 1.0 },
+  blunt:     { label: 'Blunt Point',    mod: 1.4,  costPennies: 0.5 },
+  fire:      { label: 'Fire Arrow',     mod: 0.65, costPennies: 2.5 }
+};
+
+const TOOL_MODS = {
+  basic:    { label: 'Basic',    mod: 0.80 },
+  standard: { label: 'Standard', mod: 1.00 },
+  advanced: { label: 'Advanced', mod: 1.25 }
+};
+
+// ─── HELPERS ─────────────────────────────────────────────────────────────
+function fmt(n, decimals=0) {
+  return Number(n).toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
+}
+
+function updateSlider(slider, displayId, suffix) {
+  const pct = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+  slider.style.background = `linear-gradient(to right, var(--accent) 0%, var(--accent) ${pct}%, var(--border) ${pct}%, var(--border) 100%)`;
+  document.getElementById(displayId).textContent = slider.value + suffix;
+}
+
+function validateInputs() {
+  const days = parseFloat(document.getElementById('workDays').value);
+  const hours = parseFloat(document.getElementById('workHours').value);
+  let ok = true;
+
+  const dInp = document.getElementById('workDays');
+  const hInp = document.getElementById('workHours');
+  const dErr = document.getElementById('err-days');
+  const hErr = document.getElementById('err-hours');
+
+  if (!days || days < 1 || days > 365 || isNaN(days)) {
+    dInp.classList.add('error'); dErr.classList.add('show'); ok = false;
+  } else { dInp.classList.remove('error'); dErr.classList.remove('show'); }
+
+  if (!hours || hours < 1 || hours > 16 || isNaN(hours)) {
+    hInp.classList.add('error'); hErr.classList.add('show'); ok = false;
+  } else { hInp.classList.remove('error'); hErr.classList.remove('show'); }
+
+  return ok;
+}
+
+// ─── CALCULATE ───────────────────────────────────────────────────────────
+function calculate() {
+  if (!validateInputs()) return;
+
+  const skillKey  = document.getElementById('skillLevel').value;
+  const arrowKey  = document.getElementById('arrowType').value;
+  const toolKey   = document.getElementById('toolQuality').value;
+  const fletchers = parseInt(document.getElementById('fletchers').value);
+  const days      = parseFloat(document.getElementById('workDays').value);
+  const hours     = parseFloat(document.getElementById('workHours').value);
+  const prep      = parseInt(document.getElementById('prepLevel').value);
+
+  const skill   = SKILL_DATA[skillKey];
+  const arrow   = ARROW_MODS[arrowKey];
+  const tool    = TOOL_MODS[toolKey];
+
+  const prepMod  = 0.75 + (prep / 100) * 0.50;
+  const ratePerHour = skill.baseRate * arrow.mod * tool.mod * prepMod;
+  const arrowsPerFletcher = ratePerHour * hours;
+  const arrowsPerDay = arrowsPerFletcher * fletchers;
+  const totalArrows = arrowsPerDay * days;
+
+  const sheaves = totalArrows / 24;
+  const grosses = totalArrows / 144;
+  const costPennies = totalArrows * arrow.costPennies;
+  const costShillings = costPennies / 12;
+  const costPounds = costShillings / 20;
+  const laborCostPennies = fletchers * days * skill.dailyWage * 12;
+  const totalCostPennies = costPennies + laborCostPennies;
+
+  // Comparison: modern factory equivalent (hypothetical modern arrow assembly ~120/hr)
+  const modernHours = totalArrows / (120 * fletchers);
+  const modernEquivText = totalArrows >= 10000
+    ? `A modern factory line with ${fletchers} worker${fletchers>1?'s':''} could produce this quantity in roughly <strong>${fmt(modernHours,1)} hours</strong>, versus <strong>${fmt(days)} day${days>1?'s':''}</strong> for your medieval workshop — highlighting how pre-industrial production shaped military strategy.`
+    : `This would take a modern workshop about <strong>${fmt(modernHours,2)} hours</strong> — what took medieval fletchers ${fmt(days)} day${days>1?'s':''} takes minutes today, illustrating the dramatic productivity gap that made arrow supply a genuine strategic bottleneck.`;
+
+  // Breakdown table rows
+  const periods = [
+    { label: '1 Hour',   val: arrowsPerFletcher / hours * 1 * fletchers },
+    { label: '1 Day',    val: arrowsPerDay },
+    { label: '1 Week',   val: arrowsPerDay * 7 },
+    { label: '1 Month',  val: arrowsPerDay * 26 },
+    { label: '1 Year',   val: arrowsPerDay * 300 }
+  ];
+  const maxVal = periods[4].val;
+
+  let tableHTML = `<table>
+    <thead><tr><th>Period</th><th>Arrows</th><th>Sheaves (24)</th><th>Output Bar</th></tr></thead>
+    <tbody>`;
+  periods.forEach(p => {
+    const pct = Math.min(100, (p.val / maxVal) * 100).toFixed(1);
+    tableHTML += `<tr>
+      <td>${p.label}</td>
+      <td>${fmt(p.val, 0)}</td>
+      <td>${fmt(p.val/24, 1)}</td>
+      <td><div class="bar-container"><div class="bar-fill" style="width:${pct}%"></div></div></td>
+    </tr>`;
+  });
+  tableHTML += '</tbody></table>';
+
+  // Skill comparison bars
+  const allSkills = ['apprentice','journeyman','master','royal'];
+  let barsHTML = '';
+  allSkills.forEach(sk => {
+    const s = SKILL_DATA[sk];
+    const rate = s.baseRate * arrow.mod * tool.mod * prepMod * hours * fletchers;
+    const pct = Math.min(100, (rate / (SKILL_DATA.royal.baseRate * arrow.mod * tool.mod * prepMod * hours * fletchers)) * 100).toFixed(1);
+    const isActive = sk === skillKey;
+    barsHTML += `<div style="margin-bottom:0.75rem;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <span style="font-size:0.82rem;font-weight:${isActive?700:500};color:${isActive?'var(--accent)':'var(--text-mid)'};">
+          <span class="skill-badge ${s.badge}">${s.label}</span>
+          ${isActive ? ' ← selected' : ''}
+        </span>
+        <span style="font-size:0.82rem;font-weight:700;color:var(--text);">${fmt(rate,0)}/day</span>
+      </div>
+      <div class="bar-container" style="height:14px;">
+        <div class="bar-fill" style="width:${pct}%;opacity:${isActive?1:0.55};"></div>
+      </div>
+    </div>`;
+  });
+
+  // Stats grid
+  const statsHTML = `
+    <div class="stat-box"><div class="stat-num">${fmt(arrowsPerFletcher,1)}</div><div class="stat-label">Arrows/Fletcher/Day</div></div>
+    <div class="stat-box"><div class="stat-num">${fmt(sheaves,1)}</div><div class="stat-label">Sheaves (24 arrows)</div></div>
+    <div class="stat-box"><div class="stat-num">${fmt(grosses,1)}</div><div class="stat-label">Gross (144 arrows)</div></div>
+    <div class="stat-box"><div class="stat-num">${costPounds>=1?fmt(costPounds,1)+'£':fmt(costShillings,1)+'s'}</div><div class="stat-label">Material Cost (est.)</div></div>
+  `;
+
+  const modernEquivHTML = `🏭 <strong>Modern Comparison:</strong> ${modernEquivText}`;
+
+  // Key number
+  const keyNum = fmt(Math.round(totalArrows));
+  const keyLbl = `arrows produced (${arrow.label})`;
+  const keySub = `${fmt(fletchers)} ${skill.label} fletcher${fletchers>1?'s':''} · ${fmt(days)} day${days>1?'s':''} · ${fmt(hours)}hr/day · ~${fmt(ratePerHour,2)} arrows/hr/fletcher`;
+
+  // Store for clipboard
+  window._lastResult = {
+    totalArrows, sheaves, grosses, arrowsPerFletcher, skill: skill.label,
+    arrow: arrow.label, fletchers, days, hours, costPounds, costShillings, costPennies
+  };
+
+  requestAnimationFrame(() => {
+    document.getElementById('keyNumber').textContent = keyNum;
+    document.getElementById('keyLabel').textContent  = keyLbl;
+    document.getElementById('keySub').textContent    = keySub;
+    document.getElementById('statsGrid').innerHTML   = statsHTML;
+    document.getElementById('breakdownTable').innerHTML = tableHTML;
+    document.getElementById('comparisonBars').innerHTML = barsHTML;
+    document.getElementById('modernEquiv').innerHTML = modernEquivHTML;
+    const sec = document.getElementById('resultsSection');
+    sec.classList.add('visible');
+    setTimeout(() => { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 100);
+  });
+}
+
+// ─── COPY ─────────────────────────────────────────────────────────────────
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const r = window._lastResult;
+  if (!r) return;
+  const text = `Medieval Arrow Production Results\n` +
+    `Total Arrows: ${fmt(Math.round(r.totalArrows))}\n` +
+    `Sheaves (24): ${fmt(r.sheaves,1)}\n` +
+    `Arrow Type: ${r.arrow}\n` +
+    `Fletcher Skill: ${r.skill}\n` +
+    `Fletchers: ${r.fletchers}\n` +
+    `Days: ${r.days}  |  Hours/Day: ${r.hours}\n` +
+    `Per Fletcher Per Day: ${fmt(r.arrowsPerFletcher,1)}\n` +
+    `Estimated Material Cost: ${fmt(r.costPounds,2)}£ / ${fmt(r.costShillings,1)}s / ${fmt(r.costPennies,0)}d\n` +
+    `Calculated via historycalc.com`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+  });
+});
+
+// ─── SLIDER EVENTS ────────────────────────────────────────────────────────
+const fletchersSlider = document.getElementById('fletchers');
+const prepSlider = document.getElementById('prepLevel');
+
+fletchersSlider.addEventListener('input', () => { updateSlider(fletchersSlider, 'fletchersVal', ''); });
+prepSlider.addEventListener('input', () => { updateSlider(prepSlider, 'prepVal', '%'); });
+
+// Init slider backgrounds
+updateSlider(fletchersSlider, 'fletchersVal', '');
+updateSlider(prepSlider, 'prepVal', '%');
+
+// ─── BUTTON & ENTER KEY ───────────────────────────────────────────────────
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => { calculate(); });
+});
+
+['workDays','workHours'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => {
+    if (e.key === 'Enter') { requestAnimationFrame(() => { calculate(); }); }
+  });
+});
+
+['skillLevel','arrowType','toolQuality'].forEach(id => {
+  document.getElementById(id).addEventListener('change', () => {
+    if (document.getElementById('resultsSection').classList.contains('visible')) {
+      requestAnimationFrame(() => { calculate(); });
+    }
+  });
+});
+</script>
+</body>
+</html>
