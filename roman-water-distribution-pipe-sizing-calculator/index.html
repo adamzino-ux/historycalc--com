@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Aqueduct Water Distribution Calculator — Free Online Tool | AquaCalc</title>
+<meta name="description" content="Calculate Roman aqueduct water flow, distribution, and capacity using authentic ancient engineering formulas. Free tool for historians, engineers, and students.">
+<link rel="canonical" href="https://aquacalc.example.com/roman-aqueduct-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Aqueduct Water Distribution Calculator",
+  "description": "Calculate Roman aqueduct water flow, distribution, and capacity using authentic ancient engineering formulas.",
+  "url": "https://aquacalc.example.com/roman-aqueduct-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;line-height:1.6;font-size:16px}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:0.75rem 1.5rem;background:#fff}
+.nav-inner{max-width:640px;margin:0 auto;display:flex;align-items:center}
+.site-name{font-weight:700;font-size:1.1rem;color:#0077b6}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.55rem;font-weight:700;color:#1a1a2e;margin-bottom:0.4rem;line-height:1.3}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.8rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.tabs{display:flex;gap:0;border-bottom:2px solid #e0e0e0;margin-bottom:1.5rem;overflow-x:auto}
+.tab-btn{background:none;border:none;padding:0.65rem 1.1rem;font-size:0.9rem;font-weight:500;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;min-height:44px;transition:color 0.2s}
+.tab-btn.active{color:#0077b6;border-bottom-color:#0077b6}
+.tab-btn:hover{color:#0077b6}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.form-group{margin-bottom:1.2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.35rem}
+input,select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:0.95rem;color:#1a1a2e;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;min-height:44px}
+input:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none}
+.error-msg.show{display:block}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.hint{font-size:0.78rem;color:#888;margin-top:0.25rem}
+.btn{background:#0077b6;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s;margin-top:0.5rem}
+.btn:hover{background:#006299}
+.btn-sm{width:auto;padding:6px 14px;font-size:0.8rem;min-height:36px;border-radius:4px;background:#0077b6;color:#fff;border:none;cursor:pointer}
+.btn-sm:hover{background:#006299}
+.results{opacity:0;transition:opacity 0.3s ease;display:none}
+.results.show{display:block;opacity:1}
+.result-hero{text-align:center;background:#f0f7ff;border-radius:8px;padding:1.5rem;margin-bottom:1.5rem;border:1px solid #cce0f0}
+.result-hero .big-num{font-size:2.4rem;font-weight:700;color:#0077b6;line-height:1.1}
+.result-hero .big-label{font-size:0.9rem;color:#555;margin-top:0.3rem}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.5rem}
+.stat-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:1rem;text-align:center}
+.stat-box .val{font-size:1.3rem;font-weight:700;color:#0077b6}
+.stat-box .lbl{font-size:0.78rem;color:#666;margin-top:0.2rem}
+.section-title{font-size:0.85rem;font-weight:600;color:#444;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.7rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+thead th{background:#f0f0f0;padding:8px 10px;text-align:left;font-weight:600;font-size:0.82rem;border-bottom:1px solid #ddd}
+thead th.num{text-align:right}
+tbody tr:nth-child(even){background:#fafafa}
+tbody td{padding:7px 10px;border-bottom:1px solid #eee;color:#1a1a2e}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:1rem}
+.copy-row{display:flex;justify-content:flex-end;margin-bottom:0.5rem}
+.bar-row{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem}
+.bar-label{font-size:0.8rem;color:#555;width:110px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;background:#e9ecef;border-radius:3px;height:18px;overflow:hidden}
+.bar-fill{height:100%;background:#0077b6;border-radius:3px;transition:width 0.4s ease}
+.bar-val{font-size:0.8rem;color:#333;width:80px;flex-shrink:0}
+.info-box{background:#fffbf0;border:1px solid #f0d080;border-radius:6px;padding:0.9rem 1rem;font-size:0.85rem;color:#6b5a20;margin-bottom:1.2rem}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:0.7rem;margin-top:1.8rem}
+.content-section p{color:#444;margin-bottom:0.8rem;font-size:0.95rem}
+.content-section ul{padding-left:1.3rem;color:#444;font-size:0.95rem}
+.content-section li{margin-bottom:0.5rem}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.6rem}
+summary{padding:0.8rem 1rem;font-weight:600;font-size:0.9rem;cursor:pointer;color:#1a1a2e;list-style:none;position:relative;padding-right:2rem}
+summary::after{content:'＋';position:absolute;right:1rem;top:50%;transform:translateY(-50%);color:#0077b6;font-size:1rem}
+details[open] summary::after{content:'－'}
+details p{padding:0 1rem 0.9rem;font-size:0.88rem;color:#444}
+.related{background:#f8f9fa;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+.related h3{font-size:0.95rem;font-weight:700;margin-bottom:0.6rem;color:#1a1a2e}
+.related ul{list-style:none;padding:0}
+.related li{padding:0.25rem 0}
+.related li a{font-size:0.9rem}
+footer{border-top:1px solid #e0e0e0;padding:1.2rem 1.5rem;text-align:center;font-size:0.82rem;color:#888}
+footer a{color:#888;margin:0 0.5rem}
+footer a:hover{color:#0077b6}
+@media(max-width:640px){
+  .row-2{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  h1{font-size:1.3rem}
+  .card{padding:1.3rem}
+  .result-hero .big-num{font-size:2rem}
+  .bar-label{width:80px;font-size:0.75rem}
+  .bar-val{width:65px;font-size:0.75rem}
+}
+@media(max-width:420px){
+  .result-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<nav><div class="nav-inner"><a href="/" class="site-name">⚗️ AquaCalc</a></div></nav>
+<div class="container">
+<h1>Ancient Roman Aqueduct Water Distribution Calculator</h1>
+<p class="subtitle">Model flow rates, pressure heads, distribution by pipe sizes, and population served — using authentic Roman hydraulic engineering.</p>
+
+<div class="card">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('flow')">Flow Rate</button>
+    <button class="tab-btn" onclick="switchTab('pipe')">Pipe Sizes (Quinaria)</button>
+    <button class="tab-btn" onclick="switchTab('population')">Population Served</button>
+  </div>
+
+  <!-- TAB: Flow Rate -->
+  <div class="tab-panel active" id="tab-flow">
+    <div class="info-box">📐 Based on Frontinus's <em>De Aquaeductu</em> (97 AD) and standard open-channel hydraulics (Manning's equation adapted for Roman conduits).</div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="width">Channel Width (m)</label>
+        <input type="number" id="width" placeholder="e.g. 1.2" min="0.01" step="0.01" value="1.2">
+        <div class="hint">Typical Roman specus: 0.6–1.5 m</div>
+        <div class="error-msg" id="width-err">Enter a positive width.</div>
+      </div>
+      <div class="form-group">
+        <label for="depth">Water Depth (m)</label>
+        <input type="number" id="depth" placeholder="e.g. 0.9" min="0.01" step="0.01" value="0.9">
+        <div class="hint">Typical: 0.5–1.2 m</div>
+        <div class="error-msg" id="depth-err">Enter a positive depth.</div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="slope">Gradient (m/km)</label>
+        <input type="number" id="slope" placeholder="e.g. 1.5" min="0.01" step="0.1" value="1.5">
+        <div class="hint">Roman aqueducts: 0.5–3 m/km</div>
+        <div class="error-msg" id="slope-err">Enter a positive gradient.</div>
+      </div>
+      <div class="form-group">
+        <label for="length">Aqueduct Length (km)</label>
+        <input type="number" id="length" placeholder="e.g. 90" min="0.1" step="0.1" value="91">
+        <div class="hint">Aqua Claudia: 69 km. Aqua Marcia: 91 km</div>
+        <div class="error-msg" id="length-err">Enter a positive length.</div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="roughness">Lining Type</label>
+        <select id="roughness">
+          <option value="0.013">Opus signinum (waterproof plaster)</option>
+          <option value="0.015" selected>Smooth cut stone</option>
+          <option value="0.017">Rough stone / tufa</option>
+          <option value="0.020">Unlined rock tunnel</option>
+        </select>
+        <div class="hint">Manning's n roughness coefficient</div>
+      </div>
+      <div class="form-group">
+        <label for="shape">Channel Shape</label>
+        <select id="shape">
+          <option value="rect" selected>Rectangular (typical specus)</option>
+          <option value="trap">Trapezoidal</option>
+          <option value="semi">Semicircular arch</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn" id="calcFlowBtn">Calculate Flow Rate</button>
+    <div class="results" id="flow-results">
+      <div style="height:1.5rem"></div>
+      <div class="result-hero">
+        <div class="big-num" id="fr-main">—</div>
+        <div class="big-label">Estimated daily flow (m³/day)</div>
+      </div>
+      <div class="result-grid" id="fr-grid"></div>
+      <div class="section-title">Comparison with Historic Aqueducts</div>
+      <div class="table-wrap">
+        <table id="fr-compare">
+          <thead><tr><th>Aqueduct</th><th class="num">Daily Flow (m³)</th><th class="num">Length (km)</th><th class="num">Your Flow %</th></tr></thead>
+          <tbody id="fr-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: Pipe Sizes -->
+  <div class="tab-panel" id="tab-pipe">
+    <div class="info-box">🪙 Romans measured pipes in <em>quinaria</em> — named after a 5/4-digit diameter. Frontinus catalogued 25 standard sizes for water allocation to citizens and institutions.</div>
+    <div class="form-group">
+      <label for="totalFlow">Total Aqueduct Supply (m³/day)</label>
+      <input type="number" id="totalFlow" placeholder="e.g. 100000" min="1" step="100" value="100000">
+      <div class="hint">Enter your calculated flow or a known historic value</div>
+      <div class="error-msg" id="totalFlow-err">Enter a positive flow value.</div>
+    </div>
+    <div class="form-group">
+      <label for="headPressure">Available Pressure Head (m)</label>
+      <input type="number" id="headPressure" placeholder="e.g. 25" min="0.1" step="0.5" value="25">
+      <div class="hint">Height difference between castellum and delivery point</div>
+      <div class="error-msg" id="head-err">Enter a positive head value.</div>
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="publicPct">Public Fountains (%)</label>
+        <input type="number" id="publicPct" placeholder="33" min="0" max="100" value="33" step="1">
+      </div>
+      <div class="form-group">
+        <label for="bathsPct">Public Baths (%)</label>
+        <input type="number" id="bathsPct" placeholder="25" min="0" max="100" value="25" step="1">
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="palacePct">Imperial/Palace (%)</label>
+        <input type="number" id="palacePct" placeholder="17" min="0" max="100" value="17" step="1">
+      </div>
+      <div class="form-group">
+        <label for="privatePct">Private Grants (%)</label>
+        <input type="number" id="privatePct" placeholder="25" min="0" max="100" value="25" step="1">
+      </div>
+    </div>
+    <div class="error-msg show" id="pct-err" style="display:none">Percentages must sum to 100%.</div>
+    <button class="btn" id="calcPipeBtn">Calculate Distribution</button>
+    <div class="results" id="pipe-results">
+      <div style="height:1.5rem"></div>
+      <div class="section-title">Distribution by Sector</div>
+      <div id="pipe-bars"></div>
+      <div class="section-title" style="margin-top:1rem">Standard Quinaria Pipe Sizes for This Supply</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Quinaria Size</th><th class="num">Diam. (digiti)</th><th class="num">Diam. (mm)</th><th class="num">Flow (m³/day)</th><th class="num">Pipes Needed</th></tr></thead>
+          <tbody id="pipe-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: Population -->
+  <div class="tab-panel" id="tab-population">
+    <div class="info-box">👥 Ancient sources suggest Rome received ~1,000,000 m³/day at its peak — roughly 500–1,000 L per person per day, far exceeding modern averages for basic needs.</div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="popFlow">Daily Flow (m³/day)</label>
+        <input type="number" id="popFlow" placeholder="e.g. 100000" min="1" step="100" value="100000">
+        <div class="hint">From your Flow Rate calculation</div>
+        <div class="error-msg" id="popFlow-err">Enter a positive value.</div>
+      </div>
+      <div class="form-group">
+        <label for="perCapita">Per-Capita Allocation (L/person/day)</label>
+        <input type="number" id="perCapita" placeholder="e.g. 300" min="10" step="10" value="300">
+        <div class="hint">Roman estimate: 200–900 L/person/day</div>
+        <div class="error-msg" id="perCapita-err">Enter at least 10 L.</div>
+      </div>
+    </div>
+    <div class="row-2">
+      <div class="form-group">
+        <label for="lossRate">Conveyance Loss (%)</label>
+        <input type="number" id="lossRate" placeholder="e.g. 20" min="0" max="60" step="1" value="20">
+        <div class="hint">Leakage, evaporation: typically 10–30%</div>
+      </div>
+      <div class="form-group">
+        <label for="bathDemand">Extra Demand: Baths (L/visitor/day)</label>
+        <input type="number" id="bathDemand" placeholder="e.g. 150" min="0" step="10" value="150">
+        <div class="hint">Romans bathed daily; thermae used enormous volumes</div>
+      </div>
+    </div>
+    <button class="btn" id="calcPopBtn">Calculate Population Served</button>
+    <div class="results" id="pop-results">
+      <div style="height:1.5rem"></div>
+      <div class="result-hero">
+        <div class="big-num" id="pop-main">—</div>
+        <div class="big-label">Estimated population served (people)</div>
+      </div>
+      <div class="result-grid" id="pop-grid"></div>
+      <div class="section-title">Water Allocation Scenarios</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Allocation Scenario</th><th class="num">L/person/day</th><th class="num">Population</th><th>Modern Equivalent</th></tr></thead>
+          <tbody id="pop-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<div class="content-section">
+  <h2>How to Use This Roman Aqueduct Calculator</h2>
+  <p>Choose a tab based on what you want to calculate. The <strong>Flow Rate</strong> tab uses channel dimensions and gradient to compute daily water delivery via Manning's equation. The <strong>Pipe Sizes</strong> tab breaks down how water was distributed from a <em>castellum divisorium</em> (distribution tank) using Roman quinaria pipe standards. The <strong>Population</strong> tab estimates how many people a given flow could sustain.</p>
+  <p>Enter your values, press Calculate, and results appear immediately with comparisons to real historical aqueducts like the Aqua Claudia, Aqua Marcia, and Anio Novus.</p>
+
+  <h2>Why This Matters</h2>
+  <p>Roman aqueducts represent one of history's greatest engineering achievements. At their height, the eleven aqueducts serving Rome delivered roughly <strong>1,000,000 cubic meters of water per day</strong> — more per capita than many modern cities provide. The Aqua Claudia alone stretched 69 km from the Anio springs and could supply water at 3–4 meters per second through its carefully graded channel.</p>
+  <p>Understanding Roman hydraulics matters for archaeologists reconstructing urban life, civil engineers studying pre-industrial water management, and historians estimating ancient population sizes. Frontinus, Rome's water commissioner in 97 AD, wrote that the city's nine aqueducts then operating delivered 992,208 <em>quinaria</em> — a unit modern scholars have worked hard to convert into modern flow measurements. For students and hobbyists, this calculator makes those abstract ancient figures tangible: plug in real dimensions from an excavation report and see what the aqueduct could actually deliver.</p>
+  <p>Roman per-capita water usage (500–900 L/day) vastly exceeded the UN minimum for basic needs (50 L/day), reflecting a culture where water wasn't just functional — it was a civic statement.</p>
+
+  <h2>How It's Calculated</h2>
+  <p><strong>Flow Rate</strong> uses Manning's equation for open-channel flow:</p>
+  <p style="background:#f8f9fa;padding:0.8rem 1rem;border-radius:6px;font-family:monospace;font-size:0.9rem">Q = (1/n) × A × R^(2/3) × S^(1/2)</p>
+  <p>Where: <strong>Q</strong> = flow (m³/s), <strong>n</strong> = Manning's roughness, <strong>A</strong> = cross-sectional area (m²), <strong>R</strong> = hydraulic radius = A/wetted perimeter (m), <strong>S</strong> = slope (dimensionless, converted from m/km).</p>
+  <p><strong>Pipe flow</strong> (quinaria) uses Hagen-Poiseuille for pressurized lead pipes: Q = (π × d⁴ × ΔP) / (128 × μ × L), simplified for standard head conditions. Each quinaria size has a fixed diameter in Roman <em>digiti</em> (18.5 mm each).</p>
+  <p><strong>Population</strong> = (Daily flow × (1 − loss rate) × 1000 L/m³) ÷ per-capita allocation.</p>
+
+  <h2>Tips &amp; Common Mistakes</h2>
+  <ul>
+    <li><strong>Gradient matters enormously.</strong> Roman engineers achieved gradients as gentle as 0.07 m/km on the Aqua Marcia. Even doubling the slope dramatically increases flow — use the slider to explore this sensitivity.</li>
+    <li><strong>Don't use full channel depth.</strong> Romans typically kept water depth at 60–75% of channel height to allow inspection and maintenance. Enter actual water depth, not total channel height.</li>
+    <li><strong>Quinaria ≠ modern pipe diameter directly.</strong> The quinaria was based on a 5-quarter-digit sheet of lead rolled into a pipe — the resulting internal diameter isn't a neat round number.</li>
+    <li><strong>Conveyance losses were real.</strong> Ancient aqueducts leaked substantially through joints and cracks. Frontinus himself complained about illegal taps. Apply a 15–25% loss factor for realistic estimates.</li>
+    <li><strong>Per-capita figures include non-drinking uses.</strong> Roman baths, fountains, laundries, and sewer flushing consumed the majority of water — only a fraction was for drinking.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <details><summary>What is a quinaria in Roman water measurement?</summary><p>A quinaria (plural: quinariae) was the basic unit of Roman water allocation — originally defined as a pipe made from a lead sheet 5/4 digits wide. Frontinus recorded all of Rome's water allocations in quinariae. Scholars estimate one quinaria equals approximately 0.48 L/s, though this is still debated.</p></details>
+  <details><summary>How accurate is Manning's equation for Roman aqueducts?</summary><p>Manning's equation was developed in 1889 but applies well to ancient channels — the physics of open-channel flow haven't changed. The main uncertainty is the roughness coefficient (n), which varied with the condition and age of the opus signinum plaster lining. Studies comparing the equation to known aqueducts (like Segovia and Pont du Gard) show errors of 10–20%.</p></details>
+  <details><summary>Could Romans calculate flow themselves?</summary><p>Not with modern equations — they used empirical rules and pipe size catalogs. Frontinus noted, with frustration, that many water officials didn't understand why a larger pipe didn't deliver proportionally more water (area scales as diameter squared, but flow also depends on velocity and pressure). Their practical results were excellent despite lacking formal hydraulic theory.</p></details>
+  <details><summary>Which was the largest Roman aqueduct?</summary><p>By volume, the Anio Novus (52 AD) and Aqua Claudia together delivered roughly 490,000 m³/day. By length, the aqueduct serving Carthage (Tunisia) stretched over 132 km. The most famous structure is the Pont du Gard in southern France, which carried the Nîmes aqueduct over the Gardon river at a height of 49 meters.</p></details>
+</div>
+
+<div class="related">
+  <h3>Related Calculators</h3>
+  <ul>
+    <li><a href="/pipe-flow-calculator">Modern Pipe Flow Calculator (Hazen-Williams)</a></li>
+    <li><a href="/open-channel-flow">Open Channel Flow Calculator</a></li>
+    <li><a href="/ancient-roman-concrete">Ancient Roman Concrete Mix Estimator</a></li>
+    <li><a href="/water-pressure-calculator">Water Pressure & Head Loss Calculator</a></li>
+    <li><a href="/population-water-demand">Municipal Water Demand Calculator</a></li>
+  </ul>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/contact">Contact</a>
+  <span style="display:block;margin-top:0.4rem">© 2025 AquaCalc</span>
+</footer>
+</div>
+
+<script>
+// ── Tab switching ──────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>{
+    const names=['flow','pipe','population'];
+    b.classList.toggle('active', names[i]===name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p=>{
+    p.classList.toggle('active', p.id==='tab-'+name);
+  });
+}
+
+// ── Utility ────────────────────────────────────────────────────
+function fmt(n, dec=0){
+  if(!isFinite(n)) return '—';
+  return n.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+}
+function setErr(id, show){
+  const el=document.getElementById(id);
+  if(el){ el.className=show?'error-msg show':'error-msg'; }
+}
+function clearErr(id){ setErr(id,false); }
+function markInput(id, bad){
+  const el=document.getElementById(id);
+  if(el){ el.classList.toggle('error',bad); }
+}
+function getVal(id){ return parseFloat(document.getElementById(id).value)||0; }
+
+// ── Historic aqueducts data ────────────────────────────────────
+const historicAqueducts = [
+  {name:'Aqua Appia (312 BC)',    flow:75700,  len:16.4},
+  {name:'Aqua Marcia (144 BC)',   flow:187600, len:91.3},
+  {name:'Aqua Virgo (19 BC)',     flow:100160, len:20.9},
+  {name:'Aqua Claudia (52 AD)',   flow:184280, len:68.7},
+  {name:'Anio Novus (52 AD)',     flow:189520, len:86.9},
+  {name:'Aqua Tepula (125 BC)',   flow:17800,  len:17.7},
+  {name:'Pont du Gard (Nîmes)',   flow:20000,  len:50.0},
+];
+
+// Manning's equation
+function manning(n, A, R, S){
+  return (1/n)*A*Math.pow(R,2/3)*Math.pow(S,0.5);
+}
+
+function getHydraulics(w,d,shape){
+  let A,P;
+  if(shape==='rect'){
+    A=w*d; P=w+2*d;
+  } else if(shape==='trap'){
+    const sideSlope=0.5;
+    A=(w+sideSlope*d)*d;
+    P=w+2*d*Math.sqrt(1+sideSlope*sideSlope);
+  } else { // semi-circular arch — approximate as semi-circle
+    const r=w/2;
+    A=Math.PI*r*r/2;
+    P=Math.PI*r+2*d*0.2; // arch + small side walls
+    // Use actual depth ratio
+    A=w*d*0.9; P=w+2*d;
+  }
+  return {A,P,R:A/P};
+}
+
+// ── FLOW RATE CALCULATOR ───────────────────────────────────────
+document.getElementById('calcFlowBtn').addEventListener('click',()=>{
+  requestAnimationFrame(()=>calculateFlow());
+});
+['width','depth','slope','length'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown',e=>{
+    if(e.key==='Enter') requestAnimationFrame(()=>calculateFlow());
+  });
+});
+
+function calculateFlow(){
+  const w=getVal('width'), d=getVal('depth'), sKmPerKm=getVal('slope'),
+        len=getVal('length'), n=parseFloat(document.getElementById('roughness').value),
+        shape=document.getElementById('shape').value;
+  let ok=true;
+  [['width',w],['depth',d],['slope',sKmPerKm],['length',len]].forEach(([id,v])=>{
+    const bad=v<=0;
+    markInput(id,bad); setErr(id+'-err',bad);
+    if(bad) ok=false;
+  });
+  if(!ok) return;
+
+  const S=sKmPerKm/1000;
+  const {A,P,R}=getHydraulics(w,d,shape);
+  const Q=manning(n,A,R,S); // m³/s
+  const Qday=Q*86400; // m³/day
+  const velocity=Q/A; // m/s
+  const travel=len*1000/velocity/3600; // hours
+
+  const grid=`
+    <div class="stat-box"><div class="val">${fmt(Q,3)}</div><div class="lbl">Flow (m³/s)</div></div>
+    <div class="stat-box"><div class="val">${fmt(velocity,2)}</div><div class="lbl">Velocity (m/s)</div></div>
+    <div class="stat-box"><div class="val">${fmt(A,2)}</div><div class="lbl">Cross-section (m²)</div></div>
+    <div class="stat-box"><div class="val">${fmt(R,3)}</div><div class="lbl">Hydraulic Radius (m)</div></div>
+    <div class="stat-box"><div class="val">${fmt(travel,1)}</div><div class="lbl">Travel Time (hours)</div></div>
+    <div class="stat-box"><div class="val">${fmt(Qday/1000,0)}</div><div class="lbl">Flow (×1000 m³/day)</div></div>
+  `;
+
+  let tbodyHTML='';
+  historicAqueducts.forEach(aq=>{
+    const pct=(Qday/aq.flow*100);
+    tbodyHTML+=`<tr>
+      <td>${aq.name}</td>
+      <td class="num">${fmt(aq.flow)}</td>
+      <td class="num">${aq.len}</td>
+      <td class="num">${fmt(pct,1)}%</td>
+    </tr>`;
+  });
+
+  document.getElementById('fr-main').textContent = fmt(Qday,0);
+  document.getElementById('fr-grid').innerHTML = grid;
+  document.getElementById('fr-tbody').innerHTML = tbodyHTML;
+  const res=document.getElementById('flow-results');
+  res.style.display='block';
+  requestAnimationFrame(()=>{ res.style.opacity='1'; });
+}
+
+// ── PIPE DISTRIBUTION CALCULATOR ──────────────────────────────
+document.getElementById('calcPipeBtn').addEventListener('click',()=>{
+  requestAnimationFrame(()=>calculatePipe());
+});
+['totalFlow','headPressure','publicPct','bathsPct','palacePct','privatePct'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('keydown',e=>{
+    if(e.key==='Enter') requestAnimationFrame(()=>calculatePipe());
+  });
+});
+
+// Roman quinaria pipe sizes (size in quinariae, diameter in digiti)
+const quinariaeSizes = [
+  {name:'½ quinaria',   digiti:0.625, pipes_typical:4},
+  {name:'1 quinaria',   digiti:1.25,  pipes_typical:8},
+  {name:'2 quinaria',   digiti:1.75,  pipes_typical:12},
+  {name:'3 quinaria',   digiti:2.17,  pipes_typical:16},
+  {name:'5 quinaria',   digiti:2.78,  pipes_typical:20},
+  {name:'8 quinaria',   digiti:3.53,  pipes_typical:28},
+  {name:'10 quinaria',  digiti:3.95,  pipes_typical:32},
+  {name:'15 quinaria',  digiti:4.83,  pipes_typical:40},
+  {name:'20 quinaria',  digiti:5.57,  pipes_typical:48},
+  {name:'50 quinaria',  digiti:8.82,  pipes_typical:80},
+  {name:'100 quinaria', digiti:12.47, pipes_typical:100},
+];
+const DIGITI_MM = 18.5; // 1 Roman digiti ≈ 18.5 mm
+const QUINARIA_FLOW = 0.48 * 86400; // L/s → L/day ≈ 41472 L/day per quinaria
+
+function pipeFlow(digiti, headM){
+  // Hagen-Poiseuille-inspired: Q ∝ d^4 × ΔP, scaled to match 1 quinaria = 0.48 L/s at 10m head
+  const d_mm = digiti * DIGITI_MM;
+  const refD = 1.25 * DIGITI_MM; // 1 quinaria diameter
+  const refQ = 0.48 * 86400 * Math.sqrt(headM/10); // L/day at given head
+  return refQ * Math.pow(d_mm/refD, 4);
+}
+
+function calculatePipe(){
+  const total=getVal('totalFlow'), head=getVal('headPressure');
+  const pub=getVal('publicPct'), baths=getVal('bathsPct'),
+        palace=getVal('palacePct'), priv=getVal('privatePct');
+  let ok=true;
+  if(total<=0){ markInput('totalFlow',true); setErr('totalFlow-err',true); ok=false; }
+  else { markInput('totalFlow',false); setErr('totalFlow-err',false); }
+  if(head<=0){ markInput('headPressure',true); setErr('head-err',true); ok=false; }
+  else { markInput('headPressure',false); setErr('head-err',false); }
+  const pctSum=pub+baths+palace+priv;
+  const pctEl=document.getElementById('pct-err');
+  if(Math.abs(pctSum-100)>0.5){ pctEl.style.display='block'; ok=false; }
+  else { pctEl.style.display='none'; }
+  if(!ok) return;
+
+  const totalL = total * 1000; // L/day
+  const sectors=[
+    {name:'Public Fountains', pct:pub, color:'#0077b6'},
+    {name:'Public Baths', pct:baths, color:'#00b4d8'},
+    {name:'Imperial/Palace', pct:palace, color:'#7b2d8b'},
+    {name:'Private Grants', pct:priv, color:'#48b04b'},
+  ];
+
+  let barsHTML='';
+  sectors.forEach(s=>{
+    const vol=totalL*s.pct/100;
+    barsHTML+=`<div class="bar-row">
+      <div class="bar-label">${s.name}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${s.pct}%;background:${s.color}"></div></div>
+      <div class="bar-val">${fmt(vol/1000,0)} m³</div>
+    </div>`;
+  });
+
+  let tbodyHTML='';
+  quinariaeSizes.forEach(q=>{
+    const dMM = q.digiti * DIGITI_MM;
+    const flowL = pipeFlow(q.digiti, head);
+    const needed = Math.ceil(totalL / flowL);
+    tbodyHTML+=`<tr>
+      <td>${q.name}</td>
+      <td class="num">${q.digiti.toFixed(3)}</td>
+      <td class="num">${fmt(dMM,1)}</td>
+      <td class="num">${fmt(flowL/1000,0)}</td>
+      <td class="num">${fmt(needed)}</td>
+    </tr>`;
+  });
+
+  document.getElementById('pipe-bars').innerHTML = barsHTML;
+  document.getElementById('pipe-tbody').innerHTML = tbodyHTML;
+  const res=document.getElementById('pipe-results');
+  res.style.display='block';
+  requestAnimationFrame(()=>{ res.style.opacity='1'; });
+}
+
+// ── POPULATION CALCULATOR ──────────────────────────────────────
+document.getElementById('calcPopBtn').addEventListener('click',()=>{
+  requestAnimationFrame(()=>calculatePop());
+});
+['popFlow','perCapita','lossRate','bathDemand'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown',e=>{
+    if(e.key==='Enter') requestAnimationFrame(()=>calculatePop());
+  });
+});
+
+function calculatePop(){
+  const flowM3=getVal('popFlow'), perCap=getVal('perCapita'),
+        loss=getVal('lossRate'), bathExtra=getVal('bathDemand');
+  let ok=true;
+  if(flowM3<=0){ markInput('popFlow',true); setErr('popFlow-err',true); ok=false; }
+  else { markInput('popFlow',false); setErr('popFlow-err',false); }
+  if(perCap<10){ markInput('perCapita',true); setErr('perCapita-err',true); ok=false; }
+  else { markInput('perCapita',false); setErr('perCapita-err',false); }
+  if(!ok) return;
+
+  const usableLiters = flowM3 * 1000 * (1 - loss/100);
+  const pop = Math.floor(usableLiters / perCap);
+  const bathVisitors = Math.floor(usableLiters * 0.25 / bathExtra) || 0; // 25% goes to baths
+
+  const grid=`
+    <div class="stat-box"><div class="val">${fmt(usableLiters/1000,0)}</div><div class="lbl">Usable Flow (m³/day)</div></div>
+    <div class="stat-box"><div class="val">${fmt(flowM3*1000*loss/100/1000,0)}</div><div class="lbl">Lost to Leakage (m³/day)</div></div>
+    <div class="stat-box"><div class="val">${fmt(usableLiters/pop,0)}</div><div class="lbl">Actual L/person/day</div></div>
+    <div class="stat-box"><div class="val">${fmt(bathVisitors)}</div><div class="lbl">Daily Bath Visitors</div></div>
+  `;
+
+  const scenarios=[
+    {label:'Survival minimum', lpd:50},
+    {label:'WHO basic needs', lpd:100},
+    {label:'Roman modest',lpd:200},
+    {label:'Roman average', lpd:perCap},
+    {label:'Roman wealthy', lpd:500},
+    {label:'Roman elite',   lpd:900},
+  ];
+  let tbodyHTML='';
+  scenarios.forEach(s=>{
+    const p=Math.floor(usableLiters/s.lpd);
+    const modern=s.lpd<100?'Sub-Saharan average':s.lpd<250?'Modern developing nation':s.lpd<500?'US household avg (~340 L)':s.lpd<700?'Above US average':'Luxury resort standard';
+    tbodyHTML+=`<tr>
+      <td>${s.label}</td>
+      <td class="num">${fmt(s.lpd)}</td>
+      <td class="num">${fmt(p)}</td>
+      <td>${modern}</td>
+    </tr>`;
+  });
+
+  document.getElementById('pop-main').textContent = fmt(pop);
+  document.getElementById('pop-grid').innerHTML = grid;
+  document.getElementById('pop-tbody').innerHTML = tbodyHTML;
+  const res=document.getElementById('pop-results');
+  res.style.display='block';
+  requestAnimationFrame(()=>{ res.style.opacity='1'; });
+}
+
+// init results hidden
+document.querySelectorAll('.results').forEach(r=>{ r.style.opacity='0'; });
+</script>
+</body>
+</html>
