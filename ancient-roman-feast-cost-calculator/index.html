@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Feast Cost Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate the cost of an ancient Roman banquet in sestertii, denarii, and modern USD. Plan your feast with historically accurate Roman food prices.">
+<link rel="canonical" href="https://historycalc.com/ancient-roman-feast-cost-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Feast Cost Calculator",
+  "url": "https://historycalc.com/ancient-roman-feast-cost-calculator/",
+  "description": "Calculate the cost of an ancient Roman banquet using historically accurate prices in sestertii, denarii, and modern USD equivalent.",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f0e1;
+  --card: #fdf8ee;
+  --accent: #8b4513;
+  --accent-hover: #6b3410;
+  --text: #2c1810;
+  --text-light: #5a3825;
+  --border: #c4a882;
+  --border-light: #ddd0b8;
+  --gold: #c8960c;
+  --gold-light: #f5e6b0;
+  --row-alt: #f9f4e8;
+  --shadow: rgba(139,69,19,0.15);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; color: var(--accent-hover); }
+
+nav {
+  background: var(--accent);
+  padding: 0.75rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+nav a {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+nav a:hover { text-decoration: none; opacity: 0.85; }
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.hero-svg {
+  text-align: center;
+  margin: 1.5rem 0 1rem;
+}
+
+h1 {
+  font-size: clamp(1.4rem, 4vw, 1.9rem);
+  font-weight: 800;
+  color: var(--accent);
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 0.4rem;
+}
+.subtitle {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.92rem;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.75rem;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 3px 12px var(--shadow);
+}
+
+.card h2 {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.6rem;
+}
+
+label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 0.35rem;
+  margin-top: 1rem;
+}
+label:first-of-type { margin-top: 0; }
+
+input[type="number"], select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--text);
+  font-size: 0.97rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+}
+input[type="number"]:focus, select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139,69,19,0.18);
+}
+input.error { border-color: #e74c3c; box-shadow: 0 0 0 3px rgba(231,76,60,0.15); }
+.error-msg { color: #e74c3c; font-size: 0.8rem; margin-top: 0.3rem; display: none; }
+.error-msg.show { display: block; }
+
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+input[type="range"] {
+  flex: 1;
+  accent-color: var(--accent);
+  height: 6px;
+  cursor: pointer;
+  min-height: 24px;
+}
+.slider-val {
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 36px;
+  text-align: right;
+  font-size: 1rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.cat-item {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  padding: 0.75rem;
+}
+.cat-item label { margin-top: 0; font-size: 0.8rem; }
+.cat-item input { min-height: 40px; font-size: 0.9rem; }
+
+.btn {
+  display: block;
+  width: 100%;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 14px 24px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.25rem;
+  min-height: 48px;
+  transition: background 0.2s, transform 0.1s;
+  letter-spacing: 0.3px;
+}
+.btn:hover { background: var(--accent-hover); }
+.btn:active { transform: scale(0.98); }
+
+.results-section {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.results-section.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.big-number {
+  text-align: center;
+  padding: 1.25rem 0.75rem;
+  background: var(--gold-light);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.big-number .val {
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-weight: 900;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.big-number .label-sm {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+}
+
+.currency-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.cc {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 0.5rem;
+  text-align: center;
+}
+.cc .cv { font-size: 1.2rem; font-weight: 800; color: var(--accent); }
+.cc .cn { font-size: 0.72rem; color: var(--text-light); margin-top: 0.15rem; }
+
+.modern-eq {
+  background: linear-gradient(135deg, #2c1810 0%, #5a3825 100%);
+  color: #f5f0e1;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.modern-eq .me-icon { font-size: 1.6rem; flex-shrink: 0; }
+.modern-eq .me-text { font-size: 0.9rem; }
+.modern-eq .me-val { font-size: 1.2rem; font-weight: 800; color: var(--gold); }
+
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+thead th {
+  background: #e8dcc8;
+  color: var(--accent);
+  font-weight: 700;
+  padding: 9px 10px;
+  text-align: left;
+  border-bottom: 2px solid var(--border);
+}
+thead th:last-child, td:last-child { text-align: right; }
+tbody tr:nth-child(even) { background: var(--row-alt); }
+tbody tr:nth-child(odd) { background: #fff; }
+td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+}
+tbody tr:hover { background: var(--gold-light); }
+
+.copy-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: var(--accent);
+  float: right;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+  min-height: 36px;
+}
+.copy-btn:hover { background: var(--gold-light); }
+
+.did-you-know {
+  background: linear-gradient(135deg, #8b4513 0%, #6b3410 100%);
+  color: #f5f0e1;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.did-you-know h3 {
+  color: var(--gold);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.did-you-know ul { padding-left: 1.2rem; }
+.did-you-know li { margin-bottom: 0.5rem; font-size: 0.88rem; line-height: 1.55; }
+
+.historical-context {
+  background: var(--card);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.historical-context h3 { color: var(--accent); margin-bottom: 0.6rem; font-size: 1rem; }
+
+.content-section { margin-bottom: 1.75rem; }
+.content-section h2 {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.content-section p { font-size: 0.9rem; color: var(--text); margin-bottom: 0.75rem; line-height: 1.7; }
+.content-section ul { padding-left: 1.2rem; }
+.content-section li { font-size: 0.9rem; color: var(--text); margin-bottom: 0.5rem; line-height: 1.6; }
+
+details { border: 1px solid var(--border-light); border-radius: 6px; margin-bottom: 0.5rem; background: #fff; }
+summary {
+  padding: 0.85rem 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 44px;
+}
+summary::after { content: '+'; font-size: 1.1rem; color: var(--accent); }
+details[open] summary::after { content: '−'; }
+details[open] summary { border-bottom: 1px solid var(--border-light); }
+details p { padding: 0.85rem 1rem; font-size: 0.88rem; color: var(--text); line-height: 1.65; }
+
+.related-tools { margin-bottom: 1.75rem; }
+.related-tools h2 {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-light);
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+.related-grid a {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.83rem;
+  color: var(--accent);
+  display: block;
+  transition: background 0.2s;
+  line-height: 1.4;
+}
+.related-grid a:hover { background: var(--gold-light); text-decoration: none; }
+
+.ad-slot { min-height: 0; margin: 0; }
+
+footer {
+  background: var(--accent);
+  color: #f5f0e1;
+  text-align: center;
+  padding: 1.25rem 1rem;
+  font-size: 0.83rem;
+}
+footer a { color: #f5e6b0; }
+footer a:hover { color: #fff; }
+footer .footer-links { margin-bottom: 0.5rem; display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap; }
+
+.formula-box {
+  background: #fff;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.83rem;
+  color: var(--accent);
+  margin: 0.75rem 0;
+  line-height: 1.8;
+}
+
+.tier-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  vertical-align: middle;
+  margin-left: 6px;
+}
+.tier-plebeian { background: #c8e6c9; color: #2e7d32; }
+.tier-equestrian { background: #fff3cd; color: #856404; }
+.tier-patrician { background: #f8d7da; color: #842029; }
+.tier-imperial { background: linear-gradient(90deg, #gold, #c8960c); background: #ffe0b2; color: #e65100; }
+
+@media (max-width: 640px) {
+  .container { padding: 1rem; }
+  .card { padding: 1.25rem; }
+  .row-2 { grid-template-columns: 1fr; }
+  .category-grid { grid-template-columns: 1fr 1fr; }
+  .currency-cards { grid-template-columns: 1fr; }
+  .related-grid { grid-template-columns: 1fr; }
+  .cc { display: flex; justify-content: space-between; align-items: center; }
+  .cc .cn { margin-top: 0; }
+}
+@media (max-width: 400px) {
+  .category-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚱️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="hero-svg">
+    <svg width="280" height="130" viewBox="0 0 280 130" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roman feast illustration">
+      <!-- Table -->
+      <rect x="40" y="85" width="200" height="12" rx="4" fill="#c4a882"/>
+      <rect x="50" y="97" width="10" height="28" rx="3" fill="#a0785a"/>
+      <rect x="220" y="97" width="10" height="28" rx="3" fill="#a0785a"/>
+      <rect x="100" y="97" width="10" height="22" rx="3" fill="#a0785a"/>
+      <rect x="170" y="97" width="10" height="22" rx="3" fill="#a0785a"/>
+      <!-- Dishes -->
+      <ellipse cx="100" cy="84" rx="22" ry="8" fill="#e8d5a3"/>
+      <ellipse cx="100" cy="81" rx="18" ry="6" fill="#d4863a"/>
+      <ellipse cx="160" cy="84" rx="22" ry="8" fill="#e8d5a3"/>
+      <ellipse cx="160" cy="81" rx="18" ry="6" fill="#8b6914"/>
+      <!-- Amphora -->
+      <ellipse cx="210" cy="72" rx="10" ry="5" fill="#c4a882"/>
+      <rect x="202" y="72" width="16" height="22" rx="2" fill="#b8956a"/>
+      <path d="M202 80 Q196 76 198 70" stroke="#b8956a" stroke-width="3" fill="none"/>
+      <path d="M218 80 Q224 76 222 70" stroke="#b8956a" stroke-width="3" fill="none"/>
+      <path d="M206 94 L208 98 L212 98 L214 94" fill="#b8956a"/>
+      <!-- Goblets -->
+      <rect x="68" y="74" width="8" height="12" rx="1" fill="#c8960c"/>
+      <path d="M64 74 L72 74 L70 68 L66 68 Z" fill="#c8960c"/>
+      <rect x="65" y="86" width="10" height="2" rx="1" fill="#c8960c"/>
+      <!-- Fruit bowl -->
+      <ellipse cx="138" cy="85" rx="14" ry="5" fill="#d4863a"/>
+      <circle cx="132" cy="81" r="5" fill="#c0392b"/>
+      <circle cx="138" cy="79" r="5" fill="#e67e22"/>
+      <circle cx="144" cy="81" r="5" fill="#c0392b"/>
+      <!-- Laurel decoration -->
+      <path d="M20 20 Q30 10 40 20 Q50 10 60 20" stroke="#5a8a3c" stroke-width="2" fill="none"/>
+      <circle cx="20" cy="20" r="4" fill="#5a8a3c"/>
+      <circle cx="40" cy="20" r="4" fill="#5a8a3c"/>
+      <circle cx="60" cy="20" r="4" fill="#5a8a3c"/>
+      <path d="M220 20 Q230 10 240 20 Q250 10 260 20" stroke="#5a8a3c" stroke-width="2" fill="none"/>
+      <circle cx="220" cy="20" r="4" fill="#5a8a3c"/>
+      <circle cx="240" cy="20" r="4" fill="#5a8a3c"/>
+      <circle cx="260" cy="20" r="4" fill="#5a8a3c"/>
+      <!-- Coins -->
+      <circle cx="248" cy="55" r="8" fill="#c8960c" stroke="#8b6914" stroke-width="1.5"/>
+      <text x="248" y="59" text-anchor="middle" font-size="9" fill="#8b6914" font-weight="bold">HS</text>
+      <circle cx="232" cy="62" r="7" fill="#c8960c" stroke="#8b6914" stroke-width="1.5"/>
+      <text x="232" y="66" text-anchor="middle" font-size="8" fill="#8b6914" font-weight="bold">D</text>
+      <!-- Column left -->
+      <rect x="5" y="30" width="16" height="70" fill="#e8dcc8" rx="1"/>
+      <rect x="3" y="28" width="20" height="6" rx="2" fill="#c4a882"/>
+      <rect x="3" y="98" width="20" height="6" rx="2" fill="#c4a882"/>
+      <line x1="9" y1="34" x2="9" y2="98" stroke="#c4a882" stroke-width="0.8"/>
+      <line x1="13" y1="34" x2="13" y2="98" stroke="#c4a882" stroke-width="0.8"/>
+      <line x1="17" y1="34" x2="17" y2="98" stroke="#c4a882" stroke-width="0.8"/>
+      <!-- Column right -->
+      <rect x="259" y="30" width="16" height="70" fill="#e8dcc8" rx="1"/>
+      <rect x="257" y="28" width="20" height="6" rx="2" fill="#c4a882"/>
+      <rect x="257" y="98" width="20" height="6" rx="2" fill="#c4a882"/>
+      <line x1="263" y1="34" x2="263" y2="98" stroke="#c4a882" stroke-width="0.8"/>
+      <line x1="267" y1="34" x2="267" y2="98" stroke="#c4a882" stroke-width="0.8"/>
+      <line x1="271" y1="34" x2="271" y2="98" stroke="#c4a882" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <h1>Ancient Roman Feast Cost Calculator</h1>
+  <p class="subtitle">Plan your convivium in sestertii — with modern USD equivalent</p>
+
+  <!-- Historical Context -->
+  <div class="historical-context">
+    <h3>📜 Historical Context</h3>
+    <p>Roman dining, or the <em>convivium</em>, was a cornerstone of social and political life. Elite Romans hosted elaborate <em>cena</em> (dinner) events in their <em>triclinium</em> (dining room), reclining on couches arranged around low tables. Prices are drawn from Diocletian's Edict on Maximum Prices (301 AD) and earlier sources like Pliny the Elder and Cato's <em>De Agri Cultura</em>. A common soldier earned roughly 1,200 sestertii per year; a modest loaf of bread cost 2 sestertii; a pound of pork, 12 sestertii. The most lavish banquets, such as Lucullus's legendary feasts, could cost hundreds of thousands of sestertii — roughly millions in today's dollars.</p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>⚡ Did You Know?</h3>
+    <ul>
+      <li>Lucullus, the Roman general-turned-gourmet, reportedly spent 200,000 sestertii (≈ $250,000 today) on a single dinner party — even when dining alone, he demanded 10-course meals.</li>
+      <li>The Roman emperor Elagabalus (218–222 AD) allegedly spent 100,000 sestertii per day on food and once served 600 ostrich brains at a single banquet.</li>
+      <li>Romans used <em>garum</em> — fermented fish sauce — as their universal condiment, similar to modern ketchup. The finest grades cost as much as expensive perfume: up to 500 sestertii per amphora.</li>
+    </ul>
+  </div>
+
+  <!-- Calculator Card -->
+  <div class="card">
+    <h2>⚗️ Configure Your Feast</h2>
+
+    <div class="row-2">
+      <div>
+        <label for="guests">Number of Guests</label>
+        <input type="number" id="guests" min="1" max="500" value="12" placeholder="e.g. 12">
+        <span class="error-msg" id="guests-err">Please enter 1–500 guests.</span>
+      </div>
+      <div>
+        <label for="feastClass">Feast Class</label>
+        <select id="feastClass">
+          <option value="plebeian">Plebeian (Common)</option>
+          <option value="equestrian" selected>Equestrian (Middle Class)</option>
+          <option value="patrician">Patrician (Wealthy)</option>
+          <option value="imperial">Imperial (Emperor's Table)</option>
+        </select>
+      </div>
+    </div>
+
+    <label>Courses (1 = simple meal, 9 = full nine-course extravaganza)</label>
+    <div class="slider-row">
+      <input type="range" id="courses" min="1" max="9" value="3" step="1">
+      <span class="slider-val" id="courses-val">3</span>
+    </div>
+
+    <label>Duration of Feast (hours)</label>
+    <div class="slider-row">
+      <input type="range" id="duration" min="1" max="12" value="4" step="1">
+      <span class="slider-val" id="duration-val">4 hrs</span>
+    </div>
+
+    <label style="margin-top:1.2rem; font-size:0.92rem; color:var(--accent); font-weight:700;">🍽️ Food & Drink Quantities (per person, in Roman libra ≈ 327g)</label>
+
+    <div class="category-grid">
+      <div class="cat-item">
+        <label>Bread & Grain (libra)</label>
+        <input type="number" id="bread" min="0" max="50" value="2" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Meat (pork/fowl) (libra)</label>
+        <input type="number" id="meat" min="0" max="50" value="1.5" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Fish & Seafood (libra)</label>
+        <input type="number" id="fish" min="0" max="50" value="1" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Vegetables & Legumes (libra)</label>
+        <input type="number" id="veg" min="0" max="50" value="2" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Olives & Olive Oil (libra)</label>
+        <input type="number" id="olives" min="0" max="50" value="1" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Cheese & Dairy (libra)</label>
+        <input type="number" id="cheese" min="0" max="50" value="0.5" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Garum Fish Sauce (sextarius)</label>
+        <input type="number" id="garum" min="0" max="20" value="1" step="0.5">
+      </div>
+      <div class="cat-item">
+        <label>Wine (hemina / half-pint)</label>
+        <input type="number" id="wine" min="0" max="50" value="6" step="1">
+      </div>
+    </div>
+
+    <label>Include Entertainment? (musicians, dancers)</label>
+    <select id="entertainment">
+      <option value="0">None</option>
+      <option value="1" selected>Modest (flute player)</option>
+      <option value="2">Lavish (full troupe)</option>
+    </select>
+
+    <label>Slave Service Staff</label>
+    <select id="slaves">
+      <option value="2">Minimal (2 servers)</option>
+      <option value="6" selected>Standard (6 servers)</option>
+      <option value="20">Patrician (20 servers)</option>
+      <option value="50">Imperial (50+ servers)</option>
+    </select>
+
+    <button class="btn" id="calcBtn">🏛️ Calculate Feast Cost</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results-section" id="resultsSection">
+    <div class="card">
+      <h2>📊 Feast Cost Summary</h2>
+      <button class="copy-btn" id="copyBtn">📋 Copy Results</button>
+      <div style="clear:both;"></div>
+
+      <div class="big-number" id="bigNum">
+        <div class="val" id="totalSest">—</div>
+        <div class="label-sm">Total Cost in Sestertii (HS) <span class="tier-badge" id="tierBadge"></span></div>
+      </div>
+
+      <div class="currency-cards" id="currencyCards">
+        <div class="cc">
+          <div>
+            <div class="cv" id="ccDen">—</div>
+            <div class="cn">Denarii (silver)</div>
+          </div>
+        </div>
+        <div class="cc">
+          <div>
+            <div class="cv" id="ccAur">—</div>
+            <div class="cn">Aurei (gold)</div>
+          </div>
+        </div>
+        <div class="cc">
+          <div>
+            <div class="cv" id="ccAs">—</div>
+            <div class="cn">Asses (copper)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modern-eq" id="modernEq">
+        <div class="me-icon">💵</div>
+        <div class="me-text">
+          Modern USD Equivalent<br>
+          <span class="me-val" id="modernUSD">—</span>
+        </div>
+      </div>
+
+      <div class="modern-eq" style="margin-top:-0.5rem;" id="soldierEq">
+        <div class="me-icon">⚔️</div>
+        <div class="me-text" id="soldierText">
+          Equivalent to — days of a legionary's pay
+        </div>
+      </div>
+
+      <h2 style="margin-top:1.25rem;">🍖 Cost Breakdown by Item</h2>
+      <div class="table-wrap">
+        <table id="breakdownTable">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty (total)</th>
+              <th>Unit Price (HS)</th>
+              <th>Subtotal (HS)</th>
+            </tr>
+          </thead>
+          <tbody id="breakdownBody"></tbody>
+          <tfoot>
+            <tr style="background:var(--gold-light)!important; font-weight:700;">
+              <td colspan="3" style="text-align:right; padding-right:10px;">TOTAL</td>
+              <td style="text-align:right; color:var(--accent);" id="tableTotal">—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div style="margin-top:1rem;">
+        <h2>📊 Cost Distribution</h2>
+        <div id="barChart" style="display:flex; flex-direction:column; gap:6px; margin-top:0.5rem;"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Roman Banquet Food Cost Calculator</h2>
+    <p>Enter the number of guests, select a social class tier, and adjust the number of courses using the slider. Then specify how many <em>librae</em> (Roman pounds ≈ 327g) of each food category each guest will consume, plus wine in <em>heminae</em> (half-pint units). Hit <strong>Calculate Feast Cost</strong> to see the total in sestertii, denarii, aurei, and modern USD — along with a full itemized breakdown.</p>
+    <p>The feast class multiplier adjusts prices for ingredient quality: a Patrician selects exotic spices, imported fish, and aged Falernian wine, while a Plebeian makes do with local posca and salt-preserved pork.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Roman dining wasn't just about food — it was power, politics, and social theatre. A senator hosting a lavish <em>convivium</em> was signaling status as clearly as a modern executive chartering a private jet. Understanding the cost of these feasts reveals astonishing economic inequalities: a legionary earned about 1,200 sestertii per year (roughly $18,000 today), yet Apicius — Rome's most famous foodie — reportedly spent 100 million sestertii on fine dining over his lifetime and poisoned himself when his fortune fell to a "mere" 10 million because he couldn't face eating modestly.</p>
+    <p>These calculations help historians, educators, writers, game designers, and history enthusiasts understand Roman social stratification, the economics of the ancient world, and why lavish feasting was so politically important. A triumphal general might host 10,000 citizens at public expense — that's a calculation worth making.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>Prices are drawn from Diocletian's <em>Edictum de Pretiis</em> (301 AD) and earlier Republican sources, adjusted for typical mid-Empire prices (1st–2nd century AD):</p>
+    <div class="formula-box">
+      Base Cost = Σ (Quantity per person × Guests × Unit price in HS)<br>
+      Class Multiplier: Plebeian ×1.0 | Equestrian ×2.5 | Patrician ×6.0 | Imperial ×20.0<br>
+      Entertainment: None +0 | Modest +150 HS | Lavish +1,500 HS<br>
+      Service: 2 slaves +50 HS | 6 slaves +180 HS | 20 slaves +600 HS | 50 slaves +2,000 HS<br>
+      Course Multiplier: 1+(courses−1)×0.15<br>
+      Duration Multiplier: 1+(hours−1)×0.05<br>
+      <br>
+      1 Denarius = 4 Sestertii | 1 Aureus = 100 Sestertii | 1 Sestertius = 4 Asses<br>
+      USD Equivalent: 1 Sestertius ≈ $1.50 (based on silver content / grain-price parity)
+    </div>
+    <p>The USD conversion uses a grain-price parity method: 1 modius of wheat (≈6.5 kg) cost roughly 7–10 sestertii in the mid-Empire, equivalent to roughly $10–15 in modern grain prices, giving approximately $1.50 per sestertius.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't forget the wine:</strong> Romans consumed enormous quantities — typically 3–6 heminae per person at a dinner party. Always diluted 3:1 with water; drinking it pure was considered barbaric.</li>
+      <li><strong>Garum was expensive:</strong> Even modest amounts of this fermented fish sauce added up fast. The finest grades (from Hispania Baetica) could cost as much as good perfume.</li>
+      <li><strong>Social class changes everything:</strong> Switching from Equestrian to Patrician tier roughly sextuples the cost per unit, reflecting the Roman obsession with rare imports — Parthian spices, Pontic salt fish, Cretan honey.</li>
+      <li><strong>Entertainment was often mandatory:</strong> Guests expected music and poetry readings at any respectable dinner. Skimping on this was a social faux pas that could damage a host's reputation.</li>
+      <li><strong>Slave count signals status:</strong> Elite Romans displayed wealth partly through <em>how many</em> slaves served a meal — each course might require a different set of specialists.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What was the standard Roman currency system?</summary>
+      <p>Rome used a multi-tier coinage system. The base coin was the <em>as</em> (copper). Four asses made one <em>sestertius</em> (brass). Four sestertii made one <em>denarius</em> (silver). Twenty-five denarii (100 sestertii) made one <em>aureus</em> (gold). Prices were typically quoted in sestertii for everyday transactions and in denarii for wages and larger purchases.</p>
+    </details>
+    <details>
+      <summary>How accurate are the modern USD equivalents?</summary>
+      <p>Converting ancient currencies to modern values is inherently imprecise — economists use several methods including silver content, grain price parity, and wage parity, which produce wildly different results. This tool uses grain-price parity (≈$1.50 per sestertius), which many historians consider the most meaningful for everyday goods. The value is best understood as a rough order-of-magnitude comparison, not a precise exchange rate.</p>
+    </details>
+    <details>
+      <summary>What was the most expensive food in ancient Rome?</summary>
+      <p>Several foods competed for this title. Silphium, an extinct herb from Cyrene, was literally worth its weight in silver before disappearing entirely. Premium <em>garum</em> from Spain could cost 500 sestertii per amphora. Rare fish like the <em>mullus</em> (red mullet) could sell for 1,000+ sestertii each. Pliny the Elder wrote in horror about Romans paying more for a fish than for a cook.</p>
+    </details>
+    <details>
+      <summary>What was the typical structure of a Roman dinner?</summary>
+      <p>A formal Roman dinner had three main parts: the <em>gustatio</em> (appetizers: olives, eggs, salted fish, vegetables with garum), the <em>primae mensae</em> (main courses: meat, fish, elaborate dishes), and the <em>secundae mensae</em> (dessert: fruit, nuts, honey cakes, sweet wine). The full nine-course extravaganza was an aristocratic display of excess — Apicius's cookbook describes dishes requiring hundreds of individual ingredients.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>🏛️ Related Historical Calculators</h2>
+    <div class="related-grid">
+      <a href="/roman-water-distribution-pipe-sizing-calculator/">⚗️ Ancient Roman Aqueduct Water Distribution Calculator</a>
+      <a href="/medieval-longbow-arrow-production-calculator/">🏹 Medieval Longbow Arrow Production Calculator</a>
+      <a href="/roman-aqueduct-arcade-span-calculator/">🌉 Roman Aqueduct Bridge (Arcade) Span Calculator</a>
+      <a href="/ancient-greek-agora-market-price-calculator/">🏺 Ancient Greek Agora Market Price Calculator</a>
+      <a href="/mongol-empire-conquest-speed-calculator/">🐎 Mongol Empire Conquest Speed Calculator</a>
+      <a href="/medieval-plague-doctor-treatment-cost-calculator/">⚕️ Medieval Plague Doctor Treatment Cost Calculator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© 2024 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+// Price table (sestertii, mid-Empire average, per Roman libra ~327g unless noted)
+const BASE_PRICES = {
+  bread:  2.5,   // libra of wheat/bread
+  meat:   12,    // libra of pork
+  fish:   20,    // libra of common fish
+  veg:    1.5,   // libra of vegetables/legumes
+  olives: 4,     // libra of olives/olive oil
+  cheese: 6,     // libra of cheese
+  garum:  40,    // per sextarius (premium grade)
+  wine:   4      // per hemina (basic wine)
+};
+
+const CLASS_MULTIPLIER = {
+  plebeian:   1.0,
+  equestrian: 2.5,
+  patrician:  6.0,
+  imperial:   20.0
+};
+
+const CLASS_LABELS = {
+  plebeian:   { label: 'Plebeian', cls: 'tier-plebeian' },
+  equestrian: { label: 'Equestrian', cls: 'tier-equestrian' },
+  patrician:  { label: 'Patrician', cls: 'tier-patrician' },
+  imperial:   { label: 'Imperial', cls: 'tier-imperial' }
+};
+
+const ENTERTAIN_COST = { '0': 0, '1': 150, '2': 1500 };
+const SLAVE_COST    = { '2': 50, '6': 180, '20': 600, '50': 2000 };
+
+const ITEM_LABELS = [
+  { key: 'bread',  label: 'Bread & Grain',        unit: 'libra/person' },
+  { key: 'meat',   label: 'Meat (pork/fowl)',      unit: 'libra/person' },
+  { key: 'fish',   label: 'Fish & Seafood',        unit: 'libra/person' },
+  { key: 'veg',    label: 'Vegetables & Legumes',  unit: 'libra/person' },
+  { key: 'olives', label: 'Olives & Olive Oil',    unit: 'libra/person' },
+  { key: 'cheese', label: 'Cheese & Dairy',        unit: 'libra/person' },
+  { key: 'garum',  label: 'Garum Fish Sauce',      unit: 'sextarius/person' },
+  { key: 'wine',   label: 'Wine',                  unit: 'hemina/person' },
+];
+
+const USD_PER_SESTERTIUS = 1.50;
+const LEGIONARY_DAILY_PAY = 1200 / 365; // ~3.29 HS/day
+
+function fmt(n, dec=0) {
+  if (n === undefined || n === null || isNaN(n)) return '—';
+  return n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+function fmtHS(n) {
+  if (n < 1) return fmt(n, 2);
+  if (n < 10) return fmt(n, 1);
+  return fmt(Math.round(n));
+}
+
+// Slider live display
+document.getElementById('courses').addEventListener('input', function() {
+  document.getElementById('courses-val').textContent = this.value;
+});
+document.getElementById('duration').addEventListener('input', function() {
+  document.getElementById('duration-val').textContent = this.value + ' hrs';
+});
+
+// Enter key support
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter') calculate();
+  });
+});
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => calculate());
+});
+
+function validate() {
+  const guests = parseFloat(document.getElementById('guests').value);
+  const guestEl = document.getElementById('guests');
+  const guestErr = document.getElementById('guests-err');
+  let valid = true;
+  if (!guests || guests < 1 || guests > 500 || !Number.isInteger(guests)) {
+    guestEl.classList.add('error');
+    guestErr.classList.add('show');
+    valid = false;
+  } else {
+    guestEl.classList.remove('error');
+    guestErr.classList.remove('show');
+  }
+  return valid;
+}
+
+function calculate() {
+  if (!validate()) return;
+
+  const guests      = parseInt(document.getElementById('guests').value);
+  const feastClass  = document.getElementById('feastClass').value;
+  const courses     = parseInt(document.getElementById('courses').value);
+  const duration    = parseInt(document.getElementById('duration').value);
+  const entertain   = document.getElementById('entertainment').value;
+  const slaveCount  = document.getElementById('slaves').value;
+  const classMult   = CLASS_MULTIPLIER[feastClass];
+
+  const courseMult  = 1 + (courses - 1) * 0.15;
+  const durationMult = 1 + (duration - 1) * 0.05;
+
+  const qtys = {};
+  ITEM_LABELS.forEach(item => {
+    qtys[item.key] = parseFloat(document.getElementById(item.key).value) || 0;
+  });
+
+  // Compute subtotals
+  const rows = [];
+  let foodTotal = 0;
+  ITEM_LABELS.forEach(item => {
+    const qtyPer  = qtys[item.key];
+    const qtyTot  = qtyPer * guests;
+    const unitPrice = BASE_PRICES[item.key] * classMult;
+    const subtotal  = qtyTot * unitPrice * courseMult * durationMult;
+    foodTotal += subtotal;
+    rows.push({
+      label:    item.label,
+      unit:     item.unit,
+      qtyTot:   qtyTot,
+      unitPrice: unitPrice,
+      subtotal:  subtotal
+    });
+  });
+
+  const entertainCost = ENTERTAIN_COST[entertain] * classMult;
+  const slaveCost     = SLAVE_COST[slaveCount] * (classMult > 1 ? classMult * 0.5 : 1);
+  const grandTotal    = foodTotal + entertainCost + slaveCost;
+
+  // Currency conversions
+  const denarii  = grandTotal / 4;
+  const aurei    = grandTotal / 100;
+  const asses    = grandTotal * 4;
+  const usd      = grandTotal * USD_PER_SESTERTIUS;
+  const legDays  = grandTotal / LEGIONARY_DAILY_PAY;
+
+  // Build table rows HTML
+  let tbodyHTML = '';
+  const maxBar  = Math.max(...rows.map(r => r.subtotal), entertainCost, slaveCost, 0.01);
+
+  rows.forEach(r => {
+    tbodyHTML += `<tr>
+      <td>${r.label}</td>
+      <td style="text-align:right;">${fmt(r.qtyTot, 1)} ${r.unit.replace('/person','')}</td>
+      <td style="text-align:right;">${fmtHS(r.unitPrice)}</td>
+      <td style="text-align:right;">${fmtHS(r.subtotal)}</td>
+    </tr>`;
+  });
+
+  if (entertainCost > 0) {
+    const el = entertain === '1' ? 'Flute Player' : 'Full Entertainment Troupe';
+    tbodyHTML += `<tr>
+      <td>${el}</td>
+      <td style="text-align:right;">1 event</td>
+      <td style="text-align:right;">${fmtHS(entertainCost)}</td>
+      <td style="text-align:right;">${fmtHS(entertainCost)}</td>
+    </tr>`;
+  }
+  tbodyHTML += `<tr>
+    <td>Slave Service (${slaveCount} staff)</td>
+    <td style="text-align:right;">—</td>
+    <td style="text-align:right;">${fmtHS(slaveCost)}</td>
+    <td style="text-align:right;">${fmtHS(slaveCost)}</td>
+  </tr>`;
+
+  // Build bar chart HTML
+  const allItems = [...rows.map(r => ({ label: r.label, val: r.subtotal }))];
+  if (entertainCost > 0) allItems.push({ label: 'Entertainment', val: entertainCost });
+  allItems.push({ label: 'Slave Service', val: slaveCost });
+  const barMax = Math.max(...allItems.map(a => a.val), 0.01);
+
+  let barHTML = '';
+  allItems.forEach(item => {
+    if (item.val <= 0) return;
+    const pct = Math.max((item.val / barMax) * 100, 1);
+    barHTML += `<div style="display:flex; align-items:center; gap:8px; font-size:0.78rem;">
+      <div style="width:130px; flex-shrink:0; color:var(--text-light); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.label}</div>
+      <div style="flex:1; background:#e8dcc8; border-radius:4px; height:16px; overflow:hidden;">
+        <div style="width:${pct}%; background:var(--accent); height:100%; border-radius:4px; transition:width 0.4s;"></div>
+      </div>
+      <div style="min-width:60px; text-align:right; color:var(--accent); font-weight:600;">${fmtHS(item.val)} HS</div>
+    </div>`;
+  });
+
+  const tierInfo = CLASS_LABELS[feastClass];
+
+  // Build context string for copy
+  window._copyText = `Roman Feast Cost Summary
+Guests: ${guests} | Class: ${tierInfo.label} | Courses: ${courses} | Duration: ${duration}h
+Total: ${fmtHS(grandTotal)} sestertii
+Denarii: ${fmtHS(denarii)} | Aurei: ${fmt(aurei, 2)} | Asses: ${fmtHS(asses)}
+Modern USD Equivalent: ~$${fmt(usd, 2)}
+Legionary Days' Pay: ${fmt(legDays, 1)} days`;
+
+  requestAnimationFrame(() => {
+    document.getElementById('totalSest').textContent = fmtHS(grandTotal) + ' HS';
+    document.getElementById('tierBadge').className = 'tier-badge ' + tierInfo.cls;
+    document.getElementById('tierBadge').textContent = tierInfo.label;
+    document.getElementById('ccDen').textContent  = fmtHS(denarii);
+    document.getElementById('ccAur').textContent  = fmt(aurei, 2);
+    document.getElementById('ccAs').textContent   = fmtHS(asses);
+    document.getElementById('modernUSD').textContent = '~$' + fmt(usd, 0);
+    document.getElementById('soldierText').innerHTML =
+      `⚔️ Equivalent to <strong>${fmt(legDays, 1)} days</strong> of a Roman legionary's annual pay (1,200 HS/year)`;
+    document.getElementById('breakdownBody').innerHTML = tbodyHTML;
+    document.getElementById('tableTotal').textContent  = fmtHS(grandTotal) + ' HS';
+    document.getElementById('barChart').innerHTML = barHTML;
+
+    const section = document.getElementById('resultsSection');
+    section.classList.add('visible');
+    section.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+}
+
+// Copy to clipboard
+document.getElementById('copyBtn').addEventListener('click', function() {
+  const txt = window._copyText || 'No results yet.';
+  navigator.clipboard.writeText(txt).then(() => {
+    this.textContent = '✅ Copied!';
+    setTimeout(() => { this.textContent = '📋 Copy Results'; }, 2000);
+  }).catch(() => {
+    this.textContent = '❌ Failed';
+    setTimeout(() => { this.textContent = '📋 Copy Results'; }, 2000);
+  });
+});
+</script>
+</html>
