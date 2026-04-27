@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Aqueduct Water Pressure Calculator — Free Online Tool | AquaCalc</title>
+<meta name="description" content="Calculate water pressure, flow rate, and hydraulic gradient for ancient Roman aqueduct systems. Free engineering tool with historical context.">
+<link rel="canonical" href="https://aquacalc.tools/roman-aqueduct-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Aqueduct Water Pressure Calculator",
+  "description": "Calculate water pressure, flow rate, and hydraulic gradient for ancient Roman aqueduct systems.",
+  "url": "https://aquacalc.tools/roman-aqueduct-calculator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;line-height:1.6;font-size:16px}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{border-bottom:1px solid #e0e0e0;padding:0.75rem 1.5rem;display:flex;align-items:center}
+nav .brand{font-weight:700;font-size:1.1rem;color:#1a1a2e}
+nav .brand span{color:#0077b6}
+main{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;line-height:1.3}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(0,0,0,0.06);margin-bottom:2rem}
+.section-label{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0077b6;margin-bottom:1rem}
+.form-group{margin-bottom:1.25rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.4rem}
+label .unit{font-weight:400;color:#888;font-size:0.8rem}
+input[type=number],select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;font-family:inherit;color:#1a1a2e;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none}
+input[type=number]:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none}
+.error-msg.show{display:block}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.tabs{display:flex;gap:0;margin-bottom:1.5rem;border:1px solid #ddd;border-radius:6px;overflow:hidden}
+.tab-btn{flex:1;padding:10px 8px;background:#f8f9fa;border:none;cursor:pointer;font-size:0.85rem;font-weight:500;color:#555;transition:background 0.2s,color 0.2s;min-height:44px}
+.tab-btn.active{background:#0077b6;color:#fff}
+.tab-btn:hover:not(.active){background:#e9ecef}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+button.calc-btn{width:100%;background:#0077b6;color:#fff;border:none;padding:14px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;transition:background 0.2s;min-height:44px;margin-top:0.5rem}
+button.calc-btn:hover{background:#006299}
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.visible{opacity:1;pointer-events:all}
+.big-number{font-size:2.4rem;font-weight:700;color:#0077b6;line-height:1.1}
+.big-label{font-size:0.85rem;color:#555;margin-top:0.2rem;margin-bottom:1.25rem}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem}
+.metric-box{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:6px;padding:0.85rem 1rem}
+.metric-val{font-size:1.25rem;font-weight:700;color:#1a1a2e}
+.metric-lbl{font-size:0.75rem;color:#666;margin-top:0.15rem}
+.table-wrap{overflow-x:auto;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+thead th{background:#f0f0f0;padding:8px 10px;text-align:left;font-weight:600;border-bottom:2px solid #ddd}
+thead th.num{text-align:right}
+tbody tr:nth-child(even){background:#fafafa}
+tbody tr:nth-child(odd){background:#fff}
+tbody td{padding:8px 10px;border-bottom:1px solid #eee}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+.copy-btn{background:none;border:1px solid #ddd;border-radius:4px;padding:4px 10px;font-size:0.75rem;color:#555;cursor:pointer;transition:all 0.2s;margin-left:0.5rem;vertical-align:middle}
+.copy-btn:hover{border-color:#0077b6;color:#0077b6}
+.bar-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;font-size:0.82rem}
+.bar-label{width:120px;flex-shrink:0;color:#444;text-align:right}
+.bar-track{flex:1;background:#f0f0f0;border-radius:3px;height:14px;overflow:hidden}
+.bar-fill{height:100%;background:#0077b6;border-radius:3px;transition:width 0.4s ease}
+.bar-val{width:90px;flex-shrink:0;color:#1a1a2e;font-weight:600}
+.highlight-box{background:#e8f4fd;border-left:4px solid #0077b6;border-radius:0 6px 6px 0;padding:0.75rem 1rem;margin-bottom:1rem;font-size:0.88rem;color:#1a1a2e}
+.aqueduct-select-wrap{margin-bottom:1.25rem}
+.ad-slot{min-height:0;margin:0}
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;margin-bottom:0.75rem;margin-top:1.75rem;color:#1a1a2e}
+.content-section p{font-size:0.92rem;color:#333;margin-bottom:0.75rem;line-height:1.7}
+.content-section ul{font-size:0.92rem;color:#333;padding-left:1.3rem;margin-bottom:0.75rem}
+.content-section ul li{margin-bottom:0.4rem;line-height:1.7}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.6rem;overflow:hidden}
+summary{padding:0.75rem 1rem;cursor:pointer;font-weight:500;font-size:0.9rem;background:#f8f9fa;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"＋";font-size:1rem;color:#0077b6;transition:transform 0.2s}
+details[open] summary::after{content:"－"}
+details p{padding:0.75rem 1rem;font-size:0.88rem;color:#333;line-height:1.7}
+.related-tools{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1.25rem;margin-bottom:2rem}
+.related-tools h3{font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#555;margin-bottom:0.75rem}
+.related-tools a{display:inline-block;margin:0.25rem 0.35rem 0.25rem 0;background:#fff;border:1px solid #ddd;border-radius:20px;padding:5px 14px;font-size:0.83rem;color:#0077b6;transition:border-color 0.2s}
+.related-tools a:hover{border-color:#0077b6;text-decoration:none}
+footer{border-top:1px solid #e0e0e0;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#777}
+footer a{color:#777;margin:0 0.5rem}
+footer a:hover{color:#0077b6}
+@media(max-width:640px){
+  main{padding:1rem}
+  h1{font-size:1.3rem}
+  .row-2{grid-template-columns:1fr}
+  .metric-grid{grid-template-columns:1fr 1fr}
+  .big-number{font-size:2rem}
+  .card{padding:1.25rem}
+  .bar-label{width:90px;font-size:0.78rem}
+  .bar-val{width:70px;font-size:0.78rem}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="brand">Aqua<span>Calc</span></a>
+</nav>
+<main>
+  <h1>Ancient Roman Aqueduct Water Pressure Calculator</h1>
+  <p class="subtitle">Calculate hydraulic pressure, flow rate, velocity, and gradient for Roman aqueduct engineering — based on real historical parameters.</p>
+
+  <div class="card">
+    <div class="section-label">Select Mode</div>
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('basic')">Pressure &amp; Flow</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('historical')">Historical Aqueduct</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('compare')">Channel Designer</button>
+    </div>
+
+    <!-- TAB 1: BASIC -->
+    <div class="tab-panel active" id="tab-basic">
+      <div class="form-group">
+        <label>Source Elevation (Head) <span class="unit">metres</span></label>
+        <input type="number" id="b_head" value="60" min="0" step="0.1" placeholder="e.g. 60">
+        <div class="error-msg" id="b_head_err">Please enter a positive elevation.</div>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label>Channel Width <span class="unit">metres</span></label>
+          <input type="number" id="b_width" value="1.2" min="0.01" step="0.01" placeholder="e.g. 1.2">
+          <div class="error-msg" id="b_width_err">Must be greater than 0.</div>
+        </div>
+        <div class="form-group">
+          <label>Water Depth <span class="unit">metres</span></label>
+          <input type="number" id="b_depth" value="0.9" min="0.01" step="0.01" placeholder="e.g. 0.9">
+          <div class="error-msg" id="b_depth_err">Must be greater than 0.</div>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label>Channel Length <span class="unit">km</span></label>
+          <input type="number" id="b_length" value="50" min="0.01" step="0.1" placeholder="e.g. 50">
+          <div class="error-msg" id="b_length_err">Must be greater than 0.</div>
+        </div>
+        <div class="form-group">
+          <label>Manning's n <span class="unit">roughness</span></label>
+          <input type="number" id="b_n" value="0.013" min="0.001" max="0.1" step="0.001" placeholder="e.g. 0.013">
+          <div class="error-msg" id="b_n_err">Must be between 0.001 and 0.1.</div>
+        </div>
+      </div>
+      <button class="calc-btn" id="btn_basic" onclick="calcBasic()">Calculate Hydraulics</button>
+    </div>
+
+    <!-- TAB 2: HISTORICAL -->
+    <div class="tab-panel" id="tab-historical">
+      <div class="form-group aqueduct-select-wrap">
+        <label>Select a Historical Roman Aqueduct</label>
+        <select id="h_aqueduct" onchange="loadAqueduct()">
+          <option value="aqua_appia">Aqua Appia (312 BC) — Rome</option>
+          <option value="anio_vetus">Anio Vetus (272 BC) — Rome</option>
+          <option value="aqua_marcia">Aqua Marcia (144 BC) — Rome</option>
+          <option value="aqua_claudia">Aqua Claudia (52 AD) — Rome</option>
+          <option value="pont_du_gard">Pont du Gard (50 AD) — Nîmes</option>
+          <option value="segovia">Segovia Aqueduct (1st c. AD) — Spain</option>
+          <option value="carthage">Zaghouan Aqueduct (130 AD) — Carthage</option>
+        </select>
+      </div>
+      <div class="highlight-box" id="h_info">Select an aqueduct to load its historical parameters and see calculated hydraulics.</div>
+      <div class="row-2">
+        <div class="form-group">
+          <label>Total Head Drop <span class="unit">metres</span></label>
+          <input type="number" id="h_head" value="60" min="0" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>Total Length <span class="unit">km</span></label>
+          <input type="number" id="h_length" value="16.6" min="0.01" step="0.1">
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label>Channel Width <span class="unit">metres</span></label>
+          <input type="number" id="h_width" value="1.2" min="0.01" step="0.01">
+        </div>
+        <div class="form-group">
+          <label>Water Depth <span class="unit">metres</span></label>
+          <input type="number" id="h_depth" value="1.5" min="0.01" step="0.01">
+        </div>
+      </div>
+      <button class="calc-btn" onclick="calcHistorical()">Analyse This Aqueduct</button>
+    </div>
+
+    <!-- TAB 3: CHANNEL DESIGNER -->
+    <div class="tab-panel" id="tab-compare">
+      <div class="form-group">
+        <label>Required Daily Water Delivery <span class="unit">m³/day</span></label>
+        <input type="number" id="c_demand" value="40000" min="1" step="100" placeholder="e.g. 40000">
+        <div class="error-msg" id="c_demand_err">Must be greater than 0.</div>
+      </div>
+      <div class="row-2">
+        <div class="form-group">
+          <label>Available Head Drop <span class="unit">metres</span></label>
+          <input type="number" id="c_head" value="80" min="0.1" step="0.1" placeholder="e.g. 80">
+          <div class="error-msg" id="c_head_err">Must be greater than 0.</div>
+        </div>
+        <div class="form-group">
+          <label>Channel Length <span class="unit">km</span></label>
+          <input type="number" id="c_length" value="60" min="0.1" step="0.1" placeholder="e.g. 60">
+          <div class="error-msg" id="c_length_err">Must be greater than 0.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Channel Width <span class="unit">metres (fixed)</span></label>
+        <input type="number" id="c_width" value="1.5" min="0.1" step="0.1" placeholder="e.g. 1.5">
+        <div class="error-msg" id="c_width_err">Must be greater than 0.</div>
+      </div>
+      <button class="calc-btn" onclick="calcDesign()">Design Channel</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card results" id="results-card">
+    <div id="results-content"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- CONTENT -->
+  <div class="content-section">
+    <h2>How to Use This Roman Aqueduct Calculator</h2>
+    <p>Choose from three modes: <strong>Pressure &amp; Flow</strong> for custom channel analysis, <strong>Historical Aqueduct</strong> to load real parameters from famous Roman systems, or <strong>Channel Designer</strong> to work backwards from a water demand target. Enter the elevation head, channel dimensions, and length, then click Calculate to see hydraulic pressure, velocity, flow rate, and gradient.</p>
+
+    <h2>Why This Matters</h2>
+    <p>Roman aqueducts were among the greatest engineering achievements of the ancient world. At their peak, Rome's 11 aqueducts delivered over <strong>1 million cubic metres of water per day</strong> — roughly 1,000 litres per person. The engineers who designed them had no calculus, no computers, and no pressure gauges. They relied entirely on surveying, gradient control, and empirical knowledge of hydraulics.</p>
+    <p>The Aqua Marcia, built in 144 BC, ran for 91 km to deliver water that fell just <strong>243 metres</strong> over its entire length — a gradient of only 1 in 374. The Pont du Gard bridge in southern France maintained a slope of just <strong>0.034%</strong> across its 50 km route. These tolerances rival modern civil engineering. Understanding the hydraulics helps us appreciate how Romans calculated channel cross-sections, sizing them to deliver exactly enough water pressure at the destination castellum (distribution tank).</p>
+    <p>This calculator is useful for historians, civil engineering students, archaeology enthusiasts, and anyone curious about how ancient infrastructure actually worked in physical terms.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The core equation is <strong>Manning's Formula</strong> for open-channel flow, which the Romans effectively discovered empirically:</p>
+    <p><strong>Q = (1/n) × A × R<sup>2/3</sup> × S<sup>1/2</sup></strong></p>
+    <p>Where: Q = flow rate (m³/s), n = Manning's roughness coefficient (opus signinum plaster ≈ 0.013), A = cross-sectional area of water (m²), R = hydraulic radius (A / wetted perimeter, in metres), S = hydraulic slope (head drop / channel length, dimensionless).</p>
+    <p>Static water pressure at the base of a column of height h is: <strong>P = ρ × g × h</strong> (where ρ = 1000 kg/m³, g = 9.81 m/s²). For a 60 m head, that's approximately <strong>5.9 bar</strong> — enough to push water to upper-storey fountains and baths.</p>
+
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Head ≠ length:</strong> The "head" is the vertical elevation difference between source and destination, not the physical length of the aqueduct. A 50 km aqueduct might only drop 30 metres vertically.</li>
+      <li><strong>Manning's n matters:</strong> Romans used opus signinum (waterproof hydraulic cement) lining with n ≈ 0.013. Rough stone channels have n ≈ 0.025–0.030, significantly reducing flow.</li>
+      <li><strong>Hydraulic radius not depth:</strong> For a rectangular channel, R = (width × depth) / (width + 2×depth). This is always less than the water depth.</li>
+      <li><strong>Depth vs. full capacity:</strong> Roman channels typically ran at 60–80% full by design, leaving airspace to handle surges and seasonal variation.</li>
+      <li><strong>Gradient is tiny:</strong> Most Roman aqueducts used gradients between 0.03% and 0.1%. Much steeper and the channel erodes; much shallower and sediment accumulates.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What Manning's roughness value should I use for a Roman aqueduct?</summary>
+      <p>For channels lined with opus signinum (the pozzolanic hydraulic cement the Romans used), n = 0.013 is a good estimate. For unlined rough limestone or brick without plaster, use 0.018–0.025. The Pont du Gard has been analysed at approximately n = 0.011–0.014 based on modern hydraulic modelling of its dimensions and known flow capacity.</p>
+    </details>
+    <details>
+      <summary>How much water did Roman aqueducts actually deliver?</summary>
+      <p>Sextus Julius Frontinus, Rome's water commissioner in 97 AD, documented 9 aqueducts delivering approximately 992,200 quinariae — a Roman flow unit roughly equivalent to 1 million m³/day in modern terms. Individual aqueducts ranged from Aqua Appia at ~73,000 m³/day to Aqua Marcia at ~187,000 m³/day. For comparison, modern Rome uses about 500,000 m³/day for a larger population.</p>
+    </details>
+    <details>
+      <summary>Did Romans understand water pressure the way we do?</summary>
+      <p>Not formally, but they were highly practical. They knew that running inverted siphons (lead pipes dipping into valleys and rising again) required sufficient head pressure to push water uphill. The Gier aqueduct near Lyon used a siphon with a 123 m pressure head — requiring lead pipes rated for about 12 bar. They managed this without any modern pressure theory, purely through trial and accumulated engineering experience.</p>
+    </details>
+    <details>
+      <summary>Why did Roman aqueducts follow such long, winding routes?</summary>
+      <p>Because they were gravity-fed open channels and had to maintain a nearly constant gentle downward slope. They could not go uphill at all — any ridge in the way required a tunnel, a tall arcade bridge, or a long detour. The Aqua Claudia took a 68 km route from a source only 38 km from Rome as the crow flies. Tunnels (cuniculi) were dug through hills, and the famous arched bridges carried channels over valleys, both solutions to maintaining that critical hydraulic gradient.</p>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h3>Related Tools</h3>
+    <a href="/pipe-flow-calculator">Pipe Flow Calculator</a>
+    <a href="/hydraulic-gradient-calculator">Hydraulic Gradient Calculator</a>
+    <a href="/weir-flow-calculator">Weir Flow Calculator</a>
+    <a href="/unit-converter-ancient">Ancient Unit Converter</a>
+    <a href="/open-channel-flow">Open Channel Flow Calculator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/contact">Contact</a>
+    <span>© 2025 AquaCalc.tools</span>
+  </footer>
+</main>
+
+<script>
+// ── Utilities ──────────────────────────────────────────────────────────────
+function fmt(n, dec=2) {
+  if (!isFinite(n)) return '—';
+  return n.toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+function fmtInt(n) {
+  if (!isFinite(n)) return '—';
+  return Math.round(n).toLocaleString('en-US');
+}
+function clearErrors() {
+  document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+  document.querySelectorAll('input.error').forEach(e => e.classList.remove('error'));
+}
+function showError(id, msgId) {
+  const el = document.getElementById(id);
+  const msg = document.getElementById(msgId);
+  if (el) el.classList.add('error');
+  if (msg) msg.classList.add('show');
+}
+function showResults(html) {
+  const card = document.getElementById('results-card');
+  const content = document.getElementById('results-content');
+  content.innerHTML = html;
+  card.classList.add('visible');
+}
+
+// ── Manning's open-channel formula ────────────────────────────────────────
+// Q = (1/n) * A * R^(2/3) * S^(1/2)
+function mannings(width, depth, slope, n) {
+  const A = width * depth;
+  const P = width + 2 * depth; // wetted perimeter (rectangular)
+  const R = A / P;             // hydraulic radius
+  const V = (1 / n) * Math.pow(R, 2/3) * Math.pow(slope, 1/2);
+  const Q = V * A;
+  return { A, P, R, V, Q };
+}
+
+// ── Tab switching ─────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['basic','historical','compare'][i] === name);
+    b.setAttribute('aria-selected', ['basic','historical','compare'][i] === name);
+  });
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('results-card').classList.remove('visible');
+}
+
+// ── Historical aqueduct data ───────────────────────────────────────────────
+const AQUEDUCTS = {
+  aqua_appia:  { name:'Aqua Appia',   year:'312 BC', length:16.6, head:10,  width:0.73, depth:0.92, desc:'Rome\'s first aqueduct, mostly underground. Delivered ~73,000 m³/day. Ran almost entirely in a covered underground channel.' },
+  anio_vetus:  { name:'Anio Vetus',   year:'272 BC', length:63.7, head:60,  width:1.22, depth:1.52, desc:'Second Roman aqueduct, sourced from the Anio River. ~175,000 m³/day capacity. One of the largest by volume.' },
+  aqua_marcia: { name:'Aqua Marcia',  year:'144 BC', length:91.3, head:243, width:1.22, depth:2.44, desc:'Famous for exceptional water quality from springs at 315 m altitude. ~187,000 m³/day. The gradient was only 1 in 374.' },
+  aqua_claudia:{ name:'Aqua Claudia', year:'52 AD',  length:68.7, head:260, width:1.5,  depth:2.2,  desc:'Built by Caligula and Claudius. ~184,000 m³/day. Its impressive 28 m high arches near Rome are still standing.' },
+  pont_du_gard:{ name:'Pont du Gard', year:'50 AD',  length:50.0, head:17,  width:1.22, depth:1.8,  desc:'Nîmes aqueduct. The famous bridge spans 275 m at 49 m height. Slope of just 0.034% across 50 km. ~40,000 m³/day.' },
+  segovia:     { name:'Segovia',      year:'100 AD', length:17.0, head:30,  width:0.6,  depth:0.5,  desc:'Spectacular 728 m long arcade with 163 arches up to 29 m tall. Still carrying water until the 20th century.' },
+  carthage:    { name:'Zaghouan',     year:'130 AD', length:132,  head:280, width:1.3,  depth:1.1,  desc:'One of the longest in the Roman world at 132 km. Built by Hadrian to supply Carthage with ~32 million litres/day.' },
+};
+
+function loadAqueduct() {
+  const key = document.getElementById('h_aqueduct').value;
+  const aq = AQUEDUCTS[key];
+  if (!aq) return;
+  document.getElementById('h_head').value   = aq.head;
+  document.getElementById('h_length').value = aq.length;
+  document.getElementById('h_width').value  = aq.width;
+  document.getElementById('h_depth').value  = aq.depth;
+  document.getElementById('h_info').textContent = `${aq.name} (${aq.year}): ${aq.desc}`;
+}
+
+// ── Calculation: Basic ─────────────────────────────────────────────────────
+function calcBasic() {
+  clearErrors();
+  const head   = parseFloat(document.getElementById('b_head').value);
+  const width  = parseFloat(document.getElementById('b_width').value);
+  const depth  = parseFloat(document.getElementById('b_depth').value);
+  const lengthKm = parseFloat(document.getElementById('b_length').value);
+  const n      = parseFloat(document.getElementById('b_n').value);
+  let ok = true;
+  if (!isFinite(head)  || head  <= 0) { showError('b_head','b_head_err');   ok=false; }
+  if (!isFinite(width) || width <= 0) { showError('b_width','b_width_err'); ok=false; }
+  if (!isFinite(depth) || depth <= 0) { showError('b_depth','b_depth_err'); ok=false; }
+  if (!isFinite(lengthKm) || lengthKm <= 0) { showError('b_length','b_length_err'); ok=false; }
+  if (!isFinite(n) || n < 0.001 || n > 0.1) { showError('b_n','b_n_err'); ok=false; }
+  if (!ok) return;
+
+  const lengthM = lengthKm * 1000;
+  const slope = head / lengthM;
+  const { A, P, R, V, Q } = mannings(width, depth, slope, n);
+  const Qday = Q * 86400;
+  const pressure_kPa = 1000 * 9.81 * head / 1000; // kPa
+  const pressure_bar = pressure_kPa / 100;
+  const gradientPct = slope * 100;
+  const froudeNum = V / Math.sqrt(9.81 * depth);
+  const flowType = froudeNum < 1 ? 'Subcritical (tranquil) — typical for Roman aqueducts' : 'Supercritical (rapid) — unusual for aqueducts';
+
+  // Comparison bars (relative to famous aqueducts)
+  const refFlow = 187000; // Aqua Marcia daily m³
+  const flowPct = Math.min(100, (Qday / refFlow) * 100);
+  const refVel = 1.5;
+  const velPct = Math.min(100, (V / refVel) * 100);
+
+  requestAnimationFrame(() => {
+    const html = `
+      <div class="section-label">Hydraulic Results</div>
+      <div class="big-number">${fmt(pressure_bar)} bar</div>
+      <div class="big-label">Static pressure at base of ${fmt(head,1)} m head <button class="copy-btn" onclick="copyText('${fmt(pressure_bar)} bar')">Copy</button></div>
+
+      <div class="metric-grid">
+        <div class="metric-box"><div class="metric-val">${fmt(Q,3)} m³/s</div><div class="metric-lbl">Flow Rate</div></div>
+        <div class="metric-box"><div class="metric-val">${fmtInt(Qday)} m³/day</div><div class="metric-lbl">Daily Volume</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(V,3)} m/s</div><div class="metric-lbl">Flow Velocity</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(gradientPct,4)}%</div><div class="metric-lbl">Hydraulic Gradient</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(R,3)} m</div><div class="metric-lbl">Hydraulic Radius</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(froudeNum,3)}</div><div class="metric-lbl">Froude Number</div></div>
+      </div>
+
+      <div class="highlight-box">${flowType}</div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Parameter</th><th class="num">Value</th><th class="num">Unit</th></tr></thead>
+          <tbody>
+            <tr><td>Cross-sectional area (A)</td><td class="num">${fmt(A,4)}</td><td class="num">m²</td></tr>
+            <tr><td>Wetted perimeter (P)</td><td class="num">${fmt(P,3)}</td><td class="num">m</td></tr>
+            <tr><td>Hydraulic radius (R)</td><td class="num">${fmt(R,4)}</td><td class="num">m</td></tr>
+            <tr><td>Slope (S)</td><td class="num">${slope.toExponential(3)}</td><td class="num">m/m</td></tr>
+            <tr><td>Flow velocity (V)</td><td class="num">${fmt(V,4)}</td><td class="num">m/s</td></tr>
+            <tr><td>Flow rate (Q)</td><td class="num">${fmt(Q,4)}</td><td class="num">m³/s</td></tr>
+            <tr><td>Daily delivery</td><td class="num">${fmtInt(Qday)}</td><td class="num">m³/day</td></tr>
+            <tr><td>Daily delivery (litres)</td><td class="num">${fmtInt(Qday*1000)}</td><td class="num">L/day</td></tr>
+            <tr><td>Pressure at head base</td><td class="num">${fmt(pressure_kPa,1)}</td><td class="num">kPa</td></tr>
+            <tr><td>Pressure at head base</td><td class="num">${fmt(pressure_bar,3)}</td><td class="num">bar</td></tr>
+            <tr><td>Pressure (psi)</td><td class="num">${fmt(pressure_bar*14.5038,2)}</td><td class="num">psi</td></tr>
+            <tr><td>Roman quinariae/day*</td><td class="num">${fmtInt(Qday/0.476)}</td><td class="num">q/day</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.78rem;color:#888;margin-top:0.3rem">* 1 quinaria ≈ 0.476 m³/day (Hodge, 1992 estimate)</p>
+
+      <div style="margin-top:1rem">
+        <div class="section-label" style="margin-bottom:0.6rem">Compared to Aqua Marcia (Rome's largest)</div>
+        <div class="bar-row">
+          <div class="bar-label">Daily flow</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${flowPct}%"></div></div>
+          <div class="bar-val">${fmt(flowPct,1)}%</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-label">Velocity</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${velPct}%"></div></div>
+          <div class="bar-val">${fmt(velPct,1)}%</div>
+        </div>
+      </div>`;
+    showResults(html);
+  });
+}
+
+// ── Calculation: Historical ────────────────────────────────────────────────
+function calcHistorical() {
+  clearErrors();
+  const key = document.getElementById('h_aqueduct').value;
+  const aq = AQUEDUCTS[key];
+  const head   = parseFloat(document.getElementById('h_head').value);
+  const lengthKm = parseFloat(document.getElementById('h_length').value);
+  const width  = parseFloat(document.getElementById('h_width').value);
+  const depth  = parseFloat(document.getElementById('h_depth').value);
+  if (!isFinite(head)||!isFinite(lengthKm)||!isFinite(width)||!isFinite(depth)||head<=0||lengthKm<=0||width<=0||depth<=0) {
+    alert('Please fill in all fields with positive values.');
+    return;
+  }
+  const n = 0.013; // opus signinum
+  const lengthM = lengthKm * 1000;
+  const slope = head / lengthM;
+  const { A, P, R, V, Q } = mannings(width, depth, slope, n);
+  const Qday = Q * 86400;
+  const pressure_bar = (1000 * 9.81 * head) / 100000;
+  const gradientPct = slope * 100;
+  const ratio1 = Math.round(1 / slope);
+
+  // Population estimate: ancient Rome ~1 litre/person/day per modern estimate is too low
+  // Romans used ~500 L/person/day for baths, fountains, etc.
+  const popSupported = Math.round(Qday * 1000 / 500);
+
+  requestAnimationFrame(() => {
+    const html = `
+      <div class="section-label">Historical Analysis: ${aq.name} (${aq.year})</div>
+      <div class="highlight-box" style="margin-bottom:1rem">${aq.desc}</div>
+      <div class="big-number">${fmtInt(Qday)} m³/day</div>
+      <div class="big-label">Calculated daily flow capacity (Manning's n = 0.013)</div>
+
+      <div class="metric-grid">
+        <div class="metric-box"><div class="metric-val">${fmt(V,3)} m/s</div><div class="metric-lbl">Flow Velocity</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(pressure_bar,2)} bar</div><div class="metric-lbl">Head Pressure</div></div>
+        <div class="metric-box"><div class="metric-val">1 in ${fmtInt(ratio1)}</div><div class="metric-lbl">Gradient Ratio</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(gradientPct,4)}%</div><div class="metric-lbl">% Slope</div></div>
+        <div class="metric-box"><div class="metric-val">${fmtInt(popSupported)}</div><div class="metric-lbl">People Supplied*</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(R,3)} m</div><div class="metric-lbl">Hydraulic Radius</div></div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Property</th><th class="num">Value</th></tr></thead>
+          <tbody>
+            <tr><td>Total length</td><td class="num">${fmt(lengthKm,1)} km</td></tr>
+            <tr><td>Total head drop</td><td class="num">${fmt(head,1)} m</td></tr>
+            <tr><td>Hydraulic slope</td><td class="num">${slope.toExponential(3)}</td></tr>
+            <tr><td>Channel cross-section</td><td class="num">${fmt(width,2)} × ${fmt(depth,2)} m</td></tr>
+            <tr><td>Cross-sectional area</td><td class="num">${fmt(A,4)} m²</td></tr>
+            <tr><td>Hydraulic radius</td><td class="num">${fmt(R,4)} m</td></tr>
+            <tr><td>Flow velocity</td><td class="num">${fmt(V,4)} m/s</td></tr>
+            <tr><td>Flow rate</td><td class="num">${fmt(Q,4)} m³/s</td></tr>
+            <tr><td>Daily volume</td><td class="num">${fmtInt(Qday)} m³/day</td></tr>
+            <tr><td>Head pressure</td><td class="num">${fmt(pressure_bar,3)} bar</td></tr>
+            <tr><td>Roman quinariae/day</td><td class="num">${fmtInt(Qday/0.476)}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:0.78rem;color:#888;margin-top:0.3rem">* Assuming 500 L/person/day for Roman urban use (baths, fountains, private supply)</p>`;
+    showResults(html);
+  });
+}
+
+// ── Calculation: Channel Designer ─────────────────────────────────────────
+function calcDesign() {
+  clearErrors();
+  const demand  = parseFloat(document.getElementById('c_demand').value);
+  const head    = parseFloat(document.getElementById('c_head').value);
+  const lengthKm= parseFloat(document.getElementById('c_length').value);
+  const width   = parseFloat(document.getElementById('c_width').value);
+  let ok = true;
+  if (!isFinite(demand) || demand<=0)   { showError('c_demand','c_demand_err');  ok=false; }
+  if (!isFinite(head)   || head<=0)     { showError('c_head','c_head_err');      ok=false; }
+  if (!isFinite(lengthKm)||lengthKm<=0) { showError('c_length','c_length_err'); ok=false; }
+  if (!isFinite(width)  || width<=0)    { showError('c_width','c_width_err');    ok=false; }
+  if (!ok) return;
+
+  const Qneeded = demand / 86400;
+  const lengthM = lengthKm * 1000;
+  const slope   = head / lengthM;
+  const n = 0.013;
+
+  // Solve for depth using Newton-Raphson iteration
+  // Q(d) = (1/n) * (w*d) * (w*d/(w+2d))^(2/3) * S^(1/2) = Qneeded
+  // Iterate d until Q(d) ≈ Qneeded
+  let d = 0.5;
+  for (let i = 0; i < 200; i++) {
+    const A = width * d;
+    const P = width + 2 * d;
+    const R = A / P;
+    const Qi = (1/n) * A * Math.pow(R,2/3) * Math.pow(slope,0.5);
+    const dA = width;
+    const dP = 2;
+    const dR = (dA * P - A * dP) / (P * P);
+    const dQi = (1/n) * Math.pow(slope,0.5) * (dA * Math.pow(R,2/3) + A * (2/3) * Math.pow(R,-1/3) * dR);
+    const diff = Qi - Qneeded;
+    d = d - diff / dQi;
+    if (d <= 0) d = 0.01;
+    if (Math.abs(diff / Qneeded) < 1e-8) break;
+  }
+
+  const { A, P, R, V, Q } = mannings(width, d, slope, n);
+  const Qday = Q * 86400;
+  const pressure_bar = (1000 * 9.81 * head) / 100000;
+  const fill_ratio = d / (d * 1.25); // channel is typically built 25% deeper than water depth
+
+  // Build scenario table for different Manning's n values
+  const nVals = [0.010, 0.011, 0.013, 0.016, 0.020, 0.025];
+  let scenRows = nVals.map(ni => {
+    let di = 0.5;
+    for (let i = 0; i < 200; i++) {
+      const Ai = width * di;
+      const Pi = width + 2 * di;
+      const Ri = Ai / Pi;
+      const Qi = (1/ni) * Ai * Math.pow(Ri,2/3) * Math.pow(slope,0.5);
+      const dAi = width;
+      const dPi = 2;
+      const dRi = (dAi * Pi - Ai * dPi) / (Pi * Pi);
+      const dQi2 = (1/ni) * Math.pow(slope,0.5) * (dAi * Math.pow(Ri,2/3) + Ai * (2/3) * Math.pow(Ri,-1/3) * dRi);
+      const diffi = Qi - Qneeded;
+      di = di - diffi / dQi2;
+      if (di <= 0) di = 0.01;
+      if (Math.abs(diffi / Qneeded) < 1e-8) break;
+    }
+    const Vi = (1/ni) * Math.pow((width*di)/(width+2*di),2/3) * Math.pow(slope,0.5);
+    const lining = ni<=0.011?'Smooth plaster':ni<=0.013?'Opus signinum':ni<=0.016?'Brick/mortar':ni<=0.020?'Rough stone':ni<=0.025?'Coarse stone':'Earth channel';
+    return `<tr><td>${lining}</td><td class="num">${fmt(ni,3)}</td><td class="num">${fmt(di,3)}</td><td class="num">${fmt(Vi,3)}</td></tr>`;
+  }).join('');
+
+  requestAnimationFrame(() => {
+    const html = `
+      <div class="section-label">Channel Design Results</div>
+      <div class="big-number">${fmt(d,3)} m</div>
+      <div class="big-label">Required water depth to deliver ${fmtInt(demand)} m³/day at n = 0.013</div>
+
+      <div class="metric-grid">
+        <div class="metric-box"><div class="metric-val">${fmt(V,3)} m/s</div><div class="metric-lbl">Flow Velocity</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(pressure_bar,2)} bar</div><div class="metric-lbl">Head Pressure</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(slope*100,4)}%</div><div class="metric-lbl">Required Gradient</div></div>
+        <div class="metric-box"><div class="metric-val">${fmt(A,3)} m²</div><div class="metric-lbl">Flow Area</div></div>
+      </div>
+
+      <div class="highlight-box">Build channel at least <strong>${fmt(d*1.25,3)} m</strong> deep (25% safety margin above water depth of ${fmt(d,3)} m).</div>
+
+      <div style="margin-bottom:0.5rem;font-size:0.85rem;font-weight:600;color:#444">Required depth by channel lining type:</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Lining Type</th><th class="num">n value</th><th class="num">Depth (m)</th><th class="num">Velocity (m/s)</th></tr></thead>
+          <tbody>${scenRows}</tbody>
+        </table>
+      </div>
+      <p style="font-size:0.78rem;color:#888;margin-top:0.3rem">Width fixed at ${fmt(width,2)} m. Slope = ${slope.toExponential(3)}. Demand = ${fmtInt(demand)} m³/day.</p>`;
+    showResults(html);
+  });
+}
+
+// ── Copy utility ──────────────────────────────────────────────────────────
+function copyText(txt) {
+  navigator.clipboard.writeText(txt).then(() => {
+    const btns = document.querySelectorAll('.copy-btn');
+    btns.forEach(b => { if (b.onclick && b.onclick.toString().includes(txt.replace(/'/g,''))) { b.textContent='Copied!'; setTimeout(()=>b.textContent='Copy',2000); }});
+  });
+  // fallback: find button via event
+}
+
+// ── Enter key trigger ─────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  const activeTab = document.querySelector('.tab-panel.active');
+  if (!activeTab) return;
+  const id = activeTab.id;
+  if (id==='tab-basic') calcBasic();
+  else if (id==='tab-historical') calcHistorical();
+  else if (id==='tab-compare') calcDesign();
+});
+
+// ── Init: load first aqueduct data ────────────────────────────────────────
+loadAqueduct();
+</script>
+</body>
+</html>
