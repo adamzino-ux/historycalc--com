@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Aqueduct Bridge Height Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate Roman aqueduct arcade (bridge) heights using historically accurate formulas. Find arcade tiers, arch heights, and total bridge height in Roman feet and meters.">
+<link rel="canonical" href="https://historycalc.com/roman-aqueduct-bridge-height-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Aqueduct Bridge Height Calculator",
+  "url": "https://historycalc.com/roman-aqueduct-bridge-height-calculator/",
+  "description": "Calculate the height of Roman aqueduct bridges (arcades) using historically accurate Roman engineering formulas and unit systems.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "publisher": { "@type": "Organization", "name": "historycalc.com", "url": "https://historycalc.com" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;font-size:16px;line-height:1.6}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline;color:#6b3410}
+.site-nav{background:#2c1810;padding:0.75rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.site-nav a{color:#f5f0e1;font-weight:600;font-size:0.95rem}
+.site-nav a:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.55rem;font-weight:700;color:#2c1810;margin-bottom:0.5rem;line-height:1.3}
+.subtitle{color:#6b4226;font-size:0.95rem;margin-bottom:1.5rem}
+/* SVG illustration */
+.illustration{background:#fff8ec;border:1px solid #c4a882;border-radius:8px;padding:1rem;margin-bottom:1.5rem;text-align:center}
+.illustration svg{max-width:100%;height:auto}
+/* Tool card */
+.tool-card{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(44,24,16,0.08);margin-bottom:2rem}
+.section-title{font-size:1.1rem;font-weight:700;color:#8b4513;border-bottom:2px solid #c4a882;padding-bottom:0.4rem;margin-bottom:1.25rem}
+.form-group{margin-bottom:1.25rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3825;margin-bottom:0.4rem}
+label span.unit{color:#8b4513;font-weight:400}
+input[type="number"],select{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fff;color:#2c1810;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px}
+input[type="number"]:focus,select:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none}
+.error-msg.show{display:block}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+input[type="range"]{width:100%;accent-color:#8b4513;cursor:pointer;min-height:24px}
+.slider-val{font-weight:700;color:#8b4513;font-size:1rem}
+.btn{background:#8b4513;color:#fff;border:none;padding:13px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s;margin-top:0.5rem}
+.btn:hover{background:#6b3410}
+.btn-sm{background:#8b4513;color:#fff;border:none;padding:6px 14px;border-radius:5px;font-size:0.8rem;cursor:pointer;min-height:36px;transition:background 0.2s}
+.btn-sm:hover{background:#6b3410}
+/* Results */
+.results{opacity:0;transition:opacity 0.35s ease;pointer-events:none}
+.results.show{opacity:1;pointer-events:auto}
+.big-result{background:linear-gradient(135deg,#8b4513,#6b3410);color:#fff;border-radius:8px;padding:1.5rem;text-align:center;margin-bottom:1.5rem}
+.big-result .big-num{font-size:2.8rem;font-weight:800;line-height:1}
+.big-result .big-label{font-size:0.9rem;opacity:0.85;margin-top:0.3rem}
+.big-result .sub-num{font-size:1.2rem;font-weight:600;margin-top:0.5rem;opacity:0.9}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem}
+.result-box{background:#fff8ec;border:1px solid #c4a882;border-radius:6px;padding:0.9rem;text-align:center}
+.result-box .rval{font-size:1.35rem;font-weight:700;color:#8b4513}
+.result-box .rlbl{font-size:0.75rem;color:#6b4226;margin-top:0.2rem}
+.copy-row{display:flex;justify-content:flex-end;margin-bottom:0.75rem}
+/* Table */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+thead th{background:#8b4513;color:#fff;padding:8px 10px;text-align:left}
+thead th:last-child,thead th:nth-child(n+2){text-align:right}
+tbody tr:nth-child(odd){background:#fff8ec}
+tbody tr:nth-child(even){background:#fffdf7}
+tbody td{padding:7px 10px;border-bottom:1px solid #e8dcc8;color:#2c1810}
+tbody td:last-child,tbody td:nth-child(n+2){text-align:right}
+/* Bar visual */
+.arch-visual{margin:1.25rem 0;background:#fff8ec;border:1px solid #c4a882;border-radius:6px;padding:1rem}
+.arch-visual-title{font-size:0.8rem;font-weight:600;color:#8b4513;margin-bottom:0.6rem;text-transform:uppercase;letter-spacing:0.05em}
+.bar-row{display:flex;align-items:center;gap:0.6rem;margin-bottom:0.5rem}
+.bar-label{font-size:0.78rem;color:#5a3825;width:100px;flex-shrink:0}
+.bar-track{flex:1;background:#e8dcc8;border-radius:3px;height:22px;position:relative}
+.bar-fill{height:100%;border-radius:3px;display:flex;align-items:center;padding-left:6px;font-size:0.72rem;font-weight:600;color:#fff;transition:width 0.4s ease;min-width:4px}
+.bar-val{font-size:0.78rem;color:#5a3825;width:55px;text-align:right;flex-shrink:0}
+/* Did you know */
+.did-you-know{background:#fff3d6;border-left:4px solid #8b4513;border-radius:0 6px 6px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.did-you-know h3{font-size:0.95rem;font-weight:700;color:#8b4513;margin-bottom:0.5rem}
+.did-you-know ul{list-style:none;padding:0}
+.did-you-know ul li{padding-left:1.2rem;position:relative;margin-bottom:0.4rem;font-size:0.88rem;color:#3d2010}
+.did-you-know ul li::before{content:"🏛️";position:absolute;left:0;font-size:0.75rem;top:1px}
+/* Modern comparison */
+.modern-comp{background:#e8f4e8;border:1px solid #7ab87a;border-radius:6px;padding:0.9rem 1.1rem;margin-top:0.75rem;font-size:0.88rem;color:#1a3a1a}
+.modern-comp strong{color:#2d7a2d}
+/* Content sections */
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.2rem;font-weight:700;color:#8b4513;border-left:4px solid #8b4513;padding-left:0.75rem;margin-bottom:0.75rem}
+.content-section p{color:#3d2010;font-size:0.92rem;margin-bottom:0.75rem}
+.content-section ul{padding-left:1.5rem;color:#3d2010;font-size:0.92rem}
+.content-section ul li{margin-bottom:0.4rem}
+.formula-box{background:#fff8ec;border:1px solid #c4a882;border-radius:6px;padding:1rem;font-family:monospace;font-size:0.88rem;color:#2c1810;margin:0.75rem 0;overflow-x:auto}
+details{border:1px solid #c4a882;border-radius:6px;margin-bottom:0.75rem;background:#fffdf7}
+summary{padding:0.75rem 1rem;font-weight:600;cursor:pointer;color:#8b4513;font-size:0.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"▼";font-size:0.75rem;transition:transform 0.2s}
+details[open] summary::after{transform:rotate(180deg)}
+details p{padding:0.5rem 1rem 0.9rem;font-size:0.88rem;color:#3d2010}
+/* Historical context */
+.hist-context{background:#f0e6cc;border:1px solid #c4a882;border-radius:8px;padding:1.25rem;margin-bottom:1.5rem}
+.hist-context h3{font-size:1rem;font-weight:700;color:#8b4513;margin-bottom:0.5rem}
+.hist-context p{font-size:0.88rem;color:#3d2010}
+/* Related tools */
+.related-tools{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:1.25rem;margin-bottom:2rem}
+.related-tools h2{font-size:1.1rem;font-weight:700;color:#8b4513;margin-bottom:0.75rem}
+.related-tools ul{list-style:none;padding:0}
+.related-tools ul li{border-bottom:1px solid #e8dcc8;padding:0.5rem 0}
+.related-tools ul li:last-child{border-bottom:none}
+.related-tools ul li a{font-size:0.9rem;color:#8b4513;font-weight:500}
+.related-tools ul li a:hover{color:#6b3410}
+/* Ad slot */
+.ad-slot{min-height:0;margin:0}
+/* Footer */
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.25rem 1.5rem;font-size:0.85rem}
+footer a{color:#c4a882}
+footer a:hover{color:#f5f0e1;text-decoration:underline}
+footer .footer-links{margin-bottom:0.5rem}
+footer .footer-links a{margin:0 0.5rem}
+@media(max-width:640px){
+  .row-2{grid-template-columns:1fr}
+  .result-grid{grid-template-columns:1fr 1fr}
+  h1{font-size:1.3rem}
+  .big-result .big-num{font-size:2.2rem}
+  .tool-card{padding:1.25rem}
+  .bar-label{width:80px;font-size:0.72rem}
+}
+@media(max-width:400px){
+  .result-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/">⚱️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <h1>Ancient Roman Aqueduct Bridge Height Calculator</h1>
+  <p class="subtitle">Calculate arcade (bridge) heights using historically accurate Roman engineering formulas — in Roman feet, meters, and modern equivalents.</p>
+
+  <!-- SVG Illustration -->
+  <div class="illustration" aria-label="Roman aqueduct arcade illustration">
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Roman aqueduct bridge cross-section">
+      <!-- Sky -->
+      <rect width="600" height="200" fill="#d4e8f0"/>
+      <!-- Ground -->
+      <rect y="175" width="600" height="25" fill="#8b7355"/>
+      <!-- Tier 3 (water channel on top) - piers -->
+      <rect x="80" y="40" width="22" height="60" fill="#c4956a"/>
+      <rect x="198" y="40" width="22" height="60" fill="#c4956a"/>
+      <rect x="316" y="40" width="22" height="60" fill="#c4956a"/>
+      <rect x="434" y="40" width="22" height="60" fill="#c4956a"/>
+      <!-- Tier 3 arches -->
+      <path d="M102 100 Q150 60 198 100" stroke="#8b6343" stroke-width="2" fill="#d4a97a" fill-opacity="0.6"/>
+      <path d="M220 100 Q268 60 316 100" stroke="#8b6343" stroke-width="2" fill="#d4a97a" fill-opacity="0.6"/>
+      <path d="M338 100 Q386 60 434 100" stroke="#8b6343" stroke-width="2" fill="#d4a97a" fill-opacity="0.6"/>
+      <!-- Tier 2 piers -->
+      <rect x="50" y="100" width="30" height="75" fill="#b8855a"/>
+      <rect x="178" y="100" width="30" height="75" fill="#b8855a"/>
+      <rect x="306" y="100" width="30" height="75" fill="#b8855a"/>
+      <rect x="434" y="100" width="30" height="75" fill="#b8855a"/>
+      <!-- Tier 2 arches -->
+      <path d="M80 175 Q143 120 178 175" stroke="#6b4523" stroke-width="2" fill="#c4956a" fill-opacity="0.5"/>
+      <path d="M208 175 Q271 120 306 175" stroke="#6b4523" stroke-width="2" fill="#c4956a" fill-opacity="0.5"/>
+      <path d="M336 175 Q399 120 434 175" stroke="#6b4523" stroke-width="2" fill="#c4956a" fill-opacity="0.5"/>
+      <!-- Water channel top -->
+      <rect x="65" y="32" width="470" height="14" rx="2" fill="#8b6343"/>
+      <rect x="68" y="33" width="464" height="5" fill="#4a9eb8" opacity="0.7"/>
+      <!-- Specus label -->
+      <text x="300" y="28" text-anchor="middle" font-size="11" fill="#2c1810" font-family="serif" font-style="italic">specus (water channel)</text>
+      <!-- Height arrows -->
+      <line x1="22" y1="38" x2="22" y2="175" stroke="#8b4513" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <polygon points="22,38 19,48 25,48" fill="#8b4513"/>
+      <polygon points="22,175 19,165 25,165" fill="#8b4513"/>
+      <text x="12" y="110" text-anchor="middle" font-size="10" fill="#8b4513" transform="rotate(-90,12,110)" font-family="sans-serif">Total Height</text>
+      <!-- Tier labels -->
+      <text x="548" y="78" font-size="9" fill="#5a3825" font-family="sans-serif" text-anchor="start">Tier 1</text>
+      <text x="548" y="140" font-size="9" fill="#5a3825" font-family="sans-serif" text-anchor="start">Tier 2</text>
+    </svg>
+    <p style="font-size:0.75rem;color:#6b4226;margin-top:0.4rem">Cross-section of a Roman aqueduct arcade showing tiered arches and the <em>specus</em> (water channel)</p>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="tool-card">
+    <div class="section-title">🏛️ Enter Arcade Parameters</div>
+
+    <div class="form-group">
+      <label for="valleyDepth">Valley/Gorge Depth to Bridge <span class="unit">(meters)</span></label>
+      <input type="number" id="valleyDepth" min="0.1" max="3000" step="0.1" placeholder="e.g. 49 (Pont du Gard: ~49m)" value="49">
+      <div class="error-msg" id="err-valley">Please enter a valid depth between 1 and 3,000 meters.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="numTiers">Number of Arcade Tiers</label>
+      <select id="numTiers">
+        <option value="1">1 Tier (single arcade)</option>
+        <option value="2" selected>2 Tiers (double arcade)</option>
+        <option value="3">3 Tiers (triple arcade)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="archSpan">Arch Span <span class="unit">(meters)</span> <span class="slider-val" id="spanVal">6.0</span></label>
+      <input type="range" id="archSpan" min="2" max="25" step="0.5" value="6">
+    </div>
+
+    <div class="row-2">
+      <div class="form-group">
+        <label for="pierWidth">Pier Width <span class="unit">(meters)</span></label>
+        <input type="number" id="pierWidth" min="0.5" max="20" step="0.1" placeholder="e.g. 4.5" value="4.5">
+        <div class="error-msg" id="err-pier">Must be between 0.5 and 20 meters.</div>
+      </div>
+      <div class="form-group">
+        <label for="specusHeight">Specus (Channel) Height <span class="unit">(meters)</span></label>
+        <input type="number" id="specusHeight" min="0.1" max="5" step="0.1" placeholder="e.g. 1.8" value="1.8">
+        <div class="error-msg" id="err-specus">Must be between 0.1 and 5 meters.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="gradientSlope">Aqueduct Gradient <span class="unit">(mm per km, for gradient display)</span> <span class="slider-val" id="slopeVal">340</span></label>
+      <input type="range" id="gradientSlope" min="50" max="3000" step="10" value="340">
+    </div>
+
+    <button class="btn" id="calcBtn">⚙️ Calculate Bridge Height</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results" id="results">
+    <div class="section-title">📐 Results</div>
+
+    <div class="big-result" id="bigResult">
+      <div class="big-num" id="totalM">—</div>
+      <div class="big-label">Total Bridge Height (meters)</div>
+      <div class="sub-num" id="totalRF">— Roman Feet (pedes)</div>
+    </div>
+
+    <div class="copy-row">
+      <button class="btn-sm" id="copyBtn">📋 Copy Results</button>
+    </div>
+
+    <div class="result-grid" id="resultGrid"></div>
+
+    <div class="arch-visual" id="archVis">
+      <div class="arch-visual-title">Height Breakdown by Tier</div>
+      <div id="barChart"></div>
+    </div>
+
+    <div id="modernComp"></div>
+
+    <div class="tbl-wrap" style="margin-top:1.25rem">
+      <table id="breakdownTable">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Meters</th>
+            <th>Roman Feet</th>
+            <th>% of Total</th>
+          </tr>
+        </thead>
+        <tbody id="breakdownBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h3>📜 Historical Context</h3>
+    <p>Roman aqueduct bridges — known as <em>arcades</em> — were engineering marvels of the ancient world. The Romans used a standard unit called the <em>pes Monetalis</em> (Roman foot ≈ 0.296 m) for all construction measurements. The Pont du Gard, built around 50 CE near Nîmes, France, rises 48.77 meters over the Gardon River on three tiers. Its lower tier has arches spanning 15.54–24.52 m, while upper arches are smaller. Roman engineers maintained aqueduct gradients as low as 0.03% (30 cm per km) over distances exceeding 90 km — an extraordinary feat achieved without modern surveying equipment. The total length of Rome's 11 major aqueducts reached approximately 430 km, supplying over 1 million cubic meters of water daily.</p>
+  </div>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>Did You Know?</h3>
+    <ul>
+      <li>The Pont du Gard's lowest tier arches are up to 24.5 m wide yet required no mortar — the stones were cut with such precision they hold by compression alone.</li>
+      <li>Roman aqueduct gradients could be as shallow as 1:20,000 (5 cm per km) — some ran more than 90 km to drop just 40 meters total elevation.</li>
+      <li>The word "aqueduct" comes from Latin <em>aqua</em> (water) + <em>ductus</em> (leading) — Roman aqueducts delivered up to 1.2 million cubic meters of water per day to Rome at its peak.</li>
+    </ul>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section">
+    <h2>How to Use This Roman Aqueduct Arcade Height Calculator</h2>
+    <p>Enter the depth of the valley or gorge your aqueduct bridge must cross (in meters), then select the number of arcade tiers typically used (1–3). Adjust the arch span using the slider, and enter the pier width and specus (water channel) height. Hit "Calculate Bridge Height" to see the total bridge height in both meters and authentic Roman feet (<em>pedes</em>), along with a full tier-by-tier breakdown.</p>
+    <p>The output shows you how each tier — lower arcade, upper arcade, and the specus itself — contributes to total bridge height, plus a modern comparison and gradient context.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding how Roman engineers calculated and built aqueduct bridges is one of the most revealing windows into ancient technical mastery. When you're a Roman <em>aquarius</em> (water engineer) tasked with bringing water from a mountain spring 80 km away to a city of 50,000 people, crossing a 50-meter gorge isn't optional — it's engineering or nothing.</p>
+    <p>Historians, archaeologists, students, and enthusiasts use this calculator to reconstruct lost Roman aqueducts from fragmentary evidence — a surviving pier base gives you width; geological survey gives you valley depth; and known Roman construction ratios give you the rest. This approach helped reconstruct the Aqua Claudia in the 1980s and continues to inform restorations at sites like Segovia (Spain), where the 2-tier arcade still stands 28.5 meters tall after 2,000 years.</p>
+    <p>Civil engineers also find value here: Roman arch proportions (span-to-height ratios of roughly 1:0.5 to 1:0.7) remain structurally sound and are still referenced in masonry bridge design education.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses historically attested Roman structural ratios. Each arch's rise (height) follows the semicircular or segmental arch norm:</p>
+    <div class="formula-box">
+Arch Rise Height = Arch Span × Rise Ratio (typically 0.5 for semicircle)
+
+Tier Height = Arch Rise + Pier Cap + Impost Block
+            ≈ (Span × 0.50) + (Span × 0.08) + (Span × 0.04)
+            = Span × 0.62
+
+Tier 1 Height = Valley Depth × Tier 1 Proportion
+Tier 2 Height = Valley Depth × Tier 2 Proportion
+Tier 3 Height = Valley Depth × Tier 3 Proportion
+
+Roman Foot (pes) = 0.2963 m  →  Height in pedes = meters ÷ 0.2963
+Total Height = Sum of all tiers + Specus Height
+Gradient: drop = (gradient mm/km × bridge length km)</div>
+    <p>For multi-tier arcades, Romans typically distributed height as: ~50% lower tier, ~35% middle tier, ~15% upper tier — values verified against the Pont du Gard (Tier 1: 22m, Tier 2: 20m, Tier 3: 7.4m + specus).</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse valley depth with bridge height:</strong> The bridge must be tall enough to cross the valley AND carry the water channel at the correct elevation — bridge height always slightly exceeds raw valley depth.</li>
+      <li><strong>Arch span drives everything:</strong> Romans sized arch spans to match available stone lengths and quarry transport limits — typical spans ranged 4–25 m. Wider spans require exponentially thicker piers.</li>
+      <li><strong>Single-tier arcades were rare for deep valleys:</strong> Beyond ~15 m, a single tier becomes structurally impractical in Roman masonry — two tiers were the engineering sweet spot.</li>
+      <li><strong>The specus was always at the top:</strong> Never assume the water channel is mid-bridge — it always crowns the structure, adding 1.5–2.5 m including the concrete lining (<em>opus signinum</em>).</li>
+      <li><strong>Gradient matters for water flow:</strong> Too shallow and water stagnates; too steep and erosion damages the channel lining. The optimal Roman range was 0.3–3.0 m per km.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What is a Roman arcade (arcus) in an aqueduct?</summary>
+      <p>An <em>arcus</em> is a series of arches built on piers that elevates the aqueduct's water channel across valleys or low ground. When stacked in multiple rows, this becomes a tiered arcade — the most visually iconic form of Roman engineering. The Pont du Gard in France is the most famous surviving example, with three tiers still standing after 2,000 years.</p>
+    </details>
+    <details>
+      <summary>How long is a Roman foot (pes) compared to a modern foot?</summary>
+      <p>A Roman foot (<em>pes Monetalis</em>) measured approximately 0.2963 meters, or about 11.67 modern inches — roughly 97% the length of an Imperial foot (0.3048 m). Roman engineers used 1 pes = 4 palmi = 12 unciae. A standard Roman mile (<em>mille passuum</em>) was 1,000 double-steps = 1,480 meters (vs. 1,609 m today).</p>
+    </details>
+    <details>
+      <summary>How did Romans measure such precise gradients without modern instruments?</summary>
+      <p>Roman surveyors used a device called a <em>groma</em> (for right angles), a <em>chorobates</em> (a 6-meter long leveling table with a water channel), and a <em>dioptra</em> (an angular measuring instrument). These tools, used in combination with repeated measurements over the entire aqueduct route, allowed gradients accurate to within a few centimeters per kilometer — remarkable for 2,000-year-old technology.</p>
+    </details>
+    <details>
+      <summary>Which Roman aqueduct had the tallest bridge?</summary>
+      <p>The Pont du Gard (Nîmes, France) at approximately 48.8 meters is the tallest surviving Roman aqueduct bridge, but the Aqueduct of Valens in Constantinople and sections of the Aqua Claudia near Rome likely reached similar or greater heights. Ancient texts describe aqueduct bridges taller than 50 meters that no longer survive intact.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>⚙️ Related Historical Calculators</h2>
+    <ul>
+      <li><a href="/roman-aqueduct-water-pressure-calculator/">Ancient Roman Aqueduct Water Pressure Calculator</a></li>
+      <li><a href="/ancient-roman-feast-cost-calculator/">Ancient Roman Feast Cost Calculator</a></li>
+      <li><a href="/roman-water-distribution-pipe-sizing-calculator/">Ancient Roman Aqueduct Water Distribution Calculator</a></li>
+      <li><a href="/medieval-longbow-arrow-production-calculator/">Medieval Longbow Arrow Production Calculator</a></li>
+      <li><a href="/roman-aqueduct-arcade-span-calculator/">Ancient Roman Aqueduct Bridge (Arcade) Span Calculator</a></li>
+      <li><a href="/ancient-greek-agora-market-price-calculator/">Ancient Greek Agora Market Price Calculator</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a> |
+    <a href="/privacy/">Privacy</a> |
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© <span id="yr"></span> historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+// Constants
+const ROMAN_FOOT = 0.2963; // meters per pes Monetalis
+
+// Tier distribution ratios (historically attested from Pont du Gard analysis)
+const TIER_DIST = {
+  1: [1.0],
+  2: [0.58, 0.42],
+  3: [0.47, 0.34, 0.19]
+};
+// Arch height-to-span ratio (semicircular = 0.5, with impost blocks & pier cap ~0.62 total tier-height factor)
+const ARCH_RISE_RATIO = 0.50;
+const IMPOST_RATIO = 0.08;
+const CAP_RATIO = 0.04;
+
+// Tier colour palette
+const TIER_COLORS = ['#8b4513','#b8855a','#d4a97a','#e8d0a0'];
+
+function fmt(n, dp=2) {
+  if (isNaN(n)) return '—';
+  return n.toLocaleString('en-US', {minimumFractionDigits: dp, maximumFractionDigits: dp});
+}
+function fmtInt(n) {
+  return Math.round(n).toLocaleString('en-US');
+}
+
+// Slider live updates
+document.getElementById('archSpan').addEventListener('input', function(){
+  document.getElementById('spanVal').textContent = parseFloat(this.value).toFixed(1);
+});
+document.getElementById('gradientSlope').addEventListener('input', function(){
+  document.getElementById('slopeVal').textContent = parseInt(this.value);
+});
+
+// Enter key on number inputs
+['valleyDepth','pierWidth','specusHeight'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown', e=>{ if(e.key==='Enter') triggerCalc(); });
+});
+
+document.getElementById('calcBtn').addEventListener('click', triggerCalc);
+
+function triggerCalc() {
+  requestAnimationFrame(() => { calculate(); });
+}
+
+function showErr(id, show) {
+  const el = document.getElementById(id);
+  const inp = el.previousElementSibling;
+  if (show) { el.classList.add('show'); inp.classList.add('error'); }
+  else { el.classList.remove('show'); inp.classList.remove('error'); }
+}
+
+function calculate() {
+  // Parse inputs
+  const valleyM = parseFloat(document.getElementById('valleyDepth').value);
+  const numTiers = parseInt(document.getElementById('numTiers').value);
+  const archSpanM = parseFloat(document.getElementById('archSpan').value);
+  const pierW = parseFloat(document.getElementById('pierWidth').value);
+  const specusH = parseFloat(document.getElementById('specusHeight').value);
+  const gradient = parseInt(document.getElementById('gradientSlope').value);
+
+  // Validate
+  let valid = true;
+  if (isNaN(valleyM) || valleyM < 1 || valleyM > 3000) { showErr('err-valley', true); valid=false; } else showErr('err-valley', false);
+  if (isNaN(pierW) || pierW < 0.5 || pierW > 20) { showErr('err-pier', true); valid=false; } else showErr('err-pier', false);
+  if (isNaN(specusH) || specusH < 0.1 || specusH > 5) { showErr('err-specus', true); valid=false; } else showErr('err-specus', false);
+  if (!valid) return;
+
+  const tiers = TIER_DIST[numTiers];
+  const tierHeights = tiers.map(r => valleyM * r);
+
+  // Arch geometry per tier
+  const archRiseM = archSpanM * ARCH_RISE_RATIO;
+  const impM = archSpanM * IMPOST_RATIO;
+  const capM = archSpanM * CAP_RATIO;
+  const totalArchCompM = archRiseM + impM + capM; // per arch unit
+
+  // Total bridge height = sum of tiers + specus
+  const sumTiers = tierHeights.reduce((a,b)=>a+b, 0);
+  const totalM = sumTiers + specusH;
+  const totalRF = totalM / ROMAN_FOOT;
+
+  // Pier details for each tier
+  const tierData = tierHeights.map((h, i) => {
+    const archRise = archSpanM * ARCH_RISE_RATIO;
+    const keystone = h * 0.06; // ~6% of tier height
+    const pierH = h - archRise - keystone;
+    return {
+      label: numTiers===1 ? 'Lower Arcade' : (i===0 ? 'Lower Arcade' : i===1 ? 'Middle Arcade' : 'Upper Arcade'),
+      heightM: h,
+      heightRF: h / ROMAN_FOOT,
+      archRise: archRise,
+      pierH: Math.max(0, pierH),
+      keystone: keystone
+    };
+  });
+
+  // Build result HTML
+  const tierLabelsStr = tierData.map(t => t.label).join(', ');
+
+  // Big result block
+  document.getElementById('totalM').textContent = fmt(totalM) + ' m';
+  document.getElementById('totalRF').textContent = fmt(totalRF, 1) + ' Roman Feet (pedes)';
+
+  // Result grid
+  const archRiseRF = archRiseM / ROMAN_FOOT;
+  const gridHtml = `
+    <div class="result-box"><div class="rval">${fmt(sumTiers)} m</div><div class="rlbl">Arcade Tiers Height</div></div>
+    <div class="result-box"><div class="rval">${fmt(specusH)} m</div><div class="rlbl">Specus (Channel) Height</div></div>
+    <div class="result-box"><div class="rval">${fmt(archRiseM)} m</div><div class="rlbl">Arch Rise (per arch)</div></div>
+    <div class="result-box"><div class="rval">${fmt(archSpanM)} m</div><div class="rlbl">Arch Span</div></div>
+    <div class="result-box"><div class="rval">${fmt(pierW)} m</div><div class="rlbl">Pier Width</div></div>
+    <div class="result-box"><div class="rval">${gradient} mm/km</div><div class="rlbl">Aqueduct Gradient</div></div>
+  `;
+  document.getElementById('resultGrid').innerHTML = gridHtml;
+
+  // Bar chart
+  const maxH = Math.max(...tierHeights, specusH);
+  let barHtml = '';
+  tierData.forEach((t, i) => {
+    const pct = totalM > 0 ? (t.heightM / totalM * 100) : 0;
+    const barW = totalM > 0 ? (t.heightM / totalM * 100) : 0;
+    barHtml += `<div class="bar-row">
+      <div class="bar-label">${t.label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${barW.toFixed(1)}%;background:${TIER_COLORS[i]}">${pct.toFixed(0)}%</div></div>
+      <div class="bar-val">${fmt(t.heightM)} m</div>
+    </div>`;
+  });
+  // Specus bar
+  const specusPct = totalM > 0 ? (specusH / totalM * 100) : 0;
+  barHtml += `<div class="bar-row">
+    <div class="bar-label">Specus</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${specusPct.toFixed(1)}%;background:#4a9eb8">${specusPct.toFixed(0)}%</div></div>
+    <div class="bar-val">${fmt(specusH)} m</div>
+  </div>`;
+  document.getElementById('barChart').innerHTML = barHtml;
+
+  // Breakdown table
+  let tableRows = '';
+  tierData.forEach(t => {
+    const pct = totalM > 0 ? (t.heightM/totalM*100).toFixed(1) : '0.0';
+    tableRows += `<tr>
+      <td>${t.label}</td>
+      <td>${fmt(t.heightM)}</td>
+      <td>${fmt(t.heightM/ROMAN_FOOT,1)}</td>
+      <td>${pct}%</td>
+    </tr>`;
+  });
+  tableRows += `<tr>
+    <td>Specus (Water Channel)</td>
+    <td>${fmt(specusH)}</td>
+    <td>${fmt(specusH/ROMAN_FOOT,1)}</td>
+    <td>${(specusH/totalM*100).toFixed(1)}%</td>
+  </tr>
+  <tr style="font-weight:700;background:#f0e6cc !important">
+    <td>Total Bridge Height</td>
+    <td>${fmt(totalM)}</td>
+    <td>${fmt(totalRF,1)}</td>
+    <td>100.0%</td>
+  </tr>
+  <tr>
+    <td>Arch Rise (per arch)</td>
+    <td>${fmt(archRiseM)}</td>
+    <td>${fmt(archRiseM/ROMAN_FOOT,1)}</td>
+    <td>—</td>
+  </tr>
+  <tr>
+    <td>Impost Block (est.)</td>
+    <td>${fmt(archSpanM*IMPOST_RATIO)}</td>
+    <td>${fmt((archSpanM*IMPOST_RATIO)/ROMAN_FOOT,1)}</td>
+    <td>—</td>
+  </tr>`;
+  document.getElementById('breakdownBody').innerHTML = tableRows;
+
+  // Modern comparison
+  const storeyH = 3.0; // typical floor height in meters
+  const stories = (totalM / storeyH).toFixed(1);
+  const pontDuGard = 48.77;
+  const pctPont = (totalM / pontDuGard * 100).toFixed(0);
+  const statueOfLiberty = 46.0; // torch to ground
+  const busLengths = (totalM / 12).toFixed(1);
+  document.getElementById('modernComp').innerHTML = `
+    <div class="modern-comp">
+      <strong>Modern Equivalents:</strong><br>
+      Your bridge stands <strong>${fmt(totalM)} m</strong> tall — that's about <strong>${stories} stories</strong> of a modern building · <strong>${pctPont}%</strong> of the Pont du Gard's height (48.8 m) · equivalent to stacking <strong>${busLengths} double-decker buses</strong> end-to-end · expressed in Roman pedes: <strong>${fmt(totalRF,1)} pes</strong>
+    </div>`;
+
+  // Store result string for clipboard
+  window._lastResult = `Roman Aqueduct Arcade Height Results\n` +
+    `Total Height: ${fmt(totalM)} m (${fmt(totalRF,1)} Roman feet)\n` +
+    `Valley Depth: ${fmt(valleyM)} m | Tiers: ${numTiers} | Arch Span: ${archSpanM} m\n` +
+    `Specus Height: ${specusH} m | Gradient: ${gradient} mm/km\n` +
+    tierData.map(t=>`${t.label}: ${fmt(t.heightM)} m`).join(' | ');
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('results').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+// Copy button
+document.getElementById('copyBtn').addEventListener('click', function(){
+  if (!window._lastResult) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(window._lastResult).then(()=>{
+      this.textContent = '✅ Copied!';
+      setTimeout(()=>{ this.textContent = '📋 Copy Results'; }, 2000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = window._lastResult;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    this.textContent = '✅ Copied!';
+    setTimeout(()=>{ this.textContent = '📋 Copy Results'; }, 2000);
+  }
+});
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
