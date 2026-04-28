@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Road Distance Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Convert Roman road distances using mille passuum, passus, pedes & more. Calculate ancient Roman measurements with modern equivalents. Free online tool.">
+<link rel="canonical" href="https://historycalc.com/roman-road-distance-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Road Distance Calculator",
+  "url": "https://historycalc.com/roman-road-distance-calculator/",
+  "description": "Convert Roman road distances using mille passuum, passus, pedes and more ancient Roman measurement units with modern equivalents.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f5f0e1;
+  --card:#fdf8ee;
+  --accent:#8b4513;
+  --accent2:#6b3410;
+  --text:#2c1810;
+  --border:#c4a882;
+  --muted:#7a6248;
+  --highlight:#fff8e7;
+  --shadow:rgba(139,69,19,0.12);
+  --red:#c0392b;
+  --green:#2e7d32;
+}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;font-size:16px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline;color:var(--accent2)}
+nav{background:var(--accent);padding:0.75rem 1.5rem;display:flex;align-items:center}
+nav a{color:#fff;font-weight:600;font-size:1.05rem;letter-spacing:0.02em}
+nav a:hover{color:#ffd9b3;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem 1rem 3rem}
+h1{font-size:1.55rem;font-weight:700;color:var(--accent);margin:1.5rem 0 0.4rem;line-height:1.25}
+.subtitle{color:var(--muted);font-size:0.92rem;margin-bottom:1.5rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.75rem 1.5rem;box-shadow:0 2px 8px var(--shadow);margin-bottom:1.75rem}
+/* SVG illustration */
+.illustration{text-align:center;margin-bottom:1.25rem}
+.illustration svg{max-width:100%;height:auto}
+/* Tab buttons */
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab-btn{background:var(--bg);border:1.5px solid var(--border);color:var(--text);padding:0.5rem 1.1rem;border-radius:6px;cursor:pointer;font-size:0.9rem;font-weight:500;transition:background 0.2s,color 0.2s;min-height:44px}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tab-btn:hover:not(.active){background:#ede5d4}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3e2b;margin-bottom:0.3rem;margin-top:1rem}
+label:first-of-type{margin-top:0}
+input[type=number],select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:6px;font-size:1rem;background:#fff;color:var(--text);transition:box-shadow 0.2s,border-color 0.2s;appearance:none;-webkit-appearance:none}
+input[type=number]:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,69,19,0.18)}
+input.error{border-color:var(--red)}
+.error-msg{color:var(--red);font-size:0.8rem;margin-top:0.25rem;display:none}
+.error-msg.show{display:block}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:480px){.input-row{grid-template-columns:1fr}}
+.btn{background:var(--accent);color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;margin-top:1.25rem;transition:background 0.2s;min-height:44px}
+.btn:hover{background:var(--accent2)}
+/* Results */
+.results{opacity:0;transition:opacity 0.3s ease;pointer-events:none}
+.results.show{opacity:1;pointer-events:auto}
+.result-hero{background:var(--accent);color:#fff;border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:1rem;text-align:center}
+.result-hero .big-num{font-size:2.4rem;font-weight:700;letter-spacing:-0.01em;line-height:1.1}
+.result-hero .big-label{font-size:0.95rem;opacity:0.88;margin-top:0.2rem}
+.result-hero .sub-num{font-size:1.05rem;opacity:0.82;margin-top:0.35rem}
+.copy-btn{background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.4);color:#fff;padding:5px 14px;border-radius:4px;font-size:0.8rem;cursor:pointer;margin-top:0.6rem;transition:background 0.2s;min-height:32px}
+.copy-btn:hover{background:rgba(255,255,255,0.3)}
+.copy-btn.copied{background:rgba(255,255,255,0.3)}
+.table-wrap{overflow-x:auto;margin-top:0.75rem;border-radius:6px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:0.9rem}
+th{background:#e8dcc8;color:var(--text);font-weight:600;padding:9px 12px;text-align:left;font-size:0.82rem;text-transform:uppercase;letter-spacing:0.04em}
+td{padding:8px 12px;border-bottom:1px solid #e4d8c4;color:var(--text)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#faf6ee}
+td:last-child,th:last-child{text-align:right}
+/* Modern equiv */
+.modern-equiv{background:var(--highlight);border:1px solid var(--border);border-radius:6px;padding:1rem 1.25rem;margin-top:1rem;font-size:0.9rem}
+.modern-equiv strong{color:var(--accent)}
+/* Did you know */
+.dyk{background:#fff3e0;border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:1rem 1.25rem;margin-top:1.5rem}
+.dyk h3{color:var(--accent);font-size:0.95rem;margin-bottom:0.5rem}
+.dyk ul{list-style:disc;padding-left:1.2rem;font-size:0.88rem;line-height:1.7}
+/* Historical context */
+.hist-ctx{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin-bottom:1.75rem;font-size:0.92rem;line-height:1.75}
+.hist-ctx h2{color:var(--accent);font-size:1.05rem;margin-bottom:0.6rem}
+/* Sections */
+.content-section{margin-bottom:1.75rem}
+.content-section h2{color:var(--accent);font-size:1.15rem;margin-bottom:0.75rem;padding-bottom:0.35rem;border-bottom:2px solid var(--border)}
+.content-section p{font-size:0.92rem;margin-bottom:0.75rem;color:#3a2510}
+.content-section ul{font-size:0.92rem;padding-left:1.4rem;margin-bottom:0.75rem}
+.content-section ul li{margin-bottom:0.4rem;color:#3a2510}
+details{margin-bottom:0.75rem;border:1px solid var(--border);border-radius:6px;overflow:hidden}
+summary{padding:0.75rem 1rem;background:#ede5d4;font-weight:500;cursor:pointer;font-size:0.92rem;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"▶";font-size:0.7rem;transition:transform 0.2s}
+details[open] summary::after{transform:rotate(90deg)}
+details[open] summary{background:#e0d4be}
+.details-body{padding:0.85rem 1rem;font-size:0.89rem;line-height:1.7;color:#3a2510}
+/* Related tools */
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.75rem}
+@media(max-width:480px){.related-grid{grid-template-columns:1fr}}
+.related-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:0.75rem 1rem;font-size:0.88rem;font-weight:500;color:var(--accent);transition:background 0.2s}
+.related-card:hover{background:#ede5d4;text-decoration:none;color:var(--accent2)}
+.ad-slot{min-height:0;margin:0}
+footer{background:var(--accent);color:#fde8d0;text-align:center;padding:1.25rem 1rem;font-size:0.85rem}
+footer a{color:#fde8d0}
+footer a:hover{color:#fff}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:0.5rem;flex-wrap:wrap}
+/* Slider */
+.slider-row{margin-top:1rem}
+.slider-row input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer}
+.slider-val{text-align:right;font-size:0.85rem;color:var(--muted);margin-top:0.2rem}
+/* Milestone visual */
+.milestone-bar{display:flex;align-items:center;gap:0.5rem;margin:0.75rem 0;flex-wrap:wrap}
+.ms-dot{width:14px;height:14px;background:var(--accent);border-radius:50%;flex-shrink:0}
+.ms-line{height:3px;background:var(--border);border-radius:2px;flex:1;min-width:20px}
+.ms-label{font-size:0.82rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚔️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- SVG Illustration -->
+  <div class="illustration">
+    <svg viewBox="0 0 560 160" xmlns="http://www.w3.org/2000/svg" width="560" height="160" role="img" aria-label="Roman road illustration with milestone and columns">
+      <!-- Sky background -->
+      <rect width="560" height="160" fill="#f5f0e1" rx="8"/>
+      <!-- Rolling hills -->
+      <ellipse cx="100" cy="160" rx="180" ry="55" fill="#d4c4a0"/>
+      <ellipse cx="420" cy="160" rx="200" ry="60" fill="#c9b88c"/>
+      <!-- Road surface -->
+      <rect x="0" y="112" width="560" height="48" fill="#b8a882" rx="2"/>
+      <!-- Road center line (dashed) -->
+      <line x1="0" y1="136" x2="560" y2="136" stroke="#d4c4a0" stroke-width="2" stroke-dasharray="18,12"/>
+      <!-- Road stones -->
+      <rect x="10" y="114" width="38" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <rect x="52" y="114" width="42" height="42" fill="#b0a07a" rx="1" opacity="0.6"/>
+      <rect x="98" y="114" width="36" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <rect x="138" y="114" width="44" height="42" fill="#b0a07a" rx="1" opacity="0.6"/>
+      <rect x="186" y="114" width="38" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <rect x="228" y="114" width="40" height="42" fill="#b0a07a" rx="1" opacity="0.6"/>
+      <rect x="272" y="114" width="36" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <rect x="312" y="114" width="44" height="42" fill="#b0a07a" rx="1" opacity="0.6"/>
+      <rect x="360" y="114" width="38" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <rect x="402" y="114" width="42" height="42" fill="#b0a07a" rx="1" opacity="0.6"/>
+      <rect x="448" y="114" width="36" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <rect x="488" y="114" width="44" height="42" fill="#b0a07a" rx="1" opacity="0.6"/>
+      <rect x="536" y="114" width="24" height="42" fill="#a89870" rx="1" opacity="0.6"/>
+      <!-- Milestone stone -->
+      <rect x="72" y="76" width="22" height="36" fill="#9b8868" rx="2"/>
+      <ellipse cx="83" cy="76" rx="11" ry="6" fill="#b0a07a"/>
+      <text x="83" y="98" text-anchor="middle" fill="#f5f0e1" font-size="8" font-weight="bold" font-family="serif">I</text>
+      <!-- Roman column left -->
+      <rect x="160" y="38" width="18" height="74" fill="#c8b896" rx="1"/>
+      <rect x="157" y="34" width="24" height="8" fill="#b8a882" rx="1"/>
+      <rect x="157" y="108" width="24" height="6" fill="#b8a882" rx="1"/>
+      <ellipse cx="169" cy="34" rx="12" ry="4" fill="#d4c4a0"/>
+      <!-- Roman column right -->
+      <rect x="372" y="38" width="18" height="74" fill="#c8b896" rx="1"/>
+      <rect x="369" y="34" width="24" height="8" fill="#b8a882" rx="1"/>
+      <rect x="369" y="108" width="24" height="6" fill="#b8a882" rx="1"/>
+      <ellipse cx="381" cy="34" rx="12" ry="4" fill="#d4c4a0"/>
+      <!-- Arch between columns -->
+      <path d="M178 108 Q275 30 362 108" stroke="#c8b896" stroke-width="6" fill="none"/>
+      <!-- Distance arrow -->
+      <line x1="200" y1="20" x2="350" y2="20" stroke="#8b4513" stroke-width="2" marker-end="url(#arr)" marker-start="url(#arrL)"/>
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L8,3 z" fill="#8b4513"/></marker>
+        <marker id="arrL" markerWidth="8" markerHeight="8" refX="2" refY="3" orient="auto-start-reverse"><path d="M0,0 L0,6 L8,3 z" fill="#8b4513"/></marker>
+      </defs>
+      <text x="275" y="15" text-anchor="middle" fill="#8b4513" font-size="10" font-weight="bold" font-family="serif">I MILLE PASSUUM</text>
+      <!-- Trees -->
+      <rect x="470" y="84" width="6" height="28" fill="#9b8868"/>
+      <ellipse cx="473" cy="80" rx="14" ry="18" fill="#7a8c5a"/>
+      <rect x="510" y="88" width="5" height="24" fill="#9b8868"/>
+      <ellipse cx="512" cy="84" rx="11" ry="14" fill="#6b7a4e"/>
+      <!-- Legionary silhouette -->
+      <rect x="316" y="84" width="8" height="28" fill="#6b5a3e"/>
+      <circle cx="320" cy="80" r="7" fill="#8b7355"/>
+      <rect x="312" y="90" width="16" height="3" fill="#8b4513" rx="1"/>
+      <!-- Sun -->
+      <circle cx="500" cy="30" r="16" fill="#f0c040" opacity="0.9"/>
+      <circle cx="500" cy="30" r="12" fill="#f5d060"/>
+    </svg>
+  </div>
+
+  <h1>Ancient Roman Road Distance Calculator</h1>
+  <p class="subtitle">Convert between Roman road units — mille passuum, passus, pedes, stadia, and more — with modern equivalents</p>
+
+  <!-- Historical Context -->
+  <div class="hist-ctx">
+    <h2>📜 Historical Context</h2>
+    <p>The Romans built over <strong>400,000 km</strong> of roads across their empire, of which roughly 80,500 km were stone-paved. Their primary long-distance unit was the <em>mille passuum</em> ("thousand paces"), equivalent to 1,000 double-steps (<em>passus</em>) each measuring 5 Roman feet (<em>pedes</em>). A Roman foot (<em>pes</em>) was standardized at approximately <strong>0.2963 meters</strong> — remarkably consistent across the empire. Milestones (<em>milliaria</em>) were erected every mille passuum from the <em>Milliarium Aureum</em> (Golden Milestone) in Rome's Forum. The Via Appia, begun in 312 BC, stretched 563 km from Rome to Brindisi and could be marched by a Roman legion in about 20 days at their standard pace of 20 Roman miles per day.</p>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('convert')" role="tab" aria-selected="true">Unit Converter</button>
+      <button class="tab-btn" onclick="switchTab('journey')" role="tab" aria-selected="false">Journey Planner</button>
+      <button class="tab-btn" onclick="switchTab('modern')" role="tab" aria-selected="false">Modern → Roman</button>
+    </div>
+
+    <!-- TAB 1: Unit Converter -->
+    <div class="tab-panel active" id="tab-convert">
+      <label for="inputVal">Distance Value</label>
+      <input type="number" id="inputVal" placeholder="e.g. 10" min="0" step="any">
+      <div class="error-msg" id="err-convert">Please enter a valid positive number.</div>
+
+      <label for="inputUnit">From Unit</label>
+      <select id="inputUnit">
+        <option value="mille">Mille Passuum (Roman Mile)</option>
+        <option value="passus">Passus (Double Step)</option>
+        <option value="pes">Pes (Roman Foot)</option>
+        <option value="palmus">Palmus (Palm Width)</option>
+        <option value="digitus">Digitus (Finger Width)</option>
+        <option value="cubitus">Cubitus (Roman Cubit)</option>
+        <option value="actus">Actus (Furrow Length)</option>
+        <option value="stadium">Stadium (Roman Stade)</option>
+        <option value="leuga">Leuga (Gaulish League)</option>
+      </select>
+
+      <button class="btn" id="convertBtn">⚖️ Calculate Conversions</button>
+
+      <div class="results" id="results-convert">
+        <div class="result-hero" id="rh-convert">
+          <div class="big-num" id="rh-num">—</div>
+          <div class="big-label" id="rh-label">—</div>
+          <div class="sub-num" id="rh-modern">—</div>
+          <button class="copy-btn" id="copy-convert" onclick="copyResult('copy-convert','copy-text-convert')">📋 Copy Result</button>
+          <span id="copy-text-convert" style="display:none"></span>
+        </div>
+        <div class="table-wrap">
+          <table id="tbl-convert">
+            <thead><tr><th>Unit</th><th>Latin Name</th><th>Value</th></tr></thead>
+            <tbody id="tbl-convert-body"></tbody>
+          </table>
+        </div>
+        <div class="modern-equiv" id="modern-equiv-convert"></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Journey Planner -->
+    <div class="tab-panel" id="tab-journey">
+      <div class="input-row">
+        <div>
+          <label for="j-dist">Distance (Roman Miles)</label>
+          <input type="number" id="j-dist" placeholder="e.g. 100" min="0" step="any">
+        </div>
+        <div>
+          <label for="j-pace">Marching Pace</label>
+          <select id="j-pace">
+            <option value="20">Legion Standard (20 mi/day)</option>
+            <option value="25">Forced March (25 mi/day)</option>
+            <option value="15">Baggage Train (15 mi/day)</option>
+            <option value="30">Cavalry (30 mi/day)</option>
+            <option value="8">Merchant Wagon (8 mi/day)</option>
+            <option value="custom">Custom pace…</option>
+          </select>
+        </div>
+      </div>
+      <div id="custom-pace-row" style="display:none">
+        <label for="j-custom">Custom Pace (Roman miles/day)</label>
+        <input type="number" id="j-custom" placeholder="e.g. 18" min="0.1" step="any">
+      </div>
+      <div class="error-msg" id="err-journey">Please enter valid positive values.</div>
+      <button class="btn" id="journeyBtn">🗺️ Plan Journey</button>
+
+      <div class="results" id="results-journey">
+        <div class="result-hero">
+          <div class="big-num" id="j-days">—</div>
+          <div class="big-label">Days of Travel</div>
+          <div class="sub-num" id="j-dist-km">—</div>
+          <button class="copy-btn" id="copy-journey" onclick="copyResult('copy-journey','copy-text-journey')">📋 Copy Result</button>
+          <span id="copy-text-journey" style="display:none"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Metric</th><th>Value</th></tr></thead>
+            <tbody id="tbl-journey-body"></tbody>
+          </table>
+        </div>
+        <div class="milestone-bar" id="milestone-bar"></div>
+        <div class="modern-equiv" id="modern-equiv-journey"></div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Modern → Roman -->
+    <div class="tab-panel" id="tab-modern">
+      <label for="m-val">Modern Distance</label>
+      <input type="number" id="m-val" placeholder="e.g. 100" min="0" step="any">
+      <label for="m-unit">Unit</label>
+      <select id="m-unit">
+        <option value="km">Kilometers (km)</option>
+        <option value="m">Meters (m)</option>
+        <option value="mi">Miles (statute miles)</option>
+        <option value="ft">Feet (imperial)</option>
+        <option value="yd">Yards</option>
+      </select>
+      <div class="error-msg" id="err-modern">Please enter a valid positive number.</div>
+      <button class="btn" id="modernBtn">🔄 Convert to Roman Units</button>
+
+      <div class="results" id="results-modern">
+        <div class="result-hero">
+          <div class="big-num" id="m-mille">—</div>
+          <div class="big-label">Roman Miles (Mille Passuum)</div>
+          <div class="sub-num" id="m-passus">—</div>
+          <button class="copy-btn" id="copy-modern" onclick="copyResult('copy-modern','copy-text-modern')">📋 Copy Result</button>
+          <span id="copy-text-modern" style="display:none"></span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Roman Unit</th><th>Latin</th><th>Value</th></tr></thead>
+            <tbody id="tbl-modern-body"></tbody>
+          </table>
+        </div>
+        <div class="modern-equiv" id="modern-equiv-modern"></div>
+      </div>
+    </div>
+  </div><!-- /card -->
+
+  <!-- Did You Know -->
+  <div class="dyk">
+    <h3>🏛️ Did You Know?</h3>
+    <ul>
+      <li>The Roman Empire's road network was so extensive that all roads in the Western world were measured from the <em>Milliarium Aureum</em> (Golden Milestone) erected by Augustus in 20 BC — giving rise to "All roads lead to Rome."</li>
+      <li>Roman roads were so well-engineered that some survive today as modern highways. The Via Flaminia roughly follows Italy's modern SR3, and the Via Appia is still drivable for much of its length.</li>
+      <li>A Roman legionary in <em>expeditio</em> (campaign march) could cover 29–36 km per day carrying 40 kg of equipment — a feat few modern soldiers could replicate for weeks at a time.</li>
+    </ul>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section" style="margin-top:2rem">
+    <h2>How to Use This Roman Road Distance Calculator</h2>
+    <p>Choose from three modes: <strong>Unit Converter</strong> lets you enter any Roman or modern distance and see the full table of equivalents. <strong>Journey Planner</strong> estimates how many days a Roman army, merchant, or cavalry unit would take to cover a given distance. <strong>Modern → Roman</strong> translates kilometers, miles, or other modern units into their precise Roman equivalents, showing mille passuum, passus, pedes, and more.</p>
+    <p>Enter your value, select the appropriate unit or pace, and press Calculate. All results show both exact Roman units and their modern metric and imperial equivalents.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding Roman road distances is essential for historians, students, tabletop RPG players designing Roman-era campaigns, re-enactors, and anyone fascinated by how the ancient world measured and moved across vast distances.</p>
+    <p>Consider: when Julius Caesar marched his legions from Rome to Gaul (roughly 1,200 Roman miles), they covered 20 mille passuum per day on standard march, arriving in about 60 days. That same journey today takes about 11 hours by car. When a Roman general read a dispatch saying the enemy was "XII mille passuum" away, he knew he had roughly 17.7 km of buffer — or about half a day's march. These measurements were life-or-death calculations. The precision of Roman milestones — consistent across Britain, Egypt, Syria, and Spain — is a testament to Rome's administrative genius and why their road system underpinned an empire for 500 years.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>All conversions use the standardized Roman foot (<em>pes</em>) of <strong>0.2963 meters</strong> as the base unit:</p>
+    <ul>
+      <li><strong>1 Digitus</strong> = 1/16 pes = 0.01852 m</li>
+      <li><strong>1 Palmus</strong> = 4 digits = 1/4 pes = 0.07408 m</li>
+      <li><strong>1 Pes</strong> (Roman foot) = 0.2963 m</li>
+      <li><strong>1 Cubitus</strong> = 1.5 pedes = 0.4444 m</li>
+      <li><strong>1 Passus</strong> (double step) = 5 pedes = 1.4815 m</li>
+      <li><strong>1 Actus</strong> = 120 pedes = 35.556 m</li>
+      <li><strong>1 Stadium</strong> = 625 pedes = 185.1875 m</li>
+      <li><strong>1 Leuga</strong> (Gaulish league) = 1.5 mille passuum = 2.222 km</li>
+      <li><strong>1 Mille Passuum</strong> = 1,000 passus = 5,000 pedes = <strong>1,481.5 m</strong> (≈ 1.4815 km)</li>
+    </ul>
+    <p>Journey times use documented Roman daily march rates: the <em>iter iustum</em> (standard day's march) was 20 Roman miles (~29.63 km), while <em>iter magnum</em> (forced march) reached 25 miles (~37 km).</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse the Roman mile with the statute mile.</strong> A Roman mille passuum is 1,481.5 m, while a modern statute mile is 1,609.3 m — about 8.6% longer. They are NOT interchangeable.</li>
+      <li><strong>The passus is a double step, not a single step.</strong> One passus = right foot forward, left foot forward — covering 5 Roman feet (~1.48 m), not 2.5 feet.</li>
+      <li><strong>Stadium vs. stade:</strong> The Roman stadium (185 m) differs slightly from the Greek stade (177.6 m). This calculator uses the Roman variant.</li>
+      <li><strong>Account for terrain.</strong> Roman daily march estimates assume good paved roads. Off-road or mountainous terrain could cut daily progress by 30–50%.</li>
+      <li><strong>The leuga is Gaulish, not Roman.</strong> It appears on milestones in Gaul and Britain, and equals 2,222 m — a Gaulish adaptation the Romans absorbed into provincial usage.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How long is a Roman mile in modern units?</summary>
+      <div class="details-body">A Roman mile (<em>mille passuum</em>) equals exactly 5,000 Roman feet, or approximately <strong>1,481.5 meters</strong> (1.4815 km). This is about 8.6% shorter than a modern statute mile of 1,609.3 meters. The difference matters significantly over long distances — 100 Roman miles equals only 148.15 km, not 160.93 km.</div>
+    </details>
+    <details>
+      <summary>What is a passus and why does it matter?</summary>
+      <div class="details-body">A <em>passus</em> is a Roman "pace" — specifically a double step covering 5 Roman feet (about 1.48 m). The term literally means "spread" or "stretch." It formed the basis of the Roman mile because 1,000 passus = 1 mille passuum. Roman surveyors (<em>gromatici</em>) counted passus by dragging a cord or using a <em>hodometer</em> (wheel-based measuring device) to lay out road distances.</div>
+    </details>
+    <details>
+      <summary>How fast did Roman legions actually march?</summary>
+      <div class="details-body">Under normal conditions, a Roman legion marched at the <em>iter iustum</em> of 20 Roman miles per day (about 29.6 km), covering this in roughly 5–6 hours of actual marching, leaving time to build a fortified camp (<em>castra</em>). In urgent situations, <em>iter magnum</em> (forced march) pushed 25 miles/day (~37 km). Caesar famously covered 800 miles in 8 days during the Gallic Wars — averaging 100 miles/day by rotating fresh horses rather than marching infantry.</div>
+    </details>
+    <details>
+      <summary>What were Roman milestones and how were they numbered?</summary>
+      <div class="details-body">Roman milestones (<em>milliaria</em> or <em>cippi</em>) were cylindrical stone pillars about 2 meters tall, erected every 1,000 passus along major roads. They recorded the distance to the nearest major city or the road's origin, the emperor who built or restored the road, and sometimes the current governor. Over 7,000 Roman milestones survive today across Europe, North Africa, and the Middle East — making them invaluable tools for modern historians mapping the ancient road network.</div>
+    </details>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Related Tools -->
+  <div class="content-section">
+    <h2>Related Historical Calculators</h2>
+    <div class="related-grid">
+      <a href="/roman-aqueduct-bridge-height-calculator/" class="related-card">🏛️ Roman Aqueduct Bridge Height Calculator</a>
+      <a href="/roman-aqueduct-water-pressure-calculator/" class="related-card">💧 Roman Aqueduct Water Pressure Calculator</a>
+      <a href="/ancient-roman-feast-cost-calculator/" class="related-card">🍷 Ancient Roman Feast Cost Calculator</a>
+      <a href="/roman-water-distribution-pipe-sizing-calculator/" class="related-card">🔩 Roman Aqueduct Water Distribution Calculator</a>
+      <a href="/medieval-longbow-arrow-production-calculator/" class="related-card">🏹 Medieval Longbow Arrow Production Calculator</a>
+      <a href="/roman-aqueduct-arcade-span-calculator/" class="related-card">🌉 Roman Aqueduct Arcade Span Calculator</a>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-links">
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div>© 2025 historycalc.com — Free Historical Calculators</div>
+</footer>
+
+<script>
+// ─── Roman unit definitions (base: meters) ───────────────────────────────────
+const UNITS = {
+  digitus:  { m: 0.2963/16,         label: 'Digiti',       latin: 'Digitus' },
+  palmus:   { m: 0.2963/4,          label: 'Palmi',        latin: 'Palmus' },
+  pes:      { m: 0.2963,            label: 'Pedes',        latin: 'Pes' },
+  cubitus:  { m: 0.2963*1.5,        label: 'Cubiti',       latin: 'Cubitus' },
+  passus:   { m: 0.2963*5,          label: 'Passus',       latin: 'Passus' },
+  actus:    { m: 0.2963*120,        label: 'Actus',        latin: 'Actus' },
+  stadium:  { m: 0.2963*625,        label: 'Stadia',       latin: 'Stadium' },
+  mille:    { m: 0.2963*5000,       label: 'Mille Passuum', latin: 'Mille Passuum' },
+  leuga:    { m: 0.2963*5000*1.5,   label: 'Leugas',       latin: 'Leuga' }
+};
+const MILLE_M = 0.2963 * 5000; // 1481.5 m
+
+function fmt(n, dec=2){ return isNaN(n)?'—':n.toLocaleString('en-US',{minimumFractionDigits:0,maximumFractionDigits:dec}); }
+function fmtSI(m){
+  if(m>=1000) return fmt(m/1000,3)+' km';
+  return fmt(m,2)+' m';
+}
+function toMeters(val, unit){
+  if(unit==='mille') return val*MILLE_M;
+  return val * UNITS[unit].m;
+}
+
+// ─── Tab switching ────────────────────────────────────────────────────────────
+function switchTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ─── Tab 1: Unit Converter ────────────────────────────────────────────────────
+function calcConvert(){
+  const val = parseFloat(document.getElementById('inputVal').value);
+  const unit = document.getElementById('inputUnit').value;
+  const errEl = document.getElementById('err-convert');
+  const inp = document.getElementById('inputVal');
+  if(isNaN(val)||val<0){
+    inp.classList.add('error'); errEl.classList.add('show'); return;
+  }
+  inp.classList.remove('error'); errEl.classList.remove('show');
+
+  const meters = toMeters(val, unit);
+  const unitDef = UNITS[unit];
+
+  // Build all conversions
+  const rows = [
+    ['Digiti','Digitus',   meters/UNITS.digitus.m],
+    ['Palmi','Palmus',     meters/UNITS.palmus.m],
+    ['Pedes','Pes',        meters/UNITS.pes.m],
+    ['Cubiti','Cubitus',   meters/UNITS.cubitus.m],
+    ['Passus','Passus',    meters/UNITS.passus.m],
+    ['Actus','Actus',      meters/UNITS.actus.m],
+    ['Stadia','Stadium',   meters/UNITS.stadium.m],
+    ['Mille Passuum','Mille Passuum', meters/MILLE_M],
+    ['Leugas','Leuga',     meters/UNITS.leuga.m],
+    ['Meters','—',         meters],
+    ['Kilometers','—',     meters/1000],
+    ['Statute Miles','—',  meters/1609.344],
+    ['Imperial Feet','—',  meters/0.3048],
+  ];
+
+  let tbodyHTML = '';
+  rows.forEach(r=>{
+    let v = r[2];
+    let disp = v>=0.001 ? fmt(v, v<10?4:2) : v.toExponential(3);
+    tbodyHTML += `<tr><td>${r[0]}</td><td><em>${r[1]}</em></td><td>${disp}</td></tr>`;
+  });
+
+  const mille = meters/MILLE_M;
+  const modernEquivStr = buildModernEquiv(meters);
+
+  const copyText = `${fmt(val)} ${unitDef.latin} = ${fmt(mille,4)} Mille Passuum = ${fmtSI(meters)}`;
+  document.getElementById('copy-text-convert').textContent = copyText;
+
+  requestAnimationFrame(()=>{
+    document.getElementById('rh-num').textContent = fmt(mille, mille<10?4:2);
+    document.getElementById('rh-label').textContent = `Mille Passuum from ${fmt(val)} ${unitDef.label}`;
+    document.getElementById('rh-modern').textContent = fmtSI(meters)+' modern';
+    document.getElementById('tbl-convert-body').innerHTML = tbodyHTML;
+    document.getElementById('modern-equiv-convert').innerHTML = modernEquivStr;
+    document.getElementById('results-convert').classList.add('show');
+  });
+}
+
+// ─── Tab 2: Journey Planner ───────────────────────────────────────────────────
+document.getElementById('j-pace').addEventListener('change',function(){
+  document.getElementById('custom-pace-row').style.display = this.value==='custom'?'block':'none';
+});
+
+function calcJourney(){
+  const dist = parseFloat(document.getElementById('j-dist').value);
+  const paceEl = document.getElementById('j-pace');
+  const customPace = parseFloat(document.getElementById('j-custom').value);
+  const errEl = document.getElementById('err-journey');
+
+  let pacePerDay = paceEl.value==='custom' ? customPace : parseFloat(paceEl.value);
+  const paceName = paceEl.options[paceEl.selectedIndex].text;
+
+  if(isNaN(dist)||dist<=0||isNaN(pacePerDay)||pacePerDay<=0){
+    errEl.classList.add('show');
+    document.getElementById('j-dist').classList.toggle('error',isNaN(dist)||dist<=0);
+    return;
+  }
+  errEl.classList.remove('show');
+  document.getElementById('j-dist').classList.remove('error');
+
+  const days = dist/pacePerDay;
+  const distM = dist*MILLE_M;
+  const distKm = distM/1000;
+  const distMi = distM/1609.344;
+  const passus = dist*1000;
+  const pedes = dist*5000;
+
+  const milestones = Math.floor(dist);
+  let msBarHTML = '';
+  const dotsToShow = Math.min(milestones, 20);
+  for(let i=0;i<dotsToShow;i++){
+    msBarHTML += `<div class="ms-dot"></div><div class="ms-line"></div>`;
+  }
+  if(milestones>20) msBarHTML += `<span class="ms-label">…+${milestones-20} more milestones</span>`;
+  else if(milestones>0) msBarHTML += `<span class="ms-label">${milestones} milestones</span>`;
+
+  const tbodyHTML = `
+    <tr><td>Distance (Roman Miles)</td><td>${fmt(dist,2)}</td></tr>
+    <tr><td>Distance (Passus)</td><td>${fmt(passus,0)}</td></tr>
+    <tr><td>Distance (Pedes)</td><td>${fmt(pedes,0)}</td></tr>
+    <tr><td>Distance (km)</td><td>${fmt(distKm,2)} km</td></tr>
+    <tr><td>Distance (statute miles)</td><td>${fmt(distMi,2)} mi</td></tr>
+    <tr><td>Pace</td><td>${paceEl.value==='custom'?customPace:paceEl.value} R.mi/day</td></tr>
+    <tr><td>Pace Type</td><td>${paceName}</td></tr>
+    <tr><td>Total Travel Days</td><td>${fmt(days,1)}</td></tr>
+    <tr><td>Full Days</td><td>${Math.ceil(days)}</td></tr>
+    <tr><td>Milestones Passed</td><td>${fmt(milestones,0)}</td></tr>
+  `;
+
+  const copyText = `${fmt(dist)} Roman miles at ${pacePerDay} mi/day = ${fmt(days,1)} days travel (${fmt(distKm,2)} km)`;
+  document.getElementById('copy-text-journey').textContent = copyText;
+
+  const modernEquivStr = buildModernEquiv(distM, true, pacePerDay);
+
+  requestAnimationFrame(()=>{
+    document.getElementById('j-days').textContent = fmt(days,1);
+    document.getElementById('j-dist-km').textContent = fmt(distKm,2)+' km ('+fmt(distMi,2)+' modern miles)';
+    document.getElementById('tbl-journey-body').innerHTML = tbodyHTML;
+    document.getElementById('milestone-bar').innerHTML = msBarHTML;
+    document.getElementById('modern-equiv-journey').innerHTML = modernEquivStr;
+    document.getElementById('results-journey').classList.add('show');
+  });
+}
+
+// ─── Tab 3: Modern → Roman ────────────────────────────────────────────────────
+function calcModern(){
+  const val = parseFloat(document.getElementById('m-val').value);
+  const unit = document.getElementById('m-unit').value;
+  const errEl = document.getElementById('err-modern');
+  if(isNaN(val)||val<0){
+    document.getElementById('m-val').classList.add('error'); errEl.classList.add('show'); return;
+  }
+  document.getElementById('m-val').classList.remove('error'); errEl.classList.remove('show');
+
+  const toM = {km:1000, m:1, mi:1609.344, ft:0.3048, yd:0.9144};
+  const meters = val * toM[unit];
+  const mille = meters/MILLE_M;
+  const passus = meters/UNITS.passus.m;
+  const pedes = meters/UNITS.pes.m;
+  const stadia = meters/UNITS.stadium.m;
+  const actus = meters/UNITS.actus.m;
+  const leuga = meters/UNITS.leuga.m;
+  const cubiti = meters/UNITS.cubitus.m;
+  const palmi = meters/UNITS.palmus.m;
+  const digiti = meters/UNITS.digitus.m;
+
+  const tbodyHTML = `
+    <tr><td>Mille Passuum</td><td><em>Mille Passuum</em></td><td>${fmt(mille, mille<10?4:2)}</td></tr>
+    <tr><td>Passus (paces)</td><td><em>Passus</em></td><td>${fmt(passus,2)}</td></tr>
+    <tr><td>Pedes (feet)</td><td><em>Pes</em></td><td>${fmt(pedes,2)}</td></tr>
+    <tr><td>Stadia</td><td><em>Stadium</em></td><td>${fmt(stadia,3)}</td></tr>
+    <tr><td>Actus</td><td><em>Actus</em></td><td>${fmt(actus,3)}</td></tr>
+    <tr><td>Leugas</td><td><em>Leuga</em></td><td>${fmt(leuga,4)}</td></tr>
+    <tr><td>Cubiti</td><td><em>Cubitus</em></td><td>${fmt(cubiti,2)}</td></tr>
+    <tr><td>Palmi</td><td><em>Palmus</em></td><td>${fmt(palmi,2)}</td></tr>
+    <tr><td>Digiti</td><td><em>Digitus</em></td><td>${fmt(digiti,2)}</td></tr>
+  `;
+
+  const copyText = `${fmt(val)} ${unit} = ${fmt(mille,4)} Roman miles (${fmt(passus,0)} passus / ${fmt(pedes,0)} pedes)`;
+  document.getElementById('copy-text-modern').textContent = copyText;
+
+  const modernEquivStr = buildModernEquiv(meters);
+
+  requestAnimationFrame(()=>{
+    document.getElementById('m-mille').textContent = fmt(mille, mille<10?4:2);
+    document.getElementById('m-passus').textContent = fmt(passus,0)+' passus / '+fmt(pedes,0)+' pedes';
+    document.getElementById('tbl-modern-body').innerHTML = tbodyHTML;
+    document.getElementById('modern-equiv-modern').innerHTML = modernEquivStr;
+    document.getElementById('results-modern').classList.add('show');
+  });
+}
+
+// ─── Modern equivalents helper ────────────────────────────────────────────────
+function buildModernEquiv(meters, isJourney, pace){
+  const km = meters/1000;
+  const mi = meters/1609.344;
+  let html = '<strong>📏 Modern Equivalent:</strong><br>';
+  html += `${fmt(km,3)} km &nbsp;|&nbsp; ${fmt(mi,3)} statute miles &nbsp;|&nbsp; ${fmt(meters/0.3048,1)} imperial feet`;
+  if(km>=384400) html += `<br>🌕 That's about ${fmt(km/384400,2)}× the distance from Earth to the Moon!`;
+  else if(km>=40075) html += `<br>🌍 That's about ${fmt(km/40075,2)}× the circumference of Earth!`;
+  else if(km>=1000) html += `<br>✈️ That's roughly the distance from Rome to ${km<1200?'Carthage (Tunisia)':km<2000?'Alexandria, Egypt':km<5000?'Persia':km<10000?'India':'the Far East'}.`;
+  else if(km>=100) html += `<br>🚶 A modern person walking at 5 km/h would take ${fmt(km/5,1)} hours (~${fmt(km/5/8,1)} days at 8h/day).`;
+  else if(km>=1) html += `<br>🏃 A modern runner at 10 km/h covers this in ${fmt(km/10*60,1)} minutes.`;
+  else html += `<br>📐 About ${fmt(meters,2)} meters long — roughly ${fmt(meters/1.8,1)} average adult heights.`;
+  if(isJourney && pace){
+    const modernHours = km/5;
+    html += `<br>🚗 By modern car at 100 km/h: ${fmt(km/100,2)} hours.`;
+  }
+  return html;
+}
+
+// ─── Copy to clipboard ────────────────────────────────────────────────────────
+function copyResult(btnId, textId){
+  const btn = document.getElementById(btnId);
+  const text = document.getElementById(textId).textContent;
+  if(!text) return;
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.textContent = '📋 Copy Result'; btn.classList.remove('copied'); },2000);
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = text; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    btn.textContent = '✅ Copied!';
+    setTimeout(()=>{ btn.textContent = '📋 Copy Result'; },2000);
+  });
+}
+
+// ─── Event listeners ─────────────────────────────────────────────────────────
+document.getElementById('convertBtn').addEventListener('click',()=>requestAnimationFrame(calcConvert));
+document.getElementById('journeyBtn').addEventListener('click',()=>requestAnimationFrame(calcJourney));
+document.getElementById('modernBtn').addEventListener('click',()=>requestAnimationFrame(calcModern));
+
+document.getElementById('inputVal').addEventListener('keydown',e=>{ if(e.key==='Enter') requestAnimationFrame(calcConvert); });
+document.getElementById('j-dist').addEventListener('keydown',e=>{ if(e.key==='Enter') requestAnimationFrame(calcJourney); });
+document.getElementById('m-val').addEventListener('keydown',e=>{ if(e.key==='Enter') requestAnimationFrame(calcModern); });
+document.getElementById('j-custom').addEventListener('keydown',e=>{ if(e.key==='Enter') requestAnimationFrame(calcJourney); });
+</script>
+</body>
+</html>
