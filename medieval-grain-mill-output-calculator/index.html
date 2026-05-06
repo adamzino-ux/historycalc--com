@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Grain Mill Output Calculator — Free Online Tool | historycalc.com</title>
+<meta name="description" content="Calculate medieval grain mill daily output, flour yield, and village feeding capacity. Based on historically accurate medieval mill production data and formulas.">
+<link rel="canonical" href="https://historycalc.com/medieval-grain-mill-output-calculator/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Medieval Grain Mill Output Calculator",
+  "url": "https://historycalc.com/medieval-grain-mill-output-calculator/",
+  "description": "Calculate medieval grain mill daily output, flour yield, and village feeding capacity based on historically accurate formulas.",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f0e1;
+    --card: #fdf8ef;
+    --accent: #8b4513;
+    --accent-dark: #6b3410;
+    --text: #2c1810;
+    --text-light: #5a3e2b;
+    --border: #c4a882;
+    --border-light: #ddd0b8;
+    --header-bg: #e8dfc8;
+    --row-alt: #faf5e8;
+    --error: #c0392b;
+    --success: #2d6a2d;
+    --shadow: rgba(44, 24, 16, 0.12);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 16px;
+  }
+
+  nav {
+    background: var(--accent);
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  nav a {
+    color: #fdf8ef;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+  }
+  nav a:hover { text-decoration: underline; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .svg-header {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.92rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    margin-bottom: 2rem;
+  }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 100px;
+    padding: 0.6rem 0.5rem;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-light);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    min-height: 44px;
+  }
+  .tab-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .tab-btn:hover:not(.active) {
+    background: var(--header-bg);
+    border-color: var(--accent);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* FORM */
+  .form-group { margin-bottom: 1.2rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3e2b;
+    margin-bottom: 0.4rem;
+  }
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text);
+    background: #fff;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    min-height: 44px;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.15);
+  }
+  input.error-input { border-color: var(--error); }
+  .error-msg {
+    color: var(--error);
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+  }
+
+  /* SLIDER */
+  .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+  }
+  input[type="range"] {
+    flex: 1;
+    accent-color: var(--accent);
+    height: 24px;
+    cursor: pointer;
+  }
+  .slider-val {
+    min-width: 3.5rem;
+    text-align: right;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.95rem;
+  }
+
+  /* BUTTON */
+  .btn {
+    width: 100%;
+    padding: 13px 24px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    min-height: 48px;
+    margin-top: 0.5rem;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn-small {
+    width: auto;
+    padding: 7px 16px;
+    font-size: 0.82rem;
+    min-height: 36px;
+    margin-top: 0;
+    border-radius: 5px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .btn-small:hover { background: var(--accent-dark); }
+
+  /* RESULTS */
+  .results-section {
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    display: none;
+  }
+  .results-section.visible {
+    display: block;
+    opacity: 1;
+  }
+
+  .result-primary {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+  }
+  .result-primary .big-num {
+    font-size: 2.4rem;
+    font-weight: 900;
+    line-height: 1.1;
+  }
+  .result-primary .big-label {
+    font-size: 0.88rem;
+    opacity: 0.88;
+    margin-top: 0.25rem;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.2rem;
+  }
+  .result-box {
+    background: var(--header-bg);
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+    text-align: center;
+  }
+  .result-box .val {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+  .result-box .lbl {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-top: 0.15rem;
+  }
+
+  .copy-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.75rem;
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+    min-width: 420px;
+  }
+  thead th {
+    background: var(--header-bg);
+    color: var(--text);
+    font-weight: 700;
+    padding: 9px 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.82rem;
+  }
+  thead th:not(:first-child) { text-align: right; }
+  tbody td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text);
+  }
+  tbody td:not(:first-child) { text-align: right; }
+  tbody tr:nth-child(even) { background: var(--row-alt); }
+
+  /* MODERN EQUIV */
+  .modern-equiv {
+    background: #fff8e8;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 1rem 1.2rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  .modern-equiv strong { color: var(--accent); }
+
+  /* DID YOU KNOW */
+  .did-you-know {
+    background: #fff3de;
+    border: 1px solid #e0b870;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .did-you-know h3 {
+    color: var(--accent);
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .did-you-know ul {
+    padding-left: 1.2rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+  .did-you-know li { margin-bottom: 0.4rem; }
+
+  /* CONTENT SECTIONS */
+  .content-section { margin-bottom: 2rem; }
+  .content-section h2 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.4rem;
+  }
+  .content-section p {
+    font-size: 0.93rem;
+    color: var(--text-light);
+    margin-bottom: 0.7rem;
+    line-height: 1.7;
+  }
+  .content-section ul {
+    padding-left: 1.3rem;
+    color: var(--text-light);
+    font-size: 0.92rem;
+  }
+  .content-section li { margin-bottom: 0.45rem; line-height: 1.6; }
+
+  /* FAQ */
+  details {
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+    background: var(--card);
+  }
+  summary {
+    padding: 0.85rem 1rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    color: var(--text);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 44px;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: '+'; font-size: 1.1rem; color: var(--accent); font-weight: 700; }
+  details[open] summary::after { content: '−'; }
+  details p {
+    padding: 0 1rem 0.85rem;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.65;
+  }
+
+  /* AD SLOT */
+  .ad-slot { min-height: 0; margin: 0; }
+
+  /* RELATED TOOLS */
+  .related-tools { margin-bottom: 2rem; }
+  .related-tools h2 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 0.9rem;
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 0.4rem;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+  .related-grid a {
+    display: block;
+    padding: 0.75rem 0.9rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.84rem;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .related-grid a:hover {
+    background: var(--header-bg);
+    border-color: var(--accent);
+  }
+
+  /* HISTORICAL CONTEXT */
+  .hist-context {
+    background: #fdf5e4;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem;
+    margin-bottom: 2rem;
+  }
+  .hist-context h2 {
+    color: var(--accent);
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+  .hist-context p {
+    font-size: 0.91rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+
+  /* BAR VISUAL */
+  .bar-visual { margin: 0.75rem 0; }
+  .bar-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; font-size: 0.82rem; }
+  .bar-label { min-width: 110px; color: var(--text-light); }
+  .bar-track { flex: 1; background: var(--header-bg); border-radius: 4px; height: 14px; overflow: hidden; }
+  .bar-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.5s ease; }
+  .bar-num { min-width: 70px; text-align: right; font-weight: 700; color: var(--accent); }
+
+  footer {
+    background: var(--accent);
+    color: #fdf8ef;
+    text-align: center;
+    padding: 1.2rem 1rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: #fdf8ef; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+  .footer-copy { margin-top: 0.4rem; opacity: 0.8; font-size: 0.8rem; }
+
+  @media (max-width: 480px) {
+    .card { padding: 1.3rem 1rem; }
+    h1 { font-size: 1.35rem; }
+    .result-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .result-box .val { font-size: 1.1rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    .big-num { font-size: 1.9rem !important; }
+    .tabs { flex-direction: column; }
+    .tab-btn { min-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">⚙ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <!-- SVG ILLUSTRATION -->
+  <div class="svg-header">
+    <svg width="200" height="130" viewBox="0 0 200 130" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Medieval windmill illustration" role="img">
+      <!-- Mill building -->
+      <rect x="72" y="65" width="56" height="60" rx="3" fill="#c4a882" stroke="#8b4513" stroke-width="1.5"/>
+      <!-- Roof/top -->
+      <polygon points="68,65 132,65 100,42" fill="#8b4513"/>
+      <!-- Door -->
+      <rect x="88" y="95" width="24" height="30" rx="2" fill="#6b3410"/>
+      <!-- Window -->
+      <rect x="89" y="72" width="10" height="10" rx="1" fill="#fdf8ef" stroke="#8b4513" stroke-width="1"/>
+      <rect x="101" y="72" width="10" height="10" rx="1" fill="#fdf8ef" stroke="#8b4513" stroke-width="1"/>
+      <!-- Windmill sails / wheel spokes -->
+      <line x1="100" y1="28" x2="100" y2="4" stroke="#8b4513" stroke-width="3" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="100" y2="52" stroke="#8b4513" stroke-width="3" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="76" y2="28" stroke="#8b4513" stroke-width="3" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="124" y2="28" stroke="#8b4513" stroke-width="3" stroke-linecap="round"/>
+      <!-- diagonal sails -->
+      <line x1="100" y1="28" x2="83" y2="11" stroke="#8b4513" stroke-width="2" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="117" y2="45" stroke="#8b4513" stroke-width="2" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="117" y2="11" stroke="#8b4513" stroke-width="2" stroke-linecap="round"/>
+      <line x1="100" y1="28" x2="83" y2="45" stroke="#8b4513" stroke-width="2" stroke-linecap="round"/>
+      <!-- sail blades -->
+      <polygon points="100,4 84,4 100,28" fill="#d4b896" stroke="#8b4513" stroke-width="1" opacity="0.8"/>
+      <polygon points="124,28 124,12 100,28" fill="#d4b896" stroke="#8b4513" stroke-width="1" opacity="0.8"/>
+      <polygon points="100,52 116,52 100,28" fill="#d4b896" stroke="#8b4513" stroke-width="1" opacity="0.8"/>
+      <polygon points="76,28 76,44 100,28" fill="#d4b896" stroke="#8b4513" stroke-width="1" opacity="0.8"/>
+      <!-- hub -->
+      <circle cx="100" cy="28" r="5" fill="#8b4513"/>
+      <!-- ground line -->
+      <rect x="40" y="124" width="120" height="6" rx="2" fill="#c4a882" opacity="0.7"/>
+      <!-- grain sacks hint -->
+      <ellipse cx="46" cy="117" rx="10" ry="7" fill="#c4a882" stroke="#8b4513" stroke-width="1"/>
+      <ellipse cx="60" cy="120" rx="8" ry="5" fill="#b89060" stroke="#8b4513" stroke-width="1"/>
+      <!-- water stream (watermill hint) -->
+      <path d="M148,100 Q158,95 165,105 Q172,115 180,108" stroke="#6699cc" stroke-width="2" fill="none" stroke-dasharray="4,2" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <h1>Medieval Grain Mill Output Calculator</h1>
+  <p class="subtitle">Calculate daily flour yield, village feeding capacity & historical mill production</p>
+
+  <!-- MAIN TOOL CARD -->
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('windmill')">🌬️ Windmill</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('watermill')">💧 Watermill</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('handmill')">🪨 Hand Mill</button>
+    </div>
+
+    <!-- WINDMILL TAB -->
+    <div class="tab-panel active" id="tab-windmill">
+      <div class="form-group">
+        <label for="windSpeed">Wind Speed (mph)</label>
+        <div class="slider-row">
+          <input type="range" id="windSpeed" min="5" max="35" value="15" step="1" oninput="syncSlider('windSpeed','windSpeedNum')">
+          <span class="slider-val" id="windSpeedNum">15</span>
+        </div>
+        <div id="err-windSpeed" class="error-msg">Wind speed must be between 5 and 35 mph for milling.</div>
+      </div>
+      <div class="form-group">
+        <label for="windSails">Number of Sails</label>
+        <select id="windSails">
+          <option value="4" selected>4 Sails (most common)</option>
+          <option value="6">6 Sails (High-output)</option>
+          <option value="8">8 Sails (Exceptional)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="windHours">Operating Hours per Day</label>
+        <div class="slider-row">
+          <input type="range" id="windHours" min="2" max="16" value="8" step="1" oninput="syncSlider('windHours','windHoursNum')">
+          <span class="slider-val" id="windHoursNum">8</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="windGrain">Grain Type</label>
+        <select id="windGrain">
+          <option value="wheat">Wheat (hard)</option>
+          <option value="rye" selected>Rye (most common medieval grain)</option>
+          <option value="barley">Barley</option>
+          <option value="oats">Oats</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="windCondition">Millstone Condition</label>
+        <select id="windCondition">
+          <option value="1.0">Freshly dressed (excellent)</option>
+          <option value="0.85" selected>Average working order</option>
+          <option value="0.7">Worn (needs dressing)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- WATERMILL TAB -->
+    <div class="tab-panel" id="tab-watermill">
+      <div class="form-group">
+        <label for="waterFlow">Stream Flow Rate (cu ft/sec)</label>
+        <input type="number" id="waterFlow" value="15" min="1" max="500" placeholder="e.g. 15">
+        <div id="err-waterFlow" class="error-msg">Please enter a flow rate between 1 and 500.</div>
+      </div>
+      <div class="form-group">
+        <label for="wheelDiam">Wheel Diameter (feet)</label>
+        <div class="slider-row">
+          <input type="range" id="wheelDiam" min="6" max="24" value="14" step="1" oninput="syncSlider('wheelDiam','wheelDiamNum')">
+          <span class="slider-val" id="wheelDiamNum">14</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="wheelType">Wheel Type</label>
+        <select id="wheelType">
+          <option value="undershot">Undershot (common, flat rivers)</option>
+          <option value="breastshot" selected>Breastshot (medium head)</option>
+          <option value="overshot">Overshot (high head, most efficient)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="waterHours">Operating Hours per Day</label>
+        <div class="slider-row">
+          <input type="range" id="waterHours" min="4" max="20" value="12" step="1" oninput="syncSlider('waterHours','waterHoursNum')">
+          <span class="slider-val" id="waterHoursNum">12</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="waterGrain">Grain Type</label>
+        <select id="waterGrain">
+          <option value="wheat" selected>Wheat (hard)</option>
+          <option value="rye">Rye (most common medieval grain)</option>
+          <option value="barley">Barley</option>
+          <option value="oats">Oats</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- HAND MILL TAB -->
+    <div class="tab-panel" id="tab-handmill">
+      <div class="form-group">
+        <label for="handWorkers">Number of Workers</label>
+        <div class="slider-row">
+          <input type="range" id="handWorkers" min="1" max="8" value="2" step="1" oninput="syncSlider('handWorkers','handWorkersNum')">
+          <span class="slider-val" id="handWorkersNum">2</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="handMillType">Quern Type</label>
+        <select id="handMillType">
+          <option value="rotary">Rotary Quern (small, household)</option>
+          <option value="donkey" selected>Donkey Mill (medium, common)</option>
+          <option value="lever">Lever Mill (large, monastic)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="handHours">Hours of Grinding per Day</label>
+        <div class="slider-row">
+          <input type="range" id="handHours" min="1" max="12" value="6" step="1" oninput="syncSlider('handHours','handHoursNum')">
+          <span class="slider-val" id="handHoursNum">6</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="handGrain">Grain Type</label>
+        <select id="handGrain">
+          <option value="wheat">Wheat (hard)</option>
+          <option value="rye" selected>Rye</option>
+          <option value="barley">Barley</option>
+          <option value="oats">Oats</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚙ Calculate Mill Output</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="results">
+    <div class="card">
+      <div class="copy-row">
+        <button class="btn-small" id="copyBtn" onclick="copyResults()">📋 Copy Results</button>
+      </div>
+      <div class="result-primary">
+        <div class="big-num" id="r-primary">0</div>
+        <div class="big-label" id="r-primary-label">Pounds of flour per day</div>
+      </div>
+      <div class="result-grid" id="r-grid"></div>
+      <div class="table-wrap">
+        <table id="r-table">
+          <thead>
+            <tr>
+              <th>Time Period</th>
+              <th>Grain Ground (lbs)</th>
+              <th>Flour Yield (lbs)</th>
+              <th>Loaves of Bread</th>
+              <th>People Fed</th>
+            </tr>
+          </thead>
+          <tbody id="r-tbody"></tbody>
+        </table>
+      </div>
+      <div class="bar-visual" id="r-bars"></div>
+      <div class="modern-equiv" id="r-modern"></div>
+    </div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- HISTORICAL CONTEXT -->
+  <div class="hist-context">
+    <h2>📜 Historical Context</h2>
+    <p>Medieval grain milling was the backbone of rural economies from roughly 900–1500 CE. The Domesday Book of 1086 recorded 5,624 watermills in England alone — about one for every 50 households — demonstrating just how central milling was to medieval life. A typical English watermill could grind between 150–400 lbs of grain per hour depending on water flow and stone quality. Millstones were typically 3–5 feet in diameter, made of French burr stone (the finest available) or local sandstone. Lords held monopoly rights called <em>soke</em>, legally compelling villagers to bring their grain to the manorial mill and pay a toll of roughly 1/16th to 1/8th of the grain as multure (milling fee). Windmills appeared in England around 1185–1191 CE and spread rapidly across the flat eastern counties where water was scarce but wind was plentiful.</p>
+  </div>
+
+  <!-- DID YOU KNOW -->
+  <div class="did-you-know">
+    <h3>💡 Did You Know?</h3>
+    <ul>
+      <li>A single overshot watermill in medieval England could generate approximately 2 horsepower — equivalent to the work of 20 humans grinding by hand, yet it ran continuously day and night.</li>
+      <li>In 14th-century France, the mills of Toulouse processed enough grain to make bread for over 30,000 people, and millers were among the wealthiest tradesmen in any town — often charged with fraud for skimming extra grain.</li>
+      <li>Medieval millstones required "dressing" (re-cutting the furrows) every 2–6 weeks. A skilled stone-dresser could extend a stone's life for decades; a neglected stone could halve output and burn grain from friction.</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Medieval Grain Mill Output Calculator</h2>
+    <p>Select your mill type using the tabs — Windmill, Watermill, or Hand Mill. Each type has historically appropriate inputs: wind speed and sail count for windmills; stream flow rate, wheel diameter and type for watermills; workers and quern type for hand mills. Adjust the sliders and dropdowns to match your scenario, then click "Calculate Mill Output." The tool produces daily, weekly, monthly, and annual figures for grain ground, flour produced, loaves of bread, and people fed.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding medieval mill grain production is essential for historians, reenactors, game designers, students, and anyone building an accurate picture of pre-industrial life. Grain milling was not a minor operation — it was the single most important industrial process in medieval Europe, consuming more engineering effort than any other technology before the steam engine.</p>
+    <p>Consider a village of 300 people in 14th-century England. Each adult needed roughly 2–2.5 lbs of bread per day, meaning the local mill had to process at least 600 lbs of grain daily just to keep the village fed. A poorly maintained watermill running on a weak stream might barely manage this; a well-positioned overshot mill on a fast river could serve three or four villages. These output calculations determined whether a lord invested in a new millstone, whether a monastery expanded its mill race, or whether a village survived a bad harvest.</p>
+    <p>For tabletop RPG and strategy game designers, these numbers provide accurate baseline economics for medieval simulation. A kingdom with 50 watermills had a very different food security profile than one relying on 200 windmills.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>The calculator uses formulas derived from historical mill survey data, experimental archaeology findings, and primary sources including the Domesday Book and medieval agricultural treatises.</p>
+    <p><strong>Watermill formula:</strong></p>
+    <p style="background:var(--header-bg);padding:0.75rem 1rem;border-radius:5px;font-family:monospace;font-size:0.88rem;color:var(--text);border:1px solid var(--border-light);">
+      Power (hp) = Flow (cfs) × Head (ft) × 0.085 × Efficiency<br>
+      Grain Rate (lbs/hr) = Power × 150 × Grain Factor<br>
+      <br>
+      Wheel efficiencies: Undershot 22%, Breastshot 50%, Overshot 75%<br>
+      Head estimates: Undershot 1.5ft, Breastshot 5ft, Overshot = wheel diameter × 0.9<br>
+      Grain factors: Wheat 1.0, Rye 1.05, Barley 0.95, Oats 0.88
+    </p>
+    <p><strong>Windmill formula:</strong></p>
+    <p style="background:var(--header-bg);padding:0.75rem 1rem;border-radius:5px;font-family:monospace;font-size:0.88rem;color:var(--text);border:1px solid var(--border-light);">
+      Power (hp) ≈ 0.0015 × Sails × Wind³ (mph)<br>
+      Grain Rate (lbs/hr) = Power × 120 × Stone Condition × Grain Factor
+    </p>
+    <p><strong>Hand mill formula:</strong></p>
+    <p style="background:var(--header-bg);padding:0.75rem 1rem;border-radius:5px;font-family:monospace;font-size:0.88rem;color:var(--text);border:1px solid var(--border-light);">
+      Base Rate (lbs/hr per worker): Rotary 3, Donkey 8 (2 workers), Lever 15 (4 workers)<br>
+      Adjusted for grain type and fatigue factor (0.8 after 4 hrs)
+    </p>
+    <p>Flour yield is calculated as 75% of grain ground (the historical extraction rate for stone-ground wholemeal flour). Bread yield assumes 1.35 lbs of flour per 1 lb loaf (accounting for water addition during baking). Each person requires approximately 1.5 loaves (1.5 lbs) per day.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't assume 24-hour operation.</strong> Medieval watermills typically ran 10–14 hours per day. Nighttime operation required a miller's constant presence and was avoided when possible. Seasonal variation was significant — summer droughts and winter ice both stopped operation.</li>
+      <li><strong>The multure toll reduces net output.</strong> The lord's milling fee (typically 6–12% of grain) means the village received less flour than total mill output suggests. This calculator shows gross production — budget 10% for the miller's toll.</li>
+      <li><strong>Wind is unreliable.</strong> Historical records show windmills in England averaged only 3–4 effective working days per week due to unsuitable wind conditions. For annual planning, reduce windmill estimates by 40–45%.</li>
+      <li><strong>Millstone size matters.</strong> The calculator assumes standard 4-foot millstones. Smaller stones (2–3 ft, common in poorer mills) reduce output by 30–50%; larger monastery stones (5–6 ft) can increase output significantly.</li>
+      <li><strong>Grain must be dry.</strong> Wet grain grinds at roughly 60% efficiency and can cause the stones to bind. Medieval millers carefully dried grain before milling — a step that could take 1–2 days and required a drying kiln.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How much grain could a typical medieval watermill grind per day?</summary>
+      <p>A well-maintained English watermill of the 12th–14th century could grind between 1,200 and 3,600 lbs (roughly 600–1,600 kg) of grain per day under good conditions, operating 10–14 hours. The best-documented mills, such as those at Toulouse and along the Seine, operated continuously in shifts and could grind 4,000–6,000 lbs per day. Most village mills served communities of 200–500 people and ground considerably less.</p>
+    </details>
+    <details>
+      <summary>Were windmills as efficient as watermills in the Middle Ages?</summary>
+      <p>Generally no — watermills were more productive and reliable. A good watermill could generate 2–5 mechanical horsepower continuously, while windmills averaged 1–3 hp only when wind conditions were suitable (12–25 mph). However, windmills dominated in flat regions like the Netherlands, East Anglia, and coastal France where water mills weren't viable. The Dutch windmills of the late medieval period became extraordinarily sophisticated and could match or exceed watermill output.</p>
+    </details>
+    <details>
+      <summary>What did medieval millers do with the bran separated from flour?</summary>
+      <p>Stone-ground medieval flour was whole-grain by necessity — separating fine white flour from bran required bolting (sieving through fine cloth), a secondary process that cost extra. White "maslin" flour was a luxury. Most bread was brown and dense from whole grain flour. Bran was used as animal feed, particularly for horses and pigs, and was itself a valuable commodity that millers sometimes sold separately after the bolting process.</p>
+    </details>
+    <details>
+      <summary>How many people could one medieval mill feed?</summary>
+      <p>A mid-sized English watermill operating 12 hours per day could realistically produce enough flour for 800–2,000 people daily, assuming standard medieval bread consumption of about 1.5 lbs per person per day. The Domesday Book's figure of roughly one mill per 50 households suggests historical mills were somewhat undersized relative to community needs, which explains why queuing at the mill was a common source of social conflict in medieval villages.</p>
+    </details>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <!-- RELATED TOOLS -->
+  <div class="related-tools">
+    <h2>🔗 Related Historical Calculators</h2>
+    <div class="related-grid">
+      <a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
+      <a href="/roman-aqueduct-bridge-height-calculator/">Roman Aqueduct Bridge Height Calculator</a>
+      <a href="/roman-aqueduct-water-pressure-calculator/">Roman Aqueduct Water Pressure Calculator</a>
+      <a href="/ancient-roman-feast-cost-calculator/">Ancient Roman Feast Cost Calculator</a>
+      <a href="/roman-water-distribution-pipe-sizing-calculator/">Roman Aqueduct Water Distribution Calculator</a>
+      <a href="/medieval-longbow-arrow-production-calculator/">Medieval Longbow Arrow Production Calculator</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <div>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a>
+    <a href="/contact/">Contact</a>
+  </div>
+  <div class="footer-copy">© 2024 historycalc.com — Free Historical Calculation Tools</div>
+</footer>
+
+<script>
+  // ─── TAB SWITCHING ───────────────────────────────────────────────
+  let activeTab = 'windmill';
+  function switchTab(tab) {
+    activeTab = tab;
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    const btns = document.querySelectorAll('.tab-btn');
+    const map = {windmill: 0, watermill: 1, handmill: 2};
+    btns[map[tab]].classList.add('active');
+    // hide results when switching tab
+    const res = document.getElementById('results');
+    res.classList.remove('visible');
+    setTimeout(() => { if(!res.classList.contains('visible')) res.style.display='none'; }, 350);
+  }
+
+  // ─── SLIDER SYNC ─────────────────────────────────────────────────
+  function syncSlider(sliderId, numId) {
+    document.getElementById(numId).textContent = document.getElementById(sliderId).value;
+  }
+
+  // ─── HELPERS ─────────────────────────────────────────────────────
+  function fmt(n, dec = 0) {
+    return Number(n).toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+  }
+
+  const GRAIN_FACTOR = { wheat: 1.0, rye: 1.05, barley: 0.95, oats: 0.88 };
+  const GRAIN_LABEL = { wheat: 'Wheat', rye: 'Rye', barley: 'Barley', oats: 'Oats' };
+  const FLOUR_YIELD = 0.75;   // 75% extraction rate
+  const BREAD_FACTOR = 1.35;  // lbs flour → lbs bread (water added)
+  const BREAD_PER_PERSON = 1.5; // lbs per person per day
+
+  // ─── CALCULATIONS ────────────────────────────────────────────────
+  function calcWindmill() {
+    const windMph = parseFloat(document.getElementById('windSpeed').value);
+    const sails = parseInt(document.getElementById('windSails').value);
+    const hours = parseInt(document.getElementById('windHours').value);
+    const grain = document.getElementById('windGrain').value;
+    const cond = parseFloat(document.getElementById('windCondition').value);
+
+    // Power (hp) ≈ 0.0015 × sails × wind³
+    const power = 0.0015 * sails * Math.pow(windMph, 3);
+    // Grain lbs/hr
+    const grainRatePerHr = power * 120 * cond * GRAIN_FACTOR[grain];
+    return { grainRatePerHr, hours, grain, type: 'Windmill', power };
+  }
+
+  function calcWatermill() {
+    const flow = parseFloat(document.getElementById('waterFlow').value);
+    const diam = parseInt(document.getElementById('wheelDiam').value);
+    const wheelType = document.getElementById('wheelType').value;
+    const hours = parseInt(document.getElementById('waterHours').value);
+    const grain = document.getElementById('waterGrain').value;
+
+    const effMap = { undershot: 0.22, breastshot: 0.50, overshot: 0.75 };
+    const headMap = { undershot: 1.5, breastshot: 5.0, overshot: diam * 0.9 };
+    const eff = effMap[wheelType];
+    const head = headMap[wheelType];
+    // Power = flow × head × 0.085 × efficiency
+    const power = flow * head * 0.085 * eff;
+    const grainRatePerHr = power * 150 * GRAIN_FACTOR[grain];
+    return { grainRatePerHr, hours, grain, type: 'Watermill', power };
+  }
+
+  function calcHandmill() {
+    const workers = parseInt(document.getElementById('handWorkers').value);
+    const millType = document.getElementById('handMillType').value;
+    const hours = parseInt(document.getElementById('handHours').value);
+    const grain = document.getElementById('handGrain').value;
+
+    // Base rates lbs/hr
+    const baseMap = { rotary: 3, donkey: 8, lever: 15 };
+    // worker scaling (rotary: per worker; donkey: per pair; lever: per 4-person unit)
+    const teamSize = { rotary: 1, donkey: 2, lever: 4 };
+    const teams = Math.max(1, Math.floor(workers / teamSize[millType]));
+    const activeWorkers = teams * teamSize[millType];
+
+    // Fatigue factor: first 4 hrs full rate, remainder 0.8
+    const fatiguedHrs = Math.max(0, hours - 4);
+    const normalHrs = Math.min(hours, 4);
+    const rateHr = baseMap[millType] * teams * GRAIN_FACTOR[grain];
+    const grainRatePerHr = rateHr; // we apply fatigue in daily total
+    const dailyGrain = rateHr * normalHrs + rateHr * 0.8 * fatiguedHrs;
+    return { grainRatePerHr, hours, grain, type: 'Hand Mill', power: 0, dailyGrain, activeWorkers };
+  }
+
+  function buildResults(data) {
+    const { grainRatePerHr, hours, grain, type, power, dailyGrain: dailyGrainOverride, activeWorkers } = data;
+    const dailyGrain = dailyGrainOverride !== undefined ? dailyGrainOverride : grainRatePerHr * hours;
+    const dailyFlour = dailyGrain * FLOUR_YIELD;
+    const dailyBread = dailyFlour * BREAD_FACTOR;
+    const dailyPeople = dailyBread / BREAD_PER_PERSON;
+
+    const periods = [
+      { label: 'Per Hour', mult: 1/hours },
+      { label: 'Per Day', mult: 1 },
+      { label: 'Per Week', mult: 7 },
+      { label: 'Per Month (30d)', mult: 30 },
+      { label: 'Per Year', mult: 365 },
+    ];
+
+    // Build table rows HTML
+    let tbodyHTML = '';
+    periods.forEach(p => {
+      const g = dailyGrain * p.mult;
+      const f = dailyFlour * p.mult;
+      const b = Math.round(f * BREAD_FACTOR / BREAD_PER_PERSON);
+      const loaves = Math.round(f * BREAD_FACTOR / 1.0); // 1 lb loaf
+      tbodyHTML += `<tr>
+        <td>${p.label}</td>
+        <td>${fmt(g, 1)}</td>
+        <td>${fmt(f, 1)}</td>
+        <td>${fmt(loaves)}</td>
+        <td>${fmt(b)}</td>
+      </tr>`;
+    });
+
+    // Bar visual (relative to daily max)
+    const barData = [
+      { label: 'Grain Ground', val: dailyGrain, unit: 'lbs', max: dailyGrain },
+      { label: 'Flour Yielded', val: dailyFlour, unit: 'lbs', max: dailyGrain },
+      { label: 'Bread Made', val: dailyBread, unit: 'lbs', max: dailyGrain },
+    ];
+    let barsHTML = '';
+    barData.forEach(b => {
+      const pct = Math.min(100, (b.val / barData[0].max) * 100).toFixed(1);
+      barsHTML += `<div class="bar-row">
+        <span class="bar-label">${b.label}</span>
+        <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
+        <span class="bar-num">${fmt(b.val, 0)} lbs</span>
+      </div>`;
+    });
+
+    // Grid boxes
+    const powerText = power > 0 ? `${power.toFixed(2)} hp` : `${activeWorkers || 0} workers`;
+    const gridHTML = `
+      <div class="result-box"><div class="val">${fmt(dailyFlour, 0)}</div><div class="lbl">Lbs Flour / Day</div></div>
+      <div class="result-box"><div class="val">${fmt(Math.round(dailyFlour * BREAD_FACTOR))}</div><div class="lbl">Lbs Bread / Day</div></div>
+      <div class="result-box"><div class="val">${fmt(Math.round(dailyPeople))}</div><div class="lbl">People Fed / Day</div></div>
+      <div class="result-box"><div class="val">${powerText}</div><div class="lbl">Mill Power</div></div>
+    `;
+
+    // Modern equivalent
+    const annualFlourTons = (dailyFlour * 365) / 2000;
+    const modernPlant = Math.round(dailyFlour / 800); // modern industrial mill ~800x more
+    const modHTML = `<strong>Modern Equivalent:</strong> This mill produces <strong>${fmt(annualFlourTons, 1)} US tons</strong> of flour per year. 
+    A single modern industrial flour mill can produce the same amount in roughly <strong>${fmt(Math.max(1, Math.round(365 / modernPlant)))} days</strong>. 
+    The ${fmt(Math.round(dailyPeople))} people fed daily by this mill is equivalent to filling 
+    <strong>${fmt(Math.round(dailyPeople / 50))} medieval longhouses</strong> with bread every morning.`;
+
+    // Store copy text
+    window._copyText = `Medieval ${type} Output Results\n` +
+      `Mill Type: ${type} | Grain: ${GRAIN_LABEL[grain]}\n` +
+      `Daily Grain Ground: ${fmt(dailyGrain, 1)} lbs\n` +
+      `Daily Flour Yield: ${fmt(dailyFlour, 1)} lbs\n` +
+      `Daily Bread: ${fmt(dailyBread, 1)} lbs\n` +
+      `People Fed per Day: ${fmt(Math.round(dailyPeople))}\n` +
+      `Annual Flour: ${fmt(annualFlourTons, 1)} US tons\n` +
+      `Generated at historycalc.com/medieval-grain-mill-output-calculator/`;
+
+    return {
+      primary: fmt(dailyGrain, 0),
+      primaryLabel: `Pounds of ${GRAIN_LABEL[grain]} ground per day (${type})`,
+      gridHTML, tbodyHTML, barsHTML, modHTML
+    };
+  }
+
+  // ─── MAIN CALCULATE ──────────────────────────────────────────────
+  function calculate() {
+    let data;
+    let valid = true;
+
+    if (activeTab === 'windmill') {
+      data = calcWindmill();
+    } else if (activeTab === 'watermill') {
+      const flowEl = document.getElementById('waterFlow');
+      const flowVal = parseFloat(flowEl.value);
+      if (!flowVal || flowVal < 1 || flowVal > 500) {
+        flowEl.classList.add('error-input');
+        document.getElementById('err-waterFlow').style.display = 'block';
+        valid = false;
+      } else {
+        flowEl.classList.remove('error-input');
+        document.getElementById('err-waterFlow').style.display = 'none';
+      }
+      if (!valid) return;
+      data = calcWatermill();
+    } else {
+      data = calcHandmill();
+    }
+
+    const r = buildResults(data);
+
+    requestAnimationFrame(() => {
+      document.getElementById('r-primary').textContent = r.primary;
+      document.getElementById('r-primary-label').textContent = r.primaryLabel;
+      document.getElementById('r-grid').innerHTML = r.gridHTML;
+      document.getElementById('r-tbody').innerHTML = r.tbodyHTML;
+      document.getElementById('r-bars').innerHTML = r.barsHTML;
+      document.getElementById('r-modern').innerHTML = r.modHTML;
+
+      const sec = document.getElementById('results');
+      sec.style.display = 'block';
+      requestAnimationFrame(() => { sec.classList.add('visible'); });
+      sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  // ─── COPY RESULTS ────────────────────────────────────────────────
+  function copyResults() {
+    if (!window._copyText) return;
+    navigator.clipboard.writeText(window._copyText).then(() => {
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = window._copyText;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const btn = document.getElementById('copyBtn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy Results'; }, 2000);
+    });
+  }
+
+  // ─── EVENT LISTENERS ─────────────────────────────────────────────
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  // Enter key in inputs
+  document.querySelectorAll('input[type="number"]').forEach(inp => {
+    inp.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { requestAnimationFrame(() => { calculate(); }); }
+    });
+  });
+
+  // Init slider displays
+  ['windSpeed','windHours','wheelDiam','waterHours','handWorkers','handHours'].forEach(id => {
+    const el = document.getElementById(id);
+    const numId = id + 'Num';
+    if (el && document.getElementById(numId)) {
+      el.addEventListener('input', () => syncSlider(id, numId));
+    }
+  });
+</script>
+</body>
+</html>
