@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Roman Catapult Range Calculator — Free Online Tool | BallisticHistory</title>
+<meta name="description" content="Calculate the range, trajectory, and impact of ancient Roman catapults and ballistae. Enter projectile weight, launch angle, and tension to get accurate results.">
+<link rel="canonical" href="https://ballistichistory.com/roman-catapult-range-calculator">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Ancient Roman Catapult Range Calculator",
+  "description": "Calculate the range, trajectory, and impact force of ancient Roman catapults, onagers, and ballistae using historical and physics-based formulas.",
+  "url": "https://ballistichistory.com/roman-catapult-range-calculator",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  }
+}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f4f6f8;color:#1a1a2e;font-size:16px;line-height:1.6}
+a{color:#0077b6;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fff;border-bottom:1px solid #e0e0e0;padding:0 1.5rem;height:52px;display:flex;align-items:center}
+nav .site-name{font-weight:700;font-size:1.05rem;color:#1a1a2e;letter-spacing:-0.3px}
+nav .site-name span{color:#0077b6}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+h1{font-size:1.55rem;font-weight:800;color:#1a1a2e;margin-bottom:0.35rem;line-height:1.25}
+.subtitle{color:#555;font-size:0.95rem;margin-bottom:1.5rem}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:2rem;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-bottom:2rem}
+.tabs{display:flex;gap:0;margin-bottom:1.5rem;border:1px solid #ddd;border-radius:6px;overflow:hidden}
+.tab-btn{flex:1;background:#f8f9fa;border:none;padding:10px 8px;font-size:0.85rem;font-weight:600;color:#555;cursor:pointer;transition:background 0.15s,color 0.15s;min-height:44px}
+.tab-btn.active{background:#0077b6;color:#fff}
+.tab-btn:not(:last-child){border-right:1px solid #ddd}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.form-row{margin-bottom:1.2rem}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:5px}
+label .unit{font-weight:400;color:#888;font-size:0.8rem}
+input[type=number],select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;color:#1a1a2e;background:#fff;transition:border-color 0.15s,box-shadow 0.15s;-webkit-appearance:none;appearance:none;min-height:44px}
+input[type=number]:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
+input.error{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.12)}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
+.error-msg.show{display:block}
+input[type=range]{width:100%;accent-color:#0077b6;cursor:pointer;height:20px}
+.slider-row{margin-bottom:1.2rem}
+.slider-labels{display:flex;justify-content:space-between;font-size:0.75rem;color:#888;margin-top:2px}
+.slider-val{font-weight:700;color:#0077b6;font-size:0.9rem}
+.btn{background:#0077b6;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.15s}
+.btn:hover{background:#006299}
+.btn:active{background:#005580}
+.results{display:none;opacity:0;transition:opacity 0.3s ease}
+.results.show{display:block;opacity:1}
+.key-metric{text-align:center;background:linear-gradient(135deg,#e8f4fd,#d0eafc);border-radius:8px;padding:1.5rem 1rem;margin-bottom:1.2rem;position:relative}
+.key-metric .big-num{font-size:3rem;font-weight:900;color:#0077b6;line-height:1;letter-spacing:-1px}
+.key-metric .big-label{font-size:0.9rem;color:#444;margin-top:4px;font-weight:500}
+.key-metric .big-sub{font-size:0.8rem;color:#666;margin-top:2px}
+.metrics-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-bottom:1.2rem}
+.metric-box{background:#f8f9fa;border:1px solid #e8e8e8;border-radius:6px;padding:0.9rem 1rem;text-align:center}
+.metric-box .m-val{font-size:1.3rem;font-weight:800;color:#0077b6}
+.metric-box .m-lbl{font-size:0.78rem;color:#555;margin-top:2px}
+.copy-btn{position:absolute;top:10px;right:10px;background:#fff;color:#0077b6;border:1px solid #0077b6;padding:4px 10px;border-radius:4px;font-size:0.75rem;cursor:pointer;transition:background 0.15s}
+.copy-btn:hover{background:#e8f4fd}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+th{background:#f0f0f0;padding:8px 10px;text-align:left;font-weight:600;color:#333;border-bottom:2px solid #ddd}
+th.num,td.num{text-align:right}
+td{padding:7px 10px;border-bottom:1px solid #eee;color:#1a1a2e}
+tr:nth-child(even) td{background:#fafafa}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:6px;border:1px solid #e0e0e0}
+.show-all-btn{background:#f8f9fa;color:#0077b6;border:1px solid #ddd;padding:8px 16px;border-radius:6px;font-size:0.85rem;cursor:pointer;width:100%;margin-top:0.6rem;min-height:44px;font-weight:500;transition:background 0.15s}
+.show-all-btn:hover{background:#e8f4fd}
+.traj-bar-wrap{margin-bottom:1.2rem}
+.traj-bar-wrap h3{font-size:0.9rem;font-weight:600;color:#444;margin-bottom:0.5rem}
+.traj-visual{background:#f0f7ff;border:1px solid #cce0f0;border-radius:6px;padding:1rem;position:relative;height:90px;overflow:hidden}
+.traj-arc{position:absolute;bottom:10px;left:20px;right:20px;height:60px;border:2px dashed #0077b6;border-bottom:none;border-radius:50% 50% 0 0 / 100% 100% 0 0;opacity:0.7}
+.traj-ground{position:absolute;bottom:10px;left:10px;right:10px;height:2px;background:#888}
+.traj-launcher{position:absolute;bottom:12px;left:16px;width:14px;height:14px;background:#e74c3c;border-radius:50%}
+.traj-impact{position:absolute;bottom:12px;right:16px;width:14px;height:14px;background:#e74c3c;border-radius:50%}
+.traj-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:#555;padding:0 10px;margin-top:4px}
+.section-divider{border:none;border-top:1px solid #e8e8e8;margin:2rem 0}
+h2{font-size:1.15rem;font-weight:700;color:#1a1a2e;margin-bottom:0.7rem;margin-top:0}
+.content-section{margin-bottom:2rem}
+.content-section p{color:#444;font-size:0.95rem;margin-bottom:0.7rem}
+.content-section ul{padding-left:1.3rem;color:#444;font-size:0.95rem}
+.content-section ul li{margin-bottom:0.4rem}
+.formula-box{background:#f8f9fa;border-left:4px solid #0077b6;border-radius:0 6px 6px 0;padding:0.8rem 1rem;font-family:monospace;font-size:0.88rem;color:#1a1a2e;margin:0.8rem 0;line-height:1.8}
+details{border:1px solid #e0e0e0;border-radius:6px;margin-bottom:0.7rem;overflow:hidden}
+summary{padding:0.8rem 1rem;font-weight:600;font-size:0.93rem;cursor:pointer;background:#f8f9fa;color:#1a1a2e;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'＋';font-size:1rem;color:#0077b6;font-weight:700}
+details[open] summary::after{content:'－'}
+details p{padding:0.9rem 1rem;font-size:0.92rem;color:#444;background:#fff;border-top:1px solid #e8e8e8}
+.related-tools{background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;padding:1.2rem 1.5rem;margin-bottom:2rem}
+.related-tools h2{font-size:1rem;margin-bottom:0.7rem}
+.related-tools ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:0.5rem}
+.related-tools ul li a{display:inline-block;background:#fff;border:1px solid #ddd;border-radius:20px;padding:5px 13px;font-size:0.83rem;color:#0077b6;transition:background 0.15s}
+.related-tools ul li a:hover{background:#e8f4fd;text-decoration:none}
+.ad-slot{min-height:0;margin:0}
+footer{border-top:1px solid #e0e0e0;background:#fff;padding:1.2rem 1.5rem;text-align:center;font-size:0.83rem;color:#666}
+footer a{color:#0077b6;margin:0 0.4rem}
+.machine-badge{display:inline-block;background:#e8f4fd;color:#0077b6;border:1px solid #b3d9f2;border-radius:4px;font-size:0.78rem;font-weight:600;padding:2px 8px;margin-left:6px;vertical-align:middle}
+@media(max-width:640px){
+  .card{padding:1.2rem}
+  .form-row-2{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  h1{font-size:1.3rem}
+  .key-metric .big-num{font-size:2.4rem}
+  .container{padding:1rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="site-name">Ballistic<span>History</span></span>
+</nav>
+
+<div class="container">
+  <h1>Ancient Roman Catapult Range Calculator</h1>
+  <p class="subtitle">Physics-based range estimates for onagers, ballistae, and trebuchets of the Roman era.</p>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab('onager')">Onager</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('ballista')">Ballista</button>
+      <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab('trebuchet')">Trebuchet</button>
+    </div>
+
+    <!-- ONAGER TAB -->
+    <div class="tab-panel active" id="panel-onager">
+      <div class="form-row-2">
+        <div>
+          <label for="on-mass">Projectile Mass <span class="unit">(kg)</span></label>
+          <input type="number" id="on-mass" min="0.5" max="150" step="0.5" value="10" placeholder="e.g. 10">
+          <div class="error-msg" id="on-mass-err">Enter a valid mass (0.5–150 kg)</div>
+        </div>
+        <div>
+          <label for="on-angle">Launch Angle <span class="unit">(degrees)</span></label>
+          <input type="number" id="on-angle" min="1" max="89" step="1" value="45" placeholder="e.g. 45">
+          <div class="error-msg" id="on-angle-err">Enter 1–89 degrees</div>
+        </div>
+      </div>
+      <div class="slider-row">
+        <label>Arm Tension / Energy <span class="unit">(Joules)</span> — <span class="slider-val" id="on-energy-val">8,000</span></label>
+        <input type="range" id="on-energy" min="1000" max="30000" step="500" value="8000" oninput="document.getElementById('on-energy-val').textContent=Number(this.value).toLocaleString()">
+        <div class="slider-labels"><span>1,000 J (small)</span><span>30,000 J (siege)</span></div>
+      </div>
+      <div class="form-row-2">
+        <div>
+          <label for="on-height">Launch Height <span class="unit">(m)</span></label>
+          <input type="number" id="on-height" min="0" max="20" step="0.5" value="1.5" placeholder="e.g. 1.5">
+        </div>
+        <div>
+          <label for="on-drag">Air Drag Coefficient</label>
+          <select id="on-drag">
+            <option value="0">None (vacuum)</option>
+            <option value="0.3" selected>Light (stone)</option>
+            <option value="0.6">Moderate (clay pot)</option>
+            <option value="1.0">Heavy (irregular)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calculate('onager')">Calculate Onager Range</button>
+    </div>
+
+    <!-- BALLISTA TAB -->
+    <div class="tab-panel" id="panel-ballista">
+      <div class="form-row-2">
+        <div>
+          <label for="ba-mass">Bolt/Stone Mass <span class="unit">(kg)</span></label>
+          <input type="number" id="ba-mass" min="0.1" max="30" step="0.1" value="1.2" placeholder="e.g. 1.2">
+          <div class="error-msg" id="ba-mass-err">Enter 0.1–30 kg</div>
+        </div>
+        <div>
+          <label for="ba-angle">Launch Angle <span class="unit">(degrees)</span></label>
+          <input type="number" id="ba-angle" min="1" max="89" step="1" value="30" placeholder="e.g. 30">
+          <div class="error-msg" id="ba-angle-err">Enter 1–89 degrees</div>
+        </div>
+      </div>
+      <div class="slider-row">
+        <label>Draw Energy <span class="unit">(Joules)</span> — <span class="slider-val" id="ba-energy-val">5,000</span></label>
+        <input type="range" id="ba-energy" min="500" max="15000" step="250" value="5000" oninput="document.getElementById('ba-energy-val').textContent=Number(this.value).toLocaleString()">
+        <div class="slider-labels"><span>500 J (light)</span><span>15,000 J (heavy)</span></div>
+      </div>
+      <div class="form-row-2">
+        <div>
+          <label for="ba-height">Launch Height <span class="unit">(m)</span></label>
+          <input type="number" id="ba-height" min="0" max="20" step="0.5" value="1.0">
+        </div>
+        <div>
+          <label for="ba-drag">Air Drag Coefficient</label>
+          <select id="ba-drag">
+            <option value="0">None (vacuum)</option>
+            <option value="0.15" selected>Light (bolt)</option>
+            <option value="0.3">Moderate (stone)</option>
+            <option value="0.6">Heavy (irregular)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calculate('ballista')">Calculate Ballista Range</button>
+    </div>
+
+    <!-- TREBUCHET TAB -->
+    <div class="tab-panel" id="panel-trebuchet">
+      <div class="form-row-2">
+        <div>
+          <label for="tr-mass">Projectile Mass <span class="unit">(kg)</span></label>
+          <input type="number" id="tr-mass" min="1" max="200" step="1" value="50" placeholder="e.g. 50">
+          <div class="error-msg" id="tr-mass-err">Enter 1–200 kg</div>
+        </div>
+        <div>
+          <label for="tr-cw">Counterweight Mass <span class="unit">(kg)</span></label>
+          <input type="number" id="tr-cw" min="100" max="20000" step="100" value="5000" placeholder="e.g. 5000">
+          <div class="error-msg" id="tr-cw-err">Enter 100–20,000 kg</div>
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div>
+          <label for="tr-arm">Long Arm Length <span class="unit">(m)</span></label>
+          <input type="number" id="tr-arm" min="2" max="20" step="0.5" value="10" placeholder="e.g. 10">
+        </div>
+        <div>
+          <label for="tr-angle">Release Angle <span class="unit">(degrees)</span></label>
+          <input type="number" id="tr-angle" min="30" max="75" step="1" value="45" placeholder="e.g. 45">
+          <div class="error-msg" id="tr-angle-err">Enter 30–75 degrees</div>
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div>
+          <label for="tr-height">Pivot Height <span class="unit">(m)</span></label>
+          <input type="number" id="tr-height" min="1" max="15" step="0.5" value="5">
+        </div>
+        <div>
+          <label for="tr-drag">Air Drag Coefficient</label>
+          <select id="tr-drag">
+            <option value="0">None (vacuum)</option>
+            <option value="0.3" selected>Light (stone)</option>
+            <option value="0.6">Moderate (clay pot)</option>
+            <option value="1.0">Heavy (irregular)</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn" onclick="calculate('trebuchet')">Calculate Trebuchet Range</button>
+    </div>
+
+    <!-- RESULTS AREA -->
+    <div id="results" class="results" style="margin-top:1.5rem"></div>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <!-- CONTENT SECTIONS -->
+  <div class="content-section">
+    <h2>How to Use This Roman Catapult Range Calculator</h2>
+    <p>Select your siege machine type — Onager, Ballista, or Trebuchet — then enter the projectile mass, launch angle, and stored energy (or counterweight for the trebuchet). Click the calculate button to instantly see the estimated range, maximum height, flight time, and impact energy. Adjust the angle slider or drag coefficient to compare scenarios.</p>
+    <p>Switch between tabs to compare how the three main Roman siege engines perform with similar parameters. All results use projectile physics with optional aerodynamic drag.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Roman siege warfare was a precise, engineered science — not the wild Hollywood spectacle we often imagine. Understanding catapult range helps historians, re-enactors, game designers, and military history enthusiasts appreciate the tactical decisions Roman generals actually faced.</p>
+    <p>A typical Roman onager hurling a 10 kg stone could achieve around 300–400 metres of range, which determined how far back the enemy could safely camp their own forces. At the siege of Jerusalem in 70 CE, Josephus recorded catapult stones traveling "two furlongs" — roughly 370 metres — and killing men who didn't hear the warning call in time. Ballistae were precision weapons: their tight bolt groupings at 100–200 metres made them the Roman equivalent of a sniper rifle, capable of targeting specific individuals on walls. Trebuchets, used in later campaigns and adapted from Eastern designs, could hurl 100 kg boulders over 200 metres with devastating wall-breaching energy. These ranges dictated siege line placement, tower heights, shield wall formations, and how Roman engineers dug approach trenches to minimize exposure time.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>All three machines use projectile motion physics with energy conversion as the base model. The stored mechanical energy converts to kinetic energy of the projectile, then standard trajectory equations give range and height.</p>
+    <div class="formula-box">
+      Launch velocity: v₀ = √(2 × η × E / m)<br>
+      Range (no drag): R = (v₀² × sin(2θ)) / g<br>
+      Max height: H = h₀ + (v₀ × sinθ)² / (2g)<br>
+      Flight time: T = [v₀sinθ + √((v₀sinθ)² + 2g·h₀)] / g<br>
+      Impact energy: KE = ½ × m × v_impact²<br>
+      Impact force: F = KE / stopping_distance
+    </div>
+    <p>Where <strong>η</strong> is mechanical efficiency (onager ≈ 0.50, ballista ≈ 0.65, trebuchet ≈ 0.70), <strong>E</strong> is stored energy in Joules, <strong>m</strong> is projectile mass in kg, <strong>θ</strong> is launch angle, and <strong>g</strong> = 9.81 m/s². For trebuchets, the energy is estimated from counterweight potential energy: E = M_cw × g × 2 × L_arm × efficiency. Aerodynamic drag applies a velocity-dependent reduction factor based on the projectile's drag coefficient and approximate cross-sectional area estimated from mass.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>45° is NOT always optimal:</strong> For elevated launch points (like walls or towers), the optimal angle is less than 45°. Try 30–38° from an elevated position for maximum range.</li>
+      <li><strong>Don't ignore drag for large projectiles:</strong> A clay pot of burning pitch has very different aerodynamics than a smooth stone. Use "Heavy (irregular)" drag for pots, barrels, or diseased carcasses.</li>
+      <li><strong>Trebuchet energy input matters more than arm length:</strong> Doubling the counterweight mass nearly doubles the energy, but arm length has diminishing returns beyond optimal sling ratios.</li>
+      <li><strong>Ballista was a precision weapon:</strong> Use low launch angles (15–25°) for flat, accurate bolt shooting at close targets. High angles sacrifice accuracy dramatically.</li>
+      <li><strong>Efficiency is capped by real physics:</strong> No ancient catapult exceeded ~70% mechanical efficiency. Claims of 500+ metre ranges in ancient texts often involved exaggeration, strong tailwinds, or elevated shooting positions.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How far could a real Roman catapult actually shoot?</summary>
+      <p>Historical and experimental evidence suggests onagers achieved 250–450 metres with 5–15 kg projectiles, while ballistae could reach 300–500 metres with lighter bolts under ideal conditions. Modern reconstructions at Carnuntum and other sites have confirmed ranges of 300–370 metres for stone-throwing catapults. Ancient texts like Vegetius and Josephus describe ranges consistent with these estimates.</p>
+    </details>
+    <details>
+      <summary>What is the difference between an onager and a ballista?</summary>
+      <p>An onager (Latin for "wild ass") is a torsion-powered single-arm sling catapult that lobs projectiles in a high arc — ideal for hitting behind walls. A ballista is essentially a giant crossbow using two torsion springs, firing bolts or stones on a flat, accurate trajectory. The ballista prioritizes precision while the onager prioritizes throwing power and high-angle delivery.</p>
+    </details>
+    <details>
+      <summary>Did the Romans actually use trebuchets?</summary>
+      <p>Romans used counterweight siege engines occasionally in the later Imperial period, but the classic trebuchet was more associated with medieval European and Byzantine warfare from the 6th century onward. Roman siegecraft primarily relied on torsion engines (onager, ballista) rather than gravity-powered counterweight machines. The trebuchet option is included for comparative and educational purposes.</p>
+    </details>
+    <details>
+      <summary>Why does the calculator use efficiency percentages?</summary>
+      <p>Not all stored energy transfers to the projectile. Rope stretch, frame flex, air resistance during the arm's swing, and sling inefficiency all cause energy loss. Experimental reconstructions have measured onager efficiency between 45–55%, ballista around 60–70%, and trebuchets around 65–75%. These figures are built into the calculator's default efficiency values for each machine type.</p>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h2>Related Tools</h2>
+    <ul>
+      <li><a href="/projectile-motion-calculator">Projectile Motion Calculator</a></li>
+      <li><a href="/medieval-trebuchet-calculator">Medieval Trebuchet Calculator</a></li>
+      <li><a href="/kinetic-energy-calculator">Kinetic Energy Calculator</a></li>
+      <li><a href="/historical-unit-converter">Roman Unit Converter</a></li>
+      <li><a href="/siege-tower-height-calculator">Siege Tower Height Calculator</a></li>
+      <li><a href="/arrow-ballistics-calculator">Arrow Ballistics Calculator</a></li>
+    </ul>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+</div>
+
+<footer>
+  <div><a href="/about">About</a> <a href="/privacy">Privacy</a> <a href="/contact">Contact</a></div>
+  <div style="margin-top:6px">© 2025 BallisticHistory.com — For educational and historical purposes</div>
+</footer>
+
+<script>
+const G = 9.81;
+const STOP_DIST = 0.3; // metres, approximate stopping distance for impact force
+
+const MACHINES = {
+  onager:    { efficiency: 0.50, name: 'Onager',    badge: 'Torsion Catapult' },
+  ballista:  { efficiency: 0.65, name: 'Ballista',  badge: 'Torsion Crossbow' },
+  trebuchet: { efficiency: 0.70, name: 'Trebuchet', badge: 'Counterweight' }
+};
+
+// Tab switching — CSS class toggle only, no DOM rebuild
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabPanels = document.querySelectorAll('.tab-panel');
+function switchTab(type) {
+  const types = ['onager','ballista','trebuchet'];
+  types.forEach((t, i) => {
+    tabBtns[i].classList.toggle('active', t === type);
+    tabBtns[i].setAttribute('aria-selected', t === type);
+    tabPanels[i].classList.toggle('active', t === type);
+  });
+  document.getElementById('results').classList.remove('show');
+}
+
+function fmt(n, dec=1) {
+  if (!isFinite(n)) return '—';
+  return n.toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+function fmtInt(n) {
+  if (!isFinite(n)) return '—';
+  return Math.round(n).toLocaleString('en-US');
+}
+
+function showError(id, show) {
+  const el = document.getElementById(id);
+  const inp = el.previousElementSibling;
+  el.classList.toggle('show', show);
+  inp.classList.toggle('error', show);
+}
+function clearErrors(ids) { ids.forEach(id => showError(id, false)); }
+
+function getEnergy_trebuchet(cwMass, armLen) {
+  const eff = MACHINES.trebuchet.efficiency;
+  return cwMass * G * 2 * armLen * eff;
+}
+
+// Drag model: compute range with simple iterative drag
+function computeTrajectory(v0, angle_deg, h0, Cd, mass) {
+  const theta = angle_deg * Math.PI / 180;
+  const vx0 = v0 * Math.cos(theta);
+  const vy0 = v0 * Math.sin(theta);
+
+  // Estimate cross-section from mass (assume density ~2200 kg/m³, spherical)
+  const density = 2200;
+  const radius = Math.pow((3 * mass) / (4 * Math.PI * density), 1/3);
+  const area = Math.PI * radius * radius;
+  const airDensity = 1.225;
+  const k = 0.5 * Cd * airDensity * area; // drag constant
+
+  if (Cd === 0) {
+    // Analytical solution
+    const range = (vx0 / G) * (vy0 + Math.sqrt(vy0*vy0 + 2*G*h0));
+    const flightTime = (vy0 + Math.sqrt(vy0*vy0 + 2*G*h0)) / G;
+    const maxH = h0 + (vy0*vy0)/(2*G);
+    const vImpact = Math.sqrt(vx0*vx0 + Math.pow(vy0 - G*flightTime,2));
+    return { range, flightTime, maxH, vImpact, trajPoints: buildArcPoints(v0, theta, h0, range) };
+  }
+
+  // Numerical integration (Euler, dt = 0.02s)
+  const dt = 0.02;
+  let x = 0, y = h0, vx = vx0, vy = vy0;
+  let maxH = h0, t = 0;
+  const pts = [{x:0,y:h0}];
+  let prevY = h0;
+
+  for (let i = 0; i < 50000; i++) {
+    const speed = Math.sqrt(vx*vx + vy*vy);
+    const drag = (k * speed) / mass;
+    const ax = -drag * vx;
+    const ay = -G - drag * vy;
+    vx += ax * dt;
+    vy += ay * dt;
+    x += vx * dt;
+    y += vy * dt;
+    t += dt;
+    if (y > maxH) maxH = y;
+    if (i % 50 === 0) pts.push({x, y});
+    if (y <= 0 && t > 0.1) {
+      // Interpolate
+      const frac = prevY / (prevY - y);
+      x = x - vx * dt * (1 - frac);
+      t = t - dt * (1 - frac);
+      break;
+    }
+    prevY = y;
+  }
+  const vImpact = Math.sqrt(vx*vx + vy*vy);
+  return { range: x, flightTime: t, maxH, vImpact, trajPoints: pts };
+}
+
+function buildArcPoints(v0, theta, h0, range) {
+  const vx = v0 * Math.cos(theta);
+  const vy = v0 * Math.sin(theta);
+  const pts = [];
+  for (let i = 0; i <= 20; i++) {
+    const x = range * i / 20;
+    const t = x / vx;
+    const y = h0 + vy*t - 0.5*G*t*t;
+    pts.push({x, y: Math.max(0, y)});
+  }
+  return pts;
+}
+
+function buildTrajectoryTable(pts, range) {
+  // Sample up to 12 points evenly
+  const step = Math.max(1, Math.floor(pts.length / 12));
+  const rows = [];
+  for (let i = 0; i < pts.length; i += step) {
+    rows.push(pts[i]);
+  }
+  if (rows[rows.length-1] !== pts[pts.length-1]) rows.push(pts[pts.length-1]);
+
+  let html = '<tr><th class="num">Distance (m)</th><th class="num">Height (m)</th><th class="num">% of Range</th></tr>';
+  rows.forEach(p => {
+    html += `<tr>
+      <td class="num">${fmt(p.x,0)}</td>
+      <td class="num">${fmt(Math.max(0,p.y),1)}</td>
+      <td class="num">${fmt(range>0?(p.x/range*100):0,1)}%</td>
+    </tr>`;
+  });
+  return html;
+}
+
+function historicalContext(machine, range) {
+  if (machine === 'onager') {
+    if (range < 100) return 'Very short range — typical of a small field onager under poor conditions.';
+    if (range < 250) return 'Short range — useful for close-quarters siege work breaching gates or towers.';
+    if (range < 400) return 'Typical onager range — consistent with historical accounts at Roman sieges.';
+    if (range < 550) return 'Excellent range — approaching maximum for well-constructed siege onagers.';
+    return 'Exceptional range — likely aided by elevation or very light projectile. Ancient texts mention similar distances rarely.';
+  }
+  if (machine === 'ballista') {
+    if (range < 100) return 'Short range — effective for close covering fire in siege trenches.';
+    if (range < 250) return 'Good anti-personnel range — equivalent to Roman scorpio field use.';
+    if (range < 450) return 'Strong range — consistent with large ballistae used in fixed siege positions.';
+    return 'Exceptional — approaching the theoretical maximum for Roman-era torsion crossbows.';
+  }
+  if (range < 100) return 'Very short — check counterweight-to-projectile ratio (aim for 50:1 or higher).';
+  if (range < 200) return 'Moderate trebuchet range — typical of lighter medieval and late Roman gravity engines.';
+  if (range < 350) return 'Good range — consistent with well-engineered counterweight trebuchets.';
+  return 'Excellent range — matching the largest medieval trebuchets like Warwolf (~300m).';
+}
+
+function calculate(machine) {
+  let mass, angle, energy, h0, Cd;
+
+  if (machine === 'onager') {
+    mass = parseFloat(document.getElementById('on-mass').value);
+    angle = parseFloat(document.getElementById('on-angle').value);
+    energy = parseFloat(document.getElementById('on-energy').value);
+    h0 = parseFloat(document.getElementById('on-height').value) || 1.5;
+    Cd = parseFloat(document.getElementById('on-drag').value);
+
+    clearErrors(['on-mass-err','on-angle-err']);
+    let ok = true;
+    if (!mass || mass < 0.5 || mass > 150) { showError('on-mass-err', true); ok = false; }
+    if (!angle || angle < 1 || angle > 89) { showError('on-angle-err', true); ok = false; }
+    if (!ok) return;
+
+  } else if (machine === 'ballista') {
+    mass = parseFloat(document.getElementById('ba-mass').value);
+    angle = parseFloat(document.getElementById('ba-angle').value);
+    energy = parseFloat(document.getElementById('ba-energy').value);
+    h0 = parseFloat(document.getElementById('ba-height').value) || 1.0;
+    Cd = parseFloat(document.getElementById('ba-drag').value);
+
+    clearErrors(['ba-mass-err','ba-angle-err']);
+    let ok = true;
+    if (!mass || mass < 0.1 || mass > 30) { showError('ba-mass-err', true); ok = false; }
+    if (!angle || angle < 1 || angle > 89) { showError('ba-angle-err', true); ok = false; }
+    if (!ok) return;
+
+  } else {
+    mass = parseFloat(document.getElementById('tr-mass').value);
+    const cwMass = parseFloat(document.getElementById('tr-cw').value);
+    const armLen = parseFloat(document.getElementById('tr-arm').value) || 10;
+    angle = parseFloat(document.getElementById('tr-angle').value);
+    h0 = parseFloat(document.getElementById('tr-height').value) || 5;
+    Cd = parseFloat(document.getElementById('tr-drag').value);
+
+    clearErrors(['tr-mass-err','tr-cw-err','tr-angle-err']);
+    let ok = true;
+    if (!mass || mass < 1 || mass > 200) { showError('tr-mass-err', true); ok = false; }
+    if (!cwMass || cwMass < 100 || cwMass > 20000) { showError('tr-cw-err', true); ok = false; }
+    if (!angle || angle < 30 || angle > 75) { showError('tr-angle-err', true); ok = false; }
+    if (!ok) return;
+
+    energy = getEnergy_trebuchet(cwMass, armLen);
+  }
+
+  const eff = MACHINES[machine].efficiency;
+  const KE_launch = eff * energy;
+  const v0 = Math.sqrt(2 * KE_launch / mass);
+  const traj = computeTrajectory(v0, angle, h0, Cd, mass);
+  const { range, flightTime, maxH, vImpact } = traj;
+
+  const impactKE = 0.5 * mass * vImpact * vImpact;
+  const impactForce = impactKE / STOP_DIST;
+  const impactForce_kN = impactForce / 1000;
+  const context = historicalContext(machine, range);
+  const mach = MACHINES[machine];
+
+  const trajTableHTML = buildTrajectoryTable(traj.trajPoints, range);
+
+  // Optimal angle (no drag, from height h0)
+  // Optimal angle from elevation: θ_opt = arctan(v0 / sqrt(v0²+2gH)) ≈ 45° corrected
+  const optAngle_rad = 0.5 * Math.asin(G * range / (v0*v0 + G*h0 + 1e-9));
+  const optAngleDeg = Math.min(89, Math.max(1, optAngle_rad * 180 / Math.PI + 45));
+
+  const resultHTML = `
+    <div class="key-metric">
+      <button class="copy-btn" onclick="copyRange('${fmt(range,0)} m')">Copy</button>
+      <div class="big-num">${fmtInt(range)}<span style="font-size:1.4rem;font-weight:600"> m</span></div>
+      <div class="big-label">Estimated Range — ${mach.name} <span class="machine-badge">${mach.badge}</span></div>
+      <div class="big-sub">${fmt(range/1000,3)} km &nbsp;|&nbsp; ${fmtInt(range*1.09361)} yards &nbsp;|&nbsp; ${fmtInt(range*3.28084)} feet</div>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-box">
+        <div class="m-val">${fmt(v0,1)} m/s</div>
+        <div class="m-lbl">Launch Velocity</div>
+      </div>
+      <div class="metric-box">
+        <div class="m-val">${fmt(maxH,1)} m</div>
+        <div class="m-lbl">Max Height</div>
+      </div>
+      <div class="metric-box">
+        <div class="m-val">${fmt(flightTime,2)} s</div>
+        <div class="m-lbl">Flight Time</div>
+      </div>
+      <div class="metric-box">
+        <div class="m-val">${fmtInt(impactKE)} J</div>
+        <div class="m-lbl">Impact Energy</div>
+      </div>
+      <div class="metric-box">
+        <div class="m-val">${fmt(impactForce_kN,1)} kN</div>
+        <div class="m-lbl">Impact Force (est.)</div>
+      </div>
+      <div class="metric-box">
+        <div class="m-val">${fmt(vImpact,1)} m/s</div>
+        <div class="m-lbl">Impact Velocity</div>
+      </div>
+    </div>
+
+    <div class="traj-bar-wrap">
+      <h3>Trajectory Profile</h3>
+      <div class="traj-visual">
+        <div class="traj-arc"></div>
+        <div class="traj-ground"></div>
+        <div class="traj-launcher" title="Launch point"></div>
+        <div class="traj-impact" title="Impact point"></div>
+      </div>
+      <div class="traj-labels">
+        <span>⚙ Launch (${angle}°)</span>
+        <span>⬆ Max H: ${fmt(maxH,1)}m</span>
+        <span>💥 Impact: ${fmtInt(range)}m</span>
+      </div>
+    </div>
+
+    <div style="background:#fff8e8;border:1px solid #f0d080;border-radius:6px;padding:0.8rem 1rem;font-size:0.87rem;color:#5a4500;margin-bottom:1rem">
+      📜 <strong>Historical Context:</strong> ${context}
+    </div>
+
+    <div style="margin-bottom:0.5rem;font-size:0.87rem;font-weight:600;color:#444">Trajectory Breakdown</div>
+    <div class="table-wrap">
+      <table id="traj-table">
+        <thead>${trajTableHTML.split('</tr>')[0]}</tr></thead>
+        <tbody id="traj-body">${trajTableHTML.split('</tr>').slice(1).join('</tr>')}</tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem;margin-bottom:0.5rem;font-size:0.87rem;font-weight:600;color:#444">Key Parameters Used</div>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><td>Machine Type</td><td class="num">${mach.name}</td></tr>
+          <tr><td>Projectile Mass</td><td class="num">${fmt(mass,2)} kg</td></tr>
+          <tr><td>Launch Angle</td><td class="num">${angle}°</td></tr>
+          <tr><td>Stored Energy</td><td class="num">${fmtInt(energy)} J</td></tr>
+          <tr><td>Mechanical Efficiency</td><td class="num">${(eff*100).toFixed(0)}%</td></tr>
+          <tr><td>Launch Height</td><td class="num">${fmt(h0,1)} m</td></tr>
+          <tr><td>Drag Coefficient (Cd)</td><td class="num">${Cd}</td></tr>
+          <tr><td>Launch KE</td><td class="num">${fmtInt(KE_launch)} J</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  requestAnimationFrame(() => {
+    const resEl = document.getElementById('results');
+    resEl.innerHTML = resultHTML;
+    resEl.classList.add('show');
+    resEl.scrollIntoView({behavior:'smooth', block:'nearest'});
+  });
+}
+
+function copyRange(text) {
+  const btn = document.querySelector('.copy-btn');
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied!';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  }
+}
+
+// Enter key support
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const active = document.querySelector('.tab-panel.active');
+    if (active) {
+      const btn = active.querySelector('.btn');
+      if (btn) btn.click();
+    }
+  }
+});
+</script>
+</body>
+</html>
