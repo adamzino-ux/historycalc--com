@@ -7,6 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="canonical" href="https://historycalc.com/inflation-calculator/">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Historical Inflation Calculator", "url": "https://historycalc.com/inflation-calculator/", "description": "Free historical inflation calculator using real U.S. CPI data from 1913 to 2024. Find out what money from any past year is worth today.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/", "logo": "https://historycalc.com/logo.png"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "Historical Inflation Calculator", "item": "https://historycalc.com/inflation-calculator/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an inflation calculator used for?", "acceptedAnswer": {"@type": "Answer", "text": "An inflation calculator converts a dollar amount from one year into its equivalent purchasing power in another year, using historical price index data. It's commonly used to compare historical wages, prices, savings, and investment returns across decades."}}, {"@type": "Question", "name": "How accurate is historical CPI data?", "acceptedAnswer": {"@type": "Answer", "text": "CPI data from the Bureau of Labor Statistics is considered the gold standard for measuring U.S. inflation, though methodology has been refined over the decades. It's highly reliable for broad comparisons but less precise for very specific goods or regions."}}, {"@type": "Question", "name": "Why does $1 from 1913 buy so much less today?", "acceptedAnswer": {"@type": "Answer", "text": "Over more than a century, cumulative inflation from wars, economic policy, oil shocks, and monetary expansion has increased average prices roughly 30-fold, meaning $1 in 1913 has the same buying power as about $30-32 today."}}, {"@type": "Question", "name": "Can I use this to calculate future inflation?", "acceptedAnswer": {"@type": "Answer", "text": "No — this tool only uses actual historical CPI data through 2024. Projecting future inflation requires assumptions about future economic conditions, which this calculator does not attempt to forecast."}}, {"@type": "Question", "name": "What years does this inflation calculator cover?", "acceptedAnswer": {"@type": "Answer", "text": "It covers 1913, the earliest year for which annual CPI values exist, through 2024, the most recent finalized annual average published by the BLS. Note that the CPI wasn't officially published until 1919 — the 1913-1918 figures were calculated afterward from collected price records."}}, {"@type": "Question", "name": "Is CPI the same as \"cost of living\"?", "acceptedAnswer": {"@type": "Answer", "text": "CPI is the most common proxy for cost of living changes, but it measures a fixed basket of goods and services rather than any one person's actual spending habits, so individual experiences of inflation can vary."}}]}]}</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Historical Inflation Calculator">
+<meta property="og:description" content="Free historical inflation calculator using real U.S. CPI data from 1913 to 2024. Find out what money from any past year is worth today.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>
 :root{
   --parch:#f5f0e1;
@@ -15,6 +23,7 @@
   --border:#c4a882;
   --blue:#0077b6;
   --blueHover:#006299;
+  --linkblue:#005f8a;
 }
 *{box-sizing:border-box;}
 body{
@@ -75,11 +84,12 @@ input{
   margin-bottom:1.2rem;
   background:#fff;
   color:var(--ink);
+  min-height:44px;
 }
 input:focus{
-  outline:none;
+  outline:2px solid var(--blue);
+  outline-offset:1px;
   border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(0,119,182,0.15);
 }
 input.error{
   border-color:#e74c3c;
@@ -155,6 +165,7 @@ tr:nth-child(odd){background:#fff;}
   width:auto;
   border-radius:6px;
   margin-top:0.5rem;
+  min-height:44px;
 }
 .copy-btn:hover{background:var(--brown);color:#fff;}
 .ad-slot{min-height:0;margin:0;}
@@ -190,10 +201,11 @@ summary{
   gap:0.5rem;
 }
 .related-list a{
-  color:var(--blue);
-  text-decoration:none;
+  color:var(--linkblue);
+  text-decoration:underline;
 }
-.related-list a:hover{text-decoration:underline;}
+.related-list a:hover{color:var(--blueHover);}
+.safety-notice a{color:var(--brown);}
 footer{
   text-align:center;
   padding:2rem 1rem;
@@ -201,23 +213,15 @@ footer{
   color:#666;
   border-top:1px solid var(--border);
 }
-footer a{color:var(--brown);text-decoration:none;margin:0 0.4rem;}
+footer a{color:var(--brown);text-decoration:underline;margin:0 0.4rem;}
 svg{display:block;margin:1rem auto;}
 @media(max-width:640px){
   .big-result{font-size:1.7rem;}
 }
 </style>
-<meta property="og:type" content="website">
 <meta property="og:url" content="https://historycalc.com/inflation-calculator/">
-<meta property="og:title" content="Historical Inflation Calculator">
-<meta property="og:description" content="Free historical inflation calculator using real U.S. CPI data from 1913 to 2024. Find out what money from any past year is worth today.">
-<meta property="og:site_name" content="HistoryCalc">
-<meta name="twitter:card" content="summary">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
 <style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon.ico" sizes="48x48">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
 </head>
 <body>
@@ -249,7 +253,7 @@ svg{display:block;margin:1rem auto;}
 
     <button id="calcBtn">Calculate Inflation</button>
 
-    <div id="results"></div>
+    <div id="results" aria-live="polite" aria-atomic="true"></div>
 
     <p class="data-note">Data source: U.S. Bureau of Labor Statistics, CPI-U (U.S. city average, all items, not seasonally adjusted), annual averages. Figures reflect BLS-published annual averages; the 2024 value is the final published annual average. Series last verified against BLS published data: January 2025.</p>
   </div>
@@ -271,7 +275,7 @@ svg{display:block;margin:1rem auto;}
   <h2>Worked Example</h2>
   <p>Suppose you want to know what $100 in 1970 is worth in 2024. The CPI for 1970 is 38.8, and the CPI for 2024 is 313.7.</p>
   <p>Adjusted Amount = $100 × (313.7 ÷ 38.8) = $100 × 8.0851 = <strong>$808.51</strong></p>
-  <p>That means $100 in 1970 had the same buying power as roughly $808.51 in 2024 — total inflation of about 708.5% over 54 years, or an average annual rate of roughly 3.95%.</p>
+  <p>That means $100 in 1970 had the same buying power as roughly $808.51 in 2024 — total inflation of about 708.5% over 54 years, or an average annual rate of roughly 3.95%. That's the same order of magnitude as saying a car that cost $3,000 in 1970 would sell for over $24,000 today, purely from inflation.</p>
 
   <div class="did-you-know">
     <strong>Did You Know?</strong>
@@ -304,15 +308,15 @@ svg{display:block;margin:1rem auto;}
 
   <h2>Related Tools</h2>
   <div class="related-list">
-    <a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
-    <a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
-    <a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a>
-    <a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
-    <a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a>
-    <a href="/roman-aqueduct-water-pressure-calculator/">Ancient Roman Aqueduct Water Pressure Calculator</a>
+    <a href="/islamic-hijri-date-converter/">Islamic Hijri Calendar Date Converter</a>
+    <a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a>
+    <a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet & Calorie Calculator</a>
+    <a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+    <a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+    <a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
   </div>
 
-  <nav class="cluster-nav" aria-label="More Money, Wages &amp; Prices Calculators" style="max-width:640px;margin:2rem auto;padding:0 1.5rem"><h2 style="font-size:1.1rem;margin-bottom:.5rem">More Money, Wages &amp; Prices Calculators</h2><ul style="padding-left:1.1rem;line-height:1.9"><li><a href="/athenian-silver-mine-revenue-calculator/">Ancient Athenian Silver Mine Revenue Calculator</a></li><li><a href="/ancient-greek-agora-market-price-calculator/">Ancient Greek Agora Market Price Calculator</a></li><li><a href="/ancient-greek-philosopher-school-cost-calculator/">Ancient Greek Philosopher School Cost Calculator</a></li><li><a href="/roman-thermae-construction-cost-estimator/">Ancient Roman Bath (Thermae) Construction Cost Estimator</a></li><li><a href="/roman-chariot-race-betting-calculator/">Ancient Roman Chariot Race Betting Calculator</a></li><li><a href="/ancient-roman-feast-cost-calculator/">Ancient Roman Feast Cost Calculator</a></li><li><a href="/roman-gladiator-training-cost-calculator/">Ancient Roman Gladiator Training Cost Calculator</a></li><li><a href="/roman-soldier-pay-calculator/">Ancient Roman Soldier Pay Calculator</a></li></ul></nav>
+<nav class="cluster-nav" aria-label="More Money, Wages &amp; Prices Calculators" style="max-width:640px;margin:2rem auto;padding:0 1.5rem"><h2 style="font-size:1.1rem;margin-bottom:.5rem">More Money, Wages &amp; Prices Calculators</h2><ul style="padding-left:1.1rem;line-height:1.9"><li><a href="/athenian-silver-mine-revenue-calculator/">Ancient Athenian Silver Mine Revenue Calculator</a></li><li><a href="/ancient-greek-agora-market-price-calculator/">Ancient Greek Agora Market Price Calculator</a></li><li><a href="/ancient-greek-philosopher-school-cost-calculator/">Ancient Greek Philosopher School Cost Calculator</a></li><li><a href="/roman-thermae-construction-cost-estimator/">Ancient Roman Bath (Thermae) Construction Cost Estimator</a></li><li><a href="/roman-chariot-race-betting-calculator/">Ancient Roman Chariot Race Betting Calculator</a></li><li><a href="/ancient-roman-feast-cost-calculator/">Ancient Roman Feast Cost Calculator</a></li><li><a href="/roman-gladiator-training-cost-calculator/">Ancient Roman Gladiator Training Cost Calculator</a></li><li><a href="/roman-soldier-pay-calculator/">Ancient Roman Soldier Pay Calculator</a></li></ul></nav>
 <div class="ad-slot" id="ad-bottom"></div>
 
   <footer>
