@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day of the Week for Any Historical Date Calculator | HistoryCalc</title>
+<meta name="description" content="Find out what day of the week was a historical date — from ancient Rome to modern times. Free calculator using accurate Julian and Gregorian calendar math.">
+<link rel="canonical" href="https://historycalc.com/day-of-week-historical-date/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Day of the Week for Any Historical Date Calculator", "url": "https://historycalc.com/day-of-week-historical-date/", "description": "Find out what day of the week was a historical date — from ancient Rome to modern times. Free calculator using accurate Julian and Gregorian calendar math.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/", "logo": "https://historycalc.com/logo.png"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "Day of the Week for Any Historical Date Calculator", "item": "https://historycalc.com/day-of-week-historical-date/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What day of the week was a historical date calculated with?", "acceptedAnswer": {"@type": "Answer", "text": "This tool converts your date to a Julian Day Number using the Fliegel & Van Flandern algorithm, then takes that number modulo 7 to determine the weekday. It works accurately for any date in the Julian or Gregorian calendar, including dates BC."}}, {"@type": "Question", "name": "Why does the calculator ask which calendar system to use?", "acceptedAnswer": {"@type": "Answer", "text": "Different regions switched from the Julian to the Gregorian calendar at different times — Catholic Europe in 1582, Britain in 1752, Russia in 1918. The weekday for the same numerical date can differ depending on which calendar was actually in local use."}}, {"@type": "Question", "name": "How are BC dates handled?", "acceptedAnswer": {"@type": "Answer", "text": "There is no year zero in the traditional BC/AD system, so this calculator converts BC years to astronomical year numbering internally (1 BC becomes year 0, 2 BC becomes year -1, and so on) before running the calculation."}}, {"@type": "Question", "name": "Can this calculator handle dates thousands of years in the past?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The Julian Day Number system was designed by astronomers specifically to count continuously across huge time spans, so the math remains accurate for ancient dates, though calendar systems that far back are proleptic (projected backward) approximations."}}, {"@type": "Question", "name": "Was the day the Declaration of Independence was signed really a Thursday?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — July 4, 1776 falls on a Thursday according to the Gregorian calendar, which the American colonies had already adopted in 1752. You can verify this using the \"July 4, 1776\" example button above."}}, {"@type": "Question", "name": "Why did days disappear from the calendar in some countries?", "acceptedAnswer": {"@type": "Answer", "text": "When a country switched from the Julian to the Gregorian calendar, the accumulated drift between the two systems had to be corrected in one jump. In Britain, the last Julian day was September 2, 1752, and the next day was declared September 14, 1752 — removing 11 days. The original 1582 Catholic switch removed 10 days."}}]}]}</script>
+<style>
+:root{--bg:#f5f0e1;--brown:#8b4513;--text:#2c1810;--border:#c4a882;}
+*{box-sizing:border-box;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:1rem 0;font-weight:700;font-size:1.1rem;color:var(--brown);}
+nav a{color:var(--brown);text-decoration:none;}
+h1{font-size:1.6rem;margin-bottom:0.5rem;color:var(--text);}
+h2{color:var(--brown);margin-top:2rem;font-size:1.25rem;}
+p{margin:0.75rem 0;}
+.card{background:#fffdf7;border:1px solid var(--border);border-radius:8px;padding:2rem;box-shadow:0 2px 6px rgba(139,69,19,0.08);margin:1.5rem 0;}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5c3a21;margin-bottom:0.3rem;margin-top:1rem;}
+select,input{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:6px;font-size:1rem;background:#fff;color:var(--text);min-height:44px;}
+select:focus,input:focus{outline:none;box-shadow:0 0 0 3px rgba(139,69,19,0.15);border-color:var(--brown);}
+input.error{border-color:#e74c3c;}
+.errmsg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none;}
+.row{display:flex;gap:1rem;flex-wrap:wrap;}
+.row > div{flex:1;min-width:120px;}
+button{background:var(--brown);color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;min-height:44px;margin-top:1.5rem;width:100%;}
+button:hover{background:#6f370f;}
+.examples{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem;}
+.exbtn{background:#fff;color:var(--brown);border:1px solid var(--border);padding:8px 12px;border-radius:20px;font-size:0.8rem;font-weight:500;width:auto;margin:0;min-height:36px;}
+.exbtn:hover{background:#f0e6d2;}
+#results{opacity:0;transition:opacity 0.3s ease;}
+#results.show{opacity:1;}
+.bigresult{font-size:2rem;font-weight:800;color:var(--brown);margin:0.5rem 0;}
+.subresult{font-size:1rem;color:#5c3a21;}
+table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.9rem;}
+th,td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left;}
+th{background:#efe6d3;}
+td:last-child,th:last-child{text-align:right;}
+.tablewrap{overflow-x:auto;}
+.copybtn{background:none;border:1px solid var(--brown);color:var(--brown);padding:6px 14px;font-size:0.8rem;width:auto;margin-top:0.75rem;min-height:36px;}
+.copybtn:hover{background:#f0e6d2;}
+.note{background:#efe6d3;border-left:4px solid var(--brown);padding:0.75rem 1rem;font-size:0.9rem;margin-top:1rem;border-radius:0 4px 4px 0;}
+.warn{background:#fbeee0;border-left:4px solid #b5651d;padding:0.75rem 1rem;font-size:0.9rem;margin-top:1rem;border-radius:0 4px 4px 0;}
+.didyouknow{background:#fdf6e8;border:1px dashed var(--brown);border-radius:8px;padding:1.25rem;margin:1.5rem 0;}
+.didyouknow h3{margin-top:0;color:var(--brown);font-size:1.05rem;}
+.ad-slot{min-height:0;margin:0;}
+.related a{display:inline-block;background:#fff;border:1px solid var(--border);color:var(--brown);text-decoration:none;padding:8px 14px;border-radius:6px;margin:4px 6px 4px 0;font-size:0.9rem;}
+.related a:hover{background:#f0e6d2;}
+footer{text-align:center;font-size:0.85rem;color:#5c3a21;padding:2rem 0;}
+footer a{color:var(--brown);margin:0 8px;}
+details{margin-bottom:0.75rem;border:1px solid var(--border);border-radius:6px;padding:0.6rem 1rem;background:#fffdf7;}
+summary{font-weight:600;cursor:pointer;}
+svg{display:block;margin:0 auto;}
+@media(max-width:480px){.row{flex-direction:column;}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/day-of-week-historical-date/">
+<meta property="og:title" content="Day of the Week for Any Historical Date Calculator">
+<meta property="og:description" content="Find out what day of the week was a historical date — from ancient Rome to modern times. Free calculator using accurate Julian and Gregorian calendar math.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}</style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Day of the Week for Any Historical Date Calculator</h1>
+<p>Ever wondered what day of the week was a historical date — the day the Declaration of Independence was signed, or the day Julius Caesar was assassinated? This calculator uses proleptic Julian and Gregorian calendar math to tell you exactly which weekday any date in history fell on, from antiquity to the present.</p>
+
+<svg viewBox="0 0 200 110" width="200" height="110" aria-label="Sundial illustration">
+<ellipse cx="100" cy="95" rx="85" ry="12" fill="#c4a882"/>
+<ellipse cx="100" cy="90" rx="70" ry="10" fill="#e8dcc0" stroke="#8b4513" stroke-width="2"/>
+<polygon points="100,20 88,90 112,90" fill="#8b4513"/>
+<line x1="40" y1="90" x2="30" y2="70" stroke="#8b4513" stroke-width="2"/>
+<line x1="160" y1="90" x2="170" y2="70" stroke="#8b4513" stroke-width="2"/>
+<line x1="100" y1="90" x2="100" y2="60" stroke="#8b4513" stroke-width="2"/>
+<line x1="70" y1="90" x2="60" y2="65" stroke="#8b4513" stroke-width="2"/>
+<line x1="130" y1="90" x2="140" y2="65" stroke="#8b4513" stroke-width="2"/>
+</svg>
+
+<div class="card">
+<label for="month">Month</label>
+<select id="month">
+<option value="1">January</option><option value="2">February</option><option value="3">March</option>
+<option value="4">April</option><option value="5">May</option><option value="6" selected>June</option>
+<option value="7">July</option><option value="8">August</option><option value="9">September</option>
+<option value="10">October</option><option value="11">November</option><option value="12">December</option>
+</select>
+
+<div class="row">
+<div>
+<label for="day">Day</label>
+<input type="number" id="day" min="1" max="31" value="15">
+<div class="errmsg" id="dayErr"></div>
+</div>
+<div>
+<label for="year">Year</label>
+<input type="number" id="year" min="1" value="1215">
+<div class="errmsg" id="yearErr"></div>
+</div>
+<div>
+<label for="era">Era</label>
+<select id="era"><option value="AD">AD / CE</option><option value="BC">BC / BCE</option></select>
+</div>
+</div>
+
+<label for="calsys">Calendar system used for that date</label>
+<select id="calsys">
+<option value="auto">Auto (historically accurate)</option>
+<option value="gregorian">Force Gregorian</option>
+<option value="julian">Force Julian</option>
+</select>
+
+<div class="examples">
+<button class="exbtn" onclick="loadExample(7,4,1776,'AD')">July 4, 1776</button>
+<button class="exbtn" onclick="loadExample(10,14,1066,'AD')">Battle of Hastings</button>
+<button class="exbtn" onclick="loadExample(3,15,44,'BC')">Death of Caesar</button>
+<button class="exbtn" onclick="loadExample(5,29,1453,'AD')">Fall of Constantinople</button>
+<button class="exbtn" onclick="loadExample(7,20,1969,'AD')">Moon Landing</button>
+</div>
+
+<button id="calcBtn">Calculate Day of the Week</button>
+
+<div id="results"></div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<h2>How to Use This Day of the Week Calculator</h2>
+<p>Select a month, day, and year, choose whether the year is AD/CE or BC/BCE, and pick a calendar system. Most users should leave the calendar setting on "Auto" — it automatically switches to the Julian calendar for dates before October 15, 1582, and to the Gregorian calendar for dates after, matching real historical practice. Click "Calculate" and the tool instantly tells you what day of the week that historical date fell on.</p>
+
+<h2>Why This Matters</h2>
+<p>Historians, genealogists, novelists, and trivia lovers all need to know what day of the week a historical date landed on. Was a battle fought on a Sunday, meaning soldiers were pulled from church? Did a treaty get signed on a market day, which could explain the crowd? Genealogists dating old letters or gravestones often only have a written weekday ("died on a Tuesday") and need to confirm a year. Writers researching historical fiction want authentic details — knowing that the storming of the Bastille (July 14, 1789) was a Tuesday, or that the Titanic sank in the early hours of Monday, April 15, 1912, adds texture that readers notice. Teachers use these calculations to make abstract calendar reform lessons concrete. Because the calendar itself changed over time — Julius Caesar introduced the Julian calendar in 45 BC, and Pope Gregory XIII reformed it in 1582 — getting the right weekday requires more than just plugging numbers into a modern calendar app, which usually only understands the Gregorian system.</p>
+
+<h2>How It's Calculated</h2>
+<p>This tool converts your date into a Julian Day Number (JDN) — a single continuous count of days used by astronomers, with day zero set at noon, January 1, 4713 BC. The conversion formula (Fliegel & Van Flandern algorithm) is:</p>
+<p><strong>a = ⌊(14 − month) / 12⌋<br>y = year + 4800 − a<br>m = month + 12a − 3</strong></p>
+<p>For Gregorian dates: <strong>JDN = day + ⌊(153m+2)/5⌋ + 365y + ⌊y/4⌋ − ⌊y/100⌋ + ⌊y/400⌋ − 32045</strong></p>
+<p>For Julian dates: <strong>JDN = day + ⌊(153m+2)/5⌋ + 365y + ⌊y/4⌋ − 32083</strong></p>
+<p>Once you have the JDN, the weekday is found with <strong>JDN mod 7</strong>, where a remainder of 0 corresponds to Monday, 1 to Tuesday, and so on through 6 for Sunday. This is exact math with no lookup tables or approximations — it works correctly for any date, including dates thousands of years before or after today.</p>
+
+<h2>Worked Example</h2>
+<p>What day of the week was July 4, 1776? Month = 7, day = 4, year = 1776 (Gregorian, since Britain and its colonies had adopted the Gregorian calendar in 1752).</p>
+<p>a = ⌊(14−7)/12⌋ = 0 → y = 1776+4800−0 = 6576 → m = 7+0−3 = 4</p>
+<p>JDN = 4 + ⌊(153×4+2)/5⌋ + 365×6576 + ⌊6576/4⌋ − ⌊6576/100⌋ + ⌊6576/400⌋ − 32045 = 2,369,916</p>
+<p>2,369,916 mod 7 = 3, which maps to Thursday. The Declaration of Independence was indeed adopted on a Thursday — you can verify this yourself using the calculator above.</p>
+
+<h2>Historical Context</h2>
+<p>For over 1,600 years, most of the Western world used the Julian calendar, introduced by Julius Caesar in 45 BC on the advice of the astronomer Sosigenes. It fixed the year at 365.25 days with a leap day every four years — remarkably close, but not exact. By the 16th century the accumulated drift had pushed the calendar 10 days out of sync with the solar year, threatening the date of Easter. Pope Gregory XIII corrected this in 1582 by deleting 10 days (the last Julian day, October 4, was followed directly by October 15 under the new system) and refining the leap-year rule so that century years are only leap years if divisible by 400. Catholic countries adopted the change immediately, but Britain and its colonies waited until 1752, Russia until 1918, and Greece until 1923 — meaning the "same" numerical date could fall on a different weekday depending on which country and calendar you're calculating for.</p>
+
+<div class="didyouknow">
+<h3>Did You Know?</h3>
+<p>• When Britain switched calendars in 1752, the last Julian day was September 2 — the very next day was declared September 14 under the new Gregorian system, and rioters reportedly demanded "give us our eleven days back."<br>
+• The Gregorian calendar repeats its exact weekday pattern every 400 years — because 400 years contains exactly 146,097 days, which is precisely 20,871 weeks with no remainder.<br>
+• Russia's October Revolution of 1917 actually took place in November by the Gregorian calendar, because Russia still used the Julian calendar (13 days behind) at the time.</p>
+</div>
+
+<p><strong>Modern equivalent:</strong> A full wall calendar (matching weekdays and leap-year placement) usually repeats after 28 years, since that's how long it takes for the day-of-week cycle and the 4-year leap pattern to realign. Because 2024 is a leap year and no century-year exception falls between 2024 and 2052, a 2024 calendar can be reused unchanged in 2052. But that 28-year shortcut breaks whenever a skipped century year (like 2100 or 2200, which are not leap years under the Gregorian rule) falls in the gap — which is exactly why the fully guaranteed, no-exceptions repeat cycle for any calendar is the full 400 years, next completing in 2424.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<p>• Don't assume every pre-1582 date should use the Julian calendar for your specific country — Catholic Europe switched in 1582, but Protestant England didn't switch until 1752, and Russia not until 1918.<br>
+• Remember there is no year zero in the standard AD/BC system: 1 BC is immediately followed by 1 AD. This calculator handles that conversion for you automatically.<br>
+• When citing "the Ides of March, 44 BC," remember Rome used its own pre-Julian calendar until 45 BC reforms took hold — this tool applies the proleptic Julian calendar as a standard historical approximation.<br>
+• Always double check leap years: Julian leap years occur every 4 years with no exception; Gregorian leap years skip century years not divisible by 400 (1900 was not a leap year, 2000 was).<br>
+• If you force the Gregorian calendar onto dates between October 5–14, 1582, remember those calendar days never actually existed anywhere historically — they were skipped entirely during the reform, and any result for them is a purely proleptic mathematical construct.</p>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>What day of the week was a historical date calculated with?</summary><p>This tool converts your date to a Julian Day Number using the Fliegel & Van Flandern algorithm, then takes that number modulo 7 to determine the weekday. It works accurately for any date in the Julian or Gregorian calendar, including dates BC.</p></details>
+<details><summary>Why does the calculator ask which calendar system to use?</summary><p>Different regions switched from the Julian to the Gregorian calendar at different times — Catholic Europe in 1582, Britain in 1752, Russia in 1918. The weekday for the same numerical date can differ depending on which calendar was actually in local use.</p></details>
+<details><summary>How are BC dates handled?</summary><p>There is no year zero in the traditional BC/AD system, so this calculator converts BC years to astronomical year numbering internally (1 BC becomes year 0, 2 BC becomes year -1, and so on) before running the calculation.</p></details>
+<details><summary>Can this calculator handle dates thousands of years in the past?</summary><p>Yes. The Julian Day Number system was designed by astronomers specifically to count continuously across huge time spans, so the math remains accurate for ancient dates, though calendar systems that far back are proleptic (projected backward) approximations.</p></details>
+<details><summary>Was the day the Declaration of Independence was signed really a Thursday?</summary><p>Yes — July 4, 1776 falls on a Thursday according to the Gregorian calendar, which the American colonies had already adopted in 1752. You can verify this using the "July 4, 1776" example button above.</p></details>
+<details><summary>Why did days disappear from the calendar in some countries?</summary><p>When a country switched from the Julian to the Gregorian calendar, the accumulated drift between the two systems had to be corrected in one jump. In Britain, the last Julian day was September 2, 1752, and the next day was declared September 14, 1752 — removing 11 days. The original 1582 Catholic switch removed 10 days.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+<a href="/inflation-calculator/">Historical Inflation Calculator</a>
+<a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
+<a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+<a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a>
+<a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+<a href="/about/">About</a> | <a href="/privacy/">Privacy</a> | <a href="/contact/">Contact</a>
+<p>&copy; <span id="yr"></span> historycalc.com</p>
+</footer>
+</div>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+const dayNames = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function fmt(n){ return n.toLocaleString('en-US'); }
+
+function isLeap(year, greg){
+  if(greg) return (year%4===0 && (year%100!==0 || year%400===0));
+  return year%4===0;
+}
+
+function daysInMonthFor(month, year, greg){
+  const dim = [31,28,31,30,31,30,31,31,30,31,30,31];
+  if(month===2 && isLeap(year,greg)) return 29;
+  return dim[month-1];
+}
+
+function computeJDN(year, month, day, greg){
+  const a = Math.floor((14 - month)/12);
+  const y = year + 4800 - a;
+  const m = month + 12*a - 3;
+  if(greg){
+    return day + Math.floor((153*m+2)/5) + 365*y + Math.floor(y/4) - Math.floor(y/100) + Math.floor(y/400) - 32045;
+  }
+  return day + Math.floor((153*m+2)/5) + 365*y + Math.floor(y/4) - 32083;
+}
+
+function autoIsGregorian(astroYear, month, day){
+  if(astroYear > 1582) return true;
+  if(astroYear < 1582) return false;
+  if(month > 10) return true;
+  if(month < 10) return false;
+  return day >= 15;
+}
+
+function clearErrors(){
+  document.getElementById('day').classList.remove('error');
+  document.getElementById('year').classList.remove('error');
+  document.getElementById('dayErr').style.display='none';
+  document.getElementById('yearErr').style.display='none';
+}
+
+function showErr(id, msg){
+  document.getElementById(id).classList.add('error');
+  const e = document.getElementById(id+'Err');
+  e.textContent = msg;
+  e.style.display='block';
+}
+
+function loadExample(m,d,y,era){
+  document.getElementById('month').value = m;
+  document.getElementById('day').value = d;
+  document.getElementById('year').value = y;
+  document.getElementById('era').value = era;
+  document.getElementById('calsys').value = 'auto';
+  calculate();
+}
+
+function calculate(){
+  clearErrors();
+  const month = parseInt(document.getElementById('month').value,10);
+  const dayInput = document.getElementById('day');
+  const yearInput = document.getElementById('year');
+  const day = parseInt(dayInput.value,10);
+  const yearRaw = parseInt(yearInput.value,10);
+  const era = document.getElementById('era').value;
+  const calsys = document.getElementById('calsys').value;
+
+  let valid = true;
+
+  if(isNaN(yearRaw) || yearRaw < 1){
+    showErr('year','Enter a year of 1 or greater (use the Era selector for BC dates).');
+    valid = false;
+  }
+  if(isNaN(day) || day < 1 || day > 31){
+    showErr('day','Enter a day between 1 and 31.');
+    valid = false;
+  }
+  if(!valid) return;
+
+  const astroYear = era === 'BC' ? (1 - yearRaw) : yearRaw;
+
+  let greg;
+  if(calsys === 'gregorian') greg = true;
+  else if(calsys === 'julian') greg = false;
+  else greg = autoIsGregorian(astroYear, month, day);
+
+  const maxDay = daysInMonthFor(month, astroYear, greg);
+  if(day > maxDay){
+    showErr('day', monthNames[month-1] + ' ' + (era==='BC'?yearRaw+' BC':yearRaw+' AD') + ' only has ' + maxDay + ' days in this month.');
+    return;
+  }
+
+  const jdn = computeJDN(astroYear, month, day, greg);
+  const widx = ((jdn % 7) + 7) % 7;
+  const weekday = dayNames[widx];
+
+  const dateLabel = monthNames[month-1] + ' ' + day + ', ' + yearRaw + (era==='BC' ? ' BC' : ' AD');
+  const calLabel = greg ? 'Gregorian calendar' : 'Julian calendar';
+
+  const copyText = dateLabel + ' fell on a ' + weekday + ' (' + calLabel + ').';
+
+  const isSkippedGap = greg && astroYear===1582 && month===10 && day>=5 && day<=14;
+  const showAutoNote = calsys === 'auto' && astroYear >= 1582 && astroYear <= 1926;
+
+  let html = '';
+  html += '<div class="bigresult">' + weekday + '</div>';
+  html += '<div class="subresult">' + dateLabel + ' fell on a <strong>' + weekday + '</strong>, calculated using the ' + calLabel + '.</div>';
+  html += '<div class="tablewrap"><table><tbody>';
+  html += '<tr><th>Input Date</th><td>' + dateLabel + '</td></tr>';
+  html += '<tr><th>Calendar Used</th><td>' + calLabel + '</td></tr>';
+  html += '<tr><th>Julian Day Number</th><td>' + fmt(jdn) + '</td></tr>';
+  html += '<tr><th>Astronomical Year</th><td>' + fmt(astroYear) + '</td></tr>';
+  html += '</tbody></table></div>';
+  if(isSkippedGap){
+    html += '<div class="warn">Heads up: October 5–14, 1582 never actually existed under the historical Gregorian reform — those 10 days were skipped entirely when the calendar switched. This result is a purely proleptic (mathematically projected) construct, not a date anyone historically lived through.</div>';
+  }
+  if(showAutoNote){
+    html += '<div class="note">Auto mode chose the ' + calLabel + ' because your date falls within the era when countries switched calendars at different times (Catholic Europe in 1582, Britain in 1752, Russia in 1918, Greece in 1923). If your date relates to a country that switched at a different time than assumed here, try forcing the Julian or Gregorian calendar instead.</div>';
+  }
+  html += '<button class="copybtn" id="copyBtn">Copy Result</button>';
+
+  requestAnimationFrame(()=>{
+    const el = document.getElementById('results');
+    el.innerHTML = html;
+    el.classList.add('show');
+    document.getElementById('copyBtn').addEventListener('click', function(){
+      navigator.clipboard.writeText(copyText).then(()=>{
+        this.textContent = 'Copied!';
+        setTimeout(()=>{ this.textContent = 'Copy Result'; }, 2000);
+      });
+    });
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', function(){
+  requestAnimationFrame(()=>{ calculate(); });
+});
+
+['month','day','year','era','calsys'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ requestAnimationFrame(()=>{ calculate(); }); }
+  });
+});
+
+calculate();
+</script>
+</body>
+</html>
