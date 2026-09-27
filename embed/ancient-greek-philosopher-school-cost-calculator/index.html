@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ancient Greek Philosopher School Cost Calculator | HistoryCalc</title>
+<meta name="description" content="Calculate ancient Greek education cost at Plato's Academy, Aristotle's Lyceum &amp; more. Compare drachma tuition and living costs to modern dollar equivalents.">
+<link rel="canonical" href="https://historycalc.com/ancient-greek-philosopher-school-cost-calculator/">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#f5f0e1;
+    --card:#fffdf5;
+    --accent:#8b4513;
+    --accent2:#6b3410;
+    --text:#2c1810;
+    --border:#c4a882;
+    --muted:#7a6652;
+    --row-alt:#faf5e8;
+    --blue:#0077b6;
+    --err:#e74c3c;
+  }
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.6}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline;color:var(--accent2)}
+  nav{background:var(--accent);padding:0.75rem 1.5rem;position:sticky;top:0;z-index:100}
+  nav a{color:#fff;font-weight:600;font-size:1rem;letter-spacing:0.02em}
+  nav a:hover{text-decoration:none;opacity:0.85}
+  .wrap{max-width:640px;margin:0 auto;padding:1.5rem 1rem 3rem}
+  h1{font-size:1.55rem;font-weight:700;color:var(--text);margin-bottom:0.4rem;line-height:1.3}
+  .tagline{color:var(--muted);font-size:0.95rem;margin-bottom:1.8rem}
+  .svg-hero{text-align:center;margin-bottom:1.5rem}
+  .svg-hero svg{max-width:320px;width:100%;height:auto}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1.75rem 1.5rem;margin-bottom:1.75rem;box-shadow:0 2px 8px rgba(139,69,19,0.08)}
+  .card h2{font-size:1.1rem;color:var(--accent);margin-bottom:1.25rem;display:flex;align-items:center;gap:0.5rem}
+  .field{margin-bottom:1.1rem}
+  label{display:block;font-size:0.85rem;font-weight:500;color:#5a3a1a;margin-bottom:0.4rem}
+  select,input[type=number],input[type=range]{width:100%;border:1px solid var(--border);border-radius:6px;padding:12px 16px;font-size:1rem;background:#fffdf5;color:var(--text);transition:box-shadow 0.2s,border-color 0.2s;-webkit-appearance:none;appearance:none;outline:none;font-family:inherit}
+  select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238b4513' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+  input[type=number]:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+  input[type=number].error{border-color:var(--err)}
+  .error-msg{color:var(--err);font-size:0.8rem;margin-top:0.3rem;display:none}
+  .error-msg.show{display:block}
+  input[type=range]{padding:6px 0;cursor:pointer;accent-color:var(--accent)}
+  .range-val{font-size:0.85rem;color:var(--accent);font-weight:600;margin-top:0.25rem}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:480px){.row2{grid-template-columns:1fr}}
+  .btn{background:var(--accent);color:#fff;border:none;border-radius:6px;padding:13px 28px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s;font-family:inherit;letter-spacing:0.02em}
+  .btn:hover{background:var(--accent2)}
+  .btn-sm{background:var(--accent);color:#fff;border:none;border-radius:4px;padding:6px 14px;font-size:0.8rem;font-weight:600;cursor:pointer;min-height:36px;transition:background 0.2s;font-family:inherit}
+  .btn-sm:hover{background:var(--accent2)}
+  .results{opacity:0;transition:opacity 0.35s ease;display:none}
+  .results.show{opacity:1;display:block}
+  .big-num{font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1.1}
+  .big-label{font-size:0.85rem;color:var(--muted);margin-top:0.2rem;margin-bottom:1.2rem}
+  .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem}
+  @media(max-width:400px){.result-grid{grid-template-columns:1fr}}
+  .result-card{background:var(--row-alt);border:1px solid var(--border);border-radius:6px;padding:0.85rem 1rem}
+  .result-card .rc-val{font-size:1.3rem;font-weight:700;color:var(--accent)}
+  .result-card .rc-lbl{font-size:0.78rem;color:var(--muted);margin-top:0.1rem}
+  .copy-row{display:flex;justify-content:flex-end;margin-bottom:0.75rem}
+  .tbl-wrap{overflow-x:auto;border-radius:6px;border:1px solid var(--border)}
+  table{width:100%;border-collapse:collapse;font-size:0.88rem}
+  thead th{background:#ede3ce;padding:9px 12px;text-align:left;font-weight:600;color:var(--accent);border-bottom:2px solid var(--border)}
+  tbody tr:nth-child(odd){background:var(--row-alt)}
+  tbody tr:nth-child(even){background:var(--card)}
+  tbody td{padding:8px 12px;border-bottom:1px solid #e8dcc8;color:var(--text)}
+  tbody td.r,thead th.r{text-align:right;font-variant-numeric:tabular-nums}
+  .dyk{background:#fef9ee;border-left:4px solid var(--accent);border-radius:0 6px 6px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+  .dyk h3{font-size:0.9rem;font-weight:700;color:var(--accent);margin-bottom:0.5rem}
+  .dyk ul{padding-left:1.2rem}
+  .dyk li{font-size:0.88rem;color:var(--text);margin-bottom:0.4rem}
+  .modern-box{background:#e8f4f8;border:1px solid #b0d4e8;border-radius:6px;padding:1rem 1.25rem;margin-bottom:1.5rem}
+  .modern-box h3{font-size:0.9rem;font-weight:700;color:#005f8a;margin-bottom:0.4rem}
+  .modern-box .eq-val{font-size:1.4rem;font-weight:700;color:#0077b6}
+  .content-section{margin-bottom:1.75rem}
+  .content-section h2{font-size:1.15rem;color:var(--accent);margin-bottom:0.65rem;padding-bottom:0.35rem;border-bottom:2px solid var(--border)}
+  .content-section p{font-size:0.93rem;margin-bottom:0.7rem;color:var(--text)}
+  .content-section ul,.content-section ol{padding-left:1.4rem;margin-bottom:0.7rem}
+  .content-section li{font-size:0.93rem;margin-bottom:0.35rem;color:var(--text)}
+  details{border:1px solid var(--border);border-radius:6px;margin-bottom:0.6rem;background:var(--card)}
+  details summary{padding:0.75rem 1rem;cursor:pointer;font-weight:600;font-size:0.9rem;color:var(--accent);list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:'＋';font-size:1rem;color:var(--accent)}
+  details[open] summary::after{content:'－'}
+  details p{padding:0 1rem 0.75rem;font-size:0.88rem;color:var(--text)}
+  .related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.6rem}
+  @media(max-width:420px){.related-grid{grid-template-columns:1fr}}
+  .related-link{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:0.7rem 0.9rem;font-size:0.83rem;color:var(--accent);transition:background 0.2s;display:block;line-height:1.35}
+  .related-link:hover{background:var(--row-alt);text-decoration:none}
+  .ad-slot{min-height:0;margin:0}
+  footer{background:var(--accent);color:#f5e6d0;text-align:center;padding:1.25rem 1rem;font-size:0.83rem}
+  footer a{color:#f5d0a8;margin:0 0.5rem}
+  footer a:hover{color:#fff}
+  .badge{display:inline-block;font-size:0.72rem;background:var(--accent);color:#fff;border-radius:4px;padding:2px 7px;margin-left:6px;vertical-align:middle}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/ancient-greek-philosopher-school-cost-calculator/">
+<meta property="og:title" content="Ancient Greek Philosopher School Cost Calculator">
+<meta property="og:description" content="Calculate ancient Greek education cost at Plato's Academy, Aristotle's Lyceum &amp; more. Compare drachma tuition and living costs to modern dollar equivalents.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+
+<nav><a href="/">⚱️ historycalc.com</a></nav>
+
+<div class="wrap">
+
+  <div class="svg-hero">
+    <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ancient Greek temple with columns">
+      <rect width="320" height="180" fill="#f5f0e1"/>
+      <circle cx="270" cy="35" r="22" fill="#e8c56d" opacity="0.7"/>
+      <ellipse cx="60" cy="145" rx="90" ry="30" fill="#d4c49a" opacity="0.5"/>
+      <ellipse cx="260" cy="150" rx="80" ry="25" fill="#c4b488" opacity="0.5"/>
+      <rect x="30" y="148" width="260" height="8" rx="1" fill="#c4a882"/>
+      <rect x="22" y="154" width="276" height="8" rx="1" fill="#b8986a"/>
+      <rect x="14" y="160" width="292" height="8" rx="1" fill="#a8885a"/>
+      <polygon points="40,80 160,45 280,80" fill="#d4b896" stroke="#8b4513" stroke-width="1.5"/>
+      <rect x="40" y="78" width="240" height="8" rx="1" fill="#c4a882"/>
+      <rect x="55" y="88" width="18" height="60" fill="#e8dcc8" stroke="#c4a882" stroke-width="1"/>
+      <rect x="55" y="86" width="20" height="5" rx="1" fill="#c4a882"/>
+      <rect x="55" y="144" width="20" height="5" rx="1" fill="#c4a882"/>
+      <line x1="59" y1="91" x2="59" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="63" y1="91" x2="63" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="67" y1="91" x2="67" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="71" y1="91" x2="71" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <rect x="100" y="88" width="18" height="60" fill="#e8dcc8" stroke="#c4a882" stroke-width="1"/>
+      <rect x="100" y="86" width="20" height="5" rx="1" fill="#c4a882"/>
+      <rect x="100" y="144" width="20" height="5" rx="1" fill="#c4a882"/>
+      <line x1="104" y1="91" x2="104" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="108" y1="91" x2="108" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="112" y1="91" x2="112" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="116" y1="91" x2="116" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <rect x="150" y="88" width="18" height="60" fill="#e8dcc8" stroke="#c4a882" stroke-width="1"/>
+      <rect x="150" y="86" width="20" height="5" rx="1" fill="#c4a882"/>
+      <rect x="150" y="144" width="20" height="5" rx="1" fill="#c4a882"/>
+      <line x1="154" y1="91" x2="154" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="158" y1="91" x2="158" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="162" y1="91" x2="162" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="166" y1="91" x2="166" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <rect x="198" y="88" width="18" height="60" fill="#e8dcc8" stroke="#c4a882" stroke-width="1"/>
+      <rect x="198" y="86" width="20" height="5" rx="1" fill="#c4a882"/>
+      <rect x="198" y="144" width="20" height="5" rx="1" fill="#c4a882"/>
+      <line x1="202" y1="91" x2="202" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="206" y1="91" x2="206" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="210" y1="91" x2="210" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="214" y1="91" x2="214" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <rect x="246" y="88" width="18" height="60" fill="#e8dcc8" stroke="#c4a882" stroke-width="1"/>
+      <rect x="246" y="86" width="20" height="5" rx="1" fill="#c4a882"/>
+      <rect x="246" y="144" width="20" height="5" rx="1" fill="#c4a882"/>
+      <line x1="250" y1="91" x2="250" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="254" y1="91" x2="254" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="258" y1="91" x2="258" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="262" y1="91" x2="262" y2="144" stroke="#c4a882" stroke-width="0.5"/>
+      <line x1="40" y1="91" x2="280" y2="91" stroke="#8b4513" stroke-width="1"/>
+      <text x="160" y="68" text-anchor="middle" font-size="9" fill="#8b4513" font-family="serif" font-style="italic">ΑΚΑΔΗΜΙΑ</text>
+      <circle cx="175" cy="115" r="5" fill="#8b4513"/>
+      <line x1="175" y1="120" x2="175" y2="138" stroke="#8b4513" stroke-width="2"/>
+      <line x1="175" y1="125" x2="165" y2="132" stroke="#8b4513" stroke-width="1.5"/>
+      <line x1="175" y1="125" x2="185" y2="132" stroke="#8b4513" stroke-width="1.5"/>
+      <line x1="175" y1="138" x2="169" y2="148" stroke="#8b4513" stroke-width="1.5"/>
+      <line x1="175" y1="138" x2="181" y2="148" stroke="#8b4513" stroke-width="1.5"/>
+      <rect x="183" y="128" width="10" height="7" rx="2" fill="#d4b460" stroke="#8b4513" stroke-width="0.8"/>
+    </svg>
+  </div>
+
+  <h1>Ancient Greek Philosopher School Cost Calculator</h1>
+  <p class="tagline">Estimate the ancient Greek education cost of attending Plato's Academy, Aristotle's Lyceum, or a private Sophist tutor — in drachmas and modern dollars.</p>
+
+  <div class="card">
+    <h2>🏛️ Configure Your Philosophical Education</h2>
+
+    <div class="field">
+      <label for="school">Choose a Philosophical School</label>
+      <select id="school">
+        <option value="academy">Plato's Academy (Athens, c. 387 BCE)</option>
+        <option value="lyceum">Aristotle's Lyceum (Athens, c. 335 BCE)</option>
+        <option value="garden">Epicurus's Garden (Athens, c. 307 BCE)</option>
+        <option value="stoa">Zeno's Stoa Poikile / Stoic School (c. 300 BCE)</option>
+        <option value="sophist">Sophist Private Tutor (Athens, c. 450–380 BCE)</option>
+        <option value="pythagorean">Pythagorean Brotherhood (Croton, c. 520 BCE)</option>
+      </select>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="years">Years of Study</label>
+        <input type="number" id="years" value="3" min="1" max="20" step="1" placeholder="e.g. 3">
+        <div class="error-msg" id="years-err">Please enter a whole number between 1 and 20 years.</div>
+      </div>
+      <div class="field">
+        <label for="studentType">Student Origin</label>
+        <select id="studentType">
+          <option value="athenian">Athenian Citizen</option>
+          <option value="metic">Metic (Resident Alien)</option>
+          <option value="foreign">Foreign Student</option>
+          <option value="slave">Educated Slave (via Master)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row2">
+      <div class="field">
+        <label for="accommodation">Accommodation Type</label>
+        <select id="accommodation">
+          <option value="own">Own/Family Housing</option>
+          <option value="rent_cheap">Rented Room (Cheap Quarter)</option>
+          <option value="rent_mid">Rented Room (Near Academy)</option>
+          <option value="school_board">School Lodging (Pythagorean)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="lifestyle">Lifestyle / Frugality</label>
+        <select id="lifestyle">
+          <option value="frugal">Frugal (Stoic / Cynic)</option>
+          <option value="modest">Modest (Average student)</option>
+          <option value="comfortable">Comfortable (Wealthy family)</option>
+          <option value="aristocratic">Aristocratic (Symposia & luxuries)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="extras">Additional Studies & Materials</label>
+      <select id="extras" multiple style="height:auto;padding:8px 12px" size="4">
+        <option value="scrolls" selected>Papyrus Scrolls & Writing Tablets</option>
+        <option value="music">Music & Lyre Lessons</option>
+        <option value="gymnasium">Gymnasium (Physical Training)</option>
+        <option value="travel">Travel to Study Sites</option>
+      </select>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:0.3rem">Hold Ctrl/Cmd to select multiple</div>
+    </div>
+
+    <div class="field">
+      <label for="scholarSlider">Philosophical Dedication Level</label>
+      <input type="range" id="scholarSlider" min="1" max="5" value="3" step="1">
+      <div class="range-val" id="scholarLabel">Level 3 — Serious Student (5–6 hours per day of study)</div>
+    </div>
+
+    <button class="btn" id="calcBtn">Calculate Education Cost ⟶</button>
+  </div>
+
+  <div class="results card" id="results">
+    <div class="copy-row">
+      <button class="btn-sm" id="copyBtn">Copy Results</button>
+    </div>
+    <div id="resultBody"></div>
+  </div>
+
+  <div class="dyk">
+    <h3>📜 Did You Know?</h3>
+    <ul>
+      <li>Plato's Academy was not technically a "school" with fees — it was a private grove Plato owned. Yet students still incurred enormous living costs: a skilled Athenian craftsman earned only about 1 drachma per day.</li>
+      <li>Sophists like Protagoras charged up to <strong>100 minae</strong> (10,000 drachmas) for a full course of instruction — roughly <strong>33 years</strong> of a craftsman's wages (at ~300 dr/year). Socrates famously refused to charge any fee at all.</li>
+      <li>Aristotle's library at the Lyceum was one of the largest in the ancient world. When Rome's Sulla looted Athens in 86 BCE, he seized Aristotle's manuscripts — they had reportedly been buried underground for safekeeping for nearly 200 years.</li>
+    </ul>
+  </div>
+
+  <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<div class="content-section">
+    <h2>📖 Historical Context</h2>
+    <p>In classical Athens (5th–4th century BCE), a skilled craftsman earned roughly <strong>1 drachma per day</strong>, working perhaps 300 days a year once religious festivals and holidays are subtracted — about <strong>300 drachmas annually</strong>. A medium-quality ox cost 50–100 drachmas. Parthenon construction workers earned about 1 drachma a day. A <em>talent</em> equaled 6,000 drachmas — roughly the annual budget of a single Athenian warship. Against this backdrop, a Sophist's fee of 10,000 drachmas was genuinely extraordinary: about 33 years of a craftsman's total wages.</p>
+    <p>Philosophical schools had wildly different fee structures. Plato's Academy charged no formal tuition, but students still needed to fund years of Athenian living. The Pythagorean Brotherhood required members to surrender property to communal ownership. Stoic teachers lectured in the <em>Stoa Poikile</em> (Painted Porch) — a public colonnade open to all social classes, making Stoicism one of the most democratically accessible philosophies of antiquity.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How to Use This Ancient Greek Philosopher School Cost Calculator</h2>
+    <p>Select your preferred philosophical school, enter how many years you wish to study, choose your student origin and living arrangements, then click "Calculate." The tool outputs the ancient Greek education cost in Athenian <em>drachmas</em>, converts it to a modern USD equivalent, and breaks down every expense category — tuition, food, accommodation, and study materials.</p>
+    <p>The "Philosophical Dedication Level" slider adjusts how intensively you study, which scales the cost of scrolls, music lessons, gymnasium fees, and travel. Results also include a side-by-side comparison across all six schools for the same duration and lifestyle.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding ancient Greek education cost illuminates one of history's most revealing questions: who actually got to philosophize? Contrary to the romanticized image of the robed thinker debating freely under olive trees, rigorous philosophical education in ancient Greece was often a privilege of the wealthy or those with wealthy patrons.</p>
+    <p>Consider: several years studying with a top Sophist in the 5th century BCE could cost a working family the equivalent of decades of income. Even the relatively low-fee Lyceum required years of living in Athens with no income — realistic only for citizens with estates, merchants, or patrons like Alexander the Great, who funded Aristotle directly. Epicurus's Garden was unusual in admitting women and enslaved people, making it genuinely radical for its era. The Stoics, lecturing in a public porch, came closest to the ancient world's version of free public education. This calculator helps quantify those real social barriers — and the sacrifices ancient students and their families made for wisdom.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>All costs are expressed in <strong>Athenian drachmas</strong> (6 obols = 1 drachma; 100 drachmas = 1 mina; 60 minae = 1 talent = 6,000 drachmas). The formula:</p>
+    <p><strong>Total Cost (drachmas) = Tuition + (Annual Living Cost × Years) + (Extras × Dedication Multiplier × Years), all × Student Origin Multiplier</strong></p>
+    <ul>
+      <li><strong>Tuition</strong>: School-specific fee (Sophist: 3,000 dr up-front + 800 dr/yr; Academy/Lyceum/Garden: 0–30 dr/yr voluntary gift; Stoa: free; Pythagorean: 500 dr property levy + 50 dr/yr).</li>
+      <li><strong>Living costs (food)</strong>: Based on known Athenian price references — barley bread ~2 obols/day for a frugal diet, rising to bread+fish+olives (~4.5 obols) for a modest diet, wine and variety for comfortable students, and symposia-level spending for aristocrats. These translate to roughly 0.35–4 drachmas per day depending on lifestyle.</li>
+      <li><strong>Accommodation</strong>: Cheap rented rooms ran ~45 dr/year, rooms near a school ~90 dr/year, based on rental price references (Demosthenes, <em>Against Eubulides</em>; Xenophon).</li>
+      <li><strong>Extras</strong>: Scrolls (~12 dr/yr base), music lessons (~25 dr/yr), gymnasium (~18 dr/yr), and travel (~40 dr/yr) all scale with your Dedication Level, since more intensive study meant more materials, instruction, and travel.</li>
+      <li><strong>Modern USD equivalent</strong>: Using a wage-parity method — 1 drachma ≈ 1 day's skilled labor ≈ <strong>$150 USD</strong> (2024), based on a modern skilled tradesperson earning roughly $18.75/hour for an 8-hour day.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Worked Example</h2>
+    <p>Suppose you select <strong>Plato's Academy</strong>, <strong>3 years</strong> of study, an <strong>Athenian citizen</strong>, <strong>own/family housing</strong>, a <strong>modest</strong> lifestyle, <strong>scrolls only</strong> as an extra, and Dedication Level 3. Here's the math:</p>
+    <ol>
+      <li><strong>Tuition:</strong> 0 base + (30 dr/yr × 3 years) = 90 drachmas</li>
+      <li><strong>Food:</strong> modest diet ≈ 0.75 dr/day × 365 days × 1.0 (Academy food multiplier) × 3 years = 821.25 drachmas</li>
+      <li><strong>Accommodation:</strong> own housing = 0 drachmas</li>
+      <li><strong>Extras (scrolls):</strong> 12 dr base × 1.0 (Level 3 multiplier) × 3 years = 36 drachmas</li>
+      <li><strong>Subtotal:</strong> 90 + 821.25 + 0 + 36 = 947.25 drachmas</li>
+      <li><strong>Student multiplier:</strong> Athenian citizen ×1.0 → Total = <strong>947.25 drachmas</strong></li>
+      <li><strong>USD equivalent:</strong> 947.25 × $150 ≈ <strong>$142,088</strong></li>
+    </ol>
+    <p>That's about 15.8% of a talent (6,000 dr) — and roughly three years' worth of a craftsman's total wages, spent almost entirely on food and lodging rather than tuition, since the Academy itself charged nothing formal.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't forget living costs.</strong> Most people fixate on tuition, but in Athens a student's food, rent, and scroll costs over several years easily dwarfed any formal school fee — especially at "free" schools like the Academy and Stoa.</li>
+      <li><strong>Patronage was the ancient scholarship.</strong> Many philosophical students were supported by wealthy families or city-states. Aristotle was sent to Athens from Macedon with significant backing, and later Alexander the Great funded his research.</li>
+      <li><strong>The Pythagorean model was unique.</strong> Unlike other schools, Pythagoreans lived communally and surrendered personal property — this tool approximates that as a one-time levy plus modest annual dues.</li>
+      <li><strong>Lifestyle matters enormously.</strong> An aristocratic student attending Athenian symposia could spend roughly 10× what a frugal, Stoic-minded peer spent at the very same school.</li>
+      <li><strong>Dedication level affects all extras.</strong> A highly dedicated student consumed more scrolls, took more music and gymnasium instruction, and traveled more for study — all scaled here by the same multiplier.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>Did Plato's Academy actually charge tuition?</summary>
+      <p>Plato owned the grove of Akademos personally and did not charge formal fees in the modern sense. Students were nonetheless expected to contribute to communal sacrifices and materials, and voluntary gifts were customary. The real cost was almost always in Athenian living expenses — a genuinely expensive city even in the 4th century BCE.</p>
+    </details>
+    <details>
+      <summary>How does 1 drachma convert to modern money?</summary>
+      <p>This calculator uses the "wage-parity" method: since a skilled Athenian craftsman earned roughly 1 drachma per day, and an equivalent skilled tradesperson today earns about $150 for an 8-hour day, 1 drachma ≈ $150 in 2024 purchasing power. Other economists use commodity-price comparisons instead, which yield different figures — there's no single universally agreed conversion for ancient currencies.</p>
+    </details>
+    <details>
+      <summary>Could women attend these philosophical schools?</summary>
+      <p>In most schools, women were excluded by social convention. Epicurus's Garden was a remarkable exception, admitting women and enslaved people as full participants — Leontion and Themista became notable Epicurean philosophers. Plato's Academy reportedly admitted two women, Axiothea of Phlius and Lasthenia of Mantinea, who are said to have dressed as men to attend.</p>
+    </details>
+    <details>
+      <summary>What was the most expensive option — and who paid?</summary>
+      <p>Hiring a top Sophist like Protagoras for a complete education could cost up to 100 minae (10,000 drachmas) — roughly 33 years of a craftsman's wages. This was paid by wealthy Athenian families hoping to train sons for political careers. Callias, son of Hipponicus, reportedly spent more on Sophists than anyone else in Athens.</p>
+    </details>
+    <details>
+      <summary>Why do food costs vary so much between lifestyle options?</summary>
+      <p>Ancient price records show barley bread cost about 2 obols a day, while fish, wine, and imported delicacies cost considerably more. A frugal student living on bread and water might spend under 1 drachma a day, while an aristocrat attending symposia with fine wine could spend several drachmas daily — a difference this calculator reflects directly in its lifestyle multipliers.</p>
+    </details>
+    <details>
+      <summary>Is this calculator historically precise?</summary>
+      <p>It's an educational estimate built from real price references (Demosthenes, Xenophon, and standard classical wage/price scholarship), not a precise historical ledger — ancient sources rarely itemized school costs directly. Treat the drachma totals as a reasonable order-of-magnitude illustration of how expensive philosophical education really was.</p>
+    </details>
+  </div>
+
+  <div class="content-section">
+    <h2>Related Historical Calculators</h2>
+    <div class="related-grid">
+      <a href="/ancient-greek-agora-market-price-calculator/" class="related-link">🏺 Ancient Greek Agora Market Price Calculator</a>
+      <a href="/greek-hoplite-phalanx-calculator/" class="related-link">🛡️ Greek Hoplite Phalanx Battle Strength Calculator</a>
+      <a href="/ancient-greek-city-state-army-estimator/" class="related-link">🏛️ Ancient Greek City-State Population & Army Size Estimator</a>
+      <a href="/ancient-greek-olympic-games-planner/" class="related-link">🏆 Ancient Greek Olympic Games Planner</a>
+      <a href="/greek-trireme-voyage-planner/" class="related-link">🚢 Greek Trireme Voyage Planner</a>
+      <a href="/islamic-hijri-date-converter/" class="related-link">🌙 Islamic Hijri Calendar Date Converter</a>
+    </div>
+  </div>
+
+  </div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/ancient-greek-philosopher-school-cost-calculator/">HistoryCalc</a></p>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+const SCHOOLS = {
+  academy: {
+    name: "Plato's Academy",
+    tuitionBase: 0,
+    tuitionPerYear: 30,
+    tuitionNote: "Voluntary gift (xenía), ~30 dr/yr",
+    foodMultiplier: 1.0,
+    notable: "Plato (~428–348 BCE) taught ethics, mathematics, metaphysics, dialectic",
+    famous: "Aristotle, Speusippus, Xenocrates"
+  },
+  lyceum: {
+    name: "Aristotle's Lyceum",
+    tuitionBase: 0,
+    tuitionPerYear: 20,
+    tuitionNote: "No formal fee; modest materials cost ~20 dr/yr",
+    foodMultiplier: 1.0,
+    notable: "Aristotle (~384–322 BCE): logic, biology, rhetoric, politics",
+    famous: "Theophrastus, Andronicus of Rhodes"
+  },
+  garden: {
+    name: "Epicurus's Garden",
+    tuitionBase: 0,
+    tuitionPerYear: 15,
+    tuitionNote: "Communal living; low overhead ~15 dr/yr",
+    foodMultiplier: 0.85,
+    notable: "Epicurus (~341–270 BCE): pleasure, atoms, friendship, tranquility",
+    famous: "Metrodorus, Hermarchus, Leontion"
+  },
+  stoa: {
+    name: "Zeno's Stoa Poikile",
+    tuitionBase: 0,
+    tuitionPerYear: 0,
+    tuitionNote: "Free public lectures in the Painted Porch",
+    foodMultiplier: 0.9,
+    notable: "Zeno of Citium (~334–262 BCE): virtue, logos, cosmic reason",
+    famous: "Cleanthes, Chrysippus, later Marcus Aurelius"
+  },
+  sophist: {
+    name: "Sophist Private Tutor",
+    tuitionBase: 3000,
+    tuitionPerYear: 800,
+    tuitionNote: "Premium tuition: 3,000 dr up-front + 800 dr/yr",
+    foodMultiplier: 1.3,
+    notable: "Protagoras, Gorgias, Prodicus: rhetoric, politics, argumentation",
+    famous: "Training ground for Athenian politicians and orators"
+  },
+  pythagorean: {
+    name: "Pythagorean Brotherhood",
+    tuitionBase: 500,
+    tuitionPerYear: 50,
+    tuitionNote: "Property surrender (~500 dr equiv.) + communal levy 50 dr/yr",
+    foodMultiplier: 0.9,
+    notable: "Pythagoras (~570–495 BCE): mathematics, music, transmigration of souls",
+    famous: "Philolaus, Archytas of Tarentum"
+  }
+};
+
+const ACCOMMODATION = {
+  own: { cost: 0, label: "Own/Family Housing" },
+  rent_cheap: { cost: 45, label: "Cheap rented room (~45 dr/yr)" },
+  rent_mid: { cost: 90, label: "Near-school room (~90 dr/yr)" },
+  school_board: { cost: 25, label: "School communal lodging (~25 dr/yr)" }
+};
+
+// Daily food cost in drachmas, based on known obol-level Athenian prices
+const LIFESTYLE_FOOD = {
+  frugal: { daily: 0.35, label: "Frugal (barley bread & water, ~2 obols/day)" },
+  modest: { daily: 0.75, label: "Modest (bread, fish, olives, ~4.5 obols/day)" },
+  comfortable: { daily: 1.6, label: "Comfortable (varied diet, wine)" },
+  aristocratic: { daily: 4.0, label: "Aristocratic (symposia, delicacies)" }
+};
+
+const STUDENT_MULTIPLIERS = {
+  athenian: { mult: 1.0, label: "Athenian Citizen" },
+  metic: { mult: 1.15, label: "Metic (extra taxes & costs)" },
+  foreign: { mult: 1.25, label: "Foreign student (travel, higher rents)" },
+  slave: { mult: 0.6, label: "Enslaved (master covers basics)" }
+};
+
+const EXTRAS_DATA = {
+  scrolls: { base: 12, label: "Scrolls & Writing Tablets" },
+  music: { base: 25, label: "Music & Lyre Lessons" },
+  gymnasium: { base: 18, label: "Gymnasium Membership" },
+  travel: { base: 40, label: "Travel to Study Sites" }
+};
+
+const DEDICATION_LABELS = [
+  "",
+  "Level 1 — Casual Listener (1–2 hrs/day)",
+  "Level 2 — Interested Pupil (3–4 hrs/day)",
+  "Level 3 — Serious Student (5–6 hrs/day)",
+  "Level 4 — Devoted Scholar (8+ hrs/day)",
+  "Level 5 — Full Philosopher (all waking hours)"
+];
+
+// Multiplier applied to ALL extras (scrolls, music, gymnasium, travel)
+const DEDICATION_MULT = [0, 0.4, 0.7, 1.0, 1.5, 2.2];
+
+// Modern USD: 1 drachma ≈ 1 day's skilled labor ≈ $150 (2024 wage parity)
+const DR_TO_USD = 150;
+// Craftsman's approximate annual wage (drachmas) used for historical comparisons
+const CRAFTSMAN_ANNUAL_WAGE = 300;
+
+function fmt(n, dec=0) {
+  if (isNaN(n)) return "—";
+  return n.toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+function fmtUSD(n) {
+  return "$" + fmt(Math.round(n));
+}
+
+document.getElementById('scholarSlider').addEventListener('input', function() {
+  document.getElementById('scholarLabel').textContent = DEDICATION_LABELS[this.value];
+});
+
+function validate() {
+  let ok = true;
+  const yEl = document.getElementById('years');
+  const yErr = document.getElementById('years-err');
+  const y = parseFloat(yEl.value);
+  if (!yEl.value || isNaN(y) || y < 1 || y > 20 || !Number.isInteger(y)) {
+    yEl.classList.add('error');
+    yErr.classList.add('show');
+    ok = false;
+  } else {
+    yEl.classList.remove('error');
+    yErr.classList.remove('show');
+  }
+  return ok;
+}
+
+function getSelectedExtras() {
+  const sel = document.getElementById('extras');
+  const chosen = [];
+  for (let opt of sel.options) {
+    if (opt.selected) chosen.push(opt.value);
+  }
+  return chosen;
+}
+
+function calcCost(schoolKey, years, studentType, accommodation, lifestyle, extras, dedication) {
+  const school = SCHOOLS[schoolKey];
+  const accData = ACCOMMODATION[accommodation];
+  const foodData = LIFESTYLE_FOOD[lifestyle];
+  const stuMult = STUDENT_MULTIPLIERS[studentType];
+  const dedMult = DEDICATION_MULT[dedication];
+
+  const tuition = school.tuitionBase + (school.tuitionPerYear * years);
+  const foodAnnual = foodData.daily * 365 * school.foodMultiplier;
+  const foodTotal = foodAnnual * years;
+  const accTotal = accData.cost * years;
+
+  let extrasTotal = 0;
+  const extraBreakdown = [];
+  for (const key of Object.keys(EXTRAS_DATA)) {
+    const included = extras.includes(key);
+    const annualCost = EXTRAS_DATA[key].base * dedMult;
+    const val = included ? annualCost * years : 0;
+    extraBreakdown.push({ key, label: EXTRAS_DATA[key].label, included, annual: annualCost, total: val });
+    extrasTotal += val;
+  }
+
+  const subtotal = tuition + foodTotal + accTotal + extrasTotal;
+  const totalDrachmas = subtotal * stuMult.mult;
+  const usdEquiv = totalDrachmas * DR_TO_USD;
+
+  return {
+    school, tuition, foodTotal, foodAnnual, accTotal, extrasTotal,
+    extraBreakdown, subtotal, totalDrachmas, usdEquiv,
+    stuMult, years, dedication
+  };
+}
+
+function buildResultHTML(r, schoolKey) {
+  const school = r.school;
+  const annualDr = r.totalDrachmas / r.years;
+  const usdPerYear = r.usdEquiv / r.years;
+
+  let breakdownRows = "";
+  breakdownRows += `<tr><td>Tuition / School Fees</td><td class="r">${fmt(r.tuition)} dr</td><td class="r">${fmtUSD(r.tuition*DR_TO_USD)}</td></tr>`;
+  breakdownRows += `<tr><td>Food & Drink (${fmt(r.foodAnnual,2)} dr/yr)</td><td class="r">${fmt(r.foodTotal,1)} dr</td><td class="r">${fmtUSD(r.foodTotal*DR_TO_USD)}</td></tr>`;
+  breakdownRows += `<tr><td>Accommodation</td><td class="r">${fmt(r.accTotal)} dr</td><td class="r">${fmtUSD(r.accTotal*DR_TO_USD)}</td></tr>`;
+  for (const ex of r.extraBreakdown) {
+    if (ex.included) {
+      breakdownRows += `<tr><td>${ex.label}</td><td class="r">${fmt(ex.total,1)} dr</td><td class="r">${fmtUSD(ex.total*DR_TO_USD)}</td></tr>`;
+    }
+  }
+  if (r.stuMult.mult !== 1) {
+    breakdownRows += `<tr><td>Student Origin Adjustment (×${r.stuMult.mult})</td><td class="r">—</td><td class="r">—</td></tr>`;
+  }
+
+  const talents = Math.floor(r.totalDrachmas / 6000);
+  const minaeRem = Math.floor((r.totalDrachmas % 6000) / 100);
+  const drRem = Math.floor(r.totalDrachmas % 100);
+
+  const pctTalent = Math.min(100, (r.totalDrachmas / 6000) * 100);
+  const barColor = pctTalent > 80 ? '#8b4513' : pctTalent > 40 ? '#c47a3a' : '#d4a855';
+
+  const wageYears = r.totalDrachmas / CRAFTSMAN_ANNUAL_WAGE;
+
+  let html = `
+    <div class="big-num">${fmt(r.totalDrachmas,1)} dr</div>
+    <div class="big-label">Total cost over ${r.years} year${r.years>1?'s':''} at ${school.name} · ${r.stuMult.label}</div>
+
+    <div class="result-grid">
+      <div class="result-card"><div class="rc-val">${fmt(annualDr,1)} dr</div><div class="rc-lbl">Per Year (drachmas)</div></div>
+      <div class="result-card"><div class="rc-val">${fmtUSD(r.usdEquiv)}</div><div class="rc-lbl">Modern USD Equivalent</div></div>
+      <div class="result-card"><div class="rc-val">${talents > 0 ? talents + ' talent' + (talents>1?'s':'') + (minaeRem>0?', '+minaeRem+' mn':'') : minaeRem > 0 ? minaeRem + ' minae, ' + drRem + ' dr' : drRem + ' dr'}</div><div class="rc-lbl">In Ancient Currency Units</div></div>
+      <div class="result-card"><div class="rc-val">${fmtUSD(usdPerYear)}/yr</div><div class="rc-lbl">Annual Cost (USD equiv.)</div></div>
+    </div>
+
+    <div style="margin-bottom:1rem">
+      <div style="font-size:0.78rem;color:var(--muted);margin-bottom:0.3rem">Cost as fraction of 1 talent (6,000 dr) — the annual budget of a Greek warship</div>
+      <div style="background:#e8dcc8;border-radius:4px;height:14px;overflow:hidden">
+        <div style="height:100%;width:${pctTalent.toFixed(1)}%;background:${barColor};border-radius:4px;transition:width 0.5s"></div>
+      </div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:0.25rem">${pctTalent.toFixed(1)}% of 1 talent</div>
+    </div>
+
+    <div class="modern-box">
+      <h3>💵 Modern Equivalent Comparison</h3>
+      <div class="eq-val">${fmtUSD(r.usdEquiv)}</div>
+      <div style="font-size:0.85rem;color:#005f8a;margin-top:0.4rem">
+        Using the wage-parity method: 1 drachma ≈ 1 day's skilled labor ≈ $150 USD (2024), based on a modern skilled tradesperson earning about $18.75/hour for an 8-hour day.
+        This is also roughly equivalent to <strong>${fmt(wageYears,1)} years</strong> of an ancient Athenian craftsman's total wages (at ~${fmt(CRAFTSMAN_ANNUAL_WAGE)} dr/year), or about <strong>${fmt(Math.round(r.totalDrachmas/75))} oxen</strong> at typical Athenian prices.
+      </div>
+    </div>
+
+    <h3 style="font-size:0.95rem;color:var(--accent);margin-bottom:0.6rem">💰 Cost Breakdown</h3>
+    <div class="tbl-wrap" style="margin-bottom:1.25rem">
+      <table>
+        <thead><tr><th>Expense Category</th><th class="r">Drachmas</th><th class="r">USD Equiv.</th></tr></thead>
+        <tbody>${breakdownRows}
+        <tr style="font-weight:700;background:#ede3ce"><td>TOTAL</td><td class="r">${fmt(r.totalDrachmas,1)} dr</td><td class="r">${fmtUSD(r.usdEquiv)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:0.95rem;color:var(--accent);margin-bottom:0.6rem">🏛️ School Comparison (${r.years}-Year Program, same settings)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>School</th><th class="r">Total (dr)</th><th class="r">USD Equiv.</th><th>Approach</th></tr></thead>
+        <tbody>${buildCompTable(r.years, document.getElementById('studentType').value, document.getElementById('accommodation').value, document.getElementById('lifestyle').value, getSelectedExtras(), parseInt(document.getElementById('scholarSlider').value), schoolKey)}</tbody>
+      </table>
+    </div>
+
+    <div style="margin-top:1rem;padding:0.85rem 1rem;background:var(--row-alt);border-radius:6px;border:1px solid var(--border)">
+      <div style="font-size:0.82rem;font-weight:600;color:var(--accent);margin-bottom:0.3rem">About ${school.name}</div>
+      <div style="font-size:0.82rem;color:var(--text)">${school.notable}</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.25rem">Tuition structure: ${school.tuitionNote}</div>
+      <div style="font-size:0.8rem;color:var(--muted);margin-top:0.15rem">Notable alumni: ${school.famous}</div>
+    </div>
+  `;
+  return html;
+}
+
+function buildCompTable(years, studentType, accommodation, lifestyle, extras, dedication, selectedKey) {
+  const stuMult = STUDENT_MULTIPLIERS[studentType].mult;
+  const accCost = ACCOMMODATION[accommodation].cost;
+  const foodDaily = LIFESTYLE_FOOD[lifestyle].daily;
+  const dedMult = DEDICATION_MULT[dedication];
+
+  const approaches = {
+    academy: "Dialectic & philosophy",
+    lyceum: "Empirical study",
+    garden: "Communal retreat",
+    stoa: "Public lectures",
+    sophist: "Rhetoric & politics",
+    pythagorean: "Sacred mathematics"
+  };
+
+  let rows = "";
+  for (const [key, school] of Object.entries(SCHOOLS)) {
+    const tuition = school.tuitionBase + (school.tuitionPerYear * years);
+    const foodTotal = foodDaily * 365 * school.foodMultiplier * years;
+    const accTotal = accCost * years;
+    let extrasTotal = 0;
+    for (const ek of Object.keys(EXTRAS_DATA)) {
+      if (extras.includes(ek)) {
+        extrasTotal += EXTRAS_DATA[ek].base * dedMult * years;
+      }
+    }
+    const total = (tuition + foodTotal + accTotal + extrasTotal) * stuMult;
+    const usd = total * DR_TO_USD;
+    const shortName = school.name.replace("'s", "").split(' ').slice(0,2).join(' ');
+    const highlight = key === selectedKey ? ' style="font-weight:700;background:#fef3e2"' : '';
+    rows += `<tr${highlight}><td>${shortName}${key===selectedKey?' <span class="badge">✓</span>':''}</td><td class="r">${fmt(Math.round(total))}</td><td class="r">${fmtUSD(usd)}</td><td style="font-size:0.8rem">${approaches[key]}</td></tr>`;
+  }
+  return rows;
+}
+
+function buildCopyText(r) {
+  const school = r.school;
+  return `Ancient Greek Education Cost — ${school.name}
+Years of Study: ${r.years}
+Total Cost: ${fmt(r.totalDrachmas,1)} drachmas
+Modern USD Equivalent: ${fmtUSD(r.usdEquiv)}
+Annual Cost: ${fmt(r.totalDrachmas/r.years,1)} dr/yr
+Breakdown:
+  Tuition: ${fmt(r.tuition)} dr
+  Food: ${fmt(r.foodTotal,1)} dr
+  Accommodation: ${fmt(r.accTotal)} dr
+  Extras: ${fmt(r.extrasTotal,1)} dr
+Calculated at historycalc.com`;
+}
+
+function calculate() {
+  if (!validate()) return;
+  const schoolKey = document.getElementById('school').value;
+  const years = parseInt(document.getElementById('years').value);
+  const studentType = document.getElementById('studentType').value;
+  const accommodation = document.getElementById('accommodation').value;
+  const lifestyle = document.getElementById('lifestyle').value;
+  const extras = getSelectedExtras();
+  const dedication = parseInt(document.getElementById('scholarSlider').value);
+
+  const r = calcCost(schoolKey, years, studentType, accommodation, lifestyle, extras, dedication);
+
+  requestAnimationFrame(() => {
+    const resultsDiv = document.getElementById('results');
+    document.getElementById('resultBody').innerHTML = buildResultHTML(r, schoolKey);
+    resultsDiv.style.display = 'block';
+    requestAnimationFrame(() => { resultsDiv.classList.add('show'); });
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    document.getElementById('copyBtn').onclick = function() {
+      const text = buildCopyText(r);
+      navigator.clipboard.writeText(text).then(() => {
+        this.textContent = "Copied!";
+        setTimeout(() => { this.textContent = "Copy Results"; }, 2000);
+      }).catch(() => {
+        this.textContent = "Copy failed";
+        setTimeout(() => { this.textContent = "Copy Results"; }, 2000);
+      });
+    };
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => { calculate(); });
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const tag = document.activeElement.tagName;
+    if (tag === 'INPUT' || tag === 'SELECT') {
+      requestAnimationFrame(() => { calculate(); });
+    }
+  }
+});
+
+document.getElementById('scholarLabel').textContent = DEDICATION_LABELS[3];
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

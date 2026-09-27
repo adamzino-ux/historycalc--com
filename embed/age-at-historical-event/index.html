@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free Age at Historical Event Calculator | HistoryCalc</title>
+<meta name="description" content="Find out how old would I be during a historical event — from the moon landing to the fall of Rome. Enter your birth date and discover your exact age.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/age-at-historical-event/">
+<style>
+:root{--bg:#f5f0e1;--accent:#8b4513;--text:#2c1810;--border:#c4a882;--blue:#0077b6;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1a1a2e;}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:1rem 1.5rem;border-bottom:1px solid #e0e0e0;}
+nav a{color:var(--accent);font-weight:700;text-decoration:none;font-size:1.1rem;}
+h1{color:var(--text);font-size:1.6rem;margin-top:1rem;}
+h2{color:var(--text);margin-top:0;}
+p{line-height:1.6;}
+.card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:2rem;margin:1.5rem 0;box-shadow:0 1px 3px rgba(0,0,0,0.08);}
+.card.plain{background:#fff;border:1px solid #e0e0e0;}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.3rem;margin-top:1rem;}
+input,select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;min-height:44px;background:#fff;}
+input:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,119,182,0.15);}
+input.error{border-color:#e74c3c;}
+.err-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none;}
+.row{display:flex;gap:0.75rem;}
+.row > div{flex:1;}
+button{background:var(--blue);color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;margin-top:1.5rem;width:100%;}
+button:hover{background:#006299;}
+.btn-hist{background:var(--accent);}
+.btn-hist:hover{background:#6f370f;}
+#results{opacity:0;transition:opacity 0.3s ease;margin-top:1.5rem;}
+#results.show{opacity:1;}
+.bignum{font-size:2.2rem;font-weight:700;color:var(--accent);margin:0.3rem 0;}
+table{width:100%;border-collapse:collapse;margin-top:1rem;}
+th,td{padding:8px 10px;border-bottom:1px solid #ddd;text-align:right;font-size:0.9rem;}
+th:first-child,td:first-child{text-align:left;}
+thead th{background:#f0f0f0;}
+tbody tr:nth-child(even){background:#fafafa;}
+.table-wrap{overflow-x:auto;}
+.copy-btn{background:none;border:1px solid var(--accent);color:var(--accent);padding:6px 14px;font-size:0.8rem;width:auto;margin-top:0.75rem;min-height:36px;}
+.copy-btn:hover{background:var(--accent);color:#fff;}
+.svg-box{text-align:center;margin:1rem 0;}
+.didyouknow{background:#fdf6e3;border-left:4px solid var(--accent);padding:1rem 1.25rem;margin:1.5rem 0;border-radius:4px;}
+.didyouknow h3{margin-top:0;color:var(--accent);font-size:1rem;}
+.modern-eq{background:#eef7fb;border-left:4px solid var(--blue);padding:1rem 1.25rem;margin-top:1rem;border-radius:4px;}
+section{margin:2rem 0;}
+details{border:1px solid #e0e0e0;border-radius:6px;padding:0.75rem 1rem;margin-bottom:0.6rem;}
+summary{font-weight:600;cursor:pointer;}
+.related a{display:inline-block;background:#f8f9fa;border:1px solid #e0e0e0;padding:8px 14px;border-radius:6px;margin:4px 6px 4px 0;color:var(--blue);text-decoration:none;font-size:0.9rem;}
+.ad-slot{min-height:0;margin:0;}
+footer{text-align:center;padding:2rem 1.5rem;color:#666;font-size:0.85rem;border-top:1px solid #e0e0e0;}
+footer a{color:#666;margin:0 6px;}
+#customEvent{display:none;}
+@media(max-width:480px){.row{flex-direction:column;gap:0;}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/age-at-historical-event/">
+<meta property="og:title" content="Age at Historical Event Calculator">
+<meta property="og:description" content="Find out how old would I be during a historical event — from the moon landing to the fall of Rome. Enter your birth date and discover your exact age.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<nav><a href="/">HistoryCalc</a></nav>
+<div class="wrap">
+
+<h1>Age at Historical Event Calculator</h1>
+<p>Ever wonder how old would I be during a historical event like the moon landing, the fall of the Berlin Wall, or even the fall of Rome? This calculator takes your birth date and a historical event date and tells you exactly how old you were (or would have been) at that moment — down to the year, month, and day.</p>
+
+<div class="svg-box">
+<svg width="100%" height="140" viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Hourglass flanked by ancient scrolls representing the passage of time">
+<rect width="300" height="140" fill="#f5f0e1"/>
+<rect x="8" y="38" width="16" height="64" rx="8" fill="#c4a882"/>
+<rect x="276" y="38" width="16" height="64" rx="8" fill="#c4a882"/>
+<rect x="106" y="14" width="88" height="8" fill="#8b4513"/>
+<rect x="106" y="118" width="88" height="8" fill="#8b4513"/>
+<path d="M120 22 H180 L140 70 L180 118 H120 L160 70 Z" fill="none" stroke="#8b4513" stroke-width="4"/>
+<path d="M124 26 H176 L150 66 Z" fill="#c4a882"/>
+<path d="M150 74 L176 114 H124 Z" fill="#8b4513" opacity="0.6"/>
+</svg>
+</div>
+
+<div class="card">
+<label for="by">Your Birth Date</label>
+<div class="row">
+<div><label for="by">Year</label><input type="number" id="by" placeholder="e.g. 1990" min="1" max="2100"></div>
+<div><label for="bm">Month</label><input type="number" id="bm" placeholder="MM" min="1" max="12"></div>
+<div><label for="bd">Day</label><input type="number" id="bd" placeholder="DD" min="1" max="31"></div>
+</div>
+<div class="err-msg" id="bErr">Please enter a valid, complete birth date.</div>
+
+<label for="eventSelect">Historical Event</label>
+<select id="eventSelect"></select>
+
+<div id="customEvent">
+<div class="row">
+<div><label for="ey">Year</label><input type="number" id="ey" placeholder="e.g. 1969" min="1" max="2100"></div>
+<div><label for="em">Month</label><input type="number" id="em" placeholder="MM" min="1" max="12"></div>
+<div><label for="ed">Day</label><input type="number" id="ed" placeholder="DD" min="1" max="31"></div>
+</div>
+<label for="eventName">Event Name (optional)</label>
+<input type="text" id="eventName" placeholder="e.g. My Custom Event">
+<div class="err-msg" id="eErr">Please enter a valid, complete event date.</div>
+</div>
+
+<button id="calcBtn">Calculate My Age</button>
+</div>
+
+<div id="results"></div>
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<section>
+<h2>How to Use This Age at Historical Event Calculator</h2>
+<p>Enter your birth year, month, and day, then choose a historical event from the dropdown — or select "Custom Date..." to type in any date you like, from ancient history to yesterday. Click "Calculate My Age" and the tool instantly shows your exact age (years, months, and days) at the moment that event took place, along with how it compares to average human lifespans throughout history.</p>
+</section>
+
+<section>
+<h2>Why This Matters</h2>
+<p>People love connecting their own timeline to the sweep of history. Genealogists use tools like this to figure out how old a grandparent was during the Great Depression or D-Day. Teachers use it to help students grasp abstract dates by anchoring them to something personal. Writers and journalists use it to add texture to profiles — "she was seven years old when the Berlin Wall fell." It's also just fun trivia at dinner parties: discovering you were exactly 12 years, 3 months old when Chernobyl happened, or that your great-great-grandfather could have been alive during the Fall of Constantinople in 1453. Whether you're researching family history, writing a school report, or just satisfying curiosity about how old would I be during a historical event, this calculator turns dry dates into a personal story you can actually feel.</p>
+</section>
+
+<section>
+<h2>How It's Calculated</h2>
+<p>The calculator subtracts your birth date from the event date using calendar arithmetic, the same method used for standard age calculations:</p>
+<p><strong>Years = EventYear − BirthYear</strong> (adjusted down by one if the event's month/day falls before your birth month/day in the calendar year). Remaining months and days are calculated the same way, borrowing days from the prior month when needed, using the actual number of days in that month (accounting for leap years under the standard rule: divisible by 4, except centuries not divisible by 400).</p>
+<p>Total elapsed days are computed using a Julian Day Number conversion, a method astronomers and historians have used for centuries to count days across any calendar date without ambiguity.</p>
+</section>
+
+<section>
+<h2>Worked Example</h2>
+<p>Say you were born on <strong>March 14, 1955</strong>, and you want to know your age during the <strong>Apollo 11 Moon Landing on July 20, 1969</strong>.</p>
+<p>Years: 1969 − 1955 = 14. Since July 20 comes after March 14 in the calendar year, no adjustment is needed. Months: 7 − 3 = 4. Days: 20 − 14 = 6. Result: <strong>you were 14 years, 4 months, and 6 days old</strong> when Neil Armstrong stepped onto the lunar surface — roughly 5,241 days after you were born.</p>
+</section>
+
+<section>
+<h2>Historical Context</h2>
+<p>Precise date arithmetic like this only became reliable after the Gregorian calendar reform of 1582, which corrected drift accumulated under the Julian calendar (established by Julius Caesar in 46 BC). Before 1582, most of Europe used the Julian calendar, which ran roughly 10-13 days "behind" what we now use — so events dated before that reform carry a small margin of calendrical uncertainty depending on the country and year. Birth records themselves are a relatively modern convenience: parish baptismal registers became common in the 1500s, but formal civil birth certificates weren't standard in most Western countries until the 19th century. For most of human history, people had no exact record of their own birthdate at all — they estimated age from harvests, reigns of rulers, or memorable events, which is exactly the intuitive method this calculator formalizes.</p>
+</section>
+
+<div class="didyouknow">
+<h3>Did You Know?</h3>
+<p>• Average human life expectancy in Ancient Rome was only around 25-30 years, largely due to high infant and childhood mortality — someone reaching 60 was considered remarkably old.<br>
+• The word "calendar" comes from the Latin "kalendae," the first day of the Roman month, when debts were traditionally due.<br>
+• Because 11 days were skipped when Britain and its colonies switched to the Gregorian calendar in 1752, some people literally "lost" their birthday that year on the calendar (though not in actual lived time).</p>
+</div>
+
+<section>
+<h2>Tips & Common Mistakes</h2>
+<ul>
+<li><strong>Double-check leap years:</strong> if your birthday or the event falls on February 29, remember that only years divisible by 4 (and not by 100 unless also by 400) are leap years.</li>
+<li><strong>Pre-1582 dates carry uncertainty:</strong> historical sources sometimes report Julian calendar dates without converting them, so very old dates may be off by a week or two.</li>
+<li><strong>Order matters:</strong> if the event happened before you were born, the calculator will tell you how many years earlier it occurred instead of your age.</li>
+<li><strong>Use full four-digit years:</strong> entering "69" instead of "1969" will produce a nonsensical ancient date.</li>
+<li><strong>Custom dates need all three fields:</strong> year, month, and day must all be filled in and valid for the calculation to run.</li>
+</ul>
+</section>
+
+<section>
+<h2>Frequently Asked Questions</h2>
+<details><summary>How old would I be during a historical event if I wasn't born yet?</summary><p>The calculator will detect this and tell you how many years, months, and days before your birth the event occurred, rather than showing a negative or invalid age.</p></details>
+<details><summary>Does this account for leap years?</summary><p>Yes. The calculator uses the standard Gregorian leap year rule (divisible by 4, except century years not divisible by 400) when counting days and months between two dates.</p></details>
+<details><summary>Can I calculate my age at an event from ancient history, like the fall of Rome?</summary><p>Yes — select "Custom Date..." from the event dropdown and enter any year, including events over a thousand years ago, though very old dates may carry small calendrical uncertainty from the pre-1582 Julian calendar.</p></details>
+<details><summary>Why does the result show years, months, and days instead of just one number?</summary><p>Breaking the age down into years, months, and days gives a far more precise and intuitive picture than a single decimal figure, matching how people naturally describe age.</p></details>
+<details><summary>What calendar system does this tool use?</summary><p>It uses the proleptic Gregorian calendar (today's standard calendar projected backward), which is the same convention most historians and genealogy tools use for consistency.</p></details>
+<details><summary>Is my birth date data stored anywhere?</summary><p>No. All calculations run entirely in your browser — nothing is sent to a server or saved.</p></details>
+</section>
+
+<section class="related">
+<h2>Related Tools</h2>
+<a href="/roman-colosseum-event-cost-estimator/">Ancient Rome Colosseum Event Cost Estimator</a>
+<a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+<a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+<a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+<a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+<a href="/inflation-calculator/">Historical Inflation Calculator</a>
+</section>
+
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/age-at-historical-event/">HistoryCalc</a></p>
+
+<script>
+const EVENTS=[
+{n:"First Moon Landing (Apollo 11)",y:1969,m:7,d:20},
+{n:"Fall of the Berlin Wall",y:1989,m:11,d:9},
+{n:"September 11 Attacks",y:2001,m:9,d:11},
+{n:"JFK Assassination",y:1963,m:11,d:22},
+{n:"End of World War II (V-J Day)",y:1945,m:9,d:2},
+{n:"Sinking of the Titanic",y:1912,m:4,d:15},
+{n:"U.S. Declaration of Independence",y:1776,m:7,d:4},
+{n:"Storming of the Bastille",y:1789,m:7,d:14},
+{n:"Fall of Constantinople",y:1453,m:5,d:29},
+{n:"Signing of the Magna Carta",y:1215,m:6,d:15},
+{n:"Fall of the Western Roman Empire",y:476,m:9,d:4},
+{n:"Columbus Reaches the Americas",y:1492,m:10,d:12},
+{n:"Gutenberg Prints the Bible",y:1455,m:2,d:23},
+{n:"Wright Brothers' First Flight",y:1903,m:12,d:17},
+{n:"Attack on Pearl Harbor",y:1941,m:12,d:7},
+{n:"Woodstock Festival Begins",y:1969,m:8,d:15},
+{n:"Chernobyl Disaster",y:1986,m:4,d:26},
+{n:"WHO Declares COVID-19 Pandemic",y:2020,m:3,d:11},
+{n:"Black Death Reaches Europe",y:1347,m:10,d:1},
+{n:"Custom Date...",y:null,m:null,d:null}
+];
+const sel=document.getElementById('eventSelect');
+sel.innerHTML=EVENTS.map((e,i)=>`<option value="${i}">${e.n}${e.y?' ('+e.y+')':''}</option>`).join('');
+sel.addEventListener('change',()=>{
+  document.getElementById('customEvent').style.display = EVENTS[sel.value].y===null ? 'block':'none';
+});
+
+function isLeap(y){return (y%4===0&&y%100!==0)||y%400===0;}
+function daysInMonth(y,m){return [31,isLeap(y)?29:28,31,30,31,30,31,31,30,31,30,31][m-1];}
+function validDate(y,m,d){
+  if(!y||!m||!d) return false;
+  if(y<1||y>2100) return false;
+  if(m<1||m>12) return false;
+  if(d<1||d>daysInMonth(y,m)) return false;
+  return true;
+}
+function toJDN(y,m,d){
+  const a=Math.floor((14-m)/12), yy=y+4800-a, mm=m+12*a-3;
+  return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+}
+function ageBetween(by,bm,bd,ey,em,ed){
+  let years=ey-by, months=em-bm, days=ed-bd;
+  if(days<0){
+    months--;
+    let pm=em-1, py=ey;
+    if(pm===0){pm=12;py--;}
+    days+=daysInMonth(py,pm);
+  }
+  if(months<0){years--;months+=12;}
+  return {years,months,days};
+}
+function fmt(n){return n.toLocaleString();}
+function eraLifeExpectancy(y){
+  if(y<1000) return 25;
+  if(y<1500) return 30;
+  if(y<1800) return 35;
+  if(y<1900) return 40;
+  if(y<1950) return 50;
+  if(y<2000) return 65;
+  return 73;
+}
+
+document.getElementById('calcBtn').addEventListener('click',()=>{
+  const by=+document.getElementById('by').value, bm=+document.getElementById('bm').value, bd=+document.getElementById('bd').value;
+  const idx=sel.value; const chosen=EVENTS[idx];
+  let ey,em,ed,ename;
+  if(chosen.y===null){
+    ey=+document.getElementById('ey').value; em=+document.getElementById('em').value; ed=+document.getElementById('ed').value;
+    ename=document.getElementById('eventName').value.trim()||'Your Custom Event';
+  } else {
+    ey=chosen.y; em=chosen.m; ed=chosen.d; ename=chosen.n;
+  }
+
+  const bValid=validDate(by,bm,bd);
+  const eValid=validDate(ey,em,ed);
+  document.getElementById('by').classList.toggle('error',!bValid);
+  document.getElementById('bm').classList.toggle('error',!bValid);
+  document.getElementById('bd').classList.toggle('error',!bValid);
+  document.getElementById('bErr').style.display=bValid?'none':'block';
+  if(chosen.y===null){
+    document.getElementById('ey').classList.toggle('error',!eValid);
+    document.getElementById('em').classList.toggle('error',!eValid);
+    document.getElementById('ed').classList.toggle('error',!eValid);
+    document.getElementById('eErr').style.display=eValid?'none':'block';
+  }
+  if(!bValid||!eValid){
+    requestAnimationFrame(()=>{document.getElementById('results').className='';document.getElementById('results').innerHTML='';});
+    return;
+  }
+
+  const jB=toJDN(by,bm,bd), jE=toJDN(ey,em,ed);
+  const totalDays=jE-jB;
+  let html='';
+
+  if(totalDays>=0){
+    const age=ageBetween(by,bm,bd,ey,em,ed);
+    const lifeExp=eraLifeExpectancy(ey);
+    const pctEra=Math.min(999,(age.years/lifeExp*100)).toFixed(0);
+    const pctModern=Math.min(999,(age.years/79*100)).toFixed(0);
+    html=`
+    <div class="card">
+      <div>You were, during <strong>${ename}</strong> (${ey}):</div>
+      <div class="bignum">${age.years} yrs, ${age.months} mo, ${age.days} days old</div>
+      <div class="table-wrap"><table>
+      <thead><tr><th>Detail</th><th>Value</th></tr></thead>
+      <tbody>
+      <tr><td>Total days lived at event</td><td>${fmt(totalDays)}</td></tr>
+      <tr><td>Age in years</td><td>${age.years}</td></tr>
+      <tr><td>Age in months (extra)</td><td>${age.months}</td></tr>
+      <tr><td>Age in days (extra)</td><td>${age.days}</td></tr>
+      </tbody></table></div>
+      <div class="modern-eq">
+        <strong>Modern equivalent:</strong> At age ${age.years}, you'd already lived roughly <strong>${pctEra}%</strong> of the average lifespan for someone living around ${ey} (~${lifeExp} years). Compared to today's global average lifespan of 79 years, that's about <strong>${pctModern}%</strong> of a modern life.
+      </div>
+      <button class="copy-btn" id="copyBtn">Copy Result</button>
+      <span id="copyMsg" style="font-size:0.8rem;color:#8b4513;margin-left:8px;"></span>
+    </div>`;
+  } else {
+    const rev=ageBetween(ey,em,ed,by,bm,bd);
+    html=`
+    <div class="card">
+      <div><strong>${ename}</strong> (${ey}) happened before you were born.</div>
+      <div class="bignum">${rev.years} yrs, ${rev.months} mo, ${rev.days} days earlier</div>
+      <div class="table-wrap"><table>
+      <thead><tr><th>Detail</th><th>Value</th></tr></thead>
+      <tbody>
+      <tr><td>Total days before your birth</td><td>${fmt(Math.abs(totalDays))}</td></tr>
+      </tbody></table></div>
+      <div class="modern-eq"><strong>Note:</strong> This event predates your birth, so no age comparison applies. Try a more recent event to see your age at the time.</div>
+      <button class="copy-btn" id="copyBtn">Copy Result</button>
+      <span id="copyMsg" style="font-size:0.8rem;color:#8b4513;margin-left:8px;"></span>
+    </div>`;
+  }
+
+  requestAnimationFrame(()=>{
+    const r=document.getElementById('results');
+    r.innerHTML=html;
+    r.className='show';
+    document.getElementById('copyBtn').addEventListener('click',()=>{
+      const text=r.innerText;
+      navigator.clipboard.writeText(text).then(()=>{
+        const m=document.getElementById('copyMsg');
+        m.textContent='Copied!';
+        setTimeout(()=>{m.textContent='';},2000);
+      });
+    });
+  });
+});
+
+['by','bm','bd','ey','em','ed'].forEach(id=>{
+  const el=document.getElementById(id);
+  if(el) el.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('calcBtn').click();});
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

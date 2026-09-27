@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Medieval Merchant Caravan Profit Calculator | HistoryCalc</title>
+<meta name="description" content="Free medieval trade route profit calculator. Factor in guards, tolls, taxes, spoilage and bandit risk to see true caravan profit, margin and break-even price.">
+<link rel="canonical" href="https://historycalc.com/medieval-merchant-caravan-profit-calculator/">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;font-size:16px;line-height:1.6}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline}
+nav{background:#fffdf7;border-bottom:1px solid #c4a882;padding:0.85rem 1.5rem}
+.nav-inner{max-width:640px;margin:0 auto}
+.nav-brand{font-weight:700;font-size:1.1rem;color:#2c1810}
+.nav-brand span{color:#8b4513}
+.page-wrap{max-width:640px;margin:0 auto;padding:1.5rem 1rem 3rem}
+h1{font-size:1.6rem;font-weight:800;color:#2c1810;margin-bottom:0.4rem;line-height:1.25}
+.subtitle{color:#5a4530;font-size:0.95rem;margin-bottom:1.25rem}
+.illus-wrap{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:0.5rem;margin-bottom:1.5rem}
+.illus-wrap svg{width:100%;height:auto;display:block}
+.card{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(44,24,16,0.08);margin-bottom:2rem}
+.section-title{font-size:1rem;font-weight:700;color:#8b4513;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:1rem;padding-bottom:0.4rem;border-bottom:2px solid #ede0c8}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.75rem}
+.form-group.full{grid-column:1/-1}
+label{font-size:0.85rem;font-weight:500;color:#5a4530}
+input,select{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:0.95rem;color:#2c1810;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;min-height:44px}
+input:focus,select:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{font-size:0.78rem;color:#e74c3c;margin-top:0.2rem;display:none}
+.error-msg.show{display:block}
+.hint{font-size:0.78rem;color:#8a7860;margin-top:0.2rem}
+.btn{background:#8b4513;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:48px;transition:background 0.2s;margin-top:0.5rem}
+.btn:hover{background:#6b3410}
+.btn:active{background:#5a2b0d}
+.btn-secondary{background:#ede0c8;color:#2c1810;border:1px solid #c4a882;margin-top:0.5rem}
+.btn-secondary:hover{background:#e0d0ae}
+.btn-row{display:flex;gap:0.75rem;margin-top:0.75rem}
+.btn-row .btn{margin-top:0}
+.results-section{opacity:0;transition:opacity 0.3s ease;display:none}
+.results-section.visible{opacity:1;display:block}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.kpi-card{background:#faf5e8;border:1px solid #c4a882;border-radius:8px;padding:1.25rem;text-align:center}
+.kpi-card.highlight{background:#f0e6cc;border-color:#8b4513}
+.kpi-label{font-size:0.78rem;font-weight:600;color:#5a4530;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.3rem}
+.kpi-value{font-size:1.7rem;font-weight:800;color:#8b4513;line-height:1.1}
+.kpi-value.positive{color:#1a7f4b}
+.kpi-value.negative{color:#c0392b}
+.kpi-sub{font-size:0.75rem;color:#8a7860;margin-top:0.2rem}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem;min-width:380px}
+thead th{background:#ede0c8;padding:9px 12px;text-align:left;font-weight:600;font-size:0.8rem;color:#5a4530;text-transform:uppercase;letter-spacing:0.03em}
+thead th.num{text-align:right}
+tbody tr:nth-child(even){background:#faf6ec}
+tbody tr:nth-child(odd){background:#fff}
+tbody td{padding:9px 12px;border-bottom:1px solid #ede0c8;color:#2c1810}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody td.positive{color:#1a7f4b;font-weight:600}
+tbody td.negative{color:#c0392b;font-weight:600}
+tfoot td{padding:9px 12px;font-weight:700;background:#ede0c8;border-top:2px solid #c4a882}
+tfoot td.num{text-align:right}
+.bar-container{margin:1.5rem 0}
+.bar-item{margin-bottom:0.6rem}
+.bar-label{display:flex;justify-content:space-between;font-size:0.8rem;margin-bottom:0.2rem;color:#5a4530}
+.bar-track{background:#ede0c8;border-radius:4px;height:14px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.5s ease}
+.bar-fill.revenue{background:#0077b6}
+.bar-fill.cost{background:#c0392b}
+.bar-fill.profit{background:#1a7f4b}
+.copy-btn{background:transparent;border:1px solid #c4a882;border-radius:4px;padding:4px 10px;font-size:0.75rem;color:#5a4530;cursor:pointer;margin-left:0.5rem;transition:all 0.2s}
+.copy-btn:hover{background:#ede0c8}
+.result-row-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem}
+.verdict{padding:0.75rem 1rem;border-radius:6px;font-size:0.9rem;font-weight:600;margin-bottom:1.25rem}
+.verdict.good{background:#d4edda;color:#155724;border:1px solid #c3e6cb}
+.verdict.warn{background:#fff3cd;color:#856404;border:1px solid #ffeeba}
+.verdict.bad{background:#f8d7da;color:#721c24;border:1px solid #f5c6cb}
+.modern-box{background:#f0e6cc;border:1px solid #c4a882;border-radius:8px;padding:1rem 1.25rem;font-size:0.88rem;color:#2c1810;margin-bottom:1.25rem}
+.modern-box strong{color:#8b4513}
+.note-row{color:#8a7860;font-size:0.78rem;font-style:italic}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.25rem;flex-wrap:wrap}
+.tab-btn{padding:8px 16px;border:1px solid #c4a882;border-radius:20px;font-size:0.85rem;cursor:pointer;background:#fff;color:#5a4530;min-height:36px;transition:all 0.2s}
+.tab-btn.active{background:#8b4513;color:#fff;border-color:#8b4513}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+.ad-slot{min-height:0;margin:0}
+.content-section{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:2rem;margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#2c1810;margin:1.5rem 0 0.5rem}
+.content-section h2:first-child{margin-top:0}
+.content-section p{font-size:0.92rem;color:#3a2a1e;margin-bottom:0.75rem;line-height:1.65}
+.content-section ul{padding-left:1.25rem;margin-bottom:0.75rem}
+.content-section ul li{font-size:0.92rem;color:#3a2a1e;margin-bottom:0.4rem;line-height:1.6}
+.dyk{background:#f0e6cc;border:1px solid #8b4513;border-radius:8px;padding:1.25rem 1.5rem;margin:1rem 0 1.5rem}
+.dyk h3{font-size:0.9rem;text-transform:uppercase;letter-spacing:0.04em;color:#8b4513;margin-bottom:0.5rem}
+.dyk ul{padding-left:1.1rem}
+.dyk li{font-size:0.9rem;margin-bottom:0.4rem;color:#3a2a1e}
+details{border:1px solid #c4a882;border-radius:6px;margin-bottom:0.6rem;overflow:hidden}
+summary{padding:0.75rem 1rem;font-weight:600;font-size:0.9rem;cursor:pointer;background:#faf5e8;list-style:none;display:flex;justify-content:space-between;align-items:center}
+summary::after{content:"＋";font-size:1rem;color:#8b4513}
+details[open] summary::after{content:"－"}
+details[open] summary{background:#f0e6cc}
+.faq-answer{padding:0.75rem 1rem;font-size:0.88rem;color:#3a2a1e;line-height:1.65}
+.related-tools{background:#faf5e8;border:1px solid #c4a882;border-radius:8px;padding:1.25rem 1.5rem;margin-bottom:2rem}
+.related-tools h3{font-size:0.85rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#5a4530;margin-bottom:0.75rem}
+.related-links{display:flex;flex-wrap:wrap;gap:0.5rem}
+.related-links a{background:#fff;border:1px solid #c4a882;border-radius:20px;padding:5px 14px;font-size:0.82rem;color:#8b4513;transition:all 0.2s}
+.related-links a:hover{background:#f0e6cc;border-color:#8b4513;text-decoration:none}
+footer{text-align:center;font-size:0.8rem;color:#5a4530;padding:1.5rem 1rem;border-top:1px solid #c4a882;background:#fffdf7}
+footer a{color:#8b4513;margin:0 0.5rem}
+@media(max-width:640px){
+  .form-grid{grid-template-columns:1fr}
+  .form-group.full{grid-column:1}
+  .kpi-grid{grid-template-columns:1fr 1fr}
+  .btn-row{flex-direction:column}
+  h1{font-size:1.35rem}
+  .card{padding:1.25rem}
+  .content-section{padding:1.25rem}
+}
+@media(max-width:400px){
+  .kpi-grid{grid-template-columns:1fr}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/medieval-merchant-caravan-profit-calculator/">
+<meta property="og:title" content="Medieval Merchant Caravan Profit Calculator">
+<meta property="og:description" content="Free medieval trade route profit calculator. Factor in guards, tolls, taxes, spoilage and bandit risk to see true caravan profit, margin and break-even price.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">📜 <span>HistoryCalc</span></a>
+  </div>
+</nav>
+
+<div class="page-wrap">
+  <h1>Medieval Merchant Caravan Profit Calculator</h1>
+  <p class="subtitle">A medieval trade route profit calculator for gauging what a merchant caravan really earned once guards, pack animals, tolls, taxes, spoilage and bandit risk are all counted.</p>
+
+  <div class="illus-wrap">
+    <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a medieval merchant caravan with pack camels traveling toward a walled castle">
+      <rect width="600" height="160" fill="#f5f0e1"/>
+      <circle cx="60" cy="42" r="22" fill="#c4a882"/>
+      <rect x="0" y="130" width="600" height="30" fill="#c4a882" opacity="0.35"/>
+      <g fill="#8b4513">
+        <rect x="480" y="60" width="20" height="70"/>
+        <rect x="520" y="40" width="24" height="90"/>
+        <rect x="560" y="60" width="20" height="70"/>
+        <rect x="470" y="50" width="120" height="12"/>
+        <rect x="475" y="38" width="10" height="12"/>
+        <rect x="495" y="38" width="10" height="12"/>
+        <rect x="515" y="28" width="10" height="12"/>
+        <rect x="535" y="28" width="10" height="12"/>
+        <rect x="555" y="38" width="10" height="12"/>
+        <rect x="575" y="38" width="10" height="12"/>
+      </g>
+      <g fill="#2c1810">
+        <ellipse cx="120" cy="115" rx="28" ry="14"/>
+        <ellipse cx="112" cy="100" rx="8" ry="10"/>
+        <circle cx="106" cy="96" r="7"/>
+        <rect x="100" y="122" width="5" height="18"/>
+        <rect x="115" y="122" width="5" height="18"/>
+        <rect x="130" y="122" width="5" height="18"/>
+        <rect x="140" y="122" width="5" height="18"/>
+        <ellipse cx="220" cy="118" rx="26" ry="13"/>
+        <ellipse cx="212" cy="105" rx="7" ry="9"/>
+        <circle cx="206" cy="101" r="6"/>
+        <rect x="198" y="125" width="5" height="16"/>
+        <rect x="212" y="125" width="5" height="16"/>
+        <rect x="226" y="125" width="5" height="16"/>
+        <rect x="236" y="125" width="5" height="16"/>
+        <circle cx="330" cy="95" r="9"/>
+        <rect x="325" y="103" width="10" height="26"/>
+        <rect x="320" y="129" width="6" height="14"/>
+        <rect x="332" y="129" width="6" height="14"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📦 Goods & Pricing</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="goodsName">Trade Good</label>
+        <select id="goodsName">
+          <option value="spices">Spices</option>
+          <option value="silk">Silk</option>
+          <option value="wool">Wool</option>
+          <option value="grain">Grain</option>
+          <option value="iron">Iron/Steel</option>
+          <option value="salt">Salt</option>
+          <option value="wine">Wine</option>
+          <option value="amber">Amber</option>
+          <option value="furs">Furs</option>
+          <option value="custom">Custom Good</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity Purchased (units)</label>
+        <input type="number" id="quantity" value="100" min="1" placeholder="e.g. 100">
+        <span class="error-msg" id="err-quantity">Enter a positive quantity.</span>
+      </div>
+      <div class="form-group">
+        <label for="buyPrice">Buy Price (silver/unit)</label>
+        <input type="number" id="buyPrice" value="10" min="0" step="0.01" placeholder="e.g. 10">
+        <span class="error-msg" id="err-buyPrice">Enter a valid buy price.</span>
+      </div>
+      <div class="form-group">
+        <label for="sellPrice">Sell Price (silver/unit)</label>
+        <input type="number" id="sellPrice" value="18" min="0" step="0.01" placeholder="e.g. 18">
+        <span class="error-msg" id="err-sellPrice">Enter a valid sell price.</span>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:1.25rem">🐫 Caravan Details</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="numGuards">Number of Guards</label>
+        <input type="number" id="numGuards" value="4" min="0" placeholder="e.g. 4">
+        <span class="hint">A hired sword typically drew ~3 silver/day</span>
+      </div>
+      <div class="form-group">
+        <label for="guardWage">Guard Wage (silver/day)</label>
+        <input type="number" id="guardWage" value="3" min="0" step="0.5" placeholder="e.g. 3">
+      </div>
+      <div class="form-group">
+        <label for="numPackAnimals">Pack Animals</label>
+        <input type="number" id="numPackAnimals" value="5" min="0" placeholder="e.g. 5">
+        <span class="hint">Mules, horses, or camels; each carried ~100–150 kg</span>
+      </div>
+      <div class="form-group">
+        <label for="animalCostPerDay">Animal Upkeep (silver/day/animal)</label>
+        <input type="number" id="animalCostPerDay" value="1" min="0" step="0.5" placeholder="e.g. 1">
+      </div>
+      <div class="form-group">
+        <label for="travelDays">Journey Length (days)</label>
+        <input type="number" id="travelDays" value="14" min="1" placeholder="e.g. 14">
+        <span class="error-msg" id="err-travelDays">Enter a valid number of days.</span>
+      </div>
+      <div class="form-group">
+        <label for="foodCostPerDay">Food & Supplies (silver/day)</label>
+        <input type="number" id="foodCostPerDay" value="5" min="0" step="0.5" placeholder="e.g. 5">
+        <span class="hint">For crew, not animals</span>
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:1.25rem">🏰 Taxes & Tolls</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="numTolls">Number of Toll Gates</label>
+        <input type="number" id="numTolls" value="3" min="0" placeholder="e.g. 3">
+        <span class="hint">Rhine merchants sometimes crossed 60+</span>
+      </div>
+      <div class="form-group">
+        <label for="tollCostEach">Cost per Toll (silver)</label>
+        <input type="number" id="tollCostEach" value="15" min="0" step="0.5" placeholder="e.g. 15">
+      </div>
+      <div class="form-group">
+        <label for="tradeTaxPct">Trade Tax (% of revenue)</label>
+        <input type="number" id="tradeTaxPct" value="5" min="0" max="100" step="0.5" placeholder="e.g. 5">
+      </div>
+      <div class="form-group">
+        <label for="guildFeePct">Guild/Market Fee (% of revenue)</label>
+        <input type="number" id="guildFeePct" value="2" min="0" max="100" step="0.5" placeholder="e.g. 2">
+      </div>
+    </div>
+
+    <div class="section-title" style="margin-top:1.25rem">⚠️ Risk & Miscellaneous</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="robberyRiskPct">Bandit Risk (% expected loss of revenue)</label>
+        <input type="number" id="robberyRiskPct" value="10" min="0" max="100" step="1" placeholder="e.g. 10">
+        <span class="hint">Applied as expected value, not a coin flip</span>
+      </div>
+      <div class="form-group">
+        <label for="spoilagePct">Spoilage/Loss (% of goods)</label>
+        <input type="number" id="spoilagePct" value="3" min="0" max="100" step="0.5" placeholder="e.g. 3">
+        <span class="hint">Spoiled units can't be sold, but you still paid for them</span>
+      </div>
+      <div class="form-group full">
+        <label for="miscCosts">Other Costs (silver, total)</label>
+        <input type="number" id="miscCosts" value="20" min="0" step="1" placeholder="e.g. 20">
+        <span class="hint">Inn stays, bribes, cart repairs, etc.</span>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="calcBtn">⚖️ Calculate Profit</button>
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results-section" id="resultsSection">
+    <div class="card">
+      <div class="result-row-header">
+        <span class="section-title" style="margin-bottom:0">📊 Results</span>
+        <button class="copy-btn" id="copyBtn">📋 Copy Summary</button>
+      </div>
+
+      <div id="verdictBox" class="verdict good"></div>
+
+      <div class="kpi-grid" id="kpiGrid"></div>
+
+      <div class="modern-box" id="modernBox"></div>
+
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="breakdown">Cost Breakdown</button>
+        <button class="tab-btn" data-tab="visual">Visual</button>
+        <button class="tab-btn" data-tab="perunit">Per Unit</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-breakdown">
+        <div class="table-wrap">
+          <table id="breakdownTable">
+            <thead><tr><th>Item</th><th class="num">Amount (silver)</th></tr></thead>
+            <tbody id="breakdownBody"></tbody>
+            <tfoot id="breakdownFoot"></tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-visual">
+        <div class="bar-container" id="barContainer"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-perunit">
+        <div class="table-wrap">
+          <table id="perUnitTable">
+            <thead><tr><th>Metric</th><th class="num">Silver</th></tr></thead>
+            <tbody id="perUnitBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<!-- CONTENT SECTION -->
+  <div class="content-section">
+    <h2>How to Use This Medieval Merchant Caravan Profit Calculator</h2>
+    <p>Enter what you're buying, how much of it, and your buy and sell price per unit. Then describe the caravan itself — guards, pack animals, and days on the road drive your daily costs — and add tolls, taxes, spoilage and bandit risk. Press <strong>Calculate Profit</strong> to see net profit, margin, ROI, a full cost breakdown, and the exact break-even sell price for your route.</p>
+
+    <h2>Historical Context</h2>
+    <p>Long-distance trade in medieval Europe and the Near East ran on razor-thin, unpredictable margins. A merchant moving goods from the Levant to Flanders paid duties at nearly every river crossing and city gate — the Rhine alone had dozens of toll castles by the 14th century. Guild membership was often mandatory to sell in a foreign market, and guilds charged entry fees for the privilege. Pack mules and camels carried roughly 100–150 kg each, and a journey of several weeks meant paying guards and feeding animals every single day regardless of whether the goods sold well. Spoilage, currency debasement, and bandits along forest roads made every caravan a genuine gamble, not a guaranteed payday.</p>
+
+    <div class="dyk">
+      <h3>Did You Know?</h3>
+      <ul>
+        <li>Merchants traveling the Rhine between Mainz and Cologne in the 1300s could face tolls at more than 60 separate castles — one nearly every few miles.</li>
+        <li>A medieval English silver penny weighed about 1.3–1.5 grams of fine silver; 240 of them made one pound sterling, the basis of English accounting for centuries.</li>
+        <li>Spices bought for a few coins at their source in Asia could sell for 10–20 times that price by the time they reached a Venetian or Flemish market, after passing through multiple middlemen, each taking a cut.</li>
+      </ul>
+    </div>
+
+    <h2>Why This Matters</h2>
+    <p>This medieval trade route profit calculator is useful for anyone who needs realistic merchant economics rather than a naive "buy low, sell high" guess. <strong>Tabletop RPG and game masters</strong> running Pathfinder, D&D, or HARN-style campaigns can use it to price trade runs their players attempt. <strong>Historical fiction writers</strong> can generate plausible figures for a merchant character's fortunes. <strong>Video game and board game designers</strong> building trade mechanics — think Mount & Blade or a custom economy sim — can use the formula logic directly.</p>
+    <p>The key lesson the calculator teaches is that gross markup is meaningless on its own. A caravan that buys goods at 10 silver and sells at 18 silver looks like an 80% markup, but once you count guard wages, tolls, a 5% trade tax, a 2% guild fee, 3% spoilage, and a 10% bandit risk factor, that "80% markup" venture can shrink to a 4–5% net margin — barely above breaking even, and easily wiped out if any single risk factor gets worse.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>The calculator works through these steps, in order:</p>
+    <ul>
+      <li><strong>Effective Sellable Quantity</strong> = Quantity × (1 − Spoilage %) — spoiled goods can't be sold, even though you paid for them.</li>
+      <li><strong>Gross Revenue</strong> = Sell Price × Effective Sellable Quantity</li>
+      <li><strong>Purchase Cost</strong> = Buy Price × Quantity (you pay for every unit purchased, spoiled or not)</li>
+      <li><strong>Guard Cost</strong> = Guards × Wage × Days</li>
+      <li><strong>Animal Cost</strong> = Animals × Upkeep × Days</li>
+      <li><strong>Food Cost</strong> = Food Rate × Days</li>
+      <li><strong>Toll Cost</strong> = Toll Gates × Cost Each</li>
+      <li><strong>Trade Tax</strong> = Gross Revenue × Tax %</li>
+      <li><strong>Guild Fee</strong> = Gross Revenue × Guild %</li>
+      <li><strong>Bandit Expected Loss</strong> = Gross Revenue × Bandit Risk % (an expected-value estimate of robbery, not a guaranteed loss)</li>
+      <li><strong>Total Costs</strong> = Purchase + Guard + Animal + Food + Toll + Tax + Guild Fee + Bandit Loss + Misc</li>
+      <li><strong>Net Profit</strong> = Gross Revenue − Total Costs</li>
+      <li><strong>Profit Margin</strong> = Net Profit ÷ Gross Revenue × 100</li>
+      <li><strong>ROI</strong> = Net Profit ÷ Total Costs × 100 (return on every silver piece actually spent running the venture)</li>
+      <li><strong>Break-Even Sell Price</strong> = Fixed Costs ÷ [Effective Sellable Quantity × (1 − (Tax % + Guild % + Risk %))], where Fixed Costs = Purchase + Guard + Animal + Food + Toll + Misc</li>
+    </ul>
+
+    <h2>Worked Example</h2>
+    <p>Using the calculator's default values: 100 units bought at 10 silver, sold at 18 silver, with 4 guards at 3 silver/day, 5 pack animals at 1 silver/day, a 14-day journey, 5 silver/day food, 3 tolls at 15 silver each, 5% trade tax, 2% guild fee, 10% bandit risk, 3% spoilage, and 20 silver in misc costs.</p>
+    <ul>
+      <li>Effective sellable quantity: 100 × (1 − 0.03) = 97 units</li>
+      <li>Gross revenue: 97 × 18 = 1,746 silver</li>
+      <li>Purchase cost: 100 × 10 = 1,000 silver</li>
+      <li>Guard cost: 4 × 3 × 14 = 168 silver</li>
+      <li>Animal cost: 5 × 1 × 14 = 70 silver</li>
+      <li>Food cost: 5 × 14 = 70 silver</li>
+      <li>Toll cost: 3 × 15 = 45 silver</li>
+      <li>Trade tax: 1,746 × 5% = 87.30 silver</li>
+      <li>Guild fee: 1,746 × 2% = 34.92 silver</li>
+      <li>Bandit expected loss: 1,746 × 10% = 174.60 silver</li>
+      <li>Total costs: 1,000 + 168 + 70 + 70 + 45 + 87.30 + 34.92 + 174.60 + 20 = 1,669.82 silver</li>
+      <li><strong>Net profit: 1,746 − 1,669.82 = 76.18 silver</strong> (a 4.36% margin, 4.56% ROI)</li>
+      <li>Break-even sell price: fixed costs (1,373) ÷ [97 × (1 − 0.17)] = 1,373 ÷ 80.51 ≈ 17.05 silver/unit</li>
+    </ul>
+    <p>At a sell price of 18 silver, this caravan clears a thin but real profit — just under 1 silver per unit above the break-even price of roughly 17.05. Any increase in tolls, taxes, or bandit activity could easily flip this into a loss.</p>
+
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Spoilage reduces revenue, not just cost.</strong> Spoiled units can't be sold, so they shrink your top-line revenue — the calculator applies spoilage to the sellable quantity, not as a bolt-on expense.</li>
+      <li><strong>Taxes and fees are levied on revenue, not profit.</strong> A 5% trade tax on 1,746 silver of sales is 87.30 silver, regardless of whether the trip is profitable.</li>
+      <li><strong>Daily costs punish long journeys.</strong> A 30-day route with 8 guards costs 720 silver in wages alone — bulk, low-value goods like grain rarely survive that math.</li>
+      <li><strong>Check the break-even price before you commit.</strong> If your planned sell price is only a silver or two above break-even, a single bad toll or a slightly lower market price can erase your profit entirely.</li>
+      <li><strong>More guards lower bandit risk but raise fixed costs</strong> — there's a genuine trade-off, not a free win, so model both sides before hiring extra swords.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>What currency should I use?</summary>
+      <div class="faq-answer">The calculator uses generic "silver" units, but any consistent currency works. For historical accuracy, medieval Europe commonly used silver pennies — roughly 240 to a pound sterling in 13th-century England. Just keep your buy price, sell price, and all costs in the same unit.</div>
+    </details>
+    <details>
+      <summary>How is bandit risk actually calculated?</summary>
+      <div class="faq-answer">Bandit risk is applied as an expected value: a 10% risk figure subtracts 10% of gross revenue as the statistically expected loss, rather than simulating a single robbery event. If you want to model a partial robbery (say a 30% chance of losing 30% of goods), enter roughly 9% as your risk figure.</div>
+    </details>
+    <details>
+      <summary>Why does spoilage affect revenue and not just costs?</summary>
+      <div class="faq-answer">Because spoiled goods physically can't be sold. You still paid the full purchase price for every unit, but only the surviving, "effective" quantity generates sale revenue. Treating spoilage only as an added cost line would understate how much it actually hurts a caravan's earnings.</div>
+    </details>
+    <details>
+      <summary>What counts as a good profit margin for medieval trade?</summary>
+      <div class="faq-answer">Historical accounts suggest successful long-distance merchants of luxury goods like spices or silk often expected 15–40% net margins after all costs, though returns swung wildly year to year. Local, short-haul traders on safer routes might net 8–15%. A margin above 50% in this calculator usually means taxes, tolls, or risk were set too low for a realistic route.</div>
+    </details>
+    <details>
+      <summary>Can I use this for a tabletop RPG or video game economy?</summary>
+      <div class="faq-answer">Yes — the formulas are generic enough to price any fantasy or historical trade run. Use the Per Unit tab to compare which goods are most profitable per pack-animal slot, and the break-even price to set realistic in-game market prices.</div>
+    </details>
+    <details>
+      <summary>What does the "modern equivalent" figure mean?</summary>
+      <div class="faq-answer">It converts your net profit in silver pieces to an approximate modern US dollar value, assuming each silver piece represents the silver content of a typical medieval penny (about 1.3 grams) priced at roughly today's silver spot price. It's a rough illustration, not a precise currency conversion.</div>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h3>Related Tools</h3>
+    <div class="related-links">
+      <a href="/mesopotamian-trade-ledger-calculator/">Mesopotamian Cuneiform Trade Ledger Calculator</a>
+      <a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a>
+      <a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet & Calorie Calculator</a>
+      <a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+      <a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+      <a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+    </div>
+  </div>
+
+  <p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/medieval-merchant-caravan-profit-calculator/">HistoryCalc</a></p>
+</div>
+
+<script>
+(function(){
+  const defaults = {
+    goodsName:'spices', quantity:100, buyPrice:10, sellPrice:18,
+    numGuards:4, guardWage:3, numPackAnimals:5, animalCostPerDay:1,
+    travelDays:14, foodCostPerDay:5,
+    numTolls:3, tollCostEach:15, tradeTaxPct:5, guildFeePct:2,
+    robberyRiskPct:10, spoilagePct:3, miscCosts:20
+  };
+
+  function fmt(n){
+    if(!isFinite(n)) return 'N/A';
+    return Number(n.toFixed(2)).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  }
+  function pct(n){ if(n===null || !isFinite(n)) return 'N/A'; return n.toFixed(2)+'%'; }
+
+  function getVal(id, allowNegative){
+    const raw = document.getElementById(id).value;
+    let v = parseFloat(raw);
+    if(isNaN(v)) v = 0;
+    if(!allowNegative && v < 0) v = 0;
+    return v;
+  }
+
+  function clearErrors(){
+    document.querySelectorAll('.error-msg').forEach(e=>e.classList.remove('show'));
+    document.querySelectorAll('input.error').forEach(e=>e.classList.remove('error'));
+  }
+  function setError(fieldId, errId){
+    document.getElementById(fieldId).classList.add('error');
+    document.getElementById(errId).classList.add('show');
+  }
+
+  function validate(){
+    clearErrors();
+    let ok = true;
+    if(getVal('quantity') <= 0){ setError('quantity','err-quantity'); ok=false; }
+    if(getVal('buyPrice') < 0){ setError('buyPrice','err-buyPrice'); ok=false; }
+    if(getVal('sellPrice') < 0){ setError('sellPrice','err-sellPrice'); ok=false; }
+    if(getVal('travelDays') < 1){ setError('travelDays','err-travelDays'); ok=false; }
+    return ok;
+  }
+
+  function calculate(){
+    if(!validate()) return;
+
+    const qty       = getVal('quantity');
+    const buyP      = getVal('buyPrice');
+    const sellP     = getVal('sellPrice');
+    const guards    = getVal('numGuards');
+    const guardWage = getVal('guardWage');
+    const animals   = getVal('numPackAnimals');
+    const animalDay = getVal('animalCostPerDay');
+    const days      = getVal('travelDays');
+    const foodDay   = getVal('foodCostPerDay');
+    const tolls     = getVal('numTolls');
+    const tollEach  = getVal('tollCostEach');
+    const taxPct    = Math.min(getVal('tradeTaxPct'),100);
+    const guildPct  = Math.min(getVal('guildFeePct'),100);
+    const robPct    = Math.min(getVal('robberyRiskPct'),100);
+    const spoilPct  = Math.min(getVal('spoilagePct'),100);
+    const misc      = getVal('miscCosts');
+
+    const effectiveQty = qty * (1 - spoilPct/100);
+    const spoiledUnits = qty - effectiveQty;
+
+    const grossRevenue   = sellP * effectiveQty;
+    const purchaseCost   = buyP * qty;
+    const guardCost      = guards * guardWage * days;
+    const animalCost     = animals * animalDay * days;
+    const foodCost       = foodDay * days;
+    const tollCost       = tolls * tollEach;
+    const tradeTax       = grossRevenue * (taxPct / 100);
+    const guildFee       = grossRevenue * (guildPct / 100);
+    const banditLoss     = grossRevenue * (robPct / 100);
+
+    const fixedCosts    = purchaseCost + guardCost + animalCost + foodCost + tollCost + misc;
+    const variableCosts = tradeTax + guildFee + banditLoss;
+    const totalCosts    = fixedCosts + variableCosts;
+    const netProfit      = grossRevenue - totalCosts;
+    const profitMargin   = grossRevenue > 0 ? (netProfit / grossRevenue) * 100 : null;
+    const roi            = totalCosts > 0 ? (netProfit / totalCosts) * 100 : null;
+
+    const variableRate = (taxPct + guildPct + robPct) / 100;
+    let breakEvenPrice = null;
+    let breakEvenNote = '';
+    if(variableRate >= 1){
+      breakEvenNote = 'Not achievable — taxes, fees and risk together consume 100%+ of revenue.';
+    } else if(effectiveQty <= 0){
+      breakEvenNote = 'Not achievable — spoilage leaves no sellable goods.';
+    } else {
+      breakEvenPrice = fixedCosts / (effectiveQty * (1 - variableRate));
+    }
+
+    const goodsName = document.getElementById('goodsName').options[document.getElementById('goodsName').selectedIndex].text;
+
+    // Per unit
+    const revenuePerPurchasedUnit = qty > 0 ? grossRevenue / qty : 0;
+    const totalCostPerPurchasedUnit = qty > 0 ? totalCosts / qty : 0;
+    const netProfitPerPurchasedUnit = qty > 0 ? netProfit / qty : 0;
+    const markupPct = buyP > 0 ? ((sellP - buyP) / buyP) * 100 : null;
+
+    // Verdict
+    let verdictClass, verdictText;
+    if(profitMargin === null){
+      verdictClass = 'bad';
+      verdictText = `❌ No sellable revenue — total spoilage or zero sell price makes this route impossible to profit from.`;
+    } else if(netProfit > 0 && profitMargin >= 20){
+      verdictClass = 'good';
+      verdictText = `✅ Excellent trade! Your caravan earns <strong>${fmt(netProfit)} silver</strong> net profit — a healthy ${pct(profitMargin)} margin.`;
+    } else if(netProfit > 0 && profitMargin >= 5){
+      verdictClass = 'warn';
+      verdictText = `⚠️ Modest profit of <strong>${fmt(netProfit)} silver</strong> (${pct(profitMargin)} margin). Consider cutting costs or finding a better sell price.`;
+    } else if(netProfit > 0){
+      verdictClass = 'warn';
+      verdictText = `⚠️ Thin margin: only <strong>${fmt(netProfit)} silver</strong> profit (${pct(profitMargin)}). A worse toll season or a spot of bad luck could wipe this out.`;
+    } else {
+      verdictClass = 'bad';
+      verdictText = `❌ This route loses <strong>${fmt(Math.abs(netProfit))} silver</strong>. Costs exceed revenue — reconsider the route, goods, or pricing.`;
+    }
+
+    // KPIs
+    const kpiHTML = `
+      <div class="kpi-card highlight">
+        <div class="kpi-label">Net Profit</div>
+        <div class="kpi-value ${netProfit>=0?'positive':'negative'}">${netProfit>=0?'+':''}${fmt(netProfit)}</div>
+        <div class="kpi-sub">silver pieces</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Profit Margin</div>
+        <div class="kpi-value ${profitMargin===null?'':(profitMargin>=0?'positive':'negative')}">${pct(profitMargin)}</div>
+        <div class="kpi-sub">of gross revenue</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Gross Revenue</div>
+        <div class="kpi-value">${fmt(grossRevenue)}</div>
+        <div class="kpi-sub">${fmt(effectiveQty)} of ${fmt(qty)} units sold</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">ROI</div>
+        <div class="kpi-value ${roi===null?'':(roi>=0?'positive':'negative')}">${pct(roi)}</div>
+        <div class="kpi-sub">net profit ÷ total costs</div>
+      </div>
+    `;
+
+    // Modern equivalent (1 silver piece ≈ 1.3g silver at ~$0.85/g)
+    const silverToUSD = 1.105;
+    const modernUSD = netProfit * silverToUSD;
+    const modernHTML = `💰 <strong>Modern Equivalent:</strong> assuming each silver piece represents a medieval penny (~1.3g fine silver) at today's silver price (~$0.85/gram), your net profit of ${fmt(netProfit)} silver is roughly equivalent to <strong>$${fmt(modernUSD)} USD</strong> in today's money. This is an illustrative estimate, not a precise exchange rate.`;
+
+    // Breakdown rows
+    const rows = [
+      { label:`Gross Revenue (${fmt(effectiveQty)} sellable of ${fmt(qty)} units)`, val: grossRevenue, type:'revenue' },
+      { label:'─────────────────────', val: null },
+      { label:'Purchase Cost of Goods (full quantity)', val: -purchaseCost, type:'cost' },
+      { label:`Guard Wages (${guards} guards × ${guardWage} × ${days} days)`, val: -guardCost, type:'cost' },
+      { label:`Animal Upkeep (${animals} animals × ${animalDay} × ${days} days)`, val: -animalCost, type:'cost' },
+      { label:`Food & Supplies (${foodDay}/day × ${days} days)`, val: -foodCost, type:'cost' },
+      { label:`Toll Gates (${tolls} × ${tollEach} silver)`, val: -tollCost, type:'cost' },
+      { label:`Trade Tax (${pct(taxPct)} of revenue)`, val: -tradeTax, type:'cost' },
+      { label:`Guild/Market Fee (${pct(guildPct)} of revenue)`, val: -guildFee, type:'cost' },
+      { label:`Bandit Expected Loss (${pct(robPct)} risk)`, val: -banditLoss, type:'cost' },
+      { label:'Miscellaneous Costs', val: -misc, type:'cost' },
+    ];
+
+    let tbodyHTML = '';
+    for(const r of rows){
+      if(r.val === null){ tbodyHTML += `<tr><td colspan="2" style="color:#c4a882;font-size:0.8rem;padding:4px 12px">${r.label}</td></tr>`; continue; }
+      const cls = r.val > 0 ? 'positive' : r.val < 0 ? 'negative' : '';
+      const sign = r.val > 0 ? '+' : '';
+      tbodyHTML += `<tr><td>${r.label}</td><td class="num ${cls}">${sign}${fmt(r.val)}</td></tr>`;
+    }
+    if(spoiledUnits > 0){
+      tbodyHTML += `<tr><td colspan="2" class="note-row">Note: ${fmt(spoiledUnits)} units (${pct(spoilPct)}) were lost to spoilage — already reflected in the revenue line above, since they were never sold.</td></tr>`;
+    }
+
+    const tfootHTML = `<tr>
+      <td>Net Profit</td>
+      <td class="num ${netProfit>=0?'positive':'negative'}">${netProfit>=0?'+':''}${fmt(netProfit)}</td>
+    </tr>`;
+
+    // Bar chart data
+    const barMax = Math.max(grossRevenue, totalCosts, 1);
+    const bars = [
+      { label:'Gross Revenue', val: grossRevenue, cls:'revenue' },
+      { label:'Total Costs', val: totalCosts, cls:'cost' },
+      { label:'Net Profit', val: Math.max(0, netProfit), cls:'profit' },
+    ];
+    let barHTML = '<div style="margin-bottom:0.5rem;font-size:0.82rem;color:#5a4530">All values in silver pieces</div>';
+    for(const b of bars){
+      const w = barMax > 0 ? Math.min(100, (b.val / barMax) * 100) : 0;
+      barHTML += `<div class="bar-item">
+        <div class="bar-label"><span>${b.label}</span><span>${fmt(b.val)}</span></div>
+        <div class="bar-track"><div class="bar-fill ${b.cls}" style="width:${w.toFixed(1)}%"></div></div>
+      </div>`;
+    }
+    const costItems = [
+      { label:'Purchase Cost', val: purchaseCost },
+      { label:'Guard Wages', val: guardCost },
+      { label:'Animal Upkeep', val: animalCost },
+      { label:'Food & Supplies', val: foodCost },
+      { label:'Tolls', val: tollCost },
+      { label:'Trade Tax', val: tradeTax },
+      { label:'Guild Fee', val: guildFee },
+      { label:'Bandit Risk', val: banditLoss },
+      { label:'Miscellaneous', val: misc },
+    ].filter(c => c.val > 0);
+    const costMax = Math.max(...costItems.map(c=>c.val), 1);
+    barHTML += `<div style="margin:1rem 0 0.5rem;font-size:0.85rem;font-weight:600;color:#2c1810">Cost Breakdown</div>`;
+    for(const c of costItems){
+      const w = (c.val / costMax) * 100;
+      barHTML += `<div class="bar-item">
+        <div class="bar-label"><span>${c.label}</span><span>${fmt(c.val)}</span></div>
+        <div class="bar-track"><div class="bar-fill cost" style="width:${w.toFixed(1)}%"></div></div>
+      </div>`;
+    }
+
+    // Per unit table
+    let perUnitHTML = `
+      <tr><td>Buy Price</td><td class="num">${fmt(buyP)}</td></tr>
+      <tr><td>Sell Price</td><td class="num">${fmt(sellP)}</td></tr>
+      <tr><td>Gross Markup</td><td class="num">${markupPct===null?'N/A':pct(markupPct)}</td></tr>
+      <tr><td>Revenue per Purchased Unit</td><td class="num">${fmt(revenuePerPurchasedUnit)}</td></tr>
+      <tr><td>Total Cost per Purchased Unit</td><td class="num negative">−${fmt(totalCostPerPurchasedUnit)}</td></tr>
+      <tr><td><strong>Net Profit per Purchased Unit</strong></td><td class="num ${netProfitPerPurchasedUnit>=0?'positive':'negative'}"><strong>${fmt(netProfitPerPurchasedUnit)}</strong></td></tr>
+      <tr><td>Break-Even Sell Price</td><td class="num">${breakEvenPrice===null? (breakEvenNote||'N/A') : fmt(breakEvenPrice)}</td></tr>
+    `;
+
+    // Summary string for copy
+    const summaryText = [
+      `Medieval Caravan Profit Summary`,
+      `Good: ${goodsName} | Qty purchased: ${fmt(qty)} | Sellable: ${fmt(effectiveQty)}`,
+      `Gross Revenue: ${fmt(grossRevenue)} silver`,
+      `Total Costs: ${fmt(totalCosts)} silver`,
+      `Net Profit: ${fmt(netProfit)} silver`,
+      `Profit Margin: ${pct(profitMargin)}`,
+      `ROI: ${pct(roi)}`,
+      `Break-Even Sell Price: ${breakEvenPrice===null?(breakEvenNote||'N/A'):fmt(breakEvenPrice)+' silver/unit'}`,
+      `Net Profit per Purchased Unit: ${fmt(netProfitPerPurchasedUnit)} silver`,
+      `Modern Equivalent of Net Profit: ~$${fmt(modernUSD)} USD`,
+    ].join('\n');
+    document.getElementById('copyBtn').dataset.summary = summaryText;
+
+    requestAnimationFrame(() => {
+      document.getElementById('verdictBox').className = `verdict ${verdictClass}`;
+      document.getElementById('verdictBox').innerHTML = verdictText;
+      document.getElementById('kpiGrid').innerHTML = kpiHTML;
+      document.getElementById('modernBox').innerHTML = modernHTML;
+      document.getElementById('breakdownBody').innerHTML = tbodyHTML;
+      document.getElementById('breakdownFoot').innerHTML = tfootHTML;
+      document.getElementById('barContainer').innerHTML = barHTML;
+      document.getElementById('perUnitBody').innerHTML = perUnitHTML;
+
+      const sec = document.getElementById('resultsSection');
+      sec.style.display = 'block';
+      requestAnimationFrame(() => { sec.classList.add('visible'); });
+      sec.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  }
+
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab===tab));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id==='tab-'+tab));
+    });
+  });
+
+  // Copy
+  document.getElementById('copyBtn').addEventListener('click', function(){
+    const text = this.dataset.summary || '';
+    if(!text) return;
+    const done = () => { this.textContent='✅ Copied!'; setTimeout(()=>{ this.textContent='📋 Copy Summary'; }, 2000); };
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(done);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy');
+      document.body.removeChild(ta);
+      done();
+    }
+  });
+
+  // Calc button
+  document.getElementById('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  // Reset
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    Object.entries(defaults).forEach(([k,v]) => {
+      const el = document.getElementById(k);
+      if(el) el.value = v;
+    });
+    clearErrors();
+    const sec = document.getElementById('resultsSection');
+    sec.classList.remove('visible');
+    setTimeout(()=>{ sec.style.display='none'; }, 300);
+  });
+
+  // Enter key
+  document.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('keydown', e => {
+      if(e.key==='Enter'){ requestAnimationFrame(()=>{ calculate(); }); }
+    });
+  });
+
+  // Auto-calculate on load
+  calculate();
+})();
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

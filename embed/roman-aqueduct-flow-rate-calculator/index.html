@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Ancient Roman Aqueduct Flow Rate Calculator | HistoryCalc</title>
+<meta name="description" content="Roman aqueduct water flow calculator using Manning's equation and authentic quinaria units. Estimate discharge, daily volume, and Rome's ancient water supply.">
+<link rel="canonical" href="https://historycalc.com/roman-aqueduct-flow-rate-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/roman-aqueduct-flow-rate-calculator/">
+<meta property="og:title" content="Ancient Roman Aqueduct Flow Rate Calculator">
+<meta property="og:description" content="Roman aqueduct water flow calculator using Manning's equation and authentic quinaria units. Estimate discharge, daily volume, and Rome's ancient water supply.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;line-height:1.6;font-size:16px}
+a{color:#8b4513;text-decoration:none}
+a:hover{text-decoration:underline;color:#6b3410}
+nav{background:#2c1810;padding:0.75rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+nav .site-name{color:#f5f0e1;font-weight:700;font-size:1.1rem;letter-spacing:0.5px}
+nav .site-name:hover{color:#c4a882;text-decoration:none}
+.container{max-width:640px;margin:0 auto;padding:1.5rem}
+.page-header{text-align:center;margin-bottom:1.5rem}
+.page-header h1{font-size:1.6rem;font-weight:700;color:#2c1810;line-height:1.3;margin-bottom:0.5rem}
+.page-header p{color:#6b4c38;font-size:0.95rem}
+.illustration{text-align:center;margin-bottom:1.5rem}
+.illustration svg{max-width:100%;height:auto}
+.card{background:#fff8ef;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(139,69,19,0.1);margin-bottom:2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a3320;margin-bottom:0.4rem;margin-top:1rem}
+label:first-of-type{margin-top:0}
+input[type="number"],select{width:100%;border:1px solid #c4a882;border-radius:6px;padding:12px 16px;font-size:1rem;background:#fffdf7;color:#2c1810;outline:none;transition:box-shadow 0.2s,border-color 0.2s;min-height:44px;-moz-appearance:textfield}
+input[type="number"]::-webkit-outer-spin-button,input[type="number"]::-webkit-inner-spin-button{-webkit-appearance:none}
+input:focus,select:focus{border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#e74c3c}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none}
+.input-hint{font-size:0.75rem;color:#8a6550;margin-top:0.3rem}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.slider-wrap{margin-top:0.5rem}
+input[type="range"]{width:100%;accent-color:#8b4513;height:6px;cursor:pointer;min-height:24px}
+.slider-labels{display:flex;justify-content:space-between;font-size:0.75rem;color:#8a6550;margin-top:0.2rem}
+.btn{background:#8b4513;color:#fff;border:none;border-radius:6px;padding:12px 24px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;margin-top:1.5rem;min-height:48px;transition:background 0.2s,transform 0.1s;letter-spacing:0.3px}
+.btn:hover{background:#6b3410}
+.btn:active{transform:scale(0.99)}
+.copy-btn{background:transparent;border:1px solid #c4a882;color:#8b4513;font-size:0.8rem;padding:5px 12px;border-radius:4px;cursor:pointer;min-height:32px;transition:background 0.2s}
+.copy-btn:hover{background:#f0e6d0}
+.results-section{opacity:0;transition:opacity 0.3s ease;display:none}
+.results-section.visible{opacity:1;display:block}
+.result-hero{text-align:center;background:#2c1810;color:#f5f0e1;border-radius:8px;padding:1.5rem;margin-bottom:1.5rem}
+.result-hero .big-number{font-size:2.6rem;font-weight:700;color:#c4a882;line-height:1.1}
+.result-hero .big-label{font-size:0.9rem;color:#c4a882;margin-top:0.3rem;opacity:0.85}
+.result-hero .big-sub{font-size:0.85rem;color:#f5f0e1;margin-top:0.5rem;opacity:0.8}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.5rem}
+.result-card{background:#fffdf7;border:1px solid #c4a882;border-radius:6px;padding:1rem;text-align:center}
+.result-card .rc-value{font-size:1.25rem;font-weight:700;color:#8b4513}
+.result-card .rc-label{font-size:0.75rem;color:#8a6550;margin-top:0.2rem}
+.table-wrap{overflow-x:auto;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.88rem}
+thead th{background:#c4a882;color:#2c1810;padding:8px 10px;text-align:left;font-weight:600}
+thead th.num{text-align:right}
+tbody tr:nth-child(even){background:#fffdf7}
+tbody tr:nth-child(odd){background:#fff8ef}
+tbody td{padding:7px 10px;border-bottom:1px solid #e8d9c0;color:#2c1810}
+tbody td.num{text-align:right;font-variant-numeric:tabular-nums}
+.modern-equiv{background:#f0e6d0;border-left:4px solid #8b4513;border-radius:0 6px 6px 0;padding:1rem 1.25rem;margin-bottom:1.5rem}
+.modern-equiv h3{font-size:0.9rem;font-weight:700;color:#8b4513;margin-bottom:0.5rem;text-transform:uppercase;letter-spacing:0.5px}
+.modern-equiv p{font-size:0.88rem;color:#2c1810;margin-bottom:0.3rem}
+.copy-bar{display:flex;justify-content:flex-end;margin-bottom:0.5rem}
+.did-you-know{background:#2c1810;color:#f5f0e1;border-radius:8px;padding:1.5rem;margin-bottom:2rem}
+.did-you-know h3{color:#c4a882;font-size:1rem;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.5px}
+.did-you-know ul{list-style:none;padding:0}
+.did-you-know ul li{padding:0.4rem 0;font-size:0.88rem;border-bottom:1px solid rgba(196,168,130,0.2);padding-left:1.2rem;position:relative}
+.did-you-know ul li::before{content:"◆";position:absolute;left:0;color:#c4a882;font-size:0.7rem;top:0.55rem}
+.did-you-know ul li:last-child{border-bottom:none}
+.historical-context{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:1.5rem;margin-bottom:2rem}
+.historical-context h2{color:#8b4513;font-size:1.1rem;margin-bottom:0.75rem}
+.historical-context p{font-size:0.88rem;color:#2c1810;line-height:1.7}
+.content-section{margin-bottom:2rem}
+.content-section h2{font-size:1.15rem;font-weight:700;color:#8b4513;margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:2px solid #c4a882}
+.content-section p{font-size:0.9rem;color:#2c1810;margin-bottom:0.75rem;line-height:1.7}
+.content-section ul{padding-left:1.2rem;margin-bottom:0.75rem}
+.content-section ul li{font-size:0.9rem;color:#2c1810;margin-bottom:0.4rem;line-height:1.6}
+details{margin-bottom:0.75rem;border:1px solid #c4a882;border-radius:6px;overflow:hidden}
+summary{padding:0.75rem 1rem;font-weight:600;font-size:0.9rem;cursor:pointer;background:#f5f0e1;color:#2c1810;list-style:none;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+summary::after{content:"▼";font-size:0.7rem;color:#8b4513}
+details[open] summary::after{content:"▲"}
+details p{padding:0.75rem 1rem;background:#fffdf7;font-size:0.88rem;line-height:1.7;color:#2c1810}
+.formula-box{background:#f0e6d0;border:1px solid #c4a882;border-radius:6px;padding:1rem;margin:0.75rem 0;font-family:'Courier New',monospace;font-size:0.85rem;color:#2c1810;overflow-x:auto;white-space:pre-wrap}
+.related-tools h2{font-size:1.15rem;font-weight:700;color:#8b4513;margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:2px solid #c4a882}
+.related-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+.related-card{background:#fffdf7;border:1px solid #c4a882;border-radius:6px;padding:1rem;transition:background 0.2s;display:block}
+.related-card:hover{background:#f0e6d0;text-decoration:none}
+.related-card span{display:block;font-size:0.85rem;font-weight:600;color:#8b4513;line-height:1.4}
+.ad-slot{min-height:0;margin:0}
+footer{background:#2c1810;color:#c4a882;text-align:center;padding:1.5rem;font-size:0.85rem}
+footer a{color:#c4a882;margin:0 0.5rem}
+footer a:hover{color:#f5f0e1}
+footer p{margin-top:0.5rem;opacity:0.7;font-size:0.8rem}
+.section-title{font-size:1rem;font-weight:700;color:#8b4513;margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.5px}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap}
+.tab{padding:8px 16px;border:1px solid #c4a882;border-radius:20px;background:#fffdf7;color:#8b4513;font-size:0.85rem;cursor:pointer;min-height:40px;transition:all 0.2s;font-weight:500}
+.tab.active{background:#8b4513;color:#fff;border-color:#8b4513}
+.bar-chart{margin:1rem 0}
+.bar-row{display:flex;align-items:center;margin-bottom:0.6rem;gap:0.5rem}
+.bar-label{font-size:0.78rem;color:#2c1810;width:90px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;background:#e8d9c0;border-radius:3px;height:20px;overflow:hidden}
+.bar-fill{height:100%;background:#8b4513;border-radius:3px;transition:width 0.4s ease;min-width:2px}
+.bar-val{font-size:0.75rem;color:#8b4513;font-weight:600;width:80px;flex-shrink:0}
+@media(max-width:640px){
+  .grid2{grid-template-columns:1fr}
+  .results-grid{grid-template-columns:1fr 1fr}
+  .related-grid{grid-template-columns:1fr}
+  .result-hero .big-number{font-size:2.1rem}
+  .page-header h1{font-size:1.35rem}
+  .card{padding:1.25rem}
+  .bar-label{width:70px}
+}
+@media(max-width:400px){
+  .results-grid{grid-template-columns:1fr}
+  .bar-label{width:60px;font-size:0.72rem}
+}
+</style>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="site-name">⚱️ historycalc.com</a>
+</nav>
+
+<div class="container">
+
+  <div class="page-header">
+    <h1>Ancient Roman Aqueduct Flow Rate Calculator</h1>
+    <p>A roman aqueduct water flow calculator for estimating discharge through Rome's engineering marvels using Manning's equation and authentic Roman units.</p>
+  </div>
+
+  <div class="illustration">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 160" width="600" height="160" role="img" aria-label="Roman aqueduct arches illustration">
+      <rect width="600" height="160" fill="#e8e0cc" rx="8"/>
+      <ellipse cx="80" cy="25" rx="30" ry="12" fill="#fff8ef" opacity="0.8"/>
+      <ellipse cx="100" cy="20" rx="25" ry="10" fill="#fff8ef" opacity="0.8"/>
+      <ellipse cx="500" cy="30" rx="35" ry="12" fill="#fff8ef" opacity="0.7"/>
+      <rect x="0" y="130" width="600" height="30" fill="#a0845a"/>
+      <rect x="0" y="125" width="600" height="8" fill="#8a6a40"/>
+      <rect x="0" y="32" width="600" height="22" fill="#c4a882" rx="2"/>
+      <rect x="0" y="34" width="600" height="8" fill="#6b9ab8" opacity="0.7"/>
+      <rect x="0" y="36" width="600" height="3" fill="#8fc4e0" opacity="0.5"/>
+      <rect x="30" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <rect x="142" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <path d="M30 54 Q85 10 170 54" fill="none" stroke="#a08060" stroke-width="22" stroke-linecap="round"/>
+      <path d="M30 54 Q85 18 170 54" fill="none" stroke="#c4a882" stroke-width="8" stroke-linecap="round"/>
+      <rect x="192" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <rect x="304" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <path d="M192 54 Q248 10 332 54" fill="none" stroke="#a08060" stroke-width="22" stroke-linecap="round"/>
+      <path d="M192 54 Q248 18 332 54" fill="none" stroke="#c4a882" stroke-width="8" stroke-linecap="round"/>
+      <rect x="354" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <rect x="466" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <path d="M354 54 Q410 10 494 54" fill="none" stroke="#a08060" stroke-width="22" stroke-linecap="round"/>
+      <path d="M354 54 Q410 18 494 54" fill="none" stroke="#c4a882" stroke-width="8" stroke-linecap="round"/>
+      <rect x="516" y="54" width="28" height="76" fill="#a08060" rx="2"/>
+      <path d="M516 54 Q570 10 610 54" fill="none" stroke="#a08060" stroke-width="22" stroke-linecap="round"/>
+      <path d="M516 54 Q570 18 610 54" fill="none" stroke="#c4a882" stroke-width="8" stroke-linecap="round"/>
+      <line x1="0" y1="85" x2="600" y2="85" stroke="#8a6a40" stroke-width="1" opacity="0.4" stroke-dasharray="8,4"/>
+      <text x="300" y="150" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#f5f0e1" font-style="italic">Aqua Claudia · Aqua Marcia · Aqua Virgo</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="section-title">⚙️ Aqueduct Parameters</div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" onclick="switchMode('channel')" id="tab-channel" role="tab" aria-selected="true">Channel Dimensions</button>
+      <button class="tab" onclick="switchMode('quinaria')" id="tab-quinaria" role="tab" aria-selected="false">Roman Units (Quinaria)</button>
+    </div>
+
+    <div id="mode-channel">
+      <div class="grid2">
+        <div>
+          <label for="channel-width">Channel Width</label>
+          <input type="number" id="channel-width" placeholder="e.g. 3.0" min="0.1" max="50" step="0.1" value="3.0">
+          <div class="input-hint">in Roman feet (pes) — 1 pes = 0.296 m</div>
+          <div class="error-msg" id="err-width">Please enter a valid width (0.1–50 pes).</div>
+        </div>
+        <div>
+          <label for="channel-depth">Water Depth</label>
+          <input type="number" id="channel-depth" placeholder="e.g. 2.5" min="0.1" max="50" step="0.1" value="2.5">
+          <div class="input-hint">in Roman feet (pes)</div>
+          <div class="error-msg" id="err-depth">Please enter a valid depth (0.1–50 pes).</div>
+        </div>
+      </div>
+
+      <label for="gradient">Channel Gradient (slope)</label>
+      <div class="slider-wrap">
+        <input type="range" id="gradient-slider" min="0.00005" max="0.005" step="0.00005" value="0.0003" oninput="syncGradient('slider')">
+        <div class="slider-labels"><span>Very gentle</span><span>Steep</span></div>
+      </div>
+      <input type="number" id="gradient" value="0.0003" min="0.00005" max="0.005" step="0.00005" oninput="syncGradient('input')">
+      <div class="input-hint">Rise/run — e.g. 0.0003 = 1 in 3,333 (Aqua Marcia's average gradient)</div>
+      <div class="error-msg" id="err-gradient">Gradient must be between 0.00005 and 0.005.</div>
+
+      <label for="roughness">Channel Lining Material</label>
+      <select id="roughness">
+        <option value="0.013">Roman opus signinum (waterproof plaster) — typical</option>
+        <option value="0.011">Smooth ashlar limestone</option>
+        <option value="0.016">Rough-cut stone (unlined)</option>
+        <option value="0.014">Terracotta pipe (fistula)</option>
+        <option value="0.012">Lead pipe (fistula plumbea)</option>
+      </select>
+      <div class="input-hint">Manning's roughness coefficient (n)</div>
+    </div>
+
+    <div id="mode-quinaria" style="display:none">
+      <label for="quinaria-count">Number of Quinariae</label>
+      <input type="number" id="quinaria-count" placeholder="e.g. 4700" min="1" max="100000" value="4700">
+      <div class="input-hint">1 quinaria = a pipe 5/4 Roman digits in diameter (≈ 23.3 mm bore). Frontinus recorded Rome's delivered total as ~14,018 quinariae in 97 CE.</div>
+      <div class="error-msg" id="err-quinaria">Please enter a valid number (1–100,000).</div>
+
+      <label for="aqueduct-preset">Or load a historical aqueduct preset:</label>
+      <select id="aqueduct-preset" onchange="loadPreset()">
+        <option value="">— Select an aqueduct —</option>
+        <option value="marcia">Aqua Marcia (144 BCE) — 4,690 quinariae</option>
+        <option value="claudia">Aqua Claudia (52 CE) — 4,607 quinariae</option>
+        <option value="anio">Anio Novus (52 CE) — 4,738 quinariae</option>
+        <option value="virgo">Aqua Virgo (19 BCE) — 2,504 quinariae</option>
+        <option value="appia">Aqua Appia (312 BCE) — 1,825 quinariae</option>
+        <option value="total">Frontinus' Recorded Total (97 CE, 9 aqueducts) — 14,018 quinariae</option>
+      </select>
+      <div class="input-hint">Note: the empirical rate used here (≈40 m³/day per quinaria) is a modern scholarly reconstruction, since ancient pipe flow depended heavily on pressure and gradient that varied by aqueduct.</div>
+    </div>
+
+    <button class="btn" id="calcBtn">⚗️ Calculate Flow Rate</button>
+  </div>
+
+  <div class="results-section" id="results-section">
+    <div class="copy-bar">
+      <button class="copy-btn" id="copyBtn" onclick="copyResults()">📋 Copy Results</button>
+    </div>
+    <div id="results-content"></div>
+    <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+</div>
+
+  <div class="did-you-know">
+    <h3>💡 Did You Know?</h3>
+    <ul>
+      <li>At the system's peak — eleven aqueducts completed by 226 CE — Rome could receive over 1 million cubic meters of water per day, more per capita than many modern cities provide today.</li>
+      <li>Sextus Julius Frontinus, curator aquarum from 97 CE, discovered that illegal tapping of aqueducts was wasting enormous volumes of water — he wrote the treatise <em>De Aquaeductu</em> to document and fix it.</li>
+      <li>The Aqua Marcia, built in 144 BCE, was considered the finest aqueduct in Rome — its cold, clear water was so prized it was reserved mainly for drinking rather than baths.</li>
+    </ul>
+  </div>
+
+  <div class="historical-context">
+    <h2>🏛️ Historical Context</h2>
+    <p>Rome's aqueduct system, developed between 312 BCE and 226 CE, represented one of antiquity's greatest engineering achievements. The first, Aqua Appia (312 BCE), ran almost entirely underground. By the time Frontinus wrote his treatise <em>De Aquaeductu Urbis Romae</em> (97 CE), the city was served by nine major aqueducts delivering water from springs and rivers up to 92 km away. Roman engineers achieved remarkable precision: the Aqua Marcia maintained a gradient of roughly 1:3,300 over 91 km, dropping only 27 meters in elevation. Flow was measured in <em>quinariae</em> — a standardized pipe diameter of 5/4 Roman digits (about 23.3 mm). The <em>calix</em> (nozzle) controlled distribution to public fountains, baths (<em>thermae</em>), and private subscribers.</p>
+  </div>
+
+  <div class="card">
+    <div class="section-title">📊 Rome's Major Aqueducts — Estimated Nominal Capacity</div>
+    <div id="comparison-chart" class="bar-chart"></div>
+    <p style="font-size:0.78rem;color:#8a6550;margin-top:0.5rem">Estimated source capacity in thousands of m³/day (Blackman/Hodge reconstructions), before losses to leakage, evaporation and illegal tapping. Individual aqueducts varied greatly in gradient and channel size.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How to Use This Roman Aqueduct Water Flow Calculator</h2>
+    <p>Choose one of two modes. In <strong>Channel Dimensions</strong> mode, enter the width and water depth of the aqueduct's specus (channel) in Roman feet, pick a gradient, and select the lining material to set the roughness coefficient. In <strong>Roman Units (Quinaria)</strong> mode, simply enter a number of quinariae — the standardized ancient pipe unit — or load a historical preset from a real Roman aqueduct. Click "Calculate Flow Rate" and the tool instantly computes the discharge in cubic meters per second, liters per second, and total daily volume, alongside modern and ancient unit conversions.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Why This Matters</h2>
+    <p>Understanding Roman aqueduct flow rates isn't just a curiosity for history buffs — it's genuinely useful for archaeologists reconstructing ancient infrastructure, engineering students studying the history of hydraulics, and educators teaching how Manning's equation applies to open-channel flow that predates modern fluid dynamics by two millennia. A student modeling the Aqua Marcia's 91 km channel can see exactly how a gentle 0.0003 gradient combined with a roughly 0.75 by 0.7 meter channel produced enough water to supply tens of thousands of Romans daily. Museum curators and documentary researchers use these figures to put ancient engineering into modern context — for instance, showing that Rome's combined aqueduct network delivered more water per capita in 100 CE than many modern cities manage today. Anyone fascinated by ancient engineering, from hobbyist historians to civil engineering instructors, can use this calculator to translate abstract Roman measurements into numbers that make sense in liters, gallons, and household equivalents.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>How It's Calculated</h2>
+    <p>For channel dimensions, the calculator uses Manning's equation for open-channel flow, the same formula civil engineers use today to model rivers, canals, and drainage channels:</p>
+    <div class="formula-box">Q = (1/n) × A × R^(2/3) × S^(1/2)
+
+Q = discharge (m³/s)
+n = Manning's roughness coefficient
+A = cross-sectional area = width × depth
+R = hydraulic radius = A ÷ wetted perimeter
+S = channel slope (gradient, rise/run)</div>
+    <p>Roman feet (pes) are converted to meters using 1 pes = 0.296 m before the calculation. For quinaria mode, the tool applies a scholarly empirical rate of approximately 40 cubic meters per day per quinaria — a widely cited reconstruction (after Hodge, "Roman Aqueducts & Water Supply") — since ancient outflow depended on pipe pressure and local gradient rather than a fixed modern coefficient.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Worked Example</h2>
+    <p>Suppose we model a channel similar to the Aqua Marcia: width 2.5 pes (0.74 m), depth 2.0 pes (0.59 m), gradient 0.0003, lined with opus signinum plaster (n = 0.013).</p>
+    <p><strong>Step 1:</strong> Area A = 0.74 × 0.59 = 0.437 m². <strong>Step 2:</strong> Wetted perimeter P = 0.74 + 2(0.59) = 1.92 m, so hydraulic radius R = 0.437 ÷ 1.92 = 0.228 m. <strong>Step 3:</strong> Apply Manning's equation: Q = (1/0.013) × 0.437 × 0.228^(0.667) × 0.0003^(0.5) ≈ 76.9 × 0.437 × 0.372 × 0.0173 ≈ 0.216 m³/s. <strong>Step 4:</strong> Multiply by 86,400 seconds per day to get roughly 18,700 m³/day — remarkably close to modern scholarly estimates of the Aqua Marcia's actual output before losses. This demonstrates how closely Roman engineers, working without modern fluid dynamics, empirically converged on efficient channel proportions.</p>
+  </div>
+
+  <div class="content-section">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse pes with meters.</strong> Roman channel dimensions are almost always recorded or estimated in Roman feet — the calculator converts automatically, but double-check your input units before comparing to modern archaeological reports.</li>
+      <li><strong>Gradient is extremely sensitive.</strong> Because slope enters the formula as a square root, doubling the gradient only increases flow by about 41%, not 100% — small changes in elevation drop over long distances mattered enormously to Roman surveyors.</li>
+      <li><strong>Depth rarely equals the full channel height.</strong> Roman aqueduct channels (specus) were usually built taller than the actual water level to allow for maintenance access and prevent overflow — use the water depth, not the full channel height.</li>
+      <li><strong>Quinaria estimates are approximations.</strong> Frontinus recorded quinariae as an administrative billing unit, not a precise hydraulic measurement, so real-world flow varied with local pressure and pipe wear.</li>
+      <li><strong>Compare relative, not absolute, values.</strong> Use this tool to compare aqueducts against each other and understand proportional relationships, rather than treating outputs as forensically exact historical facts.</li>
+    </ul>
+  </div>
+
+  <div class="content-section">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How much water did Roman aqueducts actually deliver?</summary>
+      <p>Estimates vary, but scholars generally agree Rome's combined aqueduct network delivered between 520,000 and over 1,000,000 cubic meters of water per day at its peak in the 3rd century CE. That's comparable to, or greater than, the daily water supply of many mid-sized modern cities, despite serving a population of roughly one million people.</p>
+    </details>
+    <details>
+      <summary>What is a quinaria in Roman water measurement?</summary>
+      <p>A quinaria was a standardized pipe size equal to a bore of 5/4 Roman digits, roughly 23.3 mm in diameter. Frontinus used it as the official unit for billing and allocating water rights across Rome's public fountains, baths, and private subscribers in his 97 CE survey.</p>
+    </details>
+    <details>
+      <summary>How accurate is Manning's equation for ancient channels?</summary>
+      <p>Manning's equation, developed in the 1890s, works well for uniform open-channel flow regardless of era, so it's a reasonable modern tool for estimating ancient discharge. However, real Roman channels had irregularities, sediment buildup, and varying gradients that this simplified model can't fully capture.</p>
+    </details>
+    <details>
+      <summary>Why were Roman aqueduct gradients so gentle?</summary>
+      <p>Roman surveyors used tools like the chorobates and dioptra to maintain extremely shallow, consistent slopes — often around 1 in 3,000 to 1 in 5,000 — because too steep a gradient would erode channel linings, while too flat a gradient risked stagnant water and insufficient flow.</p>
+    </details>
+    <details>
+      <summary>Can I use this calculator for non-Roman open channels?</summary>
+      <p>Yes — Manning's equation is the same formula used for modern canals, storm drains, and rivers. Simply switch your inputs to meters instead of Roman feet by dividing your measurements by 0.296 before entering them, or treat the "pes" unit as a stand-in for feet-equivalent inputs.</p>
+    </details>
+    <details>
+      <summary>How does aqueduct flow compare to modern water usage?</summary>
+      <p>A single major Roman aqueduct like the Aqua Marcia, delivering roughly 187,000 m³/day at full capacity, could theoretically supply around 370,000 modern households at typical daily consumption rates of 500 liters per household — illustrating just how ambitious Roman water engineering truly was.</p>
+    </details>
+  </div>
+
+  <div class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-grid">
+      <a class="related-card" href="/roman-aqueduct-water-pressure-calculator/"><span>Roman Aqueduct Water Pressure Calculator</span></a>
+      <a class="related-card" href="/roman-water-distribution-pipe-sizing-calculator/"><span>Roman Aqueduct Water Distribution Calculator</span></a>
+      <a class="related-card" href="/roman-aqueduct-flow-calculator/"><span>Roman Aqueduct Flow Calculator</span></a>
+      <a class="related-card" href="/roman-aqueduct-bridge-height-calculator/"><span>Roman Aqueduct Bridge Height Calculator</span></a>
+      <a class="related-card" href="/roman-aqueduct-arcade-span-calculator/"><span>Roman Aqueduct Bridge (Arcade) Span Calculator</span></a>
+      <a class="related-card" href="/roman-catapult-range-calculator/"><span>Roman Catapult Range Calculator</span></a>
+    </div>
+  </div>
+
+  </div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/roman-aqueduct-flow-rate-calculator/">HistoryCalc</a></p>
+
+<script>
+const PES_TO_M = 0.296;
+const SEXTARIUS_L = 0.546;
+const AMPHORA_L = 26.026;
+const QUINARIA_RATE = 40; // m3/day per quinaria (scholarly reconstruction)
+
+const presets = {
+  marcia: 4690, claudia: 4607, anio: 4738, virgo: 2504, appia: 1825, total: 14018
+};
+
+function switchMode(mode){
+  document.getElementById('tab-channel').classList.toggle('active', mode==='channel');
+  document.getElementById('tab-quinaria').classList.toggle('active', mode==='quinaria');
+  document.getElementById('tab-channel').setAttribute('aria-selected', mode==='channel');
+  document.getElementById('tab-quinaria').setAttribute('aria-selected', mode==='quinaria');
+  document.getElementById('mode-channel').style.display = mode==='channel' ? 'block' : 'none';
+  document.getElementById('mode-quinaria').style.display = mode==='quinaria' ? 'block' : 'none';
+  currentMode = mode;
+}
+let currentMode = 'channel';
+
+function syncGradient(source){
+  const slider = document.getElementById('gradient-slider');
+  const input = document.getElementById('gradient');
+  if(source === 'slider') input.value = slider.value;
+  else slider.value = input.value;
+}
+
+function loadPreset(){
+  const sel = document.getElementById('aqueduct-preset').value;
+  if(sel && presets[sel]){
+    document.getElementById('quinaria-count').value = presets[sel];
+  }
+}
+
+function fmt(n, decimals){
+  if(!isFinite(n)) return '—';
+  return n.toLocaleString('en-US', {minimumFractionDigits: decimals, maximumFractionDigits: decimals});
+}
+
+function setError(id, isError){
+  const el = document.getElementById(id);
+  const err = document.getElementById('err-' + id.replace('channel-','').replace('quinaria-','').replace('q-',''));
+  if(el) el.classList.toggle('error', isError);
+}
+
+let lastResultText = '';
+
+function calculate(){
+  let hasError = false;
+  const errIds = ['err-width','err-depth','err-gradient','err-quinaria'];
+  errIds.forEach(id => { const e = document.getElementById(id); if(e) e.style.display = 'none'; });
+  ['channel-width','channel-depth','gradient','quinaria-count'].forEach(id => {
+    const e = document.getElementById(id); if(e) e.classList.remove('error');
+  });
+
+  let Q_m3s = 0, extraInfo = {};
+
+  if(currentMode === 'channel'){
+    const width = parseFloat(document.getElementById('channel-width').value);
+    const depth = parseFloat(document.getElementById('channel-depth').value);
+    const gradient = parseFloat(document.getElementById('gradient').value);
+    const n = parseFloat(document.getElementById('roughness').value);
+
+    if(isNaN(width) || width < 0.1 || width > 50){
+      document.getElementById('channel-width').classList.add('error');
+      document.getElementById('err-width').style.display = 'block';
+      hasError = true;
+    }
+    if(isNaN(depth) || depth < 0.1 || depth > 50){
+      document.getElementById('channel-depth').classList.add('error');
+      document.getElementById('err-depth').style.display = 'block';
+      hasError = true;
+    }
+    if(isNaN(gradient) || gradient < 0.00005 || gradient > 0.005){
+      document.getElementById('gradient').classList.add('error');
+      document.getElementById('err-gradient').style.display = 'block';
+      hasError = true;
+    }
+    if(hasError){
+      requestAnimationFrame(() => {
+        document.getElementById('results-section').classList.remove('visible');
+      });
+      return;
+    }
+
+    const width_m = width * PES_TO_M;
+    const depth_m = depth * PES_TO_M;
+    const A = width_m * depth_m;
+    const P = width_m + 2*depth_m;
+    const R = A / P;
+    Q_m3s = (1/n) * A * Math.pow(R, 2/3) * Math.sqrt(gradient);
+    const velocity = Q_m3s / A;
+    extraInfo = {mode:'channel', width_m, depth_m, A, R, velocity, gradient, n};
+
+  } else {
+    const q = parseFloat(document.getElementById('quinaria-count').value);
+    if(isNaN(q) || q < 1 || q > 100000){
+      document.getElementById('quinaria-count').classList.add('error');
+      document.getElementById('err-quinaria').style.display = 'block';
+      requestAnimationFrame(() => {
+        document.getElementById('results-section').classList.remove('visible');
+      });
+      return;
+    }
+    const Q_m3day_q = q * QUINARIA_RATE;
+    Q_m3s = Q_m3day_q / 86400;
+    extraInfo = {mode:'quinaria', q};
+  }
+
+  const Q_Ls = Q_m3s * 1000;
+  const Q_m3h = Q_m3s * 3600;
+  const Q_m3day = Q_m3s * 86400;
+  const gallons_day = Q_m3day * 264.172;
+  const sextarii_day = (Q_m3day*1000) / SEXTARIUS_L;
+  const amphorae_day = (Q_m3day*1000) / AMPHORA_L;
+  const households = Q_m3day*1000 / 500;
+  const olympic_pools = Q_m3day / 2500;
+
+  let html = '';
+  html += '<div class="result-hero"><div class="big-number">' + fmt(Q_m3day,0) + '</div>';
+  html += '<div class="big-label">cubic meters per day</div>';
+  html += '<div class="big-sub">≈ ' + fmt(Q_Ls,2) + ' liters/second sustained discharge</div></div>';
+
+  html += '<div class="results-grid">';
+  html += '<div class="result-card"><div class="rc-value">' + fmt(Q_m3s,4) + '</div><div class="rc-label">m³ / second</div></div>';
+  html += '<div class="result-card"><div class="rc-value">' + fmt(Q_m3h,1) + '</div><div class="rc-label">m³ / hour</div></div>';
+  if(extraInfo.mode === 'channel'){
+    html += '<div class="result-card"><div class="rc-value">' + fmt(extraInfo.velocity,3) + '</div><div class="rc-label">m/s velocity</div></div>';
+    html += '<div class="result-card"><div class="rc-value">' + fmt(extraInfo.A,3) + '</div><div class="rc-label">m² cross-section</div></div>';
+  } else {
+    html += '<div class="result-card"><div class="rc-value">' + fmt(extraInfo.q,0) + '</div><div class="rc-label">quinariae input</div></div>';
+    html += '<div class="result-card"><div class="rc-value">' + QUINARIA_RATE + '</div><div class="rc-label">m³/day per quinaria</div></div>';
+  }
+  html += '</div>';
+
+  html += '<div class="table-wrap"><table><thead><tr><th>Unit</th><th class="num">Value</th></tr></thead><tbody>';
+  html += '<tr><td>Cubic meters / second</td><td class="num">' + fmt(Q_m3s,4) + '</td></tr>';
+  html += '<tr><td>Liters / second</td><td class="num">' + fmt(Q_Ls,2) + '</td></tr>';
+  html += '<tr><td>Cubic meters / hour</td><td class="num">' + fmt(Q_m3h,1) + '</td></tr>';
+  html += '<tr><td>Cubic meters / day</td><td class="num">' + fmt(Q_m3day,0) + '</td></tr>';
+  html += '<tr><td>US gallons / day</td><td class="num">' + fmt(gallons_day,0) + '</td></tr>';
+  html += '<tr><td>Roman sextarii / day</td><td class="num">' + fmt(sextarii_day,0) + '</td></tr>';
+  html += '<tr><td>Roman amphorae (quadrantal) / day</td><td class="num">' + fmt(amphorae_day,0) + '</td></tr>';
+  html += '</tbody></table></div>';
+
+  html += '<div class="modern-equiv"><h3>Modern Equivalent</h3>';
+  html += '<p>This flow could supply roughly <strong>' + fmt(households,0) + ' modern households</strong> at typical usage of 500 liters/day per household.</p>';
+  html += '<p>That is equivalent to filling about <strong>' + fmt(olympic_pools,2) + ' Olympic swimming pools</strong> (2,500 m³ each) every single day.</p>';
+  html += '</div>';
+
+  if(extraInfo.mode === 'channel'){
+    html += '<div class="table-wrap"><table><thead><tr><th>Channel Property</th><th class="num">Value</th></tr></thead><tbody>';
+    html += '<tr><td>Width</td><td class="num">' + fmt(extraInfo.width_m,3) + ' m</td></tr>';
+    html += '<tr><td>Water depth</td><td class="num">' + fmt(extraInfo.depth_m,3) + ' m</td></tr>';
+    html += '<tr><td>Cross-sectional area</td><td class="num">' + fmt(extraInfo.A,3) + ' m²</td></tr>';
+    html += '<tr><td>Hydraulic radius</td><td class="num">' + fmt(extraInfo.R,3) + ' m</td></tr>';
+    html += '<tr><td>Gradient (slope)</td><td class="num">' + extraInfo.gradient + '</td></tr>';
+    html += '<tr><td>Manning\'s n</td><td class="num">' + extraInfo.n + '</td></tr>';
+    html += '</tbody></table></div>';
+  }
+
+  lastResultText = 'Roman Aqueduct Flow Rate: ' + fmt(Q_m3day,0) + ' m3/day (' + fmt(Q_Ls,2) + ' L/s, ' + fmt(Q_m3s,4) + ' m3/s). Households supplied: ~' + fmt(households,0) + '. Source: historycalc.com';
+
+  requestAnimationFrame(() => {
+    document.getElementById('results-content').innerHTML = html;
+    const rs = document.getElementById('results-section');
+    rs.classList.remove('visible');
+    void rs.offsetWidth;
+    rs.classList.add('visible');
+  });
+}
+
+function copyResults(){
+  if(!lastResultText) return;
+  navigator.clipboard.writeText(lastResultText).then(() => {
+    const btn = document.getElementById('copyBtn');
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => { calculate(); });
+});
+
+document.querySelectorAll('input[type="number"]').forEach(inp => {
+  inp.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      requestAnimationFrame(() => { calculate(); });
+    }
+  });
+});
+
+// Static comparison chart, built once
+(function(){
+  const data = [
+    {name:'Anio Novus', val:189},
+    {name:'Aqua Marcia', val:187},
+    {name:'Aqua Claudia', val:184},
+    {name:'Anio Vetus', val:176},
+    {name:'Aqua Virgo', val:103},
+    {name:'Aqua Appia', val:73}
+  ];
+  const max = Math.max(...data.map(d => d.val));
+  let html = '';
+  data.forEach(d => {
+    const pct = (d.val/max*100).toFixed(1);
+    html += '<div class="bar-row"><div class="bar-label">' + d.name + '</div><div class="bar-track"><div class="bar-fill" style="width:' + pct + '%"></div></div><div class="bar-val">' + d.val + 'k m³/d</div></div>';
+  });
+  document.getElementById('comparison-chart').innerHTML = html;
+})();
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

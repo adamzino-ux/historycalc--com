@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medieval Peasant Daily Diet &amp; Calorie Calculator | HistoryCalc</title>
+<meta name="description" content="Calculate a medieval peasant's daily calorie needs and food breakdown—bread, ale, pottage, meat—based on role, labor intensity, and season.">
+<link rel="canonical" href="https://historycalc.com/medieval-peasant-diet-calculator/">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem}
+nav{padding:1rem 0}
+nav a{color:#8b4513;font-weight:700;font-size:1.1rem;text-decoration:none}
+h1{font-size:1.7rem;margin:0.5rem 0 0.8rem;color:#2c1810}
+h2{font-size:1.25rem;margin:2rem 0 0.8rem;color:#8b4513;border-bottom:2px solid #c4a882;padding-bottom:0.3rem}
+p{margin-bottom:0.8rem}
+.card{background:#fffaf0;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 8px rgba(139,69,19,0.1);margin-bottom:2rem}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a4632;margin-bottom:0.3rem;margin-top:1rem}
+label:first-child{margin-top:0}
+select,input{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fff;color:#2c1810;font-family:inherit}
+select:focus,input:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+input.error{border-color:#e74c3c}
+.err-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.3rem;display:none}
+button{background:#8b4513;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;margin-top:1.5rem;width:100%;min-height:44px;transition:background 0.2s}
+button:hover{background:#6f3610}
+.results{margin-top:1.5rem;opacity:0;transition:opacity 0.3s ease}
+.results.show{opacity:1}
+.bignum{font-size:2.4rem;font-weight:800;color:#8b4513;margin:0.3rem 0}
+.sub{font-size:0.9rem;color:#5a4632;margin-bottom:1rem}
+table{width:100%;border-collapse:collapse;font-size:0.9rem;margin-top:0.8rem}
+th,td{padding:8px 10px;border-bottom:1px solid #e0d4bb;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{background:#eee0c0;color:#2c1810}
+tr:nth-child(even){background:#faf5e6}
+tr:nth-child(odd){background:#fff}
+.tblwrap{overflow-x:auto}
+.bar{height:22px;background:#e0d4bb;border-radius:4px;overflow:hidden;margin:4px 0;display:flex}
+.bar span{display:block;height:100%}
+.copybtn{background:none;border:1px solid #8b4513;color:#8b4513;padding:6px 14px;font-size:0.8rem;width:auto;margin-top:1rem;font-weight:500}
+.copybtn:hover{background:#8b4513;color:#fff}
+.ad-slot{min-height:0;margin:0}
+.dyk{background:#eee0c0;border-left:4px solid #8b4513;padding:1rem 1.2rem;border-radius:4px;margin:1.5rem 0}
+.dyk strong{display:block;margin-bottom:0.4rem;color:#8b4513}
+.modeq{background:#f5f0e1;border:1px dashed #8b4513;padding:1rem;border-radius:6px;margin-top:1rem;font-size:0.9rem}
+details{border:1px solid #c4a882;border-radius:6px;padding:0.8rem 1rem;margin-bottom:0.7rem;background:#fffaf0}
+summary{cursor:pointer;font-weight:600;color:#2c1810}
+details p{margin-top:0.6rem;margin-bottom:0}
+.related a{display:block;color:#8b4513;text-decoration:none;padding:0.5rem 0;border-bottom:1px solid #e0d4bb;font-weight:500}
+.related a:hover{text-decoration:underline}
+footer{text-align:center;font-size:0.85rem;color:#5a4632;padding:2rem 0 1rem}
+footer a{color:#8b4513;text-decoration:none;margin:0 6px}
+svg{display:block;margin:0 auto 1rem;max-width:100%}
+.formula{background:#eee0c0;padding:0.9rem 1.1rem;border-radius:6px;font-family:monospace;font-size:0.9rem;margin:0.8rem 0}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/medieval-peasant-diet-calculator/">
+<meta property="og:title" content="Medieval Peasant Daily Diet &amp; Calorie Calculator">
+<meta property="og:description" content="Calculate a medieval peasant's daily calorie needs and food breakdown—bread, ale, pottage, meat—based on role, labor intensity, and season.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Medieval Peasant Daily Diet & Calorie Calculator</h1>
+<p>Use this medieval peasant diet calculator to estimate how many calories a peasant needed each day, and how that translated into pounds of bread, pints of ale, bowls of pottage, and scraps of meat — depending on their role, workload, and the season.</p>
+
+<svg viewBox="0 0 600 180" width="100%" height="140" aria-label="Medieval village illustration">
+  <rect x="0" y="0" width="600" height="180" fill="#f5f0e1"/>
+  <circle cx="500" cy="40" r="22" fill="#c4a882"/>
+  <polygon points="300,140 300,60 260,90 220,70 220,140" fill="#8b4513"/>
+  <rect x="220" y="140" width="80" height="10" fill="#5a4632"/>
+  <polygon points="330,140 330,50 300,80 270,60 270,140" fill="#6f3610"/>
+  <rect x="270" y="140" width="60" height="10" fill="#5a4632"/>
+  <g fill="#8b4513">
+    <rect x="60" y="120" width="10" height="30"/>
+    <rect x="80" y="120" width="10" height="30"/>
+    <rect x="100" y="120" width="10" height="30"/>
+    <ellipse cx="65" cy="118" rx="10" ry="14"/>
+    <ellipse cx="85" cy="118" rx="10" ry="14"/>
+    <ellipse cx="105" cy="118" rx="10" ry="14"/>
+  </g>
+  <rect x="0" y="150" width="600" height="30" fill="#c4a882"/>
+</svg>
+
+<div class="card">
+  <label for="role">Role / Age Group</label>
+  <select id="role">
+    <option value="adultMale">Adult Male Laborer</option>
+    <option value="adultFemale">Adult Female</option>
+    <option value="child">Child (7–12)</option>
+    <option value="elderly">Elderly / Infirm</option>
+  </select>
+
+  <label for="labor">Physical Labor Level</label>
+  <select id="labor">
+    <option value="heavy">Heavy (plowing, harvest, threshing)</option>
+    <option value="moderate">Moderate (general farm chores)</option>
+    <option value="light">Light (rest day, winter idle time)</option>
+  </select>
+
+  <label for="season">Season</label>
+  <select id="season">
+    <option value="summer">Summer / Harvest (more food, more work)</option>
+    <option value="winter">Winter (scarcer, bread-heavy diet)</option>
+  </select>
+
+  <label for="household">Household Size (people, for bread loaves)</label>
+  <input type="number" id="household" value="1" min="1" max="50" step="1">
+  <div class="err-msg" id="householdErr">Enter a whole number between 1 and 50.</div>
+
+  <button id="calcBtn">Calculate Daily Diet</button>
+
+  <div class="results" id="results"></div>
+  <button class="copybtn" id="copyBtn" style="display:none">Copy Results</button>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Medieval Peasant Diet Calculator</h2>
+<p>Pick the peasant's role (adult male, adult female, child, or elderly), the intensity of their labor that day, and the season. Optionally enter a household size to see the total bread required for a family. Click "Calculate Daily Diet" and the tool estimates total daily calories along with the bread, ale, pottage, and meat needed to reach that total, based on documented medieval eating patterns.</p>
+
+<h2>Why This Matters</h2>
+<p>Medieval peasants didn't count calories, but their bodies still needed roughly 3,000–4,500 kcal a day during heavy farm labor — nearly double what a sedentary modern adult eats. Historians, teachers, reenactors, and writers researching medieval life often want a concrete sense of what "a peasant's daily bread" actually looked like: was it one loaf or three? A gallon of ale or a pint? This calculator turns vague historical descriptions into real numbers you can visualize — pounds of bread, bowls of pottage, pints of small ale — scaled to labor and season. It's useful for classroom lessons on feudal agriculture, historical fiction research, living-history demonstrations, or simply satisfying curiosity about how a farmhand survived a 14-hour day in the hayfield on bread, ale, and cabbage soup.</p>
+
+<h2>How It's Calculated</h2>
+<p>The tool starts from a baseline energy requirement by role, then multiplies it by a labor factor and a seasonal adjustment:</p>
+<div class="formula">Total kcal = Base(role) × Labor Multiplier × Season Factor</div>
+<p>Base values: Adult Male 2,500 kcal, Adult Female 2,000 kcal, Child 1,600 kcal, Elderly 1,800 kcal. Labor multipliers: Heavy ×1.6, Moderate ×1.3, Light ×1.0. Season factors: Summer ×1.05 (longer days, harder harvest work, more food available), Winter ×0.95 (shorter days, food scarcity, but still cold-weather energy demands).</p>
+<p>The resulting total calories are then split into food categories using historically documented proportions — roughly 55–70% bread/grain, 15% small ale, 10–20% pottage (a vegetable and legume stew), and 5–10% meat, dairy, or eggs, with winter diets leaning harder on bread and less on fresh vegetables. Each category is converted to real quantities using period-plausible energy densities: bread ≈ 1,100 kcal/lb, small ale ≈ 200 kcal/pint, pottage ≈ 150 kcal/bowl, and meat ≈ 60 kcal/oz.</p>
+
+<h2>Worked Example</h2>
+<p>An adult male laborer doing heavy work in summer: Base 2,500 × Labor 1.6 × Season 1.05 = <strong>4,200 kcal</strong>. At 55% bread, that's 2,310 kcal ÷ 1,100 kcal/lb ≈ <strong>2.1 lbs of bread</strong>. At 15% ale, 630 kcal ÷ 200 kcal/pint ≈ <strong>3.2 pints</strong>. At 20% pottage, 840 kcal ÷ 150 ≈ <strong>5.6 bowls</strong>. At 10% meat/dairy, 420 kcal ÷ 60 ≈ <strong>7 oz</strong>. That's a big, bread-and-ale-heavy day — entirely consistent with account-book records of harvest wages, which often included extra bread and ale as part of pay.</p>
+
+<h2>Historical Context</h2>
+<p>Manorial records from 13th- and 14th-century England show harvest laborers receiving daily allowances of roughly 2–3 lbs of bread, a gallon of weak ale, and pottage made from peas, beans, or cabbage. Meat was scarce for most peasants — often limited to bacon fat, offal, or salted pork on feast days — while ale (brewed weak, at maybe 2–3% ABV) served as a safer alternative to often-contaminated water and provided meaningful calories. Wheat bread was a luxury; most peasants ate maslin (mixed wheat and rye) or barley bread. Winter diets shrank in variety, relying on stored grain, dried peas, and preserved meat, which is reflected in the season adjustment used here.</p>
+
+<div class="dyk">
+<strong>Did You Know?</strong>
+Medieval English harvest workers sometimes drank up to a gallon (about 4.5 liters) of small ale per day — not for intoxication, but because it was calorically dense, safer than water, and part of their contracted wages.<br><br>
+Bread was so central to survival that English law fixed its price and weight through the Assize of Bread and Ale (1266), one of the earliest consumer protection statutes in history.<br><br>
+A heavy-laboring peasant's 4,000+ kcal daily intake roughly matches what an elite modern endurance athlete eats during a multi-day cycling race.
+</div>
+
+<div id="modernEquivBox"></div>
+
+<h2>Tips & Common Mistakes</h2>
+<p>• Don't assume peasants "ate poorly" in every sense — their diet was calorie-dense and matched to brutal manual labor, even if it lacked variety.<br>
+• Remember bread quality varied by class: lords ate white wheat bread ("manchet"), while peasants usually ate coarser rye or barley bread.<br>
+• Ale calories add up fast — a gallon a day contributes significantly to total energy intake, not just hydration.<br>
+• Winter figures assume food scarcity; actual famine years could push intake far below these estimates, with serious health consequences.<br>
+• This tool models a typical documented pattern, not an exact archaeological reconstruction — use it as an educational estimate, not a precise historical record.</p>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>How many calories did a medieval peasant eat per day?</summary><p>Estimates range from about 2,000 kcal for a light day to over 4,000–4,500 kcal during heavy harvest labor, since manual farm work burned far more energy than modern sedentary jobs. Women, children, and the elderly generally needed less than adult male laborers.</p></details>
+<details><summary>What did medieval peasants actually eat every day?</summary><p>Coarse bread (often rye, barley, or maslin), pottage (a thick vegetable and legume stew), small ale, and occasionally cheese, eggs, or a little bacon or salted meat. Fresh meat was rare and usually reserved for feast days or better-off households.</p></details>
+<details><summary>How much bread did a peasant eat in a day?</summary><p>Manorial harvest records suggest roughly 2–3 lbs of bread per day for a laboring adult, which this calculator estimates based on total calorie needs and the assumption that bread supplied 55–70% of daily energy.</p></details>
+<details><summary>Did peasants really drink alcohol instead of water?</summary><p>Yes, weak "small ale" (low alcohol, around 2–3% ABV) was a common daily drink because it was calorically useful and generally safer than untreated water, which could carry disease. It wasn't strong enough to cause regular intoxication.</p></details>
+<details><summary>Is this calculator historically accurate?</summary><p>It's based on documented medieval English manorial records and modern nutritional science, but medieval diets varied hugely by region, class, and year. Treat the results as an educational estimate rather than an exact figure for any single real person.</p></details>
+<details><summary>Why does season change the calorie estimate?</summary><p>Summer and harvest months meant longer daylight, more available food, and heavier labor, so this calculator applies a small upward adjustment. Winter months meant shorter days, less physical activity for some tasks, and scarcer, grain-heavy food supplies, so it applies a small downward adjustment.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+<a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+<a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+<a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+<a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+<a href="/inflation-calculator/">Historical Inflation Calculator</a>
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/medieval-peasant-diet-calculator/">HistoryCalc</a></p>
+</div>
+
+<script>
+function fmt(n,d){d=d===undefined?1:d;return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});}
+
+function calculate(){
+  const householdInput=document.getElementById('household');
+  const householdErr=document.getElementById('householdErr');
+  let household=parseInt(householdInput.value,10);
+  if(isNaN(household)||household<1||household>50){
+    householdInput.classList.add('error');
+    householdErr.style.display='block';
+    return;
+  }
+  householdInput.classList.remove('error');
+  householdErr.style.display='none';
+
+  const role=document.getElementById('role').value;
+  const labor=document.getElementById('labor').value;
+  const season=document.getElementById('season').value;
+
+  const baseMap={adultMale:2500,adultFemale:2000,child:1600,elderly:1800};
+  const laborMap={heavy:1.6,moderate:1.3,light:1.0};
+  const seasonMap={summer:1.05,winter:0.95};
+
+  const base=baseMap[role];
+  const laborMult=laborMap[labor];
+  const seasonMult=seasonMap[season];
+  const total=base*laborMult*seasonMult;
+
+  let breadPct,alePct,pottagePct,meatPct;
+  if(season==='summer'){breadPct=0.55;alePct=0.15;pottagePct=0.20;meatPct=0.10;}
+  else{breadPct=0.70;alePct=0.15;pottagePct=0.10;meatPct=0.05;}
+
+  const breadKcal=total*breadPct;
+  const aleKcal=total*alePct;
+  const pottageKcal=total*pottagePct;
+  const meatKcal=total*meatPct;
+
+  const breadLbs=breadKcal/1100;
+  const alePints=aleKcal/200;
+  const pottageBowls=pottageKcal/150;
+  const meatOz=meatKcal/60;
+
+  const modernNeed=2200;
+  const pctOfModern=(total/modernNeed)*100;
+
+  const bigMacs=total/550;
+
+  const loafLbs=2; // one standard loaf ~2 lbs
+  const householdLoaves=(breadLbs*household)/loafLbs;
+
+  const roleLabel={adultMale:'Adult Male Laborer',adultFemale:'Adult Female',child:'Child (7–12)',elderly:'Elderly / Infirm'}[role];
+  const laborLabel={heavy:'Heavy Labor',moderate:'Moderate Labor',light:'Light / Rest Day'}[labor];
+  const seasonLabel={summer:'Summer / Harvest',winter:'Winter'}[season];
+
+  const barTotal=breadKcal+aleKcal+pottageKcal+meatKcal;
+  const bBread=(breadKcal/barTotal)*100;
+  const bAle=(aleKcal/barTotal)*100;
+  const bPot=(pottageKcal/barTotal)*100;
+  const bMeat=(meatKcal/barTotal)*100;
+
+  const resultsHTML=`
+    <div class="bignum">${fmt(total,0)} kcal/day</div>
+    <div class="sub">${roleLabel} · ${laborLabel} · ${seasonLabel}</div>
+    <div class="bar">
+      <span style="width:${bBread}%;background:#8b4513" title="Bread"></span>
+      <span style="width:${bAle}%;background:#c4a882" title="Ale"></span>
+      <span style="width:${bPot}%;background:#a97c50" title="Pottage"></span>
+      <span style="width:${bMeat}%;background:#5a4632" title="Meat/Dairy"></span>
+    </div>
+    <div class="tblwrap">
+    <table>
+      <tr><th>Food</th><th>kcal</th><th>Amount</th></tr>
+      <tr><td>Bread (rye/maslin)</td><td>${fmt(breadKcal,0)}</td><td>${fmt(breadLbs,1)} lbs</td></tr>
+      <tr><td>Small Ale</td><td>${fmt(aleKcal,0)}</td><td>${fmt(alePints,1)} pints</td></tr>
+      <tr><td>Pottage (stew)</td><td>${fmt(pottageKcal,0)}</td><td>${fmt(pottageBowls,1)} bowls</td></tr>
+      <tr><td>Meat / Dairy / Eggs</td><td>${fmt(meatKcal,0)}</td><td>${fmt(meatOz,1)} oz</td></tr>
+    </table>
+    </div>
+    ${household>1?`<p class="sub" style="margin-top:1rem">Household of ${household}: approx <strong>${fmt(householdLoaves,1)} standard loaves</strong> of bread needed per day (at ~2 lbs/loaf).</p>`:''}
+  `;
+
+  const modernHTML=`
+    <div class="modeq">
+      <strong>Modern Equivalent:</strong> ${fmt(total,0)} kcal is about ${fmt(pctOfModern,0)}% of a typical modern adult's 2,200 kcal daily need — roughly equivalent to eating <strong>${fmt(bigMacs,1)} Big Macs</strong> (≈550 kcal each) in a single day.
+    </div>
+  `;
+
+  const copyText=`Medieval Peasant Diet — ${roleLabel}, ${laborLabel}, ${seasonLabel}\nTotal: ${fmt(total,0)} kcal/day\nBread: ${fmt(breadLbs,1)} lbs (${fmt(breadKcal,0)} kcal)\nAle: ${fmt(alePints,1)} pints (${fmt(aleKcal,0)} kcal)\nPottage: ${fmt(pottageBowls,1)} bowls (${fmt(pottageKcal,0)} kcal)\nMeat/Dairy: ${fmt(meatOz,1)} oz (${fmt(meatKcal,0)} kcal)`;
+
+  requestAnimationFrame(()=>{
+    const resEl=document.getElementById('results');
+    resEl.innerHTML=resultsHTML;
+    resEl.classList.add('show');
+    document.getElementById('modernEquivBox').innerHTML='';
+    document.getElementById('copyBtn').style.display='inline-block';
+    document.getElementById('copyBtn').dataset.text=copyText;
+    // insert modern equivalent inside card too for context near results
+    resEl.insertAdjacentHTML('beforeend',modernHTML);
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click',calculate);
+document.querySelectorAll('#household').forEach(el=>{
+  el.addEventListener('keydown',e=>{if(e.key==='Enter'){calculate();}});
+});
+document.getElementById('copyBtn').addEventListener('click',function(){
+  const btn=this;
+  navigator.clipboard.writeText(btn.dataset.text||'').then(()=>{
+    const old=btn.textContent;
+    btn.textContent='Copied!';
+    setTimeout(()=>{btn.textContent=old;},2000);
+  });
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

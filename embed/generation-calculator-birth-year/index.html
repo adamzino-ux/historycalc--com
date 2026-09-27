@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Generation Calculator by Birth Year | HistoryCalc</title>
+<meta name="description" content="Find out what generation am I born in with this free calculator. Enter your birth year to discover your generation, its defining traits, and key historical…">
+<link rel="canonical" href="https://historycalc.com/generation-calculator-birth-year/">
+<style>
+*{box-sizing:border-box;}
+body{margin:0;background:#f5f0e1;color:#2c1810;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6;}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:1rem 0;}
+nav a{color:#8b4513;font-weight:700;text-decoration:none;font-size:1.1rem;}
+h1{font-size:1.6rem;margin:0.5rem 0 1rem;color:#2c1810;}
+h2{color:#8b4513;font-size:1.25rem;margin-top:2rem;border-bottom:1px solid #c4a882;padding-bottom:0.3rem;}
+p{margin:0.8rem 0;}
+.card{background:#fffdf7;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 6px rgba(139,69,19,0.08);margin-bottom:2rem;}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.3rem;}
+input[type="number"]{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;margin-bottom:1rem;background:#fff;color:#2c1810;}
+input[type="number"]:focus{outline:2px solid #8b4513;outline-offset:1px;}
+input.error{border-color:#e74c3c;}
+.error-msg{color:#c0392b;font-size:0.85rem;margin-top:-0.6rem;margin-bottom:1rem;}
+button{background:#8b4513;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;cursor:pointer;min-height:44px;width:100%;}
+button:hover{background:#6b3410;}
+.copybtn{background:#efe4cc;color:#8b4513;padding:6px 14px;font-size:0.85rem;width:auto;min-height:36px;border:1px solid #c4a882;margin-top:0.8rem;}
+.copybtn:hover{background:#e5d7b8;}
+#results{margin-top:1.5rem;opacity:0;transition:opacity 0.3s ease;}
+#results.show{opacity:1;}
+.gen-name{font-size:2rem;font-weight:800;color:#8b4513;margin:0.2rem 0;}
+.gen-range{font-size:1rem;color:#444;margin-bottom:0.8rem;}
+.age-note{font-size:0.8rem;color:#666;display:block;margin-top:0.2rem;}
+.svg-wrap{text-align:center;margin:1rem 0;}
+.info-box{background:#f5f0e1;border-left:4px solid #8b4513;padding:1rem 1.2rem;border-radius:4px;margin:1rem 0;}
+.caveat-box{background:#fff8e1;border-left:4px solid #e0a800;padding:0.8rem 1.1rem;border-radius:4px;margin:1rem 0;font-size:0.9rem;}
+.did-you-know{background:#efe4cc;border:1px solid #c4a882;border-radius:6px;padding:1.2rem 1.4rem;margin:1.5rem 0;}
+.did-you-know h3{margin-top:0;color:#8b4513;font-size:1.05rem;}
+.table-wrap{overflow-x:auto;margin:1rem 0;}
+table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+th,td{padding:0.6rem 0.7rem;text-align:left;border-bottom:1px solid #ddd;}
+th{background:#f0e6d2;color:#2c1810;}
+tr:nth-child(even){background:#fafafa;}
+tr:nth-child(odd){background:#fff;}
+tr.highlight{background:#efe4cc !important;font-weight:700;}
+.ad-slot{min-height:0;margin:0;}
+details{background:#fffdf7;border:1px solid #c4a882;border-radius:6px;padding:0.8rem 1rem;margin:0.6rem 0;}
+summary{cursor:pointer;font-weight:600;color:#8b4513;}
+.related a{display:inline-block;margin:0.3rem 0.6rem 0.3rem 0;color:#8b4513;text-decoration:underline;}
+footer{margin-top:2rem;padding:1.5rem 0;border-top:1px solid #c4a882;font-size:0.85rem;color:#666;text-align:center;}
+footer a{color:#8b4513;text-decoration:underline;margin:0 0.4rem;}
+@media(max-width:480px){.gen-name{font-size:1.6rem;}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/generation-calculator-birth-year/">
+<meta property="og:title" content="Generation Calculator by Birth Year">
+<meta property="og:description" content="Find out what generation am I born in with this free calculator. Enter your birth year to discover your generation, its defining traits, and key historical…">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Generation Calculator by Birth Year: What Generation Am I Born In?</h1>
+<p>Ever asked yourself <strong>what generation am I born in</strong>? This free generation calculator takes your birth year and instantly tells you whether you're part of the Silent Generation, Baby Boomers, Gen X, Millennials, Gen Z, or Generation Alpha — complete with defining traits and the historical events that shaped your cohort.</p>
+
+<div class="card">
+  <label for="birthYear">Your Birth Year</label>
+  <input type="number" id="birthYear" placeholder="e.g. 1995" min="1883" inputmode="numeric">
+  <div class="error-msg" id="errMsg" style="display:none;"></div>
+  <button id="calcBtn">Find My Generation</button>
+
+  <div id="results" aria-live="polite" aria-atomic="true"></div>
+</div>
+
+<aside role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Generational boundaries and population figures are approximate estimates for education and entertainment; sources disagree on exact cutoff years. This is not demographic, financial, or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Generation Calculator</h2>
+<p>Type your birth year into the box above and click "Find My Generation." The calculator will show you your generational cohort's name, its official year range, your approximate current age, the defining historical events of your childhood, and a full comparison table of every generation from the Lost Generation to Generation Alpha.</p>
+
+<h2>Why This Matters</h2>
+<p>Generational labels aren't just internet trivia — they're widely used by marketers, employers, sociologists, and journalists to understand shared attitudes toward money, technology, work, and family. A hiring manager might wonder why a Gen X employee values autonomy differently than a Gen Z colleague who grew up with smartphones in hand. A financial planner explains retirement differently to a Baby Boomer than to a Millennial burdened with student debt. Even family conversations get easier when you understand that your grandparents in the Silent Generation were raised during the Great Depression and World War II rationing, while your niece in Generation Alpha has never known a world without touchscreens. Knowing your generation gives context to your worldview — the music you grew up on, the technology you consider "normal," and the news events that shaped your childhood. It's a quick, fun way to place yourself within the bigger sweep of history.</p>
+
+<h2>How It's Calculated</h2>
+<p>Generational cohorts are defined by researchers and demographers (most famously Pew Research Center and the Strauss–Howe generational theory) using approximate birth-year ranges, typically spanning 15-20 years each. The calculator simply checks which range your birth year falls into:</p>
+<div class="info-box"><strong>If Start Year ≤ Birth Year ≤ End Year → You belong to that Generation.</strong></div>
+<p>These ranges are not laws of nature — different researchers draw the lines a year or two apart — but the ranges used here reflect the most widely cited boundaries (Pew Research and common historical usage). The boundary between Generation Z, Generation Alpha, and the proposed "Generation Beta" is one of the least settled: some sources start Alpha in 2010, others in 2013, and Beta hasn't been formally adopted by any major research body.</p>
+
+<h2>Worked Example</h2>
+<p>Suppose you enter <strong>1988</strong>. The calculator checks the ranges and finds that 1988 falls between 1981 and 1996, which is the Millennial (Gen Y) range. It then reports: "You are a Millennial," shows the range 1981–1996, calculates your approximate current age from the calendar year, and lists formative events like the September 11 attacks, the dot-com boom, and the rise of the early internet — because those events occurred during a Millennial's childhood or young adulthood.</p>
+
+<div class="svg-wrap" aria-hidden="true">
+<svg width="160" height="180" viewBox="0 0 160 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of an antique hourglass symbolizing generations of time">
+  <rect x="10" y="10" width="140" height="160" fill="#f5f0e1" stroke="none"/>
+  <rect x="30" y="15" width="100" height="10" rx="2" fill="#8b4513"/>
+  <rect x="30" y="155" width="100" height="10" rx="2" fill="#8b4513"/>
+  <path d="M45 25 L115 25 L80 90 Z" fill="none" stroke="#8b4513" stroke-width="4"/>
+  <path d="M45 155 L115 155 L80 90 Z" fill="none" stroke="#8b4513" stroke-width="4"/>
+  <path d="M50 30 L110 30 L80 85 Z" fill="#c4a882"/>
+  <path d="M65 140 L95 140 L80 95 Z" fill="#c4a882"/>
+  <line x1="80" y1="88" x2="80" y2="92" stroke="#8b4513" stroke-width="3"/>
+  <rect x="15" y="8" width="130" height="4" fill="#6b3410"/>
+  <rect x="15" y="168" width="130" height="4" fill="#6b3410"/>
+</svg>
+</div>
+
+<h2>Historical Context</h2>
+<p>The idea of naming generations dates back further than most people realize. Writer Gertrude Stein coined "The Lost Generation" in the 1920s to describe young adults disillusioned by the horrors of World War I, a term Ernest Hemingway later popularized in his novels. Sociologist Karl Mannheim argued in 1928 that shared historical experiences during youth — wars, economic collapses, technological shifts — forge a common generational identity that lasts a lifetime. The U.S. Census Bureau and Pew Research Center later formalized cohorts like the Baby Boomers, named for the dramatic spike in births following the return of soldiers after World War II. Each generational label, from "Greatest" to "Silent" to "Gen X," reflects the specific anxieties, technologies, and triumphs its members lived through as children and young adults.</p>
+
+<div class="did-you-know">
+<h3>Did You Know?</h3>
+<ul>
+<li>Between 1946 and 1964, over 76 million babies were born in the United States alone — the largest sustained birth spike in American history, giving Baby Boomers their name.</li>
+<li>The term "Generation X" was actually first used by photographer Robert Capa in the 1950s, decades before Douglas Coupland's 1991 novel made it famous.</li>
+<li>Generation Alpha is projected to be the largest generation ever recorded worldwide, with roughly 2.8 million babies born into this cohort every week — though experts still disagree on exactly which years mark its start and end.</li>
+</ul>
+</div>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Generational boundaries are approximate — different researchers (Pew, Strauss-Howe, McCrindle) may shift a start or end year by 1-2 years, so don't treat the cutoff years as absolute.</li>
+<li>Someone born in a "cusp" year (like 1996 or 1997) may identify with traits of either adjacent generation — this is sometimes called being a "Xennial" or "Zillennial."</li>
+<li>Generational traits describe broad cultural trends, not individuals — plenty of Boomers are tech-savvy and plenty of Gen Zers prefer analog hobbies.</li>
+<li>Generation labels are largely a Western/US-centric convention; birth-rate spikes and historical turning points differ by country and culture.</li>
+<li>The "current age" shown here is a calendar-year estimate only (current year minus birth year), since we don't collect your exact birth date — your real age may be up to one year different depending on whether your birthday has already passed this year.</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>What generation am I born in if I was born in 2000?</summary><p>If you were born in 2000, you're part of Generation Z, whose birth years span roughly 1997 to 2012 under the widely used Pew Research classification.</p></details>
+<details><summary>What years are Millennials born?</summary><p>Millennials, also called Generation Y, are generally defined as being born between 1981 and 1996, according to Pew Research Center's widely used classification.</p></details>
+<details><summary>What comes after Generation Z?</summary><p>Generation Alpha follows Gen Z. Most sources place its start around 2013, though McCrindle Research, who coined the term, uses 2010; it runs into the mid-2020s. Researchers have proposed "Generation Beta" for children born starting around 2025.</p></details>
+<details><summary>Why do generational years vary between sources?</summary><p>There's no single official governing body for generational labels. Pew Research, the Census Bureau, and independent researchers like the Strauss-Howe theory each draw slightly different cutoff years, usually within a year or two of each other.</p></details>
+<details><summary>Is Generation X the smallest generation?</summary><p>In the United States, Generation X is often called the "forgotten" or smaller generation because it followed the enormous Baby Boomer spike and preceded the large Millennial cohort, though it still numbers around 65 million Americans.</p></details>
+<details><summary>What is a "Xennial"?</summary><p>Xennial is an informal micro-generation term for people born roughly between 1977 and 1983, on the cusp between Gen X and Millennials, who experienced an analog childhood but a digital young adulthood.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/islamic-hijri-date-converter/">Islamic Hijri Calendar Date Converter</a>
+<a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a>
+<a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet &amp; Calorie Calculator</a>
+<a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+<a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+<a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/generation-calculator-birth-year/">HistoryCalc</a></p>
+</div>
+
+<script>
+const generations = [
+  {name:"Lost Generation", start:1883, end:1900, desc:"Came of age during World War I; named by writer Gertrude Stein and popularized by Ernest Hemingway.", events:"World War I, the Roaring Twenties, Prohibition", compare:"Reliable population figures from this era are scarce, but this cohort was significantly thinned by WWI casualties and the 1918 influenza pandemic."},
+  {name:"Greatest Generation", start:1901, end:1927, desc:"Endured the Great Depression as children and fought or worked on the home front during World War II.", events:"The Great Depression, World War II, the New Deal", compare:"Roughly 62 million strong in the U.S. — in the ballpark of Italy's current population (about 59 million)."},
+  {name:"Silent Generation", start:1928, end:1945, desc:"Grew up during the Depression and WWII; known for valuing discipline, conformity, and hard work.", events:"World War II, postwar reconstruction, the early Cold War", compare:"About 50 million Americans, close to South Korea's current population (about 52 million)."},
+  {name:"Baby Boomers", start:1946, end:1964, desc:"Born during the dramatic postwar birth spike; shaped by civil rights activism and the Vietnam War.", events:"Civil Rights Movement, Vietnam War, the Moon Landing", compare:"Over 76 million U.S. births — somewhat less than Turkey's current population (about 85 million)."},
+  {name:"Generation X", start:1965, end:1980, desc:"The 'latchkey kids,' raised amid rising divorce rates, MTV, and the birth of the personal computer.", events:"End of the Cold War, rise of MTV, early personal computers", compare:"Around 65 million Americans, just under France's current population (about 68 million)."},
+  {name:"Millennials (Gen Y)", start:1981, end:1996, desc:"Came of age around the year 2000; the first generation of true digital natives.", events:"September 11 attacks, the dot-com boom, rise of the internet", compare:"About 72 million Americans, almost exactly Thailand's current population (about 72 million)."},
+  {name:"Generation Z", start:1997, end:2012, desc:"Grew up with smartphones and social media as a constant from early childhood.", events:"The Great Recession, smartphones, COVID-19 (as teens)", compare:"About 68 million Americans, almost exactly the United Kingdom's current population (about 68 million)."},
+  {name:"Generation Alpha", start:2013, end:2024, desc:"Born entirely in the 21st century; growing up with tablets, streaming, and AI assistants as the norm. Note: this cohort's boundaries are contested — some researchers (e.g., McCrindle, who coined the name) start it in 2010, while others align it with Pew's Gen Z cutoff of 2013.", events:"COVID-19 pandemic, rise of AI, streaming media", compare:"Projected to reach roughly 2 billion worldwide — potentially the largest generation ever recorded, though final counts depend on which start/end years are used."},
+  {name:"Generation Beta", start:2025, end:2039, desc:"A proposed, not-yet-standardized name for the cohort following Generation Alpha; almost none of this generation has been born yet as of this writing.", events:"Not yet defined", compare:"Too early to measure — this generation's story hasn't been written yet."}
+];
+
+function fmt(n){return n.toLocaleString('en-US');}
+
+function findGeneration(year){
+  for(const g of generations){ if(year>=g.start && year<=g.end) return g; }
+  return null;
+}
+
+function buildTable(matchName){
+  let rows='';
+  generations.forEach(g=>{
+    const cls = g.name===matchName ? ' class="highlight"' : '';
+    rows += `<tr${cls}><td>${g.name}</td><td>${g.start}–${g.end}</td><td>${g.events}</td></tr>`;
+  });
+  return `<div class="table-wrap"><table><thead><tr><th>Generation</th><th>Birth Years</th><th>Key Events</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+let lastCopyText = '';
+
+function calculate(){
+  const input = document.getElementById('birthYear');
+  const errMsg = document.getElementById('errMsg');
+  const results = document.getElementById('results');
+  const val = input.value.trim();
+  const currentYear = new Date().getFullYear();
+
+  input.classList.remove('error');
+  errMsg.style.display='none';
+  results.classList.remove('show');
+
+  if(val===''){
+    input.classList.add('error');
+    errMsg.textContent = 'Please enter your birth year.';
+    errMsg.style.display='block';
+    results.innerHTML='';
+    return;
+  }
+  const year = parseInt(val,10);
+  if(isNaN(year) || !/^\d+$/.test(val) || year < 1883 || year > currentYear){
+    input.classList.add('error');
+    errMsg.textContent = `Please enter a valid 4-digit birth year between 1883 and ${currentYear}.`;
+    errMsg.style.display='block';
+    results.innerHTML='';
+    return;
+  }
+
+  const gen = findGeneration(year);
+  const age = currentYear - year;
+
+  let html = '';
+  if(!gen){
+    html += `<div class="gen-name">Unclassified Era</div><p>Your birth year of ${fmt(year)} falls outside the standard generational classification ranges used by researchers.</p>`;
+  } else {
+    html += `<div class="gen-name">${gen.name}</div>`;
+    html += `<div class="gen-range">Birth Years: ${gen.start}–${gen.end} &nbsp;|&nbsp; Approx. Current Age: ${fmt(age)}<span class="age-note">(calendar-year estimate only — actual age may be off by up to 1 year depending on your birth month)</span></div>`;
+    html += `<p>${gen.desc}</p>`;
+    html += `<div class="info-box"><strong>Defining events:</strong> ${gen.events}</div>`;
+    html += `<div class="info-box"><strong>Modern-day comparison:</strong> ${gen.compare}</div>`;
+    if(gen.name==="Generation Alpha" || gen.name==="Generation Beta"){
+      html += `<div class="caveat-box"><strong>Heads up:</strong> this generation's start/end years are not yet settled among researchers — treat these boundaries as an estimate, not a fixed rule.</div>`;
+    }
+    html += buildTable(gen.name);
+    html += `<button class="copybtn" id="copyBtn" type="button">Copy Result</button><span id="copyStatus" style="margin-left:8px;font-size:0.85rem;color:#666;"></span>`;
+    lastCopyText = `Born in ${year}, you are part of the ${gen.name} (${gen.start}–${gen.end}). Approx. current age: ${age} (calendar-year estimate). Defining events: ${gen.events}.`;
+  }
+
+  requestAnimationFrame(()=>{
+    results.innerHTML = html;
+    results.classList.add('show');
+    const copyBtn = document.getElementById('copyBtn');
+    if(copyBtn){
+      copyBtn.addEventListener('click', ()=>{
+        navigator.clipboard.writeText(lastCopyText).then(()=>{
+          const status = document.getElementById('copyStatus');
+          status.textContent = 'Copied!';
+          setTimeout(()=>{ status.textContent=''; }, 2000);
+        });
+      });
+    }
+  });
+}
+
+document.getElementById('birthYear').max = new Date().getFullYear();
+document.getElementById('calcBtn').addEventListener('click', ()=>{ requestAnimationFrame(calculate); });
+document.getElementById('birthYear').addEventListener('keydown', (e)=>{
+  if(e.key==='Enter'){ e.preventDefault(); requestAnimationFrame(calculate); }
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

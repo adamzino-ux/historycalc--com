@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ancient Roman Aqueduct Bridge (Arcade) Span Calculator</title>
+<meta name="description" content="Calculate Roman aqueduct arch spans, pier widths, and arcade dimensions using authentic ancient engineering ratios. Free historical span calculator.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/roman-aqueduct-arcade-span-calculator/">
+<style>
+:root{
+  --bg:#f5f0e1;
+  --card:#fffaf2;
+  --accent:#8b4513;
+  --accent-dark:#6b330e;
+  --text:#2c1810;
+  --border:#c4a882;
+  --gray:#efe7d5;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height:1.6;
+}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:0.5rem 0 1rem;}
+nav a{color:var(--accent);font-weight:700;text-decoration:none;font-size:1.1rem;}
+h1{font-size:1.6rem;margin:0.5rem 0 1rem;color:var(--accent-dark);}
+h2{color:var(--accent-dark);font-size:1.25rem;margin-top:2rem;}
+p{margin:0.75rem 0;}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:2rem;
+  box-shadow:0 2px 8px rgba(139,69,19,0.08);
+}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a4030;margin:1rem 0 0.3rem;}
+label:first-of-type{margin-top:0;}
+input[type=number], select{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  font-size:1rem;
+  background:#fff;
+  color:var(--text);
+  min-height:44px;
+}
+input[type=number]:focus, select:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(139,69,19,0.15);
+}
+input[type=range]{width:100%;margin-top:0.4rem;}
+.ratio-row{display:flex;justify-content:space-between;align-items:center;font-size:0.85rem;color:#5a4030;}
+.err{color:#c0392b;font-size:0.8rem;margin-top:0.3rem;display:none;}
+input.bad{border-color:#e74c3c;}
+button.calc{
+  margin-top:1.5rem;
+  width:100%;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 24px;
+  border-radius:6px;
+  font-size:1rem;
+  font-weight:600;
+  min-height:44px;
+  cursor:pointer;
+  transition:background 0.2s;
+}
+button.calc:hover{background:var(--accent-dark);}
+#results{opacity:0;transition:opacity 0.3s ease;margin-top:2rem;}
+#results.show{opacity:1;}
+.keynum{font-size:2.2rem;font-weight:800;color:var(--accent);margin:0.2rem 0;}
+.keylabel{font-size:0.9rem;color:#5a4030;}
+.tablewrap{overflow-x:auto;margin-top:1rem;}
+table{width:100%;border-collapse:collapse;font-size:0.92rem;}
+th,td{padding:0.55rem 0.7rem;border-bottom:1px solid var(--border);text-align:left;}
+th{background:var(--gray);}
+td.num, th.num{text-align:right;}
+tr:nth-child(even) td{background:#fbf6ea;}
+.copybtn{
+  margin-top:1rem;
+  background:transparent;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  padding:8px 14px;
+  border-radius:6px;
+  font-size:0.85rem;
+  cursor:pointer;
+  min-height:38px;
+}
+.copybtn:hover{background:rgba(139,69,19,0.08);}
+.dyk{
+  background:var(--gray);
+  border-left:4px solid var(--accent);
+  padding:1rem 1.2rem;
+  border-radius:4px;
+  margin:1.5rem 0;
+}
+.dyk strong{color:var(--accent-dark);}
+.ad-slot{min-height:0;margin:0;}
+details{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:0.8rem 1rem;
+  margin:0.6rem 0;
+}
+summary{font-weight:600;cursor:pointer;}
+.svgwrap{text-align:center;margin:1rem 0;}
+footer{margin-top:2.5rem;padding:1.5rem 0;border-top:1px solid var(--border);font-size:0.85rem;color:#5a4030;text-align:center;}
+footer a{color:var(--accent);text-decoration:none;margin:0 0.4rem;}
+.related a{display:block;color:var(--accent);text-decoration:none;padding:0.4rem 0;border-bottom:1px solid var(--gray);}
+.related a:hover{color:var(--accent-dark);}
+@media (min-width:640px){
+  .row2{display:flex;gap:1rem;}
+  .row2 > div{flex:1;}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/roman-aqueduct-arcade-span-calculator/">
+<meta property="og:title" content="Ancient Roman Aqueduct Bridge (Arcade) Span Calculator">
+<meta property="og:description" content="Calculate Roman aqueduct arch spans, pier widths, and arcade dimensions using authentic ancient engineering ratios. Free historical span calculator.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Ancient Roman Aqueduct Bridge (Arcade) Span Calculator</h1>
+<p>Use this <strong>roman aqueduct arch span calculator</strong> to design an arcade the way Roman engineers did: choose a gap to cross, an arch span, and a pier ratio, and instantly see how many arches, piers, and how much stone a real Roman-style bridge would need.</p>
+
+<div class="svgwrap">
+<svg width="100%" height="130" viewBox="0 0 600 140" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="118" width="600" height="6" fill="#c4a882"/>
+  <g fill="#fffaf2" stroke="#8b4513" stroke-width="3">
+    <rect x="10" y="70" width="18" height="48"/>
+    <path d="M28 70 A45 45 0 0 1 118 70" fill="none"/>
+    <rect x="118" y="70" width="18" height="48"/>
+    <path d="M136 70 A45 45 0 0 1 226 70" fill="none"/>
+    <rect x="226" y="70" width="18" height="48"/>
+    <path d="M244 70 A45 45 0 0 1 334 70" fill="none"/>
+    <rect x="334" y="70" width="18" height="48"/>
+    <path d="M352 70 A45 45 0 0 1 442 70" fill="none"/>
+    <rect x="442" y="70" width="18" height="48"/>
+    <path d="M460 70 A45 45 0 0 1 550 70" fill="none"/>
+    <rect x="550" y="70" width="18" height="48"/>
+  </g>
+  <rect x="0" y="58" width="600" height="12" fill="#8b4513"/>
+</svg>
+</div>
+
+<div class="card">
+  <label for="gapDistance">Gap Distance to Span (meters)</label>
+  <input type="number" id="gapDistance" value="200" min="1">
+  <div class="err" id="err-gap">Please enter a valid gap distance greater than 0.</div>
+
+  <div class="row2">
+    <div>
+      <label for="archSpan">Arch Span Width (meters)</label>
+      <input type="number" id="archSpan" value="5" min="1" step="0.1">
+      <div class="err" id="err-span">Arch span must be a positive number smaller than the gap distance.</div>
+    </div>
+    <div>
+      <label for="pierHeight">Average Pier Height (meters)</label>
+      <input type="number" id="pierHeight" value="15" min="1" step="0.1">
+      <div class="err" id="err-height">Pier height must be greater than 0.</div>
+    </div>
+  </div>
+
+  <div class="row2">
+    <div>
+      <label for="depth">Structure Depth / Channel Width (meters)</label>
+      <input type="number" id="depth" value="1.2" min="0.1" step="0.1">
+      <div class="err" id="err-depth">Depth must be greater than 0.</div>
+    </div>
+    <div>
+      <label for="tiers">Number of Tiers</label>
+      <select id="tiers">
+        <option value="1">1 (single tier)</option>
+        <option value="2">2 (double tier)</option>
+        <option value="3">3 (like Pont du Gard)</option>
+      </select>
+    </div>
+  </div>
+
+  <label for="pierRatio">Pier Width Ratio: <span id="ratioLabel">35%</span> of arch span</label>
+  <input type="range" id="pierRatio" min="20" max="60" value="35" oninput="document.getElementById('ratioLabel').textContent=this.value+'%'">
+
+  <button class="calc" onclick="calculate()">Calculate Arcade Design</button>
+
+  <div id="results"></div>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Roman Aqueduct Arch Span Calculator</h2>
+<p>Enter the total gap distance you need to cross (a valley, river, or plain), your preferred individual arch span, the average height of the piers, and the depth of the channel structure. Pick a pier width ratio and number of tiers, then hit Calculate. The tool returns the number of arches and piers required, the total masonry height, an estimated stone volume, and how your design compares to famous Roman aqueducts.</p>
+
+<h2>Why This Matters</h2>
+<p>Roman engineers rarely had the luxury of a straight, level route from spring to city, so wherever a valley, river gorge, or low plain interrupted the gradient, they built an arcade — a bridge of repeating arches — to keep the water channel at a constant, gentle slope. Getting the span-to-pier ratio right was a matter of survival for the structure: too wide a span with too thin a pier risked collapse, while overly thick piers wasted stone and labor. This calculator is useful for history students recreating ancient engineering decisions, hobbyist model builders scaling a replica, teachers illustrating Roman math and physics, or anyone curious how the Pont du Gard or the Aqueduct of Segovia arrived at their proportions. Try plugging in a 275-meter valley with 5-meter arches versus a 20-meter river gorge with 20-meter arches, and watch how dramatically the pier count and stone requirements change.</p>
+
+<h2>How It's Calculated</h2>
+<p>The calculator applies the geometric logic Roman builders used for semicircular arches, where the rise (height) of the arch always equals half its span:</p>
+<p><strong>Arch Rise = Span ÷ 2</strong></p>
+<p>Pier width is set as a proportion of the span, matching the historical range Roman engineers favored (roughly 20%–60%, with about one-third being typical for tall arcades):</p>
+<p><strong>Pier Width (Wp) = Span (S) × Ratio (r)</strong></p>
+<p>The number of arches needed to cross a gap of length L is found by solving for how many span-plus-pier "repeat units" fit, then rounding to a whole number of arches:</p>
+<p><strong>N = round[(L − Wp) ÷ (S + Wp)]</strong></p>
+<p>Total masonry volume is estimated by treating each pier as a rectangular block (width × depth × height) and each arch ring as a curved masonry band roughly 15% of the span thick, multiplied across however many tiers you specify. This mirrors the real Roman practice of building successive tiers atop lower arcades, as seen at the Pont du Gard.</p>
+
+<h2>Worked Example</h2>
+<p>Suppose you need to cross a 200-meter valley (like a smaller version of the Pont du Gard's approach). You choose a 5-meter arch span, a 15-meter average pier height, a 1.2-meter channel depth, a 35% pier ratio, and a single tier.</p>
+<ul>
+<li>Pier width = 5 × 0.35 = 1.75 m</li>
+<li>Repeat unit = 5 + 1.75 = 6.75 m</li>
+<li>N = round[(200 − 1.75) ÷ 6.75] ≈ 29 arches</li>
+<li>Actual arcade length = 29×5 + 30×1.75 = 197.5 m</li>
+<li>Arch rise = 5 ÷ 2 = 2.5 m, so total structure height ≈ 17.5 m</li>
+</ul>
+<p>The calculator performs exactly this sequence and adds stone volume and weight estimates automatically.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Don't set the arch span larger than the gap distance — the calculator will flag this as an error, since you can't fit even one arch.</li>
+<li>Remember that a lower pier ratio (thinner piers) increases the number of arches you can fit, but real Roman masons rarely went below ~25% for tall arcades because of buckling risk.</li>
+<li>Multi-tier designs (2–3 tiers) dramatically increase stone volume — the Pont du Gard's three tiers used an estimated 50,000+ tons of limestone.</li>
+<li>Wider arch spans reduce the number of piers needed (fewer river obstructions) but require thicker voussoirs and stronger centering during construction.</li>
+<li>This tool gives educational, order-of-magnitude estimates — actual Roman construction varied by local stone, soil conditions, and available labor.</li>
+</ul>
+
+<div class="dyk">
+<strong>Did You Know?</strong>
+<p>The Pont du Gard in France varies its bottom-tier arch spans from about 15.7 m to 24.5 m to fit the natural rock outcrops of the Gardon riverbed — no two arches are identical.</p>
+<p>The Aqueduct of Segovia in Spain has stood for roughly 2,000 years using dry-fit granite blocks with no mortar at all, relying purely on precise stonecutting and gravity.</p>
+<p>Roman builders used semicircular wooden centering (temporary arch-shaped scaffolding) to support each arch ring while it was built, then removed the timber once the keystone locked the structure in place.</p>
+</div>
+
+<h2>Historical Context</h2>
+<p>Roman aqueduct arcades emerged wherever gravity-fed water channels needed to cross depressions without losing their carefully calculated gradient — often as gentle as a few centimeters of drop per hundred meters. The architect Vitruvius, writing in the 1st century BC, documented Roman preferences for semicircular arches because they distribute weight evenly into the piers below. Iconic examples include the three-tiered Pont du Gard (49 m tall, built c. 40–60 AD) and the Aqueduct of Segovia (28 m tall, roughly 15 km of channel feeding the city). Pier widths were typically one-third to one-half of the arch span for tall structures, a ratio confirmed by surviving measurements at dozens of Roman sites across the empire, from Tarragona to Mérida.</p>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>What was the typical span of a Roman aqueduct arch?</summary><p>Spans varied widely by site and height, from about 3–6 meters on tall multi-tier structures like Segovia and the upper tiers of the Pont du Gard, up to 20–24 meters on lower, wider single-span crossings over rivers. Engineers chose the span based on the terrain and how many piers the riverbed or valley floor could support.</p></details>
+<details><summary>Why did Romans use semicircular arches instead of pointed ones?</summary><p>Semicircular arches were structurally simple to lay out with a single center point and rope, and they transfer load straight down into the piers, which suited Roman concrete and stone construction techniques. Pointed (Gothic) arches, which better redirect thrust, weren't widely used until over a thousand years later.</p></details>
+<details><summary>How thick were the piers compared to the arch span?</summary><p>Surviving Roman aqueducts show pier widths commonly between roughly 25% and 50% of the arch span, with taller, multi-tier arcades using thicker piers for extra stability. This calculator lets you test that same ratio range with a slider.</p></details>
+<details><summary>How tall could Roman aqueduct bridges get?</summary><p>The tallest surviving example, the Pont du Gard, reaches about 49 meters using three stacked tiers of arches. Single-tier arcades were typically much shorter, often 10–25 meters, since stacking tiers was the Roman solution for crossing very deep valleys.</p></details>
+<details><summary>Did all Roman aqueducts use arcades?</summary><p>No — the vast majority of an aqueduct's route ran underground or at ground level in covered channels, since that was cheaper and easier to maintain. Arcades were reserved for the relatively short stretches where the terrain dropped away and the water gradient had to be preserved above a valley or river.</p></details>
+<details><summary>How accurate is this calculator's stone volume estimate?</summary><p>The volume and weight figures are educational approximations based on simplified rectangular pier blocks and estimated arch ring thickness, not a full structural engineering analysis. They're designed to give a realistic sense of scale rather than exact construction quantities.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a>
+<a href="/roman-aqueduct-water-pressure-calculator/">Ancient Roman Aqueduct Water Pressure Calculator</a>
+<a href="/roman-water-distribution-pipe-sizing-calculator/">Ancient Roman Aqueduct Water Distribution Calculator</a>
+<a href="/roman-aqueduct-flow-calculator/">Ancient Roman Aqueduct Flow Calculator</a>
+<a href="/roman-aqueduct-flow-rate-calculator/">Ancient Roman Aqueduct Flow Rate Calculator</a>
+<a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/roman-aqueduct-arcade-span-calculator/">HistoryCalc</a></p>
+</div>
+
+<script>
+function fmt(n, d){
+  return n.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
+}
+function setErr(id, show){
+  var el = document.getElementById(id);
+  if(el) el.style.display = show ? 'block' : 'none';
+}
+function calculate(){
+  var gap = parseFloat(document.getElementById('gapDistance').value);
+  var span = parseFloat(document.getElementById('archSpan').value);
+  var pierHeight = parseFloat(document.getElementById('pierHeight').value);
+  var depth = parseFloat(document.getElementById('depth').value);
+  var tiers = parseInt(document.getElementById('tiers').value, 10);
+  var ratio = parseFloat(document.getElementById('pierRatio').value) / 100;
+
+  var gapEl = document.getElementById('gapDistance');
+  var spanEl = document.getElementById('archSpan');
+  var heightEl = document.getElementById('pierHeight');
+  var depthEl = document.getElementById('depth');
+
+  var ok = true;
+  gapEl.classList.remove('bad'); spanEl.classList.remove('bad');
+  heightEl.classList.remove('bad'); depthEl.classList.remove('bad');
+  setErr('err-gap', false); setErr('err-span', false); setErr('err-height', false); setErr('err-depth', false);
+
+  if(!gap || gap <= 0 || isNaN(gap)){ setErr('err-gap', true); gapEl.classList.add('bad'); ok=false; }
+  if(!span || span <= 0 || isNaN(span) || (gap>0 && span >= gap)){ setErr('err-span', true); spanEl.classList.add('bad'); ok=false; }
+  if(!pierHeight || pierHeight <= 0 || isNaN(pierHeight)){ setErr('err-height', true); heightEl.classList.add('bad'); ok=false; }
+  if(!depth || depth <= 0 || isNaN(depth)){ setErr('err-depth', true); depthEl.classList.add('bad'); ok=false; }
+
+  if(!ok){
+    requestAnimationFrame(function(){
+      document.getElementById('results').classList.remove('show');
+      document.getElementById('results').innerHTML = '';
+    });
+    return;
+  }
+
+  var pierWidth = span * ratio;
+  var repeatUnit = span + pierWidth;
+  var N = Math.max(1, Math.round((gap - pierWidth) / repeatUnit));
+  var actualLength = N * span + (N + 1) * pierWidth;
+  var archRise = span / 2;
+  var totalHeightPerTier = pierHeight + archRise;
+  var totalHeight = totalHeightPerTier * tiers;
+  var archThickness = span * 0.15;
+  var pierCount = N + 1;
+  var pierVolume = pierWidth * depth * totalHeight * pierCount;
+  var archVolume = span * archThickness * depth * N * tiers;
+  var totalVolume = pierVolume + archVolume;
+  var stoneWeightKg = totalVolume * 2400;
+  var stoneWeightTonnes = stoneWeightKg / 1000;
+  var romanFeetSpan = span / 0.296;
+  var romanFeetLength = actualLength / 0.296;
+  var trucks = stoneWeightTonnes / 10;
+  var pools = totalVolume / 2500;
+
+  var famous = [
+    {name:"Pont du Gard (top tier)", span:4.9},
+    {name:"Segovia Aqueduct", span:4.5},
+    {name:"Aqueduct of Tarragona (Pont del Diable)", span:8.5},
+    {name:"Aqueduct of Mérida (Los Milagros)", span:6},
+    {name:"Pont du Gard (bottom tier)", span:19}
+  ];
+  var closest = famous[0], bestDiff = Math.abs(span - famous[0].span);
+  for(var i=1;i<famous.length;i++){
+    var diff = Math.abs(span - famous[i].span);
+    if(diff < bestDiff){ bestDiff = diff; closest = famous[i]; }
+  }
+
+  var html = '';
+  html += '<div class="keylabel">Arches Needed to Span '+fmt(gap,0)+' m</div>';
+  html += '<div class="keynum">'+fmt(N,0)+' Arches</div>';
+  html += '<div class="tablewrap"><table><tbody>';
+  html += row('Actual Arcade Length Achieved', fmt(actualLength,1)+' m');
+  html += row('Number of Piers', fmt(pierCount,0));
+  html += row('Pier Width', fmt(pierWidth,2)+' m ('+fmt(pierWidth/0.296,2)+' Roman ft)');
+  html += row('Arch Span', fmt(span,2)+' m ('+fmt(romanFeetSpan,2)+' Roman ft)');
+  html += row('Arch Rise (semicircular height)', fmt(archRise,2)+' m');
+  html += row('Total Structure Height ('+tiers+' tier'+(tiers>1?'s':'')+')', fmt(totalHeight,2)+' m');
+  html += row('Estimated Stone Volume', fmt(totalVolume,0)+' m³');
+  html += row('Estimated Stone Weight', fmt(stoneWeightTonnes,0)+' tonnes');
+  html += row('Total Arcade Length in Roman Feet', fmt(romanFeetLength,0)+' Roman ft');
+  html += row('Modern Equivalent (dump trucks)', '≈ '+fmt(trucks,0)+' truckloads of stone');
+  html += row('Modern Equivalent (pool volumes)', '≈ '+fmt(pools,2)+' Olympic pools of stone');
+  html += row('Closest Historical Match', closest.name+' (span '+fmt(closest.span,1)+' m)');
+  html += '</tbody></table></div>';
+  html += '<button class="copybtn" id="copyBtn">Copy Results</button>';
+
+  requestAnimationFrame(function(){
+    var r = document.getElementById('results');
+    r.innerHTML = html;
+    r.classList.add('show');
+    document.getElementById('copyBtn').addEventListener('click', function(){
+      var text = 'Roman Aqueduct Arcade Design\\n'+
+        'Arches needed: '+fmt(N,0)+'\\n'+
+        'Actual length: '+fmt(actualLength,1)+' m\\n'+
+        'Piers: '+fmt(pierCount,0)+'\\n'+
+        'Pier width: '+fmt(pierWidth,2)+' m\\n'+
+        'Arch span: '+fmt(span,2)+' m\\n'+
+        'Total height: '+fmt(totalHeight,2)+' m\\n'+
+        'Stone volume: '+fmt(totalVolume,0)+' m³\\n'+
+        'Stone weight: '+fmt(stoneWeightTonnes,0)+' tonnes\\n'+
+        'Closest match: '+closest.name;
+      navigator.clipboard.writeText(text).then(function(){
+        var b = document.getElementById('copyBtn');
+        var orig = b.textContent;
+        b.textContent = 'Copied!';
+        setTimeout(function(){ b.textContent = orig; }, 2000);
+      });
+    });
+  });
+}
+function row(label, value){
+  return '<tr><td>'+label+'</td><td class="num">'+value+'</td></tr>';
+}
+['gapDistance','archSpan','pierHeight','depth'].forEach(function(id){
+  document.getElementById(id).addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ requestAnimationFrame(calculate); }
+  });
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

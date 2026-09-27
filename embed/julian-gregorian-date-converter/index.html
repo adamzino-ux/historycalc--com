@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free Julian to Gregorian Calendar Date Converter | HistoryCalc</title>
+<meta name="description" content="Free julian to gregorian calendar converter. Convert any historical date between the Julian and Gregorian calendars instantly, with weekday and day-offset…">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/julian-gregorian-date-converter/">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f5f0e1;color:#2c1810;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;line-height:1.6}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem}
+nav{padding:0.5rem 0}
+nav a{color:#8b4513;font-weight:700;text-decoration:none;font-size:1.1rem}
+h1{font-size:1.7rem;margin:0.5rem 0 1rem}
+h2{color:#8b4513;font-size:1.25rem;margin-top:2rem}
+.card{background:#fff;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 6px rgba(0,0,0,0.06);margin-bottom:2rem}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.tab-btn{flex:1;min-width:140px;padding:0.7rem 1rem;border:1px solid #c4a882;background:#f8f9fa;color:#2c1810;border-radius:6px;cursor:pointer;font-weight:500;min-height:44px}
+.tab-btn.active{background:#8b4513;color:#fff;border-color:#8b4513}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.3rem;margin-top:1rem}
+input,select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;min-height:44px}
+input:focus,select:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
+.row{display:flex;gap:1rem}
+.row>div{flex:1}
+.err{color:#e74c3c;font-size:0.85rem;margin-top:0.3rem;display:none}
+.err.show{display:block}
+input.bad{border-color:#e74c3c}
+button.go{margin-top:1.5rem;width:100%;background:#8b4513;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;min-height:44px}
+button.go:hover{background:#6e360f}
+.results{opacity:0;transition:opacity 0.3s ease;margin-top:1.5rem}
+.results.show{opacity:1}
+.bignum{font-size:1.8rem;font-weight:800;color:#8b4513;margin:0.5rem 0}
+table{width:100%;border-collapse:collapse;margin-top:1rem}
+th,td{padding:8px 10px;border-bottom:1px solid #e0dccb;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{background:#f0ead9}
+tr:nth-child(even){background:#fafafa}
+.tablewrap{overflow-x:auto}
+.copybtn{background:none;border:1px solid #8b4513;color:#8b4513;padding:6px 14px;border-radius:6px;font-size:0.8rem;cursor:pointer;margin-top:0.8rem;min-height:36px}
+.copybtn:hover{background:#f0ead9}
+.svgwrap{text-align:center;margin:1rem 0}
+.didyouknow{background:#f0ead9;border-left:4px solid #8b4513;padding:1rem 1.2rem;border-radius:0 6px 6px 0;margin:1.5rem 0}
+.didyouknow strong{color:#8b4513}
+.context{background:#fff;border:1px solid #c4a882;border-radius:8px;padding:1.5rem;margin:1.5rem 0}
+.ad-slot{min-height:0;margin:0}
+details{border:1px solid #e0dccb;border-radius:6px;padding:0.7rem 1rem;margin-bottom:0.7rem;background:#fff}
+summary{cursor:pointer;font-weight:600;color:#8b4513}
+.related a{display:inline-block;background:#f0ead9;color:#8b4513;text-decoration:none;padding:8px 14px;border-radius:6px;margin:4px 6px 4px 0;font-size:0.9rem}
+footer{text-align:center;font-size:0.85rem;color:#666;padding:2rem 0}
+footer a{color:#8b4513;text-decoration:none;margin:0 6px}
+.note{font-size:0.85rem;color:#666;margin-top:0.6rem}
+@media(max-width:480px){.row{flex-direction:column}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/julian-gregorian-date-converter/">
+<meta property="og:title" content="Julian to Gregorian Calendar Date Converter">
+<meta property="og:description" content="Free julian to gregorian calendar converter. Convert any historical date between the Julian and Gregorian calendars instantly, with weekday and day-offset…">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+<h1>Julian to Gregorian Calendar Date Converter</h1>
+<p>This <strong>julian to gregorian calendar converter</strong> lets you translate any historical date between the Julian calendar (in effect from 45 BC, following Julius Caesar's 46 BC decree, until national reforms in the 1500s–1900s) and the Gregorian calendar we use today. Enter a date, pick a direction, and get the exact equivalent date, weekday, and the day-offset that caused the shift.</p>
+
+<div class="svgwrap">
+<svg width="180" height="150" viewBox="0 0 180 150" xmlns="http://www.w3.org/2000/svg">
+<circle cx="90" cy="90" r="55" fill="#f5f0e1" stroke="#8b4513" stroke-width="3"/>
+<g stroke="#8b4513" stroke-width="2">
+<line x1="90" y1="90" x2="90" y2="40"/>
+<line x1="90" y1="90" x2="130" y2="65"/>
+<line x1="90" y1="90" x2="140" y2="90"/>
+<line x1="90" y1="90" x2="130" y2="115"/>
+<line x1="90" y1="90" x2="90" y2="140"/>
+<line x1="90" y1="90" x2="50" y2="115"/>
+<line x1="90" y1="90" x2="40" y2="90"/>
+<line x1="90" y1="90" x2="50" y2="65"/>
+</g>
+<polygon points="90,90 90,32 100,90" fill="#8b4513"/>
+<circle cx="90" cy="90" r="5" fill="#2c1810"/>
+</svg>
+</div>
+
+<div class="card">
+<div class="tabs">
+<button type="button" class="tab-btn active" id="tabJ2G">Julian → Gregorian</button>
+<button type="button" class="tab-btn" id="tabG2J">Gregorian → Julian</button>
+</div>
+
+<label for="year">Year</label>
+<div class="row">
+<div><input type="number" id="year" placeholder="e.g. 1582" min="1" value="1582"></div>
+<div><select id="era"><option value="AD">AD / CE</option><option value="BC">BC / BCE</option></select></div>
+</div>
+<div class="err" id="yearErr">Please enter a year of 1 or greater.</div>
+
+<label for="month">Month</label>
+<select id="month">
+<option value="1">January</option><option value="2">February</option><option value="3">March</option>
+<option value="4">April</option><option value="5">May</option><option value="6">June</option>
+<option value="7">July</option><option value="8">August</option><option value="9">September</option>
+<option value="10" selected>October</option><option value="11">November</option><option value="12">December</option>
+</select>
+
+<label for="day">Day</label>
+<input type="number" id="day" placeholder="e.g. 4" min="1" max="31" value="4">
+<div class="err" id="dayErr">Please enter a valid day for the selected month/year.</div>
+
+<button class="go" id="calcBtn">Convert Date</button>
+
+<div class="results" id="results"></div>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Julian to Gregorian Calendar Converter</h2>
+<p>Choose a direction — Julian to Gregorian or Gregorian to Julian — then enter the year, era (AD or BC), month, and day. The fields are prefilled with October 4, 1582 AD, the date of Pope Gregory XIII's famous reform, so you can click "Convert Date" right away and see the tool in action. The result shows the equivalent date in the other calendar, the day of the week, and how many days apart the two calendars were at that point in history.</p>
+
+<h2>Why This Matters</h2>
+<p>Historians, genealogists, and archivists constantly run into dates recorded in the "Old Style" Julian calendar — parish records, ship logs, treaties, and letters written before a country switched to the Gregorian system. Genealogists researching English, Russian, or Ottoman records regularly hit this problem, since Britain converted in 1752, Russia in 1918, and Greece as late as 1923. Astronomers and classicists also rely on precise calendar conversion when dating ancient eclipses, comet sightings, or manuscript colophons. This tool applies the day-offset relationship between the two calendars for any year, positive or BC. One caveat worth knowing: some Old Style British and colonial sources also began their calendar year on March 25 ("Lady Day") rather than January 1, which is why dates between January and March in that era are often written "dual dated" (for example, "10 February 1731/2"). This converter shifts the day and month accurately but does not reassign the year for that older new-year convention, so always check which convention your source uses before treating January–March dates as belonging to the following year.</p>
+
+<h2>How It's Calculated</h2>
+<p>The converter first turns your input date into a Julian Day Number (JDN) — a continuous day count used by astronomers since Joseph Scaliger introduced it in 1583. For a Julian calendar date it uses:</p>
+<p><em>JDN = D + floor((153m+2)/5) + 365y + floor(y/4) − 32083</em>, where y and m are adjusted so March is treated as the first month.</p>
+<p>For a Gregorian calendar date, the same formula gets two extra correction terms for the century leap-year rule:</p>
+<p><em>JDN = D + floor((153m+2)/5) + 365y + floor(y/4) − floor(y/100) + floor(y/400) − 32045</em></p>
+<p>The JDN is then converted back into a calendar date using the inverse of whichever formula matches the target system. The day-of-week is found with <em>(JDN + 1) mod 7</em>, and the "offset" shown is the difference, in days, between how the two calendars label the same physical day.</p>
+<p class="note">Simplification note: this calculator assumes a perfectly regular Julian leap year every 4 years, going all the way back to year 1. In reality, Roman priests misapplied the rule between 45 BC and 8 AD, inserting leap days every 3 years instead of every 4, an error Augustus later corrected. Historians conventionally treat the Julian calendar as regularized from 8 AD onward, and — like most conversion tools — this calculator applies that same regular 4-year cycle uniformly, even for the handful of irregular decades before 8 AD.</p>
+
+<h2>Worked Example</h2>
+<p>Pope Gregory XIII decreed that Thursday, October 4, 1582 (Julian) would be immediately followed by Friday, October 15, 1582 (Gregorian) — deleting 10 days to correct centuries of drift. Enter Year 1582, Month October, Day 4, direction Julian → Gregorian, and the tool returns <strong>October 14, 1582</strong> as the proleptic Gregorian equivalent (one day before the actual reform date, since the reform itself jumped an extra day). The offset shown is 10 days, matching the historical record exactly.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Remember the offset grows over time: it was 10 days in the 1580s, 11 in the 1700s, 12 in the 1800s, and 13 today — always check which century you're converting.</li>
+<li>Dates before 1582 shown in "Gregorian" form are <strong>proleptic</strong> — calculated as if the Gregorian calendar had always existed, since it wasn't actually used yet.</li>
+<li>The Julian calendar treats every year divisible by 4 as a leap year (no exceptions), while the Gregorian calendar skips century years not divisible by 400 — this is the entire source of the drift.</li>
+<li>Many countries also changed their new-year's day (from March 25 "Lady Day" to January 1) around the same time as the calendar reform. This tool converts day and month correctly but does not shift the year for that convention — for January–March "dual dated" Old Style records, apply that year adjustment yourself if your source requires it.</li>
+<li>For BC/BCE years, remember there is no year zero in the historical count — 1 BC is followed directly by 1 AD, but this tool handles that conversion internally.</li>
+<li>For dates before roughly 8 AD, remember the Julian calendar's leap years were historically irregular; this tool (like most conversion tools) uses the regularized 4-year cycle throughout for consistency.</li>
+</ul>
+
+<div class="context">
+<h2 style="margin-top:0">Historical Context</h2>
+<p>Julius Caesar decreed the calendar reform in 46 BC, guided by the astronomer Sosigenes, with the new Julian calendar taking effect starting 45 BC — fixing the year at 365.25 days with a leap day every four years. This was remarkably accurate for its time, but the true solar year is about 11 minutes shorter than 365.25 days — so the calendar drifted roughly one day every 128 years. By the 1500s, the spring equinox had shifted 10 days from where the Nicene Council of 325 AD had fixed it, throwing off the calculation of Easter. Pope Gregory XIII commissioned astronomer Aloysius Lilius to fix this, dropping 10 days in October 1582 and introducing the century leap-year exception still used worldwide today.</p>
+</div>
+
+<div class="didyouknow">
+<strong>Did You Know?</strong>
+<p>Catholic countries like Spain, Portugal, and Italy adopted the Gregorian calendar immediately in 1582, but Protestant England held out until 1752, by which point 11 days had to be dropped, sparking riots with crowds reportedly shouting "Give us our eleven days!" Russia didn't switch until after the 1917 Revolution, meaning the "October Revolution" actually took place in November by the Gregorian calendar. The Eastern Orthodox Church still uses the Julian calendar for religious feasts, which is why Orthodox Christmas falls on January 7 in the Gregorian calendar.</p>
+</div>
+
+<h2>Century-by-Century Day Offsets</h2>
+<div class="tablewrap">
+<table>
+<thead><tr><th>Period</th><th>Days Gregorian is ahead of Julian</th></tr></thead>
+<tbody>
+<tr><td>Up to 1699</td><td>10</td></tr>
+<tr><td>1700–1799</td><td>11</td></tr>
+<tr><td>1800–1899</td><td>12</td></tr>
+<tr><td>1900–2099</td><td>13</td></tr>
+<tr><td>2100–2199</td><td>14</td></tr>
+</tbody>
+</table>
+</div>
+<p class="note">That 13-day gap today is roughly equivalent to the calendar "losing" almost two full work-weeks compared to the sun's real position — the exact drift the Gregorian reform was designed to stop from ever growing further out of control.</p>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>What is the difference between the Julian and Gregorian calendars?</summary><p>The Julian calendar adds a leap day every 4 years with no exceptions, giving an average year of 365.25 days. The Gregorian calendar skips leap years in century years not divisible by 400 (like 1700, 1800, 1900), giving a more accurate average of 365.2425 days.</p></details>
+<details><summary>How many days do I add to convert Julian to Gregorian?</summary><p>It depends on the century: 10 days for dates up to 1699, 11 days for the 1700s, 12 days for the 1800s, and 13 days for 1900 through 2099. This tool calculates the exact offset automatically for any year.</p></details>
+<details><summary>Why did some countries switch calendars later than others?</summary><p>The Gregorian reform was issued by the Catholic Pope Gregory XIII in 1582, so Catholic nations adopted it quickly while Protestant and Orthodox nations were slower to accept a papal decree. Britain waited until 1752 and Russia until 1918.</p></details>
+<details><summary>What does "proleptic Gregorian" mean?</summary><p>It means applying Gregorian calendar rules to dates before the calendar actually existed (before 1582), purely as a mathematical extension. Historians use this to compare dates consistently across eras.</p></details>
+<details><summary>Is there a year zero between BC and AD?</summary><p>No — the traditional calendar goes directly from 1 BC to 1 AD with no year zero. This converter accounts for that when translating BC years into the astronomical numbering used in the underlying formulas.</p></details>
+<details><summary>Can I convert a Gregorian date back to the Julian calendar?</summary><p>Yes — use the "Gregorian → Julian" tab above, enter your modern date, and the tool will show you the equivalent Julian (Old Style) calendar date.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/inflation-calculator/">Historical Inflation Calculator</a>
+<a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
+<a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+<a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a>
+<a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
+<a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a>
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/julian-gregorian-date-converter/">HistoryCalc</a></p>
+</div>
+
+<script>
+let direction='j2g';
+const tabJ=document.getElementById('tabJ2G'), tabG=document.getElementById('tabG2J');
+tabJ.addEventListener('click',()=>{direction='j2g';tabJ.classList.add('active');tabG.classList.remove('active');});
+tabG.addEventListener('click',()=>{direction='g2j';tabG.classList.add('active');tabJ.classList.remove('active');});
+
+function mod(n,m){return ((n%m)+m)%m;}
+function isLeapJulian(y){return mod(y,4)===0;}
+function isLeapGregorian(y){return (mod(y,4)===0 && mod(y,100)!==0) || mod(y,400)===0;}
+const monthDays=[31,28,31,30,31,30,31,31,30,31,30,31];
+function daysInMonth(y,m,cal){ if(m===2){return cal==='j'?(isLeapJulian(y)?29:28):(isLeapGregorian(y)?29:28);} return monthDays[m-1]; }
+
+function julianToJDN(y,m,d){
+  const a=Math.floor((14-m)/12); const yy=y+4800-a; const mm=m+12*a-3;
+  return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-32083;
+}
+function gregorianToJDN(y,m,d){
+  const a=Math.floor((14-m)/12); const yy=y+4800-a; const mm=m+12*a-3;
+  return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+}
+function jdnToGregorian(jdn){
+  const a=jdn+32044; const b=Math.floor((4*a+3)/146097); const c=a-Math.floor((146097*b)/4);
+  const d=Math.floor((4*c+3)/1461); const e=c-Math.floor((1461*d)/4); const m=Math.floor((5*e+2)/153);
+  const day=e-Math.floor((153*m+2)/5)+1; const month=m+3-12*Math.floor(m/10); const year=100*b+d-4800+Math.floor(m/10);
+  return {year,month,day};
+}
+function jdnToJulian(jdn){
+  const c=jdn+32082; const d=Math.floor((4*c+3)/1461); const e=c-Math.floor((1461*d)/4); const m=Math.floor((5*e+2)/153);
+  const day=e-Math.floor((153*m+2)/5)+1; const month=m+3-12*Math.floor(m/10); const year=d-4800+Math.floor(m/10);
+  return {year,month,day};
+}
+function toAstro(year,era){ return era==='BC' ? -(year-1) : year; }
+function fromAstro(y){ return y<=0 ? {year:1-y,era:'BC'} : {year:y,era:'AD'}; }
+const monthNames=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const dowNames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+function dayOfWeek(jdn){ return dowNames[mod(jdn+1,7)]; }
+function fmtDate(dateObj,eraObj){ return monthNames[dateObj.month-1]+' '+dateObj.day+', '+eraObj.year+' '+eraObj.era; }
+
+function clearErr(){ document.getElementById('yearErr').classList.remove('show'); document.getElementById('dayErr').classList.remove('show'); document.getElementById('year').classList.remove('bad'); document.getElementById('day').classList.remove('bad'); }
+
+document.getElementById('calcBtn').addEventListener('click',()=>{ requestAnimationFrame(()=>{ calculate(); }); });
+['year','month','day'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown',e=>{ if(e.key==='Enter'){ requestAnimationFrame(()=>{ calculate(); }); } });
+});
+
+function calculate(){
+  clearErr();
+  const yearInput=parseInt(document.getElementById('year').value,10);
+  const era=document.getElementById('era').value;
+  const month=parseInt(document.getElementById('month').value,10);
+  const day=parseInt(document.getElementById('day').value,10);
+  const results=document.getElementById('results');
+
+  if(!yearInput || yearInput<1){
+    document.getElementById('yearErr').classList.add('show');
+    document.getElementById('year').classList.add('bad');
+    results.classList.remove('show'); results.innerHTML='';
+    return;
+  }
+  const astro=toAstro(yearInput,era);
+  const cal = direction==='j2g' ? 'j' : 'g';
+  if(!day || day<1 || day>daysInMonth(astro,month,cal)){
+    document.getElementById('dayErr').classList.add('show');
+    document.getElementById('day').classList.add('bad');
+    results.classList.remove('show'); results.innerHTML='';
+    return;
+  }
+
+  let jdn, resAstro, srcEraObj, targetEraObj, srcDate, targetDate, offset;
+  srcDate={year:astro,month,day};
+  if(direction==='j2g'){
+    jdn=julianToJDN(astro,month,day);
+    resAstro=jdnToGregorian(jdn);
+    targetDate=resAstro;
+    offset=julianToJDN(resAstro.year,resAstro.month,resAstro.day)-jdn;
+  } else {
+    jdn=gregorianToJDN(astro,month,day);
+    resAstro=jdnToJulian(jdn);
+    targetDate=resAstro;
+    offset=jdn-julianToJDN(resAstro.year,resAstro.month,resAstro.day);
+  }
+  srcEraObj=fromAstro(astro);
+  targetEraObj=fromAstro(targetDate.year);
+  const dow=dayOfWeek(jdn);
+  const srcLabel = direction==='j2g' ? 'Julian calendar' : 'Gregorian calendar';
+  const tgtLabel = direction==='j2g' ? 'Gregorian calendar' : 'Julian calendar';
+  const srcStr=fmtDate(srcDate,srcEraObj);
+  const tgtStr=fmtDate(targetDate,targetEraObj);
+  const copyText=srcLabel+': '+srcStr+' = '+tgtLabel+': '+tgtStr+' ('+dow+'), offset '+Math.abs(offset)+' days';
+
+  const html=
+   '<div class="bignum">'+tgtStr+'</div>'+
+   '<p style="margin-top:-0.5rem;color:#555">'+tgtLabel+' equivalent of '+srcStr+' ('+srcLabel+')</p>'+
+   '<div class="tablewrap"><table><tbody>'+
+   '<tr><td>Input date ('+srcLabel+')</td><td>'+srcStr+'</td></tr>'+
+   '<tr><td>Converted date ('+tgtLabel+')</td><td>'+tgtStr+'</td></tr>'+
+   '<tr><td>Day of week</td><td>'+dow+'</td></tr>'+
+   '<tr><td>Calendar offset</td><td>'+Math.abs(offset)+' days</td></tr>'+
+   '</tbody></table></div>'+
+   '<button class="copybtn" id="copyBtn">Copy Result</button>'+
+   '<p class="note">Dates before 1582 are shown as proleptic (calculated retroactively) since the Gregorian calendar did not yet exist. This tool converts the day and month directly; it does not shift the year for the older March 25 "Lady Day" new-year convention some Old Style sources use.</p>';
+
+  results.innerHTML=html;
+  results.classList.remove('show');
+  void results.offsetWidth;
+  results.classList.add('show');
+
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    navigator.clipboard.writeText(copyText).then(()=>{
+      const btn=document.getElementById('copyBtn');
+      btn.textContent='Copied!';
+      setTimeout(()=>{btn.textContent='Copy Result';},2000);
+    });
+  });
+}
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

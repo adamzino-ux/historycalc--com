@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free Hebrew Calendar Date Converter | HistoryCalc</title>
+<meta name="description" content="Free Hebrew calendar date converter: convert any Gregorian date to the Hebrew (Jewish) calendar and back, with weekday and leap year details instantly.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/hebrew-calendar-date-converter/">
+<style>
+:root{
+  --bg:#fdfaf3; --card:#f5f0e1; --border:#c4a882; --text:#2c1810;
+  --accent:#8b4513; --accent-dark:#6b350f; --gray:#efe8d8;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:1rem 0;font-weight:700;font-size:1.1rem;}
+nav a{color:var(--accent);text-decoration:none;}
+h1{font-size:1.6rem;margin:0.5rem 0 1rem;color:var(--text);}
+h2{color:var(--accent-dark);margin-top:2rem;font-size:1.25rem;}
+p{line-height:1.6;}
+.svg-wrap{text-align:center;margin:1rem 0;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:2rem;box-shadow:0 2px 6px rgba(0,0,0,0.08);margin-bottom:2rem;}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;}
+.tab-btn{flex:1;padding:0.8rem;border:1px solid var(--border);background:var(--gray);color:var(--text);border-radius:6px;font-weight:600;cursor:pointer;min-height:44px;}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.panel{display:none;}
+.panel.active{display:block;animation:fade 0.3s ease;}
+@keyframes fade{from{opacity:0;}to{opacity:1;}}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a4a3a;margin-bottom:0.3rem;margin-top:1rem;}
+input,select{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:6px;font-size:1rem;background:#fff;color:var(--text);min-height:44px;}
+input:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(139,69,19,0.15);}
+input.err-input,select.err-input{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.15);}
+.row{display:flex;gap:0.8rem;}
+.row>div{flex:1;}
+button.go{margin-top:1.5rem;width:100%;padding:12px 24px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;min-height:44px;}
+button.go:hover{background:var(--accent-dark);}
+.error{color:#e74c3c;font-size:0.85rem;margin-top:0.4rem;display:none;}
+.results{margin-top:2rem;opacity:0;transition:opacity 0.3s ease;}
+.results.show{opacity:1;}
+.bignum{font-size:1.9rem;font-weight:700;color:var(--accent-dark);text-align:center;margin:0.5rem 0 1rem;}
+.sub{text-align:center;color:#5a4a3a;margin-bottom:1rem;}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;margin-top:0.5rem;font-size:0.92rem;}
+th,td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left;}
+th{background:var(--gray);}
+td.num{text-align:right;}
+tr:nth-child(even){background:#fbf7ec;}
+.copy-btn{margin-top:0.8rem;background:var(--gray);color:var(--accent-dark);border:1px solid var(--border);padding:8px 14px;border-radius:6px;font-size:0.85rem;cursor:pointer;min-height:36px;}
+.dyk{background:#fff8e8;border:1px solid var(--border);border-left:5px solid var(--accent);border-radius:6px;padding:1rem 1.2rem;margin:1.5rem 0;}
+.dyk strong{color:var(--accent-dark);}
+.ad-slot{min-height:0;margin:0;}
+details{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:0.8rem 1rem;margin-bottom:0.6rem;}
+summary{font-weight:600;cursor:pointer;}
+.related a{display:block;color:var(--accent);text-decoration:none;padding:0.5rem 0;border-bottom:1px dashed var(--border);}
+footer{margin-top:2rem;padding:1.5rem 0;border-top:1px solid var(--border);font-size:0.85rem;color:#5a4a3a;text-align:center;}
+footer a{color:var(--accent);text-decoration:none;margin:0 0.4rem;}
+@media (max-width:480px){.row{flex-direction:column;}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/hebrew-calendar-date-converter/">
+<meta property="og:title" content="Hebrew Calendar Date Converter">
+<meta property="og:description" content="Free Hebrew calendar date converter: convert any Gregorian date to the Hebrew (Jewish) calendar and back, with weekday and leap year details instantly.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+<h1>Hebrew Calendar Date Converter</h1>
+<p>This <strong>Hebrew calendar date converter</strong> translates any Gregorian (civil) date into the Hebrew calendar and back again, showing the weekday, leap-year status, and month lengths used in the traditional Jewish lunisolar calendar.</p>
+
+<div class="svg-wrap">
+<svg viewBox="0 0 220 100" width="220" height="100" role="img" aria-label="Crescent moon and Star of David illustration">
+<rect x="0" y="0" width="220" height="100" fill="#f5f0e1" rx="8"/>
+<path d="M55 20 A30 30 0 1 0 55 80 A22 22 0 1 1 55 20 Z" fill="#8b4513"/>
+<polygon points="150,15 175,58 125,58" fill="none" stroke="#8b4513" stroke-width="4"/>
+<polygon points="150,75 125,32 175,32" fill="none" stroke="#8b4513" stroke-width="4"/>
+</svg>
+</div>
+
+<div class="card">
+<div class="tabs">
+<button class="tab-btn active" id="tabG" type="button">Gregorian → Hebrew</button>
+<button class="tab-btn" id="tabH" type="button">Hebrew → Gregorian</button>
+</div>
+
+<div class="panel active" id="panelG">
+<label for="gdate">Gregorian Date</label>
+<input type="date" id="gdate">
+<div class="error" id="errG"></div>
+<button class="go" id="btnG">Convert to Hebrew Date</button>
+</div>
+
+<div class="panel" id="panelH">
+<div class="row">
+<div>
+<label for="hyear">Hebrew Year</label>
+<input type="number" id="hyear" value="5785" min="1" max="9999">
+</div>
+<div>
+<label for="hmonth">Month</label>
+<select id="hmonth"></select>
+</div>
+</div>
+<label for="hday">Day</label>
+<select id="hday"></select>
+<div class="error" id="errH"></div>
+<button class="go" id="btnH">Convert to Gregorian Date</button>
+</div>
+
+<div class="results" id="results"></div>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Hebrew Calendar Date Converter</h2>
+<p>Pick a tab depending on the direction you need. For "Gregorian → Hebrew," choose any civil calendar date and click convert to see the equivalent Hebrew year, month, and day. For "Hebrew → Gregorian," enter a Hebrew year, then choose the month and day (the day list automatically adjusts for 29- or 30-day months) and click convert to see the matching civil date, weekday, and leap-year information.</p>
+
+<h2>Why This Matters</h2>
+<p>The Hebrew calendar governs Jewish holidays, Torah readings, yahrzeits (memorial anniversaries), and Bar/Bat Mitzvah dates, all of which shift relative to the Gregorian calendar every year because Hebrew months follow the moon while the year is anchored to the solar seasons. Genealogists tracing family records from Eastern Europe, historians dating rabbinic responsa or ketubot (marriage contracts), and anyone planning a Passover seder or Rosh Hashanah dinner needs a reliable way to move between the two systems. For example, knowing that 15 Nisan always falls on the first night of Passover only helps if you can translate it into a specific Gregorian date each spring. This tool removes the guesswork by applying the same arithmetic rules used in printed Jewish calendars since the 4th century.</p>
+
+<h2>How It's Calculated</h2>
+<p>The Hebrew calendar is lunisolar: twelve lunar months of 29 or 30 days (about 354 days total) are periodically corrected with a leap month, Adar II, so the calendar stays aligned with the solar year. Leap years occur in years 3, 6, 8, 11, 14, 17, and 19 of a 19-year Metonic cycle — the rule is <code>(7 × year + 1) mod 19 &lt; 7</code>. Each month's length depends on the "molad" (mean lunar conjunction) and postponement rules (dechiyot) that prevent Rosh Hashanah from falling on Sunday, Wednesday, or Friday. This converter implements the classical arithmetic algorithm (delay calculations, month-day tables, and Julian Day Number bridging) to move precisely between the Hebrew epoch of 3761 BCE and any Gregorian date.</p>
+
+<h2>Historical Context</h2>
+<p>The modern fixed-arithmetic Hebrew calendar was formalized around 359 CE, traditionally credited to Sanhedrin president Hillel II, replacing the earlier practice of observing new moons by eyewitness testimony and sending messengers to announce the new month across Jewish communities. Years are counted from Anno Mundi (AM), the traditional date of Creation, placed at 3761 BCE — so the Gregorian year 2025 overlaps mostly with Hebrew year 5785/5786. The calendar's 19-year Metonic cycle, which reconciles 235 lunar months with 19 solar years, was independently discovered by the Greek astronomer Meton of Athens in 432 BCE and by Babylonian astronomers even earlier, showing how ancient cultures converged on the same lunisolar solution.</p>
+
+<div class="dyk">
+<strong>Did You Know?</strong>
+<ul>
+<li>Because Rosh Hashanah can't fall on Sunday, Wednesday, or Friday, some Hebrew years are "deficient" (353 days), "regular" (354 days), or "complete" (355 days) — and leap versions add exactly 30 days for Adar I.</li>
+<li>The Hebrew day begins at sunset, not midnight, so a Hebrew date actually spans parts of two Gregorian dates.</li>
+<li>Adar II, the leap month, is inserted 7 times every 19 years — the same 19-year cycle used independently in ancient Babylon and Classical Greece.</li>
+<li><strong>Modern equivalent:</strong> Hebrew year 5785 means the calendar's epoch (3761 BCE) predates the Gregorian calendar reform of 1582 CE by more than 5,300 years — roughly the same gap that separates today from the invention of writing in ancient Sumer.</li>
+</ul>
+</div>
+
+<h2>Worked Example</h2>
+<p>Suppose you want to know the Hebrew date for October 3, 2024 (Gregorian). Converting via the algorithm: the Julian Day Number for that date is calculated first, then translated using the Hebrew delay and month-length rules. The result is <strong>1 Tishrei 5785</strong> — the very first day of the Hebrew year, which is Rosh Hashanah. The tool also reports that 5785 is <em>not</em> a leap year (12 months), that the year has 354 days (a "regular" year), and that the weekday is Thursday. Running the reverse conversion — entering Hebrew year 5785, month Tishrei, day 1 — returns exactly October 3, 2024, confirming the round-trip accuracy. The tool also shows that this date falls roughly 2,113,000 days after the traditional Creation, about the same span as 72 average human lifetimes of 80 years laid end to end.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Remember the Hebrew day starts at sunset — a date labeled "1 Tishrei" in civil terms corresponds to the evening before through the following daylight.</li>
+<li>Don't assume every year has the same number of months — leap years have 13 months (Adar I and Adar II), which shifts holiday dates by roughly a month compared to non-leap years.</li>
+<li>Cheshvan and Kislev vary in length (29 or 30 days) depending on the year type, which is why the day dropdown adjusts automatically for the year and month you pick.</li>
+<li>This tool uses the proleptic Gregorian calendar for all conversions; dates before 1582 CE in real historical records may have used the Julian calendar instead.</li>
+<li>Double-check leap year status before scheduling a Hebrew-date anniversary years in advance, since Adar I/Adar II naming can be confusing for Purim and Bar Mitzvah planning.</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>How do I convert a Gregorian date to the Hebrew calendar?</summary><p>Select the "Gregorian → Hebrew" tab, choose your date using the date picker, and click convert. The tool instantly shows the Hebrew year, month, and day, along with the weekday and whether it's a leap year.</p></details>
+<details><summary>Why does the Hebrew year change in September or October?</summary><p>The Hebrew year begins on 1 Tishrei (Rosh Hashanah), which usually falls in September or early October on the Gregorian calendar, so each Hebrew year overlaps two consecutive Gregorian years.</p></details>
+<details><summary>What is a Hebrew leap year?</summary><p>A leap year adds a 13th month, Adar II, to keep the lunar calendar synchronized with the solar seasons. This happens 7 times in every 19-year cycle, following the rule (7×year+1) mod 19 &lt; 7.</p></details>
+<details><summary>How accurate is this Hebrew date converter?</summary><p>It implements the classical fixed arithmetic rules used in printed Jewish calendars since the calendar's standardization around 359 CE, so it matches published Hebrew calendars for any year, ancient or modern.</p></details>
+<details><summary>Does the Hebrew calendar start at midnight like the Gregorian calendar?</summary><p>No — Hebrew days begin at sunset. This converter reports the civil (daytime) equivalent date, which is the convention most calendars and software use for date matching.</p></details>
+<details><summary>What year is it on the Hebrew calendar right now?</summary><p>As of late 2024–2025 CE, the Hebrew calendar is in year 5785, counted from the traditional Creation date of 3761 BCE (Anno Mundi).</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet &amp; Calorie Calculator</a>
+<a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+<a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+<a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+<a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+<a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/hebrew-calendar-date-converter/">HistoryCalc</a></p>
+</div>
+
+<script>
+function mod(a,b){return a-b*Math.floor(a/b);}
+const GREGORIAN_EPOCH=1721425.5, HEBREW_EPOCH=347995.5;
+function isGregLeap(y){return (y%4===0 && (y%100!==0||y%400===0));}
+function gregorianToJD(year,month,day){
+  return (GREGORIAN_EPOCH-1)+365*(year-1)+Math.floor((year-1)/4)-Math.floor((year-1)/100)+Math.floor((year-1)/400)+Math.floor((367*month-362)/12+(month<=2?0:(isGregLeap(year)?-1:-2))+day);
+}
+function jdToGregorian(jd){
+  let wjd=Math.floor(jd-0.5)+0.5;
+  let depoch=wjd-GREGORIAN_EPOCH;
+  let quadricent=Math.floor(depoch/146097);
+  let dqc=mod(depoch,146097);
+  let cent=Math.floor(dqc/36524);
+  let dcent=mod(dqc,36524);
+  let quad=Math.floor(dcent/1461);
+  let dquad=mod(dcent,1461);
+  let yindex=Math.floor(dquad/365);
+  let year=quadricent*400+cent*100+quad*4+yindex;
+  if(!(cent===4||yindex===4)) year++;
+  let yearday=wjd-gregorianToJD(year,1,1);
+  let leapadj=(wjd<gregorianToJD(year,3,1))?0:(isGregLeap(year)?1:2);
+  let month=Math.floor(((yearday+leapadj)*12+373)/367);
+  let day=(wjd-gregorianToJD(year,month,1))+1;
+  return [year,month,day];
+}
+function hebrewLeap(year){return mod(year*7+1,19)<7;}
+function hebrewYearMonths(year){return hebrewLeap(year)?13:12;}
+function hebrewDelay1(year){
+  let months=Math.floor((235*year-234)/19);
+  let parts=12084+13753*months;
+  let day=months*29+Math.floor(parts/25920);
+  if(mod(3*(day+1),7)<3) day++;
+  return day;
+}
+function hebrewDelay2(year){
+  let last=hebrewDelay1(year-1);
+  let present=hebrewDelay1(year);
+  let next=hebrewDelay1(year+1);
+  return (next-present===356)?2:((present-last===382)?1:0);
+}
+function hebrewToJD(year,month,day){
+  let months=hebrewYearMonths(year);
+  let jd=HEBREW_EPOCH+hebrewDelay1(year)+hebrewDelay2(year)+day+1;
+  if(month<7){
+    for(let m=7;m<=months;m++) jd+=hebrewMonthDays(year,m);
+    for(let m=1;m<month;m++) jd+=hebrewMonthDays(year,m);
+  } else {
+    for(let m=7;m<month;m++) jd+=hebrewMonthDays(year,m);
+  }
+  return jd;
+}
+function hebrewYearDays(year){return hebrewToJD(year+1,7,1)-hebrewToJD(year,7,1);}
+function longHeshvan(year){return mod(hebrewYearDays(year),10)===5;}
+function shortKislev(year){return mod(hebrewYearDays(year),10)===3;}
+function hebrewMonthDays(year,month){
+  if([2,4,6,10,13].includes(month)) return 29;
+  if(month===12 && !hebrewLeap(year)) return 29;
+  if(month===8 && !longHeshvan(year)) return 29;
+  if(month===9 && shortKislev(year)) return 29;
+  return 30;
+}
+function jdToHebrew(jd){
+  jd=Math.floor(jd)+0.5;
+  let count=Math.floor(((jd-HEBREW_EPOCH)*98496)/35975351);
+  let year=count-1;
+  let i=count;
+  while(jd>=hebrewToJD(i,7,1)){ year++; i++; }
+  let first=(jd<hebrewToJD(year,1,1))?7:1;
+  let month=first;
+  let m=first;
+  while(jd>hebrewToJD(year,m,hebrewMonthDays(year,m))){ month++; m++; }
+  let day=(jd-hebrewToJD(year,month,1))+1;
+  return [year,month,day];
+}
+function jwday(jd){return mod(Math.floor(jd+1.5),7);}
+const WDAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const HMONTHS=["","Nisan","Iyar","Sivan","Tammuz","Av","Elul","Tishrei","Cheshvan","Kislev","Tevet","Shevat","Adar","Adar II"];
+function hebMonthName(year,month){
+  if(month===12) return hebrewLeap(year)?"Adar I":"Adar";
+  return HMONTHS[month];
+}
+function fmt(n){return n.toLocaleString();}
+
+function monthTableHTML(year){
+  const months=hebrewYearMonths(year);
+  let order=[];
+  for(let m=7;m<=months;m++) order.push(m);
+  for(let m=1;m<7;m++) order.push(m);
+  let rows=order.map(m=>`<tr><td>${hebMonthName(year,m)}</td><td class="num">${hebrewMonthDays(year,m)}</td></tr>`).join('');
+  return `<div class="table-wrap"><table><thead><tr><th>Month</th><th style="text-align:right">Days</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+
+function showResults(html){
+  const r=document.getElementById('results');
+  r.innerHTML=html;
+  r.classList.remove('show');
+  requestAnimationFrame(()=>{ r.classList.add('show'); });
+}
+
+function copyText(id){
+  const el=document.getElementById(id);
+  navigator.clipboard.writeText(el.dataset.copy||el.textContent).then(()=>{
+    const btn=document.getElementById(id+'btn');
+    if(btn){const old=btn.textContent;btn.textContent='Copied!';setTimeout(()=>{btn.textContent=old;},2000);}
+  });
+}
+
+function setError(el,msgEl,msg){
+  if(msg){
+    if(el) el.classList.add('err-input');
+    msgEl.textContent=msg;
+    msgEl.style.display='block';
+  } else {
+    if(el) el.classList.remove('err-input');
+    msgEl.style.display='none';
+  }
+}
+
+function convertGtoH(){
+  const dateEl=document.getElementById('gdate');
+  const errEl=document.getElementById('errG');
+  const val=dateEl.value;
+  if(!val){setError(dateEl,errEl,'Please choose a valid date.');return;}
+  const parts=val.split('-');
+  const gy=parseInt(parts[0],10), gm=parseInt(parts[1],10), gd=parseInt(parts[2],10);
+  if(!gy||!gm||!gd||gy<1||gy>9999){setError(dateEl,errEl,'Please enter a date between year 1 and 9999.');return;}
+  setError(dateEl,errEl,null);
+  const jd=gregorianToJD(gy,gm,gd);
+  const [hy,hm,hd]=jdToHebrew(jd);
+  const wd=WDAYS[jwday(jd)];
+  const leap=hebrewLeap(hy);
+  const yearDays=hebrewYearDays(hy);
+  const monthDays=hebrewMonthDays(hy,hm);
+  const elapsedDays=Math.round(jd-HEBREW_EPOCH);
+  const lifetimes=(elapsedDays/29220).toFixed(1);
+  const summary=`${hd} ${hebMonthName(hy,hm)} ${hy}`;
+  const html=`
+    <div class="bignum">${summary}</div>
+    <div class="sub">${wd} • Hebrew year ${fmt(hy)} is ${leap?'a leap year (13 months)':'a regular year (12 months)'}</div>
+    <div class="table-wrap"><table><tbody>
+    <tr><td>Gregorian date</td><td class="num">${gm}/${gd}/${gy}</td></tr>
+    <tr><td>Weekday</td><td class="num">${wd}</td></tr>
+    <tr><td>Hebrew month length</td><td class="num">${monthDays} days</td></tr>
+    <tr><td>Hebrew year length</td><td class="num">${yearDays} days</td></tr>
+    <tr><td>Years since Creation (AM)</td><td class="num">${fmt(hy)}</td></tr>
+    <tr><td>Days since Creation (AM)</td><td class="num">${fmt(elapsedDays)}</td></tr>
+    </tbody></table></div>
+    <p style="margin-top:0.8rem;font-size:0.9rem;color:#5a4a3a;"><strong>Modern equivalent:</strong> ${fmt(elapsedDays)} days since the traditional Creation is roughly ${lifetimes} average human lifetimes of 80 years each, laid end to end.</p>
+    <p style="margin-top:1rem;font-weight:600;">Full month layout for Hebrew year ${fmt(hy)}:</p>
+    ${monthTableHTML(hy)}
+    <button class="copy-btn" id="copyResbtn" onclick="copyText('copyRes')">Copy Result</button>
+    <span id="copyRes" style="display:none" data-copy="${summary} (${wd}), Gregorian ${gm}/${gd}/${gy}"></span>
+  `;
+  showResults(html);
+}
+
+function populateHMonths(){
+  const yEl=document.getElementById('hyear');
+  let y=parseInt(yEl.value,10);
+  if(!y||y<1) y=1;
+  const months=hebrewYearMonths(y);
+  const sel=document.getElementById('hmonth');
+  const order=[];
+  for(let m=7;m<=months;m++) order.push(m);
+  for(let m=1;m<7;m++) order.push(m);
+  const cur=sel.value;
+  sel.innerHTML=order.map(m=>`<option value="${m}">${hebMonthName(y,m)}</option>`).join('');
+  if(order.includes(parseInt(cur,10))) sel.value=cur; else sel.value=order[0];
+  populateHDays();
+}
+function populateHDays(){
+  const y=parseInt(document.getElementById('hyear').value,10)||1;
+  const m=parseInt(document.getElementById('hmonth').value,10);
+  const days=hebrewMonthDays(y,m);
+  const sel=document.getElementById('hday');
+  const cur=sel.value;
+  let opts='';
+  for(let d=1;d<=days;d++) opts+=`<option value="${d}">${d}</option>`;
+  sel.innerHTML=opts;
+  if(cur && parseInt(cur,10)<=days) sel.value=cur;
+}
+
+function convertHtoG(){
+  const yEl=document.getElementById('hyear');
+  const dEl=document.getElementById('hday');
+  const errEl=document.getElementById('errH');
+  const y=parseInt(yEl.value,10);
+  const m=parseInt(document.getElementById('hmonth').value,10);
+  const d=parseInt(dEl.value,10);
+  if(!y||y<1||y>9999){setError(yEl,errEl,'Please enter a Hebrew year between 1 and 9999.');return;}
+  const maxDay=hebrewMonthDays(y,m);
+  if(!d||d<1||d>maxDay){setError(dEl,errEl,`Day must be between 1 and ${maxDay} for this month.`);return;}
+  setError(null,errEl,null);
+  yEl.classList.remove('err-input');
+  dEl.classList.remove('err-input');
+  const jd=hebrewToJD(y,m,d);
+  const [gy,gm,gd]=jdToGregorian(jd);
+  const wd=WDAYS[jwday(jd)];
+  const leap=hebrewLeap(y);
+  const yearDays=hebrewYearDays(y);
+  const elapsedDays=Math.round(jd-HEBREW_EPOCH);
+  const lifetimes=(elapsedDays/29220).toFixed(1);
+  const gdate=`${String(gm).padStart(2,'0')}/${String(gd).padStart(2,'0')}/${gy}`;
+  const html=`
+    <div class="bignum">${gdate}</div>
+    <div class="sub">${wd} • Hebrew year ${fmt(y)} is ${leap?'a leap year (13 months)':'a regular year (12 months)'}</div>
+    <div class="table-wrap"><table><tbody>
+    <tr><td>Hebrew date</td><td class="num">${d} ${hebMonthName(y,m)} ${fmt(y)}</td></tr>
+    <tr><td>Weekday</td><td class="num">${wd}</td></tr>
+    <tr><td>Month length</td><td class="num">${maxDay} days</td></tr>
+    <tr><td>Hebrew year length</td><td class="num">${yearDays} days</td></tr>
+    <tr><td>Days since Creation (AM)</td><td class="num">${fmt(elapsedDays)}</td></tr>
+    </tbody></table></div>
+    <p style="margin-top:0.8rem;font-size:0.9rem;color:#5a4a3a;"><strong>Modern equivalent:</strong> ${fmt(elapsedDays)} days since the traditional Creation is roughly ${lifetimes} average human lifetimes of 80 years each, laid end to end.</p>
+    <p style="margin-top:1rem;font-weight:600;">Full month layout for Hebrew year ${fmt(y)}:</p>
+    ${monthTableHTML(y)}
+    <button class="copy-btn" id="copyResbtn" onclick="copyText('copyRes')">Copy Result</button>
+    <span id="copyRes" style="display:none" data-copy="Gregorian ${gdate} (${wd}), Hebrew ${d} ${hebMonthName(y,m)} ${y}"></span>
+  `;
+  showResults(html);
+}
+
+document.getElementById('tabG').addEventListener('click',()=>{
+  document.getElementById('tabG').classList.add('active');
+  document.getElementById('tabH').classList.remove('active');
+  document.getElementById('panelG').classList.add('active');
+  document.getElementById('panelH').classList.remove('active');
+});
+document.getElementById('tabH').addEventListener('click',()=>{
+  document.getElementById('tabH').classList.add('active');
+  document.getElementById('tabG').classList.remove('active');
+  document.getElementById('panelH').classList.add('active');
+  document.getElementById('panelG').classList.remove('active');
+});
+document.getElementById('btnG').addEventListener('click',()=>{requestAnimationFrame(convertGtoH);});
+document.getElementById('btnH').addEventListener('click',()=>{requestAnimationFrame(convertHtoG);});
+document.getElementById('gdate').addEventListener('keydown',e=>{if(e.key==='Enter') requestAnimationFrame(convertGtoH);});
+document.getElementById('hday').addEventListener('keydown',e=>{if(e.key==='Enter') requestAnimationFrame(convertHtoG);});
+document.getElementById('hyear').addEventListener('change',populateHMonths);
+document.getElementById('hyear').addEventListener('keydown',e=>{if(e.key==='Enter'){populateHMonths();requestAnimationFrame(convertHtoG);}});
+document.getElementById('hmonth').addEventListener('change',populateHDays);
+
+// init
+(function(){
+  const today=new Date();
+  const y=today.getFullYear(), m=String(today.getMonth()+1).padStart(2,'0'), d=String(today.getDate()).padStart(2,'0');
+  document.getElementById('gdate').value=`${y}-${m}-${d}`;
+  const jd=gregorianToJD(y,today.getMonth()+1,today.getDate());
+  const [hy]=jdToHebrew(jd);
+  document.getElementById('hyear').value=hy;
+  populateHMonths();
+  convertGtoH();
+})();
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Aztec Tribute Roll Estimator | HistoryCalc</title>
+<meta name="description" content="Use this free Aztec tribute system calculator to estimate cacao, cloth, jade, and feather tribute owed to Tenochtitlan, inspired by the Codex Mendoza.">
+<link rel="canonical" href="https://historycalc.com/aztec-tribute-roll-estimator/">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f0e1;
+    --card: #fdf8ef;
+    --accent: #8b4513;
+    --accent-dark: #6b3410;
+    --text: #2c1810;
+    --border: #c4a882;
+    --muted: #7a6248;
+    --highlight: #fff8e7;
+    --red: #c0392b;
+    --gold: #c8860a;
+    --shadow: rgba(44,24,16,0.12);
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    background: var(--accent);
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 6px var(--shadow);
+  }
+  nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+  }
+  nav a:hover { text-decoration: underline; }
+
+  .page-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+  }
+
+  .svg-hero {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+  }
+  .subtitle {
+    font-size: 0.92rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.75rem 1.5rem;
+    box-shadow: 0 2px 10px var(--shadow);
+    margin-bottom: 2rem;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0.4rem;
+  }
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin: 1rem 0 0.5rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3a20;
+    margin-bottom: 0.35rem;
+  }
+  label .hint {
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--text);
+    font-size: 0.97rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 44px;
+    font-family: inherit;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.18);
+  }
+  input.error { border-color: var(--red); }
+
+  .error-msg {
+    font-size: 0.8rem;
+    color: var(--red);
+    margin-top: 0.3rem;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  .row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    .row-2 { grid-template-columns: 1fr; }
+  }
+
+  .checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  @media (max-width: 420px) {
+    .checkbox-group { grid-template-columns: 1fr; }
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background 0.15s;
+  }
+  .checkbox-item:hover { background: #ede7d2; }
+  .checkbox-item input[type="checkbox"] {
+    width: 16px; height: 16px; min-height: unset;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .checkbox-item span { font-size: 0.88rem; color: var(--text); }
+
+  .slider-group { margin-top: 0.4rem; }
+  input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent);
+    min-height: 20px;
+    cursor: pointer;
+  }
+  .slider-val {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 700;
+    text-align: right;
+    margin-top: 0.2rem;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 13px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    min-height: 44px;
+    transition: background 0.2s;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: var(--accent-dark); }
+  .btn-sm {
+    display: inline-block;
+    width: auto;
+    background: var(--muted);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 14px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    min-height: 32px;
+    transition: background 0.2s;
+    font-family: inherit;
+  }
+  .btn-sm:hover { background: #5a3a20; }
+  .btn-sm.copied { background: #2e7d32; }
+
+  .results-section {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .results-section.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .big-number {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .big-label {
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+  .big-stat-row {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+  }
+  .big-stat { flex: 1; min-width: 120px; }
+
+  .result-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .table-wrap { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  th {
+    background: #e8d9c0;
+    color: var(--text);
+    font-weight: 700;
+    padding: 8px 10px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  th.num, td.num { text-align: right; }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e5d9c5;
+  }
+  tr:nth-child(even) td { background: #fdf6e8; }
+  tr:nth-child(odd) td { background: #fff; }
+  tr:last-child td { border-bottom: none; }
+
+  .modern-eq {
+    background: #fff3cd;
+    border: 1px solid #e8c84c;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+  }
+  .modern-eq strong { color: var(--gold); }
+
+  .did-you-know {
+    background: #f0e8d5;
+    border-left: 4px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+    margin: 1.5rem 0;
+    font-size: 0.9rem;
+  }
+  .did-you-know h3 {
+    color: var(--accent);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+  .did-you-know li { margin-left: 1.2rem; margin-bottom: 0.4rem; }
+
+  .hist-context {
+    background: var(--highlight);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    line-height: 1.65;
+  }
+  .hist-context h2 { font-size: 1rem; margin-bottom: 0.6rem; }
+
+  .disclaimer {
+    font-size: 0.8rem;
+    color: var(--muted);
+    background: #efe6d2;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    padding: 0.7rem 0.9rem;
+    margin-top: 1rem;
+  }
+
+  .content-section { margin-bottom: 2rem; }
+  .content-section p { font-size: 0.93rem; margin-bottom: 0.8rem; color: var(--text); }
+  .content-section ul, .content-section ol {
+    padding-left: 1.4rem;
+    margin-bottom: 0.8rem;
+  }
+  .content-section li { font-size: 0.93rem; margin-bottom: 0.4rem; }
+
+  details {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.6rem;
+    background: var(--card);
+  }
+  summary {
+    padding: 0.75rem 1rem;
+    font-weight: 600;
+    font-size: 0.92rem;
+    cursor: pointer;
+    color: var(--accent);
+    list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: '▶ '; font-size: 0.7rem; }
+  details[open] summary::before { content: '▼ '; }
+  details p { padding: 0 1rem 0.75rem; font-size: 0.9rem; }
+
+  .related-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-top: 0.8rem;
+  }
+  @media (max-width: 480px) { .related-tools { grid-template-columns: 1fr; } }
+
+  .related-tools a {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.15s;
+    display: block;
+  }
+  .related-tools a:hover { background: #ede0c8; text-decoration: underline; }
+
+  footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  footer a { color: var(--accent); text-decoration: none; margin: 0 0.5rem; }
+  footer a:hover { text-decoration: underline; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  .progress-bar-wrap {
+    background: #e8d9c0;
+    border-radius: 4px;
+    height: 10px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+
+  @media (max-width: 640px) {
+    .card { padding: 1.2rem 1rem; }
+    .page-wrap { padding: 1rem 0.75rem 2rem; }
+    h1 { font-size: 1.35rem; }
+    .big-number { font-size: 1.9rem; }
+  }
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/aztec-tribute-roll-estimator/">
+<meta property="og:title" content="Aztec Tribute Roll Estimator">
+<meta property="og:description" content="Use this free Aztec tribute system calculator to estimate cacao, cloth, jade, and feather tribute owed to Tenochtitlan, inspired by the Codex Mendoza.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+
+<nav><a href="/">⚔ historycalc.com</a></nav>
+
+<div class="page-wrap">
+
+  <!-- SVG Hero -->
+  <div class="svg-hero">
+    <svg width="120" height="110" viewBox="0 0 120 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Aztec Sun Stone illustration" role="img">
+      <circle cx="60" cy="58" r="48" fill="#c4a882" opacity="0.3"/>
+      <circle cx="60" cy="58" r="44" fill="none" stroke="#8b4513" stroke-width="3"/>
+      <g stroke="#8b4513" stroke-width="2">
+        <line x1="60" y1="14" x2="60" y2="6"/>
+        <line x1="60" y1="102" x2="60" y2="110"/>
+        <line x1="16" y1="58" x2="8" y2="58"/>
+        <line x1="104" y1="58" x2="112" y2="58"/>
+        <line x1="30.3" y1="28.3" x2="24.6" y2="22.6"/>
+        <line x1="89.7" y1="87.7" x2="95.4" y2="93.4"/>
+        <line x1="89.7" y1="28.3" x2="95.4" y2="22.6"/>
+        <line x1="30.3" y1="87.7" x2="24.6" y2="93.4"/>
+      </g>
+      <circle cx="60" cy="58" r="30" fill="#f5f0e1" stroke="#8b4513" stroke-width="2"/>
+      <circle cx="60" cy="58" r="18" fill="#c8860a" opacity="0.4"/>
+      <circle cx="60" cy="58" r="10" fill="#8b4513" opacity="0.6"/>
+      <rect x="30" y="96" width="60" height="10" rx="3" fill="#c4a882" opacity="0.6"/>
+      <line x1="34" y1="100" x2="86" y2="100" stroke="#8b4513" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="34" y1="103" x2="86" y2="103" stroke="#8b4513" stroke-width="1" stroke-dasharray="3,3"/>
+    </svg>
+  </div>
+
+  <h1>Aztec Tribute Roll Estimator</h1>
+  <p class="subtitle">This Aztec tribute system calculator estimates tribute a subject province might owe to Tenochtitlan, using an educational model inspired by the Codex Mendoza — cacao, cloth, jade, feathers & more.</p>
+
+  <!-- Historical Context -->
+  <div class="hist-context">
+    <h2>📜 Historical Context</h2>
+    <p>The Aztec Triple Alliance (Tenochtitlan, Texcoco, and Tlacopan) extracted tribute from an estimated 370+ subject towns across Mesoamerica, organized into 38 tribute provinces. The <em>Codex Mendoza</em>, compiled circa 1541, records annual tribute demands including cacao (commonly cited as loads of roughly 24,000 beans each), cotton mantles, warrior costumes, gold discs, jade beads, and feathered war standards. Provinces were classified by wealth and geographic specialization — coastal towns tended to pay feathers and tropical goods, highland towns paid cotton and obsidian. The tribute system helped sustain a capital city estimated at 200,000–300,000 people and funded the empire's continuous military campaigns.</p>
+  </div>
+
+  <!-- Tool Card -->
+  <div class="card">
+    <h2>⚖ Configure Your Province</h2>
+
+    <div class="row-2">
+      <div class="form-group">
+        <label for="popSize">Province Population <span class="hint">(households)</span></label>
+        <input type="number" id="popSize" min="100" max="500000" value="5000" placeholder="e.g. 5000">
+        <div class="error-msg" id="popErr">Enter a number between 100 and 500,000.</div>
+      </div>
+      <div class="form-group">
+        <label for="cyclesPerYear">Tribute Cycles/Year <span class="hint">(1–4)</span></label>
+        <select id="cyclesPerYear">
+          <option value="1">1× (Annual)</option>
+          <option value="2" selected>2× (Semi-Annual)</option>
+          <option value="4">4× (Quarterly / 80-day)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="provType">Province Type <span class="hint">(affects tribute mix)</span></label>
+      <select id="provType">
+        <option value="highland" selected>Highland Agricultural</option>
+        <option value="coastal">Coastal / Lowland</option>
+        <option value="forest">Forest / Jungle</option>
+        <option value="merchant">Merchant / Urban</option>
+        <option value="mining">Mining / Obsidian</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Tribute Goods <span class="hint">(select all that apply — defaults match highland specialization)</span></label>
+      <div class="checkbox-group">
+        <label class="checkbox-item"><input type="checkbox" id="cb_cacao"><span>🫘 Cacao</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_cloth" checked><span>🧵 Cotton Cloth</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_feathers"><span>🪶 Feathers</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_jade"><span>💎 Jade</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_gold"><span>🥇 Gold Dust</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_warriors"><span>⚔️ Warriors</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_obsidian" checked><span>🗡️ Obsidian</span></label>
+        <label class="checkbox-item"><input type="checkbox" id="cb_rubber"><span>🏐 Rubber Balls</span></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="resistance">Resistance Level <span class="hint">(higher = harsher punitive tribute)</span></label>
+      <div class="slider-group">
+        <input type="range" id="resistance" min="0" max="100" value="20">
+        <div class="slider-val" id="resistanceVal">20% — Low Resistance — Tribute Multiplier ×1.40</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="years">Years of Tribute <span class="hint">(for cumulative totals)</span></label>
+      <input type="number" id="years" min="1" max="200" value="10" placeholder="e.g. 10">
+      <div class="error-msg" id="yearsErr">Enter between 1 and 200 years.</div>
+    </div>
+
+    <button class="btn" id="calcBtn">📊 Estimate Tribute Roll</button>
+  </div>
+
+  <!-- Results -->
+  <div class="results-section card" id="resultsSection">
+    <div class="result-header">
+      <h2 style="border:none;padding:0;margin:0;">📋 Tribute Roll Results</h2>
+      <button class="btn-sm" id="copyBtn">Copy Results</button>
+    </div>
+
+    <div class="big-stat-row" id="bigStats"></div>
+
+    <div class="table-wrap">
+      <table id="resultsTable">
+        <thead>
+          <tr>
+            <th>Good</th>
+            <th>Unit</th>
+            <th class="num">Per Cycle</th>
+            <th class="num">Per Year</th>
+            <th class="num"><span id="yearsColLabel">10-Year</span> Total</th>
+            <th>Modern Weight</th>
+          </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+      </table>
+    </div>
+
+    <div id="modernEq" class="modern-eq"></div>
+
+    <div id="barChart" style="margin-top:1.2rem;"></div>
+
+    <div class="disclaimer">Note: this is an educational estimate. Surviving records like the Codex Mendoza report total tribute per province, not per-household rates, so exact figures below are illustrative rather than archival. Modern price comparisons use rough approximate 2024 per-kilogram commodity values and should not be treated as precise appraisals.</div>
+  </div>
+
+  <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>💡 Did You Know?</h3>
+    <ul>
+      <li>The Aztec calendar had 18 months of 20 days, plus 5 "unlucky" days (<em>nemontemi</em>). Tribute was often collected every 80 days — four times per year, aligning with this ritual calendar.</li>
+      <li>A single load (<em>carga</em>) of cacao is commonly cited as roughly 24,000 beans. A province recorded delivering hundreds of loads annually would have been moving millions of individual beans each year.</li>
+      <li>The Aztec state reportedly responded to provincial defiance with punitive tribute increases — sources describe demands being doubled or even tripled as punishment, rather than reduced, when a subject province resisted.</li>
+    </ul>
+  </div>
+
+  <!-- Content Sections -->
+  <div class="content-section card">
+    <h2>How to Use This Aztec Tribute Roll Estimator</h2>
+    <p>Enter your province's population in households, select how many tribute cycles occurred per year (1–4), choose the province type to reflect its geographic specialization, then check which goods it was known to produce. Adjust the resistance slider to model how a defiant province's punitive tribute burden might have grown. Hit "Estimate Tribute Roll" to see per-cycle, annual, and multi-year cumulative totals for each good — the results update automatically whenever you change a setting after your first calculation.</p>
+    <p>The output table mirrors the general format of tribute lists recorded in the <em>Codex Mendoza</em>, using illustrative quantities loosely scaled to population and specialization. Modern weight and value equivalents are provided for scale, not as historical fact.</p>
+  </div>
+
+  <div class="content-section card">
+    <h2>Why This Matters</h2>
+    <p>The Aztec tribute system was one of the most extensive in-kind extraction economies in pre-Columbian history. Scholars estimate that Tenochtitlan received tribute from roughly 370 or more subject towns organized into 38 provinces. The inflow of goods sustained not just the ruling class, but an entire imperial bureaucracy — tax collectors (<em>calpixque</em>), merchant guilds (<em>pochteca</em>), and military garrisons.</p>
+    <p>Understanding tribute loads helps historians reconstruct population sizes, economic specialization, and the political geography of the Aztec empire. For example, Gulf Coast provinces such as Tochtepec are recorded delivering rare tropical luxuries — quetzal feathers, jade, cacao, and gold — goods unavailable in the highland Valley of Mexico. This division of labor let the empire draw specialized resources from every ecological zone under its control.</p>
+    <p>This tool lets students, educators, and history enthusiasts explore how province characteristics translated into economic demands — and how those demands might have felt to the people paying them.</p>
+  </div>
+
+  <div class="content-section card">
+    <h2>How It's Calculated</h2>
+    <p>Quantities are produced by an illustrative household-based model, loosely shaped by the general regional patterns described in the Codex Mendoza and later ethnohistoric scholarship. Because the Codex records total tribute per province rather than a per-household rate, the exact numbers below should be read as educational estimates, not a precise historical reconstruction. The core formula per good per cycle is:</p>
+    <p style="background:#f0e8d5;padding:0.75rem 1rem;border-radius:6px;font-family:monospace;font-size:0.88rem;border-left:3px solid #8b4513;">
+      <strong>Tribute = BaseRate × (Households ÷ 1,000) × ProvinceMultiplier × ResistanceFactor</strong>
+    </p>
+    <ul>
+      <li><strong>BaseRate</strong>: An illustrative rate per 1,000 households per cycle for each good, chosen to produce plausible totals — not an extracted historical figure, since per-household breakdowns do not survive in the record</li>
+      <li><strong>ProvinceMultiplier</strong>: Reflects documented regional specialization patterns (highland provinces emphasizing cloth and obsidian, coastal provinces emphasizing feathers and cacao, merchant towns emphasizing gold, mining towns emphasizing obsidian), though the specific multiplier values themselves are illustrative</li>
+      <li><strong>ResistanceFactor</strong>: Historical accounts describe the Aztec state responding to provincial defiance with punitive tribute increases rather than reductions. This tool models that dynamic with <code>Factor = 1 + (Resistance% ÷ 100) × 2</code>, ranging from 1.0× (0% resistance, full compliance) up to 3.0× (100% resistance, open revolt) — the exact multiplier is always shown next to the slider</li>
+      <li><strong>Annual & multi-year totals</strong>: Annual totals = per-cycle × cycles/year. Multi-year totals = annual × years selected</li>
+    </ul>
+    <p>Unit conversions used for the "modern weight" column are approximate ethnohistoric estimates: a cacao bean ≈ 1 g (so a 24,000-bean load ≈ 24 kg); a cotton mantle (<em>quachtli</em>) ≈ 65 g; a feather bundle of 400 plumes ≈ 800 g; a jade bead ≈ 5 g; a gold-dust quill ≈ 2 g; an obsidian blade ≈ 120 g; a rubber ball ≈ 3.5 kg; and a conscripted warrior is modeled at an average adult body weight of 70 kg, used only to compare total physical scale — not as a commodity price.</p>
+  </div>
+
+  <div class="content-section card">
+    <h2>Worked Example</h2>
+    <p>Using the tool's own defaults: a highland agricultural province with 5,000 households, tribute paid twice a year, 20% resistance, and goods limited to cotton cloth and obsidian blades — the two goods highland provinces are documented specializing in (jade, cacao, and feathers are deliberately left unchecked, since those were lowland and forest specialties).</p>
+    <p>At 20% resistance, the resistance factor is <strong>1 + (20 ÷ 100) × 2 = 1.40×</strong>.</p>
+    <p><strong>Cotton cloth:</strong> base rate 8.0 mantles per 1,000 households per cycle × 5 (thousand households) × 1.4 (highland cloth multiplier) × 1.4 (resistance factor) = <strong>78.4 mantles per cycle</strong>. At 2 cycles/year that's <strong>156.8 mantles per year</strong>, or <strong>1,568 mantles over 10 years</strong> (≈102 kg at 65 g each).</p>
+    <p><strong>Obsidian blades:</strong> base rate 5.0 blades per 1,000 households per cycle × 5 × 1.5 (highland obsidian multiplier) × 1.4 = <strong>52.5 blades per cycle</strong>. That's <strong>105 blades per year</strong>, or <strong>1,050 blades over 10 years</strong> (≈126 kg at 120 g each).</p>
+    <p>Combined, this single mid-sized province would owe roughly <strong>22.8 kg of tribute weight per year</strong>, or about <strong>228 kg over a decade</strong> — illustrating how modest one province's burden looks in isolation, even though the empire drew similar tribute from dozens of provinces simultaneously.</p>
+  </div>
+
+  <div class="content-section card">
+    <h2>Tips & Common Mistakes</h2>
+    <ul>
+      <li><strong>Don't confuse households with individuals.</strong> Tributary records generally counted heads of household. A typical household may have had 4–6 members, so 5,000 households could represent roughly 20,000–30,000 people.</li>
+      <li><strong>Quarterly tribute aligned with the ritual calendar.</strong> The Aztec 365-day year divided into 18 twenty-day months. Tribute collected every 80 days (4 cycles) matched this ritual rhythm.</li>
+      <li><strong>Resistance raised the burden, it didn't lower it.</strong> Provinces that remained under Aztec control but resisted often faced increased, punitive tribute — unlike unconquered polities such as Tlaxcala, which paid no tribute at all because they were never brought under Aztec rule.</li>
+      <li><strong>Province type dominates the mix.</strong> For a highland agricultural province, expect strength in cotton cloth and obsidian rather than jade or tropical feathers — checking goods that don't match the province's documented specialization produces less plausible results.</li>
+      <li><strong>Watch the "modern weight" column when including warriors.</strong> The tool models a conscripted warrior's weight as an average 70 kg adult body, which can dwarf all other goods on the weight chart — toggle it on and off to see how much it skews totals.</li>
+      <li><strong>Treat outputs as estimates, not archival data.</strong> This tool is designed to teach the logic of the tribute system, not to reproduce specific verified totals from any single surviving codex page.</li>
+    </ul>
+  </div>
+
+  <div class="content-section card">
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+      <summary>What was the Codex Mendoza?</summary>
+      <p>The Codex Mendoza is an Aztec document compiled around 1541, shortly after the Spanish conquest, at the order of Viceroy Antonio de Mendoza. It contains three sections: a history of Aztec conquests, a record of tribute paid by each province, and a description of daily Aztec life. The tribute section lists goods owed by dozens of tribute provinces, making it a key source for understanding Aztec fiscal administration.</p>
+    </details>
+
+    <details>
+      <summary>How many cacao beans made a "load"?</summary>
+      <p>One standard load (<em>carga</em>) of cacao is most often cited as approximately 24,000 beans. Some scholars propose figures between 20,000 and 28,000 beans per load, so treat any specific count as an estimate rather than an exact, universally agreed measurement.</p>
+    </details>
+
+    <details>
+      <summary>Did the Aztecs use money?</summary>
+      <p>The Aztecs used cacao beans and standardized cotton mantles (<em>quachtli</em>) as currency in marketplaces like the famous Tlatelolco market. Larger transactions reportedly used T-shaped copper axes and quills filled with gold dust. Tribute goods often circulated back into the economy as wages, gifts to allies, or religious offerings — blurring the line between tax collection and monetary supply management.</p>
+    </details>
+
+    <details>
+      <summary>How does this compare to other ancient tribute systems?</summary>
+      <p>The Aztec system operated at a scale broadly comparable to other major ancient tax systems, such as the Egyptian grain levies of the New Kingdom. Unlike Roman tribute, which increasingly relied on cash payments, Aztec tribute remained largely in-kind, requiring substantial storage and redistribution infrastructure in Tenochtitlan described by Spanish chroniclers.</p>
+    </details>
+
+    <details>
+      <summary>Is this calculator based on exact historical tribute records?</summary>
+      <p>No — it's an educational model. The Codex Mendoza records total tribute per province, not a per-household formula, so this tool uses illustrative rates and multipliers loosely inspired by documented regional specialization patterns. Use it to understand the logic of the tribute system, not as a source of verified historical totals.</p>
+    </details>
+
+    <details>
+      <summary>Why does higher resistance increase tribute instead of lowering it?</summary>
+      <p>Historical accounts suggest the Aztec state used punitive tribute increases as a tool of control over defiant provinces, rather than simply accepting reduced payments. This calculator models that documented punitive dynamic, with the resistance slider raising the tribute multiplier from 1.0× up to 3.0× at maximum resistance, with the exact factor shown live next to the slider.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="content-section">
+    <h2>Related Historical Tools</h2>
+    <div class="related-tools">
+      <a href="/aztec-tribute-estimator/">Aztec Tribute Estimator</a>
+      <a href="/aztec-sun-stone-calendar-decoder/">Aztec Sun Stone Calendar Decoder</a>
+      <a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+      <a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+      <a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+      <a href="/inflation-calculator/">Historical Inflation Calculator</a>
+    </div>
+  </div>
+
+  </div><!-- end page-wrap -->
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/aztec-tribute-roll-estimator/">HistoryCalc</a></p>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+// NOTE: Base rates and province multipliers are illustrative, designed to
+// produce plausible educational estimates. They are NOT extracted directly
+// from the Codex Mendoza, which records province totals rather than
+// per-household rates. Unit weight conversions (bean ≈ 1g, mantle ≈ 65g,
+// jade bead ≈ 5g, gold quill ≈ 2g, obsidian blade ≈ 120g, feather bundle ≈
+// 800g, rubber ball ≈ 3.5kg, warrior ≈ 70kg body weight) follow commonly
+// cited ethnohistoric approximations and are used consistently throughout
+// this tool and its text.
+
+const BASE_RATES = {
+  cacao:    { label: 'Cacao', emoji: '🫘', unit: 'loads (≈24,000 beans)',    rateK: 0.40, kgPerUnit: 24 },
+  cloth:    { label: 'Cotton Cloth', emoji: '🧵', unit: 'quachtli mantles',  rateK: 8.0,  kgPerUnit: 0.065 },
+  feathers: { label: 'Feathers', emoji: '🪶', unit: 'bundles (400 plumes)', rateK: 0.20, kgPerUnit: 0.8 },
+  jade:     { label: 'Jade', emoji: '💎', unit: 'beads',                     rateK: 1.5,  kgPerUnit: 0.005 },
+  gold:     { label: 'Gold Dust', emoji: '🥇', unit: 'quills (≈2g each)',    rateK: 0.80, kgPerUnit: 0.002 },
+  warriors: { label: 'Warriors', emoji: '⚔️', unit: 'conscripts',           rateK: 2.0,  kgPerUnit: 70 },
+  obsidian: { label: 'Obsidian', emoji: '🗡️', unit: 'blades',               rateK: 5.0,  kgPerUnit: 0.12 },
+  rubber:   { label: 'Rubber Balls', emoji: '🏐', unit: 'balls (large)',     rateK: 0.15, kgPerUnit: 3.5 }
+};
+
+// Province multipliers per good (illustrative — reflect known regional
+// specialization patterns, not extracted numeric values)
+const PROV_MULT = {
+  highland: { cacao:0.5, cloth:1.4, feathers:0.4, jade:0.8, gold:0.4, warriors:1.2, obsidian:1.5, rubber:0.2 },
+  coastal:  { cacao:1.4, cloth:0.9, feathers:1.8, jade:0.9, gold:0.7, warriors:0.9, obsidian:0.3, rubber:0.8 },
+  forest:   { cacao:1.2, cloth:0.7, feathers:2.0, jade:1.1, gold:0.5, warriors:0.8, obsidian:0.3, rubber:1.6 },
+  merchant: { cacao:0.8, cloth:1.0, feathers:0.9, jade:1.5, gold:2.0, warriors:0.6, obsidian:0.6, rubber:0.4 },
+  mining:   { cacao:0.4, cloth:0.8, feathers:0.3, jade:0.6, gold:1.2, warriors:1.0, obsidian:3.0, rubber:0.2 }
+};
+
+// Illustrative modern commodity value, expressed in approximate 2024 USD
+// PER KILOGRAM (not per tribute unit), so totals scale directly with the
+// weight already computed for each good. Figures are rough approximations
+// of real-world raw-material prices (e.g. gold ≈ $65/gram in 2024, raw
+// cocoa spiked to roughly $8–12/kg in 2023–2024) and should be read as
+// illustrative scale comparisons, not appraisals.
+const MODERN_USD_PER_KG = {
+  cacao:    10,
+  cloth:    15,
+  feathers: 50,
+  jade:     80,
+  gold:     65000,
+  warriors: 0,
+  obsidian: 5,
+  rubber:   2
+};
+
+function n(x, dec) {
+  if (dec === undefined) dec = 0;
+  return Number(x.toFixed(dec)).toLocaleString('en-US');
+}
+
+// Resistance INCREASES tribute as punishment (per historical accounts of
+// demands being "doubled or tripled"), ranging 1.0× (full compliance) to
+// 3.0× (maximum modeled resistance). The displayed label always reports
+// this exact computed factor so text and math never diverge.
+function getResistanceFactor(r) {
+  return 1 + (r / 100) * 2;
+}
+
+function resistanceTier(r) {
+  if (r <= 10) return "Full Compliance";
+  if (r <= 30) return "Low Resistance";
+  if (r <= 50) return "Moderate Resistance";
+  if (r <= 70) return "High Resistance";
+  if (r <= 90) return "Severe Resistance";
+  return "Open Revolt";
+}
+
+function resistanceLabel(r) {
+  const f = getResistanceFactor(r).toFixed(2);
+  return resistanceTier(r) + " — Tribute Multiplier ×" + f;
+}
+
+// ─── SLIDER ──────────────────────────────────────────────────────────────────
+
+const resistSlider = document.getElementById('resistance');
+const resistVal = document.getElementById('resistanceVal');
+resistSlider.addEventListener('input', function() {
+  resistVal.textContent = this.value + '% — ' + resistanceLabel(Number(this.value));
+  maybeRecalc();
+});
+
+// ─── CALCULATE ───────────────────────────────────────────────────────────────
+
+function validate() {
+  let ok = true;
+  const pop = Number(document.getElementById('popSize').value);
+  const yrs = Number(document.getElementById('years').value);
+  const popIn = document.getElementById('popSize');
+  const yrsIn = document.getElementById('years');
+  const popErr = document.getElementById('popErr');
+  const yrsErr = document.getElementById('yearsErr');
+
+  popIn.classList.remove('error'); popErr.classList.remove('visible');
+  yrsIn.classList.remove('error'); yrsErr.classList.remove('visible');
+
+  if (!pop || pop < 100 || pop > 500000) {
+    popIn.classList.add('error'); popErr.classList.add('visible'); ok = false;
+  }
+  if (!yrs || yrs < 1 || yrs > 200) {
+    yrsIn.classList.add('error'); yrsErr.classList.add('visible'); ok = false;
+  }
+  return ok ? { pop, yrs } : null;
+}
+
+function calculate() {
+  const v = validate();
+  if (!v) return;
+
+  const { pop, yrs } = v;
+  const cycles = Number(document.getElementById('cyclesPerYear').value);
+  const provType = document.getElementById('provType').value;
+  const resistance = Number(document.getElementById('resistance').value);
+  const rFactor = getResistanceFactor(resistance);
+
+  const checked = ['cacao','cloth','feathers','jade','gold','warriors','obsidian','rubber']
+    .filter(id => document.getElementById('cb_' + id).checked);
+
+  if (checked.length === 0) {
+    alert('Please select at least one tribute good.');
+    return;
+  }
+
+  const mult = PROV_MULT[provType];
+  const householdsK = pop / 1000;
+
+  const rows = [];
+  let totalWeightPerYear = 0;
+  let totalValuePerYear = 0;
+
+  for (const key of checked) {
+    const g = BASE_RATES[key];
+    const perCycle = g.rateK * householdsK * mult[key] * rFactor;
+    const perYear = perCycle * cycles;
+    const totalGood = perYear * yrs;
+    const weightPerYear = perYear * g.kgPerUnit;
+    const valuePerYear = weightPerYear * (MODERN_USD_PER_KG[key] || 0);
+    totalWeightPerYear += weightPerYear;
+    totalValuePerYear += valuePerYear;
+    rows.push({ key, perCycle, perYear, totalGood, weightPerYear, unit: g.unit, emoji: g.emoji, label: g.label });
+  }
+
+  const maxPerYear = Math.max(...rows.map(r => r.perYear));
+
+  requestAnimationFrame(() => {
+    // Big stats
+    let statsHTML = `
+      <div class="big-stat">
+        <div class="big-number">${n(totalWeightPerYear, 1)}</div>
+        <div class="big-label">kg tribute per year</div>
+      </div>
+      <div class="big-stat">
+        <div class="big-number">${rows.length}</div>
+        <div class="big-label">distinct goods</div>
+      </div>
+      <div class="big-stat">
+        <div class="big-number">${n(totalWeightPerYear * yrs, 1)}</div>
+        <div class="big-label">kg over ${yrs} year${yrs !== 1 ? 's' : ''}</div>
+      </div>
+    `;
+    document.getElementById('bigStats').innerHTML = statsHTML;
+
+    // Year column label
+    document.getElementById('yearsColLabel').textContent = `${yrs}-Yr`;
+
+    // Table rows
+    let tableHTML = '';
+    for (const r of rows) {
+      tableHTML += `<tr>
+        <td>${r.emoji} ${r.label}</td>
+        <td style="font-size:0.8rem;color:#7a6248;">${r.unit}</td>
+        <td class="num">${n(r.perCycle, 1)}</td>
+        <td class="num">${n(r.perYear, 1)}</td>
+        <td class="num" style="font-weight:700;">${n(r.totalGood, 0)}</td>
+        <td style="font-size:0.82rem;">${n(r.weightPerYear, 1)} kg/yr</td>
+      </tr>`;
+    }
+    document.getElementById('resultsBody').innerHTML = tableHTML;
+
+    // Bar chart
+    let barHTML = '<div style="margin-top:0.5rem;">';
+    for (const r of rows) {
+      const pct = maxPerYear > 0 ? Math.round((r.perYear / maxPerYear) * 100) : 0;
+      barHTML += `
+        <div style="margin-bottom:0.6rem;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;margin-bottom:2px;">
+            <span>${r.emoji} ${r.label}</span>
+            <span style="color:#8b4513;font-weight:700;">${n(r.perYear,1)}/yr</span>
+          </div>
+          <div class="progress-bar-wrap"><div class="progress-bar" style="width:${pct}%"></div></div>
+        </div>`;
+    }
+    barHTML += '</div>';
+    document.getElementById('barChart').innerHTML = barHTML;
+
+    // Modern equivalent
+    const totalWeightKg = totalWeightPerYear * yrs;
+    const elephants = (totalWeightKg / 6000).toFixed(1);
+    const cars = (totalWeightKg / 1400).toFixed(1);
+    const usdVal = (totalValuePerYear * yrs).toLocaleString('en-US', {style:'currency', currency:'USD', maximumFractionDigits:0});
+    document.getElementById('modernEq').innerHTML = `
+      <strong>📐 Modern Equivalents</strong> — Over ${yrs} year${yrs!==1?'s':''} (rough approximation):<br>
+      Total tribute weight: <strong>${n(totalWeightKg,1)} kg</strong> — about <strong>${elephants} African elephants</strong> (≈6,000 kg each) or <strong>${cars} average cars</strong> (≈1,400 kg each).<br>
+      Rough estimated modern raw-material value: <strong style="color:#c8860a;">${usdVal}</strong> (illustrative, based on approximate 2024 per-kilogram commodity prices; excludes non-market goods like warriors).
+    `;
+
+    // Show results
+    const sec = document.getElementById('resultsSection');
+    sec.classList.add('visible');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+}
+
+function maybeRecalc() {
+  const sec = document.getElementById('resultsSection');
+  if (sec.classList.contains('visible')) {
+    requestAnimationFrame(() => { calculate(); });
+  }
+}
+
+// ─── COPY ────────────────────────────────────────────────────────────────────
+
+document.getElementById('copyBtn').addEventListener('click', function() {
+  const btn = this;
+  const pop = document.getElementById('popSize').value;
+  const cycles = document.getElementById('cyclesPerYear').value;
+  const provType = document.getElementById('provType').value;
+  const yrs = document.getElementById('years').value;
+  const rows = document.querySelectorAll('#resultsBody tr');
+  let text = `AZTEC TRIBUTE ROLL ESTIMATE — historycalc.com\n`;
+  text += `Province: ${pop} households | ${cycles} cycles/yr | Type: ${provType} | ${yrs} years\n\n`;
+  text += `Good\t\tPer Cycle\tPer Year\t${yrs}-Year Total\n`;
+  text += `${'─'.repeat(55)}\n`;
+  rows.forEach(row => {
+    const cells = row.querySelectorAll('td');
+    if (cells.length >= 5) {
+      text += `${cells[0].textContent.trim()}\t${cells[2].textContent.trim()}\t${cells[3].textContent.trim()}\t${cells[4].textContent.trim()}\n`;
+    }
+  });
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy Results'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    btn.textContent = 'Copy failed';
+    setTimeout(() => { btn.textContent = 'Copy Results'; }, 2000);
+  });
+});
+
+// ─── EVENTS ──────────────────────────────────────────────────────────────────
+
+document.getElementById('calcBtn').addEventListener('click', () => {
+  requestAnimationFrame(() => { calculate(); });
+});
+
+['popSize', 'years'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('keydown', e => {
+    if (e.key === 'Enter') requestAnimationFrame(() => { calculate(); });
+  });
+  el.addEventListener('change', () => { maybeRecalc(); });
+});
+
+document.getElementById('cyclesPerYear').addEventListener('change', maybeRecalc);
+document.getElementById('provType').addEventListener('change', maybeRecalc);
+
+['cacao','cloth','feathers','jade','gold','warriors','obsidian','rubber'].forEach(key => {
+  document.getElementById('cb_' + key).addEventListener('change', maybeRecalc);
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>

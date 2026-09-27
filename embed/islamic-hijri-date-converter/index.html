@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free Islamic Hijri Calendar Date Converter | HistoryCalc</title>
+<meta name="description" content="Free Islamic Hijri calendar converter — instantly convert Gregorian dates to Hijri and Hijri dates to Gregorian using the traditional tabular Islamic calendar.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/islamic-hijri-date-converter/">
+<style>
+:root{
+  --bg:#f5f0e1;
+  --card:#fffaf0;
+  --text:#2c1810;
+  --accent:#8b4513;
+  --accent-dark:#6b3410;
+  --border:#c4a882;
+  --gray:#ede4d3;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.6;
+}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:0.5rem 0;}
+nav a{color:var(--accent);font-weight:700;text-decoration:none;font-size:1.1rem;}
+h1{font-size:1.7rem;margin:0.5rem 0 1rem;}
+h2{font-size:1.25rem;margin-top:2rem;color:var(--accent-dark);}
+p{margin:0.7rem 0;}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:2rem;
+  box-shadow:0 2px 8px rgba(139,69,19,0.08);
+  margin:1.5rem 0;
+}
+.illus{display:block;margin:0 auto 1rem;max-width:220px;}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;}
+.tab-btn{
+  flex:1;
+  padding:12px 10px;
+  min-height:44px;
+  background:var(--gray);
+  border:1px solid var(--border);
+  border-radius:6px;
+  color:var(--text);
+  font-weight:600;
+  font-size:0.9rem;
+  cursor:pointer;
+}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+label{display:block;font-size:0.85rem;font-weight:500;color:#5a4433;margin:0.9rem 0 0.3rem;}
+input,select{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:1rem;
+  min-height:44px;
+  font-family:inherit;
+  background:#fff;
+  color:var(--text);
+}
+input:focus,select:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(139,69,19,0.15);
+}
+input.error{border-color:#e74c3c;}
+.error-msg{color:#e74c3c;font-size:0.8rem;margin-top:0.2rem;display:none;}
+.row{display:flex;gap:0.7rem;}
+.row > div{flex:1;}
+button.go{
+  margin-top:1.5rem;
+  width:100%;
+  min-height:48px;
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 24px;
+  border-radius:6px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+}
+button.go:hover{background:var(--accent-dark);}
+.results{margin-top:1.5rem;opacity:0;transition:opacity 0.3s ease;}
+.results.show{opacity:1;}
+.big{font-size:1.6rem;font-weight:700;color:var(--accent);margin-bottom:0.3rem;}
+.sub{color:#5a4433;font-size:0.95rem;margin-bottom:1rem;}
+table{width:100%;border-collapse:collapse;margin-top:0.5rem;}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);font-size:0.9rem;}
+th:first-child,td:first-child{text-align:left;}
+th{background:var(--gray);}
+tr:nth-child(even){background:#faf6ee;}
+tr:nth-child(odd){background:#fffaf0;}
+.table-wrap{overflow-x:auto;}
+.copy-btn{
+  margin-top:0.8rem;
+  background:none;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  padding:8px 14px;
+  border-radius:6px;
+  font-size:0.85rem;
+  cursor:pointer;
+  min-height:36px;
+}
+.copy-btn:hover{background:var(--gray);}
+.did-you-know{
+  background:var(--gray);
+  border-left:4px solid var(--accent);
+  padding:1rem 1.2rem;
+  border-radius:0 6px 6px 0;
+  margin:1.2rem 0;
+}
+.did-you-know h3{margin:0 0 0.5rem;font-size:1rem;color:var(--accent-dark);}
+.modern-eq{
+  background:#fff;
+  border:1px dashed var(--border);
+  padding:0.9rem 1.1rem;
+  border-radius:6px;
+  margin:1rem 0;
+  font-size:0.9rem;
+}
+details{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:0.8rem 1rem;
+  margin-bottom:0.6rem;
+}
+summary{font-weight:600;cursor:pointer;}
+.ad-slot{min-height:0;margin:0;}
+.related a{
+  display:inline-block;
+  margin:0.3rem 0.5rem 0.3rem 0;
+  color:var(--accent);
+  text-decoration:none;
+  border-bottom:1px solid var(--border);
+}
+footer{
+  margin-top:2.5rem;
+  padding-top:1.5rem;
+  border-top:1px solid var(--border);
+  font-size:0.85rem;
+  color:#5a4433;
+}
+footer a{color:var(--accent);text-decoration:none;margin-right:0.8rem;}
+@media (max-width:480px){
+  .row{flex-direction:column;}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/islamic-hijri-date-converter/">
+<meta property="og:title" content="Islamic Hijri Calendar Date Converter">
+<meta property="og:description" content="Free Islamic Hijri calendar converter — instantly convert Gregorian dates to Hijri and Hijri dates to Gregorian using the traditional tabular Islamic calendar.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Islamic Hijri Calendar Date Converter</h1>
+<p>This <strong>Islamic Hijri calendar converter</strong> lets you translate any Gregorian date into its Hijri (Islamic lunar calendar) equivalent, and convert Hijri dates back into the Gregorian calendar — using the traditional tabular arithmetic method followed by historians and calendar makers for over a millennium.</p>
+
+<svg class="illus" viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="100" width="200" height="40" fill="#c4a882"/>
+  <path d="M20 100 L20 70 Q20 55 35 55 L35 100 Z" fill="#8b4513"/>
+  <path d="M165 100 L165 70 Q165 55 180 55 L180 100 Z" fill="#8b4513"/>
+  <rect x="60" y="60" width="80" height="40" fill="#8b4513"/>
+  <path d="M60 60 Q100 20 140 60 Z" fill="#6b3410"/>
+  <rect x="93" y="10" width="14" height="30" fill="#6b3410"/>
+  <circle cx="100" cy="8" r="6" fill="#6b3410"/>
+  <path d="M100 74 a12 12 0 1 0 12 12 a10 10 0 1 1 -12 -12" fill="#f5f0e1"/>
+</svg>
+
+<div class="card">
+  <div class="tabs">
+    <button class="tab-btn active" id="tabBtnG2H" data-tab="g2h">Gregorian → Hijri</button>
+    <button class="tab-btn" id="tabBtnH2G" data-tab="h2g">Hijri → Gregorian</button>
+  </div>
+
+  <div class="tab-panel active" id="g2h">
+    <label for="gregInput">Gregorian Date</label>
+    <input type="date" id="gregInput">
+    <div class="error-msg" id="gregErr">Please select a valid date.</div>
+    <button class="go" id="btnG2H">Convert to Hijri</button>
+  </div>
+
+  <div class="tab-panel" id="h2g">
+    <div class="row">
+      <div>
+        <label for="hDay">Day</label>
+        <input type="number" id="hDay" min="1" max="30" value="1">
+      </div>
+      <div>
+        <label for="hMonth">Month</label>
+        <select id="hMonth">
+          <option value="1">1 — Muharram</option>
+          <option value="2">2 — Safar</option>
+          <option value="3">3 — Rabi' al-awwal</option>
+          <option value="4">4 — Rabi' al-thani</option>
+          <option value="5">5 — Jumada al-awwal</option>
+          <option value="6">6 — Jumada al-thani</option>
+          <option value="7">7 — Rajab</option>
+          <option value="8">8 — Sha'ban</option>
+          <option value="9">9 — Ramadan</option>
+          <option value="10">10 — Shawwal</option>
+          <option value="11">11 — Dhu al-Qi'dah</option>
+          <option value="12">12 — Dhu al-Hijjah</option>
+        </select>
+      </div>
+      <div>
+        <label for="hYear">Year (AH)</label>
+        <input type="number" id="hYear" min="1" max="9999" value="1446">
+      </div>
+    </div>
+    <div class="error-msg" id="hijriErr">Please check day (1–30), month (1–12) and year values.</div>
+    <button class="go" id="btnH2G">Convert to Gregorian</button>
+  </div>
+
+  <div class="results" id="results"></div>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Islamic Hijri Calendar Converter</h2>
+<p>Pick a tab: "Gregorian → Hijri" if you have a modern calendar date, or "Hijri → Gregorian" if you have an Islamic date. Enter the date, press the convert button (or hit Enter), and the tool instantly returns the equivalent date on the other calendar, complete with the day of the week and full month name.</p>
+
+<h2>Why This Matters</h2>
+<p>Muslims around the world use the Hijri calendar to mark religious observances — Ramadan fasting, Eid al-Fitr, Eid al-Adha, and the Hajj pilgrimage to Mecca all follow the lunar Islamic months rather than the Gregorian solar calendar. Historians, genealogists, and archivists also need this conversion constantly: Ottoman land records, Mughal court documents, medieval Arabic manuscripts, and mosque inscriptions are almost always dated in the Hijri era. A researcher reading a 14th-century waqf deed dated "12 Rajab 750 AH" needs to know that corresponds to September 1349 CE to place it correctly in world history. Genealogists tracing family records from the Middle East, South Asia, or North Africa run into Hijri dates on birth certificates and gravestones. Because the Islamic year is roughly 354 days — about 11 days shorter than the solar year — every Gregorian year the Hijri calendar drifts earlier, so a fixed conversion tool like this one saves hours of manual calculation.</p>
+
+<h2>How It's Calculated</h2>
+<p>This converter uses the <strong>tabular (arithmetic) Islamic calendar</strong>, the standard rule-based system used for civil and historical calculations (as opposed to the observational calendar based on physical moon-sighting, which can vary by a day depending on location and weather). Both calendars are first converted to a <strong>Julian Day Number (JDN)</strong> — a continuous day count used by astronomers and historians — then converted to the target calendar:</p>
+<p><strong>Gregorian → JDN:</strong><br>
+JDN = ⌊1461×(Y+4800+a)/4⌋ + ⌊367×(M−2−12a)/12⌋ − ⌊3×⌊(Y+4900+a)/100⌋/4⌋ + D − 32075, where a = ⌊(M−14)/12⌋</p>
+<p><strong>JDN → Hijri:</strong><br>
+Year = ⌊(30×(JDN−1948440)+10646)/10631⌋, using the epoch JDN 1,948,440 = 1 Muharram, AH 1 (16 July 622 CE). Each Hijri month alternates roughly 30/29 days across a 30-year cycle that keeps the calendar's average year at 354.367 days.</p>
+<p>Because this is an arithmetic approximation, the result may differ by ±1–2 days from a locally observed Hijri calendar (such as Saudi Arabia's Umm al-Qura calendar), which depends on actual moon sighting.</p>
+
+<h2>Worked Example</h2>
+<p>Let's convert <strong>January 1, 2025 (Gregorian)</strong> to Hijri:</p>
+<p>1. Convert the Gregorian date to a Julian Day Number using the formula above: JDN = 2,460,676.<br>
+2. Apply the JDN-to-Hijri formula with epoch 1,948,440: Year = ⌊(30×(2,460,676−1,948,440)+10646)/10631⌋ = 1446.<br>
+3. Work out the month and day within that Hijri year using the same 29.5-day month approximation.<br>
+4. Result: <strong>1 January 2025 CE ≈ 1 Rajab 1446 AH</strong> (a Wednesday).</p>
+<p>Try it yourself in the tool above — enter 2025-01-01 in the Gregorian tab and press Convert.</p>
+
+<h2>Historical Context</h2>
+<p>The Islamic calendar begins with the Hijra — the migration of the Prophet Muhammad from Mecca to Medina in 622 CE. Caliph Umar ibn al-Khattab formally established this event as Year 1 of the Islamic era around 638 CE, choosing a purely lunar calendar of twelve months (no leap months) to keep it independent of agricultural seasons, unlike the solar-based Julian and Gregorian systems. Each month traditionally began with the sighting of the new crescent moon, but by the medieval period scholars and astronomers developed the tabular arithmetic calendar used here — a fixed 30-year cycle with 11 leap years of 355 days and 19 common years of 354 days — so that scribes, tax collectors, and record keepers could compute dates without waiting for observation.</p>
+
+<div class="did-you-know">
+<h3>Did You Know?</h3>
+<p>• Because the Hijri year is about 11 days shorter than the solar year, Ramadan shifts earlier every year and cycles through all four seasons roughly once every 33 solar years.<br>
+• The word "Hijra" literally means "migration" or "emigration," referring to the journey from Mecca to Medina, not the founding of Islam itself, which occurred about 12 years earlier.<br>
+• Some countries, notably Saudi Arabia, use the Umm al-Qura calendar (based on astronomical calculation, not the simple tabular method) for civil purposes, which can shift dates by a day compared to this converter.</p>
+</div>
+
+<div class="modern-eq">
+<strong>Modern equivalent:</strong> A Hijri year (354.37 days) is about 3.2% shorter than a Gregorian year (365.24 days) — meaning after roughly 33 Gregorian years, the two calendars have shifted a full extra Hijri year apart, which is why someone born in the same Gregorian year can have two different possible Hijri birth years depending on the exact date.
+</div>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Remember this is the tabular calendar — for religious observance dates (start of Ramadan, Eid), always confirm with local moon-sighting announcements, which can differ by 1–2 days.</li>
+<li>Hijri months alternate between 29 and 30 days in a fixed pattern within the tool's arithmetic model, but real observed months vary based on actual crescent visibility.</li>
+<li>When converting historical manuscript dates, double-check whether the source used the Islamic (Hijri) or Solar Hijri (Persian/Iranian) calendar — they are not the same system.</li>
+<li>Hijri years are abbreviated "AH" (Anno Hegirae, "in the year of the Hijra"), placed after the year, e.g., "1446 AH."</li>
+<li>Very early or very distant future dates may show small discrepancies versus specialized historical almanacs, since this tool assumes a proleptic Gregorian calendar throughout.</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>How accurate is this Hijri calendar converter?</summary><p>It uses the standard tabular (arithmetic) Islamic calendar, accurate to within 1–2 days of observation-based calendars used in some countries. For legal or religious purposes, always confirm with an official moon-sighting authority.</p></details>
+<details><summary>What is the difference between Hijri and Gregorian calendars?</summary><p>The Gregorian calendar is solar with 365–366 days per year, while the Hijri calendar is purely lunar with 354–355 days per year and no leap months, causing it to drift about 11 days earlier each Gregorian year.</p></details>
+<details><summary>What year is it in the Islamic calendar right now?</summary><p>As of the Gregorian year 2025, the Hijri year is approximately 1446–1447 AH, depending on the exact Gregorian date, since the Hijri new year does not align with January 1st.</p></details>
+<details><summary>Why do Ramadan dates change every year?</summary><p>Because the Islamic calendar is lunar and about 11 days shorter than the solar year, each Islamic month — including Ramadan — starts roughly 11 days earlier on the Gregorian calendar than it did the previous year.</p></details>
+<details><summary>Can I convert historical Hijri dates from manuscripts?</summary><p>Yes — enter the day, month, and year exactly as written in the source, and the tool will return the corresponding Gregorian date using the standard tabular conversion formula used by historians.</p></details>
+<details><summary>What does "AH" mean after a Hijri year?</summary><p>"AH" stands for Anno Hegirae, Latin for "in the year of the Hijra," referring to the migration of the Prophet Muhammad from Mecca to Medina in 622 CE, which marks Year 1 of the Islamic calendar.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a>
+<a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet & Calorie Calculator</a>
+<a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+<a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
+<a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+<a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+</div>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/islamic-hijri-date-converter/">HistoryCalc</a></p>
+</div>
+
+<script>
+const ISLAMIC_EPOCH = 1948440;
+const gMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const hMonths = ["Muharram","Safar","Rabi' al-awwal","Rabi' al-thani","Jumada al-awwal","Jumada al-thani","Rajab","Sha'ban","Ramadan","Shawwal","Dhu al-Qi'dah","Dhu al-Hijjah"];
+const wDays = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+function gregorianToJD(y,m,d){
+  const a = Math.trunc((m-14)/12);
+  return Math.trunc((1461*(y+4800+a))/4)
+       + Math.trunc((367*(m-2-12*a))/12)
+       - Math.trunc((3*Math.trunc((y+4900+a)/100))/4)
+       + d - 32075;
+}
+function jdToGregorian(jd){
+  const a = jd+32044;
+  const b = Math.trunc((4*a+3)/146097);
+  const c = a - Math.trunc((146097*b)/4);
+  const d = Math.trunc((4*c+3)/1461);
+  const e = c - Math.trunc((1461*d)/4);
+  const m = Math.trunc((5*e+2)/153);
+  const day = e - Math.trunc((153*m+2)/5) + 1;
+  const month = m+3-12*Math.trunc(m/10);
+  const year = b*100+d-4800+Math.trunc(m/10);
+  return [year,month,day];
+}
+function islamicToJD(year,month,day){
+  return day + Math.ceil(29.5*(month-1)) + (year-1)*354 + Math.floor((3+11*year)/30) + ISLAMIC_EPOCH - 1;
+}
+function jdToIslamic(jd){
+  jd = Math.floor(jd);
+  const year = Math.floor((30*(jd-ISLAMIC_EPOCH)+10646)/10631);
+  const month = Math.min(12, Math.ceil((jd-29-islamicToJD(year,1,1))/29.5)+1);
+  const day = jd - islamicToJD(year,month,1) + 1;
+  return [year,month,day];
+}
+function weekday(jd){
+  return wDays[((jd+1)%7+7)%7];
+}
+function fmt(n){return n.toLocaleString('en-US');}
+
+function setError(inputEl,errEl,show){
+  if(show){inputEl.classList.add('error');errEl.style.display='block';}
+  else{inputEl.classList.remove('error');errEl.style.display='none';}
+}
+
+function switchTab(tab){
+  document.getElementById('g2h').classList.toggle('active', tab==='g2h');
+  document.getElementById('h2g').classList.toggle('active', tab==='h2g');
+  document.getElementById('tabBtnG2H').classList.toggle('active', tab==='g2h');
+  document.getElementById('tabBtnH2G').classList.toggle('active', tab==='h2g');
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('results').innerHTML='';
+}
+document.getElementById('tabBtnG2H').addEventListener('click',()=>switchTab('g2h'));
+document.getElementById('tabBtnH2G').addEventListener('click',()=>switchTab('h2g'));
+
+function doG2H(){
+  const val = document.getElementById('gregInput').value;
+  const errEl = document.getElementById('gregErr');
+  const inputEl = document.getElementById('gregInput');
+  if(!val){ setError(inputEl,errEl,true); return; }
+  setError(inputEl,errEl,false);
+  const parts = val.split('-').map(Number);
+  const [y,m,d] = parts;
+  const jd = gregorianToJD(y,m,d);
+  const [hy,hm,hd] = jdToIslamic(jd);
+  const wd = weekday(jd);
+  const gDateStr = `${d} ${gMonths[m-1]} ${y} CE`;
+  const hDateStr = `${hd} ${hMonths[hm-1]} ${hy} AH`;
+  const html = `
+    <div class="big">${hDateStr}</div>
+    <div class="sub">${wd} — converted from ${gDateStr}</div>
+    <div class="table-wrap"><table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Gregorian Date</td><td>${gDateStr}</td></tr>
+      <tr><td>Hijri Date</td><td>${hDateStr}</td></tr>
+      <tr><td>Day of Week</td><td>${wd}</td></tr>
+      <tr><td>Julian Day Number</td><td>${fmt(jd)}</td></tr>
+    </table></div>
+    <button class="copy-btn" id="copyBtn">Copy Result</button>
+  `;
+  requestAnimationFrame(()=>{
+    const r = document.getElementById('results');
+    r.innerHTML = html;
+    r.classList.add('show');
+    document.getElementById('copyBtn').addEventListener('click', function(){
+      navigator.clipboard.writeText(`${gDateStr} = ${hDateStr} (${wd})`);
+      this.textContent='Copied!';
+      setTimeout(()=>{this.textContent='Copy Result';},2000);
+    });
+  });
+}
+
+function doH2G(){
+  const dEl = document.getElementById('hDay');
+  const mEl = document.getElementById('hMonth');
+  const yEl = document.getElementById('hYear');
+  const errEl = document.getElementById('hijriErr');
+  const d = parseInt(dEl.value,10);
+  const m = parseInt(mEl.value,10);
+  const y = parseInt(yEl.value,10);
+  const invalid = isNaN(d)||isNaN(m)||isNaN(y)||d<1||d>30||m<1||m>12||y<1;
+  if(invalid){ setError(dEl,errEl,true); return; }
+  setError(dEl,errEl,false);
+  const jd = islamicToJD(y,m,d);
+  const [gy,gm,gd] = jdToGregorian(jd);
+  const wd = weekday(jd);
+  const hDateStr = `${d} ${hMonths[m-1]} ${y} AH`;
+  const gDateStr = `${gd} ${gMonths[gm-1]} ${gy} CE`;
+  const html = `
+    <div class="big">${gDateStr}</div>
+    <div class="sub">${wd} — converted from ${hDateStr}</div>
+    <div class="table-wrap"><table>
+      <tr><th>Field</th><th>Value</th></tr>
+      <tr><td>Hijri Date</td><td>${hDateStr}</td></tr>
+      <tr><td>Gregorian Date</td><td>${gDateStr}</td></tr>
+      <tr><td>Day of Week</td><td>${wd}</td></tr>
+      <tr><td>Julian Day Number</td><td>${fmt(jd)}</td></tr>
+    </table></div>
+    <button class="copy-btn" id="copyBtn2">Copy Result</button>
+  `;
+  requestAnimationFrame(()=>{
+    const r = document.getElementById('results');
+    r.innerHTML = html;
+    r.classList.add('show');
+    document.getElementById('copyBtn2').addEventListener('click', function(){
+      navigator.clipboard.writeText(`${hDateStr} = ${gDateStr} (${wd})`);
+      this.textContent='Copied!';
+      setTimeout(()=>{this.textContent='Copy Result';},2000);
+    });
+  });
+}
+
+document.getElementById('btnG2H').addEventListener('click',()=>requestAnimationFrame(doG2H));
+document.getElementById('btnH2G').addEventListener('click',()=>requestAnimationFrame(doH2G));
+document.getElementById('gregInput').addEventListener('keyup',e=>{if(e.key==='Enter')doG2H();});
+['hDay','hMonth','hYear'].forEach(id=>{
+  document.getElementById(id).addEventListener('keyup',e=>{if(e.key==='Enter')doH2G();});
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>
