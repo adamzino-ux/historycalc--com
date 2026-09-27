@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free Chinese Zodiac by Birth Year Calculator | HistoryCalc</title>
+<meta name="description" content="Find your Chinese zodiac by birth year instantly. Discover your animal sign, element, Yin-Yang polarity, personality traits, and compatibility matches.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/chinese-zodiac-birth-year/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Chinese Zodiac by Birth Year Calculator", "url": "https://historycalc.com/chinese-zodiac-birth-year/", "description": "Find your Chinese zodiac by birth year instantly. Discover your animal sign, element, Yin-Yang polarity, personality traits, and compatibility matches.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/", "logo": "https://historycalc.com/logo.png"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "Chinese Zodiac by Birth Year Calculator", "item": "https://historycalc.com/chinese-zodiac-birth-year/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is my Chinese zodiac if I was born in January?", "acceptedAnswer": {"@type": "Answer", "text": "If you were born before that year's Chinese New Year (which falls between January 21 and February 20), your zodiac animal is actually the previous year's sign. Enter your exact birth month and day above for an automatic adjustment based on real Chinese New Year dates."}}, {"@type": "Question", "name": "How many Chinese zodiac animals are there?", "acceptedAnswer": {"@type": "Answer", "text": "There are 12 animals in the cycle: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. Each pairs with one of five elements over a 60-year cycle, so no combination repeats for six decades."}}, {"@type": "Question", "name": "What are the 5 elements in Chinese astrology?", "acceptedAnswer": {"@type": "Answer", "text": "The five elements are Wood, Fire, Earth, Metal, and Water. Combined with Yin and Yang polarity they create 10 unique \"stem\" combinations that pair with the 12 animals to form the full 60-year sexagenary cycle."}}, {"@type": "Question", "name": "Which zodiac signs are most compatible?", "acceptedAnswer": {"@type": "Answer", "text": "Animals within the same \"trine\" group are considered most compatible: Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, and Rabbit-Goat-Pig. Animals directly opposite each other in the cycle, six positions apart, are traditionally seen as the most challenging matches."}}, {"@type": "Question", "name": "Is the Chinese zodiac the same as Western astrology?", "acceptedAnswer": {"@type": "Answer", "text": "No. Western astrology is based on the sun's position and changes monthly, while the Chinese zodiac assigns one animal sign per year, tied to a 12-year cycle plus a 10-year elemental cycle from the lunar calendar."}}, {"@type": "Question", "name": "What year is the next Year of the Dragon?", "acceptedAnswer": {"@type": "Answer", "text": "After 2024's Wood Dragon year, the next Dragon year will be 2036, expected to be a Fire Dragon, since each animal sign returns every 12 years."}}]}]}</script>
+<style>
+:root{
+  --bg:#f5f0e1;
+  --accent:#8b4513;
+  --accent-dark:#6b3410;
+  --text:#2c1810;
+  --border:#c4a882;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:#fff;
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.6;
+}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:0.5rem 0;margin-bottom:1rem;}
+nav a{color:var(--accent);font-weight:700;font-size:1.1rem;text-decoration:none;}
+h1{font-size:1.6rem;margin:0.2rem 0 0.8rem;}
+h2{font-size:1.25rem;margin-top:2rem;color:var(--text);}
+p{margin:0.6rem 0;}
+.card{
+  background:var(--bg);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:2rem;
+  box-shadow:0 2px 8px rgba(139,69,19,0.08);
+  margin-bottom:2rem;
+}
+label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.3rem;margin-top:1rem;}
+label:first-of-type{margin-top:0;}
+input,select{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  font-size:1rem;
+  background:#fff;
+  color:var(--text);
+  min-height:44px;
+}
+input:focus,select:focus{
+  outline:none;
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(139,69,19,0.15);
+}
+.row{display:flex;gap:1rem;}
+.row > div{flex:1;}
+.err{color:#e74c3c;font-size:0.85rem;margin-top:0.3rem;display:none;}
+input.bad{border-color:#e74c3c;}
+button{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  padding:12px 24px;
+  border-radius:6px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  min-height:44px;
+  width:100%;
+  margin-top:1.5rem;
+}
+button:hover{background:var(--accent-dark);}
+#results{opacity:0;transition:opacity 0.3s ease;margin-top:1.5rem;}
+#results.show{opacity:1;}
+.bignum{font-size:2rem;font-weight:800;color:var(--accent);text-align:center;margin:0.5rem 0;}
+.sub{text-align:center;color:#555;font-size:0.95rem;margin-bottom:1rem;}
+.tablewrap{overflow-x:auto;margin-top:0.8rem;}
+table{width:100%;border-collapse:collapse;font-size:0.9rem;}
+th,td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left;}
+th{background:#eee2c9;}
+td:last-child,th:last-child{text-align:right;}
+tr:nth-child(even){background:#fdfbf5;}
+tr:nth-child(odd){background:#fff;}
+.copybtn{
+  background:none;
+  border:1px solid var(--accent);
+  color:var(--accent);
+  padding:6px 14px;
+  font-size:0.85rem;
+  width:auto;
+  min-height:36px;
+  margin-top:0.8rem;
+}
+.copybtn:hover{background:var(--accent);color:#fff;}
+.note{background:#fff8ea;border:1px solid var(--border);border-radius:6px;padding:0.8rem 1rem;font-size:0.9rem;margin-top:1rem;}
+.didyouknow{background:#f0e6d2;border-left:4px solid var(--accent);border-radius:6px;padding:1rem 1.3rem;margin:1.5rem 0;}
+.didyouknow h3{margin-top:0;color:var(--accent-dark);}
+.ad-slot{min-height:0;margin:0;}
+.svgwrap{text-align:center;margin:1rem 0;}
+details{border:1px solid var(--border);border-radius:6px;padding:0.7rem 1rem;margin-bottom:0.6rem;background:#fdfbf5;}
+summary{font-weight:600;cursor:pointer;}
+.related a{display:block;color:var(--accent);text-decoration:none;padding:0.4rem 0;border-bottom:1px dashed var(--border);}
+.related a:hover{color:var(--accent-dark);}
+footer{text-align:center;font-size:0.85rem;color:#777;padding:2rem 0;}
+footer a{color:#777;margin:0 0.4rem;}
+@media(max-width:480px){
+  .row{flex-direction:column;gap:0;}
+  .card{padding:1.2rem;}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/chinese-zodiac-birth-year/">
+<meta property="og:title" content="Chinese Zodiac by Birth Year Calculator">
+<meta property="og:description" content="Find your Chinese zodiac by birth year instantly. Discover your animal sign, element, Yin-Yang polarity, personality traits, and compatibility matches.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Chinese Zodiac by Birth Year Calculator</h1>
+<p>Discover your <strong>Chinese zodiac by birth year</strong> in seconds — your animal sign, element, Yin/Yang polarity, personality traits, and traditional compatibility matches, all based on the ancient 60-year sexagenary cycle.</p>
+
+<div class="svgwrap">
+<svg viewBox="0 0 400 160" width="100%" height="160" style="max-width:400px;">
+  <rect x="0" y="140" width="400" height="20" fill="#e9dfc4"/>
+  <circle cx="340" cy="30" r="22" fill="#c4a882" opacity="0.7"/>
+  <g fill="#8b4513">
+    <polygon points="200,10 240,40 160,40"/>
+    <rect x="180" y="40" width="40" height="14"/>
+    <polygon points="190,54 250,86 130,86"/>
+    <rect x="165" y="86" width="70" height="16"/>
+    <polygon points="180,102 260,132 100,132"/>
+    <rect x="150" y="132" width="100" height="10"/>
+  </g>
+  <g stroke="#8b4513" stroke-width="2" fill="none" opacity="0.6">
+    <path d="M60 120 q10 -15 20 0 q10 -15 20 0"/>
+    <path d="M300 100 q10 -15 20 0 q10 -15 20 0"/>
+  </g>
+</svg>
+</div>
+
+<div class="card">
+  <label for="year">Birth Year</label>
+  <input type="number" id="year" placeholder="e.g. 1990" inputmode="numeric">
+  <div class="err" id="yearErr">Please enter a valid 4-digit year.</div>
+
+  <div class="row">
+    <div>
+      <label for="month">Birth Month (optional)</label>
+      <select id="month">
+        <option value="">-- Select --</option>
+        <option value="1">January</option><option value="2">February</option>
+        <option value="3">March</option><option value="4">April</option>
+        <option value="5">May</option><option value="6">June</option>
+        <option value="7">July</option><option value="8">August</option>
+        <option value="9">September</option><option value="10">October</option>
+        <option value="11">November</option><option value="12">December</option>
+      </select>
+    </div>
+    <div>
+      <label for="day">Birth Day (optional)</label>
+      <input type="number" id="day" min="1" max="31" placeholder="e.g. 15">
+    </div>
+  </div>
+
+  <button id="calcBtn">Reveal My Zodiac Sign</button>
+
+  <div id="results"></div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<h2>How to Use This Chinese Zodiac by Birth Year Calculator</h2>
+<p>Type your birth year into the field above. If you were born in January or February, add your birth month and day too — this lets the calculator check whether your birthday fell before or after Chinese New Year, which shifts the zodiac boundary each year. Click "Reveal My Zodiac Sign" and you'll instantly see your animal, element, Yin/Yang polarity, personality traits, compatibility matches, and a table of every other year sharing your sign.</p>
+
+<h2>Why This Matters</h2>
+<p>Millions of people across China, Vietnam, Korea, and the global diaspora use the Chinese zodiac for far more than fun trivia. Parents time pregnancies to have babies in auspicious years — Dragon years reliably see measurable spikes in East Asian birth rates, sometimes 5-10% above average, because Dragon is considered the luckiest sign. Matchmakers and families still consult zodiac compatibility before arranging introductions or weddings. Feng shui practitioners use your animal and element to recommend colors, career timing, and even furniture placement. Genealogists use the 60-year ganzhi cycle to convert traditional Chinese historical dates (which were recorded by cycle year, not absolute year) into the Gregorian calendar. And every Lunar New Year, businesses rebrand marketing campaigns around the incoming animal — 2024's Wood Dragon year triggered a wave of dragon-themed products worldwide. Whether you're curious about heritage, planning a celebration, or just want to know if you're compatible with your partner's sign, this calculator gives you the real answer in one click.</p>
+
+<h2>How It's Calculated</h2>
+<p>The Chinese zodiac is built from two overlapping cycles: 12 Earthly Branches (the animals) and 10 Heavenly Stems (five elements × Yin/Yang). Together they form a 60-year cycle where no animal-element combination repeats until 60 years have passed. The formulas, using the traditional reference point where the year 4 CE marks the start of the cycle, are:</p>
+<p><strong>Branch index (animal) = (Year − 4) mod 12</strong><br>
+<strong>Stem index (element + polarity) = (Year − 4) mod 10</strong></p>
+<p>The 12 branch indices map to Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, Pig. The 10 stem indices map to Wood, Wood, Fire, Fire, Earth, Earth, Metal, Metal, Water, Water — with even indices assigned Yang and odd indices assigned Yin. If a birth date falls before that year's Chinese New Year (which moves between January 21 and February 20 depending on the lunar calendar), the effective zodiac year shifts back by one.</p>
+
+<h2>Worked Example</h2>
+<p>Take someone born on July 4, 1990. Since July is well after Chinese New Year, no adjustment is needed. Stem index = (1990 − 4) mod 10 = 1986 mod 10 = 6 → Metal, and 6 is even → Yang. Branch index = 1986 mod 12 = 6 → Horse. So this person is a <strong>Yang Metal Horse</strong> — matching the traditional name "Gengwu" year. Their best compatibility matches are Tiger and Dog (same trine group), while Rat is traditionally considered their most challenging match (the opposite sign, six positions away in the cycle).</p>
+
+<h2>Historical Context</h2>
+<p>The Earthly Branches were already used for day-counting on oracle bones during the Shang Dynasty (circa 1250 BCE), making this one of the oldest continuously used calendar systems in the world. The 12-animal zodiac as we know it was popularized during the Han Dynasty (206 BCE–220 CE); the earliest surviving text explicitly linking animals to branches is Wang Chong's 1st-century philosophical work "Lunheng." Folklore explains the animal order through the legend of the Jade Emperor's Great Race, where twelve animals crossed a river and finished in the order that still defines the cycle today. Notably, the 12-year length closely tracks Jupiter's roughly 11.86-year orbit — ancient astronomers tracked "Suixing" (the Year Star, i.e., Jupiter) moving through 12 sky sectors, which likely inspired the animal cycle's length.</p>
+
+<div class="didyouknow">
+<h3>Did You Know?</h3>
+<p>• The current 60-year cycle began in 1984; the next full repeat of every animal-element pairing begins in 2044.<br>
+• Because the zodiac follows the lunar calendar, Chinese New Year shifts by about 11 days each year, landing anywhere from January 21 to February 20.<br>
+• Someone born in 1963 and someone born in 2023 share the exact same sign — Water Rabbit — since the full cycle only repeats every 60 years.</p>
+</div>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<p>• Don't assume your sign matches your plain birth year if you were born in January or early February — always check the exact Chinese New Year date for that year.<br>
+• Zodiac sign isn't destiny — full Chinese astrology ("Four Pillars of Destiny") also factors in your birth hour, day, and month animals, not just the year.<br>
+• Element and animal combinations repeat every 60 years, so grandparents and grandchildren often share identical signs.<br>
+• Compatibility charts are cultural tradition, not scientific fact — enjoy them as insight, not as hard relationship rules.<br>
+• "Goat," "Sheep," and "Ram" all refer to the same 8th zodiac sign — regional translations vary, but the animal is identical.</p>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>What is my Chinese zodiac if I was born in January?</summary><p>If you were born before that year's Chinese New Year (which falls between January 21 and February 20), your zodiac animal is actually the previous year's sign. Enter your exact birth month and day above for an automatic adjustment based on real Chinese New Year dates.</p></details>
+<details><summary>How many Chinese zodiac animals are there?</summary><p>There are 12 animals in the cycle: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog, and Pig. Each pairs with one of five elements over a 60-year cycle, so no combination repeats for six decades.</p></details>
+<details><summary>What are the 5 elements in Chinese astrology?</summary><p>The five elements are Wood, Fire, Earth, Metal, and Water. Combined with Yin and Yang polarity they create 10 unique "stem" combinations that pair with the 12 animals to form the full 60-year sexagenary cycle.</p></details>
+<details><summary>Which zodiac signs are most compatible?</summary><p>Animals within the same "trine" group are considered most compatible: Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, and Rabbit-Goat-Pig. Animals directly opposite each other in the cycle, six positions apart, are traditionally seen as the most challenging matches.</p></details>
+<details><summary>Is the Chinese zodiac the same as Western astrology?</summary><p>No. Western astrology is based on the sun's position and changes monthly, while the Chinese zodiac assigns one animal sign per year, tied to a 12-year cycle plus a 10-year elemental cycle from the lunar calendar.</p></details>
+<details><summary>What year is the next Year of the Dragon?</summary><p>After 2024's Wood Dragon year, the next Dragon year will be 2036, expected to be a Fire Dragon, since each animal sign returns every 12 years.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related">
+<a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+<a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+<a href="/inflation-calculator/">Historical Inflation Calculator</a>
+<a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
+<a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+<a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+<footer>
+<a href="/about/">About</a>|<a href="/privacy/">Privacy</a>|<a href="/contact/">Contact</a>
+<p>© 2025 historycalc.com</p>
+</footer>
+</div>
+
+<script>
+const animals=['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'];
+const emojis=['🐀','🐂','🐅','🐇','🐉','🐍','🐎','🐐','🐒','🐓','🐕','🐖'];
+const traits=[
+'Quick-witted, resourceful, and adaptable — natural problem-solvers who thrive on opportunity.',
+'Diligent, dependable, and strong-willed — steady workers who value tradition and honesty.',
+'Brave, confident, and competitive — natural-born leaders who dislike being told what to do.',
+'Gentle, cautious, and elegant — diplomatic peacemakers with excellent taste.',
+'Charismatic, ambitious, and energetic — natural performers who command attention.',
+'Wise, intuitive, and reserved — deep thinkers who prefer to observe before acting.',
+'Independent, energetic, and impatient — free spirits who love adventure and travel.',
+'Gentle, artistic, and empathetic — creative souls who avoid conflict whenever possible.',
+'Clever, curious, and inventive — quick problem-solvers with a mischievous sense of humor.',
+'Observant, hardworking, and confident — natural planners who love being organized.',
+'Loyal, honest, and protective — trustworthy friends who value justice and fairness.',
+"Compassionate, generous, and easygoing — warm-hearted optimists who enjoy life's comforts."
+];
+const luckyNum=[[2,3],[1,4],[1,3,4],[3,4,6],[1,6,7],[2,8,9],[2,3,6],[2,7],[4,9],[5,7,8],[3,4,9],[2,5,8]];
+const luckyColor=['Blue, Gold','Yellow, Green','Blue, Orange','Red, Purple','Gold, Silver','Black, Red','Yellow, Green','Green, Red','White, Gold','Gold, Brown','Green, Red','Yellow, Gray'];
+const stemElements=['Wood','Wood','Fire','Fire','Earth','Earth','Metal','Metal','Water','Water'];
+const trineGroups=[[0,4,8],[1,5,9],[2,6,10],[3,7,11]];
+const cny={1975:'0211',1976:'0131',1977:'0218',1978:'0207',1979:'0128',1980:'0216',1981:'0205',1982:'0125',1983:'0213',1984:'0202',1985:'0220',1986:'0209',1987:'0129',1988:'0217',1989:'0206',1990:'0127',1991:'0215',1992:'0204',1993:'0123',1994:'0210',1995:'0131',1996:'0219',1997:'0207',1998:'0128',1999:'0216',2000:'0205',2001:'0124',2002:'0212',2003:'0201',2004:'0122',2005:'0209',2006:'0129',2007:'0218',2008:'0207',2009:'0126',2010:'0214',2011:'0203',2012:'0123',2013:'0210',2014:'0131',2015:'0219',2016:'0208',2017:'0128',2018:'0216',2019:'0205',2020:'0125',2021:'0212',2022:'0201',2023:'0122',2024:'0210',2025:'0129',2026:'0217',2027:'0206',2028:'0126',2029:'0213',2030:'0203',2031:'0123',2032:'0211',2033:'0131',2034:'0219',2035:'0208'};
+
+function fmt(n){return n.toString();}
+
+function getZodiac(year){
+  const stemIdx=(((year-4)%10)+10)%10;
+  const branchIdx=(((year-4)%12)+12)%12;
+  return {stemIdx,branchIdx};
+}
+
+function calculate(){
+  const yearInput=document.getElementById('year');
+  const monthSel=document.getElementById('month');
+  const dayInput=document.getElementById('day');
+  const yearErr=document.getElementById('yearErr');
+  const yearVal=parseInt(yearInput.value,10);
+
+  yearInput.classList.remove('bad');
+  yearErr.style.display='none';
+
+  if(!yearInput.value || isNaN(yearVal) || yearVal < -3000 || yearVal > 3000 || !Number.isInteger(Number(yearInput.value))){
+    yearInput.classList.add('bad');
+    yearErr.style.display='block';
+    document.getElementById('results').classList.remove('show');
+    return;
+  }
+
+  let effYear=yearVal;
+  let adjustedNote='';
+  const m=parseInt(monthSel.value,10);
+  const d=parseInt(dayInput.value,10);
+
+  if(m && d){
+    if(cny[yearVal]){
+      const cMM=parseInt(cny[yearVal].slice(0,2),10);
+      const cDD=parseInt(cny[yearVal].slice(2),10);
+      if(m<cMM || (m===cMM && d<cDD)){
+        effYear=yearVal-1;
+        adjustedNote=`Because you were born before Chinese New Year (${cMM}/${cDD}/${yearVal}), your zodiac year is <strong>${effYear}</strong>, not ${yearVal}.`;
+      }
+    } else if(m===1 || (m===2 && d<=4)){
+      effYear=yearVal-1;
+      adjustedNote=`Your birthday falls in the typical Chinese New Year window. We estimate your zodiac year as <strong>${effYear}</strong> (approximate — exact date data isn't available for years outside 1975-2035).`;
+    }
+  }
+
+  const {stemIdx,branchIdx}=getZodiac(effYear);
+  const animal=animals[branchIdx];
+  const element=stemElements[stemIdx];
+  const yinyang= stemIdx%2===0 ? 'Yang' : 'Yin';
+  const emoji=emojis[branchIdx];
+  const trait=traits[branchIdx];
+  const numbers=luckyNum[branchIdx].join(', ');
+  const colors=luckyColor[branchIdx];
+
+  let group=trineGroups.find(g=>g.includes(branchIdx));
+  const bestIdx=group.filter(i=>i!==branchIdx);
+  const bestNames=bestIdx.map(i=>animals[i]).join(' and ');
+  const oppositeIdx=(branchIdx+6)%12;
+  const oppositeName=animals[oppositeIdx];
+
+  let rows='';
+  for(let y=effYear-72;y<=effYear+72;y+=12){
+    const s=(((y-4)%10)+10)%10;
+    const e=stemElements[s]+' '+(s%2===0?'Yang':'Yin');
+    const marker = y===effYear ? ' (this one)' : '';
+    rows+=`<tr><td>${y}${marker}</td><td>${e} ${animal}</td></tr>`;
+  }
+
+  const summaryText=`I'm a ${yinyang} ${element} ${animal} ${emoji} (born ${yearVal}) — ${trait} Best matches: ${bestNames}. Calculated at historycalc.com`;
+
+  const html=`
+    <div class="bignum">${emoji} ${yinyang} ${element} ${animal}</div>
+    <div class="sub">Birth year used: ${effYear}${effYear!==yearVal?` (adjusted from ${yearVal})`:''}</div>
+    ${adjustedNote?`<div class="note">${adjustedNote}</div>`:''}
+    <p>${trait}</p>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Trait</th><th>Detail</th></tr>
+      <tr><td>Best matches</td><td>${bestNames}</td></tr>
+      <tr><td>Most challenging match</td><td>${oppositeName}</td></tr>
+      <tr><td>Lucky numbers</td><td>${numbers}</td></tr>
+      <tr><td>Lucky colors</td><td>${colors}</td></tr>
+    </table>
+    </div>
+    <div class="note">🪐 Fun fact: the 12-year cycle closely mirrors Jupiter's ~11.86-year orbit around the sun — ancient Chinese astronomers tracked "Suixing" (the Year Star) through 12 sky stations, which is likely the origin of the 12-animal cycle.</div>
+    <p style="margin-top:1rem;font-weight:600;">Other years of the ${animal}:</p>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Year</th><th>Full Sign</th></tr>
+      ${rows}
+    </table>
+    </div>
+    <button class="copybtn" id="copyBtn">Copy Result</button>
+  `;
+
+  requestAnimationFrame(()=>{
+    const res=document.getElementById('results');
+    res.innerHTML=html;
+    res.classList.add('show');
+    document.getElementById('copyBtn').addEventListener('click',()=>{
+      navigator.clipboard.writeText(summaryText).then(()=>{
+        const btn=document.getElementById('copyBtn');
+        const orig=btn.textContent;
+        btn.textContent='Copied!';
+        setTimeout(()=>{btn.textContent=orig;},2000);
+      });
+    });
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click',()=>{
+  requestAnimationFrame(()=>{calculate();});
+});
+['year','day'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown',(e)=>{
+    if(e.key==='Enter'){requestAnimationFrame(()=>{calculate();});}
+  });
+});
+</script>
+</body>
+</html>
