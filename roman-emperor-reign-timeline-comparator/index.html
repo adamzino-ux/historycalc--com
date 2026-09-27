@@ -108,10 +108,11 @@ h1{font-size:1.3rem}
 <meta property="og:site_name" content="HistoryCalc">
 <meta name="twitter:card" content="summary">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
-<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
 </head>
 <body>
 <nav><a href="/" class="site-name">HistoryTools</a></nav>
@@ -210,6 +211,7 @@ h1{font-size:1.3rem}
   </div>
 </div>
 
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
 <div class="ad-slot" id="ad-mid"></div>
 
 <div class="content-section">
@@ -250,20 +252,21 @@ h1{font-size:1.3rem}
 <div class="related-tools">
   <h3>Related History Tools</h3>
   <ul>
-    <li><a href="/roman-battle-map">Roman Battle Map</a></li>
-    <li><a href="/dynasty-family-tree">Dynasty Family Tree Viewer</a></li>
-    <li><a href="/historical-date-converter">Roman Calendar Converter</a></li>
-    <li><a href="/empire-territory-timeline">Empire Territory Timeline</a></li>
-    <li><a href="/ancient-leaders-comparator">Ancient Leaders Comparator</a></li>
+    <li>Roman Battle Map</li>
+    <li>Dynasty Family Tree Viewer</li>
+    <li>Roman Calendar Converter</li>
+    <li>Empire Territory Timeline</li>
+    <li>Ancient Leaders Comparator</li>
   </ul>
 </div>
 
+<nav class="cluster-nav" aria-label="More Dates &amp; Calendars Calculators" style="max-width:640px;margin:2rem auto;padding:0 1.5rem"><h2 style="font-size:1.1rem;margin-bottom:.5rem">More Dates &amp; Calendars Calculators</h2><ul style="padding-left:1.1rem;line-height:1.9"><li><a href="/egyptian-pyramid-construction-estimator/">Ancient Egyptian Pyramid Construction Timeline Estimator</a></li><li><a href="/age-at-historical-event/">Age at Historical Event Calculator</a></li><li><a href="/aztec-sun-stone-calendar-decoder/">Aztec Sun Stone Calendar Decoder</a></li><li><a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a></li><li><a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a></li><li><a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a></li><li><a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a></li><li><a href="/islamic-hijri-date-converter/">Islamic Hijri Calendar Date Converter</a></li></ul></nav>
 <div class="ad-slot" id="ad-bottom"></div>
 
 <footer>
-  <a href="/about">About</a>
-  <a href="/privacy">Privacy</a>
-  <a href="/contact">Contact</a>
+  <a href="/about/">About</a>
+  <a href="/privacy/">Privacy</a> <a href="/terms/">Terms</a> <a href="/accessibility/">Accessibility</a>
+  <a href="/contact/">Contact</a>
   <span style="margin-left:0.5rem">© 2025 HistoryTools</span>
 </footer>
 </div>
@@ -519,14 +522,14 @@ function renderCompareTags(){
   compareList.forEach(n => {
     html += `<div class="compare-tag">${n} <button onclick="removeFromCompare('${n.replace(/'/g,"\\'")}')">✕</button></div>`;
   });
-  if(!compareList.length) html = '<span style="color:#888;font-size:0.82rem">No emperors selected yet.</span>';
+  if(!compareList.length) html = '<span style="color:#666;font-size:0.82rem">No emperors selected yet.</span>';
   document.getElementById('compareSelected').innerHTML = html;
 }
 
 function renderCompareCharts(){
   const container = document.getElementById('compareCharts');
   if(!compareList.length){
-    container.innerHTML = '<div style="color:#888;font-size:0.875rem;padding:1rem 0">Select emperors above to compare them side-by-side.</div>';
+    container.innerHTML = '<div style="color:#666;font-size:0.875rem;padding:1rem 0">Select emperors above to compare them side-by-side.</div>';
     return;
   }
   const selected = EMPERORS.filter(e=>compareList.includes(e.name)).map(e=>({...e,years:reignYears(e)}));
@@ -611,5 +614,25 @@ window.addEventListener('load', () => {
   runComparison();
 });
 </script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
 </body>
 </html>

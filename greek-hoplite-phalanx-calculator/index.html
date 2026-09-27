@@ -25,7 +25,7 @@ input[type="number"]:focus,select:focus{outline:none;border-color:#0077b6;box-sh
 input.error{border-color:#e74c3c}
 .error-msg{color:#e74c3c;font-size:0.8rem;margin-top:4px;display:none}
 input.error+.error-msg,.error-msg.show{display:block}
-.hint{font-size:0.78rem;color:#888;margin-top:4px}
+.hint{font-size:0.78rem;color:#666;margin-top:4px}
 .row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .btn{display:inline-block;background:#0077b6;color:#fff;border:none;padding:12px 24px;border-radius:6px;font-size:1rem;font-weight:600;cursor:pointer;width:100%;min-height:44px;transition:background 0.2s}
 .btn:hover{background:#006299}
@@ -80,8 +80,8 @@ details[open] summary{border-bottom:1px solid #e0e0e0}
 .related h2{font-size:1rem;font-weight:700;color:#1a1a2e;margin-bottom:0.6rem}
 .related-links{display:flex;flex-wrap:wrap;gap:8px}
 .related-links a{background:#f0f7ff;border:1px solid #c8e0f4;border-radius:20px;padding:6px 14px;font-size:0.82rem;color:#0077b6;white-space:nowrap}
-footer{border-top:1px solid #e0e0e0;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#888}
-footer a{color:#888;margin:0 8px}
+footer{border-top:1px solid #e0e0e0;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#666}
+footer a{color:#666;margin:0 8px}
 footer a:hover{color:#0077b6}
 .formula-box{background:#f8f9fa;border-left:3px solid #0077b6;border-radius:0 6px 6px 0;padding:12px 16px;font-size:0.88rem;color:#333;margin:0.75rem 0;font-family:monospace,monospace}
 @media(max-width:640px){
@@ -100,10 +100,11 @@ footer a:hover{color:#0077b6}
 <meta property="og:site_name" content="HistoryCalc">
 <meta name="twitter:card" content="summary">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
-<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
 </head>
 <body>
 <nav><span><a href="/" style="color:#1a1a2e;text-decoration:none">⚔️ AncientWarfare.tools</a></span></nav>
@@ -256,7 +257,8 @@ footer a:hover{color:#0077b6}
     <div id="res-historical" style="font-size:0.9rem;color:#555"></div>
   </div>
 
-  <div class="ad-slot" id="ad-mid"></div>
+  <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<div class="ad-slot" id="ad-mid"></div>
 
   <section class="content">
     <h2>How to Use This Phalanx Calculator</h2>
@@ -308,22 +310,23 @@ footer a:hover{color:#0077b6}
   <div class="related">
     <h2>Related Tools</h2>
     <div class="related-links">
-      <a href="/roman-legion-strength">Roman Legion Strength Calculator</a>
-      <a href="/catapult-range">Ancient Catapult Range Calculator</a>
-      <a href="/siege-duration">Siege Duration Estimator</a>
-      <a href="/ancient-army-supply">Army Supply & Logistics Calculator</a>
-      <a href="/chariot-speed">War Chariot Speed & Impact Calculator</a>
+      Roman Legion Strength Calculator
+      Ancient Catapult Range Calculator
+      Siege Duration Estimator
+      Army Supply & Logistics Calculator
+      War Chariot Speed & Impact Calculator
     </div>
   </div>
 
-  <div class="ad-slot" id="ad-bottom"></div>
+  <nav class="cluster-nav" aria-label="More War, Armies &amp; Sieges Calculators" style="max-width:640px;margin:2rem auto;padding:0 1.5rem"><h2 style="font-size:1.1rem;margin-bottom:.5rem">More War, Armies &amp; Sieges Calculators</h2><ul style="padding-left:1.1rem;line-height:1.9"><li><a href="/ancient-greek-city-state-army-estimator/">Ancient Greek City-State Population &amp; Army Size Estimator</a></li><li><a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a></li><li><a href="/medieval-longbow-arrow-production-calculator/">Medieval Longbow Arrow Production Calculator</a></li><li><a href="/medieval-siege-engine-comparison-tool/">Medieval Siege Engine Comparison Tool</a></li><li><a href="/trebuchet-range-projectile-calculator/">Medieval Trebuchet Range &amp; Projectile Calculator</a></li><li><a href="/mongol-empire-conquest-speed-calculator/">Mongol Empire Conquest Speed Calculator</a></li></ul></nav>
+<div class="ad-slot" id="ad-bottom"></div>
 
   <footer>
     <div style="margin-bottom:6px">⚔️ <strong>AncientWarfare.tools</strong></div>
     <div>
-      <a href="/about">About</a>
-      <a href="/privacy">Privacy</a>
-      <a href="/contact">Contact</a>
+      <a href="/about/">About</a>
+      <a href="/privacy/">Privacy</a> <a href="/terms/">Terms</a> <a href="/accessibility/">Accessibility</a>
+      <a href="/contact/">Contact</a>
     </div>
     <div style="margin-top:6px">© 2025 AncientWarfare.tools — Educational use only</div>
   </footer>
@@ -490,5 +493,25 @@ function copyResults() {
 
 document.getElementById('calcBtn').addEventListener('keydown', e => { if(e.key==='Enter') calculate(); });
 </script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
 </body>
 </html>

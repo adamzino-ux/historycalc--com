@@ -22,7 +22,7 @@ h1{font-size:1.6rem;font-weight:700;margin-bottom:0.5rem;line-height:1.3}
 .section-label{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#0077b6;margin-bottom:1rem}
 .form-group{margin-bottom:1.25rem}
 label{display:block;font-size:0.85rem;font-weight:500;color:#444;margin-bottom:0.4rem}
-label .unit{font-weight:400;color:#888;font-size:0.8rem}
+label .unit{font-weight:400;color:#666;font-size:0.8rem}
 input[type=number],select{width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:6px;font-size:1rem;font-family:inherit;color:#1a1a2e;background:#fff;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none}
 input[type=number]:focus,select:focus{outline:none;border-color:#0077b6;box-shadow:0 0 0 3px rgba(0,119,182,0.15)}
 input.error{border-color:#e74c3c}
@@ -78,8 +78,8 @@ details p{padding:0.75rem 1rem;font-size:0.88rem;color:#333;line-height:1.7}
 .related-tools h3{font-size:0.9rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:#555;margin-bottom:0.75rem}
 .related-tools a{display:inline-block;margin:0.25rem 0.35rem 0.25rem 0;background:#fff;border:1px solid #ddd;border-radius:20px;padding:5px 14px;font-size:0.83rem;color:#0077b6;transition:border-color 0.2s}
 .related-tools a:hover{border-color:#0077b6;text-decoration:none}
-footer{border-top:1px solid #e0e0e0;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#777}
-footer a{color:#777;margin:0 0.5rem}
+footer{border-top:1px solid #e0e0e0;padding:1.25rem 1.5rem;text-align:center;font-size:0.82rem;color:#666}
+footer a{color:#666;margin:0 0.5rem}
 footer a:hover{color:#0077b6}
 @media(max-width:640px){
   main{padding:1rem}
@@ -99,10 +99,11 @@ footer a:hover{color:#0077b6}
 <meta property="og:site_name" content="HistoryCalc">
 <meta name="twitter:card" content="summary">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
-<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
 </head>
 <body>
 <nav>
@@ -225,7 +226,8 @@ footer a:hover{color:#0077b6}
     <div id="results-content"></div>
   </div>
 
-  <div class="ad-slot" id="ad-mid"></div>
+  <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<div class="ad-slot" id="ad-mid"></div>
 
   <!-- CONTENT -->
   <div class="content-section">
@@ -273,19 +275,20 @@ footer a:hover{color:#0077b6}
 
   <div class="related-tools">
     <h3>Related Tools</h3>
-    <a href="/pipe-flow-calculator">Pipe Flow Calculator</a>
-    <a href="/hydraulic-gradient-calculator">Hydraulic Gradient Calculator</a>
-    <a href="/weir-flow-calculator">Weir Flow Calculator</a>
-    <a href="/unit-converter-ancient">Ancient Unit Converter</a>
-    <a href="/open-channel-flow">Open Channel Flow Calculator</a>
+    Pipe Flow Calculator
+    Hydraulic Gradient Calculator
+    Weir Flow Calculator
+    Ancient Unit Converter
+    Open Channel Flow Calculator
   </div>
 
-  <div class="ad-slot" id="ad-bottom"></div>
+  <nav class="cluster-nav" aria-label="More Building &amp; Engineering Calculators" style="max-width:640px;margin:2rem auto;padding:0 1.5rem"><h2 style="font-size:1.1rem;margin-bottom:.5rem">More Building &amp; Engineering Calculators</h2><ul style="padding-left:1.1rem;line-height:1.9"><li><a href="/roman-water-distribution-pipe-sizing-calculator/">Ancient Roman Aqueduct Water Distribution Calculator</a></li><li><a href="/roman-aqueduct-arcade-span-calculator/">Ancient Roman Aqueduct Bridge (Arcade) Span Calculator</a></li><li><a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a></li><li><a href="/roman-aqueduct-flow-calculator/">Ancient Roman Aqueduct Flow Calculator</a></li><li><a href="/roman-aqueduct-flow-rate-calculator/">Ancient Roman Aqueduct Flow Rate Calculator</a></li><li><a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a></li><li><a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a></li></ul></nav>
+<div class="ad-slot" id="ad-bottom"></div>
 
   <footer>
-    <a href="/about">About</a>
-    <a href="/privacy">Privacy</a>
-    <a href="/contact">Contact</a>
+    <a href="/about/">About</a>
+    <a href="/privacy/">Privacy</a> <a href="/terms/">Terms</a> <a href="/accessibility/">Accessibility</a>
+    <a href="/contact/">Contact</a>
     <span>© 2025 AquaCalc.tools</span>
   </footer>
 </main>
@@ -429,7 +432,7 @@ function calcBasic() {
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.78rem;color:#888;margin-top:0.3rem">* 1 quinaria ≈ 0.476 m³/day (Hodge, 1992 estimate)</p>
+      <p style="font-size:0.78rem;color:#666;margin-top:0.3rem">* 1 quinaria ≈ 0.476 m³/day (Hodge, 1992 estimate)</p>
 
       <div style="margin-top:1rem">
         <div class="section-label" style="margin-bottom:0.6rem">Compared to Aqua Marcia (Rome's largest)</div>
@@ -508,7 +511,7 @@ function calcHistorical() {
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.78rem;color:#888;margin-top:0.3rem">* Assuming 500 L/person/day for Roman urban use (baths, fountains, private supply)</p>`;
+      <p style="font-size:0.78rem;color:#666;margin-top:0.3rem">* Assuming 500 L/person/day for Roman urban use (baths, fountains, private supply)</p>`;
     showResults(html);
   });
 }
@@ -601,7 +604,7 @@ function calcDesign() {
           <tbody>${scenRows}</tbody>
         </table>
       </div>
-      <p style="font-size:0.78rem;color:#888;margin-top:0.3rem">Width fixed at ${fmt(width,2)} m. Slope = ${slope.toExponential(3)}. Demand = ${fmtInt(demand)} m³/day.</p>`;
+      <p style="font-size:0.78rem;color:#666;margin-top:0.3rem">Width fixed at ${fmt(width,2)} m. Slope = ${slope.toExponential(3)}. Demand = ${fmtInt(demand)} m³/day.</p>`;
     showResults(html);
   });
 }
@@ -629,5 +632,25 @@ document.addEventListener('keydown', e => {
 // ── Init: load first aqueduct data ────────────────────────────────────────
 loadAqueduct();
 </script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
 </body>
 </html>
