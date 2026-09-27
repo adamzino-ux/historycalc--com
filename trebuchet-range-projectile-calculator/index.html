@@ -24,7 +24,7 @@ h1{font-size:1.55rem;font-weight:800;color:#2c1810;margin-bottom:0.35rem;line-he
 .form-group{display:flex;flex-direction:column;gap:0.35rem}
 .form-group.full{grid-column:1/-1}
 label{font-size:0.85rem;font-weight:500;color:#5a4535}
-.unit-hint{font-size:0.78rem;color:#8a7860;font-weight:400}
+.unit-hint{font-size:0.78rem;color:#5a4535;font-weight:400}
 input[type=number],input[type=range]{width:100%;font-size:0.95rem;font-family:inherit;color:#2c1810;background:#fff;border:1px solid #c4a882;border-radius:6px;padding:12px 16px;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;appearance:none;min-height:44px}
 input[type=number]:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15)}
 input.error{border-color:#e74c3c;box-shadow:0 0 0 3px rgba(231,76,60,0.1)}
@@ -49,10 +49,10 @@ button{font-family:inherit;font-size:0.95rem;font-weight:600;cursor:pointer;bord
 .hero-stat .sub{font-size:0.9rem;opacity:0.85}
 .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem}
 .stat-box{background:#f5f0e1;border:1px solid #ddcba3;border-radius:6px;padding:0.85rem 1rem;text-align:center}
-.stat-box .s-label{font-size:0.72rem;color:#6b5540;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.2rem}
+.stat-box .s-label{font-size:0.72rem;color:#5a4535;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:0.2rem}
 .stat-box .s-val{font-size:1.3rem;font-weight:700;color:#8b4513}
-.stat-box .s-unit{font-size:0.72rem;color:#8a7860;margin-left:2px}
-.section-title{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#8a7860;margin:1.25rem 0 0.6rem}
+.stat-box .s-unit{font-size:0.72rem;color:#5a4535;margin-left:2px}
+.section-title{font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#5a4535;margin:1.25rem 0 0.6rem}
 table{width:100%;border-collapse:collapse;font-size:0.88rem}
 th{background:#ece2c8;padding:8px 10px;text-align:left;font-weight:600;font-size:0.8rem;color:#5a4535;border-bottom:2px solid #ddcba3}
 th.num,td.num{text-align:right}
@@ -62,7 +62,7 @@ tr:nth-child(even) td{background:#faf6ec}
 .traj-bar-container{display:flex;align-items:flex-end;height:90px;gap:2px;padding:0 0 4px;border-bottom:2px solid #ddcba3;margin-bottom:4px;min-width:320px}
 .traj-bar{background:linear-gradient(180deg,#8b4513 0%,#c98a4a 100%);border-radius:2px 2px 0 0;flex:1;min-width:4px}
 .traj-bar.peak{background:linear-gradient(180deg,#b5651d 0%,#e8a856 100%)}
-.traj-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:#8a7860}
+.traj-labels{display:flex;justify-content:space-between;font-size:0.72rem;color:#5a4535}
 .copy-btn{font-size:0.75rem;padding:4px 10px;background:#f5f0e1;border:1px solid #c4a882;border-radius:4px;color:#5a4535;cursor:pointer;min-height:unset;font-family:inherit;transition:background 0.2s}
 .copy-btn:hover{background:#ece2c8}
 .copy-btn.copied{background:#d4edda;border-color:#aed6b8;color:#276749}
@@ -70,7 +70,7 @@ tr:nth-child(even) td{background:#faf6ec}
 .preset-btn{font-size:0.78rem;padding:6px 12px;background:#f5f0e1;border:1px solid #c4a882;border-radius:20px;color:#5a4535;cursor:pointer;font-family:inherit;transition:background 0.2s,border-color 0.2s;min-height:36px}
 .preset-btn:hover,.preset-btn.active{background:#eddcc0;border-color:#8b4513;color:#8b4513}
 .tabs{display:flex;gap:0;border-bottom:2px solid #ddcba3;margin-bottom:1.25rem}
-.tab{font-size:0.85rem;padding:8px 16px;cursor:pointer;border:none;background:none;color:#7a6550;font-family:inherit;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 0.2s,border-color 0.2s;min-height:40px}
+.tab{font-size:0.85rem;padding:8px 16px;cursor:pointer;border:none;background:none;color:#5a4535;font-family:inherit;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color 0.2s,border-color 0.2s;min-height:40px}
 .tab.active{color:#8b4513;border-bottom-color:#8b4513;font-weight:600}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
@@ -94,8 +94,8 @@ tr:nth-child(even) td{background:#faf6ec}
 .related-links{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.5rem}
 .related-links a{font-size:0.85rem;padding:6px 14px;background:#f5f0e1;border:1px solid #c4a882;border-radius:20px;color:#8b4513;transition:background 0.2s}
 .related-links a:hover{background:#eddcc0;text-decoration:none}
-footer{text-align:center;font-size:0.82rem;color:#8a7860;padding:1.5rem 1rem;border-top:1px solid #c4a882;background:#fff}
-footer a{color:#8a7860;margin:0 0.5rem}
+footer{text-align:center;font-size:0.82rem;color:#5a4535;padding:1.5rem 1rem;border-top:1px solid #c4a882;background:#fff}
+footer a{color:#5a4535;margin:0 0.5rem;text-decoration:underline}
 footer a:hover{color:#8b4513}
 @media(max-width:540px){
   .form-grid{grid-template-columns:1fr}
@@ -115,6 +115,7 @@ footer a:hover{color:#8b4513}
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
 <style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
 <style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
@@ -192,16 +193,16 @@ footer a:hover{color:#8b4513}
         <div class="error-msg" id="ph-err"></div>
       </div>
       <div class="form-group full">
-        <label>Launch Angle <span class="unit-hint">(degrees)</span></label>
+        <label for="angle">Launch Angle <span class="unit-hint">(degrees)</span></label>
         <div class="slider-row">
-          <input type="range" id="angle-slider" min="20" max="70" value="45" oninput="syncAngle(this.value)">
+          <input type="range" id="angle-slider" min="20" max="70" value="45" oninput="syncAngle(this.value)" aria-label="Launch angle slider">
           <span class="slider-val" id="angle-disp">45°</span>
         </div>
         <input type="number" id="angle" value="45" min="20" max="70" step="1" oninput="syncSlider(this.value)" style="margin-top:0.4rem">
         <div class="error-msg" id="angle-err"></div>
       </div>
       <div class="form-group full">
-        <label>Mechanical Efficiency <span class="unit-hint">(% — friction, release timing, arm flex losses)</span></label>
+        <label for="eff-slider">Mechanical Efficiency <span class="unit-hint">(% — friction, release timing, arm flex losses)</span></label>
         <div class="slider-row">
           <input type="range" id="eff-slider" min="30" max="90" value="60" oninput="syncEff(this.value)">
           <span class="slider-val" id="eff-disp">60%</span>
@@ -216,7 +217,7 @@ footer a:hover{color:#8b4513}
   </div>
 
   <!-- RESULTS -->
-  <div class="results card" id="results">
+  <div class="results card" id="results" aria-live="polite" aria-atomic="true">
     <div id="arm-warning"></div>
     <div class="hero-stat" id="hero-stat">
       <div class="label">Maximum Range</div>
@@ -277,7 +278,7 @@ footer a:hover{color:#8b4513}
     </div>
 
     <div style="margin-top:1rem;display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
-      <span style="font-size:0.8rem;color:#8a7860">Share result:</span>
+      <span style="font-size:0.8rem;color:#5a4535">Share result:</span>
       <button class="copy-btn" id="copy-btn" onclick="copyResult()">Copy Summary</button>
     </div>
   </div>
@@ -371,11 +372,11 @@ Impact energy ≈ 31.9 kJ ≈ a car crash at ~23 km/h</div>
     <h2>Related Tools</h2>
     <div class="related-links">
       <a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
-      <a href="/inflation-calculator/">Historical Inflation Calculator</a>
-      <a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
-      <a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a>
-      <a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
-      <a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a>
+      <a href="/islamic-hijri-date-converter/">Islamic Hijri Calendar Date Converter</a>
+      <a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a>
+      <a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet &amp; Calorie Calculator</a>
+      <a href="/age-at-historical-event/">Age at Historical Event Calculator</a>
+      <a href="/french-republican-calendar-converter/">French Republican Calendar Converter</a>
     </div>
   </div>
 
