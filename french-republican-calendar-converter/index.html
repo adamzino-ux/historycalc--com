@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free French Republican Calendar Converter | HistoryCalc</title>
+<meta name="description" content="Convert any Gregorian date to the French Republican calendar (and back) — see the décade day, month name, and sansculottide festival with our free converter.">
+<link rel="canonical" href="https://historycalc.com/french-republican-calendar-converter/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "French Republican Calendar Converter", "url": "https://historycalc.com/french-republican-calendar-converter/", "description": "Convert any Gregorian date to the French Republican calendar (and back) — see the décade day, month name, and sansculottide festival with our free converter.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/", "logo": "https://historycalc.com/logo.png"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "French Republican Calendar Converter", "item": "https://historycalc.com/french-republican-calendar-converter/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What year is it in the French Republican calendar?", "acceptedAnswer": {"@type": "Answer", "text": "Using the mathematical extension of Romme's leap-year rule, today's date converts to a specific Republican year, month and day — check the \"Today's Republican Date\" box near the top of this page for the live conversion."}}, {"@type": "Question", "name": "When did the French Republican calendar start and end?", "acceptedAnswer": {"@type": "Answer", "text": "It began retroactively on 22 September 1792 (the day the Republic was proclaimed) and was officially abolished by Napoleon effective 1 January 1806. It reappeared briefly for 18 days during the Paris Commune in 1871."}}, {"@type": "Question", "name": "How many days are in a French Republican month?", "acceptedAnswer": {"@type": "Answer", "text": "Every month has exactly 30 days, split into three ten-day \"décades.\" The 5 or 6 leftover days at year's end are separate festival days called sansculottides, not part of any month."}}, {"@type": "Question", "name": "What are the sansculottides?", "acceptedAnswer": {"@type": "Answer", "text": "They are the extra days added to complete the 365 (or 366, in leap years) day year: Virtue, Genius/Talent, Labor, Opinion, and Rewards, plus a sixth \"Revolution\" day in leap years."}}, {"@type": "Question", "name": "Why did Napoleon abolish the calendar?", "acceptedAnswer": {"@type": "Answer", "text": "It was unpopular with workers (one rest day per ten instead of seven), disrupted trade with other nations still on the Gregorian calendar, and clashed with the Catholic Church's calendar of feast days, which Napoleon was trying to reconcile with under the 1801 Concordat."}}, {"@type": "Question", "name": "Was the Republican calendar ever accurate to the real equinox?", "acceptedAnswer": {"@type": "Answer", "text": "For its active years (I–XIV), leap years were meant to track the true astronomical autumn equinox at the Paris Observatory. In practice only Years III, VII, and XI were actually observed as leap, matching a simple 4-year rule during that period."}}]}]}</script>
+<style>
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f5f0e1;color:#2c1810;line-height:1.6;}
+.nav{max-width:640px;margin:0 auto;padding:1.2rem 1.5rem;}
+.nav a{color:#8b4513;text-decoration:none;font-weight:700;font-size:1.15rem;}
+.container{max-width:640px;margin:0 auto;padding:0 1.5rem 2rem;}
+h1{font-size:1.75rem;margin:0.2rem 0 0.8rem;}
+h2{font-size:1.25rem;margin-top:2.4rem;margin-bottom:0.7rem;color:#2c1810;}
+.intro{margin-bottom:1.8rem;}
+.svg-wrap{text-align:center;margin:1rem 0 1.8rem;}
+.tool-card{background:#fffaf0;border:1px solid #c4a882;border-radius:8px;padding:2rem;box-shadow:0 2px 10px rgba(139,69,19,0.1);margin-bottom:2rem;}
+.tabs{display:flex;gap:0.6rem;margin-bottom:1.6rem;flex-wrap:wrap;}
+.tab-btn{flex:1;min-width:140px;padding:12px 14px;border:1px solid #c4a882;background:#f5f0e1;color:#2c1810;border-radius:6px;cursor:pointer;font-size:0.88rem;font-weight:600;min-height:44px;}
+.tab-btn.active{background:#8b4513;color:#fff;border-color:#8b4513;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+label{display:block;font-size:0.85rem;font-weight:600;color:#5a4632;margin:1rem 0 0.35rem;}
+input,select{width:100%;padding:12px 16px;border:1px solid #c4a882;border-radius:6px;font-size:1rem;background:#fff;color:#2c1810;min-height:44px;}
+input:focus,select:focus{outline:none;border-color:#8b4513;box-shadow:0 0 0 3px rgba(139,69,19,0.15);}
+input.invalid{border-color:#e74c3c;}
+.error{color:#e74c3c;font-size:0.85rem;margin-top:0.5rem;display:none;}
+button.primary{width:100%;margin-top:1.6rem;padding:14px 24px;background:#8b4513;color:#fff;border:none;border-radius:6px;font-size:1rem;font-weight:700;cursor:pointer;min-height:48px;}
+button.primary:hover{background:#6b350f;}
+.results{margin-top:2rem;padding-top:1.6rem;border-top:2px dashed #c4a882;opacity:0;transition:opacity 0.3s ease;display:none;}
+.results.show{opacity:1;}
+.result-main{font-size:1.55rem;font-weight:800;color:#8b4513;margin-bottom:0.2rem;}
+.result-sub{color:#5a4632;font-size:0.95rem;margin-bottom:1rem;}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;margin-top:0.6rem;font-size:0.88rem;}
+th{background:#f0f0f0;text-align:left;padding:8px 10px;border-bottom:1px solid #ccc;}
+td{padding:8px 10px;border-bottom:1px solid #e5e5e5;text-align:right;}
+td:first-child,th:first-child{text-align:left;}
+tr:nth-child(even) td{background:#fafafa;}
+.copy-btn{background:none;border:1px solid #c4a882;color:#8b4513;padding:7px 14px;border-radius:6px;font-size:0.8rem;cursor:pointer;margin-top:0.7rem;min-height:36px;}
+.did-you-know{background:#f0e6d2;border-left:4px solid #8b4513;padding:1rem 1.4rem;margin:1.4rem 0;border-radius:4px;}
+.did-you-know strong{display:block;margin-bottom:0.4rem;}
+.today-box{background:#eee2c8;border:1px solid #c4a882;border-radius:6px;padding:1rem 1.2rem;margin-bottom:1.8rem;font-size:0.95rem;}
+.today-box b{color:#8b4513;}
+.ad-slot{min-height:0;margin:0;}
+details{margin-bottom:0.8rem;border:1px solid #e5ddc8;border-radius:6px;padding:0.8rem 1rem;background:#fffaf0;}
+summary{cursor:pointer;font-weight:700;}
+.related-list a{display:block;padding:10px 2px;color:#8b4513;text-decoration:none;border-bottom:1px solid #e5ddc8;}
+footer{text-align:center;padding:2rem 1.5rem;color:#7a6a55;font-size:0.85rem;}
+footer a{color:#8b4513;text-decoration:none;margin:0 6px;}
+@media(max-width:480px){.tabs{flex-direction:column;}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/french-republican-calendar-converter/">
+<meta property="og:title" content="French Republican Calendar Converter">
+<meta property="og:description" content="Convert any Gregorian date to the French Republican calendar (and back) — see the décade day, month name, and sansculottide festival with our free converter.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+</head>
+<body>
+<div class="nav"><a href="/">HistoryCalc</a></div>
+<div class="container">
+
+<h1>French Republican Calendar Converter</h1>
+<p class="intro">This free <strong>French Republican calendar converter</strong> translates any Gregorian date into its equivalent under France's revolutionary calendar — complete with the décade day name, month meaning, and the famous sansculottide festival days — and converts back the other way too.</p>
+
+<div class="svg-wrap">
+<svg width="180" height="140" viewBox="0 0 180 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a revolutionary sun medallion with a Phrygian liberty cap">
+  <circle cx="90" cy="78" r="46" fill="#f5f0e1" stroke="#8b4513" stroke-width="3"/>
+  <g stroke="#8b4513" stroke-width="3">
+    <line x1="90" y1="18" x2="90" y2="4"/>
+    <line x1="90" y1="138" x2="90" y2="152"/>
+    <line x1="30" y1="78" x2="16" y2="78"/>
+    <line x1="150" y1="78" x2="164" y2="78"/>
+    <line x1="48" y1="36" x2="38" y2="26"/>
+    <line x1="132" y1="36" x2="142" y2="26"/>
+    <line x1="48" y1="120" x2="38" y2="130"/>
+    <line x1="132" y1="120" x2="142" y2="130"/>
+  </g>
+  <circle cx="90" cy="78" r="34" fill="#fffaf0" stroke="#c4a882" stroke-width="2"/>
+  <text x="90" y="84" text-anchor="middle" font-size="12" fill="#8b4513" font-family="Georgia,serif">AN I</text>
+  <path d="M65 44 Q90 4 118 40 Q130 55 118 58 Q104 40 90 44 Q78 40 70 55 Q62 52 65 44 Z" fill="#8b4513"/>
+  <circle cx="118" cy="42" r="6" fill="#c4a882"/>
+</svg>
+</div>
+
+<div class="today-box" id="todayBox">Loading today's Republican date…</div>
+
+<div class="tool-card">
+  <div class="tabs">
+    <button class="tab-btn active" id="tabBtnG2R" onclick="switchTab('g2r')" type="button">Gregorian → Republican</button>
+    <button class="tab-btn" id="tabBtnR2G" onclick="switchTab('r2g')" type="button">Republican → Gregorian</button>
+  </div>
+
+  <div id="panelG2R" class="tab-panel active">
+    <label for="gYear">Year (Gregorian, 1792 or later)</label>
+    <input type="number" id="gYear" placeholder="e.g. 1799" inputmode="numeric">
+    <label for="gMonth">Month</label>
+    <select id="gMonth">
+      <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+      <option value="4">April</option><option value="5">May</option><option value="6">June</option>
+      <option value="7">July</option><option value="8">August</option><option value="9" selected>September</option>
+      <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+    </select>
+    <label for="gDay">Day</label>
+    <input type="number" id="gDay" placeholder="e.g. 22" inputmode="numeric">
+    <button class="primary" onclick="handleG2R()" type="button">Convert to Republican Date</button>
+    <div class="error" id="errG2R"></div>
+  </div>
+
+  <div id="panelR2G" class="tab-panel">
+    <label for="rYear">Republican Year (e.g. 8 for Year VIII)</label>
+    <input type="number" id="rYear" placeholder="e.g. 8" inputmode="numeric">
+    <label for="rMonth">Month</label>
+    <select id="rMonth">
+      <option value="1">Vendémiaire</option><option value="2">Brumaire</option><option value="3">Frimaire</option>
+      <option value="4">Nivôse</option><option value="5">Pluviôse</option><option value="6">Ventôse</option>
+      <option value="7">Germinal</option><option value="8">Floréal</option><option value="9">Prairial</option>
+      <option value="10">Messidor</option><option value="11">Thermidor</option><option value="12">Fructidor</option>
+      <option value="13">Sansculottides (complementary days)</option>
+    </select>
+    <label for="rDay">Day (1–30, or 1–6 for complementary days)</label>
+    <input type="number" id="rDay" placeholder="e.g. 18" inputmode="numeric">
+    <button class="primary" onclick="handleR2G()" type="button">Convert to Gregorian Date</button>
+    <div class="error" id="errR2G"></div>
+  </div>
+
+  <div class="results" id="results"></div>
+</div>
+
+<div class="ad-slot" id="ad-mid"></div>
+
+<h2>How to Use This French Republican Calendar Converter</h2>
+<p>Pick a direction using the two tabs above. To convert a modern date, enter a Gregorian year, month and day (any date from September 22, 1792 onward) and click Convert. To go the other way, enter a Republican year, month, and day (or select the "Sansculottides" option for the five or six extra festival days at year's end), then convert. The result shows the matching date, the décade day name, and the month's seasonal meaning.</p>
+
+<h2>Historical Context</h2>
+<p>The French Republican (or Revolutionary) calendar was adopted by the National Convention on 5 October 1793 but made retroactive to 22 September 1792 — the day the First French Republic was proclaimed and, fittingly, the autumn equinox. Mathematician Gilbert Romme designed its decimal structure while poet Fabre d'Églantine invented the poetic month names. The calendar replaced the seven-day week with a ten-day "décade," and even divided each day into 10 decimal hours. Napoleon Bonaparte abolished it effective 1 January 1806, though it briefly reappeared for eighteen days during the Paris Commune of 1871.</p>
+
+<div class="did-you-know">
+<strong>Did You Know?</strong>
+Fabre d'Églantine gave every single day of the year its own name tied to a plant, animal, mineral, or farm tool — for example, 1 Vendémiaire is "Grape" and 3 Nivôse is "Cypress." The ten-day décade meant workers got only one rest day every ten days instead of every seven, a major reason the calendar was unpopular. Decimal time (10 hours a day, 100 minutes an hour) was legally required for a year but almost nobody actually re-made their clocks.
+</div>
+
+<h2>How It's Calculated</h2>
+<p>The converter counts the exact number of days between your chosen date and the calendar's epoch, 22 September 1792 (Republican Year I, Vendémiaire 1), using Julian Day Numbers for precision across any date. Republican years run 365 days, except "sextile" (leap) years of 366 days, which fall — following the mathematical rule proposed by Gilbert Romme and confirmed by the real equinox during the calendar's active years — whenever the following year number is divisible by 4 (skipping century years not divisible by 400, mirroring the Gregorian leap rule). Each ordinary year has 12 months of exactly 30 days, grouped into three 10-day décades, followed by 5 (or 6, in leap years) extra "jours complémentaires" or sansculottides.</p>
+<p style="font-size:0.9rem;color:#5a4632;">Formula: <em>day-count = JDN(date) − JDN(22 Sept 1792)</em>, then that count is divided into Republican years (365 or 366 days each) to find the year, month, and day.</p>
+
+<h2>Worked Example</h2>
+<p>Let's convert <strong>9 November 1799</strong> — the date of Napoleon's coup d'état — into the Republican calendar:</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Step</th><th>Value</th></tr></thead>
+<tbody>
+<tr><td>Julian Day Number of 9 Nov 1799</td><td>2,378,444</td></tr>
+<tr><td>Julian Day Number of epoch (22 Sept 1792)</td><td>2,375,840</td></tr>
+<tr><td>Days since epoch</td><td>2,604</td></tr>
+<tr><td>Years 1–7 consumed (incl. leap Years III &amp; VII)</td><td>2,557 days</td></tr>
+<tr><td>Remaining day within Year VIII</td><td>47 (0-indexed)</td></tr>
+<tr><td>Month (day 47 ÷ 30)</td><td>Brumaire (month 2)</td></tr>
+<tr><td>Day within month</td><td>18</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Result: 18 Brumaire, Year VIII</strong> — exactly matching the historical name of Napoleon's coup, "18 Brumaire," proving the math checks out against the record books.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Republican years are almost always written as Roman numerals (Year VIII, not "Year 8") in historical texts — remember this when reading primary sources.</li>
+<li>The calendar has no dates before 22 September 1792; anything earlier (like the storming of the Bastille in 1789) can't be converted and predates the Republic itself.</li>
+<li>"Sansculottides" are not part of any month — they sit outside the 12×30-day structure as standalone festival days.</li>
+<li>Because the calendar was abolished in 1805, dates after Year XIV use a mathematical extension of Romme's leap rule, not a historically observed one.</li>
+<li>Décade days (Primidi–Décadi) replace weekdays entirely — there is no Republican "Monday" or "Sunday."</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>What year is it in the French Republican calendar?</summary><p>Using the mathematical extension of Romme's leap-year rule, today's date converts to a specific Republican year, month and day — check the "Today's Republican Date" box near the top of this page for the live conversion.</p></details>
+<details><summary>When did the French Republican calendar start and end?</summary><p>It began retroactively on 22 September 1792 (the day the Republic was proclaimed) and was officially abolished by Napoleon effective 1 January 1806. It reappeared briefly for 18 days during the Paris Commune in 1871.</p></details>
+<details><summary>How many days are in a French Republican month?</summary><p>Every month has exactly 30 days, split into three ten-day "décades." The 5 or 6 leftover days at year's end are separate festival days called sansculottides, not part of any month.</p></details>
+<details><summary>What are the sansculottides?</summary><p>They are the extra days added to complete the 365 (or 366, in leap years) day year: Virtue, Genius/Talent, Labor, Opinion, and Rewards, plus a sixth "Revolution" day in leap years.</p></details>
+<details><summary>Why did Napoleon abolish the calendar?</summary><p>It was unpopular with workers (one rest day per ten instead of seven), disrupted trade with other nations still on the Gregorian calendar, and clashed with the Catholic Church's calendar of feast days, which Napoleon was trying to reconcile with under the 1801 Concordat.</p></details>
+<details><summary>Was the Republican calendar ever accurate to the real equinox?</summary><p>For its active years (I–XIV), leap years were meant to track the true astronomical autumn equinox at the Paris Observatory. In practice only Years III, VII, and XI were actually observed as leap, matching a simple 4-year rule during that period.</p></details>
+
+<h2>Related Tools</h2>
+<div class="related-list">
+<a href="/chinese-zodiac-birth-year/">Chinese Zodiac by Birth Year Calculator</a>
+<a href="/day-of-week-historical-date/">Day of the Week for Any Historical Date Calculator</a>
+<a href="/julian-gregorian-date-converter/">Julian to Gregorian Calendar Date Converter</a>
+<a href="/inflation-calculator/">Historical Inflation Calculator</a>
+<a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
+<a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+</div>
+
+<div class="ad-slot" id="ad-bottom"></div>
+
+</div>
+<footer>
+<a href="/about/">About</a> | <a href="/privacy/">Privacy</a> | <a href="/contact/">Contact</a>
+<p>© 2024 historycalc.com</p>
+</footer>
+
+<script>
+const RMONTHS=["Vendémiaire","Brumaire","Frimaire","Nivôse","Pluviôse","Ventôse","Germinal","Floréal","Prairial","Messidor","Thermidor","Fructidor"];
+const RMEAN=["grape harvest","fog","frost","snow","rain","wind","germination","flowering","meadow","harvest","heat","fruit"];
+const DECADE=["Primidi","Duodi","Tridi","Quartidi","Quintidi","Sextidi","Septidi","Octidi","Nonidi","Décadi"];
+const COMP=["Fête de la Vertu (Virtue)","Fête du Génie (Talent)","Fête du Travail (Labor)","Fête de l'Opinion (Opinion)","Fête des Récompenses (Rewards)","Fête de la Révolution (Jour de la Révolution)"];
+const GMONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+function gregorianToJDN(y,m,d){
+  const a=Math.floor((14-m)/12), y2=y+4800-a, m2=m+12*a-3;
+  return d+Math.floor((153*m2+2)/5)+365*y2+Math.floor(y2/4)-Math.floor(y2/100)+Math.floor(y2/400)-32045;
+}
+function jdnToGregorian(jdn){
+  const a=jdn+32044, b=Math.floor((4*a+3)/146097), c=a-Math.floor(146097*b/4);
+  const d=Math.floor((4*c+3)/1461), e=c-Math.floor(1461*d/4), m=Math.floor((5*e+2)/153);
+  const day=e-Math.floor((153*m+2)/5)+1, month=m+3-12*Math.floor(m/10), year=100*b+d-4800+Math.floor(m/10);
+  return {year,month,day};
+}
+function isLeapGregorian(y){return (y%4===0&&y%100!==0)||y%400===0;}
+function daysInMonthG(y,m){const dim=[31,28,31,30,31,30,31,31,30,31,30,31];if(m===2&&isLeapGregorian(y))return 29;return dim[m-1];}
+function isLeapFR(y){const n=y+1; if(n%100===0)return n%400===0; return n%4===0;}
+function daysInYearFR(y){return isLeapFR(y)?366:365;}
+const EPOCH_JDN=gregorianToJDN(1792,9,22);
+function toRoman(num){
+  const vals=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  let res='',n=num;
+  for(const [v,s] of vals){while(n>=v){res+=s;n-=v;}}
+  return res||'0';
+}
+function weekdayName(jdn){
+  const names=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+  return names[((jdn%7)+7)%7];
+}
+function gregorianToRepublican(y,m,d){
+  const jdn=gregorianToJDN(y,m,d);
+  const diff=jdn-EPOCH_JDN;
+  if(diff<0) throw new Error("This date is before the calendar's epoch of September 22, 1792.");
+  let year=1, remaining=diff;
+  while(remaining>=daysInYearFR(year)){remaining-=daysInYearFR(year);year++;}
+  const doy=remaining;
+  if(doy<360){
+    const monthIdx=Math.floor(doy/30);
+    const day=(doy%30)+1;
+    return {year, month:monthIdx+1, day, isComplementary:false, decadeDay:DECADE[(day-1)%10], jdn, diff};
+  } else {
+    const compDay=doy-360+1;
+    return {year, compDay, isComplementary:true, jdn, diff};
+  }
+}
+function republicanToGregorian(year,month,day,isComplementary){
+  if(year<1) throw new Error("Republican year must be 1 or greater.");
+  if(isComplementary){
+    const max=isLeapFR(year)?6:5;
+    if(day<1||day>max) throw new Error("Complementary day must be between 1 and "+max+" for this year.");
+  } else {
+    if(month<1||month>12) throw new Error("Month must be between 1 and 12.");
+    if(day<1||day>30) throw new Error("Day must be between 1 and 30.");
+  }
+  let doy = isComplementary ? 360+(day-1) : (month-1)*30+(day-1);
+  let diff=0;
+  for(let yy=1;yy<year;yy++) diff+=daysInYearFR(yy);
+  diff+=doy;
+  const jdn=EPOCH_JDN+diff;
+  return {...jdnToGregorian(jdn), jdn, diff};
+}
+function fmt(n){return n.toLocaleString('en-US');}
+
+function switchTab(tab){
+  const g=tab==='g2r';
+  document.getElementById('tabBtnG2R').classList.toggle('active',g);
+  document.getElementById('tabBtnR2G').classList.toggle('active',!g);
+  document.getElementById('panelG2R').classList.toggle('active',g);
+  document.getElementById('panelR2G').classList.toggle('active',!g);
+}
+
+function showError(id,msg){
+  const el=document.getElementById(id);
+  el.textContent=msg;
+  el.style.display='block';
+}
+function clearError(id){
+  const el=document.getElementById(id);
+  el.style.display='none';
+}
+
+function renderResults(html){
+  const results=document.getElementById('results');
+  requestAnimationFrame(()=>{
+    results.innerHTML=html;
+    results.style.display='block';
+    results.classList.remove('show');
+    requestAnimationFrame(()=>{results.classList.add('show');});
+  });
+}
+
+function handleG2R(){
+  clearError('errG2R');
+  const y=parseInt(document.getElementById('gYear').value,10);
+  const m=parseInt(document.getElementById('gMonth').value,10);
+  const d=parseInt(document.getElementById('gDay').value,10);
+  if(isNaN(y)||isNaN(d)){showError('errG2R','Please enter a valid year and day.');return;}
+  if(y<1||y>9999){showError('errG2R','Please enter a year between 1 and 9999.');return;}
+  if(d<1||d>daysInMonthG(y,m)){showError('errG2R','Day '+d+' is not valid for '+GMONTHS[m-1]+' '+y+'.');return;}
+  try{
+    const r=gregorianToRepublican(y,m,d);
+    let mainLine, subLine, extra='';
+    if(r.isComplementary){
+      mainLine=COMP[r.compDay-1];
+      subLine='Republican Year '+toRoman(r.year)+' ('+r.year+') — a complementary day (sansculottide), outside the twelve months.';
+    } else {
+      mainLine=DECADE[(r.day-1)%10]+', '+r.day+' '+RMONTHS[r.month-1]+', Year '+toRoman(r.year);
+      subLine=RMONTHS[r.month-1]+' means "'+RMEAN[r.month-1]+'" — Republican Year '+r.year+' ('+toRoman(r.year)+').';
+    }
+    extra='This is '+fmt(r.diff)+' days after the calendar epoch of 22 September 1792.';
+    const copyText=mainLine+' — '+subLine;
+    const html='<div class="result-main">'+mainLine+'</div><div class="result-sub">'+subLine+'</div><p style="font-size:0.85rem;color:#5a4632;">'+extra+'</p><button class="copy-btn" onclick="copyResult(this,\''+copyText.replace(/'/g,"\\'")+'\')" type="button">Copy result</button>';
+    renderResults(html);
+  }catch(e){
+    showError('errG2R',e.message);
+  }
+}
+
+function handleR2G(){
+  clearError('errR2G');
+  const y=parseInt(document.getElementById('rYear').value,10);
+  const m=parseInt(document.getElementById('rMonth').value,10);
+  const d=parseInt(document.getElementById('rDay').value,10);
+  if(isNaN(y)||isNaN(d)){showError('errR2G','Please enter a valid year and day.');return;}
+  const isComp = m===13;
+  try{
+    const g=republicanToGregorian(y, isComp?1:m, d, isComp);
+    const wd=weekdayName(g.jdn);
+    const mainLine=wd+', '+GMONTHS[g.month-1]+' '+g.day+', '+g.year;
+    let repDesc = isComp ? COMP[d-1]+', Year '+toRoman(y) : d+' '+RMONTHS[m-1]+', Year '+toRoman(y);
+    const subLine='Republican date: '+repDesc;
+    const extra='This is '+fmt(g.diff)+' days after the calendar epoch of 22 September 1792.';
+    const copyText=mainLine+' — '+subLine;
+    const html='<div class="result-main">'+mainLine+'</div><div class="result-sub">'+subLine+'</div><p style="font-size:0.85rem;color:#5a4632;">'+extra+'</p><button class="copy-btn" onclick="copyResult(this,\''+copyText.replace(/'/g,"\\'")+'\')" type="button">Copy result</button>';
+    renderResults(html);
+  }catch(e){
+    showError('errR2G',e.message);
+  }
+}
+
+function copyResult(btn,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='Copied!';
+    setTimeout(()=>{btn.textContent=orig;},2000);
+  });
+}
+
+['gYear','gMonth','gDay'].forEach(id=>{
+  document.getElementById(id).addEventListener('keypress',e=>{if(e.key==='Enter'){e.preventDefault();handleG2R();}});
+});
+['rYear','rMonth','rDay'].forEach(id=>{
+  document.getElementById(id).addEventListener('keypress',e=>{if(e.key==='Enter'){e.preventDefault();handleR2G();}});
+});
+
+(function initToday(){
+  const now=new Date();
+  try{
+    const r=gregorianToRepublican(now.getFullYear(),now.getMonth()+1,now.getDate());
+    let txt;
+    if(r.isComplementary){
+      txt=COMP[r.compDay-1]+', Republican Year '+toRoman(r.year);
+    } else {
+      txt=DECADE[(r.day-1)%10]+', '+r.day+' '+RMONTHS[r.month-1]+', Year '+toRoman(r.year)+' ('+r.year+')';
+    }
+    document.getElementById('todayBox').innerHTML='<b>Today\'s Republican date:</b> '+txt+' <span style="color:#5a4632;font-size:0.85rem;">(using the mathematical extension of the calendar, since it was abolished in 1805)</span>';
+  }catch(e){
+    document.getElementById('todayBox').textContent="Today's date is before the calendar's epoch.";
+  }
+})();
+</script>
+</body>
+</html>
