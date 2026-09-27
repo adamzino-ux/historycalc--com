@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Inca Road Network Travel Time Estimator | HistoryCalc</title>
+<meta name="description" content="Estimate inca road system travel time chasqui runners, armies, and llama caravans needed on the ancient Qhapaq Ñan road network across the Andes.">
+<link rel="canonical" href="https://historycalc.com/inca-road-network-travel-time-estimator/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Inca Road Network Travel Time Estimator", "url": "https://historycalc.com/inca-road-network-travel-time-estimator/", "description": "Estimate inca road system travel time chasqui runners, armies, and llama caravans needed on the ancient Qhapaq Ñan road network across the Andes.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/", "logo": "https://historycalc.com/logo.png"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "Inca Road Network Travel Time Estimator", "item": "https://historycalc.com/inca-road-network-travel-time-estimator/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How fast could chasqui runners really go?", "acceptedAnswer": {"@type": "Answer", "text": "Each individual chasqui sprinted roughly 6–9 km at high speed before passing a message to the next waiting runner. Historians estimate this relay system achieved effective network speeds of roughly 180–380 km per day , with flat coastal roads being fastest. Spanish colonial chroniclers described the system as remarkably fast compared to courier systems they knew from Europe."}}, {"@type": "Question", "name": "How long did it take to travel from Cusco to Quito?", "acceptedAnswer": {"@type": "Answer", "text": "The distance from Cusco to Quito via the Qhapaq Ñan is roughly 1,900–2,100 km through highland and mixed terrain. A chasqui message relay could cover this in roughly 6–8 days . A foot soldier or army column would take approximately two to three months, and a llama caravan considerably longer."}}, {"@type": "Question", "name": "Were the Inca roads paved the entire way?", "acceptedAnswer": {"@type": "Answer", "text": "No — construction quality varied greatly across the network. Mountain sections through the Andes were often paved with fitted stone and included steps, drainage channels, and retaining walls. Coastal desert sections were sometimes just cleared, flattened ground bordered by low walls to keep drifting sand off the route. Only the most important routes received full stone paving across the roughly 40,000 km network."}}, {"@type": "Question", "name": "Did the Inca have horses or wheeled vehicles?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Inca had no horses (they arrived with the Spanish in 1532), no wheeled vehicles, and no draft animals other than llamas and alpacas. All transport was on foot or by llama. Many highland roads included stone stairways that were later found difficult for Spanish horses to climb, which is part of why the chasqui relay system was such an effective substitute for mounted couriers."}}, {"@type": "Question", "name": "How big was the total Inca road network?", "acceptedAnswer": {"@type": "Answer", "text": "Estimates place the full Qhapaq Ñan system, including secondary and local branches, at over 40,000 km of roads and paths, stretching from present-day Colombia through Ecuador, Peru, Bolivia, Chile, and into Argentina. UNESCO recognized major surviving sections as a World Heritage Site in 2014."}}]}]}</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f0e1;
+    color: #2c1810;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  nav {
+    background: #2c1810;
+    padding: 0.75rem 1.5rem;
+    border-bottom: 3px solid #8b4513;
+  }
+  nav a {
+    color: #f5f0e1;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  nav a:hover { color: #c4a882; }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .hero-svg {
+    text-align: center;
+    margin: 1.5rem 0 1rem;
+  }
+
+  h1 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #2c1810;
+    margin-bottom: 0.4rem;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #8b4513;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .card {
+    background: #fff8ee;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.75rem;
+    box-shadow: 0 2px 8px rgba(44,24,16,0.08);
+    margin-bottom: 2rem;
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    color: #8b4513;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #c4a882;
+  }
+
+  label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #5a3825;
+    margin-bottom: 0.35rem;
+    margin-top: 1rem;
+  }
+  label:first-of-type { margin-top: 0; }
+
+  input[type="number"], select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    background: #fffdf7;
+    color: #2c1810;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 44px;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  input[type="number"]:focus, select:focus {
+    outline: none;
+    border-color: #8b4513;
+    box-shadow: 0 0 0 3px rgba(139,69,19,0.15);
+  }
+  input.error { border-color: #e74c3c; }
+
+  .error-msg {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+    display: none;
+  }
+  .error-msg.visible { display: block; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    .form-row { grid-template-columns: 1fr; }
+  }
+
+  .range-group {
+    margin-top: 1rem;
+  }
+  .range-group label { margin-top: 0; }
+  .range-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+  .range-display span { font-weight: 700; color: #8b4513; }
+  input[type="range"] {
+    width: 100%;
+    accent-color: #8b4513;
+    min-height: 32px;
+    cursor: pointer;
+  }
+
+  .btn {
+    display: inline-block;
+    width: 100%;
+    margin-top: 1.5rem;
+    background: #8b4513;
+    color: #fff8ee;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    min-height: 48px;
+    transition: background 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .btn:hover { background: #6b3410; }
+  .btn:active { background: #4a2409; }
+
+  .results {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .results.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .result-hero {
+    text-align: center;
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .result-hero .big-number {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #c4a882;
+    line-height: 1.1;
+  }
+  .result-hero .big-label {
+    font-size: 1rem;
+    color: #f5f0e1;
+    margin-top: 0.3rem;
+    opacity: 0.85;
+  }
+  .result-hero .sub-stat {
+    font-size: 0.85rem;
+    color: #c4a882;
+    margin-top: 0.5rem;
+    opacity: 0.9;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid #c4a882;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    background: #fff8ee;
+    border: none;
+    color: #5a3825;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    min-height: 44px;
+    transition: background 0.15s, color 0.15s;
+    border-right: 1px solid #c4a882;
+  }
+  .tab-btn:last-child { border-right: none; }
+  .tab-btn.active {
+    background: #8b4513;
+    color: #fff8ee;
+  }
+  .tab-btn:hover:not(.active) { background: #f0e6d0; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th {
+    background: #c4a882;
+    color: #2c1810;
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  th:last-child, td:last-child { text-align: right; }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid #e8dcc8;
+    color: #2c1810;
+  }
+  tr:nth-child(even) td { background: #faf5ec; }
+  tr:nth-child(odd) td { background: #fff8ee; }
+  .table-wrap { overflow-x: auto; border-radius: 6px; border: 1px solid #c4a882; }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid #c4a882;
+    color: #8b4513;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    font-family: inherit;
+    float: right;
+    margin-top: -0.2rem;
+    transition: background 0.15s;
+    min-height: 32px;
+  }
+  .copy-btn:hover { background: #f0e6d0; }
+
+  .comparison-box {
+    background: #2c1810;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin-top: 1rem;
+    font-size: 0.92rem;
+  }
+  .comparison-box strong { color: #c4a882; }
+
+  .did-you-know {
+    background: #8b4513;
+    color: #f5f0e1;
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .did-you-know h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: #f5f0e1;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .did-you-know ul { padding-left: 1.2rem; }
+  .did-you-know li {
+    font-size: 0.88rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  .historical-context {
+    background: #fff8ee;
+    border: 1px solid #c4a882;
+    border-left: 4px solid #8b4513;
+    border-radius: 0 8px 8px 0;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: #2c1810;
+  }
+  .historical-context h2 {
+    font-size: 1rem;
+    color: #8b4513;
+    margin-bottom: 0.6rem;
+    font-weight: 700;
+  }
+
+  .content-section {
+    background: #fff8ee;
+    border: 1px solid #c4a882;
+    border-radius: 8px;
+    padding: 1.75rem;
+    margin-bottom: 2rem;
+  }
+  .content-section h2 {
+    font-size: 1.1rem;
+    color: #8b4513;
+    margin-bottom: 0.75rem;
+    margin-top: 1.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #e8dcc8;
+  }
+  .content-section h2:first-child { margin-top: 0; }
+  .content-section p { font-size: 0.91rem; margin-bottom: 0.75rem; line-height: 1.65; }
+  .content-section ul { padding-left: 1.3rem; margin-bottom: 0.75rem; }
+  .content-section li { font-size: 0.91rem; margin-bottom: 0.4rem; line-height: 1.55; }
+
+  details { margin-bottom: 0.75rem; }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #8b4513;
+    font-size: 0.91rem;
+    padding: 0.5rem 0;
+    user-select: none;
+  }
+  summary:hover { color: #6b3410; }
+  details p { font-size: 0.88rem; padding: 0.5rem 0 0.25rem 1rem; color: #2c1810; line-height: 1.6; }
+
+  .related-tools {
+    background: #2c1810;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .related-tools h2 {
+    color: #c4a882;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .related-tools a {
+    display: block;
+    color: #f5f0e1;
+    text-decoration: underline;
+    font-size: 0.88rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(196,168,130,0.2);
+    transition: color 0.15s;
+  }
+  .related-tools a:last-child { border-bottom: none; }
+  .related-tools a:hover { color: #c4a882; }
+  .related-tools a::before { content: "→ "; color: #8b4513; text-decoration: none; }
+
+  .ad-slot { min-height: 0; margin: 0; }
+
+  footer {
+    background: #2c1810;
+    color: #c4a882;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    font-size: 0.82rem;
+    border-top: 3px solid #8b4513;
+  }
+  footer a { color: #c4a882; text-decoration: underline; margin: 0 0.5rem; }
+  footer a:hover { color: #f5f0e1; }
+
+  .speed-legend {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 400px) {
+    .speed-legend { grid-template-columns: 1fr 1fr; }
+  }
+  .legend-item {
+    background: #fff8ee;
+    border: 1px solid #c4a882;
+    border-radius: 6px;
+    padding: 0.6rem 0.5rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: #2c1810;
+  }
+  .legend-item strong { display: block; color: #8b4513; font-size: 0.95rem; margin-bottom: 0.1rem; }
+
+  .bar-chart { margin: 1rem 0; }
+  .bar-row { margin-bottom: 0.6rem; }
+  .bar-label { font-size: 0.8rem; color: #5a3825; margin-bottom: 0.2rem; font-weight: 500; }
+  .bar-track { background: #e8dcc8; border-radius: 4px; height: 22px; position: relative; overflow: hidden; }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #8b4513, #c4a882);
+    transition: width 0.4s ease;
+    display: flex; align-items: center; padding-left: 8px;
+  }
+  .bar-fill span { font-size: 0.75rem; color: #fff8ee; font-weight: 600; white-space: nowrap; }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.3rem; }
+    .card { padding: 1.25rem; }
+    .result-hero .big-number { font-size: 2.1rem; }
+  }
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/inca-road-network-travel-time-estimator/">
+<meta property="og:title" content="Inca Road Network Travel Time Estimator">
+<meta property="og:description" content="Estimate inca road system travel time chasqui runners, armies, and llama caravans needed on the ancient Qhapaq Ñan road network across the Andes.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+</head>
+<body>
+
+<nav>
+  <a href="/">HistoryCalc</a>
+</nav>
+
+<div class="container">
+
+  <!-- Hero SVG -->
+  <div class="hero-svg">
+    <svg width="280" height="100" viewBox="0 0 280 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+      <polygon points="0,100 40,30 80,100" fill="#8b4513" opacity="0.6"/>
+      <polygon points="50,100 95,20 140,100" fill="#6b3410" opacity="0.7"/>
+      <polygon points="120,100 170,10 220,100" fill="#8b4513" opacity="0.6"/>
+      <polygon points="190,100 240,35 280,100" fill="#6b3410" opacity="0.5"/>
+      <polygon points="95,20 105,38 85,38" fill="#f5f0e1" opacity="0.8"/>
+      <polygon points="170,10 182,32 158,32" fill="#f5f0e1" opacity="0.9"/>
+      <polyline points="0,95 30,80 50,90 80,72 110,85 140,68 170,80 200,65 230,75 280,62"
+        stroke="#c4a882" stroke-width="2.5" fill="none" stroke-dasharray="5,3" stroke-linecap="round"/>
+      <circle cx="145" cy="60" r="5" fill="#2c1810"/>
+      <line x1="145" y1="65" x2="145" y2="80" stroke="#2c1810" stroke-width="2"/>
+      <line x1="145" y1="70" x2="138" y2="76" stroke="#2c1810" stroke-width="2"/>
+      <line x1="145" y1="70" x2="152" y2="73" stroke="#2c1810" stroke-width="2"/>
+      <line x1="145" y1="80" x2="140" y2="88" stroke="#2c1810" stroke-width="2"/>
+      <line x1="145" y1="80" x2="150" y2="87" stroke="#2c1810" stroke-width="2"/>
+      <rect x="60" y="74" width="6" height="8" fill="#8b4513" rx="1"/>
+      <rect x="195" y="66" width="6" height="8" fill="#8b4513" rx="1"/>
+    </svg>
+  </div>
+
+  <h1>Inca Road System Travel Time &amp; Chasqui Relay Calculator</h1>
+  <p class="subtitle">Estimate inca road system travel time chasqui runners, armies, and llama caravans needed to cross the Qhapaq Ñan (~40,000 km total network).</p>
+
+  <!-- Did You Know -->
+  <div class="did-you-know">
+    <h3>🏔 Did You Know?</h3>
+    <ul>
+      <li>Chasqui relay runners could transmit a message roughly <strong>2,000 km</strong> from Quito to Cusco in about <strong>5–8 days</strong> — a pace few contemporary courier systems anywhere in the world could match.</li>
+      <li>The full Qhapaq Ñan road network exceeded <strong>40,000 km</strong>, running from what is now Colombia to Argentina and Chile through desert, mountains, and rainforest.</li>
+      <li>Relay stations called <em>tambos</em> were placed roughly every <strong>6–9 km</strong> along major routes, so a single runner never had to carry a message farther than one short sprint.</li>
+    </ul>
+  </div>
+
+  <!-- Historical Context -->
+  <div class="historical-context">
+    <h2>📜 Historical Context</h2>
+    <p>The Qhapaq Ñan ("Royal Road" in Quechua) was the backbone of the Inca Empire (<em>Tawantinsuyu</em>), built and expanded mainly between roughly 1438–1533 CE. It connected Cusco — the imperial capital — to territory spanning modern-day Colombia, Ecuador, Peru, Bolivia, Chile, and Argentina, forming a network estimated at over <strong>40,000 km</strong> total. The roads averaged 4–8 meters wide in the highlands and were often narrower on the coast. Many mountain sections were paved with fitted stone and included steps, drainage channels, and retaining walls; stone markers called <em>topos</em> appeared roughly every 7 km. There were no wheeled vehicles anywhere in the empire — all traffic was foot travelers, llama caravans, and the famous chasqui messenger runners who sprinted in relay stages to move information at remarkable speed.</p>
+  </div>
+
+  <!-- TOOL CARD -->
+  <div class="card">
+    <h2>🗺 Estimate Your Journey</h2>
+
+    <div class="form-row">
+      <div>
+        <label for="distance">Distance (km)</label>
+        <input type="number" id="distance" placeholder="e.g. 2000" min="1" max="40000" value="1000">
+        <div class="error-msg" id="distanceErr">Please enter a distance between 1 and 40,000 km.</div>
+      </div>
+      <div>
+        <label for="terrain">Terrain Type</label>
+        <select id="terrain">
+          <option value="highland">Highland / Andean (mountains)</option>
+          <option value="coastal">Coastal Road (flat desert)</option>
+          <option value="mixed" selected>Mixed (highland + coastal)</option>
+          <option value="amazon">Amazon / Jungle (slow)</option>
+        </select>
+      </div>
+    </div>
+
+    <label for="traveler">Traveler Type</label>
+    <select id="traveler">
+      <option value="chasqui">Chasqui Relay Runners (message)</option>
+      <option value="foot">Foot Traveler / Soldier (single)</option>
+      <option value="army">Inca Army (full military column)</option>
+      <option value="llama">Llama Caravan (cargo)</option>
+      <option value="mit">Mit'a Labor Party (workers + supplies)</option>
+    </select>
+
+    <div class="range-group">
+      <div class="range-display">
+        <label for="hoursPerDay" style="margin:0;">Daily travel hours:</label>
+        <span id="hoursDisplay">10</span>
+      </div>
+      <input type="range" id="hoursPerDay" min="6" max="16" value="10" aria-label="Daily travel hours">
+    </div>
+
+    <label for="season">Season / Conditions</label>
+    <select id="season">
+      <option value="dry">Dry Season (optimal)</option>
+      <option value="wet">Wet Season (+30% time)</option>
+      <option value="winter">Winter / Harsh (+55% time)</option>
+    </select>
+
+    <button class="btn" id="calcBtn">Calculate Travel Time</button>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="results" id="results" aria-live="polite" aria-atomic="true">
+    <div class="card">
+      <h2>📊 Results <button class="copy-btn" id="copyBtn" onclick="copyResults()">Copy Results</button></h2>
+
+      <div class="result-hero" id="resultHero">
+        <div class="big-number" id="mainResult">—</div>
+        <div class="big-label" id="mainLabel">—</div>
+        <div class="sub-stat" id="subStat">—</div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('breakdown', this)">Breakdown</button>
+        <button class="tab-btn" onclick="switchTab('compare', this)">Compare All</button>
+        <button class="tab-btn" onclick="switchTab('visual', this)">Visual</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-breakdown">
+        <div class="table-wrap">
+          <table id="breakdownTable">
+            <thead><tr><th>Parameter</th><th>Value</th></tr></thead>
+            <tbody id="breakdownBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-compare">
+        <div class="speed-legend" id="speedLegend"></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Traveler Type</th><th>Speed (km/day)</th><th>Days</th><th>Weeks</th></tr></thead>
+            <tbody id="compareBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-visual">
+        <div class="bar-chart" id="barChart"></div>
+      </div>
+
+      <div class="comparison-box" id="comparisonBox"></div>
+    </div>
+  </div>
+
+  <aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<div class="ad-slot" id="ad-mid"></div>
+
+  <!-- Content Section -->
+  <div class="content-section">
+    <h2>How to Use This Inca Road Travel Time Estimator</h2>
+    <p>Enter a distance in kilometers (you can estimate based on known Inca cities — for example, Cusco to Quito is roughly 2,000 km, and Cusco to Santiago is roughly 3,500 km). Select the terrain type, who is traveling, how many hours per day they travel, and the seasonal conditions. Click <strong>Calculate Travel Time</strong> to see estimated travel days and a detailed breakdown.</p>
+    <p>The Compare All tab shows every traveler type side-by-side for the same distance, so you can see the dramatic difference between a chasqui relay message and, say, a loaded llama caravan.</p>
+
+    <h2>Why This Matters</h2>
+    <p>The Inca communication and logistics system is one of the ancient world's great engineering achievements, often overlooked in favor of Roman roads or the Silk Road. Understanding travel times on the Qhapaq Ñan helps explain how the Inca administered an empire stretching roughly 4,300 km north to south without writing, wheels, or horses.</p>
+    <p>Historians estimate Inca armies marching from Cusco could reach most imperial frontiers in a few weeks to a couple of months, giving the empire a rapid response capability that rivaled or exceeded contemporary medieval Europe. Spanish colonial chroniclers wrote admiringly of chasqui runners carrying fresh fish and messages across hundreds of kilometers in a matter of days. These calculations matter for archaeologists, historians, students, and anyone fascinated by pre-Columbian civilization.</p>
+
+    <h2>How It's Calculated</h2>
+    <p>Each traveler type has four terrain-specific base speeds (highland, coastal, mixed, and Amazon), drawn from archaeological evidence and colonial-era chronicles:</p>
+    <ul>
+      <li><strong>Chasqui relay:</strong> Each individual runner sprinted roughly 6–9 km before handing off to the next. Effective network speed: <em>180–380 km/day</em>, fastest on flat coastal roads.</li>
+      <li><strong>Foot soldier:</strong> Roughly 18–28 km/day on highland roads with gear; up to 38 km/day on flat coastal roads.</li>
+      <li><strong>Inca army:</strong> Full columns with supply trains moved roughly 20–28 km/day on highland and mixed routes.</li>
+      <li><strong>Llama caravan:</strong> Loaded llamas carried around 25–30 kg and walked roughly 16–22 km/day depending on terrain.</li>
+      <li><strong>Mit'a labor party:</strong> Workers with heavy supplies and families moved roughly 9–18 km/day.</li>
+    </ul>
+    <p>The base speed for the selected traveler and terrain is then adjusted for season and daily travel hours:</p>
+    <p><strong>Formula:</strong> <em>Travel Days = Distance ÷ (Base Speed for Terrain × Season Factor × Hours Factor)</em></p>
+    <p>Season factors: Dry = 1.0×, Wet = 0.77×, Winter/Harsh = 0.65×. Hours Factor = (daily travel hours selected ÷ 10 reference hours). Longer days on the road increase effective daily distance; wetter or harsher conditions reduce it.</p>
+
+    <h2>Worked Example</h2>
+    <p>Suppose you want to estimate a chasqui relay message traveling <strong>2,000 km</strong> from Quito to Cusco on <strong>mixed terrain</strong>, during the <strong>dry season</strong>, with the default <strong>10 hours/day</strong> relay operation.</p>
+    <ul>
+      <li>Base speed for chasqui on mixed terrain: 330 km/day</li>
+      <li>Season factor (dry): ×1.0</li>
+      <li>Hours factor (10 ÷ 10): ×1.0</li>
+      <li>Effective speed: 330 km/day</li>
+      <li>Travel days = 2,000 ÷ 330 ≈ <strong>6.1 days</strong></li>
+    </ul>
+    <p>Now switch the traveler type to Llama Caravan with everything else the same: base speed drops to 18 km/day, giving 2,000 ÷ 18 ≈ 111 days — nearly four months for the same journey a relay message covered in about a week.</p>
+
+    <h2>Tips &amp; Common Mistakes</h2>
+    <ul>
+      <li><strong>Chasqui speed is a relay, not a marathon:</strong> A single chasqui ran only about 6–9 km at top sprint speed. The 180–380 km/day figures are the network speed of a message passing through many runners — not one person running all day.</li>
+      <li><strong>Altitude matters enormously:</strong> At 4,000–5,000 m elevation in the Andes, even fit runners slow significantly. The Highland base speeds already reflect average altitude effects.</li>
+      <li><strong>Amazon jungle was the hardest terrain:</strong> Eastern roads through the Amazon basin were rarely used for fast transport — expect roughly 35–45% slower speeds than highland roads for every traveler type.</li>
+      <li><strong>Tambos determined realistic daily stages:</strong> For armies and caravans, the spacing of supply depots (tambos, ~6–9 km apart) shaped feasible daily distances as much as raw walking capacity did.</li>
+      <li><strong>Don't confuse calendar days with travel days:</strong> In practice, armies and caravans rested periodically. Add roughly 10–15% to army or caravan travel times for a more realistic total journey duration.</li>
+    </ul>
+
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How fast could chasqui runners really go?</summary>
+      <p>Each individual chasqui sprinted roughly 6–9 km at high speed before passing a message to the next waiting runner. Historians estimate this relay system achieved effective network speeds of roughly <strong>180–380 km per day</strong>, with flat coastal roads being fastest. Spanish colonial chroniclers described the system as remarkably fast compared to courier systems they knew from Europe.</p>
+    </details>
+    <details>
+      <summary>How long did it take to travel from Cusco to Quito?</summary>
+      <p>The distance from Cusco to Quito via the Qhapaq Ñan is roughly 1,900–2,100 km through highland and mixed terrain. A chasqui message relay could cover this in roughly <strong>6–8 days</strong>. A foot soldier or army column would take approximately two to three months, and a llama caravan considerably longer.</p>
+    </details>
+    <details>
+      <summary>Were the Inca roads paved the entire way?</summary>
+      <p>No — construction quality varied greatly across the network. Mountain sections through the Andes were often paved with fitted stone and included steps, drainage channels, and retaining walls. Coastal desert sections were sometimes just cleared, flattened ground bordered by low walls to keep drifting sand off the route. Only the most important routes received full stone paving across the roughly 40,000 km network.</p>
+    </details>
+    <details>
+      <summary>Did the Inca have horses or wheeled vehicles?</summary>
+      <p>No. The Inca had no horses (they arrived with the Spanish in 1532), no wheeled vehicles, and no draft animals other than llamas and alpacas. All transport was on foot or by llama. Many highland roads included stone stairways that were later found difficult for Spanish horses to climb, which is part of why the chasqui relay system was such an effective substitute for mounted couriers.</p>
+    </details>
+    <details>
+      <summary>How big was the total Inca road network?</summary>
+      <p>Estimates place the full Qhapaq Ñan system, including secondary and local branches, at over <strong>40,000 km</strong> of roads and paths, stretching from present-day Colombia through Ecuador, Peru, Bolivia, Chile, and into Argentina. UNESCO recognized major surviving sections as a World Heritage Site in 2014.</p>
+    </details>
+  </div>
+
+  <!-- Related Tools -->
+  <div class="related-tools">
+    <h2>Related Historical Calculators</h2>
+    <a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
+    <a href="/inca-quipu-knot-encoder/">Inca Quipu Knot Encoder</a>
+    <a href="/generation-calculator-birth-year/">Generation Calculator by Birth Year</a>
+    <a href="/islamic-hijri-date-converter/">Islamic Hijri Calendar Date Converter</a>
+    <a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a>
+    <a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet &amp; Calorie Calculator</a>
+  </div>
+
+  <nav class="cluster-nav" aria-label="More Building &amp; Engineering Calculators" style="max-width:640px;margin:2rem auto;padding:0 1.5rem"><h2 style="font-size:1.1rem;margin-bottom:.5rem">More Building &amp; Engineering Calculators</h2><ul style="padding-left:1.1rem;line-height:1.9"><li><a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a></li><li><a href="/egyptian-pyramid-construction-estimator/">Ancient Egyptian Pyramid Construction Timeline Estimator</a></li><li><a href="/roman-aqueduct-arcade-span-calculator/">Ancient Roman Aqueduct Bridge (Arcade) Span Calculator</a></li><li><a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a></li><li><a href="/roman-aqueduct-flow-calculator/">Ancient Roman Aqueduct Flow Calculator</a></li><li><a href="/roman-aqueduct-flow-rate-calculator/">Ancient Roman Aqueduct Flow Rate Calculator</a></li><li><a href="/roman-water-distribution-pipe-sizing-calculator/">Ancient Roman Aqueduct Water Distribution Calculator</a></li><li><a href="/roman-aqueduct-water-pressure-calculator/">Ancient Roman Aqueduct Water Pressure Calculator</a></li><li><a href="/ancient-engineering-calculators/"><strong>All Building &amp; Engineering calculators →</strong></a></li></ul></nav>
+<div class="ad-slot" id="ad-bottom"></div>
+
+</div><!-- end .container -->
+
+<footer>
+  <a href="/">historycalc.com</a> |
+  <a href="/about/">About</a>
+  <a href="/privacy/">Privacy</a> <a href="/terms/">Terms</a> <a href="/accessibility/">Accessibility</a>
+  <a href="/contact/">Contact</a>
+  <br style="margin-bottom:0.4rem;">
+  <span>© 2025 historycalc.com — Free Historical Calculators</span>
+</footer>
+
+<script>
+  // ── Data ──────────────────────────────────────────────────────────────────
+  const TRAVELER_DATA = {
+    chasqui: {
+      label: "Chasqui Relay Runners",
+      emoji: "🏃",
+      speeds: { highland: 300, coastal: 380, mixed: 330, amazon: 180 },
+      unit: "km/day (network speed)"
+    },
+    foot: {
+      label: "Foot Traveler / Soldier",
+      emoji: "🚶",
+      speeds: { highland: 28, coastal: 38, mixed: 32, amazon: 18 },
+      unit: "km/day"
+    },
+    army: {
+      label: "Inca Army",
+      emoji: "⚔️",
+      speeds: { highland: 22, coastal: 28, mixed: 25, amazon: 14 },
+      unit: "km/day"
+    },
+    llama: {
+      label: "Llama Caravan",
+      emoji: "🦙",
+      speeds: { highland: 16, coastal: 22, mixed: 18, amazon: 10 },
+      unit: "km/day"
+    },
+    mit: {
+      label: "Mit'a Labor Party",
+      emoji: "👷",
+      speeds: { highland: 14, coastal: 18, mixed: 15, amazon: 9 },
+      unit: "km/day"
+    }
+  };
+
+  const SEASON_FACTORS = { dry: 1.0, wet: 0.77, winter: 0.65 };
+  const HOURS_BASE     = 10; // reference hours/day
+
+  const TERRAIN_LABELS = {
+    highland: "Highland / Andean",
+    coastal:  "Coastal (flat desert)",
+    mixed:    "Mixed terrain",
+    amazon:   "Amazon / Jungle"
+  };
+  const SEASON_LABELS = { dry: "Dry Season", wet: "Wet Season", winter: "Winter / Harsh" };
+
+  // ── UI helpers ─────────────────────────────────────────────────────────────
+  const $ = id => document.getElementById(id);
+
+  $('hoursPerDay').addEventListener('input', () => {
+    $('hoursDisplay').textContent = $('hoursPerDay').value;
+  });
+
+  function fmt(n, dec = 1) {
+    if (n === undefined || isNaN(n)) return '—';
+    return n.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  }
+  function fmtInt(n) {
+    return Math.round(n).toLocaleString('en-US');
+  }
+  function daysToHuman(days) {
+    if (days < 1) return `${Math.round(days * 24)} hours`;
+    if (days < 7) return `${fmt(days, 1)} days`;
+    const weeks = Math.floor(days / 7);
+    const rem = Math.round(days % 7);
+    if (weeks < 4) return rem > 0 ? `${weeks} wk${weeks>1?'s':''} ${rem} day${rem>1?'s':''}` : `${weeks} week${weeks>1?'s':''}`;
+    const months = Math.floor(days / 30);
+    const remD = Math.round(days % 30);
+    return remD > 0 ? `~${months} month${months>1?'s':''} ${remD} days` : `~${months} month${months>1?'s':''}`;
+  }
+
+  // ── Calculate ─────────────────────────────────────────────────────────────
+  function calculate() {
+    const distInput = parseFloat($('distance').value);
+    const terrain   = $('terrain').value;
+    const traveler  = $('traveler').value;
+    const hoursDay  = parseInt($('hoursPerDay').value);
+    const season    = $('season').value;
+
+    // Validate
+    let valid = true;
+    if (isNaN(distInput) || distInput < 1 || distInput > 40000) {
+      $('distance').classList.add('error');
+      $('distanceErr').classList.add('visible');
+      valid = false;
+    } else {
+      $('distance').classList.remove('error');
+      $('distanceErr').classList.remove('visible');
+    }
+    if (!valid) {
+      requestAnimationFrame(() => {
+        $('results').classList.remove('visible');
+      });
+      return;
+    }
+
+    const distance = distInput;
+    const baseSpeed = TRAVELER_DATA[traveler].speeds[terrain];
+    const seasonFactor = SEASON_FACTORS[season];
+    const hoursFactor  = hoursDay / HOURS_BASE;
+
+    // Effective speed (terrain is already baked into baseSpeed lookup)
+    const effectiveSpeed = baseSpeed * seasonFactor * hoursFactor;
+    const days = distance / effectiveSpeed;
+    const weeks = days / 7;
+
+    // Build comparison for all traveler types
+    const compareRows = Object.keys(TRAVELER_DATA).map(key => {
+      const spd = TRAVELER_DATA[key].speeds[terrain] * seasonFactor * hoursFactor;
+      const d   = distance / spd;
+      return { key, label: TRAVELER_DATA[key].label, emoji: TRAVELER_DATA[key].emoji, speed: spd, days: d, weeks: d/7 };
+    });
+
+    // Modern equivalent
+    const modernCarSpeed = 80; // km/h assumed average road speed
+    const modernDriveHours = distance / modernCarSpeed;
+    const modernDriveDays = modernDriveHours / 24;
+    const speedMultiple = days / Math.max(modernDriveDays, 0.001);
+
+    requestAnimationFrame(() => {
+      // Hero
+      $('mainResult').textContent = daysToHuman(days);
+      $('mainLabel').textContent  = TRAVELER_DATA[traveler].label + ' — ' + TERRAIN_LABELS[terrain];
+      $('subStat').textContent    = `Effective speed: ${fmt(effectiveSpeed)} km/day | Distance: ${fmtInt(distance)} km`;
+
+      // Breakdown table
+      const bRows = [
+        ['Distance', `${fmtInt(distance)} km`],
+        ['Terrain', TERRAIN_LABELS[terrain]],
+        ['Traveler', TRAVELER_DATA[traveler].label],
+        ['Season', SEASON_LABELS[season]],
+        ['Daily Hours', `${hoursDay} hours`],
+        ['Base Speed (terrain-specific)', `${fmt(baseSpeed)} km/day`],
+        ['Season Factor', `×${seasonFactor.toFixed(2)}`],
+        ['Hours Factor', `×${hoursFactor.toFixed(2)}`],
+        ['Effective Speed', `${fmt(effectiveSpeed)} km/day`],
+        ['Travel Days', `${fmt(days, 1)} days`],
+        ['Calendar Weeks', `${fmt(weeks, 1)} weeks`],
+        ['Human-readable', daysToHuman(days)]
+      ];
+      let bHtml = '';
+      bRows.forEach(([k, v]) => {
+        bHtml += `<tr><td>${k}</td><td style="text-align:right"><strong>${v}</strong></td></tr>`;
+      });
+      $('breakdownBody').innerHTML = bHtml;
+
+      // Compare table
+      let cHtml = '';
+      compareRows.forEach(r => {
+        const active = r.key === traveler ? ' style="background:#fff0e0;"' : '';
+        cHtml += `<tr${active}>
+          <td>${r.emoji} ${r.label}</td>
+          <td style="text-align:right">${fmt(r.speed)}</td>
+          <td style="text-align:right">${fmt(r.days, 1)}</td>
+          <td style="text-align:right">${fmt(r.weeks, 1)}</td>
+        </tr>`;
+      });
+      $('compareBody').innerHTML = cHtml;
+
+      // Speed legend
+      let legHtml = '';
+      compareRows.forEach(r => {
+        legHtml += `<div class="legend-item"><strong>${r.emoji} ${fmt(r.speed)}</strong>${r.label}</div>`;
+      });
+      $('speedLegend').innerHTML = legHtml;
+
+      // Bar chart
+      const maxSpeed = Math.max(...compareRows.map(r => r.speed));
+      let barHtml = '';
+      compareRows.forEach(r => {
+        const pct = Math.max(2, (r.speed / maxSpeed) * 100).toFixed(1);
+        barHtml += `<div class="bar-row">
+          <div class="bar-label">${r.emoji} ${r.label}</div>
+          <div class="bar-track">
+            <div class="bar-fill" style="width:${pct}%">
+              <span>${fmt(r.speed)} km/day (${daysToHuman(r.days)})</span>
+            </div>
+          </div>
+        </div>`;
+      });
+      $('barChart').innerHTML = barHtml;
+
+      // Comparison box
+      const travInfo = TRAVELER_DATA[traveler];
+      let extraNote = '';
+      if (traveler === 'chasqui') {
+        extraNote = '<br>🏃 Spanish colonial chroniclers described the chasqui relay as far faster than any horseback courier system they knew, partly because horses struggled on the steep stone stairways common to Andean roads.';
+      }
+      $('comparisonBox').innerHTML = `
+        <strong>Modern Comparison:</strong><br>
+        A car driving ${fmtInt(distance)} km at 80 km/h would take <strong>~${fmt(modernDriveHours, 1)} hours</strong> (${fmt(modernDriveDays, 2)} days).<br>
+        ${travInfo.emoji} ${travInfo.label} would have taken <strong>${speedMultiple < 1.5 ? 'roughly' : 'about'} ${fmt(speedMultiple < 1 ? (1/speedMultiple) : speedMultiple, 0)}× ${speedMultiple < 1 ? 'faster' : 'longer'}</strong> than a modern car covering the same distance.
+        ${extraNote}
+      `;
+
+      $('results').classList.add('visible');
+      $('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+
+  // ── Tab switching (CSS class only — no DOM rebuild) ────────────────────────
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    $('tab-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // ── Copy results ───────────────────────────────────────────────────────────
+  function copyResults() {
+    const main  = $('mainResult').textContent;
+    const label = $('mainLabel').textContent;
+    const sub   = $('subStat').textContent;
+    const rows  = Array.from($('breakdownBody').querySelectorAll('tr'))
+      .map(r => {
+        const cells = r.querySelectorAll('td');
+        return `${cells[0].textContent}: ${cells[1].textContent}`;
+      }).join('\n');
+    const text = `Inca Road Travel Time Estimator\n${label}\n${main}\n${sub}\n\n${rows}\n\nGenerated at historycalc.com`;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = $('copyBtn');
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = 'Copy Results'; }, 2000);
+    }).catch(() => {
+      $('copyBtn').textContent = 'Copy failed';
+      setTimeout(() => { $('copyBtn').textContent = 'Copy Results'; }, 2000);
+    });
+  }
+
+  // ── Event bindings ─────────────────────────────────────────────────────────
+  $('calcBtn').addEventListener('click', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+
+  ['distance', 'terrain', 'traveler', 'season'].forEach(id => {
+    $(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') { requestAnimationFrame(() => { calculate(); }); }
+    });
+  });
+
+  // Auto-calculate on load with defaults
+  window.addEventListener('load', () => {
+    requestAnimationFrame(() => { calculate(); });
+  });
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>
