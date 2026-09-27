@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Free Historical Inflation Calculator | HistoryCalc</title>
+<meta name="description" content="Free historical inflation calculator using real U.S. CPI data from 1913 to 2024. Find out what money from any past year is worth today.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="canonical" href="https://historycalc.com/inflation-calculator/">
+<style>
+:root{
+  --parch:#f5f0e1;
+  --brown:#8b4513;
+  --ink:#2c1810;
+  --border:#c4a882;
+  --blue:#0077b6;
+  --blueHover:#006299;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--parch);
+  color:var(--ink);
+  line-height:1.6;
+}
+nav{
+  padding:1rem 1.5rem;
+  border-bottom:2px solid var(--border);
+  background:#fff;
+}
+nav a{
+  color:var(--brown);
+  text-decoration:none;
+  font-weight:700;
+  font-size:1.1rem;
+}
+.container{
+  max-width:640px;
+  margin:0 auto;
+  padding:1.5rem;
+}
+h1{
+  font-size:1.7rem;
+  color:var(--brown);
+  margin-bottom:0.5rem;
+}
+h2{
+  color:var(--brown);
+  font-size:1.25rem;
+  margin-top:2rem;
+}
+p{margin:0.8rem 0;}
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:2rem;
+  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  margin-top:1.5rem;
+}
+label{
+  display:block;
+  font-size:0.85rem;
+  font-weight:500;
+  color:#444;
+  margin-bottom:0.3rem;
+}
+input{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:1rem;
+  margin-bottom:1.2rem;
+  background:#fff;
+  color:var(--ink);
+}
+input:focus{
+  outline:none;
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(0,119,182,0.15);
+}
+input.error{
+  border-color:#e74c3c;
+}
+.error-msg{
+  color:#e74c3c;
+  font-size:0.85rem;
+  margin-top:-1rem;
+  margin-bottom:1rem;
+  display:none;
+}
+button{
+  background:var(--blue);
+  color:#fff;
+  border:none;
+  padding:12px 24px;
+  border-radius:6px;
+  font-size:1rem;
+  cursor:pointer;
+  width:100%;
+  min-height:44px;
+  transition:background 0.2s;
+}
+button:hover{background:var(--blueHover);}
+#results{
+  opacity:0;
+  transition:opacity 0.3s ease;
+  margin-top:1.5rem;
+}
+#results.show{opacity:1;}
+.big-result{
+  font-size:2.1rem;
+  font-weight:700;
+  color:var(--brown);
+  margin:0.5rem 0;
+}
+.sub-result{
+  color:#555;
+  font-size:0.95rem;
+  margin-bottom:1rem;
+}
+.data-note{
+  font-size:0.78rem;
+  color:#777;
+  margin-top:1rem;
+  border-top:1px dashed var(--border);
+  padding-top:0.8rem;
+}
+.table-wrap{
+  overflow-x:auto;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.9rem;
+  margin-top:0.5rem;
+}
+th,td{
+  padding:8px 10px;
+  text-align:right;
+  border-bottom:1px solid #e0e0e0;
+}
+th:first-child,td:first-child{text-align:left;}
+th{background:#f0f0f0;}
+tr:nth-child(even){background:#fafafa;}
+tr:nth-child(odd){background:#fff;}
+.copy-btn{
+  background:none;
+  border:1px solid var(--brown);
+  color:var(--brown);
+  padding:6px 14px;
+  font-size:0.8rem;
+  width:auto;
+  border-radius:6px;
+  margin-top:0.5rem;
+}
+.copy-btn:hover{background:var(--brown);color:#fff;}
+.ad-slot{min-height:0;margin:0;}
+.did-you-know{
+  background:#faf3e0;
+  border-left:4px solid var(--brown);
+  padding:1rem 1.2rem;
+  margin:1.5rem 0;
+  border-radius:4px;
+}
+.did-you-know strong{color:var(--brown);}
+.context{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.5rem;
+}
+details{
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:0.8rem 1rem;
+  margin-bottom:0.8rem;
+  background:#fff;
+}
+summary{
+  font-weight:600;
+  cursor:pointer;
+  color:var(--brown);
+}
+.related-list{
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.related-list a{
+  color:var(--blue);
+  text-decoration:none;
+}
+.related-list a:hover{text-decoration:underline;}
+footer{
+  text-align:center;
+  padding:2rem 1rem;
+  font-size:0.85rem;
+  color:#666;
+  border-top:1px solid var(--border);
+}
+footer a{color:var(--brown);text-decoration:none;margin:0 0.4rem;}
+svg{display:block;margin:1rem auto;}
+@media(max-width:640px){
+  .big-result{font-size:1.7rem;}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/inflation-calculator/">
+<meta property="og:title" content="Free Historical Inflation Calculator">
+<meta property="og:description" content="Free historical inflation calculator using real U.S. CPI data from 1913 to 2024. Find out what money from any past year is worth today.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Free Historical Inflation Calculator", "url": "https://historycalc.com/inflation-calculator/", "description": "Free historical inflation calculator using real U.S. CPI data from 1913 to 2024. Find out what money from any past year is worth today.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "Free Historical Inflation Calculator", "item": "https://historycalc.com/inflation-calculator/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an inflation calculator used for?", "acceptedAnswer": {"@type": "Answer", "text": "An inflation calculator converts a dollar amount from one year into its equivalent purchasing power in another year, using historical price index data. It's commonly used to compare historical wages, prices, savings, and investment returns across decades."}}, {"@type": "Question", "name": "How accurate is historical CPI data?", "acceptedAnswer": {"@type": "Answer", "text": "CPI data from the Bureau of Labor Statistics is considered the gold standard for measuring U.S. inflation, though methodology has been refined over the decades. It's highly reliable for broad comparisons but less precise for very specific goods or regions."}}, {"@type": "Question", "name": "Why does $1 from 1913 buy so much less today?", "acceptedAnswer": {"@type": "Answer", "text": "Over more than a century, cumulative inflation from wars, economic policy, oil shocks, and monetary expansion has increased average prices roughly 30-fold, meaning $1 in 1913 has the same buying power as about $30-32 today."}}, {"@type": "Question", "name": "Can I use this to calculate future inflation?", "acceptedAnswer": {"@type": "Answer", "text": "No — this tool only uses actual historical CPI data through 2024. Projecting future inflation requires assumptions about future economic conditions, which this calculator does not attempt to forecast."}}, {"@type": "Question", "name": "What years does this inflation calculator cover?", "acceptedAnswer": {"@type": "Answer", "text": "It covers 1913, the earliest year for which annual CPI values exist, through 2024, the most recent finalized annual average published by the BLS. Note that the CPI wasn't officially published until 1919 — the 1913-1918 figures were calculated afterward from collected price records."}}, {"@type": "Question", "name": "Is CPI the same as \"cost of living\"?", "acceptedAnswer": {"@type": "Answer", "text": "CPI is the most common proxy for cost of living changes, but it measures a fixed basket of goods and services rather than any one person's actual spending habits, so individual experiences of inflation can vary."}}]}]}</script>
+</head>
+<body>
+<nav><a href="/">HistoryCalc</a></nav>
+<div class="container">
+  <h1>Historical Inflation Calculator</h1>
+  <p>Use this <strong>inflation calculator</strong> to find out what a sum of money from any year since 1913 would be worth today, based on real U.S. Consumer Price Index (CPI) data from the Bureau of Labor Statistics.</p>
+
+  <svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" aria-label="Ancient Roman coin illustration">
+    <circle cx="100" cy="60" r="50" fill="#d4a94a" stroke="#8b4513" stroke-width="4"/>
+    <circle cx="100" cy="60" r="40" fill="none" stroke="#8b4513" stroke-width="2"/>
+    <circle cx="100" cy="45" r="14" fill="#8b4513"/>
+    <path d="M75 78 Q100 95 125 78" stroke="#8b4513" stroke-width="3" fill="none"/>
+    <text x="100" y="100" text-anchor="middle" font-size="9" fill="#8b4513" font-family="serif">DENARIVS</text>
+  </svg>
+
+  <div class="card">
+    <label for="amount">Amount ($)</label>
+    <input type="text" id="amount" placeholder="e.g. 100" inputmode="decimal">
+    <div class="error-msg" id="err-amount">Please enter a positive dollar amount.</div>
+
+    <label for="startYear">Start Year (1913–2024)</label>
+    <input type="text" id="startYear" placeholder="e.g. 1950" inputmode="numeric">
+    <div class="error-msg" id="err-start">Enter a year between 1913 and 2024.</div>
+
+    <label for="endYear">End Year (1913–2024)</label>
+    <input type="text" id="endYear" placeholder="e.g. 2024" inputmode="numeric">
+    <div class="error-msg" id="err-end">Enter a year between 1913 and 2024, later than start year.</div>
+
+    <button id="calcBtn">Calculate Inflation</button>
+
+    <div id="results"></div>
+
+    <p class="data-note">Data source: U.S. Bureau of Labor Statistics, CPI-U (U.S. city average, all items, not seasonally adjusted), annual averages. Figures reflect BLS-published annual averages; the 2024 value is the final published annual average. Series last verified against BLS published data: January 2025.</p>
+  </div>
+
+  <div class="ad-slot" id="ad-mid"></div>
+
+  <h2>How to Use This Inflation Calculator</h2>
+  <p>Enter a dollar amount, the year that money was originally worth (the start year), and the year you want to compare it to (the end year). Click "Calculate Inflation" to see the equivalent buying power, the total percentage change in prices, and a year-by-year breakdown table using official CPI index values.</p>
+
+  <h2>Why This Matters</h2>
+  <p>Inflation quietly erodes purchasing power every year, which makes comparing prices, wages, or historical events across time genuinely confusing without a tool like this. A history teacher explaining the cost of a Model T in 1925 ($260) needs to know that's roughly $4,660.69 today. A grandparent recalling a $0.15 movie ticket in 1955 is describing something worth about $1.76 now. Genealogists researching a great-grandfather's 1940 salary of $1,200 a year want to know that's around $26,888.57 in today's dollars — nearly $27,000, far more than a rough guess would suggest. Investors, economists, students, and curious readers all use inflation math to make sense of old prices, historical wages, wartime bond values, and long-term savings goals. Without adjusting for inflation, any comparison of money across decades is meaningless — a dollar in 1913 simply is not a dollar in 2024.</p>
+
+  <h2>How It's Calculated</h2>
+  <p>The calculator uses the U.S. Consumer Price Index for All Urban Consumers (CPI-U), the same index the Bureau of Labor Statistics has published since 1919 (with values calculated back to 1913). The formula is:</p>
+  <p><strong>Adjusted Amount = Original Amount × (CPI in End Year ÷ CPI in Start Year)</strong></p>
+  <p>The CPI tracks the average price of a fixed "basket" of goods and services — food, housing, transportation, medical care — over time. Dividing the end-year index by the start-year index gives the cumulative inflation multiplier between those two points. All figures embedded in this tool are BLS annual averages, not seasonally adjusted.</p>
+
+  <h2>Worked Example</h2>
+  <p>Suppose you want to know what $100 in 1970 is worth in 2024. The CPI for 1970 is 38.8, and the CPI for 2024 is 313.7.</p>
+  <p>Adjusted Amount = $100 × (313.7 ÷ 38.8) = $100 × 8.0851 = <strong>$808.51</strong></p>
+  <p>That means $100 in 1970 had the same buying power as roughly $808.51 in 2024 — total inflation of about 708.5% over 54 years, or an average annual rate of roughly 3.95%.</p>
+
+  <div class="did-you-know">
+    <strong>Did You Know?</strong>
+    <p>The price data that eventually became the Consumer Price Index began being collected by the Bureau of Labor Statistics around 1913 — the same year the Federal Reserve was created — but the CPI wasn't officially published as an index until 1919, with the earlier years calculated afterward from surviving price records.</p>
+    <p>Between 1913 and 1920, prices roughly doubled due to World War I spending, then actually fell during the early 1920s and again sharply during the Great Depression, when the CPI dropped nearly 25% from 1929 to 1933.</p>
+    <p>The most extreme single-year inflation spike in this dataset was 1946–1947, when prices jumped over 14% in one year as wartime price controls were lifted.</p>
+  </div>
+
+  <div class="context">
+    <h2 style="margin-top:0;">Historical Context</h2>
+    <p>Before the CPI existed, comparing prices across time relied on scattered wage records, merchant ledgers, and commodity price lists — often unreliable and inconsistent city to city. The BLS built the modern CPI in the years around World War I, partly to help set fair wartime wages, by sampling household budgets in industrial cities; the index was first officially published in 1919, and economists later worked backward to estimate values for 1913–1918. Ancient civilizations faced similar puzzles: Roman emperors like Diocletian issued price-control edicts in 301 CE to fight runaway inflation caused by debased silver coinage, one of history's earliest documented battles against currency devaluation. The dollar's story since 1913 — roughly a 30-fold increase in prices — mirrors that same ancient struggle between money supply, trust, and the real value of a day's wages.</p>
+  </div>
+
+  <h2>Tips & Common Mistakes</h2>
+  <ul>
+    <li>Remember CPI measures average national prices — regional cost differences (rent in New York vs. rural Kansas) aren't captured by this single number.</li>
+    <li>Annual CPI figures are yearly averages, so mid-year comparisons within the same year won't show any change — that's expected, not an error.</li>
+    <li>Don't confuse "inflation rate" (year-over-year percentage change) with "cumulative inflation" (total change over the whole period) — this tool calculates the latter.</li>
+    <li>For years before 1913, no official CPI data exists; economists use rougher estimates that aren't included here for accuracy reasons.</li>
+    <li>Always double-check whether a historical price you're comparing was already adjusted by someone else, to avoid double-counting inflation.</li>
+  </ul>
+
+  <h2>Frequently Asked Questions</h2>
+  <details><summary>What is an inflation calculator used for?</summary><p>An inflation calculator converts a dollar amount from one year into its equivalent purchasing power in another year, using historical price index data. It's commonly used to compare historical wages, prices, savings, and investment returns across decades.</p></details>
+  <details><summary>How accurate is historical CPI data?</summary><p>CPI data from the Bureau of Labor Statistics is considered the gold standard for measuring U.S. inflation, though methodology has been refined over the decades. It's highly reliable for broad comparisons but less precise for very specific goods or regions.</p></details>
+  <details><summary>Why does $1 from 1913 buy so much less today?</summary><p>Over more than a century, cumulative inflation from wars, economic policy, oil shocks, and monetary expansion has increased average prices roughly 30-fold, meaning $1 in 1913 has the same buying power as about $30-32 today.</p></details>
+  <details><summary>Can I use this to calculate future inflation?</summary><p>No — this tool only uses actual historical CPI data through 2024. Projecting future inflation requires assumptions about future economic conditions, which this calculator does not attempt to forecast.</p></details>
+  <details><summary>What years does this inflation calculator cover?</summary><p>It covers 1913, the earliest year for which annual CPI values exist, through 2024, the most recent finalized annual average published by the BLS. Note that the CPI wasn't officially published until 1919 — the 1913-1918 figures were calculated afterward from collected price records.</p></details>
+  <details><summary>Is CPI the same as "cost of living"?</summary><p>CPI is the most common proxy for cost of living changes, but it measures a fixed basket of goods and services rather than any one person's actual spending habits, so individual experiences of inflation can vary.</p></details>
+
+  <h2>Related Tools</h2>
+  <div class="related-list">
+    <a href="/medieval-feudal-manor-food-production-calculator/">Medieval Feudal Manor Food Production Calculator</a>
+    <a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+    <a href="/medieval-grain-mill-output-calculator/">Medieval Grain Mill Output Calculator</a>
+    <a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
+    <a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a>
+    <a href="/roman-aqueduct-water-pressure-calculator/">Ancient Roman Aqueduct Water Pressure Calculator</a>
+  </div>
+
+  <div class="ad-slot" id="ad-bottom"></div>
+
+  <footer>
+    <p><a href="/about/">About</a> | <a href="/privacy/">Privacy</a> | <a href="/contact/">Contact</a></p>
+    <p>© 2024 historycalc.com</p>
+  </footer>
+</div>
+
+<script>
+const cpi = {1913:9.9,1914:10.0,1915:10.1,1916:10.9,1917:12.8,1918:15.0,1919:17.3,1920:20.0,1921:17.9,1922:16.8,1923:17.1,1924:17.1,1925:17.5,1926:17.7,1927:17.4,1928:17.1,1929:17.1,1930:16.7,1931:15.2,1932:13.7,1933:13.0,1934:13.4,1935:13.7,1936:13.9,1937:14.4,1938:14.1,1939:13.9,1940:14.0,1941:14.7,1942:16.3,1943:17.3,1944:17.6,1945:18.0,1946:19.5,1947:22.3,1948:24.0,1949:23.8,1950:24.1,1951:26.0,1952:26.5,1953:26.7,1954:26.9,1955:26.8,1956:27.2,1957:28.1,1958:28.9,1959:29.1,1960:29.6,1961:29.9,1962:30.2,1963:30.6,1964:31.0,1965:31.5,1966:32.4,1967:33.4,1968:34.8,1969:36.7,1970:38.8,1971:40.5,1972:41.8,1973:44.4,1974:49.3,1975:53.8,1976:56.9,1977:60.6,1978:65.2,1979:72.6,1980:82.4,1981:90.9,1982:96.5,1983:99.6,1984:103.9,1985:107.6,1986:109.6,1987:113.6,1988:118.3,1989:124.0,1990:130.7,1991:136.2,1992:140.3,1993:144.5,1994:148.2,1995:152.4,1996:156.9,1997:160.5,1998:163.0,1999:166.6,2000:172.2,2001:177.1,2002:179.9,2003:184.0,2004:188.9,2005:195.3,2006:201.6,2007:207.3,2008:215.3,2009:214.5,2010:218.1,2011:224.9,2012:229.6,2013:233.0,2014:236.7,2015:237.0,2016:240.0,2017:245.1,2018:251.1,2019:255.7,2020:258.8,2021:271.0,2022:292.7,2023:304.7,2024:313.7};
+
+const MIN_YEAR = 1913, MAX_YEAR = 2024;
+
+function fmt(n, decimals){
+  return n.toLocaleString('en-US', {minimumFractionDigits:decimals, maximumFractionDigits:decimals});
+}
+
+function clearErrors(){
+  ['amount','startYear','endYear'].forEach(id=>{
+    document.getElementById(id).classList.remove('error');
+    document.getElementById('err-'+ (id==='startYear'?'start':id==='endYear'?'end':id)).style.display='none';
+  });
+}
+
+function showError(id, errId){
+  document.getElementById(id).classList.add('error');
+  document.getElementById(errId).style.display='block';
+}
+
+function calculate(){
+  clearErrors();
+  const amountEl = document.getElementById('amount');
+  const startEl = document.getElementById('startYear');
+  const endEl = document.getElementById('endYear');
+
+  const amount = parseFloat(amountEl.value.replace(/,/g,''));
+  const startYear = parseInt(startEl.value);
+  const endYear = parseInt(endEl.value);
+
+  let valid = true;
+  if(isNaN(amount) || amount <= 0){
+    showError('amount','err-amount');
+    valid = false;
+  }
+  if(isNaN(startYear) || startYear < MIN_YEAR || startYear > MAX_YEAR){
+    showError('startYear','err-start');
+    valid = false;
+  }
+  if(isNaN(endYear) || endYear < MIN_YEAR || endYear > MAX_YEAR){
+    showError('endYear','err-end');
+    valid = false;
+  }
+
+  if(!valid){
+    requestAnimationFrame(()=>{
+      document.getElementById('results').classList.remove('show');
+      document.getElementById('results').innerHTML = '';
+    });
+    return;
+  }
+
+  const startCPI = cpi[startYear];
+  const endCPI = cpi[endYear];
+  const multiplier = endCPI / startCPI;
+  const adjusted = amount * multiplier;
+  const totalPctChange = (multiplier - 1) * 100;
+  const years = Math.abs(endYear - startYear);
+  const annualRate = years > 0 ? (Math.pow(multiplier, 1/years) - 1) * 100 : 0;
+
+  const lo = Math.min(startYear, endYear);
+  const hi = Math.max(startYear, endYear);
+  let rows = [];
+  for(let y = lo; y <= hi; y += 5){
+    rows.push(y);
+  }
+  if(rows[rows.length-1] !== hi) rows.push(hi);
+  if(rows.length > 20){
+    const step = Math.ceil(rows.length/20);
+    rows = rows.filter((r,i)=> i % step === 0 || i === rows.length-1);
+  }
+
+  let tableRows = '';
+  rows.forEach(y=>{
+    const yCPI = cpi[y];
+    const yMultiplier = yCPI / startCPI;
+    const yAdjusted = amount * yMultiplier;
+    tableRows += `<tr><td>${y}</td><td>${fmt(yCPI,1)}</td><td>$${fmt(yAdjusted,2)}</td></tr>`;
+  });
+
+  const directionText = endYear >= startYear ? 'grown to' : 'shrunk to';
+  const summaryText = `$${fmt(amount,2)} in ${startYear} is equivalent to $${fmt(adjusted,2)} in ${endYear}. Total inflation: ${fmt(totalPctChange,1)}% (avg ${fmt(annualRate,2)}%/year).`;
+
+  const html = `
+    <p class="sub-result">$${fmt(amount,2)} in ${startYear} has ${directionText}:</p>
+    <div class="big-result">$${fmt(adjusted,2)}</div>
+    <p class="sub-result">in ${endYear} dollars — a total change of ${fmt(totalPctChange,1)}% (average ${fmt(annualRate,2)}% per year over ${years} year${years===1?'':'s'}).</p>
+    <p class="sub-result">CPI ${startYear}: ${fmt(startCPI,1)} &nbsp;→&nbsp; CPI ${endYear}: ${fmt(endCPI,1)}</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Year</th><th>CPI</th><th>Equivalent Value</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
+    </div>
+    <button class="copy-btn" id="copyBtn">Copy Result</button>
+    <span id="copyMsg" style="display:none;color:#8b4513;font-size:0.85rem;margin-left:0.5rem;">Copied!</span>
+  `;
+
+  requestAnimationFrame(()=>{
+    const resEl = document.getElementById('results');
+    resEl.innerHTML = html;
+    resEl.classList.add('show');
+    document.getElementById('copyBtn').addEventListener('click', ()=>{
+      navigator.clipboard.writeText(summaryText).then(()=>{
+        const msg = document.getElementById('copyMsg');
+        msg.style.display = 'inline';
+        setTimeout(()=>{ msg.style.display='none'; }, 2000);
+      });
+    });
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', ()=>{
+  requestAnimationFrame(calculate);
+});
+
+['amount','startYear','endYear'].forEach(id=>{
+  document.getElementById(id).addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter'){
+      requestAnimationFrame(calculate);
+    }
+  });
+});
+</script>
+</body>
+</html>
