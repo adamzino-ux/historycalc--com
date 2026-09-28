@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Roman Numeral Date Converter | HistoryCalc</title>
+<meta name="description" content="Free roman numeral date converter: turn any calendar date into Roman numerals for tattoos, rings, or gifts, or decode a Roman numeral date back to a normal…">
+<link rel="canonical" href="https://historycalc.com/roman-numeral-date-converter/">
+<style>
+:root{
+  --parchment:#f5f0e1;
+  --brown:#8b4513;
+  --ink:#2c1810;
+  --border:#c4a882;
+  --gray:#f8f4ea;
+  --err:#e74c3c;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.6;
+}
+.wrap{max-width:640px;margin:0 auto;padding:1.5rem;}
+nav{padding:1rem 0;}
+nav a{color:var(--brown);font-weight:700;font-size:1.1rem;text-decoration:none;}
+h1{font-size:1.8rem;margin:0.5rem 0 1rem;}
+h2{font-size:1.3rem;margin-top:2rem;color:var(--ink);}
+p{margin:0.75rem 0;}
+.card{
+  background:#fffdf7;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:2rem;
+  box-shadow:0 2px 6px rgba(139,69,19,0.12);
+  margin:1.5rem 0;
+}
+.svg-wrap{text-align:center;margin:1rem 0;}
+.tabs{display:flex;gap:0.5rem;margin-bottom:1.5rem;flex-wrap:wrap;}
+.tab-btn{
+  flex:1;
+  min-height:44px;
+  padding:10px 16px;
+  border:1px solid var(--border);
+  background:var(--gray);
+  color:var(--ink);
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+  font-size:0.95rem;
+}
+.tab-btn.active{background:var(--brown);color:#fff;border-color:var(--brown);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+label{
+  display:block;
+  font-size:0.85rem;
+  font-weight:500;
+  color:#444;
+  margin:1rem 0 0.35rem;
+}
+input[type=date], input[type=text], select{
+  width:100%;
+  padding:12px 16px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  font-size:1rem;
+  min-height:44px;
+  background:#fff;
+  color:var(--ink);
+}
+input:focus, select:focus{
+  outline:2px solid var(--brown);
+  outline-offset:2px;
+}
+.row{display:flex;gap:1rem;flex-wrap:wrap;}
+.row > div{flex:1;min-width:140px;}
+.error{color:var(--err);font-size:0.85rem;margin-top:0.3rem;}
+input.invalid{border:1px solid var(--err);}
+button.go{
+  background:var(--brown);
+  color:#fff;
+  border:none;
+  padding:12px 24px;
+  border-radius:6px;
+  font-size:1rem;
+  font-weight:600;
+  cursor:pointer;
+  margin-top:1.5rem;
+  min-height:44px;
+  width:100%;
+}
+button.go:hover{background:#6f370f;}
+.linkbtn{
+  background:none;
+  border:none;
+  color:var(--brown);
+  text-decoration:underline;
+  cursor:pointer;
+  font-size:0.85rem;
+  padding:0;
+  margin-top:0.5rem;
+}
+#results, #results2{
+  margin-top:1.5rem;
+  opacity:0;
+  transition:opacity 0.3s ease;
+}
+#results.show, #results2.show{opacity:1;}
+.bignum{
+  font-size:2.2rem;
+  font-weight:800;
+  color:var(--brown);
+  word-break:break-word;
+  margin:0.5rem 0;
+}
+.sub{color:#555;font-size:0.95rem;}
+table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.95rem;}
+th,td{padding:8px 10px;border-bottom:1px solid #e0d5bd;text-align:right;}
+th:first-child,td:first-child{text-align:left;}
+th{background:#f0f0f0;}
+tbody tr:nth-child(even){background:#fafafa;}
+tbody tr:nth-child(odd){background:#fff;}
+.tablewrap{overflow-x:auto;}
+.copybtn{
+  background:var(--gray);
+  border:1px solid var(--border);
+  color:var(--brown);
+  padding:8px 14px;
+  border-radius:6px;
+  font-size:0.85rem;
+  cursor:pointer;
+  margin-top:0.5rem;
+  min-height:38px;
+}
+.did-you-know{
+  background:var(--gray);
+  border-left:4px solid var(--brown);
+  padding:1rem 1.25rem;
+  border-radius:0 6px 6px 0;
+  margin:1.5rem 0;
+}
+.did-you-know h3{margin:0 0 0.5rem;font-size:1.05rem;}
+.did-you-know ul{margin:0;padding-left:1.2rem;}
+.modern-eq{
+  background:#fff;
+  border:1px dashed var(--border);
+  padding:1rem 1.25rem;
+  border-radius:6px;
+  margin:1rem 0;
+}
+.ad-slot{min-height:0;margin:0;}
+details{
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:0.75rem 1rem;
+  margin-bottom:0.75rem;
+  background:#fffdf7;
+}
+summary{cursor:pointer;font-weight:600;}
+.related a{
+  display:inline-block;
+  margin:0.25rem 0.5rem 0.25rem 0;
+  color:var(--brown);
+  text-decoration:underline;
+}
+footer{
+  border-top:1px solid var(--border);
+  padding:1.5rem 0;
+  margin-top:2rem;
+  color:#555;
+  font-size:0.9rem;
+}
+footer a{color:var(--brown);text-decoration:underline;margin-right:0.75rem;}
+@media (max-width:480px){
+  .bignum{font-size:1.7rem;}
+  .row{flex-direction:column;}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/roman-numeral-date-converter/">
+<meta property="og:title" content="Roman Numeral Date Converter">
+<meta property="og:description" content="Free roman numeral date converter: turn any calendar date into Roman numerals for tattoos, rings, or gifts, or decode a Roman numeral date back to a normal…">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+<meta name="robots" content="noindex, follow">
+<base target="_blank">
+</head>
+<body>
+<div class="wrap">
+<nav><a href="/">HistoryCalc</a></nav>
+
+<h1>Roman Numeral Date Converter</h1>
+<p>This roman numeral date converter turns any calendar date into Roman numerals in seconds — perfect for wedding tattoos, engraved rings, anniversary gifts, or classroom history projects. You can also decode a Roman numeral date back into a normal calendar date.</p>
+
+<div class="svg-wrap">
+<svg width="180" height="220" viewBox="0 0 200 300" role="img" aria-label="Illustration of an ancient Roman column">
+  <polygon points="40,60 160,60 100,20" fill="#c4a882" stroke="#8b4513" stroke-width="3"/>
+  <rect x="35" y="60" width="130" height="20" fill="#c4a882" stroke="#8b4513" stroke-width="3"/>
+  <rect x="60" y="80" width="80" height="18" fill="#c4a882" stroke="#8b4513" stroke-width="3"/>
+  <rect x="70" y="98" width="60" height="150" fill="#f5f0e1" stroke="#8b4513" stroke-width="3"/>
+  <line x1="82" y1="98" x2="82" y2="248" stroke="#8b4513" stroke-width="2"/>
+  <line x1="94" y1="98" x2="94" y2="248" stroke="#8b4513" stroke-width="2"/>
+  <line x1="106" y1="98" x2="106" y2="248" stroke="#8b4513" stroke-width="2"/>
+  <line x1="118" y1="98" x2="118" y2="248" stroke="#8b4513" stroke-width="2"/>
+  <rect x="55" y="248" width="90" height="16" fill="#c4a882" stroke="#8b4513" stroke-width="3"/>
+  <rect x="40" y="264" width="120" height="16" fill="#c4a882" stroke="#8b4513" stroke-width="3"/>
+</svg>
+</div>
+
+<div class="card">
+  <div class="tabs">
+    <button type="button" class="tab-btn active" id="tabBtn1" onclick="switchTab(1)">Date → Roman</button>
+    <button type="button" class="tab-btn" id="tabBtn2" onclick="switchTab(2)">Roman → Date</button>
+  </div>
+
+  <div class="tab-content active" id="tab1">
+    <label for="dateInput">Calendar date</label>
+    <input type="date" id="dateInput">
+    <button type="button" class="linkbtn" onclick="useToday()">Use today's date</button>
+
+    <div class="row">
+      <div>
+        <label for="dateOrder">Date order</label>
+        <select id="dateOrder">
+          <option value="MDY">Month.Day.Year (US)</option>
+          <option value="DMY">Day.Month.Year (International)</option>
+          <option value="YMD">Year.Month.Day (ISO)</option>
+        </select>
+      </div>
+      <div>
+        <label for="dateSep">Separator</label>
+        <select id="dateSep">
+          <option value=".">Period (.)</option>
+          <option value="/">Slash (/)</option>
+          <option value="-">Hyphen (-)</option>
+          <option value=" ">Space</option>
+        </select>
+      </div>
+    </div>
+    <div id="err1" class="error" role="alert"></div>
+    <button type="button" class="go" id="calcBtn1">Convert to Roman Numerals</button>
+
+    <div id="results" aria-live="polite" aria-atomic="true"></div>
+  </div>
+
+  <div class="tab-content" id="tab2">
+    <label for="romanInput">Roman numeral date (e.g. XII.XXV.MMXXIV)</label>
+    <input type="text" id="romanInput" placeholder="XII.XXV.MMXXIV">
+
+    <div class="row">
+      <div>
+        <label for="romanOrder">Group order in above field</label>
+        <select id="romanOrder">
+          <option value="MDY">Month.Day.Year (US)</option>
+          <option value="DMY">Day.Month.Year (International)</option>
+          <option value="YMD">Year.Month.Day (ISO)</option>
+        </select>
+      </div>
+      <div>
+        <label for="romanSep">Separator used</label>
+        <select id="romanSep">
+          <option value=".">Period (.)</option>
+          <option value="/">Slash (/)</option>
+          <option value="-">Hyphen (-)</option>
+          <option value=" ">Space</option>
+        </select>
+      </div>
+    </div>
+    <div id="err2" class="error" role="alert"></div>
+    <button type="button" class="go" id="calcBtn2">Convert to Calendar Date</button>
+
+    <div id="results2" aria-live="polite" aria-atomic="true"></div>
+  </div>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<h2>How to Use This Roman Numeral Date Converter</h2>
+<p>Pick a tab: use "Date → Roman" to type or select a calendar date, choose the order (month/day/year, day/month/year, or ISO year-first) and a separator, then hit convert to get your date in Roman numerals with a full breakdown. Use "Roman → Date" to paste a Roman numeral date you already have and decode it back into a normal, readable calendar date.</p>
+
+<h2>Why This Matters</h2>
+<p>Roman numeral dates are everywhere once you start looking: engraved on wedding rings, tattooed on forearms, stamped into the corner of building cornerstones, and hidden in movie credits (MCMXCIV = 1994). Couples convert anniversaries or wedding dates before ordering jewelry. Tattoo artists need accurate conversions before needles touch skin, where a mistake is permanent. Students studying Latin or Roman history use converters like this to check homework. Architects and monument builders still carve foundation dates in Roman numerals as a nod to classical tradition — you'll find MMXXIV etched above doorways built in 2024. Because there's no room for error in an engraving or a tattoo, a reliable roman numeral date converter that also validates real calendar dates (catching things like February 30th) is genuinely useful, not just decorative.</p>
+
+<h2>How It's Calculated</h2>
+<p>Each part of the date — day, month, and year — is converted separately into Roman numerals using the standard subtractive notation built from seven symbols: I=1, V=5, X=10, L=50, C=100, D=500, M=1,000. The converter works from the largest value down, repeatedly subtracting the biggest matching symbol (including subtractive pairs like IV=4, IX=9, XL=40, XC=90, CD=400, CM=900) until nothing remains. For example, 2024 breaks down as 1000+1000+10+10+4 → M+M+X+X+IV → <strong>MMXXIV</strong>. The three converted parts are then joined with your chosen separator in your chosen order.</p>
+
+<h2>Worked Example</h2>
+<p>Suppose your wedding date is December 25, 2024.</p>
+<ul>
+<li>Month: December = 12 → <strong>XII</strong></li>
+<li>Day: 25 → 10+10+5 → <strong>XXV</strong></li>
+<li>Year: 2024 → 1000+1000+10+10+(5-1) → <strong>MMXXIV</strong></li>
+</ul>
+<p>Joined in US order with a period separator: <strong>XII.XXV.MMXXIV</strong>. Feed that string back into the "Roman → Date" tab with the same order and separator, and it will correctly decode back to December 25, 2024.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+<li>Double-check your chosen order matches on both the engraving proof and this tool — XII.XXV.MMXXIV (US) is not the same date as XXV.XII.MMXXIV (international).</li>
+<li>Romans historically had no numeral for zero, so a year like 2000 becomes simply MM, not "MM.0" anything.</li>
+<li>Years before 1 CE or after 3999 cannot be represented in standard Roman numerals — this tool will flag those as invalid.</li>
+<li>Some tattoo styles use "IIII" instead of "IV" for 4 (seen on clock faces); this converter uses the standard subtractive form, so mention it to your artist if you prefer the older style.</li>
+<li>Always sanity-check the decoded date on the "Roman → Date" tab before finalizing an engraving order — it will catch impossible dates like a 32nd day.</li>
+</ul>
+
+<h2>Historical Context</h2>
+<p>Ironically, ancient Romans almost never wrote dates the way we do here. Instead of a simple day/month/year format, they typically dated events by the reigning consuls ("in the consulship of Cicero and Antonius") or counted years Ab Urbe Condita (AUC) — "from the founding of the city," traditionally 753 BC. Days within a month were reckoned backward from three fixed points: the Kalends (1st), Nones (5th or 7th), and Ides (13th or 15th) — the same Ides of March that claimed Julius Caesar in 44 BC. The numeral system itself evolved from Etruscan tally-mark counting, with symbols likely derived from notches cut into wood or bone, later standardized into the I, V, X, L, C, D, M we recognize today.</p>
+
+<div class="did-you-know">
+<h3>Did You Know?</h3>
+<ul>
+<li>Romans had no symbol or concept for zero — that idea reached Europe centuries later via Indian and Arabic mathematicians.</li>
+<li>Rather than sequential years like "2024," Romans commonly used AUC dating or named the year after its two consuls.</li>
+<li>The subtractive shorthand (IV for 4) wasn't universal in antiquity — many Roman inscriptions and modern clock faces still use IIII instead.</li>
+</ul>
+</div>
+
+<div class="modern-eq">
+<strong>Modern equivalent:</strong> Converting your anniversary to Roman numerals for a ring or tattoo is a distinctly modern tradition — the Romans themselves would have had no reason to render "12/25/2024" this way, since neither their date format nor their year-numbering system worked like ours. It's a stylistic borrowing of ancient symbols for a very contemporary keepsake.
+</div>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>How do I write my birthday in Roman numerals?</summary><p>Enter your birthdate in the "Date → Roman" tab, pick your preferred order (month-day-year or day-month-year) and separator, then click convert. You'll get each part — day, month, and year — rendered as Roman numerals, e.g. VII.IV.MCMXCV for July 4, 1995.</p></details>
+<details><summary>What year is MCMXCIV in Roman numerals?</summary><p>MCMXCIV equals 1994. Break it down: M=1000, CM=900, XC=90, IV=4, totaling 1,994. You can verify this instantly using the "Roman → Date" tab by entering it alongside a month and day.</p></details>
+<details><summary>Can Roman numerals represent the year 0 or negative years?</summary><p>No. The Roman numeral system has no representation for zero or negative numbers, so years must fall between 1 and 3,999 to be converted. Historical "BC" dates weren't expressed this way by the Romans anyway.</p></details>
+<details><summary>Why does my tattoo artist use IIII instead of IV?</summary><p>Both forms are historically valid. Standard modern usage prefers the subtractive form (IV, IX, XL, XC), which is what this converter produces, but many clock faces and some classic engravings use the additive IIII for 4 instead.</p></details>
+<details><summary>What's the difference between MM.DD.YYYY and DD.MM.YYYY order?</summary><p>MM.DD.YYYY (month first) is the common US convention, while DD.MM.YYYY (day first) is standard across most of the rest of the world. Choosing the wrong order won't cause an error, but it will produce a Roman numeral string for the wrong date, so pick the format your recipient expects.</p></details>
+<details><summary>Can this tool convert dates before the year 1 AD?</summary><p>No — standard Roman numerals only work for positive integers from 1 to 3,999, and the browser's date input doesn't support BC/BCE years, so this converter is limited to CE dates in that range.</p></details>
+
+<h2 class="related">Related Tools</h2>
+<p class="related">
+<a href="/roman-catapult-range-calculator/">Ancient Roman Catapult Range Calculator</a>
+<a href="/roman-road-distance-calculator/">Ancient Roman Road Distance Calculator</a>
+<a href="/roman-aqueduct-bridge-height-calculator/">Ancient Roman Aqueduct Bridge Height Calculator</a>
+<a href="/roman-aqueduct-water-pressure-calculator/">Ancient Roman Aqueduct Water Pressure Calculator</a>
+<a href="/ancient-roman-feast-cost-calculator/">Ancient Roman Feast Cost Calculator</a>
+<a href="/roman-water-distribution-pipe-sizing-calculator/">Ancient Roman Aqueduct Water Distribution Calculator</a>
+</p>
+
+<p style="text-align:center;font-size:13px;margin:1rem 0">Calculator by <a href="https://historycalc.com/roman-numeral-date-converter/">HistoryCalc</a></p>
+</div>
+
+<script>
+function switchTab(n){
+  document.getElementById('tab1').classList.toggle('active', n===1);
+  document.getElementById('tab2').classList.toggle('active', n===2);
+  document.getElementById('tabBtn1').classList.toggle('active', n===1);
+  document.getElementById('tabBtn2').classList.toggle('active', n===2);
+}
+
+function useToday(){
+  const d = new Date();
+  const s = d.toISOString().slice(0,10);
+  document.getElementById('dateInput').value = s;
+}
+
+function intToRoman(num){
+  if(num<1 || num>3999) return null;
+  const vals=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],
+    [50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];
+  let res='', n=num;
+  for(const [v,s] of vals){ while(n>=v){ res+=s; n-=v; } }
+  return res;
+}
+
+function romanToInt(s){
+  if(!s) return null;
+  s = s.toUpperCase().trim();
+  if(!/^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/.test(s) || s==='') return null;
+  const map={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};
+  let total=0;
+  for(let i=0;i<s.length;i++){
+    const cur=map[s[i]], next=map[s[i+1]];
+    if(next && cur<next) total-=cur; else total+=cur;
+  }
+  return total;
+}
+
+function fmt(n){ return n.toLocaleString('en-US'); }
+
+const monthNames=['January','February','March','April','May','June','July',
+  'August','September','October','November','December'];
+
+function daysInMonth(m,y){
+  return new Date(y, m, 0).getDate();
+}
+
+function setError(id, msg){
+  document.getElementById(id).textContent = msg;
+}
+
+// Tab 1: Date -> Roman
+document.getElementById('calcBtn1').addEventListener('click', calcDateToRoman);
+document.getElementById('dateInput').addEventListener('keydown', e=>{ if(e.key==='Enter') calcDateToRoman(); });
+
+function calcDateToRoman(){
+  setError('err1','');
+  const val = document.getElementById('dateInput').value;
+  const order = document.getElementById('dateOrder').value;
+  const sep = document.getElementById('dateSep').value;
+  const resDiv = document.getElementById('results');
+
+  if(!val){
+    setError('err1','Please choose a date first.');
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+  const parts = val.split('-');
+  const year = parseInt(parts[0],10);
+  const month = parseInt(parts[1],10);
+  const day = parseInt(parts[2],10);
+
+  if(year<1 || year>3999){
+    setError('err1','Year must be between 1 and 3999 to be shown in Roman numerals.');
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+
+  const rMonth = intToRoman(month);
+  const rDay = intToRoman(day);
+  const rYear = intToRoman(year);
+
+  let joined;
+  if(order==='MDY') joined = [rMonth,rDay,rYear].join(sep);
+  else if(order==='DMY') joined = [rDay,rMonth,rYear].join(sep);
+  else joined = [rYear,rMonth,rDay].join(sep);
+
+  const longForm = monthNames[month-1] + ' ' + day + ', ' + year;
+
+  const html = `
+    <div class="bignum">${joined}</div>
+    <div class="sub">${longForm}</div>
+    <button type="button" class="copybtn" onclick="copyText('${joined.replace(/'/g,"\\'")}', 'copyMsg1')">Copy result</button>
+    <span id="copyMsg1" class="sub"></span>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Part</th><th>Number</th><th>Roman</th></tr></thead>
+      <tbody>
+        <tr><td>Day</td><td>${fmt(day)}</td><td>${rDay}</td></tr>
+        <tr><td>Month</td><td>${fmt(month)} (${monthNames[month-1]})</td><td>${rMonth}</td></tr>
+        <tr><td>Year</td><td>${fmt(year)}</td><td>${rYear}</td></tr>
+      </tbody>
+    </table>
+    </div>
+  `;
+  requestAnimationFrame(()=>{
+    resDiv.innerHTML = html;
+    resDiv.className = 'show';
+  });
+}
+
+// Tab 2: Roman -> Date
+document.getElementById('calcBtn2').addEventListener('click', calcRomanToDate);
+document.getElementById('romanInput').addEventListener('keydown', e=>{ if(e.key==='Enter') calcRomanToDate(); });
+
+function calcRomanToDate(){
+  setError('err2','');
+  const raw = document.getElementById('romanInput').value.trim();
+  const order = document.getElementById('romanOrder').value;
+  const sep = document.getElementById('romanSep').value;
+  const resDiv = document.getElementById('results2');
+
+  if(!raw){
+    setError('err2','Please enter a Roman numeral date, e.g. XII.XXV.MMXXIV');
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+
+  const splitChar = sep===' ' ? /\s+/ : sep;
+  const rawParts = raw.split(splitChar).map(p=>p.trim()).filter(p=>p.length>0);
+
+  if(rawParts.length !== 3){
+    setError('err2', `Expected 3 groups separated by "${sep===' ' ? 'space' : sep}", e.g. XII${sep}XXV${sep}MMXXIV.`);
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+
+  let dPart, mPart, yPart;
+  if(order==='MDY'){ mPart=rawParts[0]; dPart=rawParts[1]; yPart=rawParts[2]; }
+  else if(order==='DMY'){ dPart=rawParts[0]; mPart=rawParts[1]; yPart=rawParts[2]; }
+  else { yPart=rawParts[0]; mPart=rawParts[1]; dPart=rawParts[2]; }
+
+  const month = romanToInt(mPart);
+  const day = romanToInt(dPart);
+  const year = romanToInt(yPart);
+
+  if(month===null || day===null || year===null){
+    setError('err2','One or more groups are not valid Roman numerals. Check spelling (e.g. IV not IIII).');
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+  if(month<1 || month>12){
+    setError('err2', `Month value (${month}) is out of range — must be between 1 and 12.`);
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+  const maxDay = daysInMonth(month, year);
+  if(day<1 || day>maxDay){
+    setError('err2', `Day value (${day}) is invalid for ${monthNames[month-1]} ${year} — must be between 1 and ${maxDay}.`);
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+  if(year<1 || year>3999){
+    setError('err2','Year must be between 1 and 3999.');
+    resDiv.className=''; resDiv.innerHTML='';
+    return;
+  }
+
+  const dateObj = new Date(year, month-1, day);
+  const weekday = dateObj.toLocaleDateString('en-US', { weekday:'long' });
+  const longForm = `${monthNames[month-1]} ${day}, ${year}`;
+  const iso = `${String(year).padStart(4,'0')}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+
+  const html = `
+    <div class="bignum">${longForm}</div>
+    <div class="sub">${weekday} · ISO: ${iso}</div>
+    <button type="button" class="copybtn" onclick="copyText('${longForm.replace(/'/g,"\\'")}', 'copyMsg2')">Copy result</button>
+    <span id="copyMsg2" class="sub"></span>
+    <div class="tablewrap">
+    <table>
+      <thead><tr><th>Part</th><th>Roman</th><th>Number</th></tr></thead>
+      <tbody>
+        <tr><td>Day</td><td>${dPart.toUpperCase()}</td><td>${fmt(day)}</td></tr>
+        <tr><td>Month</td><td>${mPart.toUpperCase()}</td><td>${fmt(month)} (${monthNames[month-1]})</td></tr>
+        <tr><td>Year</td><td>${yPart.toUpperCase()}</td><td>${fmt(year)}</td></tr>
+      </tbody>
+    </table>
+    </div>
+  `;
+  requestAnimationFrame(()=>{
+    resDiv.innerHTML = html;
+    resDiv.className = 'show';
+  });
+}
+
+function copyText(text, msgId){
+  navigator.clipboard.writeText(text).then(()=>{
+    const el = document.getElementById(msgId);
+    el.textContent = 'Copied!';
+    setTimeout(()=>{ el.textContent=''; }, 2000);
+  });
+}
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>
