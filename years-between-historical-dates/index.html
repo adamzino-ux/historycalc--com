@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Years Between Two Historical Dates Calculator | HistoryCalc</title>
+<meta name="description" content="Calculate the exact years, months, and days between two historical dates, including BCE and CE eras. Free years between two dates calculator for history buffs.">
+<link rel="canonical" href="https://historycalc.com/years-between-historical-dates/">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Years Between Two Historical Dates Calculator", "url": "https://historycalc.com/years-between-historical-dates/", "description": "Calculate the exact years, months, and days between two historical dates, including BCE and CE eras. Free years between two dates calculator for history buffs.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@type": "Organization", "name": "HistoryCalc", "url": "https://historycalc.com/", "logo": "https://historycalc.com/logo.png"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "HistoryCalc", "item": "https://historycalc.com/"}, {"@type": "ListItem", "position": 2, "name": "Years Between Two Historical Dates Calculator", "item": "https://historycalc.com/years-between-historical-dates/"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do you calculate years between BCE and CE dates?", "acceptedAnswer": {"@type": "Answer", "text": "Convert each BCE year to a negative astronomical year (subtract 1 from the BCE year and make it negative), keep CE years as-is, then subtract. This avoids the common error caused by there being no year zero in the calendar."}}, {"@type": "Question", "name": "Is there a year 0 in history?", "acceptedAnswer": {"@type": "Answer", "text": "No — the traditional calendar goes straight from 1 BCE to 1 CE. Astronomers use \"year 0\" as a convenience for calculations, which is exactly what this calculator does internally."}}, {"@type": "Question", "name": "Why does my manual subtraction give a different answer?", "acceptedAnswer": {"@type": "Answer", "text": "If you simply add the BCE and CE year numbers together (e.g., 100 + 100 = 200), you'll be off by one year because that method double-counts the missing year zero. The correct answer for 100 BCE to 100 CE is 199 years."}}, {"@type": "Question", "name": "Does this calculator account for the Julian calendar?", "acceptedAnswer": {"@type": "Answer", "text": "The tool uses the proleptic Gregorian calendar for all day-level math, which is standard practice for historical date calculators. For dates before 1582 CE, exact day counts are approximate since the Julian calendar was actually in use then."}}, {"@type": "Question", "name": "Can I calculate the years between two ancient BCE dates?", "acceptedAnswer": {"@type": "Answer", "text": "Yes — enter both dates as BCE with their respective years, and the calculator will correctly compute the span between them, such as the 709 years between the founding of Rome and Julius Caesar's death."}}, {"@type": "Question", "name": "What if I only know the year, not the exact month or day?", "acceptedAnswer": {"@type": "Answer", "text": "Leave the month and day fields blank for both dates. The calculator will return a year-level result instead of an exact day count, which is appropriate for most ancient and medieval events."}}]}]}</script>
+<style>
+:root{
+  --bg:#f5f0e1; --card:#fffdf7; --accent:#8b4513; --accent-dark:#6b3410;
+  --text:#2c1810; --border:#c4a882; --muted:#5a4636; --error:#e74c3c;
+}
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  line-height:1.55;
+}
+.wrap{max-width:640px; margin:0 auto; padding:1.5rem;}
+nav{padding:0.5rem 0;}
+nav a{color:var(--accent-dark); font-weight:700; text-decoration:none; font-size:1.1rem;}
+h1{font-size:1.6rem; margin:1rem 0 0.5rem;}
+h2{font-size:1.25rem; margin-top:2rem; color:var(--accent-dark);}
+p{color:var(--text);}
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:8px;
+  padding:2rem; box-shadow:0 2px 6px rgba(139,69,19,0.08); margin:1.5rem 0;
+}
+fieldset{border:1px solid var(--border); border-radius:8px; padding:1rem 1rem 1.2rem; margin:0 0 1.2rem;}
+legend{font-weight:700; padding:0 0.5rem; color:var(--accent-dark);}
+label{display:block; font-size:0.85rem; font-weight:500; color:#444; margin:0.7rem 0 0.3rem;}
+input[type="number"], select{
+  width:100%; padding:12px 16px; border:1px solid #ddd; border-radius:6px;
+  font-size:1rem; min-height:44px; background:#fff; color:var(--text);
+}
+input:focus, select:focus{outline:2px solid var(--accent); outline-offset:1px;}
+input.error{border:1px solid var(--error);}
+.errmsg{color:var(--error); font-size:0.85rem; margin-top:0.3rem; min-height:1em;}
+.row{display:flex; gap:1rem; flex-wrap:wrap;}
+.row > div{flex:1; min-width:120px;}
+.fieldnote{font-size:0.8rem; color:#5a4636; margin-top:0.4rem;}
+button.calc{
+  background:var(--accent); color:#fff; border:none; padding:12px 24px;
+  border-radius:6px; font-size:1rem; font-weight:600; cursor:pointer;
+  width:100%; min-height:44px; margin-top:0.5rem;
+}
+button.calc:hover{background:var(--accent-dark);}
+#results{opacity:0; transition:opacity 0.3s ease;}
+#results.show{opacity:1;}
+.bignum{font-size:2rem; font-weight:800; color:var(--accent); margin:0.3rem 0;}
+.subnote{color:#5a4636; font-size:0.9rem;}
+.warnbox{background:#fdf3e0; border:1px solid #e0b060; color:#5a3d00; padding:0.7rem 1rem; border-radius:6px; font-size:0.85rem; margin:0.6rem 0;}
+table{width:100%; border-collapse:collapse; margin-top:1rem; font-size:0.95rem;}
+th,td{padding:0.5rem 0.6rem; border-bottom:1px solid #e5dcc5; text-align:left;}
+th{background:#f0e9d5;}
+td.num, th.num{text-align:right;}
+tr:nth-child(even){background:#fafaf3;}
+tr:nth-child(odd){background:#fff;}
+.tablewrap{overflow-x:auto;}
+.copybtn{
+  background:transparent; border:1px solid var(--accent); color:var(--accent-dark);
+  padding:8px 14px; border-radius:6px; font-size:0.85rem; cursor:pointer; margin-top:0.8rem;
+  min-height:44px;
+}
+.copybtn:hover{background:#f0e9d5;}
+.ad-slot{min-height:0; margin:0;}
+.svgwrap{text-align:center; margin:1rem 0;}
+.didyouknow{
+  background:#f0e9d5; border-left:4px solid var(--accent); padding:1rem 1.2rem;
+  border-radius:6px; margin:1.5rem 0;
+}
+.didyouknow h3{margin-top:0; color:var(--accent-dark); font-size:1.05rem;}
+details{border:1px solid var(--border); border-radius:6px; padding:0.8rem 1rem; margin-bottom:0.7rem; background:var(--card);}
+summary{font-weight:600; cursor:pointer;}
+.related ul{list-style:none; padding:0; margin:0;}
+.related li{margin-bottom:0.5rem;}
+.related a, footer a{color:var(--accent-dark); text-decoration:underline;}
+footer{margin-top:2rem; padding-top:1rem; border-top:1px solid var(--border); color:#5a4636; font-size:0.9rem;}
+footer a{margin-right:1rem;}
+@media (max-width:480px){
+  .row{flex-direction:column;}
+  .bignum{font-size:1.6rem;}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://historycalc.com/years-between-historical-dates/">
+<meta property="og:title" content="Years Between Two Historical Dates Calculator">
+<meta property="og:description" content="Calculate the exact years, months, and days between two historical dates, including BCE and CE eras. Free years between two dates calculator for history buffs.">
+<meta property="og:site_name" content="HistoryCalc">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6658979295707401" crossorigin="anonymous"></script>
+<style id="ad-css">.ad-slot{margin:2rem auto;text-align:center;clear:both}.ad-slot:empty{margin:0}.ad-slot .ad-label{display:block;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.35rem}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}</style>
+<style id="a11y-css">input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #0b57d0!important;outline-offset:1px;box-shadow:0 0 0 4px #fff!important}footer a,.footer a,p a,li p a,.safety-notice a,.terms-note a{text-decoration:underline}</style>
+</head>
+<body>
+<header id="site-header" style="background:#fbf7ef;border-bottom:3px solid #8b4513;margin:0 0 1.25rem"><div style="max-width:1100px;margin:0 auto;padding:.6rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif"><a href="/" style="display:flex;align-items:center;gap:.55rem;text-decoration:none;color:#8b4513;font-weight:700;font-size:1.15rem"><img src="/favicon.svg" width="28" height="28" alt="" style="display:block;border-radius:6px">HistoryCalc</a><a href="/" style="color:#8b4513;font-size:.9rem;text-decoration:underline">All calculators</a></div></header>
+<div class="wrap">
+<h1>Years Between Two Historical Dates Calculator</h1>
+<p>Use this <strong>years between two dates calculator history</strong> tool to find the exact number of years, months, and days separating two events on the timeline — even across the BCE/CE divide. Enter two dates, in any order, and get an instant, historically accurate result.</p>
+
+<div class="card">
+  <div class="svgwrap">
+    <svg viewBox="0 0 200 110" width="220" height="121" role="img" aria-label="Illustration of an ancient stone sundial casting a shadow">
+      <rect x="0" y="90" width="200" height="20" fill="#c4a882"/>
+      <ellipse cx="100" cy="90" rx="55" ry="10" fill="#a9825a"/>
+      <rect x="90" y="50" width="20" height="40" fill="#8b4513"/>
+      <polygon points="100,20 112,60 88,60" fill="#6b3410"/>
+      <circle cx="160" cy="20" r="14" fill="#deb887"/>
+      <line x1="146" y1="20" x2="110" y2="30" stroke="#deb887" stroke-width="3"/>
+      <line x1="150" y1="8" x2="120" y2="20" stroke="#deb887" stroke-width="3"/>
+      <line x1="150" y1="32" x2="122" y2="35" stroke="#deb887" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <fieldset>
+    <legend>Date 1</legend>
+    <div class="row">
+      <div>
+        <label for="year1">Year</label>
+        <input type="number" id="year1" min="1" step="1" placeholder="e.g. 44" inputmode="numeric">
+      </div>
+      <div>
+        <label for="era1">Era</label>
+        <select id="era1" aria-label="Era for date 1">
+          <option value="BCE">BCE</option>
+          <option value="CE">CE</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="month1">Month (optional)</label>
+        <select id="month1">
+          <option value="">Unknown</option>
+          <option value="1">January</option><option value="2">February</option>
+          <option value="3">March</option><option value="4">April</option>
+          <option value="5">May</option><option value="6">June</option>
+          <option value="7">July</option><option value="8">August</option>
+          <option value="9">September</option><option value="10">October</option>
+          <option value="11">November</option><option value="12">December</option>
+        </select>
+      </div>
+      <div>
+        <label for="day1">Day (optional)</label>
+        <input type="number" id="day1" min="1" max="31" step="1" placeholder="e.g. 15" inputmode="numeric">
+      </div>
+    </div>
+    <p class="fieldnote">Years can go up to 100,000. Note: exact day-level results are only historically meaningful for dates after roughly 3000 BCE.</p>
+    <div class="errmsg" id="err1" role="alert"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Date 2</legend>
+    <div class="row">
+      <div>
+        <label for="year2">Year</label>
+        <input type="number" id="year2" min="1" step="1" placeholder="e.g. 2024" inputmode="numeric">
+      </div>
+      <div>
+        <label for="era2">Era</label>
+        <select id="era2" aria-label="Era for date 2">
+          <option value="BCE">BCE</option>
+          <option value="CE" selected>CE</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="month2">Month (optional)</label>
+        <select id="month2">
+          <option value="">Unknown</option>
+          <option value="1">January</option><option value="2">February</option>
+          <option value="3">March</option><option value="4">April</option>
+          <option value="5">May</option><option value="6">June</option>
+          <option value="7">July</option><option value="8">August</option>
+          <option value="9">September</option><option value="10">October</option>
+          <option value="11">November</option><option value="12">December</option>
+        </select>
+      </div>
+      <div>
+        <label for="day2">Day (optional)</label>
+        <input type="number" id="day2" min="1" max="31" step="1" placeholder="e.g. 1" inputmode="numeric">
+      </div>
+    </div>
+    <div class="errmsg" id="err2" role="alert"></div>
+  </fieldset>
+
+  <button class="calc" id="calcBtn" type="button">Calculate Years Between Dates</button>
+
+  <div id="results" aria-live="polite" aria-atomic="true"></div>
+</div>
+
+<aside class="safety-notice" role="note" style="max-width:640px;margin:1.25rem auto;padding:.8rem 1rem;border-left:3px solid #e0a800;background:#fff8e1;font-size:.85rem;line-height:1.5;color:#4a3b00">Estimates for education and entertainment. Historical figures vary by source and are simplified here; this is not financial, tax or legal advice. See our <a href="/terms/">terms</a>.</aside>
+<div class="ad-slot" id="ad-mid"></div>
+
+<h2>How to Use This Years Between Historical Dates Calculator</h2>
+<p>Enter the year for each event, choose whether it falls BCE (Before Common Era) or CE (Common Era), and optionally add the month and day for exact precision. Click "Calculate," and the tool works out the total time span — displayed as years, months, and days, plus totals in days, weeks, decades, centuries, and millennia. You can enter the dates in either order; the calculator automatically figures out which came first.</p>
+
+<h2>Why This Matters</h2>
+<p>Historians, students, genre writers, teachers, and trivia lovers constantly need to measure spans of time that cross the BCE/CE boundary — and that's where simple subtraction goes wrong. How many years passed between the founding of Rome (753 BCE) and the assassination of Julius Caesar (44 BCE)? How long between the building of the Great Pyramid of Giza (c. 2560 BCE) and the birth of Cleopatra (69 BCE)? These questions come up in classroom assignments, museum exhibits, documentary scripts, and genealogy research into ancient lineages. A calculator that correctly handles the "no year zero" quirk of the calendar saves you from an error that trips up even careful researchers. Whether you're comparing the fall of Constantinople (1453 CE) to today, or the reign of Ramesses II to the birth of Confucius, getting the interval right matters for accurate storytelling and scholarship.</p>
+
+<h2>How It's Calculated</h2>
+<p>The calculator converts each BCE/CE year into an <strong>astronomical year number</strong>, where 1 CE = year 1, 1 BCE = year 0, 2 BCE = year -1, and so on. This removes the historical "missing year zero" and lets ordinary arithmetic work correctly. If you provide a month and day for both events, the tool converts each full date into a Julian Day Number using the standard proleptic Gregorian formula, finds the exact total day count between them, and separately works out a calendar-aware years/months/days breakdown by stepping the earlier date forward in full years, then full months, then counting the exact remaining days — a method that never produces impossible negative values, even across tricky month-end dates like January 31 or leap years. If only years are given, it simply computes the absolute difference between the two astronomical years.</p>
+<p style="font-size:0.9rem;color:#5a4636;">Formula for converting to astronomical year: BCE year → <code>-(year − 1)</code>; CE year stays the same.</p>
+
+<h2>Worked Example</h2>
+<p>Let's find the years between the founding of Rome (753 BCE) and the assassination of Julius Caesar (44 BCE):</p>
+<p>753 BCE → astronomical year -752. 44 BCE → astronomical year -43.<br>
+Difference = -43 − (-752) = 709 years.</p>
+<p>So exactly <strong>709 years</strong> passed between the traditional founding of Rome and Caesar's death — not 797 years, which is the mistake you'd make by naively subtracting 44 from 753 and adding them together without adjusting for the missing year zero.</p>
+
+<h2>Tips &amp; Common Mistakes</h2>
+<ul>
+  <li><strong>Don't just add BCE years together.</strong> The interval between 100 BCE and 100 CE is 199 years, not 200 — because there's no year 0.</li>
+  <li><strong>Julian vs. Gregorian calendars:</strong> Dates before 1582 CE were recorded using the Julian calendar in most of Europe. This calculator uses the proleptic Gregorian calendar for consistency, so exact day-level results for pre-1582 dates are approximate.</li>
+  <li><strong>Traditional dates are estimates.</strong> Many ancient dates (like Rome's founding) are traditional or scholarly estimates, not verified records — treat results as approximate for legendary events.</li>
+  <li><strong>Leave month/day blank</strong> when you only know the year — the calculator will still give an accurate year-level result.</li>
+  <li><strong>Double-check the era</strong> (BCE vs CE) — it's the single most common input mistake and flips your answer dramatically.</li>
+</ul>
+
+<div class="didyouknow">
+  <h3>Did You Know?</h3>
+  <p>1. There is no "year zero" in the traditional BCE/CE calendar — the year 1 BCE is immediately followed by 1 CE.<br>
+  2. Julius Caesar introduced the Julian calendar in 46 BCE, which stayed in use for over 1,600 years until Pope Gregory XIII's reform in 1582 CE.<br>
+  3. The BCE/CE (and BC/AD) numbering system wasn't invented until the 6th century CE by the monk Dionysius Exiguus — people living in "1 BCE" had no idea they were living in it.</p>
+</div>
+
+<h2>Historical Context</h2>
+<p>The way we count years today is younger than you'd think. Ancient civilizations dated events by the reign of a ruler ("in the 5th year of Pharaoh Ramesses II") or by consuls in Rome. The continuous BC/AD numbering scheme was proposed around 525 CE by Dionysius Exiguus to calculate the date of Easter, and it only became widespread centuries later through the influence of the Venerable Bede. Astronomers later adopted "astronomical year numbering," inserting a year 0, precisely to make the kind of arithmetic this calculator performs simple and error-free — a fix historians and casual users alike still benefit from today.</p>
+
+<details class="embed-box" style="max-width:640px;margin:1.5rem auto;padding:0 1.5rem;font-size:.9rem"><summary style="cursor:pointer;font-weight:600">Embed this calculator on your site</summary><p style="margin:.5rem 0">Free for any website, classroom or intranet. Paste this code where you want the calculator:</p><textarea readonly rows="5" aria-label="Embed code" style="width:100%;font:12px/1.4 monospace;padding:.5rem">&lt;iframe src=&quot;https://historycalc.com/embed/years-between-historical-dates/&quot; width=&quot;100%&quot; height=&quot;760&quot; loading=&quot;lazy&quot; title=&quot;Years Between Two Historical Dates Calculator&quot; style=&quot;border:1px solid #ddd;border-radius:8px;max-width:720px&quot;&gt;&lt;/iframe&gt;
+&lt;p style=&quot;font-size:13px;margin:4px 0 0&quot;&gt;&lt;a href=&quot;https://historycalc.com/years-between-historical-dates/&quot;&gt;Years Between Two Historical Dates Calculator&lt;/a&gt; by &lt;a href=&quot;https://historycalc.com/&quot;&gt;HistoryCalc&lt;/a&gt;&lt;/p&gt;</textarea><button type="button" onclick="var t=this.previousElementSibling;t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);this.textContent='Copied'" style="margin-top:.4rem;padding:.4rem .9rem;min-height:44px">Copy embed code</button></details>
+<div class="ad-slot" id="ad-bottom"></div>
+
+<h2>Frequently Asked Questions</h2>
+<details><summary>How do you calculate years between BCE and CE dates?</summary><p>Convert each BCE year to a negative astronomical year (subtract 1 from the BCE year and make it negative), keep CE years as-is, then subtract. This avoids the common error caused by there being no year zero in the calendar.</p></details>
+<details><summary>Is there a year 0 in history?</summary><p>No — the traditional calendar goes straight from 1 BCE to 1 CE. Astronomers use "year 0" as a convenience for calculations, which is exactly what this calculator does internally.</p></details>
+<details><summary>Why does my manual subtraction give a different answer?</summary><p>If you simply add the BCE and CE year numbers together (e.g., 100 + 100 = 200), you'll be off by one year because that method double-counts the missing year zero. The correct answer for 100 BCE to 100 CE is 199 years.</p></details>
+<details><summary>Does this calculator account for the Julian calendar?</summary><p>The tool uses the proleptic Gregorian calendar for all day-level math, which is standard practice for historical date calculators. For dates before 1582 CE, exact day counts are approximate since the Julian calendar was actually in use then.</p></details>
+<details><summary>Can I calculate the years between two ancient BCE dates?</summary><p>Yes — enter both dates as BCE with their respective years, and the calculator will correctly compute the span between them, such as the 709 years between the founding of Rome and Julius Caesar's death.</p></details>
+<details><summary>What if I only know the year, not the exact month or day?</summary><p>Leave the month and day fields blank for both dates. The calculator will return a year-level result instead of an exact day count, which is appropriate for most ancient and medieval events.</p></details>
+
+<h2 class="related">Related Tools</h2>
+<div class="related">
+<ul>
+  <li><a href="/roman-numeral-date-converter/">Roman Numeral Date Converter</a></li>
+  <li><a href="/generation-calculator-birth-year/">Generation Calculator by Birth Year</a></li>
+  <li><a href="/islamic-hijri-date-converter/">Islamic Hijri Calendar Date Converter</a></li>
+  <li><a href="/hebrew-calendar-date-converter/">Hebrew Calendar Date Converter</a></li>
+  <li><a href="/medieval-peasant-diet-calculator/">Medieval Peasant Daily Diet & Calorie Calculator</a></li>
+  <li><a href="/age-at-historical-event/">Age at Historical Event Calculator</a></li>
+</ul>
+</div>
+
+<footer>
+  <a href="/about/">About</a>
+  <a href="/privacy/">Privacy</a> <a href="/terms/">Terms</a> <a href="/accessibility/">Accessibility</a>
+  <a href="/contact/">Contact</a>
+  <p>© 2024 historycalc.com</p>
+</footer>
+</div>
+
+<script>
+function isLeap(y){ return (y%4===0 && y%100!==0) || y%400===0; }
+function daysInMonth(y,m){ const dim=[31,isLeap(y)?29:28,31,30,31,30,31,31,30,31,30,31]; return dim[m-1]; }
+function toJDN(y,m,d){
+  const a=Math.floor((14-m)/12);
+  const yy=y+4800-a;
+  const mm=m+12*a-3;
+  return d+Math.floor((153*mm+2)/5)+365*yy+Math.floor(yy/4)-Math.floor(yy/100)+Math.floor(yy/400)-32045;
+}
+function cmpMD(m1,d1,m2,d2){ if(m1!==m2) return m1-m2; return d1-d2; }
+function monthYearFromIndex(idx){ const yy=Math.floor(idx/12); const mm=idx-yy*12+1; return {year:yy,month:mm}; }
+
+// A,B = {astroYear,month,day}, A must be chronologically <= B
+function diffYMD(A,B){
+  let y = B.astroYear - A.astroYear;
+  if (cmpMD(A.month,A.day,B.month,B.day) > 0) y--;
+  const ayYear = A.astroYear + y;
+  const totalMonthsA = ayYear*12 + (A.month-1);
+  const totalMonthsB = B.astroYear*12 + (B.month-1);
+  let m = totalMonthsB - totalMonthsA;
+  let am = monthYearFromIndex(totalMonthsA+m);
+  let amDay = Math.min(A.day, daysInMonth(am.year, am.month));
+  if (amDay > B.day) {
+    m--;
+    am = monthYearFromIndex(totalMonthsA+m);
+    amDay = Math.min(A.day, daysInMonth(am.year, am.month));
+  }
+  const jdnAm = toJDN(am.year, am.month, amDay);
+  const jdnB = toJDN(B.astroYear, B.month, B.day);
+  let days = jdnB - jdnAm;
+  if (days < 0) { days = 0; } // safety net, should not trigger
+  return {year:y, month:m, day:days};
+}
+function astroToDisplay(astro){
+  return astro<=0 ? {year:1-astro, era:'BCE'} : {year:astro, era:'CE'};
+}
+function fmt(n){ return n.toLocaleString('en-US', {maximumFractionDigits:1}); }
+function plural(n,unit){ return fmt(n)+' '+unit+(Math.abs(n)===1?'':'s'); }
+const MONTH_NAMES=['','January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function setError(n,msg){
+  document.getElementById('year'+n).classList.add('error');
+  document.getElementById('err'+n).textContent=msg;
+}
+function clearError(n){
+  document.getElementById('year'+n).classList.remove('error');
+  document.getElementById('err'+n).textContent='';
+}
+
+function validateEvent(n){
+  const yearRaw=document.getElementById('year'+n).value.trim();
+  const era=document.getElementById('era'+n).value;
+  const monthRaw=document.getElementById('month'+n).value;
+  const dayRaw=document.getElementById('day'+n).value.trim();
+  clearError(n);
+  if(yearRaw===''){ setError(n,'Please enter a year.'); return {valid:false}; }
+  const year=Number(yearRaw);
+  if(!Number.isInteger(year)||year<1||year>100000){ setError(n,'Enter a whole number year between 1 and 100,000.'); return {valid:false}; }
+  const astroYear = era==='BCE' ? -(year-1) : year;
+  let month=null, day=null;
+  if(monthRaw!==''||dayRaw!==''){
+    if(monthRaw===''||dayRaw===''){ setError(n,'Enter both month and day, or leave both blank.'); return {valid:false}; }
+    month=Number(monthRaw); day=Number(dayRaw);
+    if(!Number.isInteger(day)||day<1||day>daysInMonth(astroYear,month)){ setError(n,'That day does not exist in the selected month/year.'); return {valid:false}; }
+  }
+  return {valid:true, year, era, astroYear, month, day, hasMD: month!==null};
+}
+
+function updateDayMax(n){
+  const monthEl=document.getElementById('month'+n);
+  const dayEl=document.getElementById('day'+n);
+  const month=monthEl.value;
+  if(month===''){ dayEl.max=31; return; }
+  const yearRaw=document.getElementById('year'+n).value.trim();
+  const era=document.getElementById('era'+n).value;
+  let astroYear=2001;
+  if(yearRaw!==''){
+    const y=Number(yearRaw);
+    if(Number.isInteger(y) && y>=1){ astroYear = era==='BCE' ? -(y-1) : y; }
+  }
+  const max=daysInMonth(astroYear, Number(month));
+  dayEl.max=max;
+  if(dayEl.value && Number(dayEl.value)>max) dayEl.value=max;
+}
+
+let lastSummary='';
+
+function calculate(){
+  const e1=validateEvent(1);
+  const e2=validateEvent(2);
+  const resultsEl=document.getElementById('results');
+  if(!e1.valid || !e2.valid){
+    requestAnimationFrame(()=>{ resultsEl.classList.remove('show'); resultsEl.innerHTML=''; });
+    return;
+  }
+  let A=e1, B=e2;
+  const keyOf=(e)=> e.astroYear*10000 + (e.month?e.month:0)*100 + (e.day?e.day:0);
+  if(keyOf(A) > keyOf(B)){ const t=A; A=B; B=t; }
+
+  const bothFull = A.hasMD && B.hasMD;
+  let bigLine, tableRows='', note='', warn='';
+
+  const dA=astroToDisplay(A.astroYear), dB=astroToDisplay(B.astroYear);
+  const labelA = (A.hasMD ? MONTH_NAMES[A.month]+' '+A.day+', ' : '') + fmt(dA.year) + ' ' + dA.era;
+  const labelB = (B.hasMD ? MONTH_NAMES[B.month]+' '+B.day+', ' : '') + fmt(dB.year) + ' ' + dB.era;
+
+  let totalDays, totalYearsDecimal, ymd;
+
+  if(bothFull){
+    const jdnA=toJDN(A.astroYear,A.month,A.day);
+    const jdnB=toJDN(B.astroYear,B.month,B.day);
+    totalDays = jdnB - jdnA;
+    ymd = diffYMD({astroYear:A.astroYear,month:A.month,day:A.day},{astroYear:B.astroYear,month:B.month,day:B.day});
+    totalYearsDecimal = totalDays / 365.2425;
+    bigLine = `${plural(ymd.year,'year')}, ${plural(ymd.month,'month')}, ${plural(ymd.day,'day')}`;
+    if(A.astroYear <= -3000 || B.astroYear <= -3000){
+      warn = 'Heads up: one or both dates fall before roughly 3000 BCE, well before written calendars existed. The day-level figures above are mathematically extrapolated using the modern proleptic Gregorian calendar and should be treated as illustrative, not historically precise.';
+    }
+  } else {
+    const totalYears = Math.abs(B.astroYear - A.astroYear);
+    totalDays = Math.round(totalYears * 365.2425);
+    totalYearsDecimal = totalYears;
+    ymd = {year:totalYears, month:0, day:0};
+    bigLine = `${plural(totalYears,'year')}`;
+    note = 'Calculated at year-level precision. Add a month and day to both dates for an exact day count.';
+  }
+
+  const totalWeeks = totalDays/7;
+  const totalMonths = totalYearsDecimal*12;
+  const decades = totalYearsDecimal/10;
+  const centuries = totalYearsDecimal/100;
+  const millennia = totalYearsDecimal/1000;
+  const lifetimes = totalYearsDecimal/80;
+  const currentYear = new Date().getFullYear();
+  const usHistoryYears = currentYear-1776;
+  const usRatio = totalYearsDecimal/usHistoryYears;
+
+  tableRows = `
+    <tr><td>From</td><td class="num">${labelA}</td></tr>
+    <tr><td>To</td><td class="num">${labelB}</td></tr>
+    ${bothFull? `<tr><td>Total days</td><td class="num">${fmt(Math.round(totalDays))}</td></tr>`:''}
+    <tr><td>Total weeks (approx.)</td><td class="num">${fmt(totalWeeks)}</td></tr>
+    <tr><td>Total months (approx.)</td><td class="num">${fmt(totalMonths)}</td></tr>
+    <tr><td>Total years (decimal)</td><td class="num">${fmt(totalYearsDecimal)}</td></tr>
+    <tr><td>Decades</td><td class="num">${fmt(decades)}</td></tr>
+    <tr><td>Centuries</td><td class="num">${fmt(centuries)}</td></tr>
+    <tr><td>Millennia</td><td class="num">${fmt(millennia)}</td></tr>
+  `;
+
+  const modernLine = `That span is roughly <strong>${fmt(lifetimes)}</strong> average human lifetimes (80 years each) — and about <strong>${fmt(usRatio)}×</strong> the length of United States history since 1776 (${fmt(usHistoryYears)} years as of ${currentYear}).`;
+
+  lastSummary = `Years between ${labelA} and ${labelB}: ${bigLine}. Total days: ${bothFull?fmt(Math.round(totalDays)):'~'+fmt(totalDays)}. Total years (decimal): ${fmt(totalYearsDecimal)}.`;
+
+  const html = `
+    <div class="bignum">${bigLine}</div>
+    ${note? `<p class="subnote">${note}</p>`:''}
+    ${warn? `<p class="warnbox">${warn}</p>`:''}
+    <p class="subnote">${modernLine}</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Measure</th><th class="num">Value</th></tr></thead>
+      <tbody>${tableRows}</tbody>
+    </table></div>
+    <button class="copybtn" id="copyBtn" type="button">Copy Result</button>
+    <span id="copyMsg" class="subnote" style="margin-left:0.6rem;"></span>
+  `;
+
+  requestAnimationFrame(()=>{
+    resultsEl.innerHTML = html;
+    resultsEl.classList.add('show');
+    document.getElementById('copyBtn').addEventListener('click', copyResult);
+  });
+}
+
+function copyResult(){
+  navigator.clipboard.writeText(lastSummary).then(()=>{
+    const msg=document.getElementById('copyMsg');
+    if(msg){ msg.textContent='Copied!'; setTimeout(()=>{ msg.textContent=''; }, 2000); }
+  });
+}
+
+document.getElementById('calcBtn').addEventListener('click', ()=>{ calculate(); });
+document.querySelectorAll('input, select').forEach(el=>{
+  el.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); calculate(); } });
+});
+[1,2].forEach(n=>{
+  document.getElementById('month'+n).addEventListener('change', ()=>updateDayMax(n));
+  document.getElementById('year'+n).addEventListener('input', ()=>updateDayMax(n));
+  document.getElementById('era'+n).addEventListener('change', ()=>updateDayMax(n));
+});
+</script>
+<script id="a11y-js">(function(){function run(){
+var d=document,ctl=d.querySelectorAll('input:not([type=hidden]):not([type=button]):not([type=submit]):not([type=reset]),select,textarea');
+function named(e){if(e.getAttribute('aria-label')||e.getAttribute('aria-labelledby')||e.closest('label'))return true;
+if(e.id){try{if(d.querySelector('label[for="'+CSS.escape(e.id)+'"]'))return true}catch(x){}}return false}
+function txt(n){return n?(n.textContent||'').replace(/\s+/g,' ').trim():''}
+function orphan(e){var p=e.previousElementSibling;while(p){if(p.tagName==='LABEL'&&!p.htmlFor&&!p.querySelector('input,select,textarea'))return p;
+if(p.matches('input,select,textarea'))return null;p=p.previousElementSibling}
+var s=e.parentElement&&e.parentElement.querySelector(':scope>label:not([for])');return s&&!s.querySelector('input,select,textarea')?s:null}
+function lab(e){if(!e)return'';if(e.getAttribute('aria-label'))return e.getAttribute('aria-label');
+if(e.id){var l=d.querySelector('label[for="'+e.id+'"]');if(l)return txt(l)}var w=e.closest('label');return w?txt(w):''}
+for(var i=0;i<ctl.length;i++){var e=ctl[i];if(named(e))continue;var o=orphan(e);
+if(o&&e.id){o.htmlFor=e.id;continue}if(o){e.setAttribute('aria-label',txt(o));continue}
+var n='';if(e.tagName==='SELECT'){var p=e.previousElementSibling;while(p&&!p.matches('input,select,textarea'))p=p.previousElementSibling;
+var b=lab(p);if(b)n=b+' unit'}
+if(!n)n=e.getAttribute('placeholder')&&isNaN(e.getAttribute('placeholder'))?e.getAttribute('placeholder'):'';
+if(!n&&e.id)n=e.id.replace(/[-_]+/g,' ').replace(/([a-z])([A-Z])/g,'$1 $2').replace(/\b(range|slider|input|sel)\b/gi,'').trim();
+if(n)e.setAttribute('aria-label',n.charAt(0).toUpperCase()+n.slice(1))}
+if(!d.querySelector('[aria-live]')){var r=d.querySelector('#results,#result,#resultsSection,#results-section,#output,#resultBox,#result-box,.results,.result-hero,.result,[id^=result]');
+if(r){r.setAttribute('aria-live','polite');r.setAttribute('aria-atomic','true')}}scroll()}
+function scroll(){var a=document.querySelectorAll('div,section,figure,pre');for(var i=0;i<a.length;i++){var e=a[i];
+if(e.hasAttribute('tabindex')||e.scrollWidth<=e.clientWidth+1)continue;var o=getComputedStyle(e).overflowX;if(o!=='auto'&&o!=='scroll')continue;
+if(e.querySelector('a[href],button,input,select,textarea,[tabindex]'))continue;e.tabIndex=0;if(!e.getAttribute('role'))e.setAttribute('role','region');
+if(!e.getAttribute('aria-label'))e.setAttribute('aria-label',e.querySelector('table')?'Scrollable table':'Scrollable content')}}
+var t;function later(){clearTimeout(t);t=setTimeout(scroll,400)}document.addEventListener('click',later);document.addEventListener('keyup',later);window.addEventListener('resize',later);window.addEventListener('load',later);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run()})();</script>
+</body>
+</html>
